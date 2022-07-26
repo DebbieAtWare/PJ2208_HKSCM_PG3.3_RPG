@@ -1,0 +1,29 @@
+﻿<Properties StartupConfiguration="{1A39C456-44B9-D90F-D59A-2C62CDE4D09D}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/2D RPG Kit/Scripts/EventManager.cs">
+    <Files>
+      <File FileName="Assets/2D RPG Kit/Scripts/EventManager.cs" Line="58" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="HKSCM_PG3.3_RPG" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="2D RPG Kit" expanded="True">
+                <Node name="Scripts" expanded="True">
+                  <Node name="EventManager.cs" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="6ffa8c14-6ab5-4309-8fa8-2cf910d6651b" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
