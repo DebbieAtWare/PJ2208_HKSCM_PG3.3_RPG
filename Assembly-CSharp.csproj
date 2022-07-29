@@ -116,9 +116,57 @@
     <Compile Include="Assets/2D RPG Kit/Scripts/DamageNumber.cs" />
     <Compile Include="Assets/2D RPG Kit/Scripts/BattleNotification.cs" />
     <Compile Include="Assets/2D RPG Kit/Scripts/QuestManager.cs" />
+    <Compile Include="Assets/FlexReader/Mapping/Mapping.cs" />
+    <Compile Include="Assets/FlexReader/Converter/CustomConverters/Vector3Converter.cs" />
+    <Compile Include="Assets/FlexReader/Demo/Scripts/ResourceLoader.cs" />
+    <Compile Include="Assets/FlexReader/Mapping/TableAttribute.cs" />
+    <Compile Include="Assets/FlexReader/Excel2007/SharedStringCollection.cs" />
+    <Compile Include="Assets/FlexReader/Converter/CustomConverters/ObjectConverter.cs" />
+    <Compile Include="Assets/FlexReader/Converter/CustomConverters/Vector2Converter.cs" />
+    <Compile Include="Assets/FlexReader/Converter/CustomConverters/ArrayConverter.cs" />
+    <Compile Include="Assets/FlexReader/Converter/CustomConverters/Vector4Converter.cs" />
+    <Compile Include="Assets/FlexReader/Demo/Scripts/Modal.cs" />
+    <Compile Include="Assets/FlexReader/Converter/CustomConverters/Color32Converter.cs" />
+    <Compile Include="Assets/FlexReader/Demo/Scripts/DataPath.cs" />
+    <Compile Include="Assets/FlexReader/Excel2007/WorkSheet.cs" />
+    <Compile Include="Assets/FlexReader/Demo/Scripts/FlexLoader.cs" />
+    <Compile Include="Assets/FlexReader/Core/Address.cs" />
+    <Compile Include="Assets/FlexReader/Converter/Extensions.cs" />
+    <Compile Include="Assets/FlexReader/Core/Cell.cs" />
+    <Compile Include="Assets/FlexReader/Demo/Scripts/WebLoader.cs" />
+    <Compile Include="Assets/FlexReader/Converter/IConverter.cs" />
+    <Compile Include="Assets/FlexReader/Mapping/TableMapper.cs" />
+    <Compile Include="Assets/FlexReader/Mapping/IGenerator.cs" />
+    <Compile Include="Assets/FlexReader/Demo/Scripts/Loading.cs" />
+    <Compile Include="Assets/FlexReader/Converter/CustomConverters/RectConverter.cs" />
+    <Compile Include="Assets/FlexReader/Demo/Scripts/Mapping.cs" />
+    <Compile Include="Assets/FlexReader/Core/ICloneable.cs" />
+    <Compile Include="Assets/FlexReader/Converter/CustomConverters/DictionaryConverter.cs" />
+    <Compile Include="Assets/FlexReader/Core/Range.cs" />
+    <Compile Include="Assets/FlexReader/Core/Row.cs" />
+    <Compile Include="Assets/FlexReader/Demo/Scripts/UIRow.cs" />
+    <Compile Include="Assets/FlexReader/Demo/Scripts/StreamingAssetsLoad.cs" />
+    <Compile Include="Assets/FlexReader/Demo/Scripts/SceneReference.cs" />
+    <Compile Include="Assets/FlexReader/Demo/Scripts/Navigator.cs" />
+    <Compile Include="Assets/FlexReader/Converter/Validator.cs" />
+    <Compile Include="Assets/FlexReader/Mapping/MapperBase.cs" />
+    <Compile Include="Assets/FlexReader/Mapping/Mapper.cs" />
+    <Compile Include="Assets/FlexReader/Mapping/TableMapperBase.cs" />
+    <Compile Include="Assets/FlexReader/CSV/Document.cs" />
+    <Compile Include="Assets/FlexReader/Converter/CustomConverters/ListConverter.cs" />
+    <Compile Include="Assets/FlexReader/Converter/CustomConverters/ColorConverter.cs" />
+    <Compile Include="Assets/FlexReader/Mapping/ITableGenerator.cs" />
+    <Compile Include="Assets/FlexReader/Mapping/ColumnAttribute.cs" />
+    <Compile Include="Assets/FlexReader/Core/Table.cs" />
+    <Compile Include="Assets/FlexReader/Excel2007/WorkBook.cs" />
+    <Compile Include="Assets/FlexReader/Converter/ValueConverter.cs" />
+    <Compile Include="Assets/FlexReader/Converter/CustomConverter.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets/2D RPG Kit/Touch Support/CrossPlatformInput/CrossPlatformInputGuidelines.txt" />
+     <None Include="Assets/FlexReader/Demo/readme.txt" />
+     <None Include="Assets/FlexReader/ICSharpCode.SharpZipLib.dll" />
+     <None Include="Assets/FlexReader/readme.txt" />
     <Reference Include="UnityEngine">
       <HintPath>/Users/ikt/Documents/Unity/2020.3.8f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -349,6 +397,9 @@
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
       <HintPath>Library/PackageCache/com.unity.analytics@3.3.5/Unity.Analytics.Tracker.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>Assets/FlexReader/ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>/Users/ikt/Documents/Unity/2020.3.8f1/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>

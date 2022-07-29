@@ -59,4 +59,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/2D RPG Kit/Scenes/Demo/Cave 5.unity
     guid: ededbe0166520534e9d6b1313ffa4b02
+  - enabled: 1
+    path: Assets/Scenes/TestScene.unity
+    guid: d81b799792355454ebe22012f9338daf
+  - enabled: 1
+    path: Assets/Scenes/TestScene2.unity
+    guid: 6e149294fe4634f1095c732dd6d01d1c
   m_configObjects: {}

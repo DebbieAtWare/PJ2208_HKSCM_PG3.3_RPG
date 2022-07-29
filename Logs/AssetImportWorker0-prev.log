@@ -1,0 +1,85 @@
+Using pre-set license
+
+ COMMAND LINE ARGUMENTS:
+/Users/ikt/Documents/Unity/2020.3.8f1/Unity.app/Contents/MacOS/Unity
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+/Users/ikt/Documents/Unity/Projects/HKSCM_PG_RPG/HKSCM_PG3.3_RPG
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+53160
+Successfully changed project path to: /Users/ikt/Documents/Unity/Projects/HKSCM_PG_RPG/HKSCM_PG3.3_RPG
+/Users/ikt/Documents/Unity/Projects/HKSCM_PG_RPG/HKSCM_PG3.3_RPG
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 37.17 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.3.8f1 (507919d4fff5)
+[Subsystems] Discovering subsystems at path /Users/ikt/Documents/Unity/2020.3.8f1/Unity.app/Contents/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path /Users/ikt/Documents/Unity/Projects/HKSCM_PG_RPG/HKSCM_PG3.3_RPG/Assets
+GfxDevice: creating device client; threaded=0
+2022-07-28 11:10:18.496 Unity[7472:265847] PHL 258B6QU preferred device: Intel(R) Iris(TM) Plus Graphics 655 (low power)
+2022-07-28 11:10:18.496 Unity[7472:265847] Metal devices available: 1
+2022-07-28 11:10:18.496 Unity[7472:265847] 0: Intel(R) Iris(TM) Plus Graphics 655 (low power)
+2022-07-28 11:10:18.496 Unity[7472:265847] Using device Intel(R) Iris(TM) Plus Graphics 655 (low power)
+Initializing Metal device caps: Intel(R) Iris(TM) Plus Graphics 655
+Initialize mono
+Mono path[0] = '/Users/ikt/Documents/Unity/2020.3.8f1/Unity.app/Contents/Managed'
+Mono path[1] = '/Users/ikt/Documents/Unity/2020.3.8f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = '/Users/ikt/Documents/Unity/2020.3.8f1/Unity.app/Contents/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56472
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: /Users/ikt/Documents/Unity/2020.3.8f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
+Register platform support module: /Users/ikt/Documents/Unity/2020.3.8f1/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.000599 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Refreshing native plugins compatible for Editor in 36.41 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.879 seconds
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.001329 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Refreshing native plugins compatible for Editor in 0.54 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.841 seconds
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launching external process: /Users/ikt/Documents/Unity/2020.3.8f1/Unity.app/Contents/Tools/UnityShaderCompiler
+Launched and connected shader compiler UnityShaderCompiler after 0.01 seconds
+Refreshing native plugins compatible for Editor in 0.51 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1622 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 134.6 MB.
+System memory in use after: 134.6 MB.
+
+Unloading 38 unused Assets to reduce memory usage. Loaded Objects now: 2049.
+Total: 1.757303 ms (FindLiveObjects: 0.155263 ms CreateObjectMapping: 0.056857 ms MarkObjects: 1.470812 ms  DeleteObjects: 0.073548 ms)
+
+========================================================================
+Received Import Request.
+  path: Assets/2D RPG Kit/Sprites/Effects/attack.png
+  artifactKey: Guid(a91f04d267c408a4db1fd90002d637d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/2D RPG Kit/Sprites/Effects/attack.png using Guid(a91f04d267c408a4db1fd90002d637d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '91599e88275acbcd4363574c1f266a42') in 0.693632 seconds
+  Import took 0.696042 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000216 seconds.
+  path: Assets/2D RPG Kit/Sprites/Effects/Freeze.png
+  artifactKey: Guid(1df8bc1b424e79042bcabb1499416127) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/2D RPG Kit/Sprites/Effects/Freeze.png using Guid(1df8bc1b424e79042bcabb1499416127) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '723a16ecc9469b7e63262871d75f4e96') in 0.041395 seconds
+  Import took 0.044028 seconds .
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file

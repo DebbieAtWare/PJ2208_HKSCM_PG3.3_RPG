@@ -129,6 +129,7 @@ public class DialogManager : MonoBehaviour {
                         if (shouldMarkEvent)
                         {
                             shouldMarkEvent = false;
+
                             if (markEventComplete1)
                             {
                                 EventManager.instance.MarkEventComplete(eventToMark);
@@ -138,6 +139,9 @@ public class DialogManager : MonoBehaviour {
                                 EventManager.instance.MarkEventIncomplete(eventToMark);
                             }
                         }
+
+                        Debug.Log("Dialogue End");
+
                     }
                     else
                     {
@@ -161,6 +165,8 @@ public class DialogManager : MonoBehaviour {
     //Use this to call a dialog that is activated by a button press
     public void ShowDialog(string[] newLines, bool isPerson)
     {
+        Debug.Log("Dialogue Start");
+
         dialogLines = newLines;    
         
 
@@ -284,6 +290,8 @@ public class DialogManager : MonoBehaviour {
     //Method to complete an event after dialog
     public void ActivateEventAtEnd(string eventName, bool markEventComplete)
     {
+        Debug.Log("ActivateEventAtEnd : " + eventName);
+
         eventToMark = eventName;
         markEventComplete1 = markEventComplete;
 

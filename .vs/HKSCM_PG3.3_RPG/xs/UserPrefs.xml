@@ -1,16 +1,24 @@
 ﻿<Properties StartupConfiguration="{1A39C456-44B9-D90F-D59A-2C62CDE4D09D}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/2D RPG Kit/Scripts/EventManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/FlexReader/Demo/Scripts/DataPath.cs">
     <Files>
-      <File FileName="Assets/2D RPG Kit/Scripts/EventManager.cs" Line="58" Column="1" />
+      <File FileName="Assets/2D RPG Kit/Scripts/EventManager.cs" Line="68" Column="1" />
+      <File FileName="Assets/2D RPG Kit/Scripts/PlayerController.cs" />
+      <File FileName="Assets/2D RPG Kit/Scripts/DialogStarter.cs" />
+      <File FileName="Assets/2D RPG Kit/Scripts/DialogManager.cs" />
+      <File FileName="Assets/FlexReader/Demo/Scripts/StreamingAssetsLoad.cs" Line="38" Column="14" />
+      <File FileName="Assets/FlexReader/Demo/Scripts/ResourceLoader.cs" Line="31" Column="63" />
+      <File FileName="Assets/FlexReader/Demo/Scripts/DataPath.cs" Line="36" Column="10" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="HKSCM_PG3.3_RPG" expanded="True">
             <Node name="Assets" expanded="True">
-              <Node name="2D RPG Kit" expanded="True">
-                <Node name="Scripts" expanded="True">
-                  <Node name="EventManager.cs" selected="True" />
+              <Node name="FlexReader" expanded="True">
+                <Node name="Demo" expanded="True">
+                  <Node name="Scripts" expanded="True">
+                    <Node name="DataPath.cs" selected="True" />
+                  </Node>
                 </Node>
               </Node>
             </Node>
@@ -21,7 +29,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="6ffa8c14-6ab5-4309-8fa8-2cf910d6651b" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="086e41fd-96ee-4f05-b4a1-ff4c13b2ea5c" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

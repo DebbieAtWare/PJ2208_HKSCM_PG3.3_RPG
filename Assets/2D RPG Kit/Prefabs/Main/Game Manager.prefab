@@ -291,6 +291,7 @@ MonoBehaviour:
   - Cave fade 4
   - End cave dialog 4
   - House Fade
+  - Test Event
   completedEvents: 
 --- !u!1 &1527901407061400
 GameObject:

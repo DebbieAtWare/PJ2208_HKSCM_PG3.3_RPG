@@ -54,6 +54,8 @@ public class EventManager : MonoBehaviour
     //Complete event
     public void MarkEventComplete(string eventToMark)
     {
+        Debug.Log("MarkEventComplete : " + eventToMark);
+
         completedEvents[GetEventNumber(eventToMark)] = true;
 
         UpdateLocalEventObjects();
@@ -62,6 +64,8 @@ public class EventManager : MonoBehaviour
     //Put a completed event back to incomplete
     public void MarkEventIncomplete(string questToMark)
     {
+        Debug.Log("MarkEventIncomplete : " + questToMark);
+
         completedEvents[GetEventNumber(questToMark)] = false;
 
         UpdateLocalEventObjects();

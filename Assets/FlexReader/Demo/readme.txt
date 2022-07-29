@@ -1,0 +1,1 @@
+Add all scenes in Scenes folder to build settings, open scene 00-Menu and run.
