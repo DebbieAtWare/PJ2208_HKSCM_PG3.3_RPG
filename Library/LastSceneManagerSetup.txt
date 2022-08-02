@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/Village 1.unity
+- path: Assets/Scenes/CarboniferousScene.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
