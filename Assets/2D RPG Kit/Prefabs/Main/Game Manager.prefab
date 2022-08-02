@@ -292,6 +292,7 @@ MonoBehaviour:
   - End cave dialog 4
   - House Fade
   - Test Event
+  - NPC_Collider_Pederpes
   completedEvents: 
 --- !u!1 &1527901407061400
 GameObject:
