@@ -147,6 +147,7 @@
     <Compile Include="Assets\2D RPG Kit\Scripts\GameMenu.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\CommonEvents.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\TeleportTo.cs" />
+    <Compile Include="Assets\Scripts\ViewBoxManager.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleCharacter.cs" />
     <Compile Include="Assets\FlexReader\Demo\Scripts\UIRow.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\CameraController.cs" />
@@ -164,7 +165,9 @@
     <Compile Include="Assets\2D RPG Kit\Scripts\DamageNumber.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleNotification.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\QuestManager.cs" />
-    <Compile Include="Assets\Scripts\ViewBoxManager.cs" />
+    <Compile Include="Assets\Scripts\NPCObject.cs" />
+    <Compile Include="Assets\Scripts\CommonUtils.cs" />
+    <Compile Include="Assets\Scripts\CarboniferousManager.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\2D RPG Kit\Touch Support\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
