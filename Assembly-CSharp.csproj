@@ -170,6 +170,7 @@
     <Compile Include="Assets\2D RPG Kit\Scripts\QuestManager.cs" />
     <Compile Include="Assets\Scripts\OnTriggerControl.cs" />
     <Compile Include="Assets\Scripts\DialogBoxManager.cs" />
+    <Compile Include="Assets\Scripts\CollectionBookManager.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -24,13 +24,11 @@ public class DialogBoxManager : MonoBehaviour
     {
         dialogBoxGrp.SetActive(true);
         text_TC.text = line;
-        GameManager.instance.dialogActive = true;
     }
 
     public void HideDialog()
     {
         dialogBoxGrp.SetActive(false);
-        GameManager.instance.dialogActive = false;
     }
 
     public void ShowSupportImg(Image img)
