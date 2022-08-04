@@ -99,6 +99,7 @@
     <Compile Include="Assets\2D RPG Kit\Scripts\DestroyOverLifetime.cs" />
     <Compile Include="Assets\FlexReader\Converter\CustomConverter.cs" />
     <Compile Include="Assets\2D RPG Kit\Touch Support\CrossPlatformInput\Scripts\TiltInput.cs" />
+    <Compile Include="Assets\Scripts\NPCObject.cs" />
     <Compile Include="Assets\FlexReader\Core\Row.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleType.cs" />
     <Compile Include="Assets\FlexReader\Converter\CustomConverters\ArrayConverter.cs" />
@@ -135,8 +136,10 @@
     <Compile Include="Assets\FlexReader\Converter\CustomConverters\DictionaryConverter.cs" />
     <Compile Include="Assets\FlexReader\Demo\Scripts\StreamingAssetsLoad.cs" />
     <Compile Include="Assets\FlexReader\Demo\Scripts\Navigator.cs" />
+    <Compile Include="Assets\Scripts\CarboniferousManager.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\CompleteQuest.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\Credits.cs" />
+    <Compile Include="Assets\Scripts\CommonUtils.cs" />
     <Compile Include="Assets\FlexReader\Converter\CustomConverters\RectConverter.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\EventManager.cs" />
     <Compile Include="Assets\2D RPG Kit\Touch Support\CrossPlatformInput\Scripts\CrossPlatformInputManager.cs" />
@@ -165,9 +168,7 @@
     <Compile Include="Assets\2D RPG Kit\Scripts\DamageNumber.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleNotification.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\QuestManager.cs" />
-    <Compile Include="Assets\Scripts\NPCObject.cs" />
-    <Compile Include="Assets\Scripts\CommonUtils.cs" />
-    <Compile Include="Assets\Scripts\CarboniferousManager.cs" />
+    <Compile Include="Assets\Scripts\OnTriggerControl.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\2D RPG Kit\Touch Support\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
