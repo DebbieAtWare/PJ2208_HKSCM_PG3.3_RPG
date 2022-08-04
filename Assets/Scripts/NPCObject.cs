@@ -10,10 +10,10 @@ public class NPCObject : MonoBehaviour
 
     [Header("FirstTrigger")]
     public OnTriggerControl firstTriggerControl;
-    public DialogStarter dialogStarter;
 
-    //Check wheather the player is in range to talk to npc
-    private bool canActivate;
+    private string[] dialogLines;
+    private int currDialogLine;
+    private bool isAtFirstTrigger;
 
     private void Start()
     {
@@ -32,31 +32,46 @@ public class NPCObject : MonoBehaviour
         firstTriggerControl.onTriggerEnterCallback += FirstTrigger_OnEnter;
         firstTriggerControl.onTriggerExitCallback += FirstTrigger_OnExit;
 
-        dialogStarter.lines = new String[3];
-        dialogStarter.lines[0] = "//dff";
-        dialogStarter.lines[1] = "hi1";
-        dialogStarter.lines[2] = "sdfsdf";
+        dialogLines = new String[3];
+        dialogLines[0] = "hi1";
+        dialogLines[1] = "hi2";
+        dialogLines[2] = "hi3";
     }
 
     private void FirstTrigger_OnEnter()
     {
         //Debug.Log("FirstTrigger_OnEnter");
         ViewBoxManager.instance.ShowViewBox();
-        canActivate = true;
+        isAtFirstTrigger = true;
     }
 
     private void FirstTrigger_OnExit()
     {
         //Debug.Log("FirstTrigger_OnExit");
         ViewBoxManager.instance.HideViewBox();
-        canActivate = false;
+        isAtFirstTrigger = false;
     }
 
     private void UpdateRun()
     {
-        if (Input.GetButtonDown("RPGConfirmPC") && canActivate && DialogManager.instance.dialogBox.activeInHierarchy)
+        if (Input.GetButtonDown("RPGConfirmPC") && isAtFirstTrigger)
         {
-            ViewBoxManager.instance.HideViewBox();
+            if (currDialogLine == 0)
+            {
+                DialogBoxManager.instance.ShowDialog(dialogLines[currDialogLine]);
+                ViewBoxManager.instance.HideViewBox();
+                currDialogLine++;
+            }
+            else if (currDialogLine == dialogLines.Length)
+            {
+                DialogBoxManager.instance.HideDialog();
+                currDialogLine = 0;
+            }
+            else
+            {
+                DialogBoxManager.instance.ShowDialog(dialogLines[currDialogLine]);
+                currDialogLine++;
+            }
         }
     }
 
