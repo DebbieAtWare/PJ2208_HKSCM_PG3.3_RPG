@@ -28501,6 +28501,11 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -3.186708
       objectReference: {fileID: 0}
+    - target: {fileID: 2354068169025748398, guid: 93321ae865a2a69408b9295a87af90bb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8061781311511812681, guid: 93321ae865a2a69408b9295a87af90bb,
         type: 3}
       propertyPath: m_Name
@@ -28514,7 +28519,7 @@ PrefabInstance:
     - target: {fileID: 8061781311511812685, guid: 93321ae865a2a69408b9295a87af90bb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.95
+      value: -15.79
       objectReference: {fileID: 0}
     - target: {fileID: 8061781311511812685, guid: 93321ae865a2a69408b9295a87af90bb,
         type: 3}

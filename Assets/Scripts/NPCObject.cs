@@ -11,6 +11,14 @@ public class NPCObject : MonoBehaviour
     [Header("FirstTrigger")]
     public OnTriggerControl firstTriggerControl;
 
+    [Header("Arrow")]
+    public GameObject arrowObj_Green;
+    public GameObject arrowObj_Grey;
+
+    [Header("Curr")]
+    public bool isFirstMeetDone;
+    public bool isCollectable;
+
     private string[] dialogLines;
     private int currDialogLine;
     private bool isAtFirstTrigger;
@@ -36,6 +44,9 @@ public class NPCObject : MonoBehaviour
         dialogLines[0] = "hi1";
         dialogLines[1] = "hi2";
         dialogLines[2] = "hi3";
+
+        arrowObj_Green.SetActive(true);
+        arrowObj_Grey.SetActive(false);
     }
 
     private void FirstTrigger_OnEnter()
@@ -61,11 +72,16 @@ public class NPCObject : MonoBehaviour
                 DialogBoxManager.instance.ShowDialog(dialogLines[currDialogLine]);
                 ViewBoxManager.instance.HideViewBox();
                 currDialogLine++;
+                isFirstMeetDone = true;
+                arrowObj_Green.SetActive(false);
+                arrowObj_Grey.SetActive(false);
             }
             else if (currDialogLine == dialogLines.Length)
             {
                 DialogBoxManager.instance.HideDialog();
                 currDialogLine = 0;
+                arrowObj_Green.SetActive(false);
+                arrowObj_Grey.SetActive(true);
             }
             else
             {

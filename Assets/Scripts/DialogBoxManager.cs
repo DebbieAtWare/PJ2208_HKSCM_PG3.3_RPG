@@ -12,6 +12,8 @@ public class DialogBoxManager : MonoBehaviour
     public GameObject dialogBoxGrp;
     public Image profilePic;
     public TextMeshProUGUI text_TC;
+    public GameObject supportImgGrp;
+    public Image supportImg;
 
     void Start()
     {
@@ -29,5 +31,16 @@ public class DialogBoxManager : MonoBehaviour
     {
         dialogBoxGrp.SetActive(false);
         GameManager.instance.dialogActive = false;
+    }
+
+    public void ShowSupportImg(Image img)
+    {
+        supportImg = img;
+        supportImgGrp.SetActive(true);
+    }
+
+    public void HideSupportImg()
+    {
+        supportImgGrp.SetActive(false);
     }
 }
