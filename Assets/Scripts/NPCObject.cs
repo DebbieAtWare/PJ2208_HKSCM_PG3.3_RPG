@@ -24,6 +24,7 @@ public class NPCObject : MonoBehaviour
     public List<ConfigData_DialogBox> dialogBoxes = new List<ConfigData_DialogBox>();
     public int currDialogLine;
     public bool isAtFirstTrigger;
+    public bool isAtSuccessCollect;
 
     public void Setup(string _name_TC, string _name_SC, string _name_EN, bool _isCollectable, List<ConfigData_DialogBox> _dialogBoxes)
     {
@@ -38,6 +39,7 @@ public class NPCObject : MonoBehaviour
 
         currDialogLine = 0;
         isAtFirstTrigger = false;
+        isAtSuccessCollect = false;
 
         arrowObj_Green.SetActive(true);
         arrowObj_Grey.SetActive(false);
@@ -59,7 +61,7 @@ public class NPCObject : MonoBehaviour
 
     public void UpdateRun()
     {
-        if (Input.GetButtonDown("RPGConfirmPC") && isAtFirstTrigger)
+        if (Input.GetButtonDown("RPGConfirmPC") && isAtFirstTrigger && !isAtSuccessCollect)
         {
             if (currDialogLine == 0)
             {
@@ -81,6 +83,7 @@ public class NPCObject : MonoBehaviour
                 {
                     if (!isFirstMeetDone)
                     {
+                        isAtSuccessCollect = true;
                         CollectionBookManager.instance.ShowSuccessCollect(name_TC);
                         Invoke("CloseSuccessCollect", 2f);
                     }
@@ -108,6 +111,7 @@ public class NPCObject : MonoBehaviour
         CollectionBookManager.instance.HideSuccessCollect();
         isFirstMeetDone = true;
         GameManager.instance.dialogActive = false;
+        isAtSuccessCollect = false;
     }
 
     private void OnDestroy()
