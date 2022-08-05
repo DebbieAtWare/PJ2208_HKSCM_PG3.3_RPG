@@ -6,7 +6,7 @@ using UnityEngine;
 public class NPCObject : MonoBehaviour
 {
     [Header("Id")]
-    public NPCID id;
+    public CharacterID id;
 
     [Header("FirstTrigger")]
     public OnTriggerControl firstTriggerControl;
@@ -21,35 +21,23 @@ public class NPCObject : MonoBehaviour
     public string name_TC;
     public string name_SC;
     public string name_EN;
+    public List<ConfigData_DialogBox> dialogBoxes = new List<ConfigData_DialogBox>();
+    public int currDialogLine;
+    public bool isAtFirstTrigger;
 
-    private string[] dialogLines;
-    private int currDialogLine;
-    private bool isAtFirstTrigger;
-
-    private void Start()
-    {
-        Setup("鱗木屬", true);
-    }
-    private void Update()
-    {
-        UpdateRun();
-    }
-
-
-
-
-    public void Setup(string _name_TC, bool _isCollectable)
+    public void Setup(string _name_TC, string _name_SC, string _name_EN, bool _isCollectable, List<ConfigData_DialogBox> _dialogBoxes)
     {
         firstTriggerControl.onTriggerEnterCallback += FirstTrigger_OnEnter;
         firstTriggerControl.onTriggerExitCallback += FirstTrigger_OnExit;
 
-        isCollectable = _isCollectable;
         name_TC = _name_TC;
+        name_SC = _name_SC;
+        name_EN = _name_EN;
+        isCollectable = _isCollectable;
+        dialogBoxes = _dialogBoxes;
 
-        dialogLines = new String[3];
-        dialogLines[0] = "hi1";
-        dialogLines[1] = "hi2";
-        dialogLines[2] = "hi3";
+        currDialogLine = 0;
+        isAtFirstTrigger = false;
 
         arrowObj_Green.SetActive(true);
         arrowObj_Grey.SetActive(false);
@@ -69,21 +57,21 @@ public class NPCObject : MonoBehaviour
         isAtFirstTrigger = false;
     }
 
-    private void UpdateRun()
+    public void UpdateRun()
     {
         if (Input.GetButtonDown("RPGConfirmPC") && isAtFirstTrigger)
         {
             if (currDialogLine == 0)
             {
                 GameManager.instance.dialogActive = true;
-                DialogBoxManager.instance.ShowDialog(dialogLines[currDialogLine]);
+                DialogBoxManager.instance.ShowDialog(dialogBoxes[currDialogLine].Text_TC);
                 ViewBoxManager.instance.HideViewBox();
                 currDialogLine++;
                 
                 arrowObj_Green.SetActive(false);
                 arrowObj_Grey.SetActive(false);
             }
-            else if (currDialogLine == dialogLines.Length)
+            else if (currDialogLine == dialogBoxes.Count)
             {
                 DialogBoxManager.instance.HideDialog();
                 currDialogLine = 0;
@@ -109,7 +97,7 @@ public class NPCObject : MonoBehaviour
             }
             else
             {
-                DialogBoxManager.instance.ShowDialog(dialogLines[currDialogLine]);
+                DialogBoxManager.instance.ShowDialog(dialogBoxes[currDialogLine].Text_TC);
                 currDialogLine++;
             }
         }
