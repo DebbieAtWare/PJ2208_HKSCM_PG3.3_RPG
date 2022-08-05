@@ -49,21 +49,25 @@ public class CommonUtils : MonoBehaviour
     [Header("Boss")]
     public ConfigData_DialogBox dialogBox_BossAlert;
     public ConfigData_Character Boss01;
-
+    public bool isFirstMeetDone_Boss01;
+    public bool isSuccessCollectDone_Boss01;
 
     [Header("Curr")]
     public MapID currMapId;
 
-    //for one scene
+    //for share in multiple scenes
     void Awake()
     {
         Debug.Log("CommonUtils Awake");
         if (instance != null)
         {
-            Debug.Log("More than one instance of CommonUtils");
-            return;
+            Destroy(gameObject);
         }
-        instance = this;
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     void Start()
@@ -199,6 +203,12 @@ public class CommonUtils : MonoBehaviour
         dialog_m14.Text_TC = "好似唔小心就講咗好多關於自己嘅嘢，有啲唔好意思，下次有機會再傾多啲。<br>你快啲去繼續探索吓啦，仲有好多新奇有趣嘅事物等緊你！";
         boss1.DialogBoxes.Add(dialog_m14);
         Boss01 = boss1;
+
+        //-----
+
+        isFirstMeetDone_Boss01 = false;
+        isSuccessCollectDone_Boss01 = false;
+
 
         if (onSetupDoneCallback != null)
         {

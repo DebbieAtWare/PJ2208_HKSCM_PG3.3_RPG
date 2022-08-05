@@ -173,6 +173,7 @@
     <Compile Include="Assets\2D RPG Kit\Scripts\QuestManager.cs" />
     <Compile Include="Assets\Scripts\BossObject.cs" />
     <Compile Include="Assets\Scripts\Boss01Manager.cs" />
+    <Compile Include="Assets\Scripts\ConversationModeManager.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

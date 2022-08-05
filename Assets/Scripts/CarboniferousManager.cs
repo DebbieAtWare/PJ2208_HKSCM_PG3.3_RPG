@@ -17,6 +17,20 @@ public class CarboniferousManager : MonoBehaviour
     {
         commonUtils = CommonUtils.instance;
         commonUtils.onSetupDoneCallback += CommonUtils_OnSetupDone;
+
+        if (commonUtils.isFirstMeetDone_Boss01 && !commonUtils.isSuccessCollectDone_Boss01)
+        {
+            GameManager.instance.dialogActive = true;
+            CollectionBookManager.instance.ShowSuccessCollect(commonUtils.Boss01.Name_TC);
+            Invoke("CloseSuccessCollect", 2f);
+        }
+    }
+
+    void CloseSuccessCollect()
+    {
+        CollectionBookManager.instance.HideSuccessCollect();
+        GameManager.instance.dialogActive = false;
+        commonUtils.isSuccessCollectDone_Boss01 = true;
     }
 
     private void CommonUtils_OnSetupDone()
@@ -29,7 +43,7 @@ public class CarboniferousManager : MonoBehaviour
             }
         }
 
-        bossObj.Setup(commonUtils.dialogBox_BossAlert, commonUtils.Boss01);
+        bossObj.Setup(commonUtils.dialogBox_BossAlert, commonUtils.Boss01, true, commonUtils.isFirstMeetDone_Boss01);
     }
 
     void Update()

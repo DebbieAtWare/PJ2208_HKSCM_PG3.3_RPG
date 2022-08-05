@@ -229,7 +229,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -76193021
   m_SortingLayer: 2
-  m_SortingOrder: 2
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9e496179f02ba3448b57e1826ce20f41, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -443,7 +443,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -76193021
   m_SortingLayer: 2
-  m_SortingOrder: 2
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 298abf33fafc4da40b5657baeb99b365, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -507,12 +507,17 @@ MonoBehaviour:
   firstTriggerControl: {fileID: 2354068167750775374}
   arrowObj_Green: {fileID: 2354068169025748398}
   arrowObj_Grey: {fileID: 2354068167538989752}
+  info:
+    Id: 
+    Name_TC: 
+    Name_SC: 
+    Name_EN: 
+    DescriptionTag_TC: 
+    DescriptionTag_SC: 
+    DescriptionTag_EN: 
+    IsCollectable: 0
+    DialogBoxes: []
   isFirstMeetDone: 0
-  isCollectable: 0
-  name_TC: 
-  name_SC: 
-  name_EN: 
-  dialogBoxes: []
   currDialogLine: 0
   isAtFirstTrigger: 0
   isAtSuccessCollect: 0
