@@ -8,6 +8,9 @@ public class CarboniferousManager : MonoBehaviour
     [Header("NPC")]
     public List<NPCObject> NPCObjs = new List<NPCObject>();
 
+    [Header("Boss")]
+    public BossObject bossObj;
+
     CommonUtils commonUtils;
 
     void Start()
@@ -18,14 +21,15 @@ public class CarboniferousManager : MonoBehaviour
 
     private void CommonUtils_OnSetupDone()
     {
-        for (int i = 0; i < CommonUtils.instance.NPC_Carboniferous.Count; i++)
+        for (int i = 0; i < commonUtils.NPC_Carboniferous.Count; i++)
         {
-            if (NPCObjs[i].id.ToString() == CommonUtils.instance.NPC_Carboniferous[i].Id)
+            if (NPCObjs[i].id.ToString() == commonUtils.NPC_Carboniferous[i].Id)
             {
-                NPCObjs[i].Setup(CommonUtils.instance.NPC_Carboniferous[i].Name_TC, CommonUtils.instance.NPC_Carboniferous[i].Name_SC, CommonUtils.instance.NPC_Carboniferous[i].Name_EN,
-                    CommonUtils.instance.NPC_Carboniferous[i].IsCollectable, CommonUtils.instance.NPC_Carboniferous[i].DialogBoxes);
+                NPCObjs[i].Setup(commonUtils.NPC_Carboniferous[i]);
             }
         }
+
+        bossObj.Setup(commonUtils.dialogBox_BossAlert, commonUtils.Boss01);
     }
 
     void Update()
@@ -35,6 +39,7 @@ public class CarboniferousManager : MonoBehaviour
             NPCObjs[i].UpdateRun();
         }
 
+        bossObj.UpdateRun();
     }
 
     private void OnDestory()

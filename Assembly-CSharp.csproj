@@ -88,6 +88,7 @@
     <Compile Include="Assets\FlexReader\Mapping\Mapper.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\ControlManager.cs" />
     <Compile Include="Assets\FlexReader\Core\Cell.cs" />
+    <Compile Include="Assets\Scripts\CollectionBookManager.cs" />
     <Compile Include="Assets\FlexReader\Demo\Scripts\FlexLoader.cs" />
     <Compile Include="Assets\FlexReader\Demo\Scripts\Loading.cs" />
     <Compile Include="Assets\2D RPG Kit\Touch Support\CrossPlatformInput\Scripts\TouchPad.cs" />
@@ -116,6 +117,7 @@
     <Compile Include="Assets\2D RPG Kit\Scripts\ReadHilightedButton.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\SceneGUITilemap.cs" />
     <Compile Include="Assets\FlexReader\Demo\Scripts\WebLoader.cs" />
+    <Compile Include="Assets\Scripts\OnTriggerControl.cs" />
     <Compile Include="Assets\FlexReader\Core\Range.cs" />
     <Compile Include="Assets\FlexReader\Converter\Validator.cs" />
     <Compile Include="Assets\FlexReader\Mapping\ColumnAttribute.cs" />
@@ -143,6 +145,7 @@
     <Compile Include="Assets\FlexReader\Converter\CustomConverters\RectConverter.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\EventManager.cs" />
     <Compile Include="Assets\2D RPG Kit\Touch Support\CrossPlatformInput\Scripts\CrossPlatformInputManager.cs" />
+    <Compile Include="Assets\Scripts\DialogBoxManager.cs" />
     <Compile Include="Assets\FlexReader\Converter\ValueConverter.cs" />
     <Compile Include="Assets\2D RPG Kit\Touch Support\CrossPlatformInput\Scripts\InputAxisScrollbar.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\DirectionalLight.cs" />
@@ -168,9 +171,7 @@
     <Compile Include="Assets\2D RPG Kit\Scripts\DamageNumber.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleNotification.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\QuestManager.cs" />
-    <Compile Include="Assets\Scripts\OnTriggerControl.cs" />
-    <Compile Include="Assets\Scripts\DialogBoxManager.cs" />
-    <Compile Include="Assets\Scripts\CollectionBookManager.cs" />
+    <Compile Include="Assets\Scripts\BossObject.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

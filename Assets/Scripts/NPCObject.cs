@@ -15,27 +15,21 @@ public class NPCObject : MonoBehaviour
     public GameObject arrowObj_Green;
     public GameObject arrowObj_Grey;
 
+    [Header("Info")]
+    public ConfigData_Character info;
+
     [Header("Curr")]
     public bool isFirstMeetDone;
-    public bool isCollectable;
-    public string name_TC;
-    public string name_SC;
-    public string name_EN;
-    public List<ConfigData_DialogBox> dialogBoxes = new List<ConfigData_DialogBox>();
     public int currDialogLine;
     public bool isAtFirstTrigger;
     public bool isAtSuccessCollect;
 
-    public void Setup(string _name_TC, string _name_SC, string _name_EN, bool _isCollectable, List<ConfigData_DialogBox> _dialogBoxes)
+    public void Setup(ConfigData_Character _info)
     {
+        info = _info;
+
         firstTriggerControl.onTriggerEnterCallback += FirstTrigger_OnEnter;
         firstTriggerControl.onTriggerExitCallback += FirstTrigger_OnExit;
-
-        name_TC = _name_TC;
-        name_SC = _name_SC;
-        name_EN = _name_EN;
-        isCollectable = _isCollectable;
-        dialogBoxes = _dialogBoxes;
 
         currDialogLine = 0;
         isAtFirstTrigger = false;
@@ -66,25 +60,25 @@ public class NPCObject : MonoBehaviour
             if (currDialogLine == 0)
             {
                 GameManager.instance.dialogActive = true;
-                DialogBoxManager.instance.ShowDialog(dialogBoxes[currDialogLine].Text_TC);
+                DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine].Text_TC);
                 ViewBoxManager.instance.HideViewBox();
                 currDialogLine++;
                 
                 arrowObj_Green.SetActive(false);
                 arrowObj_Grey.SetActive(false);
             }
-            else if (currDialogLine == dialogBoxes.Count)
+            else if (currDialogLine == info.DialogBoxes.Count)
             {
                 DialogBoxManager.instance.HideDialog();
                 currDialogLine = 0;
                 arrowObj_Green.SetActive(false);
                 arrowObj_Grey.SetActive(true);
-                if (isCollectable)
+                if (info.IsCollectable)
                 {
                     if (!isFirstMeetDone)
                     {
                         isAtSuccessCollect = true;
-                        CollectionBookManager.instance.ShowSuccessCollect(name_TC);
+                        CollectionBookManager.instance.ShowSuccessCollect(info.Name_TC);
                         Invoke("CloseSuccessCollect", 2f);
                     }
                     else
@@ -100,7 +94,7 @@ public class NPCObject : MonoBehaviour
             }
             else
             {
-                DialogBoxManager.instance.ShowDialog(dialogBoxes[currDialogLine].Text_TC);
+                DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine].Text_TC);
                 currDialogLine++;
             }
         }

@@ -60,9 +60,15 @@ EditorBuildSettings:
     path: Assets/2D RPG Kit/Scenes/Demo/Cave 5.unity
     guid: ededbe0166520534e9d6b1313ffa4b02
   - enabled: 1
-    path: Assets/Scenes/TestScene.unity
+    path: Assets/Scenes/Test/TestScene.unity
     guid: d81b799792355454ebe22012f9338daf
   - enabled: 1
-    path: Assets/Scenes/TestScene2.unity
+    path: Assets/Scenes/Test/TestScene2.unity
     guid: 6e149294fe4634f1095c732dd6d01d1c
+  - enabled: 1
+    path: Assets/Scenes/CarboniferousScene.unity
+    guid: f7ea2eafeb054704987a32d5189973e2
+  - enabled: 1
+    path: Assets/Scenes/M01Scene.unity
+    guid: 58f5d10f7b04f324682469420e2ee4eb
   m_configObjects: {}
