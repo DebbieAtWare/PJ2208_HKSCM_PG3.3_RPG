@@ -46,5 +46,15 @@ public class BossObject : MonoBehaviour
             DialogBoxManager.instance.HideDialog();
             GameManager.instance.dialogActive = false;
         }
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            Debug.Log(PlayerController.instance.transform.position);
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            Debug.Log(PlayerController.instance.transform.position);
+            PlayerController.instance.transform.position = new Vector3(0.5f, -1.18f, 0f);
+        }
     }
 }
