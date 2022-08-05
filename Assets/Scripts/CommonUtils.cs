@@ -95,6 +95,71 @@ public class CommonUtils : MonoBehaviour
         npc_2.DialogBoxes.Add(dialog_22);
         NPC_Carboniferous.Add(npc_2);
 
+        ConfigData_NPC npc_3 = new ConfigData_NPC();
+        npc_3.Id = "NPC_C03";
+        npc_3.Name_TC = "節胸屬";
+        npc_3.IsCollectable = true;
+        ConfigData_DialogBox dialog_31 = new ConfigData_DialogBox();
+        dialog_31.ByWhom = "DRO";
+        dialog_31.ImagePath = "";
+        dialog_31.Text_TC = "看看這個是節胸屬呀!";
+        npc_3.DialogBoxes.Add(dialog_31);
+        ConfigData_DialogBox dialog_32 = new ConfigData_DialogBox();
+        dialog_32.ByWhom = "DRO";
+        dialog_32.ImagePath = "";
+        dialog_32.Text_TC = "節胸屬，又稱節胸蜈蚣屬，是史前的倍足綱動物，即現今蜈蚣及馬陸的遠古親屬。";
+        npc_3.DialogBoxes.Add(dialog_32);
+        NPC_Carboniferous.Add(npc_3);
+
+        ConfigData_NPC npc_4 = new ConfigData_NPC();
+        npc_4.Id = "NPC_C04";
+        npc_4.Name_TC = "巨脈蜻蜓";
+        npc_4.IsCollectable = true;
+        ConfigData_DialogBox dialog_41 = new ConfigData_DialogBox();
+        dialog_41.ByWhom = "DRO";
+        dialog_41.ImagePath = "";
+        dialog_41.Text_TC = "看看這個是巨脈蜻蜓呀!";
+        npc_4.DialogBoxes.Add(dialog_41);
+        ConfigData_DialogBox dialog_42 = new ConfigData_DialogBox();
+        dialog_42.ByWhom = "DRO";
+        dialog_42.ImagePath = "";
+        dialog_42.Text_TC = "巨脈蜻蜓，又名大尾蜻蜓或巨尾蜻蜓，是3億年前石炭紀一種已滅絕的昆蟲。";
+        npc_4.DialogBoxes.Add(dialog_42);
+        NPC_Carboniferous.Add(npc_4);
+
+
+        ConfigData_NPC npc_5 = new ConfigData_NPC();
+        npc_5.Id = "NPC_C05";
+        npc_5.Name_TC = "芬氏彼得足螈";
+        npc_5.IsCollectable = true;
+        ConfigData_DialogBox dialog_51 = new ConfigData_DialogBox();
+        dialog_51.ByWhom = "DRO";
+        dialog_51.ImagePath = "";
+        dialog_51.Text_TC = "看看這個是芬氏彼得足螈呀!";
+        npc_5.DialogBoxes.Add(dialog_51);
+        ConfigData_DialogBox dialog_52 = new ConfigData_DialogBox();
+        dialog_52.ByWhom = "DRO";
+        dialog_52.ImagePath = "";
+        dialog_52.Text_TC = "芬氏彼得足螈是早石炭紀四足動物的一個已滅絕屬。";
+        npc_5.DialogBoxes.Add(dialog_52);
+        NPC_Carboniferous.Add(npc_5);
+
+        ConfigData_NPC npc_6 = new ConfigData_NPC();
+        npc_6.Id = "NPC_C06";
+        npc_6.Name_TC = "引螈屬";
+        npc_6.IsCollectable = true;
+        ConfigData_DialogBox dialog_61 = new ConfigData_DialogBox();
+        dialog_61.ByWhom = "DRO";
+        dialog_61.ImagePath = "";
+        dialog_61.Text_TC = "看看這個是引螈屬呀!";
+        npc_6.DialogBoxes.Add(dialog_61);
+        ConfigData_DialogBox dialog_62 = new ConfigData_DialogBox();
+        dialog_62.ByWhom = "DRO";
+        dialog_62.ImagePath = "";
+        dialog_62.Text_TC = "引螈是石炭紀、二疊紀探索上最大的動物。體長1.8米以上。";
+        npc_6.DialogBoxes.Add(dialog_62);
+        NPC_Carboniferous.Add(npc_6);
+
         if (onSetupDoneCallback != null)
         {
             onSetupDoneCallback.Invoke();
