@@ -29310,27 +29310,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6495257075630521158, guid: da2dcf02e3e8989489a30bc94806ef18,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -23.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 6495257075630521158, guid: da2dcf02e3e8989489a30bc94806ef18,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 6.7
-      objectReference: {fileID: 0}
     - target: {fileID: 8431520836166522262, guid: da2dcf02e3e8989489a30bc94806ef18,
         type: 3}
       propertyPath: m_Name
       value: M01
       objectReference: {fileID: 0}
-    - target: {fileID: 8431520836166522264, guid: da2dcf02e3e8989489a30bc94806ef18,
-        type: 3}
-      propertyPath: collectionBookThumbnailSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: fbfd419d67b2dc94c97942613633cb1d,
-        type: 3}
     - target: {fileID: 8431520836166522265, guid: da2dcf02e3e8989489a30bc94806ef18,
         type: 3}
       propertyPath: m_RootOrder

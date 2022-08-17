@@ -9,18 +9,17 @@ public class BossObject : MonoBehaviour
     public delegate void OnFinishedConversation();
     public OnFinishedConversation onFinishedConversationCallback;
 
-    [Header("BossAlert")]
-    public OnTriggerControl alertTriggerControl;
+    [Header("Sprite")]
+    public Sprite bossSprite;
+    public Sprite collectionBookThumbnailSprite;
 
-    [Header("FirstAlert")]
+    [Header("Trigger")]
+    public OnTriggerControl alertTriggerControl;
     public OnTriggerControl firstTriggerControl;
 
     [Header("Arrow")]
     public GameObject arrowObj_Green;
     public GameObject arrowObj_Grey;
-
-    [Header("Collection Book Thumbnail")]
-    public Sprite collectionBookThumbnailSprite;
 
     [Header("Info")]
     public ConfigData_DialogBox dialogBox_Alert;
@@ -101,8 +100,20 @@ public class BossObject : MonoBehaviour
         else if (Input.GetButtonDown("RPGConfirmPC") && isAtFirstTrigger)
         {
             ViewBoxManager.instance.HideViewBox();
-            ConversationModeManager.instance.Show(info.Name_TC, info.DescriptionTag_TC);
-            if (currDialogLine == info.DialogBoxes.Count)
+            
+            if (currDialogLine == 0)
+            {
+                ConversationModeManager.instance.Show1(info.Name_TC, info.DescriptionTag_TC, bossSprite);
+                DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine].Text_TC, info.DialogBoxes[currDialogLine].ByWhom);
+                currDialogLine++;
+            }
+            else if (currDialogLine == 1)
+            {
+                ConversationModeManager.instance.Show2();
+                DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine].Text_TC, info.DialogBoxes[currDialogLine].ByWhom);
+                currDialogLine++;
+            }
+            else if (currDialogLine == info.DialogBoxes.Count)
             {
                 if (onFinishedConversationCallback != null)
                 {
@@ -117,6 +128,7 @@ public class BossObject : MonoBehaviour
             }
             else
             {
+                ConversationModeManager.instance.Show3();
                 DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine].Text_TC, info.DialogBoxes[currDialogLine].ByWhom);
                 currDialogLine++;
             }

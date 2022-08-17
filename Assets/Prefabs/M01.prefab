@@ -447,7 +447,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7599020739601794815}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -23.04, y: 6.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8431520836166522265}
@@ -556,11 +556,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ecd4b534c37484994ef98ed367171a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossSprite: {fileID: 21300000, guid: e6d88c1803bd51746ba4c6ff89ff7181, type: 3}
+  collectionBookThumbnailSprite: {fileID: 21300000, guid: fbfd419d67b2dc94c97942613633cb1d,
+    type: 3}
   alertTriggerControl: {fileID: 2466623942951677255}
   firstTriggerControl: {fileID: 3350569686855252435}
   arrowObj_Green: {fileID: 1823166800018720632}
   arrowObj_Grey: {fileID: 1823166801228652654}
-  collectionBookThumbnailSprite: {fileID: 0}
   dialogBox_Alert:
     ByWhom: 
     ImagePath: 
