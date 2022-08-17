@@ -6567,7 +6567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 471472601cc78cd4bbec3d0a6bc537bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  successCollectGrp: {fileID: 1578500735184515720}
+  successCollect_CanvasGrp: {fileID: 6375028704466158926}
   successCollect_Img: {fileID: 1388534385407527609}
   successCollect_Text_TC: {fileID: 8255317915604024756}
 --- !u!114 &4223283887771779679
@@ -21138,6 +21138,7 @@ GameObject:
   - component: {fileID: 5530564424972058104}
   - component: {fileID: 3859497668210868510}
   - component: {fileID: 8535845164033778036}
+  - component: {fileID: 6375028704466158926}
   m_Layer: 5
   m_Name: SuccessCollectGroup
   m_TagString: Untagged
@@ -21204,6 +21205,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &6375028704466158926
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578500735184515720}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1582869230967970069
 GameObject:
   m_ObjectHideFlags: 0

@@ -59,7 +59,7 @@ public class CarboniferousManager : MonoBehaviour
             if (!commonUtils.bosses[currUtilsIndex_Boss].IsSuccessCollectDone)
             {
                 GameManager.instance.dialogActive = true;
-                CollectionBookManager.instance.ShowSuccessCollect(commonUtils.bosses[currUtilsIndex_Boss].Name_TC);
+                CollectionBookManager.instance.ShowSuccessCollect(commonUtils.bosses[currUtilsIndex_Boss].Name_TC, bossObj.collectionBookThumbnailSprite);
                 Invoke("CloseSuccessCollect", 2f);
             }
         }

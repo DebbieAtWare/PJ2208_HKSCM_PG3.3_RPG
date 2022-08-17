@@ -15,6 +15,9 @@ public class NPCObject : MonoBehaviour
     public GameObject arrowObj_Green;
     public GameObject arrowObj_Grey;
 
+    [Header("Collection Book Thumbnail")]
+    public Sprite collectionBookThumbnailSprite;
+
     [Header("Info")]
     public ConfigData_Character info;
 
@@ -86,7 +89,7 @@ public class NPCObject : MonoBehaviour
                     if (!info.IsFirstMeetDone)
                     {
                         isInSuccessCollectMode = true;
-                        CollectionBookManager.instance.ShowSuccessCollect(info.Name_TC);
+                        CollectionBookManager.instance.ShowSuccessCollect(info.Name_TC, collectionBookThumbnailSprite);
                         Invoke("CloseSuccessCollect", 2f);
                     }
                     else
