@@ -6,19 +6,41 @@ using UnityEngine;
 
 public class Boss01Manager : MonoBehaviour
 {
+    public static Boss01Manager instance;
+
     [Header("Boss")]
     public BossObject bossObj;
 
     CommonUtils commonUtils;
+    int currUtilsIndex;
 
-    void Start()
+    void Awake()
+    {
+        Debug.Log("Boss01Manager Awake");
+        if (instance != null)
+        {
+            Debug.Log("More than one instance of Boss01Manager");
+            return;
+        }
+        instance = this;
+    }
+
+    public void Setup()
     {
         commonUtils = CommonUtils.instance;
+        for (int i = 0; i < commonUtils.bosses.Count; i++)
+        {
+            if (commonUtils.bosses[i].Id == CharacterID.M01.ToString())
+            {
+                currUtilsIndex = i;
+                break;
+            }
+        }
 
         bossObj.onFinishedConversationCallback += OnFinishedConversation;
-        bossObj.Setup(commonUtils.dialogBox_BossAlert, commonUtils.Boss01, false, commonUtils.isFirstMeetDone_Boss01);
+        bossObj.Setup(commonUtils.dialogBox_BossAlert, commonUtils.bosses[currUtilsIndex], false, commonUtils.bosses[currUtilsIndex].IsFirstMeetDone);
 
-        if (commonUtils.isFirstMeetDone_Boss01)
+        if (commonUtils.bosses[currUtilsIndex].IsFirstMeetDone)
         {
             GameManager.instance.dialogActive = false;
         }
@@ -32,7 +54,7 @@ public class Boss01Manager : MonoBehaviour
 
     private void OnFinishedConversation()
     {
-        commonUtils.isFirstMeetDone_Boss01 = true;
+        commonUtils.bosses[currUtilsIndex].IsFirstMeetDone = true;
         bossObj.canShowAlert = false;
     }
 

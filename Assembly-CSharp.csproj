@@ -106,6 +106,7 @@
     <Compile Include="Assets\FlexReader\Converter\CustomConverters\ArrayConverter.cs" />
     <Compile Include="Assets\FlexReader\Demo\Scripts\Mapping.cs" />
     <Compile Include="Assets\FlexReader\Converter\CustomConverters\Vector2Converter.cs" />
+    <Compile Include="Assets\Scripts\ConversationModeManager.cs" />
     <Compile Include="Assets\2D RPG Kit\Touch Support\CrossPlatformInput\Scripts\PlatformSpecific\StandaloneInput.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\SelectSkill.cs" />
     <Compile Include="Assets\FlexReader\Converter\CustomConverters\Vector3Converter.cs" />
@@ -142,6 +143,7 @@
     <Compile Include="Assets\2D RPG Kit\Scripts\CompleteQuest.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\Credits.cs" />
     <Compile Include="Assets\Scripts\CommonUtils.cs" />
+    <Compile Include="Assets\Scripts\BossObject.cs" />
     <Compile Include="Assets\FlexReader\Converter\CustomConverters\RectConverter.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\EventManager.cs" />
     <Compile Include="Assets\2D RPG Kit\Touch Support\CrossPlatformInput\Scripts\CrossPlatformInputManager.cs" />
@@ -154,6 +156,7 @@
     <Compile Include="Assets\2D RPG Kit\Scripts\CommonEvents.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\TeleportTo.cs" />
     <Compile Include="Assets\Scripts\ViewBoxManager.cs" />
+    <Compile Include="Assets\Scripts\Boss01Manager.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleCharacter.cs" />
     <Compile Include="Assets\FlexReader\Demo\Scripts\UIRow.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\CameraController.cs" />
@@ -171,9 +174,7 @@
     <Compile Include="Assets\2D RPG Kit\Scripts\DamageNumber.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleNotification.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\QuestManager.cs" />
-    <Compile Include="Assets\Scripts\BossObject.cs" />
-    <Compile Include="Assets\Scripts\Boss01Manager.cs" />
-    <Compile Include="Assets\Scripts\ConversationModeManager.cs" />
+    <Compile Include="Assets\Scripts\MainManger.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -423,23 +424,23 @@
     <Reference Include="UnityEditor.UnityConnectModule">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.8f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
     </Reference>
+    <Reference Include="DemiLib">
+      <HintPath>Assets\Plugins\Demigiant\DemiLib\Core\DemiLib.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
       <HintPath>Library\PackageCache\com.unity.analytics@3.3.5\AnalyticsStandardEvents\Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
       <HintPath>Library\PackageCache\com.unity.analytics@3.3.5\Unity.Analytics.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="DOTween">
+      <HintPath>Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Analytics.Tracker">
       <HintPath>Library\PackageCache\com.unity.analytics@3.3.5\Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>Assets\FlexReader\ICSharpCode.SharpZipLib.dll</HintPath>
-    </Reference>
-    <Reference Include="DemiLib">
-      <HintPath>Assets\Plugins\Demigiant\DemiLib\Core\DemiLib.dll</HintPath>
-    </Reference>
-    <Reference Include="DOTween">
-      <HintPath>Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
     </Reference>
     <Reference Include="DOTweenPro">
       <HintPath>Assets\Plugins\Demigiant\DOTweenPro\DOTweenPro.dll</HintPath>

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum MapID
 {
@@ -45,12 +46,11 @@ public class CommonUtils : MonoBehaviour
 
     [Header("NPC")]
     public List<ConfigData_Character> NPC_Carboniferous = new List<ConfigData_Character>();
+    public List<ConfigData_Character> NPC_Permian = new List<ConfigData_Character>();
 
     [Header("Boss")]
     public ConfigData_DialogBox dialogBox_BossAlert;
-    public ConfigData_Character Boss01;
-    public bool isFirstMeetDone_Boss01;
-    public bool isSuccessCollectDone_Boss01;
+    public List<ConfigData_Character> bosses = new List<ConfigData_Character>();
 
     [Header("Curr")]
     public MapID currMapId;
@@ -70,12 +70,49 @@ public class CommonUtils : MonoBehaviour
         }
     }
 
-    void Start()
+    public void Setup()
+    {
+        Debug.Log("CommonUtils Start");
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
+        TmpExcelControl();
+
+        //-----
+
+
+        if (onSetupDoneCallback != null)
+        {
+            onSetupDoneCallback.Invoke();
+        }
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
+    {
+        Debug.Log("!!CommonUtils OnSceneLoaded " + scene.name + "  " + loadSceneMode.ToString());
+
+        if (scene.name == "MainScene")
+        {
+
+        }
+        else if (scene.name == "CarboniferousScene")
+        {
+            CarboniferousManager.instance.Setup();
+        }
+        else if (scene.name == "Boss01Scene")
+        {
+            Boss01Manager.instance.Setup();
+        }
+    }
+
+    void TmpExcelControl()
     {
         ConfigData_Character npc_1 = new ConfigData_Character();
         npc_1.Id = "NPC_C01";
         npc_1.Name_TC = "鱗木屬";
         npc_1.IsCollectable = true;
+        npc_1.IsFirstMeetDone = false;
+        npc_1.IsSuccessCollectDone = false;
         ConfigData_DialogBox dialog_11 = new ConfigData_DialogBox();
         dialog_11.ByWhom = "DRO";
         dialog_11.ImagePath = "";
@@ -92,6 +129,8 @@ public class CommonUtils : MonoBehaviour
         npc_2.Id = "NPC_C02";
         npc_2.Name_TC = "科達樹";
         npc_2.IsCollectable = true;
+        npc_2.IsFirstMeetDone = false;
+        npc_2.IsSuccessCollectDone = false;
         ConfigData_DialogBox dialog_21 = new ConfigData_DialogBox();
         dialog_21.ByWhom = "AVA";
         dialog_21.ImagePath = "";
@@ -108,6 +147,8 @@ public class CommonUtils : MonoBehaviour
         npc_3.Id = "NPC_C03";
         npc_3.Name_TC = "節胸屬";
         npc_3.IsCollectable = true;
+        npc_3.IsFirstMeetDone = false;
+        npc_3.IsSuccessCollectDone = false;
         ConfigData_DialogBox dialog_31 = new ConfigData_DialogBox();
         dialog_31.ByWhom = "DRO";
         dialog_31.ImagePath = "";
@@ -124,6 +165,8 @@ public class CommonUtils : MonoBehaviour
         npc_4.Id = "NPC_C04";
         npc_4.Name_TC = "巨脈蜻蜓";
         npc_4.IsCollectable = true;
+        npc_4.IsFirstMeetDone = false;
+        npc_4.IsSuccessCollectDone = false;
         ConfigData_DialogBox dialog_41 = new ConfigData_DialogBox();
         dialog_41.ByWhom = "DRO";
         dialog_41.ImagePath = "";
@@ -141,6 +184,8 @@ public class CommonUtils : MonoBehaviour
         npc_5.Id = "NPC_C05";
         npc_5.Name_TC = "芬氏彼得足螈";
         npc_5.IsCollectable = true;
+        npc_5.IsFirstMeetDone = false;
+        npc_5.IsSuccessCollectDone = false;
         ConfigData_DialogBox dialog_51 = new ConfigData_DialogBox();
         dialog_51.ByWhom = "DRO";
         dialog_51.ImagePath = "";
@@ -157,6 +202,8 @@ public class CommonUtils : MonoBehaviour
         npc_6.Id = "NPC_C06";
         npc_6.Name_TC = "引螈屬";
         npc_6.IsCollectable = true;
+        npc_6.IsFirstMeetDone = false;
+        npc_6.IsSuccessCollectDone = false;
         ConfigData_DialogBox dialog_61 = new ConfigData_DialogBox();
         dialog_61.ByWhom = "DRO";
         dialog_61.ImagePath = "";
@@ -182,6 +229,8 @@ public class CommonUtils : MonoBehaviour
         boss1.Name_TC = "林蜥屬";
         boss1.DescriptionTag_TC = "體積：約20厘米";
         boss1.IsCollectable = true;
+        boss1.IsFirstMeetDone = false;
+        boss1.IsSuccessCollectDone = false;
         ConfigData_DialogBox dialog_m11 = new ConfigData_DialogBox();
         dialog_m11.ByWhom = "M01";
         dialog_m11.ImagePath = "";
@@ -202,24 +251,14 @@ public class CommonUtils : MonoBehaviour
         dialog_m14.ImagePath = "";
         dialog_m14.Text_TC = "好似唔小心就講咗好多關於自己嘅嘢，有啲唔好意思，下次有機會再傾多啲。<br>你快啲去繼續探索吓啦，仲有好多新奇有趣嘅事物等緊你！";
         boss1.DialogBoxes.Add(dialog_m14);
-        Boss01 = boss1;
-
-        //-----
-
-        isFirstMeetDone_Boss01 = false;
-        isSuccessCollectDone_Boss01 = false;
-
-
-        if (onSetupDoneCallback != null)
-        {
-            onSetupDoneCallback.Invoke();
-        }
+        bosses.Add(boss1);
     }
 }
 
 [Serializable]
 public class ConfigData_Character
 {
+    //for excel
     public string Id;
     public string Name_TC;
     public string Name_SC;
@@ -229,6 +268,10 @@ public class ConfigData_Character
     public string DescriptionTag_EN;
     public bool IsCollectable;
     public List<ConfigData_DialogBox> DialogBoxes = new List<ConfigData_DialogBox>();
+
+    //for program
+    public bool IsFirstMeetDone;
+    public bool IsSuccessCollectDone;
 }
 
 [Serializable]

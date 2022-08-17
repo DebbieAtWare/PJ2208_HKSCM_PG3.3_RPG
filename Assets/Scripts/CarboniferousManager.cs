@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class CarboniferousManager : MonoBehaviour
 {
+    public static CarboniferousManager instance;
+
     [Header("NPC")]
     public List<NPCObject> NPCObjs = new List<NPCObject>();
 
@@ -12,29 +14,32 @@ public class CarboniferousManager : MonoBehaviour
     public BossObject bossObj;
 
     CommonUtils commonUtils;
+    int currUtilsIndex_Boss;
 
-    void Start()
+    void Awake()
+    {
+        Debug.Log("CarboniferousManager Awake");
+        if (instance != null)
+        {
+            Debug.Log("More than one instance of CarboniferousManager");
+            return;
+        }
+        instance = this;
+    }
+
+    public void Setup()
     {
         commonUtils = CommonUtils.instance;
-        commonUtils.onSetupDoneCallback += CommonUtils_OnSetupDone;
 
-        if (commonUtils.isFirstMeetDone_Boss01 && !commonUtils.isSuccessCollectDone_Boss01)
+        for (int i = 0; i < commonUtils.bosses.Count; i++)
         {
-            GameManager.instance.dialogActive = true;
-            CollectionBookManager.instance.ShowSuccessCollect(commonUtils.Boss01.Name_TC);
-            Invoke("CloseSuccessCollect", 2f);
+            if (commonUtils.bosses[i].Id == CharacterID.M01.ToString())
+            {
+                currUtilsIndex_Boss = i;
+                break;
+            }
         }
-    }
 
-    void CloseSuccessCollect()
-    {
-        CollectionBookManager.instance.HideSuccessCollect();
-        GameManager.instance.dialogActive = false;
-        commonUtils.isSuccessCollectDone_Boss01 = true;
-    }
-
-    private void CommonUtils_OnSetupDone()
-    {
         for (int i = 0; i < commonUtils.NPC_Carboniferous.Count; i++)
         {
             if (NPCObjs[i].id.ToString() == commonUtils.NPC_Carboniferous[i].Id)
@@ -43,7 +48,28 @@ public class CarboniferousManager : MonoBehaviour
             }
         }
 
-        bossObj.Setup(commonUtils.dialogBox_BossAlert, commonUtils.Boss01, true, commonUtils.isFirstMeetDone_Boss01);
+        if (!commonUtils.bosses[currUtilsIndex_Boss].IsFirstMeetDone)
+        {
+            bossObj.Setup(commonUtils.dialogBox_BossAlert, commonUtils.bosses[currUtilsIndex_Boss], true, commonUtils.bosses[currUtilsIndex_Boss].IsFirstMeetDone);
+        }
+        else
+        {
+            bossObj.Setup(commonUtils.dialogBox_BossAlert, commonUtils.bosses[currUtilsIndex_Boss], false, commonUtils.bosses[currUtilsIndex_Boss].IsFirstMeetDone);
+
+            if (!commonUtils.bosses[currUtilsIndex_Boss].IsSuccessCollectDone)
+            {
+                GameManager.instance.dialogActive = true;
+                CollectionBookManager.instance.ShowSuccessCollect(commonUtils.bosses[currUtilsIndex_Boss].Name_TC);
+                Invoke("CloseSuccessCollect", 2f);
+            }
+        }
+    }
+
+    void CloseSuccessCollect()
+    {
+        CollectionBookManager.instance.HideSuccessCollect();
+        GameManager.instance.dialogActive = false;
+        commonUtils.bosses[currUtilsIndex_Boss].IsSuccessCollectDone = true;
     }
 
     void Update()
@@ -54,10 +80,5 @@ public class CarboniferousManager : MonoBehaviour
         }
 
         bossObj.UpdateRun();
-    }
-
-    private void OnDestory()
-    {
-        commonUtils.onSetupDoneCallback -= CommonUtils_OnSetupDone;
     }
 }
