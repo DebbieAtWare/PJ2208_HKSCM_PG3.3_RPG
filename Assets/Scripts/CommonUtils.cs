@@ -44,11 +44,16 @@ public class CommonUtils : MonoBehaviour
     public delegate void OnSetupDone();
     public OnSetupDone onSetupDoneCallback;
 
-    [Header("NPC")]
+    [Header("Profile Pic")]
+    public Sprite profilePicSprite_Avatar;
+    public Sprite profilePicSprite_Drone;
+    public Sprite profilePicSprite_Boss01;
+    public Sprite profilePicSprite_Boss02;
+    public Sprite profilePicSprite_Boss03;
+
+    [Header("ConfigData")]
     public List<ConfigData_Character> NPC_Carboniferous = new List<ConfigData_Character>();
     public List<ConfigData_Character> NPC_Permian = new List<ConfigData_Character>();
-
-    [Header("Boss")]
     public ConfigData_DialogBox dialogBox_BossAlert;
     public List<ConfigData_Character> bosses = new List<ConfigData_Character>();
 
@@ -249,8 +254,13 @@ public class CommonUtils : MonoBehaviour
         ConfigData_DialogBox dialog_m14 = new ConfigData_DialogBox();
         dialog_m14.ByWhom = "M01";
         dialog_m14.ImagePath = "";
-        dialog_m14.Text_TC = "好似唔小心就講咗好多關於自己嘅嘢，有啲唔好意思，下次有機會再傾多啲。<br>你快啲去繼續探索吓啦，仲有好多新奇有趣嘅事物等緊你！";
+        dialog_m14.Text_TC = "好似唔小心就講咗好多關於自己嘅嘢，有啲唔好意思，下次有機會再傾多啲。";
         boss1.DialogBoxes.Add(dialog_m14);
+        ConfigData_DialogBox dialog_m15 = new ConfigData_DialogBox();
+        dialog_m15.ByWhom = "M01";
+        dialog_m15.ImagePath = "";
+        dialog_m15.Text_TC = "你快啲去繼續探索吓啦，仲有好多新奇有趣嘅事物等緊你！";
+        boss1.DialogBoxes.Add(dialog_m15);
         bosses.Add(boss1);
     }
 }

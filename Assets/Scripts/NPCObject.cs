@@ -71,7 +71,7 @@ public class NPCObject : MonoBehaviour
             if (currDialogLine == 0)
             {
                 GameManager.instance.dialogActive = true;
-                DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine].Text_TC);
+                DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine].Text_TC, info.DialogBoxes[currDialogLine].ByWhom);
                 ViewBoxManager.instance.HideViewBox();
                 currDialogLine++;
             }
@@ -102,7 +102,7 @@ public class NPCObject : MonoBehaviour
             }
             else
             {
-                DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine].Text_TC);
+                DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine].Text_TC, info.DialogBoxes[currDialogLine].ByWhom);
                 currDialogLine++;
             }
         }

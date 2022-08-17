@@ -195,6 +195,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2528e10effd08e44dbb3efb4694fc6ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  profilePicSprite_Avatar: {fileID: 21300000, guid: 0c086d13c0532da4ba8d4eeb326e7e90,
+    type: 3}
+  profilePicSprite_Drone: {fileID: 21300000, guid: 0e44daf86b232674082b56636e317e8f,
+    type: 3}
+  profilePicSprite_Boss01: {fileID: 21300000, guid: 78dd972b98a32b84e9c7045e7c1b5a0e,
+    type: 3}
+  profilePicSprite_Boss02: {fileID: 21300000, guid: eebc23b97f679864dbd4343f032fcbd4,
+    type: 3}
+  profilePicSprite_Boss03: {fileID: 21300000, guid: 22f35b9ae8b193f42b34f8c01a50c099,
+    type: 3}
   NPC_Carboniferous: []
   NPC_Permian: []
   dialogBox_BossAlert:

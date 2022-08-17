@@ -63,7 +63,7 @@ public class BossObject : MonoBehaviour
         if (canShowAlert)
         {
             GameManager.instance.dialogActive = true;
-            DialogBoxManager.instance.ShowDialog(dialogBox_Alert.Text_TC);
+            DialogBoxManager.instance.ShowDialog(dialogBox_Alert.Text_TC, dialogBox_Alert.ByWhom);
         }
     }
 
@@ -99,12 +99,7 @@ public class BossObject : MonoBehaviour
         {
             ViewBoxManager.instance.HideViewBox();
             ConversationModeManager.instance.Show(info.Name_TC, info.DescriptionTag_TC);
-            if (currDialogLine == 0)
-            {
-                DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine].Text_TC);
-                currDialogLine++;
-            }
-            else if (currDialogLine == info.DialogBoxes.Count)
+            if (currDialogLine == info.DialogBoxes.Count)
             {
                 if (onFinishedConversationCallback != null)
                 {
@@ -119,7 +114,7 @@ public class BossObject : MonoBehaviour
             }
             else
             {
-                DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine].Text_TC);
+                DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine].Text_TC, info.DialogBoxes[currDialogLine].ByWhom);
                 currDialogLine++;
             }
         }
