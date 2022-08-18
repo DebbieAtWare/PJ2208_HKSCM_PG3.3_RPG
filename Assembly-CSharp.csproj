@@ -90,6 +90,7 @@
     <Compile Include="Assets\FlexReader\Core\Cell.cs" />
     <Compile Include="Assets\Scripts\CollectionBookManager.cs" />
     <Compile Include="Assets\FlexReader\Demo\Scripts\FlexLoader.cs" />
+    <Compile Include="Assets\Scripts\MainManger.cs" />
     <Compile Include="Assets\FlexReader\Demo\Scripts\Loading.cs" />
     <Compile Include="Assets\2D RPG Kit\Touch Support\CrossPlatformInput\Scripts\TouchPad.cs" />
     <Compile Include="Assets\2D RPG Kit\Touch Support\CrossPlatformInput\Scripts\Joystick.cs" />
@@ -174,7 +175,6 @@
     <Compile Include="Assets\2D RPG Kit\Scripts\DamageNumber.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleNotification.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\QuestManager.cs" />
-    <Compile Include="Assets\Scripts\MainManger.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -867,6 +867,10 @@
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
       <Project>{8B491F33-0696-1E05-44A8-DC58BE58737F}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
+    <ProjectReference Include="AllIn1SpriteShaderAssembly.csproj">
+      <Project>{AA0F1F9B-3B35-FA24-701F-0D8D6E5D26A3}</Project>
+      <Name>AllIn1SpriteShaderAssembly</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
