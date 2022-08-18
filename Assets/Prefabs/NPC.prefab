@@ -356,7 +356,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2354068168996012119
 Transform:
   m_ObjectHideFlags: 0
@@ -507,6 +507,7 @@ MonoBehaviour:
   firstTriggerControl: {fileID: 2354068167750775374}
   arrowObj_Green: {fileID: 2354068169025748398}
   arrowObj_Grey: {fileID: 2354068167538989752}
+  collectionBookThumbnailSprite: {fileID: 0}
   info:
     Id: 
     Name_TC: 
@@ -517,7 +518,8 @@ MonoBehaviour:
     DescriptionTag_EN: 
     IsCollectable: 0
     DialogBoxes: []
-  isFirstMeetDone: 0
+    IsFirstMeetDone: 0
+    IsSuccessCollectDone: 0
   currDialogLine: 0
   isAtFirstTrigger: 0
-  isAtSuccessCollect: 0
+  isInSuccessCollectMode: 0

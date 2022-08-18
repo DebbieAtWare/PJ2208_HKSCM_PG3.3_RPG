@@ -41,16 +41,16 @@ public class NPCObject : MonoBehaviour
         isAtFirstTrigger = false;
         isInSuccessCollectMode = false;
 
-        if (info.IsFirstMeetDone)
-        {
-            arrowObj_Green.SetActive(false);
-            arrowObj_Grey.SetActive(true);
-        }
-        else
-        {
-            arrowObj_Green.SetActive(true);
-            arrowObj_Grey.SetActive(false);
-        }
+        //if (info.IsFirstMeetDone)
+        //{
+        //    arrowObj_Green.SetActive(false);
+        //    arrowObj_Grey.SetActive(true);
+        //}
+        //else
+        //{
+        //    arrowObj_Green.SetActive(true);
+        //    arrowObj_Grey.SetActive(false);
+        //}
     }
 
     private void FirstTrigger_OnEnter()
@@ -82,8 +82,8 @@ public class NPCObject : MonoBehaviour
             {
                 DialogBoxManager.instance.HideDialog();
                 currDialogLine = 0;
-                arrowObj_Green.SetActive(false);
-                arrowObj_Grey.SetActive(true);
+                //arrowObj_Green.SetActive(false);
+                //arrowObj_Grey.SetActive(true);
                 if (info.IsCollectable)
                 {
                     if (!info.IsFirstMeetDone)

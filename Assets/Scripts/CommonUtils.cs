@@ -115,7 +115,7 @@ public class CommonUtils : MonoBehaviour
         ConfigData_Character npc_1 = new ConfigData_Character();
         npc_1.Id = "NPC_C01";
         npc_1.Name_TC = "鱗木屬";
-        npc_1.IsCollectable = true;
+        npc_1.IsCollectable = false;
         npc_1.IsFirstMeetDone = false;
         npc_1.IsSuccessCollectDone = false;
         ConfigData_DialogBox dialog_11 = new ConfigData_DialogBox();
@@ -133,7 +133,7 @@ public class CommonUtils : MonoBehaviour
         ConfigData_Character npc_2 = new ConfigData_Character();
         npc_2.Id = "NPC_C02";
         npc_2.Name_TC = "科達樹";
-        npc_2.IsCollectable = true;
+        npc_2.IsCollectable = false;
         npc_2.IsFirstMeetDone = false;
         npc_2.IsSuccessCollectDone = false;
         ConfigData_DialogBox dialog_21 = new ConfigData_DialogBox();
@@ -151,7 +151,7 @@ public class CommonUtils : MonoBehaviour
         ConfigData_Character npc_3 = new ConfigData_Character();
         npc_3.Id = "NPC_C03";
         npc_3.Name_TC = "節胸屬";
-        npc_3.IsCollectable = true;
+        npc_3.IsCollectable = false;
         npc_3.IsFirstMeetDone = false;
         npc_3.IsSuccessCollectDone = false;
         ConfigData_DialogBox dialog_31 = new ConfigData_DialogBox();
@@ -169,7 +169,7 @@ public class CommonUtils : MonoBehaviour
         ConfigData_Character npc_4 = new ConfigData_Character();
         npc_4.Id = "NPC_C04";
         npc_4.Name_TC = "巨脈蜻蜓";
-        npc_4.IsCollectable = true;
+        npc_4.IsCollectable = false;
         npc_4.IsFirstMeetDone = false;
         npc_4.IsSuccessCollectDone = false;
         ConfigData_DialogBox dialog_41 = new ConfigData_DialogBox();
@@ -188,7 +188,7 @@ public class CommonUtils : MonoBehaviour
         ConfigData_Character npc_5 = new ConfigData_Character();
         npc_5.Id = "NPC_C05";
         npc_5.Name_TC = "芬氏彼得足螈";
-        npc_5.IsCollectable = true;
+        npc_5.IsCollectable = false;
         npc_5.IsFirstMeetDone = false;
         npc_5.IsSuccessCollectDone = false;
         ConfigData_DialogBox dialog_51 = new ConfigData_DialogBox();
@@ -206,7 +206,7 @@ public class CommonUtils : MonoBehaviour
         ConfigData_Character npc_6 = new ConfigData_Character();
         npc_6.Id = "NPC_C06";
         npc_6.Name_TC = "引螈屬";
-        npc_6.IsCollectable = true;
+        npc_6.IsCollectable = false;
         npc_6.IsFirstMeetDone = false;
         npc_6.IsSuccessCollectDone = false;
         ConfigData_DialogBox dialog_61 = new ConfigData_DialogBox();
