@@ -50,6 +50,19 @@ public class TeleportTo : MonoBehaviour {
         }
     }
 
+    //self add
+    public void ManualTeleport()
+    {
+        openScene = true;
+        GameManager.instance.fadingBetweenAreas = true;
+
+        GameMenu.instance.gotItemMessage.SetActive(false);
+
+        ScreenFade.instance.FadeToBlack();
+
+        PlayerController.instance.areaTransitionName = teleportName;
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = new Color(0, 255, 0, .3f);

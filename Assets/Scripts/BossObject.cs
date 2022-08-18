@@ -65,7 +65,7 @@ public class BossObject : MonoBehaviour
         if (canShowAlert)
         {
             GameManager.instance.dialogActive = true;
-            DialogBoxManager.instance.ShowDialog(dialogBox_Alert.Text_TC, dialogBox_Alert.ByWhom);
+            DialogBoxManager.instance.ShowDialog(dialogBox_Alert);
         }
     }
 
@@ -104,13 +104,13 @@ public class BossObject : MonoBehaviour
             if (currDialogLine == 0)
             {
                 ConversationModeManager.instance.Show1(info.Name_TC, info.DescriptionTag_TC, bossSprite);
-                DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine].Text_TC, info.DialogBoxes[currDialogLine].ByWhom);
+                DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
                 currDialogLine++;
             }
             else if (currDialogLine == 1)
             {
                 ConversationModeManager.instance.Show2();
-                DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine].Text_TC, info.DialogBoxes[currDialogLine].ByWhom);
+                DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
                 currDialogLine++;
             }
             else if (currDialogLine == info.DialogBoxes.Count)
@@ -120,7 +120,7 @@ public class BossObject : MonoBehaviour
                     onFinishedConversationCallback.Invoke();
                 }
                 DialogBoxManager.instance.HideDialog();
-                ConversationModeManager.instance.Hide();
+                //ConversationModeManager.instance.Hide();
                 currDialogLine = 0;
                 GameManager.instance.dialogActive = false;
                 arrowObj_Green.SetActive(false);
@@ -129,7 +129,7 @@ public class BossObject : MonoBehaviour
             else
             {
                 ConversationModeManager.instance.Show3();
-                DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine].Text_TC, info.DialogBoxes[currDialogLine].ByWhom);
+                DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
                 currDialogLine++;
             }
         }

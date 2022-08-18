@@ -62,16 +62,18 @@ public class ConversationModeManager : MonoBehaviour
         bossImg.rectTransform.DOAnchorPos(bossPosTarget_Side, 0.5f);
         bossImg.rectTransform.DOScale(bossScaleTarget_Side, 0.5f);
         avatarImg.rectTransform.DOAnchorPos(avatarPosTarget_On, 0.5f);
+        tagCanvasGrp.DOFade(1, 0.5f);
     }
 
     public void Show3()
     {
-        tagCanvasGrp.DOFade(1, 0.5f);
         avatarImg.rectTransform.DOAnchorPos(avatarPosTarget_Off, 0.5f);
     }
 
     public void Hide()
     {
-        conversationModeCanvasGrp.DOFade(0, 0.5f).OnComplete(() => conversationModeCanvasGrp.gameObject.SetActive(false));
+        //conversationModeCanvasGrp.DOFade(0, 0.5f).OnComplete(() => conversationModeCanvasGrp.gameObject.SetActive(false));
+        conversationModeCanvasGrp.alpha = 0;
+        conversationModeCanvasGrp.gameObject.SetActive(false);
     }
 }

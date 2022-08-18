@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
+using System;
 
 public class DialogBoxManager : MonoBehaviour
 {
@@ -12,10 +14,11 @@ public class DialogBoxManager : MonoBehaviour
     public GameObject dialogBoxGrp;
     public Image profilePic;
     public TextMeshProUGUI text_TC;
-    public GameObject supportImgGrp;
-    public Image supportImg;
+    public CanvasGroup supportImgCanvasGrp;
+    public RawImage supportImg;
 
     CommonUtils commonUtils;
+    Vector2 supportImgSizeTarget = new Vector2(720, 480);
 
     void Start()
     {
@@ -23,32 +26,32 @@ public class DialogBoxManager : MonoBehaviour
         commonUtils = CommonUtils.instance;
     }
 
-    public void ShowDialog(string line, string byWhom)
+    public void ShowDialog(ConfigData_DialogBox dialogBox)
     {
         dialogBoxGrp.SetActive(true);
-        text_TC.text = line;
+        text_TC.text = dialogBox.Text_TC;
 
-        if (byWhom == CharacterID.AVA.ToString())
+        if (dialogBox.ByWhom == CharacterID.AVA.ToString())
         {
             profilePic.gameObject.SetActive(true);
             profilePic.sprite = commonUtils.profilePicSprite_Avatar;
         }
-        else if (byWhom == CharacterID.DRO.ToString())
+        else if (dialogBox.ByWhom == CharacterID.DRO.ToString())
         {
             profilePic.gameObject.SetActive(true);
             profilePic.sprite = commonUtils.profilePicSprite_Drone;
         }
-        else if (byWhom == CharacterID.M01.ToString())
+        else if (dialogBox.ByWhom == CharacterID.M01.ToString())
         {
             profilePic.gameObject.SetActive(true);
             profilePic.sprite = commonUtils.profilePicSprite_Boss01;
         }
-        else if (byWhom == CharacterID.M02.ToString())
+        else if (dialogBox.ByWhom == CharacterID.M02.ToString())
         {
             profilePic.gameObject.SetActive(true);
             profilePic.sprite = commonUtils.profilePicSprite_Boss02;
         }
-        else if (byWhom == CharacterID.M03.ToString())
+        else if (dialogBox.ByWhom == CharacterID.M03.ToString())
         {
             profilePic.gameObject.SetActive(true);
             profilePic.sprite = commonUtils.profilePicSprite_Boss03;
@@ -57,6 +60,15 @@ public class DialogBoxManager : MonoBehaviour
         {
             profilePic.gameObject.SetActive(false);
         }
+
+        if (!String.IsNullOrEmpty(dialogBox.ImagePath) && !string.IsNullOrEmpty(dialogBox.ImagePath))
+        {
+            ShowSupportImg(dialogBox.ImagePath);
+        }
+        else
+        {
+            HideSupportImg();
+        }
     }
 
     public void HideDialog()
@@ -64,14 +76,25 @@ public class DialogBoxManager : MonoBehaviour
         dialogBoxGrp.SetActive(false);
     }
 
-    public void ShowSupportImg(Image img)
+    public void ShowSupportImg(string imgPath)
     {
-        supportImg = img;
-        supportImgGrp.SetActive(true);
+        supportImgCanvasGrp.gameObject.SetActive(true);
+        //tmp only load from resouces folder
+        Texture2D texture = Resources.Load<Texture2D>(imgPath);
+        supportImg.texture = texture;
+        if (((float)texture.width / texture.height) >= (float)(supportImgSizeTarget.x / supportImgSizeTarget.y))
+        {
+            supportImg.rectTransform.sizeDelta = new Vector2(supportImgSizeTarget.x, (supportImgSizeTarget.x * texture.height) / texture.width);
+        }
+        else
+        {
+            supportImg.rectTransform.sizeDelta = new Vector2((supportImgSizeTarget.y * texture.width) / texture.height, supportImgSizeTarget.y);
+        }
+        supportImgCanvasGrp.DOFade(1, 0.5f);
     }
 
     public void HideSupportImg()
     {
-        supportImgGrp.SetActive(false);
+        supportImgCanvasGrp.DOFade(0, 0.5f).OnComplete(() => supportImgCanvasGrp.gameObject.SetActive(false));
     }
 }

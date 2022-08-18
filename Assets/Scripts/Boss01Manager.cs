@@ -11,6 +11,9 @@ public class Boss01Manager : MonoBehaviour
     [Header("Boss")]
     public BossObject bossObj;
 
+    [Header("Teleport")]
+    public TeleportTo teleportToCarbon;
+
     CommonUtils commonUtils;
     int currUtilsIndex;
 
@@ -48,7 +51,7 @@ public class Boss01Manager : MonoBehaviour
         {
             //to stop user move input
             GameManager.instance.dialogActive = true;
-            DOTween.To(() => PlayerController.instance.transform.position, x => PlayerController.instance.transform.position = x, new Vector3(0.6f, -1.69f, 0f), 0.5f).SetEase(Ease.Linear);
+            DOTween.To(() => PlayerController.instance.transform.position, x => PlayerController.instance.transform.position = x, new Vector3(0.6f, -1.69f, 0f), 0.8f).SetEase(Ease.Linear).SetDelay(0.8f);
         }
     }
 
@@ -56,6 +59,32 @@ public class Boss01Manager : MonoBehaviour
     {
         commonUtils.bosses[currUtilsIndex].IsFirstMeetDone = true;
         bossObj.canShowAlert = false;
+        if (!commonUtils.bosses[currUtilsIndex].IsSuccessCollectDone)
+        {
+            GameManager.instance.dialogActive = true;
+            CollectionBookManager.instance.ShowSuccessCollect(commonUtils.bosses[currUtilsIndex].Name_TC, bossObj.collectionBookThumbnailSprite);
+            Invoke("CloseSuccessCollect", 2f);
+        }
+        else
+        {
+            teleportToCarbon.ManualTeleport();
+            StartCoroutine(HideConversationMode());
+        }
+    }
+
+    void CloseSuccessCollect()
+    {
+        CollectionBookManager.instance.HideSuccessCollect();
+        GameManager.instance.dialogActive = false;
+        commonUtils.bosses[currUtilsIndex].IsSuccessCollectDone = true;
+        teleportToCarbon.ManualTeleport();
+        StartCoroutine(HideConversationMode());
+    }
+
+    IEnumerator HideConversationMode()
+    {
+        yield return new WaitForSeconds(1f);
+        ConversationModeManager.instance.Hide();
     }
 
     void Update()

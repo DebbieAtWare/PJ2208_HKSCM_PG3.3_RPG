@@ -27,7 +27,7 @@ public class MainManger : MonoBehaviour
         commonUtils.onSetupDoneCallback += CommonUtils_OnSetupDone;
         commonUtils.Setup();
     }
-
+    
     private void CommonUtils_OnSetupDone()
     {
         //tmp for demo
