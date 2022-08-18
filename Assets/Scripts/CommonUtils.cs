@@ -108,6 +108,10 @@ public class CommonUtils : MonoBehaviour
         {
             Boss01Manager.instance.Setup();
         }
+        else if (scene.name == "PermianScene")
+        {
+            PermianManager.instance.Setup();
+        }
     }
 
     void TmpExcelControl()
@@ -272,6 +276,80 @@ public class CommonUtils : MonoBehaviour
         dialog_m15.Text_TC = "你快啲去繼續探索吓啦，仲有好多新奇有趣嘅事物等緊你！";
         boss1.DialogBoxes.Add(dialog_m15);
         bosses.Add(boss1);
+
+        //----
+
+        ConfigData_Character npc_p1 = new ConfigData_Character();
+        npc_p1.Id = "NPC_P01";
+        npc_p1.Name_TC = "科達樹";
+        npc_p1.IsCollectable = false;
+        npc_p1.IsFirstMeetDone = false;
+        npc_p1.IsSuccessCollectDone = false;
+        ConfigData_DialogBox dialog_p11 = new ConfigData_DialogBox();
+        dialog_p11.ByWhom = "DRO";
+        dialog_p11.ImagePath = "";
+        dialog_p11.Text_TC = "看看這個是科達樹呀!";
+        npc_p1.DialogBoxes.Add(dialog_p11);
+        ConfigData_DialogBox dialog_p12 = new ConfigData_DialogBox();
+        dialog_p12.ByWhom = "DRO";
+        dialog_p12.ImagePath = "";
+        dialog_p12.Text_TC = "科達樹是形成煤炭的重要植物，很多煤炭都是由石炭紀植物形成，這個地質時期因此稱為「石炭紀」。";
+        npc_p1.DialogBoxes.Add(dialog_p12);
+        NPC_Permian.Add(npc_p1);
+
+        ConfigData_Character npc_p2 = new ConfigData_Character();
+        npc_p2.Id = "NPC_P02";
+        npc_p2.Name_TC = "節胸屬";
+        npc_p2.IsCollectable = false;
+        npc_p2.IsFirstMeetDone = false;
+        npc_p2.IsSuccessCollectDone = false;
+        ConfigData_DialogBox dialog_p21 = new ConfigData_DialogBox();
+        dialog_p21.ByWhom = "DRO";
+        dialog_p21.ImagePath = "";
+        dialog_p21.Text_TC = "看看這個是節胸屬呀!";
+        npc_p2.DialogBoxes.Add(dialog_p21);
+        ConfigData_DialogBox dialog_p22 = new ConfigData_DialogBox();
+        dialog_p22.ByWhom = "DRO";
+        dialog_p22.ImagePath = "";
+        dialog_p22.Text_TC = "節胸屬在石炭紀才是全盛時期。";
+        npc_p2.DialogBoxes.Add(dialog_p22);
+        NPC_Permian.Add(npc_p2);
+
+        ConfigData_Character npc_p3 = new ConfigData_Character();
+        npc_p3.Id = "NPC_P03";
+        npc_p3.Name_TC = "巨脈蜻蜓";
+        npc_p3.IsCollectable = false;
+        npc_p3.IsFirstMeetDone = false;
+        npc_p3.IsSuccessCollectDone = false;
+        ConfigData_DialogBox dialog_p31 = new ConfigData_DialogBox();
+        dialog_p31.ByWhom = "DRO";
+        dialog_p31.ImagePath = "";
+        dialog_p31.Text_TC = "看看這個是巨脈蜻蜓呀!";
+        npc_p3.DialogBoxes.Add(dialog_p31);
+        ConfigData_DialogBox dialog_p32 = new ConfigData_DialogBox();
+        dialog_p32.ByWhom = "DRO";
+        dialog_p32.ImagePath = "";
+        dialog_p32.Text_TC = "巨脈蜻蜓在石炭紀才是全盛時期。";
+        npc_p3.DialogBoxes.Add(dialog_p32);
+        NPC_Permian.Add(npc_p3);
+
+        ConfigData_Character npc_p4 = new ConfigData_Character();
+        npc_p4.Id = "NPC_P04";
+        npc_p4.Name_TC = "銀杏目";
+        npc_p4.IsCollectable = false;
+        npc_p4.IsFirstMeetDone = false;
+        npc_p4.IsSuccessCollectDone = false;
+        ConfigData_DialogBox dialog_p41 = new ConfigData_DialogBox();
+        dialog_p41.ByWhom = "DRO";
+        dialog_p41.ImagePath = "";
+        dialog_p41.Text_TC = "看看這個是銀杏目呀!";
+        npc_p4.DialogBoxes.Add(dialog_p41);
+        ConfigData_DialogBox dialog_p42 = new ConfigData_DialogBox();
+        dialog_p42.ByWhom = "DRO";
+        dialog_p42.ImagePath = "";
+        dialog_p42.Text_TC = "銀杏類植物為高大多枝落葉喬木、具有挺拔的樹幹與獨特的扇形葉片。";
+        npc_p4.DialogBoxes.Add(dialog_p42);
+        NPC_Permian.Add(npc_p4);
     }
 }
 
