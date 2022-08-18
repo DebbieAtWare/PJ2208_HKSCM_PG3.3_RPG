@@ -48,7 +48,7 @@ public class Boss01Manager : MonoBehaviour
         {
             //to stop user move input
             GameManager.instance.dialogActive = true;
-            DOTween.To(() => PlayerController.instance.transform.position, x => PlayerController.instance.transform.position = x, new Vector3(0.5f, -1.18f, 0f), 2.5f).SetEase(Ease.Linear);
+            DOTween.To(() => PlayerController.instance.transform.position, x => PlayerController.instance.transform.position = x, new Vector3(0.6f, -1.69f, 0f), 0.5f).SetEase(Ease.Linear);
         }
     }
 
