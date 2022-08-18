@@ -559,6 +559,7 @@ MonoBehaviour:
   bossSprite: {fileID: 21300000, guid: e6d88c1803bd51746ba4c6ff89ff7181, type: 3}
   collectionBookThumbnailSprite: {fileID: 21300000, guid: fbfd419d67b2dc94c97942613633cb1d,
     type: 3}
+  bossRenderer: {fileID: 8431520836371937102}
   alertTriggerControl: {fileID: 2466623942951677255}
   firstTriggerControl: {fileID: 3350569686855252435}
   arrowObj_Green: {fileID: 1823166800018720632}
@@ -636,7 +637,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 4b362f410d11b244ba9b5c51f40a9299, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

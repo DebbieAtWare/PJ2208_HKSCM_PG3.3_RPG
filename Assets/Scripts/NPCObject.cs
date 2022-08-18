@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class NPCObject : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class NPCObject : MonoBehaviour
     [Header("Arrow")]
     public GameObject arrowObj_Green;
     public GameObject arrowObj_Grey;
+
+    [Header("Renderer")]
+    public Renderer npcRenderer;
 
     [Header("Collection Book Thumbnail")]
     public Sprite collectionBookThumbnailSprite;
@@ -41,6 +45,8 @@ public class NPCObject : MonoBehaviour
         isAtFirstTrigger = false;
         isInSuccessCollectMode = false;
 
+        OutlineControl();
+
         //if (info.IsFirstMeetDone)
         //{
         //    arrowObj_Green.SetActive(false);
@@ -51,6 +57,20 @@ public class NPCObject : MonoBehaviour
         //    arrowObj_Green.SetActive(true);
         //    arrowObj_Grey.SetActive(false);
         //}
+    }
+
+    void OutlineControl()
+    {
+        StartCoroutine(OutlineAni());
+    }
+
+    IEnumerator OutlineAni()
+    {
+        npcRenderer.material.DOFloat(1, "_OutlineAlpha", 1.5f);
+        yield return new WaitForSeconds(1.8f);
+        npcRenderer.material.DOFloat(0.7f, "_OutlineAlpha", 1.5f);
+        yield return new WaitForSeconds(1.8f);
+        Invoke("OutlineControl", 0f);
     }
 
     private void FirstTrigger_OnEnter()

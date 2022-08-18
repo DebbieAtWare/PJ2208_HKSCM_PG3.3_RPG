@@ -13,6 +13,9 @@ public class BossObject : MonoBehaviour
     public Sprite bossSprite;
     public Sprite collectionBookThumbnailSprite;
 
+    [Header("Renderer")]
+    public Renderer bossRenderer;
+
     [Header("Trigger")]
     public OnTriggerControl alertTriggerControl;
     public OnTriggerControl firstTriggerControl;
@@ -51,12 +54,32 @@ public class BossObject : MonoBehaviour
         {
             arrowObj_Green.SetActive(false);
             arrowObj_Grey.SetActive(true);
+            OutlineHide();
         }
         else
         {
             arrowObj_Green.SetActive(true);
             arrowObj_Grey.SetActive(false);
+            OutlineControl();
         }
+    }
+
+    void OutlineControl()
+    {
+        StartCoroutine(OutlineAni());
+    }
+    void OutlineHide()
+    {
+        bossRenderer.material.DOFloat(0f, "_OutlineAlpha", 1.5f);
+    }
+
+    IEnumerator OutlineAni()
+    {
+        bossRenderer.material.DOFloat(1, "_OutlineAlpha", 1.5f);
+        yield return new WaitForSeconds(1.8f);
+        bossRenderer.material.DOFloat(0.7f, "_OutlineAlpha", 1.5f);
+        yield return new WaitForSeconds(1.8f);
+        Invoke("OutlineControl", 0f);
     }
 
     private void AlertTrigger_OnEnter()
@@ -125,6 +148,7 @@ public class BossObject : MonoBehaviour
                 GameManager.instance.dialogActive = false;
                 arrowObj_Green.SetActive(false);
                 arrowObj_Grey.SetActive(true);
+                OutlineHide();
             }
             else
             {

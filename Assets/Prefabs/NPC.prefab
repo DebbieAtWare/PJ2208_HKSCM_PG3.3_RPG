@@ -82,7 +82,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 4b362f410d11b244ba9b5c51f40a9299, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -111,7 +111,7 @@ SpriteRenderer:
   m_Size: {x: 3, y: 7.0625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &2354068167028867158
@@ -507,6 +507,7 @@ MonoBehaviour:
   firstTriggerControl: {fileID: 2354068167750775374}
   arrowObj_Green: {fileID: 2354068169025748398}
   arrowObj_Grey: {fileID: 2354068167538989752}
+  npcRenderer: {fileID: 2354068167028867157}
   collectionBookThumbnailSprite: {fileID: 0}
   info:
     Id: 
