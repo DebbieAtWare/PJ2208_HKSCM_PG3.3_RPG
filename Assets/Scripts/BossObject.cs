@@ -15,6 +15,7 @@ public class BossObject : MonoBehaviour
 
     [Header("Renderer")]
     public Renderer bossRenderer;
+    public Renderer caveRenderer;
 
     [Header("Trigger")]
     public OnTriggerControl alertTriggerControl;
@@ -70,15 +71,28 @@ public class BossObject : MonoBehaviour
     }
     void OutlineHide()
     {
+        CancelInvoke("OutlineControl");
         bossRenderer.material.DOFloat(0f, "_OutlineAlpha", 1.5f);
+        if (caveRenderer != null)
+        {
+            caveRenderer.material.DOFloat(0f, "_OutlineAlpha", 1.5f);
+        }
     }
 
     IEnumerator OutlineAni()
     {
-        bossRenderer.material.DOFloat(1, "_OutlineAlpha", 1.5f);
-        yield return new WaitForSeconds(1.8f);
-        bossRenderer.material.DOFloat(0.7f, "_OutlineAlpha", 1.5f);
-        yield return new WaitForSeconds(1.8f);
+        bossRenderer.material.DOFloat(1, "_OutlineAlpha", 1f);
+        if (caveRenderer != null)
+        {
+            caveRenderer.material.DOFloat(1, "_OutlineAlpha", 1f);
+        }
+        yield return new WaitForSeconds(1.3f);
+        bossRenderer.material.DOFloat(0.4f, "_OutlineAlpha", 1f);
+        if (caveRenderer != null)
+        {
+            caveRenderer.material.DOFloat(0.4f, "_OutlineAlpha", 1f);
+        }
+        yield return new WaitForSeconds(1f);
         Invoke("OutlineControl", 0f);
     }
 

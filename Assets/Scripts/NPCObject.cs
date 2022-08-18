@@ -66,10 +66,10 @@ public class NPCObject : MonoBehaviour
 
     IEnumerator OutlineAni()
     {
-        npcRenderer.material.DOFloat(1, "_OutlineAlpha", 1.5f);
-        yield return new WaitForSeconds(1.8f);
-        npcRenderer.material.DOFloat(0.7f, "_OutlineAlpha", 1.5f);
-        yield return new WaitForSeconds(1.8f);
+        npcRenderer.material.DOFloat(1, "_OutlineAlpha", 1f);
+        yield return new WaitForSeconds(1.3f);
+        npcRenderer.material.DOFloat(0.4f, "_OutlineAlpha", 1f);
+        yield return new WaitForSeconds(1f);
         Invoke("OutlineControl", 0f);
     }
 
