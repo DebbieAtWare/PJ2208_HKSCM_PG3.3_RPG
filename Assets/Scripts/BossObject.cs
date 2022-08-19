@@ -22,8 +22,8 @@ public class BossObject : MonoBehaviour
     public OnTriggerControl firstTriggerControl;
 
     [Header("Arrow")]
-    public GameObject arrowObj_Green;
-    public GameObject arrowObj_Grey;
+    public List<GameObject> arrowObjs_Green = new List<GameObject>();
+    public List<GameObject> arrowObjs_Grey = new List<GameObject>();
 
     [Header("Info")]
     public ConfigData_DialogBox dialogBox_Alert;
@@ -53,14 +53,20 @@ public class BossObject : MonoBehaviour
 
         if (isFirstMeetDone)
         {
-            arrowObj_Green.SetActive(false);
-            arrowObj_Grey.SetActive(true);
+            for (int i = 0; i < arrowObjs_Green.Count; i++)
+            {
+                arrowObjs_Green[i].SetActive(false);
+                arrowObjs_Grey[i].SetActive(true);
+            }
             OutlineHide();
         }
         else
         {
-            arrowObj_Green.SetActive(true);
-            arrowObj_Grey.SetActive(false);
+            for (int i = 0; i < arrowObjs_Green.Count; i++)
+            {
+                arrowObjs_Green[i].SetActive(true);
+                arrowObjs_Grey[i].SetActive(false);
+            }
             OutlineControl();
         }
     }
@@ -129,12 +135,12 @@ public class BossObject : MonoBehaviour
 
     public void UpdateRun()
     {
-        if (Input.GetButtonDown("RPGConfirmPC") && isAtAlertTrigger)
+        if (Input.GetButtonDown("RPGConfirmPC") && isAtAlertTrigger && !isAtFirstTrigger)
         {
             DialogBoxManager.instance.HideDialog();
             GameManager.instance.dialogActive = false;
         }
-        else if (Input.GetButtonDown("RPGConfirmPC") && isAtFirstTrigger)
+        else if (Input.GetButtonDown("RPGConfirmPC") && isAtAlertTrigger && isAtFirstTrigger)
         {
             ViewBoxManager.instance.HideViewBox();
             
@@ -152,17 +158,17 @@ public class BossObject : MonoBehaviour
             }
             else if (currDialogLine == info.DialogBoxes.Count)
             {
-                if (onFinishedConversationCallback != null)
-                {
-                    onFinishedConversationCallback.Invoke();
-                }
                 DialogBoxManager.instance.HideDialog();
-                //ConversationModeManager.instance.Hide();
+                ConversationModeManager.instance.HideFade(0.5f);
                 currDialogLine = 0;
                 GameManager.instance.dialogActive = false;
-                arrowObj_Green.SetActive(false);
-                arrowObj_Grey.SetActive(true);
+                for (int i = 0; i < arrowObjs_Green.Count; i++)
+                {
+                    arrowObjs_Green[i].SetActive(false);
+                    arrowObjs_Grey[i].SetActive(true);
+                }
                 OutlineHide();
+                Invoke("FinishedConversationControl", 0.5f);
             }
             else
             {
@@ -170,6 +176,14 @@ public class BossObject : MonoBehaviour
                 DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
                 currDialogLine++;
             }
+        }
+    }
+
+    void FinishedConversationControl()
+    {
+        if (onFinishedConversationCallback != null)
+        {
+            onFinishedConversationCallback.Invoke();
         }
     }
 }

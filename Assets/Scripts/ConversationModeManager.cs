@@ -70,9 +70,13 @@ public class ConversationModeManager : MonoBehaviour
         avatarImg.rectTransform.DOAnchorPos(avatarPosTarget_Off, 0.5f);
     }
 
-    public void Hide()
+    public void HideFade(float aniTime)
     {
-        //conversationModeCanvasGrp.DOFade(0, 0.5f).OnComplete(() => conversationModeCanvasGrp.gameObject.SetActive(false));
+        conversationModeCanvasGrp.DOFade(0, aniTime).OnComplete(() => conversationModeCanvasGrp.gameObject.SetActive(false));
+    }
+
+    public void HideCut()
+    {
         conversationModeCanvasGrp.alpha = 0;
         conversationModeCanvasGrp.gameObject.SetActive(false);
     }

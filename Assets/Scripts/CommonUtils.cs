@@ -587,6 +587,23 @@ public class CommonUtils : MonoBehaviour
 
 
     }
+
+    //tmp keyboard change scene
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.I))
+    //    {
+    //        SceneManager.LoadScene("MainScene");
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.O))
+    //    {
+    //        SceneManager.LoadScene("CarboniferousScene");
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.P))
+    //    {
+    //        SceneManager.LoadScene("PermianScene");
+    //    }
+    //}
 }
 
 [Serializable]

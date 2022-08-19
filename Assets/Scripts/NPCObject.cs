@@ -133,7 +133,7 @@ public class NPCObject : MonoBehaviour
 
     void CloseSuccessCollect()
     {
-        CollectionBookManager.instance.HideSuccessCollect();
+        CollectionBookManager.instance.HideSuccessCollect(0.5f);
         info.IsFirstMeetDone = true;
         info.IsSuccessCollectDone = true;
         GameManager.instance.dialogActive = false;

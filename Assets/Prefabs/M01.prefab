@@ -646,8 +646,12 @@ MonoBehaviour:
   caveRenderer: {fileID: 5042795226185651086}
   alertTriggerControl: {fileID: 2466623942951677255}
   firstTriggerControl: {fileID: 3350569686855252435}
-  arrowObj_Green: {fileID: 1823166800018720632}
-  arrowObj_Grey: {fileID: 1823166801228652654}
+  arrowObjs_Green:
+  - {fileID: 805597930003195890}
+  - {fileID: 1823166800018720632}
+  arrowObjs_Grey:
+  - {fileID: 7404174157007473601}
+  - {fileID: 1823166801228652654}
   dialogBox_Alert:
     ByWhom: 
     ImagePath: 

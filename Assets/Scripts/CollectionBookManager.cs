@@ -30,8 +30,8 @@ public class CollectionBookManager : MonoBehaviour
         successCollect_Img.sprite = sprite;
     }
 
-    public void HideSuccessCollect()
+    public void HideSuccessCollect(float aniTime)
     {
-        successCollect_CanvasGrp.DOFade(0, 0.5f).OnComplete(() => successCollect_CanvasGrp.gameObject.SetActive(false));
+        successCollect_CanvasGrp.DOFade(0, aniTime).OnComplete(() => successCollect_CanvasGrp.gameObject.SetActive(false));
     }
 }

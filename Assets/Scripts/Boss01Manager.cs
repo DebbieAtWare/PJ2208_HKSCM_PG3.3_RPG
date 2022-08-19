@@ -67,25 +67,25 @@ public class Boss01Manager : MonoBehaviour
         }
         else
         {
-            teleportToCarbon.ManualTeleport();
-            StartCoroutine(HideConversationMode());
+            GameManager.instance.dialogActive = true;
+            Invoke("TeleportControl", 0.5f);
         }
     }
 
     void CloseSuccessCollect()
     {
-        CollectionBookManager.instance.HideSuccessCollect();
+        CollectionBookManager.instance.HideSuccessCollect(0.5f);
         GameManager.instance.dialogActive = false;
         commonUtils.bosses[currUtilsIndex].IsSuccessCollectDone = true;
-        teleportToCarbon.ManualTeleport();
-        StartCoroutine(HideConversationMode());
+        Invoke("TeleportControl", 0.5f);
     }
 
-    IEnumerator HideConversationMode()
+    void TeleportControl()
     {
-        yield return new WaitForSeconds(1f);
-        ConversationModeManager.instance.Hide();
+        teleportToCarbon.ManualTeleport();
+        GameManager.instance.dialogActive = false;
     }
+
 
     void Update()
     {
