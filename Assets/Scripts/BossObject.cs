@@ -24,6 +24,8 @@ public class BossObject : MonoBehaviour
     [Header("Arrow")]
     public List<GameObject> arrowObjs_Green = new List<GameObject>();
     public List<GameObject> arrowObjs_Grey = new List<GameObject>();
+    public GameObject minimapDot_Red;
+    public GameObject minimapDot_Grey;
 
     [Header("Info")]
     public ConfigData_DialogBox dialogBox_Alert;
@@ -58,6 +60,8 @@ public class BossObject : MonoBehaviour
                 arrowObjs_Green[i].SetActive(false);
                 arrowObjs_Grey[i].SetActive(true);
             }
+            minimapDot_Red.SetActive(false);
+            minimapDot_Grey.SetActive(true);
             OutlineHide();
         }
         else
@@ -67,6 +71,8 @@ public class BossObject : MonoBehaviour
                 arrowObjs_Green[i].SetActive(true);
                 arrowObjs_Grey[i].SetActive(false);
             }
+            minimapDot_Red.SetActive(true);
+            minimapDot_Grey.SetActive(false);
             OutlineControl();
         }
     }
@@ -143,9 +149,12 @@ public class BossObject : MonoBehaviour
         else if (Input.GetButtonDown("RPGConfirmPC") && isAtAlertTrigger && isAtFirstTrigger)
         {
             ViewBoxManager.instance.HideViewBox();
-            
+
             if (currDialogLine == 0)
             {
+                MinimapManager.instance.Hide(0.5f);
+                StatusBarManager.instance.Hide_Carbon(0.5f);
+                StatusBarManager.instance.Hide_Permian(0.5f);
                 ConversationModeManager.instance.Show1(info.Name_TC, info.DescriptionTag_TC, bossSprite);
                 DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
                 currDialogLine++;
@@ -167,6 +176,8 @@ public class BossObject : MonoBehaviour
                     arrowObjs_Green[i].SetActive(false);
                     arrowObjs_Grey[i].SetActive(true);
                 }
+                minimapDot_Red.SetActive(false);
+                minimapDot_Grey.SetActive(true);
                 OutlineHide();
                 Invoke("FinishedConversationControl", 0.5f);
             }

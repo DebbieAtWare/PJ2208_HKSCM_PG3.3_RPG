@@ -53,12 +53,15 @@ public class Boss01Manager : MonoBehaviour
             GameManager.instance.dialogActive = true;
             DOTween.To(() => PlayerController.instance.transform.position, x => PlayerController.instance.transform.position = x, new Vector3(0.6f, -1.69f, 0f), 0.8f).SetEase(Ease.Linear).SetDelay(0.8f);
         }
+
+        MinimapManager.instance.Hide(0.5f);
     }
 
     private void OnFinishedConversation()
     {
         commonUtils.bosses[currUtilsIndex].IsFirstMeetDone = true;
         bossObj.canShowAlert = false;
+        StatusBarManager.instance.Update_Carbon(true);
         if (!commonUtils.bosses[currUtilsIndex].IsSuccessCollectDone)
         {
             GameManager.instance.dialogActive = true;

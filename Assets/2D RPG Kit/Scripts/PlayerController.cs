@@ -22,6 +22,10 @@ public class PlayerController : MonoBehaviour {
     [HideInInspector]
     public bool canMove = true;
 
+    //self add
+    [Header("MinimapArrow")]
+    public Transform minimapArrowTrans;
+
 	// Use this for initialization
 	void Awake () {
 
@@ -101,6 +105,27 @@ public class PlayerController : MonoBehaviour {
 
             //This calculates the bounds and doesn't let the player go beyond the defined bounds
             transform.position = new Vector3(Mathf.Clamp(transform.position.x, boundary1.x, boundary2.x), Mathf.Clamp(transform.position.y, boundary1.y, boundary2.y), transform.position.z);
+        
+        
+            //self add
+            if (Input.GetAxisRaw("Horizontal") == 1)
+            {
+                minimapArrowTrans.eulerAngles = new Vector3(0, 0, 90);
+            }
+            else if (Input.GetAxisRaw("Horizontal") == -1)
+            {
+                minimapArrowTrans.eulerAngles = new Vector3(0, 0, -90);
+            }
+            else if (Input.GetAxisRaw("Vertical") == 1)
+            {
+                minimapArrowTrans.eulerAngles = new Vector3(0, 0, 180);
+            }
+            else if (Input.GetAxisRaw("Vertical") == -1)
+            {
+                minimapArrowTrans.eulerAngles = new Vector3(0, 0, 0);
+            }
+            //self add
+
         }
         
     }

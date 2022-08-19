@@ -75,18 +75,35 @@ public class PermianManager : MonoBehaviour
             bossObj3.onFinishedConversationCallback += OnFinishedConversation_Boss3;
             bossObj3.Setup(commonUtils.dialogBox_BossAlert, commonUtils.bosses[currUtilsIndex_Boss3], false, commonUtils.bosses[currUtilsIndex_Boss3].IsFirstMeetDone);
         }
+
+        if (StatusBarManager.instance != null)
+        {
+            StatusBarManager.instance.Show_Permian(0f);
+        }
     }
 
     private void OnFinishedConversation_Boss2()
     {
-        commonUtils.bosses[currUtilsIndex_Boss2].IsFirstMeetDone = true;
-        bossObj2.canShowAlert = false;
-        if (!commonUtils.bosses[currUtilsIndex_Boss2].IsSuccessCollectDone)
+        StartCoroutine(Wait());
+        IEnumerator Wait()
         {
-            GameManager.instance.dialogActive = true;
-            CollectionBookManager.instance.ShowSuccessCollect(commonUtils.bosses[currUtilsIndex_Boss2].Name_TC, bossObj2.collectionBookThumbnailSprite);
-            Invoke("CloseSuccessCollect_Boss2", 2f);
+            commonUtils.bosses[currUtilsIndex_Boss2].IsFirstMeetDone = true;
+            bossObj2.canShowAlert = false;
+            StatusBarManager.instance.Update_Permian(commonUtils.bosses[currUtilsIndex_Boss2].IsFirstMeetDone, commonUtils.bosses[currUtilsIndex_Boss3].IsFirstMeetDone);
+            if (!commonUtils.bosses[currUtilsIndex_Boss2].IsSuccessCollectDone)
+            {
+                GameManager.instance.dialogActive = true;
+                yield return new WaitForSeconds(0.5f);
+                CollectionBookManager.instance.ShowSuccessCollect(commonUtils.bosses[currUtilsIndex_Boss2].Name_TC, bossObj2.collectionBookThumbnailSprite);
+                Invoke("CloseSuccessCollect_Boss2", 2f);
+            }
+            else
+            {
+                MinimapManager.instance.Show(0.5f);
+                StatusBarManager.instance.Show_Permian(0.5f);
+            }
         }
+        
     }
 
     private void OnFinishedConversation_Boss3()
@@ -96,6 +113,7 @@ public class PermianManager : MonoBehaviour
         {
             commonUtils.bosses[currUtilsIndex_Boss3].IsFirstMeetDone = true;
             bossObj3.canShowAlert = false;
+            StatusBarManager.instance.Update_Permian(commonUtils.bosses[currUtilsIndex_Boss2].IsFirstMeetDone, commonUtils.bosses[currUtilsIndex_Boss3].IsFirstMeetDone);
             if (!commonUtils.bosses[currUtilsIndex_Boss3].IsSuccessCollectDone)
             {
                 GameManager.instance.dialogActive = true;
@@ -103,12 +121,19 @@ public class PermianManager : MonoBehaviour
                 CollectionBookManager.instance.ShowSuccessCollect(commonUtils.bosses[currUtilsIndex_Boss3].Name_TC, bossObj3.collectionBookThumbnailSprite);
                 Invoke("CloseSuccessCollect_Boss3", 2f);
             }
+            else
+            {
+                MinimapManager.instance.Show(0.5f);
+                StatusBarManager.instance.Show_Permian(0.5f);
+            }
         }
     }
 
     void CloseSuccessCollect_Boss2()
     {
         CollectionBookManager.instance.HideSuccessCollect(0.5f);
+        MinimapManager.instance.Show(0.5f);
+        StatusBarManager.instance.Show_Permian(0.5f);
         GameManager.instance.dialogActive = false;
         commonUtils.bosses[currUtilsIndex_Boss2].IsSuccessCollectDone = true;
     }
@@ -116,6 +141,8 @@ public class PermianManager : MonoBehaviour
     void CloseSuccessCollect_Boss3()
     {
         CollectionBookManager.instance.HideSuccessCollect(0.5f);
+        MinimapManager.instance.Show(0.5f);
+        StatusBarManager.instance.Show_Permian(0.5f);
         GameManager.instance.dialogActive = false;
         commonUtils.bosses[currUtilsIndex_Boss3].IsSuccessCollectDone = true;
     }

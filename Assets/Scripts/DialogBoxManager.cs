@@ -17,6 +17,11 @@ public class DialogBoxManager : MonoBehaviour
     public CanvasGroup supportImgCanvasGrp;
     public RawImage supportImg;
 
+    [Header("ZoomImg")]
+    public CanvasGroup zoomImgCanvasGrp;
+    public GameObject zoomObj_NPC_P11;
+    public GameObject zoomObj_NPC_P12;
+
     CommonUtils commonUtils;
     Vector2 supportImgSizeTarget = new Vector2(720, 480);
 
@@ -96,5 +101,28 @@ public class DialogBoxManager : MonoBehaviour
     public void HideSupportImg()
     {
         supportImgCanvasGrp.DOFade(0, 0.5f).OnComplete(() => supportImgCanvasGrp.gameObject.SetActive(false));
+    }
+
+    //------
+
+    public void ShowZoomImg(CharacterID id, float aniTime)
+    {
+        zoomImgCanvasGrp.gameObject.SetActive(true);
+        if (id == CharacterID.NPC_P11)
+        {
+            zoomObj_NPC_P11.SetActive(true);
+            zoomObj_NPC_P12.SetActive(false);
+        }
+        else if (id == CharacterID.NPC_P12)
+        {
+            zoomObj_NPC_P11.SetActive(false);
+            zoomObj_NPC_P12.SetActive(true);
+        }
+        zoomImgCanvasGrp.DOFade(1, aniTime);
+    }
+
+    public void HideZoomImg(float aniTime)
+    {
+        zoomImgCanvasGrp.DOFade(0, aniTime).OnComplete(() => zoomImgCanvasGrp.gameObject.SetActive(false));
     }
 }

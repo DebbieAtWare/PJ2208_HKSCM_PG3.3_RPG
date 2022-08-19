@@ -56,6 +56,16 @@ public class CarboniferousManager : MonoBehaviour
         {
             bossObj.Setup(commonUtils.dialogBox_BossAlert, commonUtils.bosses[currUtilsIndex_Boss], false, commonUtils.bosses[currUtilsIndex_Boss].IsFirstMeetDone);
         }
+
+        if (MinimapManager.instance != null)
+        {
+            MinimapManager.instance.Show(0.5f);
+        }
+
+        if (StatusBarManager.instance != null)
+        {
+            StatusBarManager.instance.Show_Carbon(0.5f);
+        }
     }
 
     void Update()

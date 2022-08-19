@@ -20,10 +20,10 @@ public class ConversationModeManager : MonoBehaviour
     public Image bossImg;
     public AspectRatioFitter bossAspectFitter;
     float bossWidthTarget = 885;
-    Vector2 bossPosTarget_Center = new Vector2(0, 104);
+    Vector2 bossPosTarget_Center = new Vector2(25, 40);
     Vector3 bossScaleTarget_Center = new Vector3(1, 1, 1);
-    Vector2 bossPosTarget_Side = new Vector2(456, 190);
-    Vector3 bossScaleTarget_Side = new Vector3(0.86f, 0.86f, 0.86f);
+    Vector2 bossPosTarget_Side = new Vector2(429, 138);
+    Vector3 bossScaleTarget_Side = new Vector3(0.84f, 0.84f, 0.84f);
 
     [Header("Avatar")]
     public Image avatarImg;
@@ -49,7 +49,7 @@ public class ConversationModeManager : MonoBehaviour
         tag_DescriptionText_TC.text = tag_TC;
         tagCanvasGrp.alpha = 0;
         bossImg.sprite = sprite;
-        bossImg.rectTransform.sizeDelta = new Vector2(bossWidthTarget, ((bossImg.sprite.rect.height * bossWidthTarget) / bossImg.sprite.rect.width));
+        //bossImg.rectTransform.sizeDelta = new Vector2(bossWidthTarget, ((bossImg.sprite.rect.height * bossWidthTarget) / bossImg.sprite.rect.width));
         bossImg.rectTransform.anchoredPosition = bossPosTarget_Center;
         bossImg.rectTransform.localScale = bossScaleTarget_Center;
         avatarImg.rectTransform.anchoredPosition = avatarPosTarget_Off;

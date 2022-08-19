@@ -95,6 +95,7 @@
     <Compile Include="Assets\2D RPG Kit\Touch Support\CrossPlatformInput\Scripts\TouchPad.cs" />
     <Compile Include="Assets\2D RPG Kit\Touch Support\CrossPlatformInput\Scripts\Joystick.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleManager.cs" />
+    <Compile Include="Assets\Scripts\PermianManager.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\DialogManager.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\TitleScreen.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\GameOver.cs" />
@@ -175,7 +176,8 @@
     <Compile Include="Assets\2D RPG Kit\Scripts\DamageNumber.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleNotification.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\QuestManager.cs" />
-    <Compile Include="Assets\Scripts\PermianManager.cs" />
+    <Compile Include="Assets\Scripts\MinimapManager.cs" />
+    <Compile Include="Assets\Scripts\StatusBarManager.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

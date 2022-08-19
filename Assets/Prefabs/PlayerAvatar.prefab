@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1297030180347622580}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 0.25}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 8237629546674354367}
   m_RootOrder: 0
@@ -244,6 +244,7 @@ MonoBehaviour:
   moveSpeed: 5
   areaTransitionName: 
   canMove: 1
+  minimapArrowTrans: {fileID: 19252308167335572}
 --- !u!61 &7289686206442573939
 BoxCollider2D:
   m_ObjectHideFlags: 0
