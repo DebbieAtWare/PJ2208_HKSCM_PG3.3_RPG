@@ -20,7 +20,7 @@ public class ConversationModeManager : MonoBehaviour
     public Image bossImg;
     public AspectRatioFitter bossAspectFitter;
     float bossWidthTarget = 885;
-    Vector2 bossPosTarget_Center = new Vector2(25, 40);
+    Vector2 bossPosTarget_Center = new Vector2(25, 100);
     Vector3 bossScaleTarget_Center = new Vector3(1, 1, 1);
     Vector2 bossPosTarget_Side = new Vector2(429, 138);
     Vector3 bossScaleTarget_Side = new Vector3(0.84f, 0.84f, 0.84f);

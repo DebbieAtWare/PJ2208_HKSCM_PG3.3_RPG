@@ -5743,6 +5743,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 74350209731308505, guid: b3adf81b5a92c6b429a28d9529704838,
+        type: 3}
+      propertyPath: orthographic size
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 93329813999663802, guid: b3adf81b5a92c6b429a28d9529704838,
         type: 3}
       propertyPath: tilemap

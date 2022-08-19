@@ -101,6 +101,10 @@ public class NPCObject : MonoBehaviour
             else if (currDialogLine == info.DialogBoxes.Count)
             {
                 DialogBoxManager.instance.HideDialog();
+                if (id == CharacterID.NPC_P11 || id == CharacterID.NPC_P12)
+                {
+                    DialogBoxManager.instance.HideZoomImg(0.5f);
+                }
                 currDialogLine = 0;
                 //arrowObj_Green.SetActive(false);
                 //arrowObj_Grey.SetActive(true);
@@ -126,6 +130,10 @@ public class NPCObject : MonoBehaviour
             else
             {
                 DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
+                if (id == CharacterID.NPC_P11 || id == CharacterID.NPC_P12)
+                {
+                    DialogBoxManager.instance.ShowZoomImg(id, 0.5f);
+                }
                 currDialogLine++;
             }
         }
