@@ -10,6 +10,9 @@ public class DroneController : MonoBehaviour
     [Header("Trigger")]
     public OnTriggerControl onTriggerControl;
 
+    [Header("Talk Hint")]
+    public GameObject talkHintObj;
+
     [Header("Follow")]
     public float speed;
     public float stopDist;
@@ -35,16 +38,19 @@ public class DroneController : MonoBehaviour
     {
         onTriggerControl.onTriggerEnterCallback += OnTriggerEnter;
         onTriggerControl.onTriggerExitCallback += OnTriggerExit;
+        talkHintObj.SetActive(false);
     }
 
     private void OnTriggerEnter()
     {
-        Debug.Log("Drone OnTriggerEnter");
+        //Debug.Log("Drone OnTriggerEnter");
+        talkHintObj.SetActive(true);
     }
 
     private void OnTriggerExit()
     {
-        Debug.Log("Drone OnTriggerExit");
+        //Debug.Log("Drone OnTriggerExit");
+        talkHintObj.SetActive(false);
     }
 
     void Update()
@@ -52,9 +58,9 @@ public class DroneController : MonoBehaviour
         if (Vector2.Distance(transform.position, PlayerController.instance.transform.position) > stopDist)
         {
             transform.position = LeapEase(transform.position, PlayerController.instance.transform.position, speed);
-        }
 
-        //transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+            //transform.position = Vector2.MoveTowards(transform.position, PlayerController.instance.transform.position, speed * Time.fixedDeltaTime);
+        }
     }
 
     Vector2 LeapEase(Vector2 current, Vector2 target, float ease)
