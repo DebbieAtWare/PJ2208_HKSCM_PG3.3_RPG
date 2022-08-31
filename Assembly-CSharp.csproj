@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\2D RPG Kit\Scripts\CompleteEvent.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\RewardScreen.cs" />
+    <Compile Include="Assets\Scripts\CommonUI\MinimapManager.cs" />
     <Compile Include="Assets\FlexReader\Mapping\MapperBase.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\EventObjectActivator.cs" />
     <Compile Include="Assets\FlexReader\Core\Table.cs" />
@@ -88,27 +89,27 @@
     <Compile Include="Assets\FlexReader\Mapping\Mapper.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\ControlManager.cs" />
     <Compile Include="Assets\FlexReader\Core\Cell.cs" />
-    <Compile Include="Assets\Scripts\CollectionBookManager.cs" />
+    <Compile Include="Assets\Scripts\CollectionBook\CollectionBookManager.cs" />
     <Compile Include="Assets\FlexReader\Demo\Scripts\FlexLoader.cs" />
     <Compile Include="Assets\Scripts\MainManger.cs" />
     <Compile Include="Assets\FlexReader\Demo\Scripts\Loading.cs" />
     <Compile Include="Assets\2D RPG Kit\Touch Support\CrossPlatformInput\Scripts\TouchPad.cs" />
     <Compile Include="Assets\2D RPG Kit\Touch Support\CrossPlatformInput\Scripts\Joystick.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleManager.cs" />
-    <Compile Include="Assets\Scripts\PermianManager.cs" />
+    <Compile Include="Assets\Scripts\Map\PermianManager.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\DialogManager.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\TitleScreen.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\GameOver.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\DestroyOverLifetime.cs" />
     <Compile Include="Assets\FlexReader\Converter\CustomConverter.cs" />
     <Compile Include="Assets\2D RPG Kit\Touch Support\CrossPlatformInput\Scripts\TiltInput.cs" />
-    <Compile Include="Assets\Scripts\NPCObject.cs" />
+    <Compile Include="Assets\Scripts\Character\NPCObject.cs" />
     <Compile Include="Assets\FlexReader\Core\Row.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleType.cs" />
     <Compile Include="Assets\FlexReader\Converter\CustomConverters\ArrayConverter.cs" />
     <Compile Include="Assets\FlexReader\Demo\Scripts\Mapping.cs" />
     <Compile Include="Assets\FlexReader\Converter\CustomConverters\Vector2Converter.cs" />
-    <Compile Include="Assets\Scripts\ConversationModeManager.cs" />
+    <Compile Include="Assets\Scripts\ConversationMode\ConversationModeManager.cs" />
     <Compile Include="Assets\2D RPG Kit\Touch Support\CrossPlatformInput\Scripts\PlatformSpecific\StandaloneInput.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\SelectSkill.cs" />
     <Compile Include="Assets\FlexReader\Converter\CustomConverters\Vector3Converter.cs" />
@@ -120,7 +121,7 @@
     <Compile Include="Assets\2D RPG Kit\Scripts\ReadHilightedButton.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\SceneGUITilemap.cs" />
     <Compile Include="Assets\FlexReader\Demo\Scripts\WebLoader.cs" />
-    <Compile Include="Assets\Scripts\OnTriggerControl.cs" />
+    <Compile Include="Assets\Scripts\Character\OnTriggerControl.cs" />
     <Compile Include="Assets\FlexReader\Core\Range.cs" />
     <Compile Include="Assets\FlexReader\Converter\Validator.cs" />
     <Compile Include="Assets\FlexReader\Mapping\ColumnAttribute.cs" />
@@ -141,15 +142,16 @@
     <Compile Include="Assets\FlexReader\Converter\CustomConverters\DictionaryConverter.cs" />
     <Compile Include="Assets\FlexReader\Demo\Scripts\StreamingAssetsLoad.cs" />
     <Compile Include="Assets\FlexReader\Demo\Scripts\Navigator.cs" />
-    <Compile Include="Assets\Scripts\CarboniferousManager.cs" />
+    <Compile Include="Assets\Scripts\Map\CarboniferousManager.cs" />
+    <Compile Include="Assets\Scripts\CommonUI\StatusBarManager.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\CompleteQuest.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\Credits.cs" />
     <Compile Include="Assets\Scripts\CommonUtils.cs" />
-    <Compile Include="Assets\Scripts\BossObject.cs" />
+    <Compile Include="Assets\Scripts\Character\BossObject.cs" />
     <Compile Include="Assets\FlexReader\Converter\CustomConverters\RectConverter.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\EventManager.cs" />
     <Compile Include="Assets\2D RPG Kit\Touch Support\CrossPlatformInput\Scripts\CrossPlatformInputManager.cs" />
-    <Compile Include="Assets\Scripts\DialogBoxManager.cs" />
+    <Compile Include="Assets\Scripts\CommonUI\DialogBoxManager.cs" />
     <Compile Include="Assets\FlexReader\Converter\ValueConverter.cs" />
     <Compile Include="Assets\2D RPG Kit\Touch Support\CrossPlatformInput\Scripts\InputAxisScrollbar.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\DirectionalLight.cs" />
@@ -157,8 +159,8 @@
     <Compile Include="Assets\2D RPG Kit\Scripts\GameMenu.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\CommonEvents.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\TeleportTo.cs" />
-    <Compile Include="Assets\Scripts\ViewBoxManager.cs" />
-    <Compile Include="Assets\Scripts\Boss01Manager.cs" />
+    <Compile Include="Assets\Scripts\CommonUI\ViewBoxManager.cs" />
+    <Compile Include="Assets\Scripts\Map\Boss01Manager.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleCharacter.cs" />
     <Compile Include="Assets\FlexReader\Demo\Scripts\UIRow.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\CameraController.cs" />
@@ -176,8 +178,7 @@
     <Compile Include="Assets\2D RPG Kit\Scripts\DamageNumber.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleNotification.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\QuestManager.cs" />
-    <Compile Include="Assets\Scripts\MinimapManager.cs" />
-    <Compile Include="Assets\Scripts\StatusBarManager.cs" />
+    <Compile Include="Assets\Scripts\Character\DroneController.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

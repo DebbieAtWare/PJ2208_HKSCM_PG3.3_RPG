@@ -480,6 +480,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114499064056339730, guid: 41d568113c653714782a64bfeeedbf6b,
         type: 3}
+      propertyPath: drone
+      value: 
+      objectReference: {fileID: 1328974589025127924, guid: e20de6b64e4cd624aa4e35d868e61da1,
+        type: 3}
+    - target: {fileID: 114499064056339730, guid: 41d568113c653714782a64bfeeedbf6b,
+        type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 8240142438212654021, guid: 905b7686f22677d408ea2eac276000cc,
@@ -3679,7 +3685,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1875902563
 GameObject:
@@ -3997,6 +4003,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Offset.y
       value: -1.825681
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434440617296475609, guid: da2dcf02e3e8989489a30bc94806ef18,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8434485970742258907, guid: da2dcf02e3e8989489a30bc94806ef18,
         type: 3}

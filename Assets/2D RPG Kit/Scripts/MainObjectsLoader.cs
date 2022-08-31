@@ -6,6 +6,7 @@ public class MainObjectsLoader : MonoBehaviour {
 
     public GameObject UIScreen;
     public GameObject player;
+    public GameObject drone;
     public GameObject gameMan;
     public GameObject audioMan;
     public GameObject battleMan;
@@ -15,8 +16,8 @@ public class MainObjectsLoader : MonoBehaviour {
     private GameObject playerStart;
 
 	// Use this for initialization
-	void Start () {		
-
+	void Start () 
+    {
         if (ScreenFade.instance == null)
         {
             ScreenFade.instance = Instantiate(UIScreen).GetComponent<ScreenFade>();
@@ -29,9 +30,16 @@ public class MainObjectsLoader : MonoBehaviour {
             playerStart = GameObject.Find("Player Start");
             if (playerStart != null)
             {
+                Debug.Log("playerStartplayerStart");
                 clone.transform.position = playerStart.transform.position;
             }
-            
+        }
+
+        if (DroneController.instance == null)
+        {
+            DroneController clone = Instantiate(drone).GetComponent<DroneController>();
+            DroneController.instance = clone;
+            DroneController.instance.SharpChangePos();
         }
 
         if (GameManager.instance == null)
@@ -59,9 +67,5 @@ public class MainObjectsLoader : MonoBehaviour {
             DirectionalLight.instance = Instantiate(directionalLight).GetComponent<DirectionalLight>();
         }
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
 }

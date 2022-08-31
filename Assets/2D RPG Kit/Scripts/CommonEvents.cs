@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class CommonEvents : MonoBehaviour
 {
+    public static CommonEvents instance;
+
     [HideInInspector]
     public int toolbar;
     [HideInInspector]
@@ -83,6 +85,17 @@ public class CommonEvents : MonoBehaviour
     public string scene;
     [Tooltip("Enter the duration of transition to the new scene in seconds")]
     public float transitionTime = 1f;
+
+    void Awake()
+    {
+        Debug.Log("CommonEvents Awake");
+        if (instance != null)
+        {
+            Debug.Log("More than one instance of CommonEvents");
+            return;
+        }
+        instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
