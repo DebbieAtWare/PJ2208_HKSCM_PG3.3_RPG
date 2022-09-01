@@ -53,12 +53,11 @@ public class DroneController : MonoBehaviour
         talkHintObj.SetActive(false);
     }
 
-    void Update()
+    void LateUpdate()
     {
         if (Vector2.Distance(transform.position, PlayerController.instance.transform.position) > stopDist)
         {
             transform.position = LeapEase(transform.position, PlayerController.instance.transform.position, speed);
-
             //transform.position = Vector2.MoveTowards(transform.position, PlayerController.instance.transform.position, speed * Time.fixedDeltaTime);
         }
     }
