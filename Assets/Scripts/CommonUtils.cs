@@ -64,8 +64,8 @@ public class CommonUtils : MonoBehaviour
     public ConfigData_DialogBox dialogBox_BossAlert;
     public List<ConfigData_Character> bosses = new List<ConfigData_Character>();
     public ConfigData_DialogBox dialogBox_TipsByDrone;
-    public ConfigData_DialogBox dialogBox_TipsByDrone_Hint;
-    public ConfigData_DialogBox dialogBox_TipsByDrone_Enter;
+    public List<ConfigData_DialogBox> dialogBox_TipsByDrone_Hints = new List<ConfigData_DialogBox>();
+    public ConfigData_DialogBox dialogBox_TipsByDrone_CollectionBook;
     public ConfigData_DialogBox dialogBox_TipsByDrone_ChangeMap;
 
     [Header("Curr")]
@@ -619,15 +619,33 @@ public class CommonUtils : MonoBehaviour
         //-------
 
         ConfigData_DialogBox dialog_tips = new ConfigData_DialogBox();
-        dialog.ByWhom = "DRO";
-        dialog.ImagePath = "";
-        dialog.Text_TC = "有甚麼需要幫忙的嗎？";
-        List<string> options = new List<string>();
-        options.Add("提示");
-        options.Add("古生物圖鑑");
-        options.Add("傳送門");
-        dialog.OptionTexts_TC = options;
-        dialogBox_TipsByDrone = dialog;
+        dialog_tips.ByWhom = "DRO";
+        dialog_tips.ImagePath = "";
+        dialog_tips.Text_TC = "有甚麼需要幫忙的嗎？";
+        List<string> options_tips = new List<string>();
+        options_tips.Add("提示");
+        options_tips.Add("古生物圖鑑");
+        options_tips.Add("傳送門");
+        dialog_tips.OptionTexts_TC = options_tips;
+        dialogBox_TipsByDrone = dialog_tips;
+
+        List<ConfigData_DialogBox> dialog_hints = new List<ConfigData_DialogBox>();
+        ConfigData_DialogBox hint1 = new ConfigData_DialogBox();
+        hint1.ByWhom = "DRO";
+        hint1.ImagePath = "";
+        hint1.Text_TC = "頭上有綠色圖標的就是目標羊膜動物，把握機會與牠們交談！";
+        dialog_hints.Add(hint1);
+        ConfigData_DialogBox hint2 = new ConfigData_DialogBox();
+        hint2.ByWhom = "DRO";
+        hint2.ImagePath = "";
+        hint2.Text_TC = "你可以與地圖上的古生物交談。";
+        dialog_hints.Add(hint2);
+        ConfigData_DialogBox hint3 = new ConfigData_DialogBox();
+        hint3.ByWhom = "DRO";
+        hint3.ImagePath = "";
+        hint3.Text_TC = "你可以隨時找我轉換地圖。";
+        dialog_hints.Add(hint3);
+        dialogBox_TipsByDrone_Hints = dialog_hints;
     }
 
     //tmp keyboard change scene

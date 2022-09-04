@@ -56,6 +56,7 @@ public class DialogBoxManager : MonoBehaviour
                     optionTexts_TC[i].text = dialogBox.OptionTexts_TC[i];
                 }
             }
+            arrowObjs[0].SetActive(true);
         }
 
         if (dialogBox.ByWhom == CharacterID.AVA.ToString())
@@ -102,6 +103,25 @@ public class DialogBoxManager : MonoBehaviour
     {
         dialogBoxGrp.SetActive(false);
     }
+
+    //------
+
+    public void SetOptionArrow(int val)
+    {
+        for (int i = 0; i < arrowObjs.Count; i++)
+        {
+            if (i == val)
+            {
+                arrowObjs[i].SetActive(true);
+            }
+            else
+            {
+                arrowObjs[i].SetActive(false);
+            }
+        }
+    }
+
+    //------
 
     public void ShowSupportImg(string imgPath)
     {

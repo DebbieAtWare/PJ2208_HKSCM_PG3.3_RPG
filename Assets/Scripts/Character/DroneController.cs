@@ -3,6 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum DroneStage
+{
+    None,
+    Tips,
+    Hint,
+    CollectionBook,
+    ChangeMap
+}
+
 public class DroneController : MonoBehaviour
 {
     public static DroneController instance;
@@ -17,7 +26,12 @@ public class DroneController : MonoBehaviour
     public float speed;
     public float stopDist;
 
+    [Header("Curr")]
+    public DroneStage currDroneStage;
+    public int currSelectedOption = 0;
+
     CommonUtils commonUtils;
+    InputManager inputManager;
     bool isAtTrigger;
 
     void Awake()
@@ -43,9 +57,15 @@ public class DroneController : MonoBehaviour
         commonUtils.NPCAtFirstTrigger_OnEnterCallback += CommonUtils_NPCAtFirstTirgger_OnEnter;
         commonUtils.NPCAtFirstTrigger_OnExitCallback += CommonUtils_NPCAtFirstTrigger_OnExit;
 
+        inputManager = InputManager.instance;
+        inputManager.onValueChanged_VerticalCallback += InputManager_OnValueChanged_Vertical;
+        inputManager.onValueChanged_ConfirmCallback += InputManager_OnValueChanged_Confirm;
+
         onTriggerControl.onTriggerEnterCallback += OnTriggerEnter;
         onTriggerControl.onTriggerExitCallback += OnTriggerExit;
         talkHintObj.SetActive(false);
+
+        currDroneStage = DroneStage.None;
     }
 
     //close drone talk hint when inside NPC first trigger
@@ -78,18 +98,72 @@ public class DroneController : MonoBehaviour
         talkHintObj.SetActive(false);
     }
 
-    void LateUpdate()
+    //-----
+
+    private void InputManager_OnValueChanged_Vertical(int val)
+    {
+        if (currDroneStage == DroneStage.Tips)
+        {
+            if (currSelectedOption == 0)
+            {
+                if (val == -1)
+                {
+                    currSelectedOption = 1;
+                    DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                }
+            }
+            else if (currSelectedOption == 1)
+            {
+                if (val == 1)
+                {
+                    currSelectedOption = 0;
+                    DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                }
+                else if (val == -1)
+                {
+                    currSelectedOption = 2;
+                    DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                }
+            }
+            else if (currSelectedOption == 2)
+            {
+                if (val == 1)
+                {
+                    currSelectedOption = 1;
+                    DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                }
+            }
+        }
+    }
+
+    private void InputManager_OnValueChanged_Confirm()
+    {
+        if (currDroneStage == DroneStage.None && talkHintObj.activeInHierarchy)
+        {
+            GameManager.instance.dialogActive = true;
+            DialogBoxManager.instance.ShowDialog(commonUtils.dialogBox_TipsByDrone);
+            currDroneStage = DroneStage.Tips;
+        }
+        else if (currDroneStage == DroneStage.Tips && currSelectedOption == 0)
+        {
+            currDroneStage = DroneStage.Hint;
+        }
+        else if (currDroneStage == DroneStage.Tips && currSelectedOption == 1)
+        {
+            currDroneStage = DroneStage.CollectionBook;
+        }
+        else if (currDroneStage == DroneStage.Tips && currSelectedOption == 2)
+        {
+            currDroneStage = DroneStage.ChangeMap;
+        }
+    }
+
+    void Update()
     {
         if (Vector2.Distance(transform.position, PlayerController.instance.transform.position) > stopDist)
         {
             transform.position = LeapEase(transform.position, PlayerController.instance.transform.position, speed);
             //transform.position = Vector2.MoveTowards(transform.position, PlayerController.instance.transform.position, speed * Time.fixedDeltaTime);
-        }
-
-        if (Input.GetButtonDown("RPGConfirmPC") && talkHintObj.activeInHierarchy)
-        {
-            GameManager.instance.dialogActive = true;
-            DialogBoxManager.instance.ShowDialog(commonUtils.dialogBox_TipsByDrone);
         }
     }
 
@@ -130,5 +204,6 @@ public class DroneController : MonoBehaviour
     {
         commonUtils.NPCAtFirstTrigger_OnEnterCallback -= CommonUtils_NPCAtFirstTirgger_OnEnter;
         commonUtils.NPCAtFirstTrigger_OnExitCallback -= CommonUtils_NPCAtFirstTrigger_OnExit;
+        inputManager.onValueChanged_VerticalCallback -= InputManager_OnValueChanged_Vertical;
     }
 }
