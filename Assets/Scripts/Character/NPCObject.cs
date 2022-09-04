@@ -78,6 +78,7 @@ public class NPCObject : MonoBehaviour
         //Debug.Log("FirstTrigger_OnEnter");
         ViewBoxManager.instance.ShowViewBox();
         isAtFirstTrigger = true;
+        commonUtils.NPCAtFirstTriggerControl_OnEnter();
     }
 
     private void FirstTrigger_OnExit()
@@ -85,6 +86,7 @@ public class NPCObject : MonoBehaviour
         //Debug.Log("FirstTrigger_OnExit");
         ViewBoxManager.instance.HideViewBox();
         isAtFirstTrigger = false;
+        commonUtils.NPCAtFirstTriggerControl_OnExit();
     }
 
     public void UpdateRun()

@@ -17,6 +17,9 @@ public class DroneController : MonoBehaviour
     public float speed;
     public float stopDist;
 
+    CommonUtils commonUtils;
+    bool isAtTrigger;
+
     void Awake()
     {
         if (instance == null)
@@ -36,20 +39,42 @@ public class DroneController : MonoBehaviour
 
     void Start()
     {
+        commonUtils = CommonUtils.instance;
+        commonUtils.NPCAtFirstTrigger_OnEnterCallback += CommonUtils_NPCAtFirstTirgger_OnEnter;
+        commonUtils.NPCAtFirstTrigger_OnExitCallback += CommonUtils_NPCAtFirstTrigger_OnExit;
+
         onTriggerControl.onTriggerEnterCallback += OnTriggerEnter;
         onTriggerControl.onTriggerExitCallback += OnTriggerExit;
         talkHintObj.SetActive(false);
     }
 
+    //close drone talk hint when inside NPC first trigger
+    private void CommonUtils_NPCAtFirstTirgger_OnEnter()
+    {
+        talkHintObj.SetActive(false);
+    }
+
+    //when user leave NPC first trigger and inside drone trigger
+    private void CommonUtils_NPCAtFirstTrigger_OnExit()
+    {
+        if (isAtTrigger)
+        {
+            talkHintObj.SetActive(true);
+        }
+    }
+
     private void OnTriggerEnter()
     {
-        //Debug.Log("Drone OnTriggerEnter");
-        talkHintObj.SetActive(true);
+        isAtTrigger = true;
+        if (!commonUtils.isAtNPCFirstTrigger)
+        {
+            talkHintObj.SetActive(true);
+        }
     }
 
     private void OnTriggerExit()
     {
-        //Debug.Log("Drone OnTriggerExit");
+        isAtTrigger = false;
         talkHintObj.SetActive(false);
     }
 
@@ -71,19 +96,15 @@ public class DroneController : MonoBehaviour
     {
         if (CommonEvents.instance.facePlayerLeft)
         {
-            Debug.Log("facePlayerLeftfacePlayerLeft1   " + transform.position + "   " + PlayerController.instance.transform.position);
             transform.position = new Vector3(PlayerController.instance.transform.position.x + stopDist,
                                                                       PlayerController.instance.transform.position.y,
                                                                       PlayerController.instance.transform.position.z);
-            Debug.Log("facePlayerLeftfacePlayerLeft3   " + transform.position + "   " + PlayerController.instance.transform.position);
         }
         else if (CommonEvents.instance.facePlayerRight)
         {
-            Debug.Log("facePlayerRightfacePlayerRight1   " + transform.position + "   " + PlayerController.instance.transform.position);
             transform.position = new Vector3(PlayerController.instance.transform.position.x - stopDist,
                                                     PlayerController.instance.transform.position.y,
                                                     PlayerController.instance.transform.position.z);
-            Debug.Log("facePlayerRightfacePlayerRight2   " + transform.position + "   " + PlayerController.instance.transform.position);
         }
         else if (CommonEvents.instance.facePlayerUp)
         {
@@ -97,5 +118,11 @@ public class DroneController : MonoBehaviour
                                                     PlayerController.instance.transform.position.y + stopDist,
                                                     PlayerController.instance.transform.position.z);
         }
+    }
+
+    private void OnDestroy()
+    {
+        commonUtils.NPCAtFirstTrigger_OnEnterCallback -= CommonUtils_NPCAtFirstTirgger_OnEnter;
+        commonUtils.NPCAtFirstTrigger_OnExitCallback -= CommonUtils_NPCAtFirstTrigger_OnExit;
     }
 }
