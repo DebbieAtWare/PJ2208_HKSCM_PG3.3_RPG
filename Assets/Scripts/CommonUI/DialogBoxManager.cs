@@ -13,9 +13,13 @@ public class DialogBoxManager : MonoBehaviour
     [Header("UI")]
     public GameObject dialogBoxGrp;
     public Image profilePic;
-    public TextMeshProUGUI text_TC;
     public CanvasGroup supportImgCanvasGrp;
     public RawImage supportImg;
+    
+    [Header("Text")]
+    public TextMeshProUGUI text_TC;
+    public List<TextMeshProUGUI> optionTexts_TC;
+    public List<GameObject> arrowObjs;
 
     [Header("ZoomImg")]
     public CanvasGroup zoomImgCanvasGrp;
@@ -29,12 +33,30 @@ public class DialogBoxManager : MonoBehaviour
     {
         instance = this;
         commonUtils = CommonUtils.instance;
+        for (int i = 0; i < optionTexts_TC.Count; i++)
+        {
+            optionTexts_TC[i].gameObject.SetActive(false);
+            arrowObjs[i].SetActive(false);
+        }
     }
 
     public void ShowDialog(ConfigData_DialogBox dialogBox)
     {
         dialogBoxGrp.SetActive(true);
+
         text_TC.text = dialogBox.Text_TC;
+
+        if (dialogBox.OptionTexts_TC.Count != 0)
+        {
+            for (int i = 0; i < optionTexts_TC.Count; i++)
+            {
+                if (i < dialogBox.OptionTexts_TC.Count)
+                {
+                    optionTexts_TC[i].gameObject.SetActive(true);
+                    optionTexts_TC[i].text = dialogBox.OptionTexts_TC[i];
+                }
+            }
+        }
 
         if (dialogBox.ByWhom == CharacterID.AVA.ToString())
         {

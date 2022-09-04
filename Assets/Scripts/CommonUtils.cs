@@ -63,6 +63,10 @@ public class CommonUtils : MonoBehaviour
     public List<ConfigData_Character> NPC_Permian = new List<ConfigData_Character>();
     public ConfigData_DialogBox dialogBox_BossAlert;
     public List<ConfigData_Character> bosses = new List<ConfigData_Character>();
+    public ConfigData_DialogBox dialogBox_TipsByDrone;
+    public ConfigData_DialogBox dialogBox_TipsByDrone_Hint;
+    public ConfigData_DialogBox dialogBox_TipsByDrone_Enter;
+    public ConfigData_DialogBox dialogBox_TipsByDrone_ChangeMap;
 
     [Header("Curr")]
     public MapID currMapId;
@@ -614,7 +618,16 @@ public class CommonUtils : MonoBehaviour
 
         //-------
 
-
+        ConfigData_DialogBox dialog_tips = new ConfigData_DialogBox();
+        dialog.ByWhom = "DRO";
+        dialog.ImagePath = "";
+        dialog.Text_TC = "有甚麼需要幫忙的嗎？";
+        List<string> options = new List<string>();
+        options.Add("提示");
+        options.Add("古生物圖鑑");
+        options.Add("傳送門");
+        dialog.OptionTexts_TC = options;
+        dialogBox_TipsByDrone = dialog;
     }
 
     //tmp keyboard change scene
@@ -662,5 +675,8 @@ public class ConfigData_DialogBox
     public string Text_TC;
     public string Text_SC;
     public string Text_EN;
+    public List<string> OptionTexts_TC;
+    public List<string> OptionTexts_SC;
+    public List<string> OptionTexts_EN;
 }
 

@@ -85,6 +85,12 @@ public class DroneController : MonoBehaviour
             transform.position = LeapEase(transform.position, PlayerController.instance.transform.position, speed);
             //transform.position = Vector2.MoveTowards(transform.position, PlayerController.instance.transform.position, speed * Time.fixedDeltaTime);
         }
+
+        if (Input.GetButtonDown("RPGConfirmPC") && talkHintObj.activeInHierarchy)
+        {
+            GameManager.instance.dialogActive = true;
+            DialogBoxManager.instance.ShowDialog(commonUtils.dialogBox_TipsByDrone);
+        }
     }
 
     Vector2 LeapEase(Vector2 current, Vector2 target, float ease)
