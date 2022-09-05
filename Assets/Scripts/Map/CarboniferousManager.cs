@@ -64,6 +64,7 @@ public class CarboniferousManager : MonoBehaviour
 
         if (StatusBarManager.instance != null)
         {
+            StatusBarManager.instance.Hide_Permian(0f);
             StatusBarManager.instance.Show_Carbon(0.5f);
         }
     }

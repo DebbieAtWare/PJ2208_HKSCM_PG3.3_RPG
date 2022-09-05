@@ -16,10 +16,14 @@ public class TeleportTo : MonoBehaviour {
 
     public BoxCollider2D collider;
 
+    //selfAdd
+    float transitionTimeOri;
+    //selfAdd
+
     // Use this for initialization
     void Start () {
         entry.teleportName = teleportName;
-
+        transitionTimeOri = transitionTime;
     }
 	
 	// Update is called once per frame
@@ -53,6 +57,8 @@ public class TeleportTo : MonoBehaviour {
     //self add
     public void ManualTeleport()
     {
+        //reset the transition time caz drone will stay over scene
+        transitionTime = transitionTimeOri;
         openScene = true;
         GameManager.instance.fadingBetweenAreas = true;
 

@@ -165,6 +165,7 @@ public class DroneController : MonoBehaviour
     {
         if (currDroneStage == DroneStage.None && talkHintObj.activeInHierarchy)
         {
+            Debug.Log("hii");
             GameManager.instance.dialogActive = true;
             DialogBoxManager.instance.ShowDialog(commonUtils.dialogBox_TipsByDrone);
             currDroneStage = DroneStage.Tips;
@@ -233,12 +234,10 @@ public class DroneController : MonoBehaviour
                 GameManager.instance.dialogActive = false;
                 if (SceneManager.GetActiveScene().name == "CarboniferousScene")
                 {
-                    Debug.Log("teleportTo_Permian");
                     teleportTo_Permian.ManualTeleport();
                 }
                 else if (SceneManager.GetActiveScene().name == "PermianScene")
                 {
-                    Debug.Log("teleportTo_Carboniferous");
                     teleportTo_Carboniferous.ManualTeleport();
                 }
             }

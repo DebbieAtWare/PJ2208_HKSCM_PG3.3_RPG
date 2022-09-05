@@ -30,7 +30,6 @@ public class MainObjectsLoader : MonoBehaviour {
             playerStart = GameObject.Find("Player Start");
             if (playerStart != null)
             {
-                Debug.Log("playerStartplayerStart");
                 clone.transform.position = playerStart.transform.position;
             }
         }

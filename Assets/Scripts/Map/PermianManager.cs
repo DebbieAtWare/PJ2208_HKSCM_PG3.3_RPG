@@ -78,6 +78,7 @@ public class PermianManager : MonoBehaviour
 
         if (StatusBarManager.instance != null)
         {
+            StatusBarManager.instance.Hide_Carbon(0f);
             StatusBarManager.instance.Show_Permian(0f);
         }
     }

@@ -143,6 +143,7 @@ public class BossObject : MonoBehaviour
     {
         if (Input.GetButtonDown("RPGConfirmPC") && isAtAlertTrigger && !isAtFirstTrigger)
         {
+            Debug.Log("~~~~~");
             DialogBoxManager.instance.HideDialog();
             GameManager.instance.dialogActive = false;
         }
