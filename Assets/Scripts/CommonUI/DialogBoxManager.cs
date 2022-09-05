@@ -46,7 +46,7 @@ public class DialogBoxManager : MonoBehaviour
 
         text_TC.text = dialogBox.Text_TC;
 
-        if (dialogBox.OptionTexts_TC.Count != 0)
+        if (dialogBox.OptionTexts_TC != null && dialogBox.OptionTexts_TC.Count != 0)
         {
             for (int i = 0; i < optionTexts_TC.Count; i++)
             {
@@ -55,8 +55,29 @@ public class DialogBoxManager : MonoBehaviour
                     optionTexts_TC[i].gameObject.SetActive(true);
                     optionTexts_TC[i].text = dialogBox.OptionTexts_TC[i];
                 }
+                else
+                {
+                    optionTexts_TC[i].text = "";
+                    optionTexts_TC[i].gameObject.SetActive(false);
+                }
+
+                if (i == 0)
+                {
+                    arrowObjs[i].SetActive(true);
+                }
+                else
+                {
+                    arrowObjs[i].SetActive(false);
+                }
             }
-            arrowObjs[0].SetActive(true);
+        }
+        else
+        {
+            for (int i = 0; i < optionTexts_TC.Count; i++)
+            {
+                optionTexts_TC[i].gameObject.SetActive(false);
+                arrowObjs[i].SetActive(false);
+            }
         }
 
         if (dialogBox.ByWhom == CharacterID.AVA.ToString())

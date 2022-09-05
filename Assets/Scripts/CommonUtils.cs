@@ -646,6 +646,24 @@ public class CommonUtils : MonoBehaviour
         hint3.Text_TC = "你可以隨時找我轉換地圖。";
         dialog_hints.Add(hint3);
         dialogBox_TipsByDrone_Hints = dialog_hints;
+
+        ConfigData_DialogBox dialog_CB = new ConfigData_DialogBox();
+        dialog_CB.ByWhom = "DRO";
+        dialog_CB.Text_TC = "進入古生物圖鑑？";
+        List<string> options_CB = new List<string>();
+        options_CB.Add("是");
+        options_CB.Add("否");
+        dialog_CB.OptionTexts_TC = options_CB;
+        dialogBox_TipsByDrone_CollectionBook = dialog_CB;
+
+        ConfigData_DialogBox dialog_ChangeMap = new ConfigData_DialogBox();
+        dialog_ChangeMap.ByWhom = "DRO";
+        dialog_ChangeMap.Text_TC = "前往另一個地質時代？";
+        List<string> options_ChangeMap = new List<string>();
+        options_ChangeMap.Add("是");
+        options_ChangeMap.Add("留在這裏繼續探索");
+        dialog_ChangeMap.OptionTexts_TC = options_ChangeMap;
+        dialogBox_TipsByDrone_ChangeMap = dialog_ChangeMap;
     }
 
     //tmp keyboard change scene

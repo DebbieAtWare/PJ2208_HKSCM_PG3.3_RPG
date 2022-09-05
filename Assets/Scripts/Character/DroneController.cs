@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum DroneStage
 {
@@ -26,9 +27,14 @@ public class DroneController : MonoBehaviour
     public float speed;
     public float stopDist;
 
+    [Header("Teleport")]
+    public TeleportTo teleportTo_Permian;
+    public TeleportTo teleportTo_Carboniferous;
+
     [Header("Curr")]
     public DroneStage currDroneStage;
     public int currSelectedOption = 0;
+    public int currDialogLine_Hint = 0;
 
     CommonUtils commonUtils;
     InputManager inputManager;
@@ -134,6 +140,25 @@ public class DroneController : MonoBehaviour
                 }
             }
         }
+        else if (currDroneStage == DroneStage.CollectionBook || currDroneStage == DroneStage.ChangeMap)
+        {
+            if (currSelectedOption == 0)
+            {
+                if (val == -1)
+                {
+                    currSelectedOption = 1;
+                    DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                }
+            }
+            else if (currSelectedOption == 1)
+            {
+                if (val == 1)
+                {
+                    currSelectedOption = 0;
+                    DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                }
+            }
+        }
     }
 
     private void InputManager_OnValueChanged_Confirm()
@@ -144,17 +169,87 @@ public class DroneController : MonoBehaviour
             DialogBoxManager.instance.ShowDialog(commonUtils.dialogBox_TipsByDrone);
             currDroneStage = DroneStage.Tips;
         }
-        else if (currDroneStage == DroneStage.Tips && currSelectedOption == 0)
+        else if (currDroneStage == DroneStage.Tips)
         {
-            currDroneStage = DroneStage.Hint;
+            if (currSelectedOption == 0)
+            {
+                currDroneStage = DroneStage.Hint;
+                DialogBoxManager.instance.ShowDialog(commonUtils.dialogBox_TipsByDrone_Hints[currDialogLine_Hint]);
+                currDialogLine_Hint++;
+            }
+            else if (currSelectedOption == 1)
+            {
+                currDroneStage = DroneStage.CollectionBook;
+                DialogBoxManager.instance.ShowDialog(commonUtils.dialogBox_TipsByDrone_CollectionBook);
+                currSelectedOption = 0;
+            }
+            else if (currSelectedOption == 2)
+            {
+                currDroneStage = DroneStage.ChangeMap;
+                DialogBoxManager.instance.ShowDialog(commonUtils.dialogBox_TipsByDrone_ChangeMap);
+                currSelectedOption = 0;
+            }
         }
-        else if (currDroneStage == DroneStage.Tips && currSelectedOption == 1)
+        else if (currDroneStage == DroneStage.Hint)
         {
-            currDroneStage = DroneStage.CollectionBook;
+            if (currDialogLine_Hint == commonUtils.dialogBox_TipsByDrone_Hints.Count)
+            {
+                DialogBoxManager.instance.HideDialog();
+                currDialogLine_Hint = 0;
+                currSelectedOption = 0;
+                currDroneStage = DroneStage.None;
+                GameManager.instance.dialogActive = false;
+            }
+            else
+            {
+                DialogBoxManager.instance.ShowDialog(commonUtils.dialogBox_TipsByDrone_Hints[currDialogLine_Hint]);
+                currDialogLine_Hint++;
+            }
         }
-        else if (currDroneStage == DroneStage.Tips && currSelectedOption == 2)
+        else if (currDroneStage == DroneStage.CollectionBook)
         {
-            currDroneStage = DroneStage.ChangeMap;
+            if (currSelectedOption == 0)
+            {
+                DialogBoxManager.instance.HideDialog();
+                //TODO open collection book
+            }
+            else if (currSelectedOption == 1)
+            {
+                DialogBoxManager.instance.HideDialog();
+                currDialogLine_Hint = 0;
+                currSelectedOption = 0;
+                currDroneStage = DroneStage.None;
+                GameManager.instance.dialogActive = false;
+            }
+        }
+        else if (currDroneStage == DroneStage.ChangeMap)
+        {
+            if (currSelectedOption == 0)
+            {
+                DialogBoxManager.instance.HideDialog();
+                currDialogLine_Hint = 0;
+                currSelectedOption = 0;
+                currDroneStage = DroneStage.None;
+                GameManager.instance.dialogActive = false;
+                if (SceneManager.GetActiveScene().name == "CarboniferousScene")
+                {
+                    Debug.Log("teleportTo_Permian");
+                    teleportTo_Permian.ManualTeleport();
+                }
+                else if (SceneManager.GetActiveScene().name == "PermianScene")
+                {
+                    Debug.Log("teleportTo_Carboniferous");
+                    teleportTo_Carboniferous.ManualTeleport();
+                }
+            }
+            else if (currSelectedOption == 1)
+            {
+                DialogBoxManager.instance.HideDialog();
+                currDialogLine_Hint = 0;
+                currSelectedOption = 0;
+                currDroneStage = DroneStage.None;
+                GameManager.instance.dialogActive = false;
+            }
         }
     }
 
