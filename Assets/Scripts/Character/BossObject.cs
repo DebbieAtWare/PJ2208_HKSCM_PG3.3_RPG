@@ -4,6 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
+public enum BossStage
+{
+    None,
+    Alert,
+    AutoPlay,
+    View,
+    ConversationMode
+}
+
 public class BossObject : MonoBehaviour
 {
     public delegate void OnFinishedConversation();
@@ -19,7 +28,7 @@ public class BossObject : MonoBehaviour
 
     [Header("Trigger")]
     public OnTriggerControl alertTriggerControl;
-    public OnTriggerControl firstTriggerControl;
+    public OnTriggerControl viewTriggerControl;
 
     [Header("Arrow")]
     public List<GameObject> arrowObjs_Green = new List<GameObject>();
@@ -35,10 +44,16 @@ public class BossObject : MonoBehaviour
     public int currDialogLine;
     public bool canShowAlert;
     public bool isAtAlertTrigger;
-    public bool isAtFirstTrigger;
+    public bool isAtViewTrigger;
+    public BossStage currBossStage;
+
+    InputManager inputManager;
 
     public void Setup(ConfigData_DialogBox _dialogBox_Alert, ConfigData_Character _info, bool _canShowAlert, bool isFirstMeetDone)
     {
+        inputManager = InputManager.instance;
+        inputManager.onValueChanged_ConfirmCallback += InputManager_OnValueChanged_Confirm;
+
         dialogBox_Alert = _dialogBox_Alert;
         info = _info;
         canShowAlert = _canShowAlert;
@@ -46,12 +61,13 @@ public class BossObject : MonoBehaviour
         alertTriggerControl.onTriggerEnterCallback += AlertTrigger_OnEnter;
         alertTriggerControl.onTriggerExitCallback += AlertTrigger_OnExit;
 
-        firstTriggerControl.onTriggerEnterCallback += FirstTrigger_OnEnter;
-        firstTriggerControl.onTriggerExitCallback += FirstTrigger_OnExit;
+        viewTriggerControl.onTriggerEnterCallback += ViewTrigger_OnEnter;
+        viewTriggerControl.onTriggerExitCallback += ViewTrigger_OnExit;
 
         currDialogLine = 0;
         isAtAlertTrigger = false;
-        isAtFirstTrigger = false;
+        isAtViewTrigger = false;
+        currBossStage = BossStage.None;
 
         if (isFirstMeetDone)
         {
@@ -76,6 +92,70 @@ public class BossObject : MonoBehaviour
             OutlineControl();
         }
     }
+
+    private void InputManager_OnValueChanged_Confirm()
+    {
+       if (currBossStage == BossStage.Alert)
+       {
+            DialogBoxManager.instance.HideDialog();
+            DroneController.instance.canShowTalkHint = true;
+            Invoke("DroneShowTalkHint", 0.1f);
+            GameManager.instance.dialogActive = false;
+            currBossStage = BossStage.None;
+       }
+       else if (currBossStage == BossStage.View)
+       {
+            ViewBoxManager.instance.HideViewBox();
+            if (currDialogLine == 0)
+            {
+                MinimapManager.instance.Hide(0.5f);
+                StatusBarManager.instance.Hide_Carbon(0.5f);
+                StatusBarManager.instance.Hide_Permian(0.5f);
+                ConversationModeManager.instance.Show1(info.Name_TC, info.DescriptionTag_TC, bossSprite);
+                DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
+                currDialogLine++;
+            }
+            currBossStage = BossStage.ConversationMode;
+        }
+       else if (currBossStage == BossStage.ConversationMode)
+       {
+            if (currDialogLine == 1)
+            {
+                ConversationModeManager.instance.Show2();
+                DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
+                currDialogLine++;
+            }
+            else if (currDialogLine == info.DialogBoxes.Count)
+            {
+                DialogBoxManager.instance.HideDialog();
+                ConversationModeManager.instance.HideFade(0.5f);
+                currDialogLine = 0;
+                GameManager.instance.dialogActive = false;
+                for (int i = 0; i < arrowObjs_Green.Count; i++)
+                {
+                    arrowObjs_Green[i].SetActive(false);
+                    arrowObjs_Grey[i].SetActive(true);
+                }
+                minimapDot_Red.SetActive(false);
+                minimapDot_Grey.SetActive(true);
+                OutlineHide();
+                Invoke("FinishedConversationControl", 0.5f);
+            }
+            else
+            {
+                ConversationModeManager.instance.Show3();
+                DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
+                currDialogLine++;
+            }
+        }
+    }
+
+    void DroneShowTalkHint()
+    {
+        DroneController.instance.ShowTalkHint();
+    }
+
+    //---------
 
     void OutlineControl()
     {
@@ -108,6 +188,8 @@ public class BossObject : MonoBehaviour
         Invoke("OutlineControl", 0f);
     }
 
+    //---------
+
     private void AlertTrigger_OnEnter()
     {
         isAtAlertTrigger = true;
@@ -115,6 +197,9 @@ public class BossObject : MonoBehaviour
         {
             GameManager.instance.dialogActive = true;
             DialogBoxManager.instance.ShowDialog(dialogBox_Alert);
+            DroneController.instance.canShowTalkHint = false;
+            DroneController.instance.HideTalkHint();
+            currBossStage = BossStage.Alert;
         }
     }
 
@@ -125,71 +210,21 @@ public class BossObject : MonoBehaviour
 
     //-------
 
-    private void FirstTrigger_OnEnter()
+    private void ViewTrigger_OnEnter()
     {
-        isAtFirstTrigger = true;
+        isAtViewTrigger = true;
         ViewBoxManager.instance.ShowViewBox();
+        currBossStage = BossStage.View;
     }
 
-    private void FirstTrigger_OnExit()
+    private void ViewTrigger_OnExit()
     {
-        isAtFirstTrigger = false;
+        isAtViewTrigger = false;
         ViewBoxManager.instance.HideViewBox();
+        currBossStage = BossStage.None;
     }
 
     //-------
-
-    public void UpdateRun()
-    {
-        if (Input.GetButtonDown("RPGConfirmPC") && isAtAlertTrigger && !isAtFirstTrigger)
-        {
-            Debug.Log("~~~~~");
-            DialogBoxManager.instance.HideDialog();
-            GameManager.instance.dialogActive = false;
-        }
-        else if (Input.GetButtonDown("RPGConfirmPC") && isAtAlertTrigger && isAtFirstTrigger)
-        {
-            ViewBoxManager.instance.HideViewBox();
-
-            if (currDialogLine == 0)
-            {
-                MinimapManager.instance.Hide(0.5f);
-                StatusBarManager.instance.Hide_Carbon(0.5f);
-                StatusBarManager.instance.Hide_Permian(0.5f);
-                ConversationModeManager.instance.Show1(info.Name_TC, info.DescriptionTag_TC, bossSprite);
-                DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
-                currDialogLine++;
-            }
-            else if (currDialogLine == 1)
-            {
-                ConversationModeManager.instance.Show2();
-                DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
-                currDialogLine++;
-            }
-            else if (currDialogLine == info.DialogBoxes.Count)
-            {
-                DialogBoxManager.instance.HideDialog();
-                ConversationModeManager.instance.HideFade(0.5f);
-                currDialogLine = 0;
-                GameManager.instance.dialogActive = false;
-                for (int i = 0; i < arrowObjs_Green.Count; i++)
-                {
-                    arrowObjs_Green[i].SetActive(false);
-                    arrowObjs_Grey[i].SetActive(true);
-                }
-                minimapDot_Red.SetActive(false);
-                minimapDot_Grey.SetActive(true);
-                OutlineHide();
-                Invoke("FinishedConversationControl", 0.5f);
-            }
-            else
-            {
-                ConversationModeManager.instance.Show3();
-                DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
-                currDialogLine++;
-            }
-        }
-    }
 
     void FinishedConversationControl()
     {
@@ -197,5 +232,16 @@ public class BossObject : MonoBehaviour
         {
             onFinishedConversationCallback.Invoke();
         }
+    }
+
+    private void OnDestroy()
+    {
+        inputManager.onValueChanged_ConfirmCallback -= InputManager_OnValueChanged_Confirm;
+
+        alertTriggerControl.onTriggerEnterCallback -= AlertTrigger_OnEnter;
+        alertTriggerControl.onTriggerExitCallback -= AlertTrigger_OnExit;
+
+        viewTriggerControl.onTriggerEnterCallback -= ViewTrigger_OnEnter;
+        viewTriggerControl.onTriggerExitCallback -= ViewTrigger_OnExit;
     }
 }

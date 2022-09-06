@@ -9,89 +9,42 @@ public class NPCObject : MonoBehaviour
     [Header("Id")]
     public CharacterID id;
 
-    [Header("FirstTrigger")]
-    public OnTriggerControl firstTriggerControl;
-
-    [Header("Arrow")]
-    public GameObject arrowObj_Green;
-    public GameObject arrowObj_Grey;
+    [Header("ViewTrigger")]
+    public OnTriggerControl viewTriggerControl;
 
     [Header("Renderer")]
     public Renderer npcRenderer;
-
-    [Header("Collection Book Thumbnail")]
-    public Sprite collectionBookThumbnailSprite;
 
     [Header("Info")]
     public ConfigData_Character info;
 
     [Header("Curr")]
     public int currDialogLine;
-    public bool isAtFirstTrigger;
-    public bool isInSuccessCollectMode;
+    public bool isAtViewTrigger;
 
     CommonUtils commonUtils;
+    InputManager inputManager;
 
     public void Setup(ConfigData_Character _info)
     {
         commonUtils = CommonUtils.instance;
+        inputManager = InputManager.instance;
+        inputManager.onValueChanged_ConfirmCallback += InputManager_OnValueChanged_Confirm;
 
         info = _info;
 
-        firstTriggerControl.onTriggerEnterCallback += FirstTrigger_OnEnter;
-        firstTriggerControl.onTriggerExitCallback += FirstTrigger_OnExit;
+        viewTriggerControl.onTriggerEnterCallback += ViewTrigger_OnEnter;
+        viewTriggerControl.onTriggerExitCallback += ViewTrigger_OnExit;
 
         currDialogLine = 0;
-        isAtFirstTrigger = false;
-        isInSuccessCollectMode = false;
+        isAtViewTrigger = false;
 
         OutlineControl();
-
-        //if (info.IsFirstMeetDone)
-        //{
-        //    arrowObj_Green.SetActive(false);
-        //    arrowObj_Grey.SetActive(true);
-        //}
-        //else
-        //{
-        //    arrowObj_Green.SetActive(true);
-        //    arrowObj_Grey.SetActive(false);
-        //}
     }
 
-    void OutlineControl()
+    private void InputManager_OnValueChanged_Confirm()
     {
-        StartCoroutine(OutlineAni());
-    }
-
-    IEnumerator OutlineAni()
-    {
-        npcRenderer.material.DOFloat(1, "_OutlineAlpha", 1f);
-        yield return new WaitForSeconds(1.3f);
-        npcRenderer.material.DOFloat(0.4f, "_OutlineAlpha", 1f);
-        yield return new WaitForSeconds(1f);
-        Invoke("OutlineControl", 0f);
-    }
-
-    private void FirstTrigger_OnEnter()
-    {
-        //Debug.Log("FirstTrigger_OnEnter");
-        ViewBoxManager.instance.ShowViewBox();
-        isAtFirstTrigger = true;
-        commonUtils.NPCAtFirstTriggerControl_OnEnter();
-    }
-
-    private void FirstTrigger_OnExit()
-    {
-        //Debug.Log("FirstTrigger_OnExit");
-        ViewBoxManager.instance.HideViewBox();
-        isAtFirstTrigger = false;
-        commonUtils.NPCAtFirstTriggerControl_OnExit();
-    }
-
-    public void UpdateRun()
-    {
-        if (Input.GetButtonDown("RPGConfirmPC") && isAtFirstTrigger && !isInSuccessCollectMode)
+        if (isAtViewTrigger)
         {
             if (currDialogLine == 0)
             {
@@ -108,26 +61,8 @@ public class NPCObject : MonoBehaviour
                     DialogBoxManager.instance.HideZoomImg(0.5f);
                 }
                 currDialogLine = 0;
-                //arrowObj_Green.SetActive(false);
-                //arrowObj_Grey.SetActive(true);
-                if (info.IsCollectable)
-                {
-                    if (!info.IsFirstMeetDone)
-                    {
-                        isInSuccessCollectMode = true;
-                        CollectionBookManager.instance.ShowSuccessCollect(info.Name_TC, collectionBookThumbnailSprite);
-                        Invoke("CloseSuccessCollect", 2f);
-                    }
-                    else
-                    {
-                        GameManager.instance.dialogActive = false;
-                    }
-                }
-                else
-                {
-                    info.IsFirstMeetDone = true;
-                    GameManager.instance.dialogActive = false;
-                }
+                info.IsFirstMeetDone = true;
+                GameManager.instance.dialogActive = false;
             }
             else
             {
@@ -141,18 +76,40 @@ public class NPCObject : MonoBehaviour
         }
     }
 
-    void CloseSuccessCollect()
+    void OutlineControl()
     {
-        CollectionBookManager.instance.HideSuccessCollect(0.5f);
-        info.IsFirstMeetDone = true;
-        info.IsSuccessCollectDone = true;
-        GameManager.instance.dialogActive = false;
-        isInSuccessCollectMode = false;
+        StartCoroutine(OutlineAni());
+    }
+
+    IEnumerator OutlineAni()
+    {
+        npcRenderer.material.DOFloat(1, "_OutlineAlpha", 1f);
+        yield return new WaitForSeconds(1.3f);
+        npcRenderer.material.DOFloat(0.4f, "_OutlineAlpha", 1f);
+        yield return new WaitForSeconds(1f);
+        Invoke("OutlineControl", 0f);
+    }
+
+    private void ViewTrigger_OnEnter()
+    {
+        ViewBoxManager.instance.ShowViewBox();
+        isAtViewTrigger = true;
+        DroneController.instance.canShowTalkHint = false;
+        DroneController.instance.HideTalkHint();
+    }
+
+    private void ViewTrigger_OnExit()
+    {
+        ViewBoxManager.instance.HideViewBox();
+        isAtViewTrigger = false;
+        DroneController.instance.canShowTalkHint = true;
+        DroneController.instance.ShowTalkHint();
     }
 
     private void OnDestroy()
     {
-        firstTriggerControl.onTriggerEnterCallback -= FirstTrigger_OnEnter;
-        firstTriggerControl.onTriggerExitCallback -= FirstTrigger_OnExit;
+        viewTriggerControl.onTriggerEnterCallback -= ViewTrigger_OnEnter;
+        viewTriggerControl.onTriggerExitCallback -= ViewTrigger_OnExit;
+        inputManager.onValueChanged_ConfirmCallback -= InputManager_OnValueChanged_Confirm;
     }
 }

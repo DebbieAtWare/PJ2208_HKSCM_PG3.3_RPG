@@ -68,14 +68,4 @@ public class CarboniferousManager : MonoBehaviour
             StatusBarManager.instance.Show_Carbon(0.5f);
         }
     }
-
-    void Update()
-    {
-        for (int i = 0; i < NPCObjs.Count; i++)
-        {
-            NPCObjs[i].UpdateRun();
-        }
-
-        bossObj.UpdateRun();
-    }
 }

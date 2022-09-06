@@ -148,17 +148,6 @@ public class PermianManager : MonoBehaviour
         commonUtils.bosses[currUtilsIndex_Boss3].IsSuccessCollectDone = true;
     }
 
-    void Update()
-    {
-        for (int i = 0; i < NPCObjs.Count; i++)
-        {
-            NPCObjs[i].UpdateRun();
-        }
-
-        bossObj2.UpdateRun();
-        bossObj3.UpdateRun();
-    }
-
     private void OnDestroy()
     {
         bossObj2.onFinishedConversationCallback -= OnFinishedConversation_Boss2;

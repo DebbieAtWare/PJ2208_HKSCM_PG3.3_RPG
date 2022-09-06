@@ -22,6 +22,7 @@ public class DroneController : MonoBehaviour
 
     [Header("Talk Hint")]
     public GameObject talkHintObj;
+    public bool canShowTalkHint;
 
     [Header("Follow")]
     public float speed;
@@ -60,8 +61,6 @@ public class DroneController : MonoBehaviour
     void Start()
     {
         commonUtils = CommonUtils.instance;
-        commonUtils.NPCAtFirstTrigger_OnEnterCallback += CommonUtils_NPCAtFirstTirgger_OnEnter;
-        commonUtils.NPCAtFirstTrigger_OnExitCallback += CommonUtils_NPCAtFirstTrigger_OnExit;
 
         inputManager = InputManager.instance;
         inputManager.onValueChanged_VerticalCallback += InputManager_OnValueChanged_Vertical;
@@ -69,19 +68,21 @@ public class DroneController : MonoBehaviour
 
         onTriggerControl.onTriggerEnterCallback += OnTriggerEnter;
         onTriggerControl.onTriggerExitCallback += OnTriggerExit;
+
+        canShowTalkHint = true;
         talkHintObj.SetActive(false);
 
         currDroneStage = DroneStage.None;
     }
 
     //close drone talk hint when inside NPC first trigger
-    private void CommonUtils_NPCAtFirstTirgger_OnEnter()
+    public void HideTalkHint()
     {
         talkHintObj.SetActive(false);
     }
 
     //when user leave NPC first trigger and inside drone trigger
-    private void CommonUtils_NPCAtFirstTrigger_OnExit()
+    public void ShowTalkHint()
     {
         if (isAtTrigger)
         {
@@ -92,7 +93,7 @@ public class DroneController : MonoBehaviour
     private void OnTriggerEnter()
     {
         isAtTrigger = true;
-        if (!commonUtils.isAtNPCFirstTrigger)
+        if (canShowTalkHint)
         {
             talkHintObj.SetActive(true);
         }
@@ -165,7 +166,6 @@ public class DroneController : MonoBehaviour
     {
         if (currDroneStage == DroneStage.None && talkHintObj.activeInHierarchy)
         {
-            Debug.Log("hii");
             GameManager.instance.dialogActive = true;
             DialogBoxManager.instance.ShowDialog(commonUtils.dialogBox_TipsByDrone);
             currDroneStage = DroneStage.Tips;
@@ -296,8 +296,6 @@ public class DroneController : MonoBehaviour
 
     private void OnDestroy()
     {
-        commonUtils.NPCAtFirstTrigger_OnEnterCallback -= CommonUtils_NPCAtFirstTirgger_OnEnter;
-        commonUtils.NPCAtFirstTrigger_OnExitCallback -= CommonUtils_NPCAtFirstTrigger_OnExit;
         inputManager.onValueChanged_VerticalCallback -= InputManager_OnValueChanged_Vertical;
     }
 }

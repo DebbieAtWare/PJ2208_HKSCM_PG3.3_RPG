@@ -89,12 +89,6 @@ public class Boss01Manager : MonoBehaviour
         GameManager.instance.dialogActive = false;
     }
 
-
-    void Update()
-    {
-        bossObj.UpdateRun();
-    }
-
     private void OnDestroy()
     {
         bossObj.onFinishedConversationCallback -= OnFinishedConversation;

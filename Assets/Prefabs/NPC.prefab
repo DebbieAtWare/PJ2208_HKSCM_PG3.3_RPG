@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 2354068167750775373}
   - component: {fileID: 2354068167750775374}
   m_Layer: 0
-  m_Name: FirstTriggerCollider
+  m_Name: ViewTriggerCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -618,11 +618,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
-  firstTriggerControl: {fileID: 2354068167750775374}
-  arrowObj_Green: {fileID: 2354068169025748398}
-  arrowObj_Grey: {fileID: 2354068167538989752}
+  viewTriggerControl: {fileID: 2354068167750775374}
   npcRenderer: {fileID: 2354068167028867157}
-  collectionBookThumbnailSprite: {fileID: 0}
   info:
     Id: 
     Name_TC: 
@@ -636,5 +633,4 @@ MonoBehaviour:
     IsFirstMeetDone: 0
     IsSuccessCollectDone: 0
   currDialogLine: 0
-  isAtFirstTrigger: 0
-  isInSuccessCollectMode: 0
+  isAtViewTrigger: 0

@@ -51,13 +51,6 @@ public class CommonUtils : MonoBehaviour
     public Sprite profilePicSprite_Boss02;
     public Sprite profilePicSprite_Boss03;
 
-    [Header("NPC First Trigger")]
-    public bool isAtNPCFirstTrigger;
-    public delegate void NPCAtFirstTrigger_OnEnter();
-    public NPCAtFirstTrigger_OnEnter NPCAtFirstTrigger_OnEnterCallback;
-    public delegate void NPCAtFirstTrigger_OnExit();
-    public NPCAtFirstTrigger_OnExit NPCAtFirstTrigger_OnExitCallback;
-
     [Header("ConfigData")]
     public List<ConfigData_Character> NPC_Carboniferous = new List<ConfigData_Character>();
     public List<ConfigData_Character> NPC_Permian = new List<ConfigData_Character>();
@@ -122,26 +115,6 @@ public class CommonUtils : MonoBehaviour
         else if (scene.name == "PermianScene")
         {
             PermianManager.instance.Setup();
-        }
-    }
-
-    //--------
-
-    public void NPCAtFirstTriggerControl_OnEnter()
-    {
-        isAtNPCFirstTrigger = true;
-        if (NPCAtFirstTrigger_OnEnterCallback != null)
-        {
-            NPCAtFirstTrigger_OnEnterCallback.Invoke();
-        }
-    }
-
-    public void NPCAtFirstTriggerControl_OnExit()
-    {
-        isAtNPCFirstTrigger = false;
-        if (NPCAtFirstTrigger_OnExitCallback != null)
-        {
-            NPCAtFirstTrigger_OnExitCallback.Invoke();
         }
     }
 
