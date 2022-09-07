@@ -246,15 +246,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2528e10effd08e44dbb3efb4694fc6ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  profilePicSprite_Avatar: {fileID: 21300000, guid: 0c086d13c0532da4ba8d4eeb326e7e90,
+  profilePicSprite_Avatar: {fileID: 21300000, guid: 97280297c076c854f9b09e0b1399ed5a,
     type: 3}
-  profilePicSprite_Drone: {fileID: 21300000, guid: 0e44daf86b232674082b56636e317e8f,
+  profilePicSprite_Drone: {fileID: 21300000, guid: 61ee58dc9749175478c78f5a8cd3b09f,
     type: 3}
-  profilePicSprite_Boss01: {fileID: 21300000, guid: 78dd972b98a32b84e9c7045e7c1b5a0e,
+  profilePicSprite_Boss01: {fileID: 21300000, guid: b19b5fd6745966843a537277661855e3,
     type: 3}
-  profilePicSprite_Boss02: {fileID: 21300000, guid: eebc23b97f679864dbd4343f032fcbd4,
+  profilePicSprite_Boss02: {fileID: 21300000, guid: f03729e2389a7634f9f01c723519611a,
     type: 3}
-  profilePicSprite_Boss03: {fileID: 21300000, guid: 22f35b9ae8b193f42b34f8c01a50c099,
+  profilePicSprite_Boss03: {fileID: 21300000, guid: 61c6078e9d6a3aa4a86345e2d26a3ee8,
     type: 3}
   playerPos_Carboniferous: {x: 25.72, y: 5.78, z: 1}
   playerPos_Permian: {x: -23.33, y: 2.19, z: 1}

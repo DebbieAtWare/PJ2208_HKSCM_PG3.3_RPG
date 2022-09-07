@@ -4,10 +4,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
+public enum NPCStage
+{
+    None,
+    View,
+    Dialog
+}
+
 public class NPCObject : MonoBehaviour
 {
     [Header("Id")]
     public CharacterID id;
+
+    [Header("Scan")]
+    public SpriteRenderer scan_FrameRenderer;
+    public SpriteRenderer scan_LightRenderer;
+    public GameObject scan_LightPosObj_Start;
+    public GameObject scan_LightPosObj_End;
+    public GameObject scan_AvatarPosObj;
+    public GameObject scan_DronePosObj;
+    public PlayerDirection scan_AvatarDir;
 
     [Header("ViewTrigger")]
     public OnTriggerControl viewTriggerControl;
@@ -21,6 +37,7 @@ public class NPCObject : MonoBehaviour
     [Header("Curr")]
     public int currDialogLine;
     public bool isAtViewTrigger;
+    public NPCStage currStage;
 
     CommonUtils commonUtils;
     InputManager inputManager;
@@ -44,16 +61,36 @@ public class NPCObject : MonoBehaviour
 
     private void InputManager_OnValueChanged_Confirm()
     {
-        if (isAtViewTrigger)
+        if (isAtViewTrigger && currStage == NPCStage.View)
         {
+            currStage = NPCStage.Dialog;
             if (currDialogLine == 0)
             {
-                GameManager.instance.dialogActive = true;
-                DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
-                ViewBoxManager.instance.HideViewBox();
-                currDialogLine++;
+                StartCoroutine(ScanAni());
+                IEnumerator ScanAni()
+                {
+                    GameManager.instance.dialogActive = true;
+                    ViewBoxManager.instance.HideViewBox();
+                    DroneController.instance.canShowTalkHint = false;
+                    DroneController.instance.HideTalkHint();
+                    PlayerController.instance.transform.DOLocalMove(scan_AvatarPosObj.transform.position, 0.5f);
+                    PlayerController.instance.SetDirection(scan_AvatarDir);
+                    DroneController.instance.transform.DOLocalMove(scan_DronePosObj.transform.position, 0.5f);
+                    yield return new WaitForSeconds(0.5f);
+                    scan_FrameRenderer.DOFade(1f, 0.3f);
+                    scan_LightRenderer.DOFade(1f, 0.3f);
+                    scan_LightRenderer.transform.DOLocalMove(scan_LightPosObj_End.transform.localPosition, 1f).From(scan_LightPosObj_Start.transform.localPosition);
+                    yield return new WaitForSeconds(1f);
+                    scan_FrameRenderer.DOFade(0f, 0.3f);
+                    scan_LightRenderer.DOFade(0f, 0.3f);
+                    DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
+                    currDialogLine++;
+                }
             }
-            else if (currDialogLine == info.DialogBoxes.Count)
+        }
+        else if (currStage == NPCStage.Dialog)
+        {
+            if (currDialogLine == info.DialogBoxes.Count)
             {
                 DialogBoxManager.instance.HideDialog();
                 if (id == CharacterID.NPC_P11 || id == CharacterID.NPC_P12)
@@ -63,6 +100,8 @@ public class NPCObject : MonoBehaviour
                 currDialogLine = 0;
                 info.IsFirstMeetDone = true;
                 GameManager.instance.dialogActive = false;
+                DroneController.instance.canShowTalkHint = true;
+                currStage = NPCStage.None;
             }
             else
             {
@@ -92,6 +131,7 @@ public class NPCObject : MonoBehaviour
 
     private void ViewTrigger_OnEnter()
     {
+        currStage = NPCStage.View;
         ViewBoxManager.instance.ShowViewBox();
         isAtViewTrigger = true;
         DroneController.instance.canShowTalkHint = false;
@@ -100,10 +140,14 @@ public class NPCObject : MonoBehaviour
 
     private void ViewTrigger_OnExit()
     {
-        ViewBoxManager.instance.HideViewBox();
-        isAtViewTrigger = false;
-        DroneController.instance.canShowTalkHint = true;
-        DroneController.instance.ShowTalkHint();
+        if (currStage != NPCStage.Dialog)
+        {
+            currStage = NPCStage.None;
+            ViewBoxManager.instance.HideViewBox();
+            isAtViewTrigger = false;
+            DroneController.instance.canShowTalkHint = true;
+            DroneController.instance.ShowTalkHint();
+        }
     }
 
     private void OnDestroy()
