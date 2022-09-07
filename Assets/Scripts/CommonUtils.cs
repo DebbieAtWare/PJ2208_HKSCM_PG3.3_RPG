@@ -51,6 +51,18 @@ public class CommonUtils : MonoBehaviour
     public Sprite profilePicSprite_Boss02;
     public Sprite profilePicSprite_Boss03;
 
+    [Header("PlayerPos")]
+    public Vector3 playerPos_Carboniferous;
+    public Vector3 playerPos_Permian;
+
+    [Header("PlayerDir")]
+    public PlayerDirection playerDir_Carboniferous;
+    public PlayerDirection playerDir_Permian;
+
+    [Header("DronePos")]
+    public Vector3 dronePos_Carboniferous;
+    public Vector3 dronePos_Permian;
+
     [Header("ConfigData")]
     public List<ConfigData_Character> NPC_Carboniferous = new List<ConfigData_Character>();
     public List<ConfigData_Character> NPC_Permian = new List<ConfigData_Character>();

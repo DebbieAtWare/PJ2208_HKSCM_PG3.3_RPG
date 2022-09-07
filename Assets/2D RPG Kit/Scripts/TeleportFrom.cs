@@ -13,7 +13,6 @@ public class TeleportFrom : MonoBehaviour {
         {
             PlayerController.instance.transform.position = transform.position;
             PlayerController.instance.GetComponent<SpriteRenderer>().sortingLayerName = "Player";
-            DroneController.instance.SharpChangePos();
         }
 
         ScreenFade.instance.FadeFromBlack();

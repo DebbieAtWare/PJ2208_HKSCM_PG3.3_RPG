@@ -234,27 +234,13 @@ public class DroneController : MonoBehaviour
                 GameManager.instance.dialogActive = false;
                 if (SceneManager.GetActiveScene().name == "CarboniferousScene")
                 {
-                    StartCoroutine(wait());
-                    
-                    IEnumerator wait()
-                    {
-                        TransitionManager.instance.StartTransition();
-                        yield return new WaitForSeconds(1f);
-                        teleportTo_Permian.ManualTeleport();
-                    }
+                    TransitionManager.instance.ChangeMap(true);
                 }
                 else if (SceneManager.GetActiveScene().name == "PermianScene")
                 {
-                    StartCoroutine(wait());
-
-                    IEnumerator wait()
-                    {
-                        TransitionManager.instance.StartTransition();
-                        yield return new WaitForSeconds(1f);
-                        teleportTo_Carboniferous.ManualTeleport();
-                    }
-                    
+                    TransitionManager.instance.ChangeMap(false);
                 }
+                
             }
             else if (currSelectedOption == 1)
             {
@@ -281,32 +267,37 @@ public class DroneController : MonoBehaviour
         return current + (target - current) * ease;
     }
 
-    public void SharpChangePos()
+    public void ChangePos_FollowStopDist(PlayerDirection dir)
     {
-        if (CommonEvents.instance.facePlayerLeft)
+        if (dir == PlayerDirection.Left)
         {
             transform.position = new Vector3(PlayerController.instance.transform.position.x + stopDist,
                                                                       PlayerController.instance.transform.position.y,
                                                                       PlayerController.instance.transform.position.z);
         }
-        else if (CommonEvents.instance.facePlayerRight)
+        else if (dir == PlayerDirection.Right)
         {
             transform.position = new Vector3(PlayerController.instance.transform.position.x - stopDist,
                                                     PlayerController.instance.transform.position.y,
                                                     PlayerController.instance.transform.position.z);
         }
-        else if (CommonEvents.instance.facePlayerUp)
+        else if (dir == PlayerDirection.Up)
         {
             transform.position = new Vector3(PlayerController.instance.transform.position.x,
                                                     PlayerController.instance.transform.position.y - stopDist,
                                                     PlayerController.instance.transform.position.z);
         }
-        else if (CommonEvents.instance.facePlayerDown)
+        else if (dir == PlayerDirection.Down)
         {
             transform.position = new Vector3(PlayerController.instance.transform.position.x,
                                                     PlayerController.instance.transform.position.y + stopDist,
                                                     PlayerController.instance.transform.position.z);
         }
+    }
+
+    public void ChangePos(Vector3 pos)
+    {
+        transform.position = pos;
     }
 
     private void OnDestroy()

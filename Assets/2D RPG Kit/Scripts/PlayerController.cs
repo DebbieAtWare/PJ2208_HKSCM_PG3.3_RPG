@@ -3,6 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
+//self add
+public enum PlayerDirection
+{
+    Down,
+    Left, 
+    Up,
+    Right
+}
+//self add
+
 public class PlayerController : MonoBehaviour {
 
     [HideInInspector]
@@ -110,18 +120,22 @@ public class PlayerController : MonoBehaviour {
             //self add
             if (Input.GetAxisRaw("Horizontal") == 1)
             {
+                //right
                 minimapArrowTrans.eulerAngles = new Vector3(0, 0, 90);
             }
             else if (Input.GetAxisRaw("Horizontal") == -1)
             {
+                //left
                 minimapArrowTrans.eulerAngles = new Vector3(0, 0, -90);
             }
             else if (Input.GetAxisRaw("Vertical") == 1)
             {
+                //up
                 minimapArrowTrans.eulerAngles = new Vector3(0, 0, 180);
             }
             else if (Input.GetAxisRaw("Vertical") == -1)
             {
+                //down
                 minimapArrowTrans.eulerAngles = new Vector3(0, 0, 0);
             }
             //self add
@@ -137,5 +151,55 @@ public class PlayerController : MonoBehaviour {
         boundary2 = bound2 + new Vector3(-.5f, -1f, 0f);
     }
 
+
+    //self add
+    public void SetDirection(PlayerDirection dir)
+    {
+        if (dir == PlayerDirection.Down)
+        {
+            animator.SetFloat("lastMoveY", -1f);
+            minimapArrowTrans.eulerAngles = new Vector3(0, 0, 0);
+        }
+        else if (dir == PlayerDirection.Left)
+        {
+            animator.SetFloat("lastMoveX", -1f);
+            minimapArrowTrans.eulerAngles = new Vector3(0, 0, -90);
+        }
+        if (dir == PlayerDirection.Up)
+        {
+            animator.SetFloat("lastMoveY", 1f);
+            minimapArrowTrans.eulerAngles = new Vector3(0, 0, 180);
+        }
+        if (dir == PlayerDirection.Right)
+        {
+            animator.SetFloat("lastMoveX", 1f);
+            minimapArrowTrans.eulerAngles = new Vector3(0, 0, 90);
+        }
+    }
+
+    public PlayerDirection GetDirection()
+    {
+        if (animator.GetFloat("lastMoveY") == -1f)
+        {
+            return PlayerDirection.Down;
+        }
+        if (animator.GetFloat("lastMoveX") == -1f)
+        {
+            return PlayerDirection.Left;
+        }
+        if (animator.GetFloat("lastMoveY") == 1f)
+        {
+            return PlayerDirection.Up;
+        }
+        if (animator.GetFloat("lastMoveX") == 1f)
+        {
+            return PlayerDirection.Right;
+        }
+        else
+        {
+            return PlayerDirection.Down;
+        }
+    }
+    //self add
 }
 

@@ -38,7 +38,7 @@ public class MainObjectsLoader : MonoBehaviour {
         {
             DroneController clone = Instantiate(drone).GetComponent<DroneController>();
             DroneController.instance = clone;
-            DroneController.instance.SharpChangePos();
+            //DroneController.instance.SharpChangePos();
         }
 
         if (GameManager.instance == null)

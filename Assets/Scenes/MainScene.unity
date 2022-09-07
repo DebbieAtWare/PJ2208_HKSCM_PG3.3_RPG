@@ -205,7 +205,12 @@ MonoBehaviour:
     type: 3}
   profilePicSprite_Boss03: {fileID: 21300000, guid: 22f35b9ae8b193f42b34f8c01a50c099,
     type: 3}
-  isAtNPCFirstTrigger: 0
+  playerPos_Carboniferous: {x: 25.72, y: 5.78, z: 1}
+  playerPos_Permian: {x: -23.33, y: 2.19, z: 1}
+  playerDir_Carboniferous: 1
+  playerDir_Permian: 3
+  dronePos_Carboniferous: {x: 0, y: 0, z: 0}
+  dronePos_Permian: {x: 0, y: 0, z: 0}
   NPC_Carboniferous: []
   NPC_Permian: []
   dialogBox_BossAlert:
@@ -227,15 +232,7 @@ MonoBehaviour:
     OptionTexts_TC: []
     OptionTexts_SC: []
     OptionTexts_EN: []
-  dialogBox_TipsByDrone_Hint:
-    ByWhom: 
-    ImagePath: 
-    Text_TC: 
-    Text_SC: 
-    Text_EN: 
-    OptionTexts_TC: []
-    OptionTexts_SC: []
-    OptionTexts_EN: []
+  dialogBox_TipsByDrone_Hints: []
   dialogBox_TipsByDrone_CollectionBook:
     ByWhom: 
     ImagePath: 

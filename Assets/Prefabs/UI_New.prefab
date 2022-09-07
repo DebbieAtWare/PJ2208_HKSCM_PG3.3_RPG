@@ -6659,6 +6659,12 @@ MonoBehaviour:
   rootObj: {fileID: 6047601108533910211}
   camFeedImg: {fileID: 671341838515387274}
   timeTravelBkgImg: {fileID: 6321093439878030396}
+  playerPos_Carboniferous: {x: 25.72, y: 5.78, z: 1}
+  playerPos_Permian: {x: -23.33, y: 2.19, z: 1}
+  transitionTexture_Carboniferous: {fileID: 2800000, guid: de2eb8076e2a00a458672d700075f0b0,
+    type: 3}
+  transitionTexture_Permian: {fileID: 2800000, guid: 74f9be76ff836e74aa5e67ad197c8bd3,
+    type: 3}
 --- !u!1 &1763794860047156
 GameObject:
   m_ObjectHideFlags: 0
