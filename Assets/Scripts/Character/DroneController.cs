@@ -234,11 +234,26 @@ public class DroneController : MonoBehaviour
                 GameManager.instance.dialogActive = false;
                 if (SceneManager.GetActiveScene().name == "CarboniferousScene")
                 {
-                    teleportTo_Permian.ManualTeleport();
+                    StartCoroutine(wait());
+                    
+                    IEnumerator wait()
+                    {
+                        TransitionManager.instance.StartTransition();
+                        yield return new WaitForSeconds(1f);
+                        teleportTo_Permian.ManualTeleport();
+                    }
                 }
                 else if (SceneManager.GetActiveScene().name == "PermianScene")
                 {
-                    teleportTo_Carboniferous.ManualTeleport();
+                    StartCoroutine(wait());
+
+                    IEnumerator wait()
+                    {
+                        TransitionManager.instance.StartTransition();
+                        yield return new WaitForSeconds(1f);
+                        teleportTo_Carboniferous.ManualTeleport();
+                    }
+                    
                 }
             }
             else if (currSelectedOption == 1)
