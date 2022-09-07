@@ -181,6 +181,7 @@
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleNotification.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\QuestManager.cs" />
     <Compile Include="Assets\Scripts\CommonUI\TransitionManager.cs" />
+    <Compile Include="Assets\Scripts\CommonUI\UIManager.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

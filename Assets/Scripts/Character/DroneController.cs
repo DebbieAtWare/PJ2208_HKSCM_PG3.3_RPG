@@ -28,10 +28,6 @@ public class DroneController : MonoBehaviour
     public float speed;
     public float stopDist;
 
-    [Header("Teleport")]
-    public TeleportTo teleportTo_Permian;
-    public TeleportTo teleportTo_Carboniferous;
-
     [Header("Curr")]
     public DroneStage currDroneStage;
     public int currSelectedOption = 0;
@@ -232,13 +228,13 @@ public class DroneController : MonoBehaviour
                 currSelectedOption = 0;
                 currDroneStage = DroneStage.None;
                 GameManager.instance.dialogActive = false;
-                if (SceneManager.GetActiveScene().name == "CarboniferousScene")
+                if (commonUtils.currMapId == MapID.Carboniferous)
                 {
-                    TransitionManager.instance.ChangeMap(true);
+                    TransitionManager.instance.ChangeMap(commonUtils.currMapId, MapID.Permian);
                 }
-                else if (SceneManager.GetActiveScene().name == "PermianScene")
+                else if (commonUtils.currMapId == MapID.Permian)
                 {
-                    TransitionManager.instance.ChangeMap(false);
+                    TransitionManager.instance.ChangeMap(commonUtils.currMapId, MapID.Carboniferous);
                 }
                 
             }

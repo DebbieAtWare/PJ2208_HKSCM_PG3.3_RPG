@@ -76,11 +76,10 @@ public class PermianManager : MonoBehaviour
             bossObj3.Setup(commonUtils.dialogBox_BossAlert, commonUtils.bosses[currUtilsIndex_Boss3], false, commonUtils.bosses[currUtilsIndex_Boss3].IsFirstMeetDone);
         }
 
-        if (StatusBarManager.instance != null)
-        {
-            StatusBarManager.instance.Hide_Carbon(0f);
-            StatusBarManager.instance.Show_Permian(0f);
-        }
+        MinimapManager.instance.Show(0.5f);
+
+        StatusBarManager.instance.Hide_Carbon(0f);
+        StatusBarManager.instance.Show_Permian(0.5f);
     }
 
     private void OnFinishedConversation_Boss2()

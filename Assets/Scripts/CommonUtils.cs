@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public enum MapID
 {
+    Lab,
     Carboniferous,
     Permian
 }

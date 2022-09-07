@@ -60,89 +60,146 @@ public class PlayerController : MonoBehaviour {
     // MOBILE INPUT
     // Uncomment this complete Update() function to enable mobile controls. But comment out the whole Update() function below this one.
     // Update is called once per frame
-    void Update () {
-        if (ControlManager.instance.mobile)
+    //void Update () {
+    //    if (ControlManager.instance.mobile)
+    //    {
+    //        if (canMove)
+    //        {
+    //            rigidBody.velocity = new Vector2(Mathf.RoundToInt(CrossPlatformInputManager.GetAxis("Horizontal")), Mathf.RoundToInt(CrossPlatformInputManager.GetAxis("Vertical"))) * moveSpeed;
+    //        }
+    //        else
+    //        {
+    //            rigidBody.velocity = Vector2.zero;
+
+    //        }
+
+    //        animator.SetFloat("moveX", rigidBody.velocity.x);
+    //        animator.SetFloat("moveY", rigidBody.velocity.y);
+
+    //        if (CrossPlatformInputManager.GetAxisRaw("Horizontal") == 1 || CrossPlatformInputManager.GetAxisRaw("Horizontal") == -1 || CrossPlatformInputManager.GetAxisRaw("Vertical") == 1 || CrossPlatformInputManager.GetAxisRaw("Vertical") == -1)
+    //        {
+    //            if (canMove)
+    //            {
+    //                animator.SetFloat("lastMoveX", CrossPlatformInputManager.GetAxisRaw("Horizontal"));
+    //                animator.SetFloat("lastMoveY", CrossPlatformInputManager.GetAxisRaw("Vertical"));
+    //            }
+    //        }
+
+    //        transform.position = new Vector3(Mathf.Clamp(transform.position.x, boundary1.x, boundary2.x), Mathf.Clamp(transform.position.y, boundary1.y, boundary2.y), transform.position.z);
+    //    }
+
+    //    if (!ControlManager.instance.mobile)
+    //    {
+    //        if (canMove)
+    //        {
+    //            rigidBody.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+    //            rigidBody.velocity = rigidBody.velocity.normalized * moveSpeed;
+    //        }
+    //        else
+    //        {
+    //            rigidBody.velocity = Vector2.zero;
+
+    //        }
+
+    //        animator.SetFloat("moveX", rigidBody.velocity.x);
+    //        animator.SetFloat("moveY", rigidBody.velocity.y);
+
+    //        if (Input.GetAxisRaw("Horizontal") == 1 || Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Vertical") == 1 || Input.GetAxisRaw("Vertical") == -1)
+    //        {
+    //            if (canMove)
+    //            {
+    //                animator.SetFloat("lastMoveX", Input.GetAxisRaw("Horizontal"));
+    //                animator.SetFloat("lastMoveY", Input.GetAxisRaw("Vertical"));
+    //            }
+    //        }
+
+    //        //This calculates the bounds and doesn't let the player go beyond the defined bounds
+    //        transform.position = new Vector3(Mathf.Clamp(transform.position.x, boundary1.x, boundary2.x), Mathf.Clamp(transform.position.y, boundary1.y, boundary2.y), transform.position.z);
+
+
+    //        //self add
+    //        if (Input.GetAxisRaw("Horizontal") == 1)
+    //        {
+    //            //right
+    //            minimapArrowTrans.eulerAngles = new Vector3(0, 0, 90);
+    //        }
+    //        else if (Input.GetAxisRaw("Horizontal") == -1)
+    //        {
+    //            //left
+    //            minimapArrowTrans.eulerAngles = new Vector3(0, 0, -90);
+    //        }
+    //        else if (Input.GetAxisRaw("Vertical") == 1)
+    //        {
+    //            //up
+    //            minimapArrowTrans.eulerAngles = new Vector3(0, 0, 180);
+    //        }
+    //        else if (Input.GetAxisRaw("Vertical") == -1)
+    //        {
+    //            //down
+    //            minimapArrowTrans.eulerAngles = new Vector3(0, 0, 0);
+    //        }
+    //        //self add
+
+    //    }
+
+    //}
+
+    //self add. New update
+    void Update()
+    {
+
+        if (canMove)
+        {
+            rigidBody.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            rigidBody.velocity = rigidBody.velocity.normalized * moveSpeed;
+        }
+        else
+        {
+            rigidBody.velocity = Vector2.zero;
+
+        }
+
+        animator.SetFloat("moveX", rigidBody.velocity.x);
+        animator.SetFloat("moveY", rigidBody.velocity.y);
+
+        if (Input.GetAxisRaw("Horizontal") == 1 || Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Vertical") == 1 || Input.GetAxisRaw("Vertical") == -1)
         {
             if (canMove)
             {
-                rigidBody.velocity = new Vector2(Mathf.RoundToInt(CrossPlatformInputManager.GetAxis("Horizontal")), Mathf.RoundToInt(CrossPlatformInputManager.GetAxis("Vertical"))) * moveSpeed;
+                animator.SetFloat("lastMoveX", Input.GetAxisRaw("Horizontal"));
+                animator.SetFloat("lastMoveY", Input.GetAxisRaw("Vertical"));
             }
-            else
-            {
-                rigidBody.velocity = Vector2.zero;
-
-            }
-
-            animator.SetFloat("moveX", rigidBody.velocity.x);
-            animator.SetFloat("moveY", rigidBody.velocity.y);
-
-            if (CrossPlatformInputManager.GetAxisRaw("Horizontal") == 1 || CrossPlatformInputManager.GetAxisRaw("Horizontal") == -1 || CrossPlatformInputManager.GetAxisRaw("Vertical") == 1 || CrossPlatformInputManager.GetAxisRaw("Vertical") == -1)
-            {
-                if (canMove)
-                {
-                    animator.SetFloat("lastMoveX", CrossPlatformInputManager.GetAxisRaw("Horizontal"));
-                    animator.SetFloat("lastMoveY", CrossPlatformInputManager.GetAxisRaw("Vertical"));
-                }
-            }
-
-            transform.position = new Vector3(Mathf.Clamp(transform.position.x, boundary1.x, boundary2.x), Mathf.Clamp(transform.position.y, boundary1.y, boundary2.y), transform.position.z);
         }
 
-        if (!ControlManager.instance.mobile)
+        //This calculates the bounds and doesn't let the player go beyond the defined bounds
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, boundary1.x, boundary2.x), Mathf.Clamp(transform.position.y, boundary1.y, boundary2.y), transform.position.z);
+
+
+        //self add
+        if (Input.GetAxisRaw("Horizontal") == 1)
         {
-            if (canMove)
-            {
-                rigidBody.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-                rigidBody.velocity = rigidBody.velocity.normalized * moveSpeed;
-            }
-            else
-            {
-                rigidBody.velocity = Vector2.zero;
-
-            }
-
-            animator.SetFloat("moveX", rigidBody.velocity.x);
-            animator.SetFloat("moveY", rigidBody.velocity.y);
-
-            if (Input.GetAxisRaw("Horizontal") == 1 || Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Vertical") == 1 || Input.GetAxisRaw("Vertical") == -1)
-            {
-                if (canMove)
-                {
-                    animator.SetFloat("lastMoveX", Input.GetAxisRaw("Horizontal"));
-                    animator.SetFloat("lastMoveY", Input.GetAxisRaw("Vertical"));
-                }
-            }
-
-            //This calculates the bounds and doesn't let the player go beyond the defined bounds
-            transform.position = new Vector3(Mathf.Clamp(transform.position.x, boundary1.x, boundary2.x), Mathf.Clamp(transform.position.y, boundary1.y, boundary2.y), transform.position.z);
-        
-        
-            //self add
-            if (Input.GetAxisRaw("Horizontal") == 1)
-            {
-                //right
-                minimapArrowTrans.eulerAngles = new Vector3(0, 0, 90);
-            }
-            else if (Input.GetAxisRaw("Horizontal") == -1)
-            {
-                //left
-                minimapArrowTrans.eulerAngles = new Vector3(0, 0, -90);
-            }
-            else if (Input.GetAxisRaw("Vertical") == 1)
-            {
-                //up
-                minimapArrowTrans.eulerAngles = new Vector3(0, 0, 180);
-            }
-            else if (Input.GetAxisRaw("Vertical") == -1)
-            {
-                //down
-                minimapArrowTrans.eulerAngles = new Vector3(0, 0, 0);
-            }
-            //self add
-
+            //right
+            minimapArrowTrans.eulerAngles = new Vector3(0, 0, 90);
         }
-        
+        else if (Input.GetAxisRaw("Horizontal") == -1)
+        {
+            //left
+            minimapArrowTrans.eulerAngles = new Vector3(0, 0, -90);
+        }
+        else if (Input.GetAxisRaw("Vertical") == 1)
+        {
+            //up
+            minimapArrowTrans.eulerAngles = new Vector3(0, 0, 180);
+        }
+        else if (Input.GetAxisRaw("Vertical") == -1)
+        {
+            //down
+            minimapArrowTrans.eulerAngles = new Vector3(0, 0, 0);
+        }
+        //self add
+
     }
+    //self add
 
     //Method to set up the bounds which the player can not cross
     public void SetBounds(Vector3 bound1, Vector3 bound2)
@@ -157,22 +214,26 @@ public class PlayerController : MonoBehaviour {
     {
         if (dir == PlayerDirection.Down)
         {
+            animator.SetFloat("lastMoveX", 0f);
             animator.SetFloat("lastMoveY", -1f);
             minimapArrowTrans.eulerAngles = new Vector3(0, 0, 0);
         }
         else if (dir == PlayerDirection.Left)
         {
             animator.SetFloat("lastMoveX", -1f);
+            animator.SetFloat("lastMoveY", 0f);
             minimapArrowTrans.eulerAngles = new Vector3(0, 0, -90);
         }
         if (dir == PlayerDirection.Up)
         {
+            animator.SetFloat("lastMoveX", 0f);
             animator.SetFloat("lastMoveY", 1f);
             minimapArrowTrans.eulerAngles = new Vector3(0, 0, 180);
         }
         if (dir == PlayerDirection.Right)
         {
             animator.SetFloat("lastMoveX", 1f);
+            animator.SetFloat("lastMoveY", 0f);
             minimapArrowTrans.eulerAngles = new Vector3(0, 0, 90);
         }
     }
