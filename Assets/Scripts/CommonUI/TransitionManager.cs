@@ -15,6 +15,7 @@ public class TransitionManager : MonoBehaviour
     public GameObject rootObj;
     public RawImage camFeedImg;
     public Image timeTravelBkgImg;
+    public Image blackImg;
 
     [Header("Transition Pic")]
     public Texture2D transitionTexture_Carboniferous;
@@ -126,24 +127,63 @@ public class TransitionManager : MonoBehaviour
         }
     }
 
-    private void Update()
+    public void ChangeToInsideTreeCave()
     {
-        if (Input.GetKeyDown(KeyCode.J))
+        StartCoroutine(ChangeToTreeCave());
+        IEnumerator ChangeToTreeCave()
         {
-            Debug.Log("ScreenCap1");
-            StartCoroutine(ScreenShot());
-            IEnumerator ScreenShot()
-            {
-                Debug.Log("ScreenCap2");
-                yield return new WaitForEndOfFrame();
-                Debug.Log("ScreenCap3");
-                Texture2D tex = new Texture2D(Screen.width, Screen.height, TextureFormat.ARGB32, false);
-                tex.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
-                tex.Apply();
-                Byte[] bytes = tex.EncodeToPNG();
-                File.WriteAllBytes(Path.Combine(Application.streamingAssetsPath, "Image.png"), bytes);
-                Debug.Log("ScreenCap4");
-            }
+            GameManager.instance.fadingBetweenAreas = true;
+            blackImg.DOFade(1f, 1f);
+            yield return new WaitForSeconds(1f);
+            SceneManager.LoadScene("Boss01Scene");
+            PlayerController.instance.transform.position = commonUtils.playerPos_InsideTreeCave;
+            PlayerController.instance.SetDirection(commonUtils.playerDir_InsideTreeCave);
+            DroneController.instance.ChangePos(commonUtils.dronePos_InsideTreeCave);
+            PlayerController.instance.GetComponent<SpriteRenderer>().sortingLayerName = "Player";
+            yield return new WaitForSeconds(0.5f);
+            blackImg.DOFade(0f, 1f);
+            GameManager.instance.fadingBetweenAreas = false;
         }
     }
+
+    public void ChangeToOutsideTreeCave()
+    {
+        StartCoroutine(ChangeToOutsideTreeCave());
+        IEnumerator ChangeToOutsideTreeCave()
+        {
+            GameManager.instance.fadingBetweenAreas = true;
+            blackImg.DOFade(1f, 1f);
+            yield return new WaitForSeconds(1f);
+            SceneManager.LoadScene("CarboniferousScene");
+            PlayerController.instance.transform.position = commonUtils.playerPos_OutsideTreeCave;
+            PlayerController.instance.SetDirection(commonUtils.playerDir_OutsideTreeCave);
+            DroneController.instance.ChangePos(commonUtils.dronePos_OutsideTreeCave);
+            PlayerController.instance.GetComponent<SpriteRenderer>().sortingLayerName = "Player";
+            yield return new WaitForSeconds(0.5f);
+            blackImg.DOFade(0f, 1f);
+            GameManager.instance.fadingBetweenAreas = false;
+        }
+    }
+
+
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.J))
+    //    {
+    //        Debug.Log("ScreenCap1");
+    //        StartCoroutine(ScreenShot());
+    //        IEnumerator ScreenShot()
+    //        {
+    //            Debug.Log("ScreenCap2");
+    //            yield return new WaitForEndOfFrame();
+    //            Debug.Log("ScreenCap3");
+    //            Texture2D tex = new Texture2D(Screen.width, Screen.height, TextureFormat.ARGB32, false);
+    //            tex.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+    //            tex.Apply();
+    //            Byte[] bytes = tex.EncodeToPNG();
+    //            File.WriteAllBytes(Path.Combine(Application.streamingAssetsPath, "Image.png"), bytes);
+    //            Debug.Log("ScreenCap4");
+    //        }
+    //    }
+    //}
 }

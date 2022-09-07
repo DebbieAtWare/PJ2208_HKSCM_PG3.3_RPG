@@ -11,9 +11,6 @@ public class Boss01Manager : MonoBehaviour
     [Header("Boss")]
     public BossObject bossObj;
 
-    [Header("Teleport")]
-    public TeleportTo teleportToCarbon;
-
     CommonUtils commonUtils;
     int currUtilsIndex;
 
@@ -85,7 +82,7 @@ public class Boss01Manager : MonoBehaviour
 
     void TeleportControl()
     {
-        teleportToCarbon.ManualTeleport();
+        TransitionManager.instance.ChangeToOutsideTreeCave();
         GameManager.instance.dialogActive = false;
     }
 

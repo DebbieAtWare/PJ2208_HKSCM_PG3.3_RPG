@@ -12,6 +12,7 @@ public class CarboniferousManager : MonoBehaviour
 
     [Header("Boss")]
     public BossObject bossObj;
+    public OnTriggerControl treeCaveTriggerControl;
 
     CommonUtils commonUtils;
     int currUtilsIndex_Boss;
@@ -30,6 +31,8 @@ public class CarboniferousManager : MonoBehaviour
     public void Setup()
     {
         commonUtils = CommonUtils.instance;
+
+        treeCaveTriggerControl.onTriggerEnterCallback += TreeCave_OnTriggerEnter;
 
         for (int i = 0; i < commonUtils.bosses.Count; i++)
         {
@@ -61,5 +64,10 @@ public class CarboniferousManager : MonoBehaviour
 
         StatusBarManager.instance.Hide_Permian(0f);
         StatusBarManager.instance.Show_Carbon(0.5f);
+    }
+
+    private void TreeCave_OnTriggerEnter()
+    {
+        TransitionManager.instance.ChangeToInsideTreeCave();
     }
 }

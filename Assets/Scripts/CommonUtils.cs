@@ -55,14 +55,20 @@ public class CommonUtils : MonoBehaviour
     [Header("PlayerPos")]
     public Vector3 playerPos_Carboniferous;
     public Vector3 playerPos_Permian;
+    public Vector3 playerPos_InsideTreeCave;
+    public Vector3 playerPos_OutsideTreeCave;
 
     [Header("PlayerDir")]
     public PlayerDirection playerDir_Carboniferous;
     public PlayerDirection playerDir_Permian;
+    public PlayerDirection playerDir_InsideTreeCave;
+    public PlayerDirection playerDir_OutsideTreeCave;
 
     [Header("DronePos")]
     public Vector3 dronePos_Carboniferous;
     public Vector3 dronePos_Permian;
+    public Vector3 dronePos_InsideTreeCave;
+    public Vector3 dronePos_OutsideTreeCave;
 
     [Header("ConfigData")]
     public List<ConfigData_Character> NPC_Carboniferous = new List<ConfigData_Character>();
