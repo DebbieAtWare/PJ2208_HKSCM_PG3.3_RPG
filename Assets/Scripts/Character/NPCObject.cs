@@ -81,6 +81,7 @@ public class NPCObject : MonoBehaviour
                     PlayerController.instance.SetDirection(scan_AvatarDir);
                     DroneController.instance.transform.DOLocalMove(scan_DronePosObj.transform.position, 0.5f);
                     yield return new WaitForSeconds(0.5f);
+                    DroneController.instance.animator.SetTrigger("Scan");
                     SoundManager.instance.Play_SFX(10);
                     scan_FrameRenderer.DOFade(1f, 0.3f);
                     scan_LightRenderer.DOFade(1f, 0.3f);
@@ -90,6 +91,7 @@ public class NPCObject : MonoBehaviour
                     scan_LightRenderer.transform.DOLocalMove(scan_LightPosObj_End.transform.localPosition, 3f).From(scan_LightPosObj_Start.transform.localPosition).SetEase(Ease.Linear);
                     yield return new WaitForSeconds(3f);
                     SoundManager.instance.FadeOutStop_SFX(0.5f);
+                    DroneController.instance.animator.SetTrigger("Idle");
                     scan_FrameRenderer.DOFade(0f, 0.3f);
                     scan_LightRenderer.DOFade(0f, 0.3f);
                     DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);

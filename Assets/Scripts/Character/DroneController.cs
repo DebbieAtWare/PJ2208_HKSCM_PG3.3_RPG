@@ -17,6 +17,9 @@ public class DroneController : MonoBehaviour
 {
     public static DroneController instance;
 
+    [Header("Ani")]
+    public Animator animator;
+
     [Header("Trigger")]
     public OnTriggerControl onTriggerControl;
 
@@ -67,6 +70,8 @@ public class DroneController : MonoBehaviour
 
         canShowTalkHint = true;
         talkHintObj.SetActive(false);
+
+        animator.SetTrigger("Idle");
 
         currDroneStage = DroneStage.None;
     }
