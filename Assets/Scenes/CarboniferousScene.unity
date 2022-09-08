@@ -29099,6 +29099,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2354068166935713045, guid: 93321ae865a2a69408b9295a87af90bb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.57
+      objectReference: {fileID: 0}
     - target: {fileID: 2354068167028867157, guid: 93321ae865a2a69408b9295a87af90bb,
         type: 3}
       propertyPath: m_Size.x
@@ -29190,6 +29195,11 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -1.8675966
       objectReference: {fileID: 0}
+    - target: {fileID: 2354068168606296618, guid: 93321ae865a2a69408b9295a87af90bb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.93
+      objectReference: {fileID: 0}
     - target: {fileID: 2354068168996012119, guid: 93321ae865a2a69408b9295a87af90bb,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -29249,6 +29259,11 @@ PrefabInstance:
         type: 3}
       propertyPath: id
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8061781311511812682, guid: 93321ae865a2a69408b9295a87af90bb,
+        type: 3}
+      propertyPath: scan_AvatarDir
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8061781311511812682, guid: 93321ae865a2a69408b9295a87af90bb,
         type: 3}

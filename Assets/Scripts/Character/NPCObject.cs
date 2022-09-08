@@ -24,6 +24,9 @@ public class NPCObject : MonoBehaviour
     public GameObject scan_AvatarPosObj;
     public GameObject scan_DronePosObj;
     public PlayerDirection scan_AvatarDir;
+    //3 sec scan 7 unit. 3/7 = 0.428
+    //1 unit use how many sec
+    public float scanSpeed = 0.428f;
 
     [Header("ViewTrigger")]
     public OnTriggerControl viewTriggerControl;
@@ -78,10 +81,15 @@ public class NPCObject : MonoBehaviour
                     PlayerController.instance.SetDirection(scan_AvatarDir);
                     DroneController.instance.transform.DOLocalMove(scan_DronePosObj.transform.position, 0.5f);
                     yield return new WaitForSeconds(0.5f);
+                    SoundManager.instance.Play_SFX(10);
                     scan_FrameRenderer.DOFade(1f, 0.3f);
                     scan_LightRenderer.DOFade(1f, 0.3f);
-                    scan_LightRenderer.transform.DOLocalMove(scan_LightPosObj_End.transform.localPosition, 1f).From(scan_LightPosObj_Start.transform.localPosition);
-                    yield return new WaitForSeconds(1f);
+                    //float dist = Vector3.Distance(scan_LightPosObj_Start.transform.position, scan_LightPosObj_End.transform.position);
+                    //Debug.Log(dist);
+                    //float time = dist * scanSpeed;
+                    scan_LightRenderer.transform.DOLocalMove(scan_LightPosObj_End.transform.localPosition, 3f).From(scan_LightPosObj_Start.transform.localPosition).SetEase(Ease.Linear);
+                    yield return new WaitForSeconds(3f);
+                    SoundManager.instance.FadeOutStop_SFX(0.5f);
                     scan_FrameRenderer.DOFade(0f, 0.3f);
                     scan_LightRenderer.DOFade(0f, 0.3f);
                     DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);

@@ -45,6 +45,7 @@ public class TransitionManager : MonoBehaviour
 
     public void ChangeMap(MapID currMap, MapID targetMap)
     {
+        SoundManager.instance.Play_SFX(11);
         rootObj.SetActive(true);
         StartCoroutine(ChangeMap());
         IEnumerator ChangeMap()
@@ -129,6 +130,7 @@ public class TransitionManager : MonoBehaviour
 
     public void ChangeToInsideTreeCave()
     {
+        SoundManager.instance.Play_SFX(6);
         StartCoroutine(ChangeToTreeCave());
         IEnumerator ChangeToTreeCave()
         {
@@ -148,6 +150,7 @@ public class TransitionManager : MonoBehaviour
 
     public void ChangeToOutsideTreeCave()
     {
+        SoundManager.instance.Play_SFX(6);
         StartCoroutine(ChangeToOutsideTreeCave());
         IEnumerator ChangeToOutsideTreeCave()
         {

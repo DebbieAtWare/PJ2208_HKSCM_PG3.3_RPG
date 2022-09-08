@@ -74,13 +74,20 @@ public class SoundManager : MonoBehaviour
                 audioSource_SFX.Stop();
                 audioSource_SFX.clip = clips_SFX[index];
                 audioSource_SFX.Play();
+                audioSource_SFX.DOFade(1f, 0f);
             }
             else
             {
                 audioSource_SFX.clip = clips_SFX[index];
                 audioSource_SFX.Play();
+                audioSource_SFX.DOFade(1f, 0f);
             }
         }
+    }
+
+    public void FadeOutStop_SFX(float t)
+    {
+        audioSource_SFX.DOFade(0f, t).OnComplete(() => audioSource_SFX.Stop());
     }
 
     public void Play_Input(int index)
