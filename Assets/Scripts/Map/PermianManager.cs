@@ -94,6 +94,7 @@ public class PermianManager : MonoBehaviour
             StatusBarManager.instance.Update_Permian(commonUtils.bosses[currUtilsIndex_Boss2].IsFirstMeetDone, commonUtils.bosses[currUtilsIndex_Boss3].IsFirstMeetDone);
             if (!commonUtils.bosses[currUtilsIndex_Boss2].IsSuccessCollectDone)
             {
+                SoundManager.instance.Play_SFX(9);
                 GameManager.instance.dialogActive = true;
                 yield return new WaitForSeconds(0.5f);
                 CollectionBookManager.instance.ShowSuccessCollect(commonUtils.bosses[currUtilsIndex_Boss2].Name_TC, bossObj2.collectionBookThumbnailSprite);
@@ -119,6 +120,7 @@ public class PermianManager : MonoBehaviour
             StatusBarManager.instance.Update_Permian(commonUtils.bosses[currUtilsIndex_Boss2].IsFirstMeetDone, commonUtils.bosses[currUtilsIndex_Boss3].IsFirstMeetDone);
             if (!commonUtils.bosses[currUtilsIndex_Boss3].IsSuccessCollectDone)
             {
+                SoundManager.instance.Play_SFX(9);
                 GameManager.instance.dialogActive = true;
                 yield return new WaitForSeconds(0.5f);
                 CollectionBookManager.instance.ShowSuccessCollect(commonUtils.bosses[currUtilsIndex_Boss3].Name_TC, bossObj3.collectionBookThumbnailSprite);
@@ -135,6 +137,7 @@ public class PermianManager : MonoBehaviour
 
     void CloseSuccessCollect_Boss2()
     {
+        SoundManager.instance.FadeOutStop_SFX(0.5f);
         SoundManager.instance.Play_BGM(3);
         CollectionBookManager.instance.HideSuccessCollect(0.5f);
         MinimapManager.instance.Show(0.5f);
@@ -145,6 +148,7 @@ public class PermianManager : MonoBehaviour
 
     void CloseSuccessCollect_Boss3()
     {
+        SoundManager.instance.FadeOutStop_SFX(0.5f);
         SoundManager.instance.Play_BGM(3);
         CollectionBookManager.instance.HideSuccessCollect(0.5f);
         MinimapManager.instance.Show(0.5f);

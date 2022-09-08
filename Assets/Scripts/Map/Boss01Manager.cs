@@ -61,6 +61,7 @@ public class Boss01Manager : MonoBehaviour
         StatusBarManager.instance.Update_Carbon(true);
         if (!commonUtils.bosses[currUtilsIndex].IsSuccessCollectDone)
         {
+            SoundManager.instance.Play_SFX(9);
             GameManager.instance.dialogActive = true;
             CollectionBookManager.instance.ShowSuccessCollect(commonUtils.bosses[currUtilsIndex].Name_TC, bossObj.collectionBookThumbnailSprite);
             Invoke("CloseSuccessCollect", 2f);
@@ -74,6 +75,7 @@ public class Boss01Manager : MonoBehaviour
 
     void CloseSuccessCollect()
     {
+        SoundManager.instance.FadeOutStop_SFX(0.5f);
         CollectionBookManager.instance.HideSuccessCollect(0.5f);
         GameManager.instance.dialogActive = false;
         commonUtils.bosses[currUtilsIndex].IsSuccessCollectDone = true;

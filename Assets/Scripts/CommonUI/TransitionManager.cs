@@ -73,7 +73,7 @@ public class TransitionManager : MonoBehaviour
                 camFeedImg.texture = transitionTexture_Permian;
             }
             camFeedImg.DOFade(1f, 1f);
-            camFeedImg.material.DOFloat(50f, "_PixelateSize", 1f).From(512f);
+            camFeedImg.material.DOFloat(50f, "_PixelateSize", 1f).From(512f).SetEase(Ease.Linear);
             yield return new WaitForSeconds(1f);
             //fade in time travel bkg
             timeTravelBkgImg.DOFade(1f, 1f);
@@ -120,7 +120,7 @@ public class TransitionManager : MonoBehaviour
             }
             timeTravelBkgImg.DOFade(0f, 1f);
             yield return new WaitForSeconds(0.6f);
-            camFeedImg.material.DOFloat(512f, "_PixelateSize", 1f).From(50f);
+            camFeedImg.material.DOFloat(512f, "_PixelateSize", 1f).From(50f).SetEase(Ease.Linear);
             camFeedImg.DOFade(0f, 1f);
             yield return new WaitForSeconds(1.4f);
             GameManager.instance.fadingBetweenAreas = false;
