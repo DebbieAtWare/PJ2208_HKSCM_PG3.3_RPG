@@ -63,6 +63,7 @@ public class NPCObject : MonoBehaviour
     {
         if (isAtViewTrigger && currStage == NPCStage.View)
         {
+            SoundManager.instance.Play_Input(2);
             currStage = NPCStage.Dialog;
             if (currDialogLine == 0)
             {
@@ -92,6 +93,7 @@ public class NPCObject : MonoBehaviour
         {
             if (currDialogLine == info.DialogBoxes.Count)
             {
+                SoundManager.instance.Play_Input(2);
                 DialogBoxManager.instance.HideDialog();
                 if (id == CharacterID.NPC_P11 || id == CharacterID.NPC_P12)
                 {
@@ -105,6 +107,7 @@ public class NPCObject : MonoBehaviour
             }
             else
             {
+                SoundManager.instance.Play_Input(2);
                 DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
                 if (id == CharacterID.NPC_P11 || id == CharacterID.NPC_P12)
                 {

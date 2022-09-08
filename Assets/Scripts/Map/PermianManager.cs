@@ -80,6 +80,8 @@ public class PermianManager : MonoBehaviour
 
         StatusBarManager.instance.Hide_Carbon(0f);
         StatusBarManager.instance.Show_Permian(0.5f);
+
+        SoundManager.instance.Play_BGM(3);
     }
 
     private void OnFinishedConversation_Boss2()
@@ -99,6 +101,7 @@ public class PermianManager : MonoBehaviour
             }
             else
             {
+                SoundManager.instance.Play_BGM(3);
                 MinimapManager.instance.Show(0.5f);
                 StatusBarManager.instance.Show_Permian(0.5f);
             }
@@ -123,6 +126,7 @@ public class PermianManager : MonoBehaviour
             }
             else
             {
+                SoundManager.instance.Play_BGM(3);
                 MinimapManager.instance.Show(0.5f);
                 StatusBarManager.instance.Show_Permian(0.5f);
             }
@@ -131,6 +135,7 @@ public class PermianManager : MonoBehaviour
 
     void CloseSuccessCollect_Boss2()
     {
+        SoundManager.instance.Play_BGM(3);
         CollectionBookManager.instance.HideSuccessCollect(0.5f);
         MinimapManager.instance.Show(0.5f);
         StatusBarManager.instance.Show_Permian(0.5f);
@@ -140,6 +145,7 @@ public class PermianManager : MonoBehaviour
 
     void CloseSuccessCollect_Boss3()
     {
+        SoundManager.instance.Play_BGM(3);
         CollectionBookManager.instance.HideSuccessCollect(0.5f);
         MinimapManager.instance.Show(0.5f);
         StatusBarManager.instance.Show_Permian(0.5f);

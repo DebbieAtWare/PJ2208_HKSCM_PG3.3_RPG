@@ -64,6 +64,8 @@ public class CarboniferousManager : MonoBehaviour
 
         StatusBarManager.instance.Hide_Permian(0f);
         StatusBarManager.instance.Show_Carbon(0.5f);
+
+        SoundManager.instance.Play_BGM(2);
     }
 
     private void TreeCave_OnTriggerEnter()

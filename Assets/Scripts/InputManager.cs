@@ -56,7 +56,6 @@ public class InputManager : MonoBehaviour
                         {
                             onValueChanged_VerticalCallback.Invoke(vertical);
                         }
-
                     }
                     if (Input.GetAxisRaw("Vertical") < 0)
                     {

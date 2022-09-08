@@ -99,7 +99,7 @@ public class CameraController : MonoBehaviour {
         if(!musicStarted)
         {
             musicStarted = true;
-            AudioManager.instance.PlayBGM(musicToPlay);
+            //AudioManager.instance.PlayBGM(musicToPlay);
         }
 	}
 }

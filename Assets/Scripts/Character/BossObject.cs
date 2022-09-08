@@ -97,6 +97,7 @@ public class BossObject : MonoBehaviour
     {
        if (currBossStage == BossStage.Alert)
        {
+            SoundManager.instance.Play_Input(2);
             DialogBoxManager.instance.HideDialog();
             DroneController.instance.canShowTalkHint = true;
             Invoke("DroneShowTalkHint", 0.1f);
@@ -105,9 +106,11 @@ public class BossObject : MonoBehaviour
        }
        else if (currBossStage == BossStage.View)
        {
+            SoundManager.instance.Play_BGM(1);
             ViewBoxManager.instance.HideViewBox();
             if (currDialogLine == 0)
             {
+                SoundManager.instance.Play_Input(2);
                 MinimapManager.instance.Hide(0.5f);
                 StatusBarManager.instance.Hide_Carbon(0.5f);
                 StatusBarManager.instance.Hide_Permian(0.5f);
@@ -121,12 +124,14 @@ public class BossObject : MonoBehaviour
        {
             if (currDialogLine == 1)
             {
+                SoundManager.instance.Play_Input(2);
                 ConversationModeManager.instance.Show2();
                 DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
                 currDialogLine++;
             }
             else if (currDialogLine == info.DialogBoxes.Count)
             {
+                SoundManager.instance.Play_Input(2);
                 DialogBoxManager.instance.HideDialog();
                 ConversationModeManager.instance.HideFade(0.5f);
                 currDialogLine = 0;
@@ -143,6 +148,7 @@ public class BossObject : MonoBehaviour
             }
             else
             {
+                SoundManager.instance.Play_Input(2);
                 ConversationModeManager.instance.Show3();
                 DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
                 currDialogLine++;
