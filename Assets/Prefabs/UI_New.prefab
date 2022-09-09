@@ -6604,6 +6604,11 @@ MonoBehaviour:
   conversationModeCanvasGrp: {fileID: 518873766907314655}
   bkg1: {fileID: 1732187726155702777}
   bkg2: {fileID: 1754505416183860048}
+  bkgAnimator: {fileID: 0}
+  bkgTopAnimator: {fileID: 0}
+  bkgRenderer: {fileID: 0}
+  bkgTopRenderer: {fileID: 0}
+  tmp: {fileID: 0}
   bossImg: {fileID: 2925307073392701081}
   bossAspectFitter: {fileID: 0}
   avatarImg: {fileID: 7017813830797995802}
@@ -6659,8 +6664,7 @@ MonoBehaviour:
   rootObj: {fileID: 6047601108533910211}
   camFeedImg: {fileID: 671341838515387274}
   timeTravelBkgImg: {fileID: 6321093439878030396}
-  playerPos_Carboniferous: {x: 25.72, y: 5.78, z: 1}
-  playerPos_Permian: {x: -23.33, y: 2.19, z: 1}
+  blackImg: {fileID: 0}
   transitionTexture_Carboniferous: {fileID: 2800000, guid: de2eb8076e2a00a458672d700075f0b0,
     type: 3}
   transitionTexture_Permian: {fileID: 2800000, guid: 74f9be76ff836e74aa5e67ad197c8bd3,
@@ -27342,7 +27346,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4846896356440744971
 RectTransform:
   m_ObjectHideFlags: 0
@@ -27383,7 +27387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -46829,7 +46833,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2871212527963237273
 RectTransform:
   m_ObjectHideFlags: 0
@@ -46870,7 +46874,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

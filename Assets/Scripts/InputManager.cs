@@ -25,6 +25,7 @@ public class InputManager : MonoBehaviour
 
     bool isAxisInUse_Vertical = false;
     bool isAxisInUse_Horizontal = false;
+    bool isAxisInUse_Confirm = false;
 
     //for share in multiple scenes
     void Awake()
@@ -115,13 +116,25 @@ public class InputManager : MonoBehaviour
 
         if (canInput_Confirm)
         {
-            if (Input.GetButtonDown("RPGConfirmPC"))
+            if (Input.GetAxisRaw("RPGConfirmPC") != 0)
             {
-                if (onValueChanged_ConfirmCallback != null)
+                if (!isAxisInUse_Confirm)
                 {
-                    onValueChanged_ConfirmCallback.Invoke();
+                    if (Input.GetAxisRaw("RPGConfirmPC") > 0)
+                    {
+                        if (onValueChanged_ConfirmCallback != null)
+                        {
+                            onValueChanged_ConfirmCallback.Invoke();
+                        }
+                    }
+                    isAxisInUse_Confirm = true;
                 }
             }
+            if (Input.GetAxisRaw("RPGConfirmPC") == 0)
+            {
+                isAxisInUse_Confirm = false;
+            }
         }
+
     }
 }

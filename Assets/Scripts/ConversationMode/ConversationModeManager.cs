@@ -13,8 +13,16 @@ public class ConversationModeManager : MonoBehaviour
     public CanvasGroup conversationModeCanvasGrp;
 
     [Header("bkg")]
-    public Image bkg1;
-    public Image bkg2;
+    public Image bkg;
+    public Image bkgTop;
+    public List<Sprite> bkgSprites = new List<Sprite>();
+    public List<Sprite> bkgTopSprites = new List<Sprite>();
+    //48 frame, 12 fps, 4 sec. 4/48 = 0.083
+    public float bkgAniTime = 0.083f;
+    public int currBkgIndex;
+    //16 frame, 12 fps, 
+    public float bkgTopAniTime = 0.083f;
+    public int currBkgTopIndex;
 
     [Header("Boss")]
     public Image bossImg;
@@ -40,11 +48,43 @@ public class ConversationModeManager : MonoBehaviour
         instance = this;
     }
 
+    void BkgLoopAni()
+    {
+        currBkgIndex++;
+
+        if (currBkgIndex == bkgSprites.Count)
+        {
+            currBkgIndex = 0;
+        }
+
+        bkg.sprite = bkgSprites[currBkgIndex];
+        Invoke("BkgLoopAni", bkgAniTime);
+    }
+
+    void BkgTopAni()
+    {
+        currBkgTopIndex++;
+
+        if (currBkgTopIndex == bkgTopSprites.Count)
+        {
+            currBkgTopIndex = 0;
+        }
+        else
+        {
+            bkgTop.sprite = bkgTopSprites[currBkgTopIndex];
+            Invoke("BkgTopAni", bkgTopAniTime);
+        }
+    }
+
+
     public void Show1(string name_TC, string tag_TC, Sprite sprite)
     {
         conversationModeCanvasGrp.gameObject.SetActive(true);
-        bkg1.DOFade(1, 0);
-        bkg2.DOFade(1, 0);
+        bkg.sprite = bkgSprites[0];
+        bkg.DOFade(1, 0);
+        BkgLoopAni();
+        bkgTop.sprite = bkgTopSprites[0];
+        bkgTop.DOFade(1, 0);
         tag_NameText_TC.text = name_TC;
         tag_DescriptionText_TC.text = tag_TC;
         tagCanvasGrp.alpha = 0;
@@ -58,7 +98,8 @@ public class ConversationModeManager : MonoBehaviour
 
     public void Show2()
     {
-        bkg2.DOFade(0, 0.5f);
+        //bkg2.DOFade(0, 0.5f);
+        BkgTopAni();
         bossImg.rectTransform.DOAnchorPos(bossPosTarget_Side, 0.5f);
         bossImg.rectTransform.DOScale(bossScaleTarget_Side, 0.5f);
         avatarImg.rectTransform.DOAnchorPos(avatarPosTarget_On, 0.5f);
@@ -72,7 +113,17 @@ public class ConversationModeManager : MonoBehaviour
 
     public void HideFade(float aniTime)
     {
-        conversationModeCanvasGrp.DOFade(0, aniTime).OnComplete(() => conversationModeCanvasGrp.gameObject.SetActive(false));
+        conversationModeCanvasGrp.DOFade(0, aniTime).OnComplete(HideFadeOnCompleted);
+    }
+    void HideFadeOnCompleted()
+    {
+        conversationModeCanvasGrp.gameObject.SetActive(false);
+        CancelInvoke("BkgLoopAni");
+        CancelInvoke("BkgTopAni");
+        bkg.sprite = bkgSprites[0];
+        currBkgIndex = 0;
+        bkgTop.sprite = bkgTopSprites[0];
+        currBkgTopIndex = 0;
     }
 
     public void HideCut()
