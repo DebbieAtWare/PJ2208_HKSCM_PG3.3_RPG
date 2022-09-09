@@ -670,7 +670,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: ed39cdd396be0a340ba4c8385a07e565, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -853,6 +853,10 @@ MonoBehaviour:
   scan_LightPosObj_End: {fileID: 5059023414593011971}
   scan_AvatarPosObj: {fileID: 2354068166935713044}
   scan_DronePosObj: {fileID: 2354068168606296617}
+  scan_AvatarDir: 0
+  avatarWalkSpeed: 0.2
+  droneWalkSpeed: 0.2
+  droneReturnSpeed: 0.4
   viewTriggerControl: {fileID: 2354068167750775374}
   npcRenderer: {fileID: 2354068167028867157}
   info:
@@ -869,6 +873,7 @@ MonoBehaviour:
     IsSuccessCollectDone: 0
   currDialogLine: 0
   isAtViewTrigger: 0
+  currStage: 0
 --- !u!1 &8187324264331429681
 GameObject:
   m_ObjectHideFlags: 0
@@ -941,11 +946,11 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 1f03a2308506c9e4f8b613980f8cc924, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.335}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

@@ -24,9 +24,13 @@ public class NPCObject : MonoBehaviour
     public GameObject scan_AvatarPosObj;
     public GameObject scan_DronePosObj;
     public PlayerDirection scan_AvatarDir;
-    //3 sec scan 7 unit. 3/7 = 0.428
+    ////3 sec scan 7 unit. 3/7 = 0.428
+    ////1 unit use how many sec
+    //public float scanSpeed = 0.428f;
     //1 unit use how many sec
-    public float scanSpeed = 0.428f;
+    public float avatarWalkSpeed = 0.2f;
+    public float droneWalkSpeed = 0.2f;
+    public float droneReturnSpeed = 0.4f;
 
     [Header("ViewTrigger")]
     public OnTriggerControl viewTriggerControl;
@@ -77,21 +81,34 @@ public class NPCObject : MonoBehaviour
                     ViewBoxManager.instance.HideViewBox();
                     DroneController.instance.canShowTalkHint = false;
                     DroneController.instance.HideTalkHint();
-                    PlayerController.instance.transform.DOLocalMove(scan_AvatarPosObj.transform.position, 0.5f);
+                    float dist_player = Vector3.Distance(PlayerController.instance.transform.position, scan_AvatarPosObj.transform.position);
+                    float time_player = dist_player * avatarWalkSpeed;
+                    PlayerController.instance.transform.DOLocalMove(scan_AvatarPosObj.transform.position, time_player);
                     PlayerController.instance.SetDirection(scan_AvatarDir);
-                    DroneController.instance.transform.DOLocalMove(scan_DronePosObj.transform.position, 0.5f);
-                    yield return new WaitForSeconds(0.5f);
+                    Vector3 pos_Drone = new Vector3(scan_DronePosObj.transform.position.x, scan_LightPosObj_Start.transform.position.y, scan_DronePosObj.transform.position.z);
+                    float dist_Drone = Vector3.Distance(DroneController.instance.transform.position, pos_Drone);
+                    float time_Drone = dist_Drone * droneWalkSpeed;
+                    DroneController.instance.transform.DOLocalMove(pos_Drone, time_Drone);
+                    if (time_player > time_Drone)
+                    {
+                        yield return new WaitForSeconds(time_player);
+                    }
+                    else
+                    {
+                        yield return new WaitForSeconds(time_Drone);
+                    }
                     DroneController.instance.animator.SetTrigger("Scan");
                     SoundManager.instance.Play_SFX(10);
                     scan_FrameRenderer.DOFade(1f, 0.3f);
                     scan_LightRenderer.DOFade(1f, 0.3f);
-                    //float dist = Vector3.Distance(scan_LightPosObj_Start.transform.position, scan_LightPosObj_End.transform.position);
-                    //Debug.Log(dist);
-                    //float time = dist * scanSpeed;
                     scan_LightRenderer.transform.DOLocalMove(scan_LightPosObj_End.transform.localPosition, 3f).From(scan_LightPosObj_Start.transform.localPosition).SetEase(Ease.Linear);
+                    DroneController.instance.transform.DOLocalMove(new Vector3(scan_DronePosObj.transform.position.x, scan_LightPosObj_End.transform.position.y, scan_DronePosObj.transform.position.z), 3f).SetEase(Ease.Linear);
                     yield return new WaitForSeconds(3f);
                     SoundManager.instance.FadeOutStop_SFX(0.5f);
                     DroneController.instance.animator.SetTrigger("Idle");
+                    dist_Drone = Vector3.Distance(DroneController.instance.transform.position, scan_DronePosObj.transform.position);
+                    time_Drone = dist_Drone * droneReturnSpeed;
+                    DroneController.instance.transform.DOLocalMove(scan_DronePosObj.transform.position, time_Drone);
                     scan_FrameRenderer.DOFade(0f, 0.3f);
                     scan_LightRenderer.DOFade(0f, 0.3f);
                     DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
