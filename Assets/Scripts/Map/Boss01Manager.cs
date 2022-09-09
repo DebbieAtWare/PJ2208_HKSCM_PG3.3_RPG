@@ -56,6 +56,7 @@ public class Boss01Manager : MonoBehaviour
 
     private void OnFinishedConversation()
     {
+        InputManager.instance.canInput_Confirm = false;
         commonUtils.bosses[currUtilsIndex].IsFirstMeetDone = true;
         bossObj.canShowAlert = false;
         StatusBarManager.instance.Update_Carbon(true);
@@ -85,7 +86,7 @@ public class Boss01Manager : MonoBehaviour
     void TeleportControl()
     {
         TransitionManager.instance.ChangeToOutsideTreeCave();
-        GameManager.instance.dialogActive = false;
+        //inside transition manager will lock and release input
     }
 
     private void OnDestroy()

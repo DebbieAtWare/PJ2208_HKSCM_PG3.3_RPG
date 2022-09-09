@@ -234,6 +234,7 @@ public class BossObject : MonoBehaviour
 
     void FinishedConversationControl()
     {
+        currBossStage = BossStage.None;
         if (onFinishedConversationCallback != null)
         {
             onFinishedConversationCallback.Invoke();

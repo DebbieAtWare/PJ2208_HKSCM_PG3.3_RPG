@@ -89,6 +89,7 @@ public class PermianManager : MonoBehaviour
         StartCoroutine(Wait());
         IEnumerator Wait()
         {
+            InputManager.instance.canInput_Confirm = false;
             commonUtils.bosses[currUtilsIndex_Boss2].IsFirstMeetDone = true;
             bossObj2.canShowAlert = false;
             StatusBarManager.instance.Update_Permian(commonUtils.bosses[currUtilsIndex_Boss2].IsFirstMeetDone, commonUtils.bosses[currUtilsIndex_Boss3].IsFirstMeetDone);
@@ -105,6 +106,7 @@ public class PermianManager : MonoBehaviour
                 SoundManager.instance.Play_BGM(3);
                 MinimapManager.instance.Show(0.5f);
                 StatusBarManager.instance.Show_Permian(0.5f);
+                InputManager.instance.canInput_Confirm = true;
             }
         }
         
@@ -115,6 +117,7 @@ public class PermianManager : MonoBehaviour
         StartCoroutine(Wait());
         IEnumerator Wait()
         {
+            InputManager.instance.canInput_Confirm = false;
             commonUtils.bosses[currUtilsIndex_Boss3].IsFirstMeetDone = true;
             bossObj3.canShowAlert = false;
             StatusBarManager.instance.Update_Permian(commonUtils.bosses[currUtilsIndex_Boss2].IsFirstMeetDone, commonUtils.bosses[currUtilsIndex_Boss3].IsFirstMeetDone);
@@ -131,6 +134,7 @@ public class PermianManager : MonoBehaviour
                 SoundManager.instance.Play_BGM(3);
                 MinimapManager.instance.Show(0.5f);
                 StatusBarManager.instance.Show_Permian(0.5f);
+                InputManager.instance.canInput_Confirm = true;
             }
         }
     }
@@ -142,8 +146,9 @@ public class PermianManager : MonoBehaviour
         CollectionBookManager.instance.HideSuccessCollect(0.5f);
         MinimapManager.instance.Show(0.5f);
         StatusBarManager.instance.Show_Permian(0.5f);
-        GameManager.instance.dialogActive = false;
         commonUtils.bosses[currUtilsIndex_Boss2].IsSuccessCollectDone = true;
+        GameManager.instance.dialogActive = false;
+        InputManager.instance.canInput_Confirm = true;
     }
 
     void CloseSuccessCollect_Boss3()
@@ -153,8 +158,9 @@ public class PermianManager : MonoBehaviour
         CollectionBookManager.instance.HideSuccessCollect(0.5f);
         MinimapManager.instance.Show(0.5f);
         StatusBarManager.instance.Show_Permian(0.5f);
-        GameManager.instance.dialogActive = false;
         commonUtils.bosses[currUtilsIndex_Boss3].IsSuccessCollectDone = true;
+        GameManager.instance.dialogActive = false;
+        InputManager.instance.canInput_Confirm = true;
     }
 
     private void OnDestroy()

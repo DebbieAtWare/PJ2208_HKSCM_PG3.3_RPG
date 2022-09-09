@@ -165,6 +165,8 @@ public class TransitionManager : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             blackImg.DOFade(0f, 1f);
             GameManager.instance.fadingBetweenAreas = false;
+            GameManager.instance.dialogActive = false;
+            InputManager.instance.canInput_Confirm = true;
         }
     }
 
