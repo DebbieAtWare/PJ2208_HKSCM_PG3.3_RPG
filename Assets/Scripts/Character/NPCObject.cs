@@ -27,9 +27,6 @@ public class NPCObject : MonoBehaviour
     ////3 sec scan 7 unit. 3/7 = 0.428
     ////1 unit use how many sec
     //public float scanSpeed = 0.428f;
-    //1 unit use how many sec
-    public float avatarWalkSpeed = 0.2f;
-    public float droneWalkSpeed = 0.2f;
     public float droneReturnSpeed = 0.4f;
 
     [Header("ViewTrigger")]
@@ -82,12 +79,12 @@ public class NPCObject : MonoBehaviour
                     DroneController.instance.canShowTalkHint = false;
                     DroneController.instance.HideTalkHint();
                     float dist_player = Vector3.Distance(PlayerController.instance.transform.position, scan_AvatarPosObj.transform.position);
-                    float time_player = dist_player * avatarWalkSpeed;
+                    float time_player = dist_player * commonUtils.playerAutoWalkSpeed;
                     PlayerController.instance.transform.DOLocalMove(scan_AvatarPosObj.transform.position, time_player);
                     PlayerController.instance.SetDirection(scan_AvatarDir);
                     Vector3 pos_Drone = new Vector3(scan_DronePosObj.transform.position.x, scan_LightPosObj_Start.transform.position.y, scan_DronePosObj.transform.position.z);
                     float dist_Drone = Vector3.Distance(DroneController.instance.transform.position, pos_Drone);
-                    float time_Drone = dist_Drone * droneWalkSpeed;
+                    float time_Drone = dist_Drone * commonUtils.droneAutoWalkSpeed;
                     DroneController.instance.transform.DOLocalMove(pos_Drone, time_Drone);
                     if (time_player > time_Drone)
                     {

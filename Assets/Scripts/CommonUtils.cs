@@ -70,6 +70,11 @@ public class CommonUtils : MonoBehaviour
     public Vector3 dronePos_InsideTreeCave;
     public Vector3 dronePos_OutsideTreeCave;
 
+    [Header("AutoWalkSpeed")]
+    //1 unit use how many sec
+    public float playerAutoWalkSpeed = 0.2f;
+    public float droneAutoWalkSpeed = 0.2f;
+
     [Header("ConfigData")]
     public List<ConfigData_Character> NPC_Carboniferous = new List<ConfigData_Character>();
     public List<ConfigData_Character> NPC_Permian = new List<ConfigData_Character>();

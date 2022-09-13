@@ -29,6 +29,7 @@ public class BossObject : MonoBehaviour
     [Header("Trigger")]
     public OnTriggerControl alertTriggerControl;
     public OnTriggerControl viewTriggerControl;
+    public GameObject avatarAutoPosObj;
 
     [Header("Arrow")]
     public List<GameObject> arrowObjs_Green = new List<GameObject>();
@@ -43,20 +44,24 @@ public class BossObject : MonoBehaviour
     [Header("Curr")]
     public int currDialogLine;
     public bool canShowAlert;
+    public bool canFadeOutAlertSFX;
     public bool isAtAlertTrigger;
     public bool isAtViewTrigger;
     public BossStage currBossStage;
 
     InputManager inputManager;
+    CommonUtils commonUtils;
 
-    public void Setup(ConfigData_DialogBox _dialogBox_Alert, ConfigData_Character _info, bool _canShowAlert, bool isFirstMeetDone)
+    public void Setup(ConfigData_DialogBox _dialogBox_Alert, ConfigData_Character _info, bool _canShowAlert, bool isFirstMeetDone, bool _canFadeOutAlertSFX)
     {
+        commonUtils = CommonUtils.instance;
         inputManager = InputManager.instance;
         inputManager.onValueChanged_ConfirmCallback += InputManager_OnValueChanged_Confirm;
 
         dialogBox_Alert = _dialogBox_Alert;
         info = _info;
         canShowAlert = _canShowAlert;
+        canFadeOutAlertSFX = _canFadeOutAlertSFX;
 
         alertTriggerControl.onTriggerEnterCallback += AlertTrigger_OnEnter;
         alertTriggerControl.onTriggerExitCallback += AlertTrigger_OnExit;
@@ -97,12 +102,22 @@ public class BossObject : MonoBehaviour
     {
        if (currBossStage == BossStage.Alert)
        {
-            SoundManager.instance.Play_Input(2);
-            DialogBoxManager.instance.HideDialog();
-            DroneController.instance.canShowTalkHint = true;
-            Invoke("DroneShowTalkHint", 0.1f);
-            GameManager.instance.dialogActive = false;
-            currBossStage = BossStage.None;
+            StartCoroutine(Alert());
+            IEnumerator Alert()
+            {
+                SoundManager.instance.Play_Input(2);
+                SoundManager.instance.Play_SFX(5);
+                DialogBoxManager.instance.HideDialog();
+                float dist = Vector3.Distance(PlayerController.instance.transform.position, avatarAutoPosObj.transform.position);
+                float time = dist * commonUtils.playerAutoWalkSpeed;
+                PlayerController.instance.transform.DOMove(avatarAutoPosObj.transform.position, time);
+                yield return new WaitForSeconds(time);
+                if (canFadeOutAlertSFX)
+                {
+                    //in carbon can't fade out caz auto walk and jump to cave sound using same track
+                    SoundManager.instance.FadeOutStop_SFX(0.5f);
+                }
+            }
        }
        else if (currBossStage == BossStage.View)
        {
@@ -131,20 +146,28 @@ public class BossObject : MonoBehaviour
             }
             else if (currDialogLine == info.DialogBoxes.Count)
             {
-                SoundManager.instance.Play_Input(2);
-                DialogBoxManager.instance.HideDialog();
-                ConversationModeManager.instance.HideFade(0.5f);
-                currDialogLine = 0;
-                GameManager.instance.dialogActive = false;
-                for (int i = 0; i < arrowObjs_Green.Count; i++)
+                StartCoroutine(LastLine());
+                IEnumerator LastLine()
                 {
-                    arrowObjs_Green[i].SetActive(false);
-                    arrowObjs_Grey[i].SetActive(true);
+                    SoundManager.instance.Play_Input(2);
+                    DialogBoxManager.instance.HideDialog();
+                    ConversationModeManager.instance.HideFade(0.5f);
+                    currDialogLine = 0;
+                    for (int i = 0; i < arrowObjs_Green.Count; i++)
+                    {
+                        arrowObjs_Green[i].SetActive(false);
+                        arrowObjs_Grey[i].SetActive(true);
+                    }
+                    minimapDot_Red.SetActive(false);
+                    minimapDot_Grey.SetActive(true);
+                    OutlineHide();
+                    yield return new WaitForSeconds(0.5f);
+                    currBossStage = BossStage.None;
+                    if (onFinishedConversationCallback != null)
+                    {
+                        onFinishedConversationCallback.Invoke();
+                    }
                 }
-                minimapDot_Red.SetActive(false);
-                minimapDot_Grey.SetActive(true);
-                OutlineHide();
-                Invoke("FinishedConversationControl", 0.5f);
             }
             else
             {
@@ -154,11 +177,6 @@ public class BossObject : MonoBehaviour
                 currDialogLine++;
             }
         }
-    }
-
-    void DroneShowTalkHint()
-    {
-        DroneController.instance.ShowTalkHint();
     }
 
     //---------
@@ -202,11 +220,17 @@ public class BossObject : MonoBehaviour
         if (canShowAlert)
         {
             GameManager.instance.dialogActive = true;
+            SoundManager.instance.Play_SFX(4);
+            Invoke("FadeOutMeetBossSound", 1f);
             DialogBoxManager.instance.ShowDialog(dialogBox_Alert);
             DroneController.instance.canShowTalkHint = false;
             DroneController.instance.HideTalkHint();
             currBossStage = BossStage.Alert;
         }
+    }
+    void FadeOutMeetBossSound()
+    {
+        SoundManager.instance.FadeOutStop_SFX(0.5f);
     }
 
     private void AlertTrigger_OnExit()
@@ -231,15 +255,6 @@ public class BossObject : MonoBehaviour
     }
 
     //-------
-
-    void FinishedConversationControl()
-    {
-        currBossStage = BossStage.None;
-        if (onFinishedConversationCallback != null)
-        {
-            onFinishedConversationCallback.Invoke();
-        }
-    }
 
     private void OnDestroy()
     {

@@ -164,6 +164,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &894554757274896245
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7774245658343461582}
+  m_Layer: 0
+  m_Name: AvatarAutoPosRef
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7774245658343461582
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894554757274896245}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8431520836166522265}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1490186036871760902
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,7 +306,7 @@ Transform:
   - {fileID: 1823166800018720633}
   - {fileID: 1823166801228652655}
   m_Father: {fileID: 8431520836166522265}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1823166800018720632
 GameObject:
@@ -470,7 +500,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8431520836166522265}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4510697203092618859
 GameObject:
@@ -500,7 +530,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8431520836166522265}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4696530488123500737
 GameObject:
@@ -532,7 +562,7 @@ Transform:
   - {fileID: 5444846398430161182}
   - {fileID: 69456104392222592}
   m_Father: {fileID: 8431520836166522265}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4849593517039830247
 GameObject:
@@ -844,6 +874,7 @@ Transform:
   - {fileID: 8610614185042619671}
   - {fileID: 3785450374147943801}
   - {fileID: 8431520837151714806}
+  - {fileID: 7774245658343461582}
   - {fileID: 5007777218043945633}
   - {fileID: 8431520836371937103}
   - {fileID: 1823166800007559809}
@@ -872,6 +903,7 @@ MonoBehaviour:
   caveRenderer: {fileID: 5042795226185651086}
   alertTriggerControl: {fileID: 2466623942951677255}
   viewTriggerControl: {fileID: 3350569686855252435}
+  avatarAutoPosObj: {fileID: 894554757274896245}
   arrowObjs_Green:
   - {fileID: 805597930003195890}
   - {fileID: 1823166800018720632}
@@ -937,7 +969,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8431520836166522265}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8431520836371937102
 SpriteRenderer:
@@ -1135,7 +1167,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8431520836166522265}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &8431520837165961377
 BoxCollider2D:

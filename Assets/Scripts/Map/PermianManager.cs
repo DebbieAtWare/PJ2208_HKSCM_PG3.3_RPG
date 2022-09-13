@@ -56,24 +56,24 @@ public class PermianManager : MonoBehaviour
         if (!commonUtils.bosses[currUtilsIndex_Boss2].IsFirstMeetDone)
         {
             bossObj2.onFinishedConversationCallback += OnFinishedConversation_Boss2;
-            bossObj2.Setup(commonUtils.dialogBox_BossAlert, commonUtils.bosses[currUtilsIndex_Boss2], true, commonUtils.bosses[currUtilsIndex_Boss2].IsFirstMeetDone);
+            bossObj2.Setup(commonUtils.dialogBox_BossAlert, commonUtils.bosses[currUtilsIndex_Boss2], true, commonUtils.bosses[currUtilsIndex_Boss2].IsFirstMeetDone, true);
         }
         else
         {
             bossObj2.onFinishedConversationCallback += OnFinishedConversation_Boss2;
-            bossObj2.Setup(commonUtils.dialogBox_BossAlert, commonUtils.bosses[currUtilsIndex_Boss2], false, commonUtils.bosses[currUtilsIndex_Boss2].IsFirstMeetDone);
+            bossObj2.Setup(commonUtils.dialogBox_BossAlert, commonUtils.bosses[currUtilsIndex_Boss2], false, commonUtils.bosses[currUtilsIndex_Boss2].IsFirstMeetDone, true);
         }
 
 
         if (!commonUtils.bosses[currUtilsIndex_Boss3].IsFirstMeetDone)
         {
             bossObj3.onFinishedConversationCallback += OnFinishedConversation_Boss3;
-            bossObj3.Setup(commonUtils.dialogBox_BossAlert, commonUtils.bosses[currUtilsIndex_Boss3], true, commonUtils.bosses[currUtilsIndex_Boss3].IsFirstMeetDone);
+            bossObj3.Setup(commonUtils.dialogBox_BossAlert, commonUtils.bosses[currUtilsIndex_Boss3], true, commonUtils.bosses[currUtilsIndex_Boss3].IsFirstMeetDone, true);
         }
         else
         {
             bossObj3.onFinishedConversationCallback += OnFinishedConversation_Boss3;
-            bossObj3.Setup(commonUtils.dialogBox_BossAlert, commonUtils.bosses[currUtilsIndex_Boss3], false, commonUtils.bosses[currUtilsIndex_Boss3].IsFirstMeetDone);
+            bossObj3.Setup(commonUtils.dialogBox_BossAlert, commonUtils.bosses[currUtilsIndex_Boss3], false, commonUtils.bosses[currUtilsIndex_Boss3].IsFirstMeetDone, true);
         }
 
         MinimapManager.instance.Show(0.5f);
@@ -149,6 +149,7 @@ public class PermianManager : MonoBehaviour
         commonUtils.bosses[currUtilsIndex_Boss2].IsSuccessCollectDone = true;
         GameManager.instance.dialogActive = false;
         InputManager.instance.canInput_Confirm = true;
+        DroneController.instance.canShowTalkHint = true;
     }
 
     void CloseSuccessCollect_Boss3()
@@ -161,6 +162,7 @@ public class PermianManager : MonoBehaviour
         commonUtils.bosses[currUtilsIndex_Boss3].IsSuccessCollectDone = true;
         GameManager.instance.dialogActive = false;
         InputManager.instance.canInput_Confirm = true;
+        DroneController.instance.canShowTalkHint = true;
     }
 
     private void OnDestroy()

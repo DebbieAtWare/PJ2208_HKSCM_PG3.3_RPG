@@ -53,11 +53,11 @@ public class CarboniferousManager : MonoBehaviour
 
         if (!commonUtils.bosses[currUtilsIndex_Boss].IsFirstMeetDone)
         {
-            bossObj.Setup(commonUtils.dialogBox_BossAlert, commonUtils.bosses[currUtilsIndex_Boss], true, commonUtils.bosses[currUtilsIndex_Boss].IsFirstMeetDone);
+            bossObj.Setup(commonUtils.dialogBox_BossAlert, commonUtils.bosses[currUtilsIndex_Boss], true, commonUtils.bosses[currUtilsIndex_Boss].IsFirstMeetDone, false);
         }
         else
         {
-            bossObj.Setup(commonUtils.dialogBox_BossAlert, commonUtils.bosses[currUtilsIndex_Boss], false, commonUtils.bosses[currUtilsIndex_Boss].IsFirstMeetDone);
+            bossObj.Setup(commonUtils.dialogBox_BossAlert, commonUtils.bosses[currUtilsIndex_Boss], false, commonUtils.bosses[currUtilsIndex_Boss].IsFirstMeetDone, false);
         }
 
         MinimapManager.instance.Show(0.5f);

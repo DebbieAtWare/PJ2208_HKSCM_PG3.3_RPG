@@ -150,7 +150,6 @@ public class TransitionManager : MonoBehaviour
 
     public void ChangeToOutsideTreeCave()
     {
-        SoundManager.instance.Play_SFX(6);
         StartCoroutine(ChangeToOutsideTreeCave());
         IEnumerator ChangeToOutsideTreeCave()
         {
@@ -167,6 +166,7 @@ public class TransitionManager : MonoBehaviour
             GameManager.instance.fadingBetweenAreas = false;
             GameManager.instance.dialogActive = false;
             InputManager.instance.canInput_Confirm = true;
+            DroneController.instance.canShowTalkHint = true;
         }
     }
 

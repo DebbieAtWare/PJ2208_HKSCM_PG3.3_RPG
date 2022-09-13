@@ -38,18 +38,11 @@ public class Boss01Manager : MonoBehaviour
         }
 
         bossObj.onFinishedConversationCallback += OnFinishedConversation;
-        bossObj.Setup(commonUtils.dialogBox_BossAlert, commonUtils.bosses[currUtilsIndex], false, commonUtils.bosses[currUtilsIndex].IsFirstMeetDone);
+        bossObj.Setup(commonUtils.dialogBox_BossAlert, commonUtils.bosses[currUtilsIndex], false, commonUtils.bosses[currUtilsIndex].IsFirstMeetDone, false);
 
-        if (commonUtils.bosses[currUtilsIndex].IsFirstMeetDone)
-        {
-            GameManager.instance.dialogActive = false;
-        }
-        else
-        {
-            //to stop user move input
-            GameManager.instance.dialogActive = true;
-            DOTween.To(() => PlayerController.instance.transform.position, x => PlayerController.instance.transform.position = x, new Vector3(0.6f, -1.69f, 0f), 0.8f).SetEase(Ease.Linear).SetDelay(0.8f);
-        }
+        //to stop user move input
+        GameManager.instance.dialogActive = true;
+        DOTween.To(() => PlayerController.instance.transform.position, x => PlayerController.instance.transform.position = x, new Vector3(0.6f, -1.69f, 0f), 0.8f).SetEase(Ease.Linear).SetDelay(0.8f);
 
         MinimapManager.instance.Hide(0.5f);
     }
@@ -78,7 +71,6 @@ public class Boss01Manager : MonoBehaviour
     {
         SoundManager.instance.FadeOutStop_SFX(0.5f);
         CollectionBookManager.instance.HideSuccessCollect(0.5f);
-        GameManager.instance.dialogActive = false;
         commonUtils.bosses[currUtilsIndex].IsSuccessCollectDone = true;
         Invoke("TeleportControl", 0.5f);
     }
