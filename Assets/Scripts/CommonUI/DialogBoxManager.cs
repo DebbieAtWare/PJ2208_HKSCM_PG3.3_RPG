@@ -18,6 +18,7 @@ public class DialogBoxManager : MonoBehaviour
     
     [Header("Text")]
     public TextMeshProUGUI text_TC;
+    public DialogWriter dialogWriter;
     public List<TextMeshProUGUI> optionTexts_TC;
     public List<GameObject> arrowObjs;
 
@@ -44,7 +45,8 @@ public class DialogBoxManager : MonoBehaviour
     {
         dialogBoxGrp.SetActive(true);
 
-        text_TC.text = dialogBox.Text_TC;
+        //text_TC.text = dialogBox.Text_TC;
+        dialogWriter.AddWriter(text_TC, dialogBox.Text_TC, 0.1f);
 
         if (dialogBox.OptionTexts_TC != null && dialogBox.OptionTexts_TC.Count != 0)
         {

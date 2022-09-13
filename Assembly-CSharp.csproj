@@ -85,6 +85,7 @@
     <Compile Include="Assets\2D RPG Kit\Scripts\Save.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\AudioManager.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\AutoSave.cs" />
+    <Compile Include="Assets\Scripts\SoundManager.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\Item.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\DialogStarter.cs" />
     <Compile Include="Assets\FlexReader\Mapping\Mapper.cs" />
@@ -182,7 +183,7 @@
     <Compile Include="Assets\2D RPG Kit\Scripts\DamageNumber.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleNotification.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\QuestManager.cs" />
-    <Compile Include="Assets\Scripts\SoundManager.cs" />
+    <Compile Include="Assets\Scripts\CommonUI\DialogWriter.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

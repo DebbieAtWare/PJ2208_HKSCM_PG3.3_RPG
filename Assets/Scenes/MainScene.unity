@@ -344,6 +344,8 @@ MonoBehaviour:
   dronePos_Permian: {x: -26.33, y: 2.19, z: 1}
   dronePos_InsideTreeCave: {x: -3.85, y: -1.69, z: 1}
   dronePos_OutsideTreeCave: {x: -26, y: -0.35, z: 1}
+  playerAutoWalkSpeed: 0.2
+  droneAutoWalkSpeed: 0.2
   NPC_Carboniferous: []
   NPC_Permian: []
   dialogBox_BossAlert:
@@ -5827,6 +5829,7 @@ MonoBehaviour:
   supportImgCanvasGrp: {fileID: 909475742962043791}
   supportImg: {fileID: 3635763447312519117}
   text_TC: {fileID: 2212615259637660303}
+  dialogWriter: {fileID: 8535534974190911308}
   optionTexts_TC:
   - {fileID: 4802739759207114513}
   - {fileID: 1196239457595964009}
@@ -7174,6 +7177,7 @@ GameObject:
   m_Component:
   - component: {fileID: 274792204405368217}
   - component: {fileID: 1794946387422747975}
+  - component: {fileID: 8535534974190911308}
   m_Layer: 5
   m_Name: DialogBoxGroup
   m_TagString: Untagged
@@ -7181,6 +7185,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!114 &8535534974190911308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8535534974190911307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac27d4f3cc29ae94ea9d035efba3b974, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 2212615259637660303}
 --- !u!114 &8570045499144832972
 MonoBehaviour:
   m_ObjectHideFlags: 0
