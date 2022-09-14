@@ -73,7 +73,7 @@ public class BossObject : MonoBehaviour
         viewTriggerControl.onTriggerEnterCallback += ViewTrigger_OnEnter;
         viewTriggerControl.onTriggerExitCallback += ViewTrigger_OnExit;
 
-        currDialogLine = 0;
+        currDialogLine = -1;
         isAtAlertTrigger = false;
         isAtViewTrigger = false;
         currBossStage = BossStage.None;
@@ -127,58 +127,62 @@ public class BossObject : MonoBehaviour
        {
             SoundManager.instance.Play_BGM(1);
             ViewBoxManager.instance.HideViewBox();
-            if (currDialogLine == 0)
-            {
-                SoundManager.instance.Play_Input(2);
-                MinimapManager.instance.Hide(0.5f);
-                StatusBarManager.instance.Hide_Carbon(0.5f);
-                StatusBarManager.instance.Hide_Permian(0.5f);
-                ConversationModeManager.instance.Show1(info.Name_TC, info.DescriptionTag_TC, bossSprite);
-                DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
-                currDialogLine++;
-            }
+            SoundManager.instance.Play_Input(2);
+            MinimapManager.instance.Hide(0.5f);
+            StatusBarManager.instance.Hide_Carbon(0.5f);
+            StatusBarManager.instance.Hide_Permian(0.5f);
+            ConversationModeManager.instance.Show1(info.Name_TC, info.DescriptionTag_TC, bossSprite);
+            currDialogLine++;
+            DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
             currBossStage = BossStage.ConversationMode;
         }
        else if (currBossStage == BossStage.ConversationMode)
        {
-            if (currDialogLine == 1)
+            SoundManager.instance.Play_Input(2);
+            if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
             {
-                SoundManager.instance.Play_Input(2);
-                ConversationModeManager.instance.Show2();
-                DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
-                currDialogLine++;
-            }
-            else if (currDialogLine == info.DialogBoxes.Count)
-            {
-                StartCoroutine(LastLine());
-                IEnumerator LastLine()
-                {
-                    SoundManager.instance.Play_Input(2);
-                    DialogBoxManager.instance.HideDialog();
-                    ConversationModeManager.instance.HideFade(0.5f);
-                    currDialogLine = 0;
-                    for (int i = 0; i < arrowObjs_Green.Count; i++)
-                    {
-                        arrowObjs_Green[i].SetActive(false);
-                        arrowObjs_Grey[i].SetActive(true);
-                    }
-                    minimapDot_Red.SetActive(false);
-                    minimapDot_Grey.SetActive(true);
-                    OutlineHide();
-                    yield return new WaitForSeconds(0.5f);
-                    currBossStage = BossStage.None;
-                    if (onFinishedConversationCallback != null)
-                    {
-                        onFinishedConversationCallback.Invoke();
-                    }
-                }
+                DialogBoxManager.instance.FinishCurrentDialog();
             }
             else
             {
-                SoundManager.instance.Play_Input(2);
-                ConversationModeManager.instance.Show3();
-                DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
-                currDialogLine++;
+
+                if (currDialogLine == 0)
+                {
+                    SoundManager.instance.Play_Input(2);
+                    ConversationModeManager.instance.Show2();
+                    currDialogLine++;
+                    DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
+                }
+                else if (currDialogLine == (info.DialogBoxes.Count - 1))
+                {
+                    StartCoroutine(LastLine());
+                    IEnumerator LastLine()
+                    {
+                        DialogBoxManager.instance.HideDialog();
+                        ConversationModeManager.instance.HideFade(0.5f);
+                        currDialogLine = -1;
+                        for (int i = 0; i < arrowObjs_Green.Count; i++)
+                        {
+                            arrowObjs_Green[i].SetActive(false);
+                            arrowObjs_Grey[i].SetActive(true);
+                        }
+                        minimapDot_Red.SetActive(false);
+                        minimapDot_Grey.SetActive(true);
+                        OutlineHide();
+                        yield return new WaitForSeconds(0.5f);
+                        currBossStage = BossStage.None;
+                        if (onFinishedConversationCallback != null)
+                        {
+                            onFinishedConversationCallback.Invoke();
+                        }
+                    }
+                }
+                else
+                {
+                    ConversationModeManager.instance.Show3();
+                    currDialogLine++;
+                    DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
+                }
             }
         }
     }
@@ -223,18 +227,20 @@ public class BossObject : MonoBehaviour
         isAtAlertTrigger = true;
         if (canShowAlert)
         {
-            GameManager.instance.dialogActive = true;
-            SoundManager.instance.Play_SFX(4);
-            Invoke("FadeOutMeetBossSound", 1f);
-            DialogBoxManager.instance.ShowDialog(dialogBox_Alert);
-            DroneController.instance.canShowTalkHint = false;
-            DroneController.instance.HideTalkHint();
-            currBossStage = BossStage.Alert;
+            StartCoroutine(Alert());
+            IEnumerator Alert()
+            {
+                GameManager.instance.dialogActive = true;
+                DroneController.instance.canShowTalkHint = false;
+                DroneController.instance.HideTalkHint();
+                SoundManager.instance.Play_SFX(4);
+                yield return new WaitForSeconds(0.5f);
+                DialogBoxManager.instance.ShowDialog(dialogBox_Alert);
+                currBossStage = BossStage.Alert;
+                yield return new WaitForSeconds(0.5f);
+                SoundManager.instance.FadeOutStop_SFX(0.5f);
+            }
         }
-    }
-    void FadeOutMeetBossSound()
-    {
-        SoundManager.instance.FadeOutStop_SFX(0.5f);
     }
 
     private void AlertTrigger_OnExit()
