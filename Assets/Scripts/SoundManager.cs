@@ -20,6 +20,10 @@ public class SoundManager : MonoBehaviour
     public AudioSource audioSource_Input;
     public List<AudioClip> clips_Input;
 
+    [Header("Dialog")]
+    public AudioSource audioSource_Dialog;
+    public List<AudioClip> clips_Dialog;
+
     //for share in multiple scenes
     void Awake()
     {
@@ -34,6 +38,8 @@ public class SoundManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
+
+    //---------
 
     public void Play_BGM(int index)
     {
@@ -65,6 +71,8 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    //---------
+
     public void Play_SFX(int index)
     {
         if (index < clips_SFX.Count)
@@ -90,6 +98,8 @@ public class SoundManager : MonoBehaviour
         audioSource_SFX.DOFade(0f, t).OnComplete(() => audioSource_SFX.Stop());
     }
 
+    //---------
+
     public void Play_Input(int index)
     {
         if (index < clips_Input.Count)
@@ -106,5 +116,32 @@ public class SoundManager : MonoBehaviour
                 audioSource_Input.Play();
             }
         }
+    }
+
+    //---------
+
+    public void Play_Dialog(int index)
+    {
+        if (index < clips_Dialog.Count)
+        {
+            if (audioSource_Dialog.isPlaying)
+            {
+                audioSource_Dialog.Stop();
+                audioSource_Dialog.clip = clips_Dialog[index];
+                audioSource_Dialog.Play();
+                audioSource_Dialog.DOFade(1f, 0f);
+            }
+            else
+            {
+                audioSource_Dialog.clip = clips_Dialog[index];
+                audioSource_Dialog.Play();
+                audioSource_Dialog.DOFade(1f, 0f);
+            }
+        }
+    }
+
+    public void FadeOutStop_Dialog(float t)
+    {
+        audioSource_Dialog.DOFade(0f, t).OnComplete(() => audioSource_Dialog.Stop());
     }
 }

@@ -50,7 +50,27 @@ public class DialogBoxManager : MonoBehaviour
     {
         dialogBoxGrp.SetActive(true);
 
-        dialogWriterSingle = DialogWriter.AddWriter_Static(text_TC, dialogBox.Text_TC, 0.05f, true);
+        if (!string.IsNullOrEmpty(dialogBox.ByWhom) && !string.IsNullOrWhiteSpace(dialogBox.ByWhom))
+        {
+            if (dialogBox.ByWhom == CharacterID.AVA.ToString())
+            {
+                SoundManager.instance.Play_Dialog(0);
+            }
+            else if (dialogBox.ByWhom == CharacterID.DRO.ToString())
+            {
+                SoundManager.instance.Play_Dialog(1);
+            }
+            else if (dialogBox.ByWhom == CharacterID.M01.ToString() || dialogBox.ByWhom == CharacterID.M02.ToString() || dialogBox.ByWhom == CharacterID.M03.ToString())
+            {
+                SoundManager.instance.Play_Dialog(2);
+            }
+            else
+            {
+                SoundManager.instance.Play_Dialog(3);
+            }
+        }
+            
+        dialogWriterSingle = DialogWriter.AddWriter_Static(text_TC, dialogBox.Text_TC, 0.05f, true, OnDialogLineEnd);
 
         if (dialogBox.OptionTexts_TC != null && dialogBox.OptionTexts_TC.Count != 0)
         {
@@ -156,6 +176,11 @@ public class DialogBoxManager : MonoBehaviour
         {
             HideSupportImg();
         }
+    }
+
+    void OnDialogLineEnd()
+    {
+        SoundManager.instance.FadeOutStop_Dialog(0.3f);
     }
 
     public void HideDialog()

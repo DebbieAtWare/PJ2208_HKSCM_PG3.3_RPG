@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -14,18 +15,18 @@ public class DialogWriter : MonoBehaviour
         instance = this;
     }
 
-    public static DialogWriterSingle AddWriter_Static(TextMeshProUGUI uiText, string textToWrite, float timePerCharacter, bool removeWriterBeforeAdd)
+    public static DialogWriterSingle AddWriter_Static(TextMeshProUGUI uiText, string textToWrite, float timePerCharacter, bool removeWriterBeforeAdd, Action onComplete)
     {
         if (removeWriterBeforeAdd)
         {
             instance.RemoveWriter(uiText);
         }
-        return instance.AddWriter(uiText, textToWrite, timePerCharacter);
+        return instance.AddWriter(uiText, textToWrite, timePerCharacter, onComplete);
     }
 
-    private DialogWriterSingle AddWriter(TextMeshProUGUI uiText, string textToWrite, float timePerCharacter)
+    private DialogWriterSingle AddWriter(TextMeshProUGUI uiText, string textToWrite, float timePerCharacter, Action onComplete)
     {
-        DialogWriterSingle dialogWriterSingle = new DialogWriterSingle(uiText, textToWrite, timePerCharacter);
+        DialogWriterSingle dialogWriterSingle = new DialogWriterSingle(uiText, textToWrite, timePerCharacter, onComplete);
         dialogWriterSingles.Add(dialogWriterSingle);
         return dialogWriterSingle;
     }
@@ -58,11 +59,6 @@ public class DialogWriter : MonoBehaviour
                 i--;
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            Debug.Log(dialogWriterSingles.Count);
-        }
     }
 
     public class DialogWriterSingle
@@ -72,12 +68,14 @@ public class DialogWriter : MonoBehaviour
         int characterIndex;
         float timePerCharacter;
         float timer;
+        Action onComplete;
 
-        public DialogWriterSingle(TextMeshProUGUI uiText, string textToWrite, float timePerCharacter)
+        public DialogWriterSingle(TextMeshProUGUI uiText, string textToWrite, float timePerCharacter, Action onComplete)
         {
             this.uiText = uiText;
             this.textToWrite = textToWrite;
             this.timePerCharacter = timePerCharacter;
+            this.onComplete = onComplete;
             characterIndex = 0;
             uiText.text = "";
         }
@@ -95,6 +93,10 @@ public class DialogWriter : MonoBehaviour
 
                 if (characterIndex >= textToWrite.Length)
                 {
+                    if (onComplete != null)
+                    {
+                        onComplete();
+                    }
                     return true;
                 }
             }
@@ -115,6 +117,10 @@ public class DialogWriter : MonoBehaviour
         {
             uiText.text = textToWrite;
             characterIndex = textToWrite.Length;
+            if (onComplete != null)
+            {
+                onComplete();
+            }
             DialogWriter.RemoveWriter_Static(uiText);
         }
     }

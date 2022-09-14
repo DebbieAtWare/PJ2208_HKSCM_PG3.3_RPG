@@ -166,13 +166,23 @@ public class CommonUtils : MonoBehaviour
         ConfigData_DialogBox dialog_21 = new ConfigData_DialogBox();
         dialog_21.ByWhom = "AVA";
         dialog_21.ImagePath = "";
-        dialog_21.Text_TC = "這些裸子植物中長得真高…";
+        dialog_21.Text_TC = "這些科達樹長得真高！";
         npc_2.DialogBoxes.Add(dialog_21);
         ConfigData_DialogBox dialog_22 = new ConfigData_DialogBox();
         dialog_22.ByWhom = "DRO";
         dialog_22.ImagePath = "";
-        dialog_22.Text_TC = "科達樹是形成煤炭的重要植物，很多煤炭都是由石炭紀植物形成，這個地質時期因此稱為「石炭紀」。";
+        dialog_22.Text_TC = "科達樹可達 30 米以上，葉片窄長，呈舌頭狀。它們是裸子植物，有原始的毬果，是松柏類植物的祖先。";
         npc_2.DialogBoxes.Add(dialog_22);
+        ConfigData_DialogBox dialog_23 = new ConfigData_DialogBox();
+        dialog_23.ByWhom = "DRO";
+        dialog_23.ImagePath = "";
+        dialog_23.Text_TC = "石炭紀的氣候溫暖潮濕，非常適合植物生長。科達樹和其他植物殘骸最終形成大量的煤。";
+        npc_2.DialogBoxes.Add(dialog_23);
+        ConfigData_DialogBox dialog_24 = new ConfigData_DialogBox();
+        dialog_24.ByWhom = "AVA";
+        dialog_24.ImagePath = "";
+        dialog_24.Text_TC = "嗯嗯…石炭的意思就是煤，亦是這個地質時期命名為「石炭紀」的原因。";
+        npc_2.DialogBoxes.Add(dialog_24);
         NPC_Carboniferous.Add(npc_2);
 
         ConfigData_Character npc_3 = new ConfigData_Character();
