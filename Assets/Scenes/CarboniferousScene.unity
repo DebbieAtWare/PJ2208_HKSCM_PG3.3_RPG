@@ -968,6 +968,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8061781311511812682, guid: 93321ae865a2a69408b9295a87af90bb,
         type: 3}
+      propertyPath: dialogBoxProfileSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: fea7f94110ff48b43aefe3624734fed4,
+        type: 3}
+    - target: {fileID: 8061781311511812682, guid: 93321ae865a2a69408b9295a87af90bb,
+        type: 3}
       propertyPath: collectionBookThumbnailSprite
       value: 
       objectReference: {fileID: 21300000, guid: fbfd419d67b2dc94c97942613633cb1d,
@@ -1474,6 +1480,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8061781311511812682, guid: 93321ae865a2a69408b9295a87af90bb,
         type: 3}
+      propertyPath: dialogBoxProfileSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2838b43da980ccb4f855ac5cd5f56fa8,
+        type: 3}
+    - target: {fileID: 8061781311511812682, guid: 93321ae865a2a69408b9295a87af90bb,
+        type: 3}
       propertyPath: collectionBookThumbnailSprite
       value: 
       objectReference: {fileID: 21300000, guid: fbfd419d67b2dc94c97942613633cb1d,
@@ -1803,6 +1815,12 @@ PrefabInstance:
       propertyPath: scan_AvatarDir
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8061781311511812682, guid: 93321ae865a2a69408b9295a87af90bb,
+        type: 3}
+      propertyPath: dialogBoxProfileSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 37b389903625d5b4282fe28b1d1b0c5a,
+        type: 3}
     - target: {fileID: 8061781311511812682, guid: 93321ae865a2a69408b9295a87af90bb,
         type: 3}
       propertyPath: collectionBookThumbnailSprite
@@ -5879,6 +5897,12 @@ PrefabInstance:
       propertyPath: id
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 8061781311511812682, guid: 93321ae865a2a69408b9295a87af90bb,
+        type: 3}
+      propertyPath: dialogBoxProfileSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d9a1741b18a399341852517f6a499c89,
+        type: 3}
     - target: {fileID: 8061781311511812682, guid: 93321ae865a2a69408b9295a87af90bb,
         type: 3}
       propertyPath: collectionBookThumbnailSprite
@@ -30043,9 +30067,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8431520836166522264, guid: da2dcf02e3e8989489a30bc94806ef18,
         type: 3}
+      propertyPath: id
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8431520836166522264, guid: da2dcf02e3e8989489a30bc94806ef18,
+        type: 3}
       propertyPath: bossSprite
       value: 
       objectReference: {fileID: 21300000, guid: 58b1504c4423ad045a5dfc488cb63339,
+        type: 3}
+    - target: {fileID: 8431520836166522264, guid: da2dcf02e3e8989489a30bc94806ef18,
+        type: 3}
+      propertyPath: dialogBoxProfileSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b19b5fd6745966843a537277661855e3,
         type: 3}
     - target: {fileID: 8431520836166522264, guid: da2dcf02e3e8989489a30bc94806ef18,
         type: 3}

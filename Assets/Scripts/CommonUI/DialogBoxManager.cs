@@ -18,9 +18,9 @@ public class DialogBoxManager : MonoBehaviour
     
     [Header("Text")]
     public TextMeshProUGUI text_TC;
-    public DialogWriter dialogWriter;
     public List<TextMeshProUGUI> optionTexts_TC;
     public List<GameObject> arrowObjs;
+    public DialogWriter.DialogWriterSingle dialogWriterSingle;
 
     [Header("ZoomImg")]
     public CanvasGroup zoomImgCanvasGrp;
@@ -41,12 +41,16 @@ public class DialogBoxManager : MonoBehaviour
         }
     }
 
+    public void FinishCurrentDialog()
+    {
+        dialogWriterSingle.WriteAllAndDestroy();
+    }
+
     public void ShowDialog(ConfigData_DialogBox dialogBox)
     {
         dialogBoxGrp.SetActive(true);
 
-        //text_TC.text = dialogBox.Text_TC;
-        dialogWriter.AddWriter(text_TC, dialogBox.Text_TC, 0.1f);
+        dialogWriterSingle = DialogWriter.AddWriter_Static(text_TC, dialogBox.Text_TC, 0.05f, true);
 
         if (dialogBox.OptionTexts_TC != null && dialogBox.OptionTexts_TC.Count != 0)
         {
@@ -82,36 +86,68 @@ public class DialogBoxManager : MonoBehaviour
             }
         }
 
-        if (dialogBox.ByWhom == CharacterID.AVA.ToString())
-        {
-            profilePic.gameObject.SetActive(true);
-            profilePic.sprite = commonUtils.profilePicSprite_Avatar;
-        }
-        else if (dialogBox.ByWhom == CharacterID.DRO.ToString())
-        {
-            profilePic.gameObject.SetActive(true);
-            profilePic.sprite = commonUtils.profilePicSprite_Drone;
-        }
-        else if (dialogBox.ByWhom == CharacterID.M01.ToString())
-        {
-            profilePic.gameObject.SetActive(true);
-            profilePic.sprite = commonUtils.profilePicSprite_Boss01;
-        }
-        else if (dialogBox.ByWhom == CharacterID.M02.ToString())
-        {
-            profilePic.gameObject.SetActive(true);
-            profilePic.sprite = commonUtils.profilePicSprite_Boss02;
-        }
-        else if (dialogBox.ByWhom == CharacterID.M03.ToString())
-        {
-            profilePic.gameObject.SetActive(true);
-            profilePic.sprite = commonUtils.profilePicSprite_Boss03;
-        }
-        else
+        //profile pic
+        if (string.IsNullOrEmpty(dialogBox.ByWhom) || string.IsNullOrWhiteSpace(dialogBox.ByWhom))
         {
             profilePic.gameObject.SetActive(false);
         }
+        else
+        {
+            if (dialogBox.ByWhom == CharacterID.AVA.ToString())
+            {
+                profilePic.gameObject.SetActive(true);
+                profilePic.sprite = PlayerController.instance.dialogBoxProfileSprite;
+            }
+            else if (dialogBox.ByWhom == CharacterID.DRO.ToString())
+            {
+                profilePic.gameObject.SetActive(true);
+                profilePic.sprite = DroneController.instance.dialogBoxProfileSprite;
+            }
+            else if (dialogBox.ByWhom == CharacterID.M01.ToString())
+            {
+                profilePic.gameObject.SetActive(true);
+                profilePic.sprite = CarboniferousManager.instance.bossObj.dialogBoxProfileSprite;
+            }
+            else if (dialogBox.ByWhom == CharacterID.M02.ToString())
+            {
+                profilePic.gameObject.SetActive(true);
+                profilePic.sprite = PermianManager.instance.bossObj2.dialogBoxProfileSprite;
+            }
+            else if (dialogBox.ByWhom == CharacterID.M03.ToString())
+            {
+                profilePic.gameObject.SetActive(true);
+                profilePic.sprite = PermianManager.instance.bossObj3.dialogBoxProfileSprite;
+            }
+            else
+            {
+                if (commonUtils.currMapId == MapID.Carboniferous)
+                {
+                    for (int i = 0; i < CarboniferousManager.instance.NPCObjs.Count; i++)
+                    {
+                        if (CarboniferousManager.instance.NPCObjs[i].id.ToString() == dialogBox.ByWhom &&
+                            CarboniferousManager.instance.NPCObjs[i].dialogBoxProfileSprite != null)
+                        {
+                            profilePic.gameObject.SetActive(true);
+                            profilePic.sprite = CarboniferousManager.instance.NPCObjs[i].dialogBoxProfileSprite;
+                        }
+                    }
+                }
+                else if (commonUtils.currMapId == MapID.Permian)
+                {
+                    for (int i = 0; i < PermianManager.instance.NPCObjs.Count; i++)
+                    {
+                        if (PermianManager.instance.NPCObjs[i].id.ToString() == dialogBox.ByWhom &&
+                            PermianManager.instance.NPCObjs[i].dialogBoxProfileSprite != null)
+                        {
+                            profilePic.gameObject.SetActive(true);
+                            profilePic.sprite = PermianManager.instance.NPCObjs[i].dialogBoxProfileSprite;
+                        }
+                    }
+                }
+            }
+        }
 
+        //support img
         if (!String.IsNullOrEmpty(dialogBox.ImagePath) && !string.IsNullOrEmpty(dialogBox.ImagePath))
         {
             ShowSupportImg(dialogBox.ImagePath);

@@ -18,9 +18,13 @@ public class BossObject : MonoBehaviour
     public delegate void OnFinishedConversation();
     public OnFinishedConversation onFinishedConversationCallback;
 
+    [Header("ID")]
+    public CharacterID id;
+
     [Header("Sprite")]
     public Sprite bossSprite;
     public Sprite collectionBookThumbnailSprite;
+    public Sprite dialogBoxProfileSprite;
 
     [Header("Renderer")]
     public Renderer bossRenderer;

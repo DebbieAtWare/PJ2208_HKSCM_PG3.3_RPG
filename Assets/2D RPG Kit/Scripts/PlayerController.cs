@@ -33,6 +33,12 @@ public class PlayerController : MonoBehaviour {
     public bool canMove = true;
 
     //self add
+    [Header("Id")]
+    public CharacterID id;
+
+    [Header("Sprite")]
+    public Sprite dialogBoxProfileSprite;
+
     [Header("MinimapArrow")]
     public Transform minimapArrowTrans;
 

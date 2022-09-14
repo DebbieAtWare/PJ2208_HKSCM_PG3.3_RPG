@@ -17,6 +17,12 @@ public class DroneController : MonoBehaviour
 {
     public static DroneController instance;
 
+    [Header("Id")]
+    public CharacterID id;
+
+    [Header("Sprite")]
+    public Sprite dialogBoxProfileSprite;
+
     [Header("Ani")]
     public Animator animator;
 

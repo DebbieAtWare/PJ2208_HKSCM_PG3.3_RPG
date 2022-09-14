@@ -8,6 +8,7 @@ public enum NPCStage
 {
     None,
     View,
+    Scan,
     Dialog
 }
 
@@ -15,6 +16,9 @@ public class NPCObject : MonoBehaviour
 {
     [Header("Id")]
     public CharacterID id;
+
+    [Header("Sprite")]
+    public Sprite dialogBoxProfileSprite;
 
     [Header("Scan")]
     public SpriteRenderer scan_FrameRenderer;
@@ -45,6 +49,7 @@ public class NPCObject : MonoBehaviour
 
     CommonUtils commonUtils;
     InputManager inputManager;
+    Coroutine scanCoroutine;
 
     public void Setup(ConfigData_Character _info)
     {
@@ -57,7 +62,7 @@ public class NPCObject : MonoBehaviour
         viewTriggerControl.onTriggerEnterCallback += ViewTrigger_OnEnter;
         viewTriggerControl.onTriggerExitCallback += ViewTrigger_OnExit;
 
-        currDialogLine = 0;
+        currDialogLine = -1;
         isAtViewTrigger = false;
 
         OutlineControl();
@@ -68,76 +73,101 @@ public class NPCObject : MonoBehaviour
         if (isAtViewTrigger && currStage == NPCStage.View)
         {
             SoundManager.instance.Play_Input(2);
-            currStage = NPCStage.Dialog;
-            if (currDialogLine == 0)
+            currStage = NPCStage.Scan;
+            scanCoroutine = StartCoroutine(ScanAni());
+            IEnumerator ScanAni()
             {
-                StartCoroutine(ScanAni());
-                IEnumerator ScanAni()
+                GameManager.instance.dialogActive = true;
+                ViewBoxManager.instance.HideViewBox();
+                DroneController.instance.canShowTalkHint = false;
+                DroneController.instance.HideTalkHint();
+                float dist_player = Vector3.Distance(PlayerController.instance.transform.position, scan_AvatarPosObj.transform.position);
+                float time_player = dist_player * commonUtils.playerAutoWalkSpeed;
+                PlayerController.instance.transform.DOLocalMove(scan_AvatarPosObj.transform.position, time_player);
+                PlayerController.instance.SetDirection(scan_AvatarDir);
+                Vector3 pos_Drone = new Vector3(scan_DronePosObj.transform.position.x, scan_LightPosObj_Start.transform.position.y, scan_DronePosObj.transform.position.z);
+                float dist_Drone = Vector3.Distance(DroneController.instance.transform.position, pos_Drone);
+                float time_Drone = dist_Drone * commonUtils.droneAutoWalkSpeed;
+                DroneController.instance.transform.DOLocalMove(pos_Drone, time_Drone);
+                if (time_player > time_Drone)
                 {
-                    GameManager.instance.dialogActive = true;
-                    ViewBoxManager.instance.HideViewBox();
-                    DroneController.instance.canShowTalkHint = false;
-                    DroneController.instance.HideTalkHint();
-                    float dist_player = Vector3.Distance(PlayerController.instance.transform.position, scan_AvatarPosObj.transform.position);
-                    float time_player = dist_player * commonUtils.playerAutoWalkSpeed;
-                    PlayerController.instance.transform.DOLocalMove(scan_AvatarPosObj.transform.position, time_player);
-                    PlayerController.instance.SetDirection(scan_AvatarDir);
-                    Vector3 pos_Drone = new Vector3(scan_DronePosObj.transform.position.x, scan_LightPosObj_Start.transform.position.y, scan_DronePosObj.transform.position.z);
-                    float dist_Drone = Vector3.Distance(DroneController.instance.transform.position, pos_Drone);
-                    float time_Drone = dist_Drone * commonUtils.droneAutoWalkSpeed;
-                    DroneController.instance.transform.DOLocalMove(pos_Drone, time_Drone);
-                    if (time_player > time_Drone)
-                    {
-                        yield return new WaitForSeconds(time_player);
-                    }
-                    else
-                    {
-                        yield return new WaitForSeconds(time_Drone);
-                    }
-                    DroneController.instance.animator.SetTrigger("Scan");
-                    SoundManager.instance.Play_SFX(10);
-                    scan_FrameRenderer.DOFade(1f, 0.3f);
-                    scan_LightRenderer.DOFade(1f, 0.3f);
-                    scan_LightRenderer.transform.DOLocalMove(scan_LightPosObj_End.transform.localPosition, 3f).From(scan_LightPosObj_Start.transform.localPosition).SetEase(Ease.Linear);
-                    DroneController.instance.transform.DOLocalMove(new Vector3(scan_DronePosObj.transform.position.x, scan_LightPosObj_End.transform.position.y, scan_DronePosObj.transform.position.z), 3f).SetEase(Ease.Linear);
-                    yield return new WaitForSeconds(3f);
-                    SoundManager.instance.FadeOutStop_SFX(0.5f);
-                    DroneController.instance.animator.SetTrigger("Idle");
-                    dist_Drone = Vector3.Distance(DroneController.instance.transform.position, scan_DronePosObj.transform.position);
-                    time_Drone = dist_Drone * droneReturnSpeed;
-                    DroneController.instance.transform.DOLocalMove(scan_DronePosObj.transform.position, time_Drone);
-                    scan_FrameRenderer.DOFade(0f, 0.3f);
-                    scan_LightRenderer.DOFade(0f, 0.3f);
-                    DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
+                    yield return new WaitForSeconds(time_player);
+                }
+                else
+                {
+                    yield return new WaitForSeconds(time_Drone);
+                }
+                DroneController.instance.animator.SetTrigger("Scan");
+                SoundManager.instance.Play_SFX(10);
+                scan_FrameRenderer.DOFade(1f, 0.3f);
+                scan_LightRenderer.DOFade(1f, 0.3f);
+                scan_LightRenderer.transform.DOLocalMove(scan_LightPosObj_End.transform.localPosition, 3f).From(scan_LightPosObj_Start.transform.localPosition).SetEase(Ease.Linear);
+                DroneController.instance.transform.DOLocalMove(new Vector3(scan_DronePosObj.transform.position.x, scan_LightPosObj_End.transform.position.y, scan_DronePosObj.transform.position.z), 3f).SetEase(Ease.Linear);
+                yield return new WaitForSeconds(3f);
+                SoundManager.instance.FadeOutStop_SFX(0.5f);
+                DroneController.instance.animator.SetTrigger("Idle");
+                dist_Drone = Vector3.Distance(DroneController.instance.transform.position, scan_DronePosObj.transform.position);
+                time_Drone = dist_Drone * droneReturnSpeed;
+                DroneController.instance.transform.DOLocalMove(scan_DronePosObj.transform.position, time_Drone);
+                scan_FrameRenderer.DOFade(0f, 0.3f);
+                scan_LightRenderer.DOFade(0f, 0.3f);
+                if (currStage == NPCStage.Scan)
+                {
+                    currStage = NPCStage.Dialog;
                     currDialogLine++;
+                    DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
                 }
             }
         }
+        else if (currStage == NPCStage.Scan)
+        {
+            SoundManager.instance.Play_Input(2);
+            currStage = NPCStage.Dialog;
+            currDialogLine++;
+            DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
+        }
         else if (currStage == NPCStage.Dialog)
         {
-            if (currDialogLine == info.DialogBoxes.Count)
+            SoundManager.instance.Play_Input(2);
+            if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
             {
-                SoundManager.instance.Play_Input(2);
-                DialogBoxManager.instance.HideDialog();
-                if (id == CharacterID.NPC_P11 || id == CharacterID.NPC_P12)
-                {
-                    DialogBoxManager.instance.HideZoomImg(0.5f);
-                }
-                currDialogLine = 0;
-                info.IsFirstMeetDone = true;
-                GameManager.instance.dialogActive = false;
-                DroneController.instance.canShowTalkHint = true;
-                currStage = NPCStage.None;
+                DialogBoxManager.instance.FinishCurrentDialog();
             }
             else
             {
-                SoundManager.instance.Play_Input(2);
-                DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
-                if (id == CharacterID.NPC_P11 || id == CharacterID.NPC_P12)
+                if (currDialogLine == (info.DialogBoxes.Count - 1))
                 {
-                    DialogBoxManager.instance.ShowZoomImg(id, 0.5f);
+                    StopCoroutine(scanCoroutine);
+                    StartCoroutine(EndDialog());
+                    IEnumerator EndDialog()
+                    {
+                        SoundManager.instance.FadeOutStop_SFX(0.5f);
+                        DroneController.instance.animator.SetTrigger("Idle");
+                        DroneController.instance.transform.DOLocalMove(scan_DronePosObj.transform.position, 0.3f);
+                        scan_FrameRenderer.DOFade(0f, 0.3f);
+                        scan_LightRenderer.DOFade(0f, 0.3f);
+                        DialogBoxManager.instance.HideDialog();
+                        if (id == CharacterID.NPC_P11 || id == CharacterID.NPC_P12)
+                        {
+                            DialogBoxManager.instance.HideZoomImg(0.5f);
+                        }
+                        yield return new WaitForSeconds(0.3f);
+                        currDialogLine = -1;
+                        info.IsFirstMeetDone = true;
+                        GameManager.instance.dialogActive = false;
+                        DroneController.instance.canShowTalkHint = true;
+                        currStage = NPCStage.None;
+                    }
                 }
-                currDialogLine++;
+                else
+                {
+                    currDialogLine++;
+                    DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
+                    if (id == CharacterID.NPC_P11 || id == CharacterID.NPC_P12)
+                    {
+                        DialogBoxManager.instance.ShowZoomImg(id, 0.5f);
+                    }
+                }
             }
         }
     }
@@ -146,7 +176,6 @@ public class NPCObject : MonoBehaviour
     {
         StartCoroutine(OutlineAni());
     }
-
     IEnumerator OutlineAni()
     {
         npcRenderer.material.DOFloat(1, "_OutlineAlpha", 1f);
@@ -167,7 +196,7 @@ public class NPCObject : MonoBehaviour
 
     private void ViewTrigger_OnExit()
     {
-        if (currStage != NPCStage.Dialog)
+        if (currStage != NPCStage.Dialog && currStage != NPCStage.Scan)
         {
             currStage = NPCStage.None;
             ViewBoxManager.instance.HideViewBox();

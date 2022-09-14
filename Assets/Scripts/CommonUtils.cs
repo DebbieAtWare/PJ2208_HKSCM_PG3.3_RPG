@@ -45,13 +45,6 @@ public class CommonUtils : MonoBehaviour
     public delegate void OnSetupDone();
     public OnSetupDone onSetupDoneCallback;
 
-    [Header("Profile Pic")]
-    public Sprite profilePicSprite_Avatar;
-    public Sprite profilePicSprite_Drone;
-    public Sprite profilePicSprite_Boss01;
-    public Sprite profilePicSprite_Boss02;
-    public Sprite profilePicSprite_Boss03;
-
     [Header("PlayerPos")]
     public Vector3 playerPos_Carboniferous;
     public Vector3 playerPos_Permian;
@@ -226,15 +219,30 @@ public class CommonUtils : MonoBehaviour
         npc_5.IsFirstMeetDone = false;
         npc_5.IsSuccessCollectDone = false;
         ConfigData_DialogBox dialog_51 = new ConfigData_DialogBox();
-        dialog_51.ByWhom = "DRO";
+        dialog_51.ByWhom = "AVA";
         dialog_51.ImagePath = "";
-        dialog_51.Text_TC = "看看這個是芬氏彼得足螈呀!";
+        dialog_51.Text_TC = "噢，是彼得足螈！";
         npc_5.DialogBoxes.Add(dialog_51);
         ConfigData_DialogBox dialog_52 = new ConfigData_DialogBox();
         dialog_52.ByWhom = "DRO";
         dialog_52.ImagePath = "";
-        dialog_52.Text_TC = "芬氏彼得足螈是早石炭紀四足動物的一個已滅絕屬。";
+        dialog_52.Text_TC = "彼得足螈是水棲四足類和陸棲四足類之間的過渡物種。";
         npc_5.DialogBoxes.Add(dialog_52);
+        ConfigData_DialogBox dialog_53 = new ConfigData_DialogBox();
+        dialog_53.ByWhom = "DRO";
+        dialog_53.ImagePath = "";
+        dialog_53.Text_TC = "牠的腳趾朝向身體前方，能夠有效地行走，所以彼得足螈被認為是最早適應在陸地「行走」的脊椎動物！";
+        npc_5.DialogBoxes.Add(dialog_53);
+        ConfigData_DialogBox dialog_54 = new ConfigData_DialogBox();
+        dialog_54.ByWhom = "AVA";
+        dialog_54.ImagePath = "";
+        dialog_54.Text_TC = "可是，牠只能緩步前進。";
+        npc_5.DialogBoxes.Add(dialog_54);
+        ConfigData_DialogBox dialog_55 = new ConfigData_DialogBox();
+        dialog_55.ByWhom = "NPC_C05";
+        dialog_55.ImagePath = "";
+        dialog_55.Text_TC = "一二，一二......等等......";
+        npc_5.DialogBoxes.Add(dialog_55);
         NPC_Carboniferous.Add(npc_5);
 
         ConfigData_Character npc_6 = new ConfigData_Character();

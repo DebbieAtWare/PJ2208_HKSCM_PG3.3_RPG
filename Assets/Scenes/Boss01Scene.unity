@@ -3776,9 +3776,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8431520836166522264, guid: da2dcf02e3e8989489a30bc94806ef18,
         type: 3}
+      propertyPath: id
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8431520836166522264, guid: da2dcf02e3e8989489a30bc94806ef18,
+        type: 3}
       propertyPath: bossSprite
       value: 
       objectReference: {fileID: 21300000, guid: 58b1504c4423ad045a5dfc488cb63339,
+        type: 3}
+    - target: {fileID: 8431520836166522264, guid: da2dcf02e3e8989489a30bc94806ef18,
+        type: 3}
+      propertyPath: dialogBoxProfileSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b19b5fd6745966843a537277661855e3,
         type: 3}
     - target: {fileID: 8431520836166522264, guid: da2dcf02e3e8989489a30bc94806ef18,
         type: 3}

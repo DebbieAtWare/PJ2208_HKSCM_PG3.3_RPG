@@ -908,6 +908,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerAvatar
       objectReference: {fileID: 0}
+    - target: {fileID: 8343410554811638675, guid: 905b7686f22677d408ea2eac276000cc,
+        type: 3}
+      propertyPath: dialogBoxProfileSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 97280297c076c854f9b09e0b1399ed5a,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 905b7686f22677d408ea2eac276000cc, type: 3}
 --- !u!1 &1153055661
@@ -1104,6 +1110,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1328974589025127931, guid: e20de6b64e4cd624aa4e35d868e61da1,
+        type: 3}
+      propertyPath: id
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1328974589025127931, guid: e20de6b64e4cd624aa4e35d868e61da1,
+        type: 3}
+      propertyPath: dialogBoxProfileSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 61ee58dc9749175478c78f5a8cd3b09f,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e20de6b64e4cd624aa4e35d868e61da1, type: 3}
 --- !u!1 &1238590623
@@ -5829,7 +5846,6 @@ MonoBehaviour:
   supportImgCanvasGrp: {fileID: 909475742962043791}
   supportImg: {fileID: 3635763447312519117}
   text_TC: {fileID: 2212615259637660303}
-  dialogWriter: {fileID: 8535534974190911308}
   optionTexts_TC:
   - {fileID: 4802739759207114513}
   - {fileID: 1196239457595964009}
@@ -6476,6 +6492,7 @@ GameObject:
   - component: {fileID: 7387122104473094060}
   - component: {fileID: 3377136450635450629}
   - component: {fileID: 6623636628499162442}
+  - component: {fileID: 7428063498846787352}
   - component: {fileID: 7137238668630584652}
   - component: {fileID: 6741876557971767247}
   - component: {fileID: 345654698393674565}
@@ -6498,6 +6515,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 52c4512e2b755184a92850f0ef8ca5a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7428063498846787352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7428063498846787350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac27d4f3cc29ae94ea9d035efba3b974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7428567430414802068
@@ -7177,7 +7206,6 @@ GameObject:
   m_Component:
   - component: {fileID: 274792204405368217}
   - component: {fileID: 1794946387422747975}
-  - component: {fileID: 8535534974190911308}
   m_Layer: 5
   m_Name: DialogBoxGroup
   m_TagString: Untagged
@@ -7185,19 +7213,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &8535534974190911308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8535534974190911307}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac27d4f3cc29ae94ea9d035efba3b974, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  text: {fileID: 2212615259637660303}
 --- !u!114 &8570045499144832972
 MonoBehaviour:
   m_ObjectHideFlags: 0
