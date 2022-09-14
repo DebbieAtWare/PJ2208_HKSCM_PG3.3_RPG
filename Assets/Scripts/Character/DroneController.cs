@@ -40,7 +40,8 @@ public class DroneController : MonoBehaviour
     [Header("Curr")]
     public DroneStage currDroneStage;
     public int currSelectedOption = 0;
-    public int currDialogLine_Hint = 0;
+    public int currDialogLine_Hint = -1;
+
 
     CommonUtils commonUtils;
     InputManager inputManager;
@@ -74,10 +75,13 @@ public class DroneController : MonoBehaviour
         onTriggerControl.onTriggerEnterCallback += OnTriggerEnter;
         onTriggerControl.onTriggerExitCallback += OnTriggerExit;
 
+        currSelectedOption = 0;
+        currDialogLine_Hint = -1;
         canShowTalkHint = true;
         talkHintObj.SetActive(false);
 
         animator.SetTrigger("Idle");
+
 
         currDroneStage = DroneStage.None;
     }
@@ -190,8 +194,8 @@ public class DroneController : MonoBehaviour
             {
                 SoundManager.instance.Play_Input(2);
                 currDroneStage = DroneStage.Hint;
-                DialogBoxManager.instance.ShowDialog(commonUtils.dialogBox_TipsByDrone_Hints[currDialogLine_Hint]);
                 currDialogLine_Hint++;
+                DialogBoxManager.instance.ShowDialog(commonUtils.dialogBox_TipsByDrone_Hints[currDialogLine_Hint]);
             }
             else if (currSelectedOption == 1)
             {
@@ -210,20 +214,27 @@ public class DroneController : MonoBehaviour
         }
         else if (currDroneStage == DroneStage.Hint)
         {
-            if (currDialogLine_Hint == commonUtils.dialogBox_TipsByDrone_Hints.Count)
+            SoundManager.instance.Play_Input(2);
+
+            if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
             {
-                SoundManager.instance.Play_Input(2);
-                DialogBoxManager.instance.HideDialog();
-                currDialogLine_Hint = 0;
-                currSelectedOption = 0;
-                currDroneStage = DroneStage.None;
-                GameManager.instance.dialogActive = false;
+                DialogBoxManager.instance.FinishCurrentDialog();
             }
             else
             {
-                SoundManager.instance.Play_Input(2);
-                DialogBoxManager.instance.ShowDialog(commonUtils.dialogBox_TipsByDrone_Hints[currDialogLine_Hint]);
-                currDialogLine_Hint++;
+                if (currDialogLine_Hint == (commonUtils.dialogBox_TipsByDrone_Hints.Count - 1))
+                {
+                    DialogBoxManager.instance.HideDialog();
+                    currDialogLine_Hint = -1;
+                    currSelectedOption = 0;
+                    currDroneStage = DroneStage.None;
+                    GameManager.instance.dialogActive = false;
+                }
+                else
+                {
+                    currDialogLine_Hint++;
+                    DialogBoxManager.instance.ShowDialog(commonUtils.dialogBox_TipsByDrone_Hints[currDialogLine_Hint]);
+                }
             }
         }
         else if (currDroneStage == DroneStage.CollectionBook)
@@ -238,7 +249,7 @@ public class DroneController : MonoBehaviour
             {
                 SoundManager.instance.Play_Input(2);
                 DialogBoxManager.instance.HideDialog();
-                currDialogLine_Hint = 0;
+                currDialogLine_Hint = -1;
                 currSelectedOption = 0;
                 currDroneStage = DroneStage.None;
                 GameManager.instance.dialogActive = false;
@@ -250,7 +261,7 @@ public class DroneController : MonoBehaviour
             {
                 SoundManager.instance.Play_Input(2);
                 DialogBoxManager.instance.HideDialog();
-                currDialogLine_Hint = 0;
+                currDialogLine_Hint = -1;
                 currSelectedOption = 0;
                 currDroneStage = DroneStage.None;
                 GameManager.instance.dialogActive = false;
@@ -268,7 +279,7 @@ public class DroneController : MonoBehaviour
             {
                 SoundManager.instance.Play_Input(2);
                 DialogBoxManager.instance.HideDialog();
-                currDialogLine_Hint = 0;
+                currDialogLine_Hint = -1;
                 currSelectedOption = 0;
                 currDroneStage = DroneStage.None;
                 GameManager.instance.dialogActive = false;
