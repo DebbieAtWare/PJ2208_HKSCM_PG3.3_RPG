@@ -202,6 +202,23 @@ public class PlayerController : MonoBehaviour {
             //down
             minimapArrowTrans.eulerAngles = new Vector3(0, 0, 0);
         }
+
+        if (canMove)
+        {
+            if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+            {
+                SoundManager.instance.Play_Walk();
+            }
+            else
+            {
+                SoundManager.instance.FadeOutStop_Walk(0.3f);
+            }
+        }
+        else
+        {
+            SoundManager.instance.FadeOutStop_Walk(0.3f);
+        }
+
         //self add
 
     }

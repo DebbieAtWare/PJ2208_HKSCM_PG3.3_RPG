@@ -24,6 +24,9 @@ public class SoundManager : MonoBehaviour
     public AudioSource audioSource_Dialog;
     public List<AudioClip> clips_Dialog;
 
+    [Header("Walk")]
+    public AudioSource audioSource_Walk;
+
     //for share in multiple scenes
     void Awake()
     {
@@ -143,5 +146,24 @@ public class SoundManager : MonoBehaviour
     public void FadeOutStop_Dialog(float t)
     {
         audioSource_Dialog.DOFade(0f, t).OnComplete(() => audioSource_Dialog.Stop());
+    }
+
+    //---------
+
+    public void Play_Walk()
+    {
+        if (!audioSource_Walk.isPlaying)
+        {
+            audioSource_Walk.Play();
+            audioSource_Walk.DOFade(1f, 0f);
+        }
+    }
+
+    public void FadeOutStop_Walk(float t)
+    {
+        if (audioSource_Walk.isPlaying)
+        {
+            audioSource_Walk.DOFade(0f, t).OnComplete(() => audioSource_Walk.Stop());
+        }
     }
 }
