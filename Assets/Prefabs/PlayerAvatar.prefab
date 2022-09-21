@@ -158,7 +158,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -76193021
   m_SortingLayer: 2
-  m_SortingOrder: 5
+  m_SortingOrder: 7
   m_Sprite: {fileID: -9134318410054155194, guid: 58c6e8ebdb627424d85a94841195ec15,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -244,6 +244,8 @@ MonoBehaviour:
   moveSpeed: 5
   areaTransitionName: 
   canMove: 1
+  id: 0
+  dialogBoxProfileSprite: {fileID: 0}
   minimapArrowTrans: {fileID: 19252308167335572}
 --- !u!61 &7289686206442573939
 BoxCollider2D:
