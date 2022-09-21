@@ -847,6 +847,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
+  dialogBoxProfileSprite: {fileID: 0}
   scan_FrameRenderer: {fileID: 7311666378041169177}
   scan_LightRenderer: {fileID: 8523443378524248992}
   scan_LightPosObj_Start: {fileID: 8797435806306371636}
@@ -854,8 +855,6 @@ MonoBehaviour:
   scan_AvatarPosObj: {fileID: 2354068166935713044}
   scan_DronePosObj: {fileID: 2354068168606296617}
   scan_AvatarDir: 0
-  avatarWalkSpeed: 0.2
-  droneWalkSpeed: 0.2
   droneReturnSpeed: 0.4
   viewTriggerControl: {fileID: 2354068167750775374}
   npcRenderer: {fileID: 2354068167028867157}
