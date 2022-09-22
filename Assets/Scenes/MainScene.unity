@@ -343,8 +343,8 @@ MonoBehaviour:
   dronePos_Permian: {x: -26.33, y: 2.19, z: 1}
   dronePos_InsideTreeCave: {x: -3.85, y: -1.69, z: 1}
   dronePos_OutsideTreeCave: {x: -26, y: -0.35, z: 1}
-  playerAutoWalkSpeed: 0.2
-  droneAutoWalkSpeed: 0.2
+  playerAutoWalkSpeed: 0.25
+  droneAutoWalkSpeed: 0.25
   NPC_Carboniferous: []
   NPC_Permian: []
   dialogBox_BossAlert:
