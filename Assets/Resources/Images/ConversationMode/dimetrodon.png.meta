@@ -1,19 +1,7 @@
 fileFormatVersion: 2
-guid: f798ca3949f974e44b3403202d71865b
+guid: 552bc37ef1bac934fa8eed78f9daa8b7
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 6685528691645617877
-    second: talking bubble_0
-  - first:
-      213: 1492686651092105927
-    second: talking bubble_1
-  - first:
-      213: 177867313986622209
-    second: talking bubble_2
-  - first:
-      213: 1560914707395833494
-    second: talking bubble_3
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -53,7 +41,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -101,91 +89,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: talking bubble_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 23
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5d618317ce4c7cc50800000000000000
-      internalID: 6685528691645617877
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: talking bubble_1
-      rect:
-        serializedVersion: 2
-        x: 23
-        y: 0
-        width: 23
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7caff4fb99617b410800000000000000
-      internalID: 1492686651092105927
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: talking bubble_2
-      rect:
-        serializedVersion: 2
-        x: 46
-        y: 0
-        width: 23
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 10353533169e77200800000000000000
-      internalID: 177867313986622209
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: talking bubble_3
-      rect:
-        serializedVersion: 2
-        x: 69
-        y: 0
-        width: 23
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 69ee20308ab79a510800000000000000
-      internalID: 1560914707395833494
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
