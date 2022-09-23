@@ -10,7 +10,9 @@ public enum BossStage
     Alert,
     AutoPlay,
     View,
-    ConversationMode
+    Transition_ConversationStart,
+    ConversationMode,
+    Transition_ConversationEnd
 }
 
 public class BossObject : MonoBehaviour
@@ -22,7 +24,6 @@ public class BossObject : MonoBehaviour
     public CharacterID id;
 
     [Header("Sprite")]
-    public Sprite bossSprite;
     public Sprite collectionBookThumbnailSprite;
     public Sprite dialogBoxProfileSprite;
 
@@ -125,16 +126,22 @@ public class BossObject : MonoBehaviour
        }
        else if (currBossStage == BossStage.View)
        {
-            SoundManager.instance.Play_BGM(1);
-            ViewBoxManager.instance.HideViewBox();
-            SoundManager.instance.Play_Input(2);
-            MinimapManager.instance.Hide(0.5f);
-            StatusBarManager.instance.Hide_Carbon(0.5f);
-            StatusBarManager.instance.Hide_Permian(0.5f);
-            ConversationModeManager.instance.Show1(info.Name_TC, info.DescriptionTag_TC, bossSprite);
-            currDialogLine++;
-            DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
-            currBossStage = BossStage.ConversationMode;
+            StartCoroutine(Ani());
+            IEnumerator Ani()
+            {
+                currBossStage = BossStage.Transition_ConversationStart;
+                SoundManager.instance.Play_BGM(1);
+                ViewBoxManager.instance.HideViewBox();
+                SoundManager.instance.Play_Input(2);
+                MinimapManager.instance.Hide(0.5f);
+                StatusBarManager.instance.Hide_Carbon(0.5f);
+                StatusBarManager.instance.Hide_Permian(0.5f);
+                ConversationModeManager.instance.Ani_Start(id, info.Name_TC, info.DescriptionTag_TC);
+                yield return new WaitForSeconds(3f);
+                currDialogLine++;
+                DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
+                currBossStage = BossStage.ConversationMode;
+            }
         }
        else if (currBossStage == BossStage.ConversationMode)
        {
@@ -149,7 +156,13 @@ public class BossObject : MonoBehaviour
                 if (currDialogLine == 0)
                 {
                     SoundManager.instance.Play_Input(2);
-                    ConversationModeManager.instance.Show2();
+                    ConversationModeManager.instance.Ani_AvatarIn();
+                    currDialogLine++;
+                    DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
+                }
+                else if (currDialogLine == (info.DialogBoxes.Count - 2))
+                {
+                    ConversationModeManager.instance.Ani_BossCenter();
                     currDialogLine++;
                     DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
                 }
@@ -158,8 +171,9 @@ public class BossObject : MonoBehaviour
                     StartCoroutine(LastLine());
                     IEnumerator LastLine()
                     {
+                        currBossStage = BossStage.Transition_ConversationEnd;
                         DialogBoxManager.instance.HideDialog();
-                        ConversationModeManager.instance.HideFade(0.5f);
+                        ConversationModeManager.instance.HideFade(1f);
                         currDialogLine = -1;
                         for (int i = 0; i < arrowObjs_Green.Count; i++)
                         {
@@ -169,7 +183,7 @@ public class BossObject : MonoBehaviour
                         minimapDot_Red.SetActive(false);
                         minimapDot_Grey.SetActive(true);
                         OutlineHide();
-                        yield return new WaitForSeconds(0.5f);
+                        yield return new WaitForSeconds(1f);
                         currBossStage = BossStage.None;
                         if (onFinishedConversationCallback != null)
                         {
@@ -179,7 +193,7 @@ public class BossObject : MonoBehaviour
                 }
                 else
                 {
-                    ConversationModeManager.instance.Show3();
+                    ConversationModeManager.instance.Ani_AvatarOut();
                     currDialogLine++;
                     DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
                 }
