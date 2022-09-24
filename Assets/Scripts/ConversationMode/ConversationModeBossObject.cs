@@ -17,6 +17,11 @@ public class ConversationModeBossObject : MonoBehaviour
     public List<Sprite> sprites_Idle = new List<Sprite>();
     public List<Sprite> sprites_Talk = new List<Sprite>();
 
+    [Header("For M03 only. Can be NULL")]
+    public RectTransform teethRect;
+    public List<Vector2> teethPos_Idle = new List<Vector2>();
+    public List<Vector2> teethPos_Talk = new List<Vector2>();
+
     int currIndex_Idle = 0;
     float aniTime_Idle = 0.25f;
 
@@ -39,7 +44,6 @@ public class ConversationModeBossObject : MonoBehaviour
             LoopAni_Idle();
             currStage = BossStage.Idle;
         }
-        
     }
 
     public void ChangeAni_Talk()
@@ -62,6 +66,10 @@ public class ConversationModeBossObject : MonoBehaviour
         }
 
         img.sprite = sprites_Idle[currIndex_Idle];
+        if (teethRect != null)
+        {
+            teethRect.anchoredPosition = teethPos_Idle[currIndex_Idle];
+        }
         Invoke("LoopAni_Idle", aniTime_Idle);
     }
 
@@ -75,6 +83,10 @@ public class ConversationModeBossObject : MonoBehaviour
         }
 
         img.sprite = sprites_Talk[currIndex_Talk];
+        if (teethRect != null)
+        {
+            teethRect.anchoredPosition = teethPos_Talk[currIndex_Talk];
+        }
         Invoke("LoopAni_Talk", aniTime_Talk);
     }
 

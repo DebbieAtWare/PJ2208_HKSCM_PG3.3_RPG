@@ -35,6 +35,7 @@ public class ConversationModeManager : MonoBehaviour
 
     [Header("Avatar")]
     public RectTransform avatarGrpRect;
+    public ConversationModeAvatarObject avatarObj;
     Vector2 avatarGrpPosTarget_On = new Vector2(0f, 0f);
     Vector2 avatarGrpPosTarget_Off = new Vector2(-570f, 0f);
 
@@ -172,16 +173,24 @@ public class ConversationModeManager : MonoBehaviour
 
     public void Ani_AvatarIn()
     {
-        BkgTopAni();
-        bossObjs[currBossIndex].rectTrans.DOAnchorPos(bossPosTargets_Side[currBossIndex], 1f);
-        bossObjs[currBossIndex].rectTrans.DOScale(bossScaleTargets_Side[currBossIndex], 1f);
-        avatarGrpRect.DOAnchorPos(avatarGrpPosTarget_On, 1f);
-        tagCanvasGrp.DOFade(1, 1f);
+        StartCoroutine(Ani());
+        IEnumerator Ani()
+        {
+            BkgTopAni();
+            bossObjs[currBossIndex].rectTrans.DOAnchorPos(bossPosTargets_Side[currBossIndex], 1f);
+            bossObjs[currBossIndex].rectTrans.DOScale(bossScaleTargets_Side[currBossIndex], 1f);
+            avatarGrpRect.DOAnchorPos(avatarGrpPosTarget_On, 1f);
+            avatarObj.ChangeAni_Walk_R();
+            tagCanvasGrp.DOFade(1, 1f);
+            yield return new WaitForSeconds(1f);
+            avatarObj.ChangeAni_Idle();
+        }
     }
 
     public void Ani_AvatarOut()
     {
         avatarGrpRect.DOAnchorPos(avatarGrpPosTarget_Off, 1f);
+        avatarObj.ChangeAni_Walk_L();
     }
 
     public void Ani_BossCenter()

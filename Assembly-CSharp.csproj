@@ -185,6 +185,7 @@
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleNotification.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\QuestManager.cs" />
     <Compile Include="Assets\Scripts\ConversationMode\ConversationModeBossObject.cs" />
+    <Compile Include="Assets\Scripts\ConversationMode\ConversationModeAvatarObject.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
