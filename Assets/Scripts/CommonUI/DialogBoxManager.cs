@@ -27,6 +27,9 @@ public class DialogBoxManager : MonoBehaviour
     public GameObject zoomObj_NPC_P11;
     public GameObject zoomObj_NPC_P12;
 
+    public delegate void OnDialogEnd();
+    public OnDialogEnd onDialogEndCallback;
+
     CommonUtils commonUtils;
     Vector2 supportImgSizeTarget = new Vector2(720, 480);
 
@@ -39,6 +42,7 @@ public class DialogBoxManager : MonoBehaviour
             optionTexts_TC[i].gameObject.SetActive(false);
             arrowObjs[i].SetActive(false);
         }
+        dialogBoxGrp.SetActive(false);
     }
 
     public void FinishCurrentDialog()
@@ -180,6 +184,10 @@ public class DialogBoxManager : MonoBehaviour
 
     void OnDialogLineEnd()
     {
+        if (onDialogEndCallback != null)
+        {
+            onDialogEndCallback.Invoke();
+        }
         SoundManager.instance.FadeOutStop_Dialog(0.3f);
     }
 

@@ -107,6 +107,7 @@ public class PermianManager : MonoBehaviour
                 MinimapManager.instance.Show(0.5f);
                 StatusBarManager.instance.Show_Permian(0.5f);
                 InputManager.instance.canInput_Confirm = true;
+                GameManager.instance.dialogActive = false;
             }
         }
         
@@ -135,6 +136,7 @@ public class PermianManager : MonoBehaviour
                 MinimapManager.instance.Show(0.5f);
                 StatusBarManager.instance.Show_Permian(0.5f);
                 InputManager.instance.canInput_Confirm = true;
+                GameManager.instance.dialogActive = false;
             }
         }
     }

@@ -45,6 +45,8 @@ public class TransitionManager : MonoBehaviour
 
     public void ChangeMap(MapID currMap, MapID targetMap)
     {
+        InputManager.instance.canInput_Confirm = false;
+        SoundManager.instance.FadeOutStop_Dialog(0.3f);
         SoundManager.instance.Play_SFX(11);
         rootObj.SetActive(true);
         StartCoroutine(ChangeMap());
@@ -124,6 +126,7 @@ public class TransitionManager : MonoBehaviour
             camFeedImg.DOFade(0f, 1f);
             yield return new WaitForSeconds(1.4f);
             GameManager.instance.fadingBetweenAreas = false;
+            InputManager.instance.canInput_Confirm = true;
             commonUtils.currMapId = targetMap;
         }
     }

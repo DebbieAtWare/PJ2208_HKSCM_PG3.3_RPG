@@ -11,6 +11,7 @@ public class ViewBoxManager : MonoBehaviour
     private void Start()
     {
         instance = this;
+        HideViewBox();
     }
 
     public void ShowViewBox()

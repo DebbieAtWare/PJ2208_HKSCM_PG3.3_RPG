@@ -25,8 +25,7 @@ public class ConversationModeManager : MonoBehaviour
     public int currBkgTopIndex;
 
     [Header("Boss")]
-    public List<RectTransform> bossRects = new List<RectTransform>();
-    public List<CanvasGroup> bossCanvasGrps = new List<CanvasGroup>();
+    public List<ConversationModeBossObject> bossObjs = new List<ConversationModeBossObject>();
     List<Vector2> bossPosTargets_Center = new List<Vector2>();
     List<Vector2> bossPosTargets_Side = new List<Vector2>();
     List<Vector2> bossPosTargets_Off = new List<Vector2>();
@@ -128,35 +127,35 @@ public class ConversationModeManager : MonoBehaviour
         if (id == CharacterID.M01)
         {
             currBossIndex = 0;
-            bossRects[0].gameObject.SetActive(true);
-            bossRects[0].anchoredPosition = bossPosTargets_Off[0];
-            bossRects[0].localScale = bossScaleTargets_Off[0];
-            bossCanvasGrps[0].alpha = 0;
+            bossObjs[0].gameObject.SetActive(true);
+            bossObjs[0].rectTrans.anchoredPosition = bossPosTargets_Off[0];
+            bossObjs[0].rectTrans.localScale = bossScaleTargets_Off[0];
+            bossObjs[0].canvasGrp.alpha = 0;
             tag_BadgeImg.sprite = tag_BadgeSprites[0];
-            bossRects[1].gameObject.SetActive(false);
-            bossRects[2].gameObject.SetActive(false);
+            bossObjs[1].gameObject.SetActive(false);
+            bossObjs[2].gameObject.SetActive(false);
         }
         else if (id == CharacterID.M02)
         {
             currBossIndex = 1;
-            bossRects[1].gameObject.SetActive(true);
-            bossRects[1].anchoredPosition = bossPosTargets_Off[1];
-            bossRects[1].localScale = bossScaleTargets_Off[1];
-            bossCanvasGrps[1].alpha = 0;
+            bossObjs[1].gameObject.SetActive(true);
+            bossObjs[1].rectTrans.anchoredPosition = bossPosTargets_Off[1];
+            bossObjs[1].rectTrans.localScale = bossScaleTargets_Off[1];
+            bossObjs[1].canvasGrp.alpha = 0;
             tag_BadgeImg.sprite = tag_BadgeSprites[1];
-            bossRects[0].gameObject.SetActive(false);
-            bossRects[2].gameObject.SetActive(false);
+            bossObjs[0].gameObject.SetActive(false);
+            bossObjs[2].gameObject.SetActive(false);
         }
         else if (id == CharacterID.M03)
         {
             currBossIndex = 2;
-            bossRects[2].gameObject.SetActive(true);
-            bossRects[2].anchoredPosition = bossPosTargets_Off[2];
-            bossRects[2].localScale = bossScaleTargets_Off[2];
-            bossCanvasGrps[2].alpha = 0;
+            bossObjs[2].gameObject.SetActive(true);
+            bossObjs[2].rectTrans.anchoredPosition = bossPosTargets_Off[2];
+            bossObjs[2].rectTrans.localScale = bossScaleTargets_Off[2];
+            bossObjs[2].canvasGrp.alpha = 0;
             tag_BadgeImg.sprite = tag_BadgeSprites[2];
-            bossRects[0].gameObject.SetActive(false);
-            bossRects[1].gameObject.SetActive(false);
+            bossObjs[0].gameObject.SetActive(false);
+            bossObjs[1].gameObject.SetActive(false);
         }
         //ani
         StartCoroutine(Ani());
@@ -165,8 +164,8 @@ public class ConversationModeManager : MonoBehaviour
             conversationModeCanvasGrp.DOFade(1, 1f);
             yield return new WaitForSeconds(0.8f);
             BkgTopAni_Reverse();
-            bossRects[currBossIndex].DOAnchorPos(bossPosTargets_Center[currBossIndex], 1.5f);
-            bossCanvasGrps[currBossIndex].DOFade(1f, 0.5f);
+            bossObjs[currBossIndex].rectTrans.DOAnchorPos(bossPosTargets_Center[currBossIndex], 1.5f);
+            bossObjs[currBossIndex].canvasGrp.DOFade(1f, 0.5f);
         }
         
     }
@@ -174,8 +173,8 @@ public class ConversationModeManager : MonoBehaviour
     public void Ani_AvatarIn()
     {
         BkgTopAni();
-        bossRects[currBossIndex].DOAnchorPos(bossPosTargets_Side[currBossIndex], 1f);
-        bossRects[currBossIndex].DOScale(bossScaleTargets_Side[currBossIndex], 1f);
+        bossObjs[currBossIndex].rectTrans.DOAnchorPos(bossPosTargets_Side[currBossIndex], 1f);
+        bossObjs[currBossIndex].rectTrans.DOScale(bossScaleTargets_Side[currBossIndex], 1f);
         avatarGrpRect.DOAnchorPos(avatarGrpPosTarget_On, 1f);
         tagCanvasGrp.DOFade(1, 1f);
     }
@@ -188,8 +187,18 @@ public class ConversationModeManager : MonoBehaviour
     public void Ani_BossCenter()
     {
         tagCanvasGrp.DOFade(0, 1f);
-        bossRects[currBossIndex].DOAnchorPos(bossPosTargets_Center[currBossIndex], 1f);
-        bossRects[currBossIndex].DOScale(bossScaleTargets_Center[currBossIndex], 1f);
+        bossObjs[currBossIndex].rectTrans.DOAnchorPos(bossPosTargets_Center[currBossIndex], 1f);
+        bossObjs[currBossIndex].rectTrans.DOScale(bossScaleTargets_Center[currBossIndex], 1f);
+    }
+
+    public void BossAni_Idle()
+    {
+        bossObjs[currBossIndex].ChangeAni_Idle();
+    }
+
+    public void BossAni_Talk()
+    {
+        bossObjs[currBossIndex].ChangeAni_Talk();
     }
 
     public void HideFade(float aniTime)
