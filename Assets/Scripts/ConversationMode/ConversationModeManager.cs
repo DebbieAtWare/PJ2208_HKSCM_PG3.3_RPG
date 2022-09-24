@@ -36,6 +36,7 @@ public class ConversationModeManager : MonoBehaviour
     [Header("Avatar")]
     public RectTransform avatarGrpRect;
     public ConversationModeAvatarObject avatarObj;
+    public ConversationModeDroneObject droneObj;
     Vector2 avatarGrpPosTarget_On = new Vector2(0f, 0f);
     Vector2 avatarGrpPosTarget_Off = new Vector2(-570f, 0f);
 
@@ -181,6 +182,7 @@ public class ConversationModeManager : MonoBehaviour
             bossObjs[currBossIndex].rectTrans.DOScale(bossScaleTargets_Side[currBossIndex], 1f);
             avatarGrpRect.DOAnchorPos(avatarGrpPosTarget_On, 1f);
             avatarObj.ChangeAni_Walk_R();
+            droneObj.ChangeAni();
             tagCanvasGrp.DOFade(1, 1f);
             yield return new WaitForSeconds(1f);
             avatarObj.ChangeAni_Idle();
