@@ -60,7 +60,7 @@ PrefabInstance:
     - target: {fileID: 4636473802934813657, guid: 0a0c09478a52a1745a106241c130ac8e,
         type: 3}
       propertyPath: m_Name
-      value: BossCard_M03
+      value: BossCard_M03 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4636473802934813657, guid: 0a0c09478a52a1745a106241c130ac8e,
         type: 3}
@@ -140,12 +140,12 @@ PrefabInstance:
     - target: {fileID: 4636473802934813658, guid: 0a0c09478a52a1745a106241c130ac8e,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1268.34
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4636473802934813658, guid: 0a0c09478a52a1745a106241c130ac8e,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -165
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4636473802934813658, guid: 0a0c09478a52a1745a106241c130ac8e,
         type: 3}

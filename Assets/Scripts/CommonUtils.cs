@@ -117,7 +117,7 @@ public class CommonUtils : MonoBehaviour
 
         if (scene.name == "MainScene")
         {
-
+            
         }
         else if (scene.name == "CarboniferousScene")
         {

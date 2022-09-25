@@ -244,7 +244,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.48000336, y: 141.33}
+  m_AnchoredPosition: {x: 0.47998047, y: 141.33}
   m_SizeDelta: {x: 150, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4636473802646142129
@@ -357,6 +357,7 @@ GameObject:
   - component: {fileID: 4636473802934813660}
   - component: {fileID: 4636473802934813659}
   - component: {fileID: 4636473801578556570}
+  - component: {fileID: 1622628178743859365}
   m_Layer: 5
   m_Name: BossCard
   m_TagString: Untagged
@@ -382,11 +383,11 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -167, y: 232.3}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 239.0625, y: 334.6875}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 1}
 --- !u!222 &4636473802934813660
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -437,8 +438,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef9e482e392ebab4181a6b1292c3056f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   nameText_TC: {fileID: 4636473803244520461}
   frameObj: {fileID: 1446517766}
+--- !u!114 &1622628178743859365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4636473802934813657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AspectMode: 0
+  m_AspectRatio: 0.71428573
 --- !u!1 &4636473803244520459
 GameObject:
   m_ObjectHideFlags: 0
