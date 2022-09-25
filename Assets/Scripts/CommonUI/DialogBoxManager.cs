@@ -24,8 +24,8 @@ public class DialogBoxManager : MonoBehaviour
 
     [Header("ZoomImg")]
     public CanvasGroup zoomImgCanvasGrp;
-    public GameObject zoomObj_NPC_P11;
-    public GameObject zoomObj_NPC_P12;
+    public GameObject zoomObj_NPC_P09;
+    public GameObject zoomObj_NPC_P10;
 
     public delegate void OnDialogEnd();
     public OnDialogEnd onDialogEndCallback;
@@ -242,15 +242,15 @@ public class DialogBoxManager : MonoBehaviour
     public void ShowZoomImg(CharacterID id, float aniTime)
     {
         zoomImgCanvasGrp.gameObject.SetActive(true);
-        if (id == CharacterID.NPC_P11)
+        if (id == CharacterID.NPC_P09)
         {
-            zoomObj_NPC_P11.SetActive(true);
-            zoomObj_NPC_P12.SetActive(false);
+            zoomObj_NPC_P09.SetActive(true);
+            zoomObj_NPC_P10.SetActive(false);
         }
-        else if (id == CharacterID.NPC_P12)
+        else if (id == CharacterID.NPC_P10)
         {
-            zoomObj_NPC_P11.SetActive(false);
-            zoomObj_NPC_P12.SetActive(true);
+            zoomObj_NPC_P09.SetActive(false);
+            zoomObj_NPC_P10.SetActive(true);
         }
         zoomImgCanvasGrp.DOFade(1, aniTime);
     }

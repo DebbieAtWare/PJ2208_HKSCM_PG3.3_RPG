@@ -717,6 +717,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2046304088}
     m_Modifications:
+    - target: {fileID: 7343226060706601456, guid: 9d931774b5d1448459f15a481ead161b,
+        type: 3}
+      propertyPath: id
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 7343226061180160800, guid: 9d931774b5d1448459f15a481ead161b,
         type: 3}
       propertyPath: m_Pivot.x
@@ -825,7 +830,7 @@ PrefabInstance:
     - target: {fileID: 7343226061180160803, guid: 9d931774b5d1448459f15a481ead161b,
         type: 3}
       propertyPath: m_Name
-      value: NPCCard (6)
+      value: NPCCard_P03
       objectReference: {fileID: 0}
     - target: {fileID: 7343226061794694960, guid: 9d931774b5d1448459f15a481ead161b,
         type: 3}
@@ -10017,7 +10022,7 @@ GameObject:
   - component: {fileID: 6468575934725247361}
   - component: {fileID: 2502103284293323386}
   m_Layer: 5
-  m_Name: Dunbaria fasciipennis_Frame
+  m_Name: NPC_10_Dunbaria fasciipennis_Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12104,8 +12109,8 @@ MonoBehaviour:
   - {fileID: 5895290293855085436}
   - {fileID: 1222136393422319562}
   zoomImgCanvasGrp: {fileID: 6009072257571880038}
-  zoomObj_NPC_P11: {fileID: 8869312664166067567}
-  zoomObj_NPC_P12: {fileID: 6034616917813803318}
+  zoomObj_NPC_P09: {fileID: 8869312664166067567}
+  zoomObj_NPC_P10: {fileID: 6034616917813803318}
 --- !u!114 &8570045499144832972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12315,7 +12320,7 @@ GameObject:
   - component: {fileID: 7474122206457518733}
   - component: {fileID: 8452843063364834464}
   m_Layer: 5
-  m_Name: Tshekardocoleidae_frame
+  m_Name: NPC09_Tshekardocoleidae_frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

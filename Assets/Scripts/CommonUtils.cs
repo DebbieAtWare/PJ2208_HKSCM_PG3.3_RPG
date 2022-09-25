@@ -34,8 +34,6 @@ public enum CharacterID
     NPC_P08,
     NPC_P09,
     NPC_P10,
-    NPC_P11,
-    NPC_P12,
 }
 
 public class CommonUtils : MonoBehaviour
@@ -430,26 +428,8 @@ public class CommonUtils : MonoBehaviour
 
         //----
 
-        ConfigData_Character npc_p1 = new ConfigData_Character();
-        npc_p1.Id = "NPC_P01";
-        npc_p1.Name_TC = "科達樹";
-        npc_p1.IsCollectable = false;
-        npc_p1.IsFirstMeetDone = false;
-        npc_p1.IsSuccessCollectDone = false;
-        ConfigData_DialogBox dialog_p11 = new ConfigData_DialogBox();
-        dialog_p11.ByWhom = "DRO";
-        dialog_p11.ImagePath = "";
-        dialog_p11.Text_TC = "看看這個是科達樹呀!";
-        npc_p1.DialogBoxes.Add(dialog_p11);
-        ConfigData_DialogBox dialog_p12 = new ConfigData_DialogBox();
-        dialog_p12.ByWhom = "DRO";
-        dialog_p12.ImagePath = "";
-        dialog_p12.Text_TC = "科達樹是形成煤炭的重要植物，很多煤炭都是由石炭紀植物形成，這個地質時期因此稱為「石炭紀」。";
-        npc_p1.DialogBoxes.Add(dialog_p12);
-        NPC_Permian.Add(npc_p1);
-
         ConfigData_Character npc_p2 = new ConfigData_Character();
-        npc_p2.Id = "NPC_P02";
+        npc_p2.Id = "NPC_P01";
         npc_p2.Name_TC = "節胸屬";
         npc_p2.IsCollectable = false;
         npc_p2.IsFirstMeetDone = false;
@@ -466,26 +446,26 @@ public class CommonUtils : MonoBehaviour
         npc_p2.DialogBoxes.Add(dialog_p22);
         NPC_Permian.Add(npc_p2);
 
-        ConfigData_Character npc_p3 = new ConfigData_Character();
-        npc_p3.Id = "NPC_P03";
-        npc_p3.Name_TC = "巨脈蜻蜓";
-        npc_p3.IsCollectable = false;
-        npc_p3.IsFirstMeetDone = false;
-        npc_p3.IsSuccessCollectDone = false;
-        ConfigData_DialogBox dialog_p31 = new ConfigData_DialogBox();
-        dialog_p31.ByWhom = "DRO";
-        dialog_p31.ImagePath = "";
-        dialog_p31.Text_TC = "看看這個是巨脈蜻蜓呀!";
-        npc_p3.DialogBoxes.Add(dialog_p31);
-        ConfigData_DialogBox dialog_p32 = new ConfigData_DialogBox();
-        dialog_p32.ByWhom = "DRO";
-        dialog_p32.ImagePath = "";
-        dialog_p32.Text_TC = "巨脈蜻蜓在石炭紀才是全盛時期。";
-        npc_p3.DialogBoxes.Add(dialog_p32);
-        NPC_Permian.Add(npc_p3);
+        ConfigData_Character npc_p6 = new ConfigData_Character();
+        npc_p6.Id = "NPC_P02";
+        npc_p6.Name_TC = "引螈屬";
+        npc_p6.IsCollectable = false;
+        npc_p6.IsFirstMeetDone = false;
+        npc_p6.IsSuccessCollectDone = false;
+        ConfigData_DialogBox dialog_p61 = new ConfigData_DialogBox();
+        dialog_p61.ByWhom = "DRO";
+        dialog_p61.ImagePath = "";
+        dialog_p61.Text_TC = "看看這個是引螈屬呀!";
+        npc_p6.DialogBoxes.Add(dialog_p61);
+        ConfigData_DialogBox dialog_p62 = new ConfigData_DialogBox();
+        dialog_p62.ByWhom = "DRO";
+        dialog_p62.ImagePath = "";
+        dialog_p62.Text_TC = "引螈屬在石炭紀才是全盛時期。";
+        npc_p6.DialogBoxes.Add(dialog_p62);
+        NPC_Permian.Add(npc_p6);
 
         ConfigData_Character npc_p4 = new ConfigData_Character();
-        npc_p4.Id = "NPC_P04";
+        npc_p4.Id = "NPC_P03";
         npc_p4.Name_TC = "銀杏目";
         npc_p4.IsCollectable = false;
         npc_p4.IsFirstMeetDone = false;
@@ -503,7 +483,7 @@ public class CommonUtils : MonoBehaviour
         NPC_Permian.Add(npc_p4);
 
         ConfigData_Character npc_p5 = new ConfigData_Character();
-        npc_p5.Id = "NPC_P05";
+        npc_p5.Id = "NPC_P04";
         npc_p5.Name_TC = "舌羊齒屬";
         npc_p5.IsCollectable = false;
         npc_p5.IsFirstMeetDone = false;
@@ -520,26 +500,8 @@ public class CommonUtils : MonoBehaviour
         npc_p5.DialogBoxes.Add(dialog_p52);
         NPC_Permian.Add(npc_p5);
 
-        ConfigData_Character npc_p6 = new ConfigData_Character();
-        npc_p6.Id = "NPC_P06";
-        npc_p6.Name_TC = "引螈屬";
-        npc_p6.IsCollectable = false;
-        npc_p6.IsFirstMeetDone = false;
-        npc_p6.IsSuccessCollectDone = false;
-        ConfigData_DialogBox dialog_p61 = new ConfigData_DialogBox();
-        dialog_p61.ByWhom = "DRO";
-        dialog_p61.ImagePath = "";
-        dialog_p61.Text_TC = "看看這個是引螈屬呀!";
-        npc_p6.DialogBoxes.Add(dialog_p61);
-        ConfigData_DialogBox dialog_p62 = new ConfigData_DialogBox();
-        dialog_p62.ByWhom = "DRO";
-        dialog_p62.ImagePath = "";
-        dialog_p62.Text_TC = "引螈屬在石炭紀才是全盛時期。";
-        npc_p6.DialogBoxes.Add(dialog_p62);
-        NPC_Permian.Add(npc_p6);
-
         ConfigData_Character npc_p7 = new ConfigData_Character();
-        npc_p7.Id = "NPC_P07";
+        npc_p7.Id = "NPC_P05";
         npc_p7.Name_TC = "空尾蜥屬";
         npc_p7.IsCollectable = false;
         npc_p7.IsFirstMeetDone = false;
@@ -557,7 +519,7 @@ public class CommonUtils : MonoBehaviour
         NPC_Permian.Add(npc_p7);
 
         ConfigData_Character npc_p8 = new ConfigData_Character();
-        npc_p8.Id = "NPC_P08";
+        npc_p8.Id = "NPC_P06";
         npc_p8.Name_TC = "瘤頭龍屬";
         npc_p8.IsCollectable = false;
         npc_p8.IsFirstMeetDone = false;
@@ -575,7 +537,7 @@ public class CommonUtils : MonoBehaviour
         NPC_Permian.Add(npc_p8);
 
         ConfigData_Character npc_p9 = new ConfigData_Character();
-        npc_p9.Id = "NPC_P09";
+        npc_p9.Id = "NPC_P07";
         npc_p9.Name_TC = "盾甲龍屬";
         npc_p9.IsCollectable = false;
         npc_p9.IsFirstMeetDone = false;
@@ -593,7 +555,7 @@ public class CommonUtils : MonoBehaviour
         NPC_Permian.Add(npc_p9);
 
         ConfigData_Character npc_p10 = new ConfigData_Character();
-        npc_p10.Id = "NPC_P10";
+        npc_p10.Id = "NPC_P08";
         npc_p10.Name_TC = "狼蜥獸屬";
         npc_p10.IsCollectable = false;
         npc_p10.IsFirstMeetDone = false;
@@ -610,41 +572,56 @@ public class CommonUtils : MonoBehaviour
         npc_p10.DialogBoxes.Add(dialog_p102);
         NPC_Permian.Add(npc_p10);
 
-        ConfigData_Character npc_p11 = new ConfigData_Character();
-        npc_p11.Id = "NPC_P11";
-        npc_p11.Name_TC = "甲蟲";
-        npc_p11.IsCollectable = false;
-        npc_p11.IsFirstMeetDone = false;
-        npc_p11.IsSuccessCollectDone = false;
-        ConfigData_DialogBox dialog_p111 = new ConfigData_DialogBox();
-        dialog_p111.ByWhom = "DRO";
-        dialog_p111.ImagePath = "";
-        dialog_p111.Text_TC = "看看這個是甲蟲呀!";
-        npc_p11.DialogBoxes.Add(dialog_p111);
-        ConfigData_DialogBox dialog_p112 = new ConfigData_DialogBox();
-        dialog_p112.ByWhom = "DRO";
-        dialog_p112.ImagePath = "";
-        dialog_p112.Text_TC = "甲蟲像其他原始甲蟲一樣，它們被認為是食木動物。";
-        npc_p11.DialogBoxes.Add(dialog_p112);
-        NPC_Permian.Add(npc_p11);
-
         ConfigData_Character npc_p12 = new ConfigData_Character();
-        npc_p12.Id = "NPC_P12";
-        npc_p12.Name_TC = "古網翅目";
+        npc_p12.Id = "NPC_P09";
+        npc_p12.Name_TC = "原鞘翅目";
         npc_p12.IsCollectable = false;
         npc_p12.IsFirstMeetDone = false;
         npc_p12.IsSuccessCollectDone = false;
         ConfigData_DialogBox dialog_p121 = new ConfigData_DialogBox();
-        dialog_p121.ByWhom = "DRO";
+        dialog_p121.ByWhom = "AVA";
         dialog_p121.ImagePath = "";
-        dialog_p121.Text_TC = "看看這個是古網翅目呀!";
+        dialog_p121.Text_TC = "這些小不點是原始甲蟲。";
         npc_p12.DialogBoxes.Add(dialog_p121);
         ConfigData_DialogBox dialog_p122 = new ConfigData_DialogBox();
         dialog_p122.ByWhom = "DRO";
         dialog_p122.ImagePath = "";
-        dialog_p122.Text_TC = "古網翅目有像鳥喙的口器，前後翅膀相似，在第一對翅膀前有一對額外的小翅。";
+        dialog_p122.Text_TC = "這些原始甲蟲屬於已滅絕的原鞘翅目，主要食物是木材。";
         npc_p12.DialogBoxes.Add(dialog_p122);
+        ConfigData_DialogBox dialog_p123 = new ConfigData_DialogBox();
+        dialog_p123.ByWhom = "AVA";
+        dialog_p123.ImagePath = "";
+        dialog_p123.Text_TC = "相比石炭紀的昆蟲，二疊紀的昆蟲較細小。";
+        npc_p12.DialogBoxes.Add(dialog_p123);
         NPC_Permian.Add(npc_p12);
+
+        ConfigData_Character npc_p13 = new ConfigData_Character();
+        npc_p13.Id = "NPC_P10";
+        npc_p13.Name_TC = "古網翅目";
+        npc_p13.IsCollectable = false;
+        npc_p13.IsFirstMeetDone = false;
+        npc_p13.IsSuccessCollectDone = false;
+        ConfigData_DialogBox dialog_p131 = new ConfigData_DialogBox();
+        dialog_p131.ByWhom = "AVA";
+        dialog_p131.ImagePath = "";
+        dialog_p131.Text_TC = "這些是古網翅目昆蟲。牠的樣子哪裏怪怪的。";
+        npc_p13.DialogBoxes.Add(dialog_p131);
+        ConfigData_DialogBox dialog_p132 = new ConfigData_DialogBox();
+        dialog_p132.ByWhom = "DRO";
+        dialog_p132.ImagePath = "";
+        dialog_p132.Text_TC = "不像現代的昆蟲有四隻翅膀，牠們有六隻翅膀。";
+        npc_p13.DialogBoxes.Add(dialog_p132);
+        ConfigData_DialogBox dialog_p133 = new ConfigData_DialogBox();
+        dialog_p133.ByWhom = "DRO";
+        dialog_p133.ImagePath = "";
+        dialog_p133.Text_TC = "牠們用像鳥喙一般的口器吮吸植物的汁液。";
+        npc_p13.DialogBoxes.Add(dialog_p133);
+        ConfigData_DialogBox dialog_p134 = new ConfigData_DialogBox();
+        dialog_p134.ByWhom = "NPC_P10";
+        dialog_p134.ImagePath = "";
+        dialog_p134.Text_TC = "真美味，你們也要來一口嗎？";
+        npc_p13.DialogBoxes.Add(dialog_p134);
+        NPC_Permian.Add(npc_p13);
 
         //-------
 
