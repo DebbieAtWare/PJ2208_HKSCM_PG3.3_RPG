@@ -98,6 +98,7 @@
     <Compile Include="Assets\Scripts\MainManger.cs" />
     <Compile Include="Assets\FlexReader\Demo\Scripts\Loading.cs" />
     <Compile Include="Assets\2D RPG Kit\Touch Support\CrossPlatformInput\Scripts\TouchPad.cs" />
+    <Compile Include="Assets\Scripts\ConversationMode\ConversationModeAvatarObject.cs" />
     <Compile Include="Assets\2D RPG Kit\Touch Support\CrossPlatformInput\Scripts\Joystick.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleManager.cs" />
     <Compile Include="Assets\Scripts\Map\PermianManager.cs" />
@@ -155,12 +156,14 @@
     <Compile Include="Assets\Scripts\Character\BossObject.cs" />
     <Compile Include="Assets\FlexReader\Converter\CustomConverters\RectConverter.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\EventManager.cs" />
+    <Compile Include="Assets\Scripts\ConversationMode\ConversationModeBossObject.cs" />
     <Compile Include="Assets\2D RPG Kit\Touch Support\CrossPlatformInput\Scripts\CrossPlatformInputManager.cs" />
     <Compile Include="Assets\Scripts\CommonUI\DialogBoxManager.cs" />
     <Compile Include="Assets\FlexReader\Converter\ValueConverter.cs" />
     <Compile Include="Assets\2D RPG Kit\Touch Support\CrossPlatformInput\Scripts\InputAxisScrollbar.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\DirectionalLight.cs" />
     <Compile Include="Assets\2D RPG Kit\Touch Support\CrossPlatformInput\Scripts\PlatformSpecific\MobileInput.cs" />
+    <Compile Include="Assets\Scripts\ConversationMode\ConversationModeDroneObject.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\GameMenu.cs" />
     <Compile Include="Assets\Scripts\CommonUI\TransitionManager.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\CommonEvents.cs" />
@@ -184,9 +187,8 @@
     <Compile Include="Assets\2D RPG Kit\Scripts\DamageNumber.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleNotification.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\QuestManager.cs" />
-    <Compile Include="Assets\Scripts\ConversationMode\ConversationModeBossObject.cs" />
-    <Compile Include="Assets\Scripts\ConversationMode\ConversationModeAvatarObject.cs" />
-    <Compile Include="Assets\Scripts\ConversationMode\ConversationModeDroneObject.cs" />
+    <Compile Include="Assets\Scripts\CollectionBook\CollectionBookBossObject.cs" />
+    <Compile Include="Assets\Scripts\CollectionBook\CollectionBookNPCObject.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

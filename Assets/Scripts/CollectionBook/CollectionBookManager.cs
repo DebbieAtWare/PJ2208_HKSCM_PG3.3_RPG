@@ -9,6 +9,11 @@ public class CollectionBookManager : MonoBehaviour
 {
     public static CollectionBookManager instance;
 
+    [Header("Main")]
+    public List<CollectionBookBossObject> bossObjs = new List<CollectionBookBossObject>();
+    public List<CollectionBookNPCObject> npcObjs = new List<CollectionBookNPCObject>();
+    public ScrollRect npcScrollRect;
+
     [Header("SuccessCollectGroup")]
     public CanvasGroup successCollect_CanvasGrp;
     public Image successCollect_Img;
