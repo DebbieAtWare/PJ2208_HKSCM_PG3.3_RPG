@@ -7,6 +7,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5422855302118464671, guid: 9d931774b5d1448459f15a481ead161b,
+        type: 3}
+      propertyPath: m_AspectMode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5422855302118464671, guid: 9d931774b5d1448459f15a481ead161b,
+        type: 3}
+      propertyPath: m_AspectRatio
+      value: 0.55833334
+      objectReference: {fileID: 0}
     - target: {fileID: 7343226060706601456, guid: 9d931774b5d1448459f15a481ead161b,
         type: 3}
       propertyPath: id
@@ -120,7 +130,7 @@ PrefabInstance:
     - target: {fileID: 7343226061180160803, guid: 9d931774b5d1448459f15a481ead161b,
         type: 3}
       propertyPath: m_Name
-      value: NPCCard_P04
+      value: NPCCard_P04 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7343226061794694960, guid: 9d931774b5d1448459f15a481ead161b,
         type: 3}
@@ -128,6 +138,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -2534211515201965915, guid: 5c160f06b7e59624797113dcac646b6b,
         type: 3}
+    - target: {fileID: 7343226061794694963, guid: 9d931774b5d1448459f15a481ead161b,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7343226061794694963, guid: 9d931774b5d1448459f15a481ead161b,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7343226061794694963, guid: 9d931774b5d1448459f15a481ead161b,
         type: 3}
       propertyPath: m_SizeDelta.x

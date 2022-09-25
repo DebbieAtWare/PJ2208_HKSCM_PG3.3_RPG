@@ -188,5 +188,11 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4280041521
       objectReference: {fileID: 0}
+    - target: {fileID: 7235348176467562486, guid: 0a0c09478a52a1745a106241c130ac8e,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8ef5eb80b3df8d542863e9edaa01a678,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a0c09478a52a1745a106241c130ac8e, type: 3}
