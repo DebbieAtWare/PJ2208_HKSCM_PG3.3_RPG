@@ -75,6 +75,7 @@ public class CommonUtils : MonoBehaviour
     public List<ConfigData_DialogBox> dialogBox_TipsByDrone_Hints = new List<ConfigData_DialogBox>();
     public ConfigData_DialogBox dialogBox_TipsByDrone_CollectionBook;
     public ConfigData_DialogBox dialogBox_TipsByDrone_ChangeMap;
+    public ConfigData_Text successCollectText;
 
     [Header("Curr")]
     public MapID currMapId;
@@ -281,7 +282,9 @@ public class CommonUtils : MonoBehaviour
 
         ConfigData_Character boss1 = new ConfigData_Character();
         boss1.Id = "M01";
-        boss1.Name_TC = "林蜥屬";
+        boss1.Name_TC = "林蜥";
+        boss1.Name_SC = "林蜥";
+        boss1.Name_EN = "<i>Hylonomus</i>";
         boss1.DescriptionTag_TC = "體積：約20厘米";
         boss1.IsCollectable = true;
         boss1.IsFirstMeetDone = false;
@@ -340,7 +343,9 @@ public class CommonUtils : MonoBehaviour
 
         ConfigData_Character boss2 = new ConfigData_Character();
         boss2.Id = "M02";
-        boss2.Name_TC = "異齒龍屬";
+        boss2.Name_TC = "異齒龍";
+        boss2.Name_SC = "异齿龙";
+        boss2.Name_EN = "<i>Dimetrodon</i>";
         boss2.DescriptionTag_TC = "體積：約3.5米";
         boss2.IsCollectable = true;
         boss2.IsFirstMeetDone = false;
@@ -384,7 +389,9 @@ public class CommonUtils : MonoBehaviour
 
         ConfigData_Character boss3 = new ConfigData_Character();
         boss3.Id = "M03";
-        boss3.Name_TC = "水龍獸屬";
+        boss3.Name_TC = "水龍獸";
+        boss3.Name_SC = "水龙兽";
+        boss3.Name_EN = "<i>Lystrosaurus</i>";
         boss3.DescriptionTag_TC = "體積：約0.9米";
         boss3.IsCollectable = true;
         boss3.IsFirstMeetDone = false;
@@ -671,6 +678,13 @@ public class CommonUtils : MonoBehaviour
         options_ChangeMap.Add("留在這裏繼續探索");
         dialog_ChangeMap.OptionTexts_TC = options_ChangeMap;
         dialogBox_TipsByDrone_ChangeMap = dialog_ChangeMap;
+
+        //-------
+
+        successCollectText.Text_TC = "成功收集<<NPC name>>！";
+        successCollectText.Text_SC = "成功收集<<NPC name>>！";
+        successCollectText.Text_EN = "You’ve got <<NPC name>>!";
+
     }
 
     //tmp keyboard change scene
@@ -723,3 +737,10 @@ public class ConfigData_DialogBox
     public List<string> OptionTexts_EN;
 }
 
+[Serializable]
+public class ConfigData_Text
+{
+    public string Text_TC;
+    public string Text_SC;
+    public string Text_EN;
+}

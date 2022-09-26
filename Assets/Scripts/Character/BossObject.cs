@@ -24,7 +24,6 @@ public class BossObject : MonoBehaviour
     public CharacterID id;
 
     [Header("Sprite")]
-    public Sprite collectionBookThumbnailSprite;
     public Sprite dialogBoxProfileSprite;
 
     [Header("Renderer")]

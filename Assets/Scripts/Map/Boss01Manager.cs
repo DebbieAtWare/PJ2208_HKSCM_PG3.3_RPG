@@ -57,8 +57,8 @@ public class Boss01Manager : MonoBehaviour
         {
             SoundManager.instance.Play_SFX(9);
             GameManager.instance.dialogActive = true;
-            CollectionBookManager.instance.ShowSuccessCollect(commonUtils.bosses[currUtilsIndex].Name_TC, bossObj.collectionBookThumbnailSprite);
-            Invoke("CloseSuccessCollect", 2f);
+            CollectionBookManager.instance.ShowSuccessCollect(commonUtils.successCollectText, commonUtils.bosses[currUtilsIndex], 0.5f);
+            Invoke("CloseSuccessCollect", 4f);
         }
         else
         {

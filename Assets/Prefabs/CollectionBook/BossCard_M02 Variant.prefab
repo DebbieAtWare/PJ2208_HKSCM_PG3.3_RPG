@@ -208,11 +208,21 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4279775303
       objectReference: {fileID: 0}
+    - target: {fileID: 5796874813989672825, guid: 0a0c09478a52a1745a106241c130ac8e,
+        type: 3}
+      propertyPath: m_text
+      value: Permian
+      objectReference: {fileID: 0}
     - target: {fileID: 7235348176467562486, guid: 0a0c09478a52a1745a106241c130ac8e,
         type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 2e21de2901da27c44b1f64a5a23178ea,
         type: 3}
+    - target: {fileID: 8931674125001178125, guid: 0a0c09478a52a1745a106241c130ac8e,
+        type: 3}
+      propertyPath: m_text
+      value: "\u4E8C\u53E0\u7EAA"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a0c09478a52a1745a106241c130ac8e, type: 3}
