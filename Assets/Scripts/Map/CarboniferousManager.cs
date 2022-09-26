@@ -73,22 +73,4 @@ public class CarboniferousManager : MonoBehaviour
         TransitionManager.instance.ChangeToInsideTreeCave();
     }
 
-
-
-
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            CollectionBookManager.instance.ShowSuccessCollect(commonUtils.successCollectText, commonUtils.bosses[0], 0.5f);
-        }
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            CollectionBookManager.instance.HideSuccessCollect(0.5f);
-            CollectionBookManager.instance.success_BossObjs[0].ResetAll();
-            CollectionBookManager.instance.success_BossObjs[1].ResetAll();
-            CollectionBookManager.instance.success_BossObjs[2].ResetAll();
-        }
-    }
 }

@@ -6,19 +6,35 @@ using UnityEngine.UI;
 using DG.Tweening;
 using System;
 
+public enum CollectionBookStage
+{
+    None,
+    Main,
+    Detail,
+    Success
+}
+
 public class CollectionBookManager : MonoBehaviour
 {
     public static CollectionBookManager instance;
 
     [Header("Common")]
     public CanvasGroup canvasGroup;
+    public CollectionBookStage currStage;
+    public int currRow = -1;
+    public int currIndex_Boss = -1;
+    public int currIndex_NPC = -1;
 
     [Header("Main")]
     public GameObject main_RootObj;
     public List<CollectionBookBossObject> main_BossObjs = new List<CollectionBookBossObject>();
     public List<CollectionBookNPCObject> main_NPCObjs = new List<CollectionBookNPCObject>();
-    public ScrollRect main_NPCScrollRect;
+    public RectTransform main_Scroll_ContentRect;
     public GameObject main_ExitFrameObj;
+    float main_Scroll_PosGap_Small = 73;
+    float main_Scroll_PosGap_Full = 185;
+    public int main_Scroll_VisibleIndex = 0;
+    public bool main_Scroll_PosGap_IsSmall = true;
 
     [Header("Detail")]
     public GameObject detail_RootObj;
@@ -40,6 +56,7 @@ public class CollectionBookManager : MonoBehaviour
     public TextMeshProUGUI success_Text_EN;
 
     CommonUtils commonUtils;
+    InputManager inputManager;
 
     void Awake()
     {
@@ -54,10 +71,17 @@ public class CollectionBookManager : MonoBehaviour
 
     public void Setup()
     {
-        Debug.Log("CollectionBookManager Setup");
         commonUtils = CommonUtils.instance;
 
+        inputManager = InputManager.instance;
+        inputManager.onValueChanged_VerticalCallback += InputManager_OnValueChanged_Vertical;
+        inputManager.onValueChanged_HorizontalCallback += InputManager_OnValueChanged_Horizontal;
+        inputManager.onValueChanged_ConfirmCallback += InputManager_OnValueChanged_Confirm;
+
         canvasGroup.alpha = 0;
+        currRow = -1;
+        currIndex_Boss = -1;
+        currIndex_NPC = -1;
 
         for (int i = 0; i < commonUtils.bosses.Count; i++)
         {
@@ -110,8 +134,173 @@ public class CollectionBookManager : MonoBehaviour
         }
     }
 
-    public void ShowSuccessCollect(ConfigData_Text successText, ConfigData_Character character, float aniTime)
+    private void InputManager_OnValueChanged_Vertical(int val)
     {
+        if (currRow == 0)
+        {
+            if (val == -1)
+            {
+                currRow = 1;
+                main_BossObjs[currIndex_Boss].SetSelection(false);
+                main_NPCObjs[currIndex_NPC].SetSelection(true);
+            }
+        }
+        else if (currRow == 1)
+        {
+            if (val == 1)
+            {
+                currRow = 0;
+                main_NPCObjs[currIndex_NPC].SetSelection(false);
+                main_BossObjs[currIndex_Boss].SetSelection(true);
+            }
+            else if (val == -1)
+            {
+                currRow = 2;
+                main_NPCObjs[currIndex_NPC].SetSelection(false);
+                main_ExitFrameObj.SetActive(true);
+            }
+        }
+        else if (currRow == 2)
+        {
+            if (val == 1)
+            {
+                currRow = 1;
+                main_ExitFrameObj.SetActive(false);
+                main_NPCObjs[currIndex_NPC].SetSelection(true);
+            }
+        } 
+    }
+
+    private void InputManager_OnValueChanged_Horizontal(int val)
+    {
+        if (currRow == 0)
+        {
+            if (val == -1)
+            {
+                if (currIndex_Boss != 0)
+                {
+                    main_BossObjs[currIndex_Boss].SetSelection(false);
+                    currIndex_Boss--;
+                    main_BossObjs[currIndex_Boss].SetSelection(true);
+                }
+            }
+            else if(val == 1)
+            {
+                if (currIndex_Boss < main_BossObjs.Count - 1)
+                {
+                    main_BossObjs[currIndex_Boss].SetSelection(false);
+                    currIndex_Boss++;
+                    main_BossObjs[currIndex_Boss].SetSelection(true);
+                }
+            }
+        }
+        else if (currRow == 1)
+        {
+            if (val == -1)
+            {
+                if (currIndex_NPC != 0)
+                {
+                    main_Scroll_VisibleIndex--;
+                    if (main_Scroll_VisibleIndex < 0)
+                    {
+                        main_Scroll_VisibleIndex = 0;
+
+                        if (main_Scroll_PosGap_IsSmall)
+                        {
+                            main_Scroll_ContentRect.anchoredPosition = new Vector2(main_Scroll_ContentRect.anchoredPosition.x + main_Scroll_PosGap_Small, 0f);
+                        }
+                        else
+                        {
+                            main_Scroll_ContentRect.anchoredPosition = new Vector2(main_Scroll_ContentRect.anchoredPosition.x + main_Scroll_PosGap_Full, 0);
+                        }
+                    }
+                    main_NPCObjs[currIndex_NPC].SetSelection(false);
+                    currIndex_NPC--;
+                    main_NPCObjs[currIndex_NPC].SetSelection(true);
+                }
+            }
+            else if (val == 1)
+            {
+                if (currIndex_NPC < main_NPCObjs.Count - 1)
+                {
+                    main_Scroll_VisibleIndex++;
+                    if (main_Scroll_VisibleIndex > 3)
+                    {
+                        main_Scroll_VisibleIndex = 3;
+
+                        if (main_Scroll_PosGap_IsSmall)
+                        {
+                            main_Scroll_PosGap_IsSmall = false;
+                            main_Scroll_ContentRect.anchoredPosition = new Vector2(main_Scroll_ContentRect.anchoredPosition.x - main_Scroll_PosGap_Small, 0f);
+                        }
+                        else
+                        {
+                            main_Scroll_ContentRect.anchoredPosition = new Vector2(main_Scroll_ContentRect.anchoredPosition.x - main_Scroll_PosGap_Full, 0);
+                        }
+                    }
+                    main_NPCObjs[currIndex_NPC].SetSelection(false);
+                    currIndex_NPC++;
+                    main_NPCObjs[currIndex_NPC].SetSelection(true);
+
+                }
+            }
+        }
+    }
+
+    private void InputManager_OnValueChanged_Confirm()
+    {
+        
+    }
+
+    //----- Main -----
+
+    public void Show_Main()
+    {
+        currStage = CollectionBookStage.Main;
+        canvasGroup.gameObject.SetActive(true);
+        main_RootObj.SetActive(true);
+        detail_RootObj.SetActive(false);
+        success_RootObj.SetActive(false);
+
+        //----
+
+        currRow = 0;
+        currIndex_Boss = 0;
+        currIndex_NPC = 0;
+
+        for (int i = 0; i < main_BossObjs.Count; i++)
+        {
+            if (commonUtils.bosses[i].IsSuccessCollectDone)
+            {
+                main_BossObjs[i].UnlockDirect();
+            }
+            if (i == 0)
+            {
+                main_BossObjs[i].SetSelection(true);
+            }
+            else
+            {
+                main_BossObjs[i].SetSelection(false);
+            }
+        }
+        
+        for (int i = 0; i < main_NPCObjs.Count; i++)
+        {
+            main_NPCObjs[i].SetSelection(false);
+        }
+
+        //----
+
+        canvasGroup.DOFade(1f, 0.5f);
+    }
+
+    //----- Detail -----
+
+    //----- Success -----
+
+    public void Show_Success(ConfigData_Text successText, ConfigData_Character character, float aniTime)
+    {
+        currStage = CollectionBookStage.Success;
         canvasGroup.gameObject.SetActive(true);
         main_RootObj.SetActive(false);
         detail_RootObj.SetActive(false);
@@ -244,16 +433,15 @@ public class CollectionBookManager : MonoBehaviour
             }
         }
 
-
-        //----
-
-
-
-
     }
 
-    public void HideSuccessCollect(float aniTime)
+    public void Hide_Success(float aniTime)
     {
-        canvasGroup.DOFade(0, aniTime).OnComplete(() => canvasGroup.gameObject.SetActive(false));
+        canvasGroup.DOFade(0, aniTime).OnComplete(HideSuccessComplete);
+    }
+    void HideSuccessComplete()
+    {
+        canvasGroup.gameObject.SetActive(false);
+        currStage = CollectionBookStage.None;
     }
 }

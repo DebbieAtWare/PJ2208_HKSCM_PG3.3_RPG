@@ -98,7 +98,7 @@ public class PermianManager : MonoBehaviour
                 SoundManager.instance.Play_SFX(9);
                 GameManager.instance.dialogActive = true;
                 yield return new WaitForSeconds(0.5f);
-                CollectionBookManager.instance.ShowSuccessCollect(commonUtils.successCollectText, commonUtils.bosses[currUtilsIndex_Boss2], 0.5f);
+                CollectionBookManager.instance.Show_Success(commonUtils.successCollectText, commonUtils.bosses[currUtilsIndex_Boss2], 0.5f);
                 Invoke("CloseSuccessCollect_Boss2", 5f);
             }
             else
@@ -127,7 +127,7 @@ public class PermianManager : MonoBehaviour
                 SoundManager.instance.Play_SFX(9);
                 GameManager.instance.dialogActive = true;
                 yield return new WaitForSeconds(0.5f);
-                CollectionBookManager.instance.ShowSuccessCollect(commonUtils.successCollectText, commonUtils.bosses[currUtilsIndex_Boss3], 0.5f);
+                CollectionBookManager.instance.Show_Success(commonUtils.successCollectText, commonUtils.bosses[currUtilsIndex_Boss3], 0.5f);
                 Invoke("CloseSuccessCollect_Boss3", 5f);
             }
             else
@@ -145,7 +145,7 @@ public class PermianManager : MonoBehaviour
     {
         SoundManager.instance.FadeOutStop_SFX(0.5f);
         SoundManager.instance.Play_BGM(3);
-        CollectionBookManager.instance.HideSuccessCollect(0.5f);
+        CollectionBookManager.instance.Hide_Success(0.5f);
         MinimapManager.instance.Show(0.5f);
         StatusBarManager.instance.Show_Permian(0.5f);
         commonUtils.bosses[currUtilsIndex_Boss2].IsSuccessCollectDone = true;
@@ -158,7 +158,7 @@ public class PermianManager : MonoBehaviour
     {
         SoundManager.instance.FadeOutStop_SFX(0.5f);
         SoundManager.instance.Play_BGM(3);
-        CollectionBookManager.instance.HideSuccessCollect(0.5f);
+        CollectionBookManager.instance.Hide_Success(0.5f);
         MinimapManager.instance.Show(0.5f);
         StatusBarManager.instance.Show_Permian(0.5f);
         commonUtils.bosses[currUtilsIndex_Boss3].IsSuccessCollectDone = true;

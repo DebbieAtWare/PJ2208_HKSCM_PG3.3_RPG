@@ -243,7 +243,7 @@ public class DroneController : MonoBehaviour
             {
                 SoundManager.instance.Play_Input(2);
                 DialogBoxManager.instance.HideDialog();
-                //TODO open collection book
+                CollectionBookManager.instance.Show_Main();
             }
             else if (currSelectedOption == 1)
             {

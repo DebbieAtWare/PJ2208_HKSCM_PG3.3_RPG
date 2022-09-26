@@ -57,7 +57,7 @@ public class Boss01Manager : MonoBehaviour
         {
             SoundManager.instance.Play_SFX(9);
             GameManager.instance.dialogActive = true;
-            CollectionBookManager.instance.ShowSuccessCollect(commonUtils.successCollectText, commonUtils.bosses[currUtilsIndex], 0.5f);
+            CollectionBookManager.instance.Show_Success(commonUtils.successCollectText, commonUtils.bosses[currUtilsIndex], 0.5f);
             Invoke("CloseSuccessCollect", 5f);
         }
         else
@@ -70,7 +70,7 @@ public class Boss01Manager : MonoBehaviour
     void CloseSuccessCollect()
     {
         SoundManager.instance.FadeOutStop_SFX(0.5f);
-        CollectionBookManager.instance.HideSuccessCollect(0.5f);
+        CollectionBookManager.instance.Hide_Success(0.5f);
         commonUtils.bosses[currUtilsIndex].IsSuccessCollectDone = true;
         Invoke("TeleportControl", 0.5f);
     }
