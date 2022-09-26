@@ -117,7 +117,19 @@ public class CollectionBookManager : MonoBehaviour
         detail_RootObj.SetActive(false);
         success_RootObj.SetActive(true);
 
+        for (int i = 0; i < success_BossObjs.Count; i++)
+        {
+            success_BossObjs[i].ResetAll();
+        }
+
         //----
+
+        success_Text_TC.text = "";
+        success_Text_TC.DOFade(0f, 0f);
+        success_Text_SC.text = "";
+        success_Text_SC.DOFade(0f, 0f);
+        success_Text_EN.text = "";
+        success_Text_EN.DOFade(0f, 0f);
 
         char[] charSeparators = new char[] { '<', '>' };
         string[] splitArray_TC = successText.Text_TC.Split(charSeparators, StringSplitOptions.RemoveEmptyEntries);
@@ -169,21 +181,75 @@ public class CollectionBookManager : MonoBehaviour
             {
                 success_BossObjs[2].UnlockDirect();
             }
-            success_BossObjs[1].GrayOut_On();
-            success_BossObjs[2].GrayOut_On();
+            StartCoroutine(Ani());
+            IEnumerator Ani()
+            {
+                canvasGroup.DOFade(1f, aniTime);
+                yield return new WaitForSeconds(aniTime + 0.2f);
+                success_BossObjs[0].UnlockAni();
+                success_BossObjs[1].GrayOutAni();
+                success_BossObjs[2].GrayOutAni();
+                yield return new WaitForSeconds(1f);
+                success_Text_TC.DOFade(1f, 1f);
+                success_Text_SC.DOFade(1f, 1f);
+                success_Text_EN.DOFade(1f, 1f);
+            }
         }
+        else if (character.Id == CharacterID.M02.ToString())
+        {
+            if (commonUtils.bosses[0].IsSuccessCollectDone)
+            {
+                success_BossObjs[0].UnlockDirect();
+            }
+            if (commonUtils.bosses[2].IsSuccessCollectDone)
+            {
+                success_BossObjs[2].UnlockDirect();
+            }
+            StartCoroutine(Ani());
+            IEnumerator Ani()
+            {
+                canvasGroup.DOFade(1f, aniTime);
+                yield return new WaitForSeconds(aniTime + 0.2f);
+                success_BossObjs[1].UnlockAni();
+                success_BossObjs[0].GrayOutAni();
+                success_BossObjs[2].GrayOutAni();
+                yield return new WaitForSeconds(1f);
+                success_Text_TC.DOFade(1f, 1f);
+                success_Text_SC.DOFade(1f, 1f);
+                success_Text_EN.DOFade(1f, 1f);
+            }
+        }
+        else if (character.Id == CharacterID.M03.ToString())
+        {
+            if (commonUtils.bosses[0].IsSuccessCollectDone)
+            {
+                success_BossObjs[0].UnlockDirect();
+            }
+            if (commonUtils.bosses[1].IsSuccessCollectDone)
+            {
+                success_BossObjs[1].UnlockDirect();
+            }
+            StartCoroutine(Ani());
+            IEnumerator Ani()
+            {
+                canvasGroup.DOFade(1f, aniTime);
+                yield return new WaitForSeconds(aniTime + 0.2f);
+                success_BossObjs[2].UnlockAni();
+                success_BossObjs[0].GrayOutAni();
+                success_BossObjs[1].GrayOutAni();
+                yield return new WaitForSeconds(1f);
+                success_Text_TC.DOFade(1f, 1f);
+                success_Text_SC.DOFade(1f, 1f);
+                success_Text_EN.DOFade(1f, 1f);
+            }
+        }
+
 
         //----
 
-        StartCoroutine(Ani());
-        IEnumerator Ani()
-        {
-            canvasGroup.DOFade(1f, aniTime);
-            yield return new WaitForSeconds(aniTime);
-            success_BossObjs[0].UnlockAni();
-        }
-        
-        
+
+
+
     }
 
     public void HideSuccessCollect(float aniTime)

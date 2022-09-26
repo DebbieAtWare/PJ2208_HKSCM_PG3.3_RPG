@@ -98,8 +98,8 @@ public class PermianManager : MonoBehaviour
                 SoundManager.instance.Play_SFX(9);
                 GameManager.instance.dialogActive = true;
                 yield return new WaitForSeconds(0.5f);
-                CollectionBookManager.instance.ShowSuccessCollect(commonUtils.successCollectText, commonUtils.bosses[currUtilsIndex_Boss2], 1f);
-                Invoke("CloseSuccessCollect_Boss2", 2f);
+                CollectionBookManager.instance.ShowSuccessCollect(commonUtils.successCollectText, commonUtils.bosses[currUtilsIndex_Boss2], 0.5f);
+                Invoke("CloseSuccessCollect_Boss2", 5f);
             }
             else
             {
@@ -127,8 +127,8 @@ public class PermianManager : MonoBehaviour
                 SoundManager.instance.Play_SFX(9);
                 GameManager.instance.dialogActive = true;
                 yield return new WaitForSeconds(0.5f);
-                CollectionBookManager.instance.ShowSuccessCollect(commonUtils.successCollectText, commonUtils.bosses[currUtilsIndex_Boss3], 1f);
-                Invoke("CloseSuccessCollect_Boss3", 2f);
+                CollectionBookManager.instance.ShowSuccessCollect(commonUtils.successCollectText, commonUtils.bosses[currUtilsIndex_Boss3], 0.5f);
+                Invoke("CloseSuccessCollect_Boss3", 5f);
             }
             else
             {
