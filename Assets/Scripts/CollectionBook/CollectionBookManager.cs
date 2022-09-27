@@ -39,6 +39,12 @@ public class CollectionBookManager : MonoBehaviour
 
     [Header("Detail")]
     public GameObject detail_RootObj;
+    public GameObject detail_Title_Boss_TC;
+    public GameObject detail_Title_Boss_SC;
+    public GameObject detail_Title_Boss_EN;
+    public GameObject detail_Title_NPC_TC;
+    public GameObject detail_Title_NPC_SC;
+    public GameObject detail_Title_NPC_EN;
     public List<CollectionBookBossObject> detail_BossObjs = new List<CollectionBookBossObject>();
     public List<CollectionBookNPCObject> detail_NPCObjs = new List<CollectionBookNPCObject>();
     public TextMeshProUGUI detail_Text_L_TC;
@@ -104,16 +110,16 @@ public class CollectionBookManager : MonoBehaviour
         {
             for (int j = 0; j < main_NPCObjs.Count; j++)
             {
-                if (commonUtils.NPC_Carboniferous[i].Id == main_NPCObjs[j].id.ToString())
+                if (commonUtils.NPC_Carboniferous[i].Id == main_NPCObjs[j].characterID.ToString())
                 {
-                    main_NPCObjs[j].Setup((j + 1).ToString("000"));
+                    main_NPCObjs[j].Setup(MapID.Carboniferous, i, (j + 1).ToString("000"));
+                    if (commonUtils.NPC_Carboniferous[i].Id == detail_NPCObjs[j].characterID.ToString())
+                    {
+                        detail_NPCObjs[j].Setup(MapID.Carboniferous, i, (j + 1).ToString("000"));
+                    }
                     break;
                 }
-                if (commonUtils.NPC_Carboniferous[i].Id == detail_NPCObjs[j].id.ToString())
-                {
-                    detail_NPCObjs[j].Setup((j + 1).ToString("000"));
-                    break;
-                }
+                
             }
         }
 
@@ -121,129 +127,135 @@ public class CollectionBookManager : MonoBehaviour
         {
             for (int j = 0; j < main_NPCObjs.Count; j++)
             {
-                if (commonUtils.NPC_Permian[i].Id == main_NPCObjs[j].id.ToString())
+                if (commonUtils.NPC_Permian[i].Id == main_NPCObjs[j].characterID.ToString())
                 {
-                    main_NPCObjs[j].Setup((j + 1).ToString("000"));
+                    main_NPCObjs[j].Setup(MapID.Permian, i, (j + 1).ToString("000"));
+                    if (commonUtils.NPC_Permian[i].Id == detail_NPCObjs[j].characterID.ToString())
+                    {
+                        detail_NPCObjs[j].Setup(MapID.Permian, i, (j + 1).ToString("000"));
+                    }
                     break;
                 }
-                if (commonUtils.NPC_Permian[i].Id == detail_NPCObjs[j].id.ToString())
-                {
-                    detail_NPCObjs[j].Setup((j + 1).ToString("000"));
-                    break;
-                }
+                
             }
         }
     }
 
     private void InputManager_OnValueChanged_Vertical(int val)
     {
-        if (currRow == 0)
+        if (currStage == CollectionBookStage.Main)
         {
-            if (val == -1)
+            if (currRow == 0)
             {
-                currRow = 1;
-                main_BossObjs[currIndex_Boss].SetSelection(false);
-                main_NPCObjs[currIndex_NPC].SetSelection(true);
+                if (val == -1)
+                {
+                    currRow = 1;
+                    main_BossObjs[currIndex_Boss].SetSelection(false);
+                    main_NPCObjs[currIndex_NPC].SetSelection(true);
+                }
+            }
+            else if (currRow == 1)
+            {
+                if (val == 1)
+                {
+                    currRow = 0;
+                    main_NPCObjs[currIndex_NPC].SetSelection(false);
+                    main_BossObjs[currIndex_Boss].SetSelection(true);
+                }
+                else if (val == -1)
+                {
+                    currRow = 2;
+                    main_NPCObjs[currIndex_NPC].SetSelection(false);
+                    main_ExitFrameObj.SetActive(true);
+                }
+            }
+            else if (currRow == 2)
+            {
+                if (val == 1)
+                {
+                    currRow = 1;
+                    main_ExitFrameObj.SetActive(false);
+                    main_NPCObjs[currIndex_NPC].SetSelection(true);
+                }
             }
         }
-        else if (currRow == 1)
-        {
-            if (val == 1)
-            {
-                currRow = 0;
-                main_NPCObjs[currIndex_NPC].SetSelection(false);
-                main_BossObjs[currIndex_Boss].SetSelection(true);
-            }
-            else if (val == -1)
-            {
-                currRow = 2;
-                main_NPCObjs[currIndex_NPC].SetSelection(false);
-                main_ExitFrameObj.SetActive(true);
-            }
-        }
-        else if (currRow == 2)
-        {
-            if (val == 1)
-            {
-                currRow = 1;
-                main_ExitFrameObj.SetActive(false);
-                main_NPCObjs[currIndex_NPC].SetSelection(true);
-            }
-        } 
     }
 
     private void InputManager_OnValueChanged_Horizontal(int val)
     {
-        if (currRow == 0)
+        if (currStage == CollectionBookStage.Main)
         {
-            if (val == -1)
+            if (currRow == 0)
             {
-                if (currIndex_Boss != 0)
+                if (val == -1)
                 {
-                    main_BossObjs[currIndex_Boss].SetSelection(false);
-                    currIndex_Boss--;
-                    main_BossObjs[currIndex_Boss].SetSelection(true);
-                }
-            }
-            else if(val == 1)
-            {
-                if (currIndex_Boss < main_BossObjs.Count - 1)
-                {
-                    main_BossObjs[currIndex_Boss].SetSelection(false);
-                    currIndex_Boss++;
-                    main_BossObjs[currIndex_Boss].SetSelection(true);
-                }
-            }
-        }
-        else if (currRow == 1)
-        {
-            if (val == -1)
-            {
-                if (currIndex_NPC != 0)
-                {
-                    main_Scroll_VisibleIndex--;
-                    if (main_Scroll_VisibleIndex < 0)
+                    if (currIndex_Boss != 0)
                     {
-                        main_Scroll_VisibleIndex = 0;
-                        main_Scroll_PosGap_IsSmall_Next = true;
-                        if (main_Scroll_PosGap_IsSmall_Previous)
-                        {
-                            main_Scroll_PosGap_IsSmall_Previous = false;
-                            main_Scroll_ContentRect.anchoredPosition = new Vector2(main_Scroll_ContentRect.anchoredPosition.x + main_Scroll_PosGap_Small, 0f);
-                        }
-                        else
-                        {
-                            main_Scroll_ContentRect.anchoredPosition = new Vector2(main_Scroll_ContentRect.anchoredPosition.x + main_Scroll_PosGap_Full, 0);
-                        }
+                        main_BossObjs[currIndex_Boss].SetSelection(false);
+                        currIndex_Boss--;
+                        main_BossObjs[currIndex_Boss].SetSelection(true);
                     }
-                    main_NPCObjs[currIndex_NPC].SetSelection(false);
-                    currIndex_NPC--;
-                    main_NPCObjs[currIndex_NPC].SetSelection(true);
+                }
+                else if (val == 1)
+                {
+                    if (currIndex_Boss < main_BossObjs.Count - 1)
+                    {
+                        main_BossObjs[currIndex_Boss].SetSelection(false);
+                        currIndex_Boss++;
+                        main_BossObjs[currIndex_Boss].SetSelection(true);
+                    }
                 }
             }
-            else if (val == 1)
+            else if (currRow == 1)
             {
-                if (currIndex_NPC < main_NPCObjs.Count - 1)
+                if (val == -1)
                 {
-                    main_Scroll_VisibleIndex++;
-                    if (main_Scroll_VisibleIndex > 3)
+                    if (currIndex_NPC != 0)
                     {
-                        main_Scroll_VisibleIndex = 3;
-                        main_Scroll_PosGap_IsSmall_Previous = true;
-                        if (main_Scroll_PosGap_IsSmall_Next)
+                        main_Scroll_VisibleIndex--;
+                        if (main_Scroll_VisibleIndex < 0)
                         {
-                            main_Scroll_PosGap_IsSmall_Next = false;
-                            main_Scroll_ContentRect.anchoredPosition = new Vector2(main_Scroll_ContentRect.anchoredPosition.x - main_Scroll_PosGap_Small, 0f);
+                            main_Scroll_VisibleIndex = 0;
+                            main_Scroll_PosGap_IsSmall_Next = true;
+                            if (main_Scroll_PosGap_IsSmall_Previous)
+                            {
+                                main_Scroll_PosGap_IsSmall_Previous = false;
+                                main_Scroll_ContentRect.anchoredPosition = new Vector2(main_Scroll_ContentRect.anchoredPosition.x + main_Scroll_PosGap_Small, 0f);
+                            }
+                            else
+                            {
+                                main_Scroll_ContentRect.anchoredPosition = new Vector2(main_Scroll_ContentRect.anchoredPosition.x + main_Scroll_PosGap_Full, 0);
+                            }
                         }
-                        else 
-                        {
-                            main_Scroll_ContentRect.anchoredPosition = new Vector2(main_Scroll_ContentRect.anchoredPosition.x - main_Scroll_PosGap_Full, 0);
-                        }
+                        main_NPCObjs[currIndex_NPC].SetSelection(false);
+                        currIndex_NPC--;
+                        main_NPCObjs[currIndex_NPC].SetSelection(true);
                     }
-                    main_NPCObjs[currIndex_NPC].SetSelection(false);
-                    currIndex_NPC++;
-                    main_NPCObjs[currIndex_NPC].SetSelection(true);
+                }
+                else if (val == 1)
+                {
+                    if (currIndex_NPC < main_NPCObjs.Count - 1)
+                    {
+                        main_Scroll_VisibleIndex++;
+                        if (main_Scroll_VisibleIndex > 3)
+                        {
+                            main_Scroll_VisibleIndex = 3;
+                            main_Scroll_PosGap_IsSmall_Previous = true;
+                            if (main_Scroll_PosGap_IsSmall_Next)
+                            {
+                                main_Scroll_PosGap_IsSmall_Next = false;
+                                main_Scroll_ContentRect.anchoredPosition = new Vector2(main_Scroll_ContentRect.anchoredPosition.x - main_Scroll_PosGap_Small, 0f);
+                            }
+                            else
+                            {
+                                main_Scroll_ContentRect.anchoredPosition = new Vector2(main_Scroll_ContentRect.anchoredPosition.x - main_Scroll_PosGap_Full, 0);
+                            }
+                        }
+                        main_NPCObjs[currIndex_NPC].SetSelection(false);
+                        currIndex_NPC++;
+                        main_NPCObjs[currIndex_NPC].SetSelection(true);
 
+                    }
                 }
             }
         }
@@ -251,14 +263,39 @@ public class CollectionBookManager : MonoBehaviour
 
     private void InputManager_OnValueChanged_Confirm()
     {
-        
+        if (currStage == CollectionBookStage.Main)
+        {
+            if (currRow == 0)
+            {
+                Show_Detail(commonUtils.bosses[currIndex_Boss]);
+            }
+            else if (currRow == 1)
+            {
+                if (main_NPCObjs[currIndex_NPC].mapID == MapID.Carboniferous)
+                {
+                    Show_Detail(commonUtils.NPC_Carboniferous[main_NPCObjs[currIndex_NPC].configDataIndex]);
+                }
+                else if (main_NPCObjs[currIndex_NPC].mapID == MapID.Permian)
+                {
+                    Show_Detail(commonUtils.NPC_Permian[main_NPCObjs[currIndex_NPC].configDataIndex]);
+                }
+            }
+            else if (currRow == 2)
+            {
+                Hide(0.5f);
+            }
+        }
+        else if (currStage == CollectionBookStage.Detail)
+        {
+            Hide_Detail();
+        }
     }
 
     //----- Main -----
 
     public void Show_Main()
     {
-        currStage = CollectionBookStage.Main;
+        Debug.Log("Show_Main");
         canvasGroup.gameObject.SetActive(true);
         main_RootObj.SetActive(true);
         detail_RootObj.SetActive(false);
@@ -269,6 +306,8 @@ public class CollectionBookManager : MonoBehaviour
         currRow = 0;
         currIndex_Boss = 0;
         currIndex_NPC = 0;
+        main_Scroll_PosGap_IsSmall_Next = true;
+        main_Scroll_PosGap_IsSmall_Previous = true;
 
         for (int i = 0; i < main_BossObjs.Count; i++)
         {
@@ -290,13 +329,142 @@ public class CollectionBookManager : MonoBehaviour
         {
             main_NPCObjs[i].SetSelection(false);
         }
+        main_Scroll_ContentRect.anchoredPosition = new Vector2(0, 0);
+
+        main_ExitFrameObj.SetActive(false);
 
         //----
 
-        canvasGroup.DOFade(1f, 0.5f);
+        canvasGroup.DOFade(1f, 0.5f).OnComplete(() => currStage = CollectionBookStage.Main);
     }
 
     //----- Detail -----
+
+    public void Show_Detail(ConfigData_Character character)
+    {
+        if (character.Id == CharacterID.M01.ToString() || character.Id == CharacterID.M02.ToString() || character.Id == CharacterID.M03.ToString())
+        {
+            if (commonUtils.currLang == Language.TC)
+            {
+                detail_Title_Boss_TC.SetActive(true);
+                detail_Title_Boss_SC.SetActive(false);
+                detail_Title_Boss_EN.SetActive(false);
+                detail_Title_NPC_TC.SetActive(false);
+                detail_Title_NPC_SC.SetActive(false);
+                detail_Title_NPC_EN.SetActive(false);
+            }
+            else if (commonUtils.currLang == Language.SC)
+            {
+                detail_Title_Boss_TC.SetActive(false);
+                detail_Title_Boss_SC.SetActive(true);
+                detail_Title_Boss_EN.SetActive(false);
+                detail_Title_NPC_TC.SetActive(false);
+                detail_Title_NPC_SC.SetActive(false);
+                detail_Title_NPC_EN.SetActive(false);
+            }
+            else if (commonUtils.currLang == Language.SC)
+            {
+                detail_Title_Boss_TC.SetActive(false);
+                detail_Title_Boss_SC.SetActive(false);
+                detail_Title_Boss_EN.SetActive(true);
+                detail_Title_NPC_TC.SetActive(false);
+                detail_Title_NPC_SC.SetActive(false);
+                detail_Title_NPC_EN.SetActive(false);
+            }
+            for (int i = 0; i < detail_NPCObjs.Count; i++)
+            {
+                detail_NPCObjs[i].gameObject.SetActive(false);
+            }
+            if (character.Id == CharacterID.M01.ToString())
+            {
+                detail_BossObjs[0].UnlockDirect();
+                detail_BossObjs[0].gameObject.SetActive(true);
+                detail_BossObjs[1].gameObject.SetActive(false);
+                detail_BossObjs[2].gameObject.SetActive(false);
+            }
+            else if (character.Id == CharacterID.M02.ToString())
+            {
+                detail_BossObjs[1].UnlockDirect();
+                detail_BossObjs[0].gameObject.SetActive(false);
+                detail_BossObjs[1].gameObject.SetActive(true);
+                detail_BossObjs[2].gameObject.SetActive(false);
+            }
+            else if (character.Id == CharacterID.M03.ToString())
+            {
+                detail_BossObjs[2].UnlockDirect();
+                detail_BossObjs[0].gameObject.SetActive(false);
+                detail_BossObjs[1].gameObject.SetActive(false);
+                detail_BossObjs[2].gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            if (commonUtils.currLang == Language.TC)
+            {
+                detail_Title_Boss_TC.SetActive(false);
+                detail_Title_Boss_SC.SetActive(false);
+                detail_Title_Boss_EN.SetActive(false);
+                detail_Title_NPC_TC.SetActive(true);
+                detail_Title_NPC_SC.SetActive(false);
+                detail_Title_NPC_EN.SetActive(false);
+            }
+            else if (commonUtils.currLang == Language.SC)
+            {
+                detail_Title_Boss_TC.SetActive(false);
+                detail_Title_Boss_SC.SetActive(false);
+                detail_Title_Boss_EN.SetActive(false);
+                detail_Title_NPC_TC.SetActive(false);
+                detail_Title_NPC_SC.SetActive(true);
+                detail_Title_NPC_EN.SetActive(false);
+            }
+            else if (commonUtils.currLang == Language.SC)
+            {
+                detail_Title_Boss_TC.SetActive(false);
+                detail_Title_Boss_SC.SetActive(false);
+                detail_Title_Boss_EN.SetActive(false);
+                detail_Title_NPC_TC.SetActive(false);
+                detail_Title_NPC_SC.SetActive(false);
+                detail_Title_NPC_EN.SetActive(true);
+            }
+            for (int i = 0; i < detail_BossObjs.Count; i++)
+            {
+                detail_BossObjs[i].gameObject.SetActive(false);
+            }
+            for (int i = 0; i < detail_NPCObjs.Count; i++)
+            {
+                if (character.Id == detail_NPCObjs[i].characterID.ToString())
+                {
+                    detail_NPCObjs[i].gameObject.SetActive(true);
+                    detail_NPCObjs[i].SetSelection(true);
+                }
+                else
+                {
+                    detail_NPCObjs[i].SetSelection(false);
+                    detail_NPCObjs[i].gameObject.SetActive(false);
+                }
+            }
+        }
+        detail_Text_L_TC.text = character.Info1_TC;
+        detail_Text_L_SC.text = character.Info1_SC;
+        detail_Text_L_EN.text = character.Info1_EN;
+        detail_Text_R_TC.text = character.Info2_TC;
+        detail_Text_R_SC.text = character.Info2_SC;
+        detail_Text_R_EN.text = character.Info2_EN;
+
+        detail_ExitFrameObj.SetActive(true);
+
+        //----
+        main_RootObj.gameObject.SetActive(false);
+        detail_RootObj.gameObject.SetActive(true);
+        currStage = CollectionBookStage.Detail;
+    }
+
+    public void Hide_Detail()
+    {
+        main_RootObj.SetActive(true);
+        detail_RootObj.SetActive(false);
+        currStage = CollectionBookStage.Main;
+    }
 
     //----- Success -----
 
@@ -437,11 +605,13 @@ public class CollectionBookManager : MonoBehaviour
 
     }
 
-    public void Hide_Success(float aniTime)
+    //--- Hide --
+
+    public void Hide(float aniTime)
     {
-        canvasGroup.DOFade(0, aniTime).OnComplete(HideSuccessComplete);
+        canvasGroup.DOFade(0, aniTime).OnComplete(HideComplete);
     }
-    void HideSuccessComplete()
+    void HideComplete()
     {
         canvasGroup.gameObject.SetActive(false);
         currStage = CollectionBookStage.None;

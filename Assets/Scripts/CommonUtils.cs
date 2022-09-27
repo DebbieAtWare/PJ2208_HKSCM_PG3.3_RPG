@@ -36,6 +36,13 @@ public enum CharacterID
     NPC_P10,
 }
 
+public enum Language
+{
+    TC,
+    SC,
+    EN
+}
+
 public class CommonUtils : MonoBehaviour
 {
     public static CommonUtils instance;
@@ -79,6 +86,7 @@ public class CommonUtils : MonoBehaviour
 
     [Header("Curr")]
     public MapID currMapId;
+    public Language currLang;
 
     //for share in multiple scenes
     void Awake()
@@ -289,6 +297,8 @@ public class CommonUtils : MonoBehaviour
         boss1.IsCollectable = true;
         boss1.IsFirstMeetDone = false;
         boss1.IsSuccessCollectDone = false;
+        boss1.Info1_TC = "屬名：<i>Hylonomus</i> <br>意思：森林居住者<br>分類：蜥形綱<br>生存時代：石炭紀晚期<br>身長：約 20 厘米<br>食物：昆蟲<br>化石分布：加拿大";
+        boss1.Info2_TC = "特徵：<br>• 外形與現代蜥蝪非常相似，有長長的尾巴和四足行走<br>• 皮膚由鱗片覆蓋，牙齒尖銳和向內彎曲<br>• 已知最早的爬行動物";
         ConfigData_DialogBox dialog_m11 = new ConfigData_DialogBox();
         dialog_m11.ByWhom = "AVA";
         dialog_m11.ImagePath = "";
@@ -718,6 +728,12 @@ public class ConfigData_Character
     public string DescriptionTag_EN;
     public bool IsCollectable;
     public List<ConfigData_DialogBox> DialogBoxes = new List<ConfigData_DialogBox>();
+    public string Info1_TC;
+    public string Info1_SC;
+    public string Info1_EN;
+    public string Info2_TC;
+    public string Info2_SC;
+    public string Info2_EN;
 
     //for program
     public bool IsFirstMeetDone;

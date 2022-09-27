@@ -70,7 +70,7 @@ public class Boss01Manager : MonoBehaviour
     void CloseSuccessCollect()
     {
         SoundManager.instance.FadeOutStop_SFX(0.5f);
-        CollectionBookManager.instance.Hide_Success(0.5f);
+        CollectionBookManager.instance.Hide(0.5f);
         commonUtils.bosses[currUtilsIndex].IsSuccessCollectDone = true;
         Invoke("TeleportControl", 0.5f);
     }

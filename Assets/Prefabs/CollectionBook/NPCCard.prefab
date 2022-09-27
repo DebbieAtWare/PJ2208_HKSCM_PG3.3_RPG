@@ -356,7 +356,6 @@ GameObject:
   - component: {fileID: 7343226061180160800}
   - component: {fileID: 7343226061180160830}
   - component: {fileID: 7343226060706601456}
-  - component: {fileID: 6318140355337837542}
   m_Layer: 5
   m_Name: NPCCard
   m_TagString: Untagged
@@ -408,25 +407,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d347eb2b41ef4e4b9c48aaaed96502f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
+  characterID: 0
+  mapID: 0
+  configDataIndex: 0
   frame_In: {fileID: 7343226060839847351}
   frame_Out: {fileID: 7343226061799735985}
   numText_In: {fileID: 7343226060454658568}
   numText_Out: {fileID: 7343226060855725030}
---- !u!114 &6318140355337837542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7343226061180160803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AspectMode: 0
-  m_AspectRatio: 1
 --- !u!1 &7343226061794694962
 GameObject:
   m_ObjectHideFlags: 0

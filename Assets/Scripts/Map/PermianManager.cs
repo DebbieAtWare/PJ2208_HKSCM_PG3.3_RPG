@@ -145,7 +145,7 @@ public class PermianManager : MonoBehaviour
     {
         SoundManager.instance.FadeOutStop_SFX(0.5f);
         SoundManager.instance.Play_BGM(3);
-        CollectionBookManager.instance.Hide_Success(0.5f);
+        CollectionBookManager.instance.Hide(0.5f);
         MinimapManager.instance.Show(0.5f);
         StatusBarManager.instance.Show_Permian(0.5f);
         commonUtils.bosses[currUtilsIndex_Boss2].IsSuccessCollectDone = true;
@@ -158,7 +158,7 @@ public class PermianManager : MonoBehaviour
     {
         SoundManager.instance.FadeOutStop_SFX(0.5f);
         SoundManager.instance.Play_BGM(3);
-        CollectionBookManager.instance.Hide_Success(0.5f);
+        CollectionBookManager.instance.Hide(0.5f);
         MinimapManager.instance.Show(0.5f);
         StatusBarManager.instance.Show_Permian(0.5f);
         commonUtils.bosses[currUtilsIndex_Boss3].IsSuccessCollectDone = true;

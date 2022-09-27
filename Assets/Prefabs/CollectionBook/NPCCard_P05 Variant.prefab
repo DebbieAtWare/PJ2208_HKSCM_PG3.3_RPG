@@ -22,6 +22,11 @@ PrefabInstance:
       propertyPath: id
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 7343226060706601456, guid: 9d931774b5d1448459f15a481ead161b,
+        type: 3}
+      propertyPath: characterID
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 7343226061180160800, guid: 9d931774b5d1448459f15a481ead161b,
         type: 3}
       propertyPath: m_Pivot.x
