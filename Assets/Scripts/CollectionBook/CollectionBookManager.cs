@@ -296,7 +296,7 @@ public class CollectionBookManager : MonoBehaviour
             }
             else if (currRow == 2)
             {
-                Hide(0.5f);
+                Hide_Main(0.5f);
             }
         }
         else if (currStage == CollectionBookStage.Detail)
@@ -755,7 +755,12 @@ public class CollectionBookManager : MonoBehaviour
 
     //--- Hide --
 
-    public void Hide(float aniTime)
+    void Hide_Main(float aniTime)
+    {
+        canvasGroup.DOFade(0, aniTime).OnComplete(HideComplete);
+    }
+
+    public void Hide_Succuss(float aniTime)
     {
         canvasGroup.DOFade(0, aniTime).OnComplete(HideComplete);
     }

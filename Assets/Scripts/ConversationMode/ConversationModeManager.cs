@@ -192,7 +192,7 @@ public class ConversationModeManager : MonoBehaviour
     public void Ani_AvatarOut()
     {
         avatarGrpRect.DOAnchorPos(avatarGrpPosTarget_Off, 1f);
-        avatarObj.ChangeAni_Walk_L();
+        //avatarObj.ChangeAni_Walk_L();
     }
 
     public void Ani_BossCenter()

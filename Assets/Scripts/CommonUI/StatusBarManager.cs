@@ -9,26 +9,73 @@ public class StatusBarManager : MonoBehaviour
 {
     public static StatusBarManager instance;
 
+    [Header("Carbon")]
     public CanvasGroup canvasGrp_Carbon;
+    public List<Image> lockImgs_CarbonGrp = new List<Image>();
+    public List<Image> badgeImgs_CarbonGrp = new List<Image>();
+
+    [Header("Permian")]
     public CanvasGroup canvasGrp_Permian;
+    public List<Image> lockImgs_PermianGrp = new List<Image>();
+    public List<Image> badgeImgs_PermianGrp = new List<Image>();
 
-    public Image img_Boss1;
-    public Image img_Boss2;
-    public Image img_Boss3;
+    CommonUtils commonUtils;
 
-    public TextMeshProUGUI text_Carbon;
-    public TextMeshProUGUI text_Permian;
-
-    public Sprite dot_Lock;
-    public Sprite dot_Open;
-
-    void Start()
+    void Awake()
     {
+        Debug.Log("StatusBarManager Awake");
+        if (instance != null)
+        {
+            Debug.Log("More than one instance of StatusBarManager");
+            return;
+        }
         instance = this;
+    }
+
+    public void Setup()
+    {
+        commonUtils = CommonUtils.instance;
+
+        for (int i = 0; i < lockImgs_CarbonGrp.Count; i++)
+        {
+            lockImgs_CarbonGrp[i].rectTransform.localScale = new Vector3(1, 1, 1);
+            lockImgs_CarbonGrp[i].rectTransform.eulerAngles = new Vector3(0, 0, 0);
+            lockImgs_CarbonGrp[i].gameObject.SetActive(true);
+            badgeImgs_CarbonGrp[i].rectTransform.localScale = new Vector3(1, 1, 1);
+            badgeImgs_CarbonGrp[i].rectTransform.eulerAngles = new Vector3(0, 90, 0);
+            badgeImgs_CarbonGrp[i].gameObject.SetActive(false);
+            lockImgs_PermianGrp[i].rectTransform.localScale = new Vector3(1, 1, 1);
+            lockImgs_PermianGrp[i].rectTransform.eulerAngles = new Vector3(0, 0, 0);
+            lockImgs_PermianGrp[i].gameObject.SetActive(true);
+            badgeImgs_PermianGrp[i].rectTransform.localScale = new Vector3(1, 1, 1);
+            badgeImgs_PermianGrp[i].rectTransform.eulerAngles = new Vector3(0, 90, 0);
+            badgeImgs_PermianGrp[i].gameObject.SetActive(false);
+        }
     }
 
     public void Show_Carbon(float aniTime)
     {
+        for (int i = 0; i < commonUtils.bosses.Count; i++)
+        {
+            if (commonUtils.bosses[i].IsSuccessCollectDone)
+            {
+                lockImgs_CarbonGrp[i].rectTransform.localScale = new Vector3(1, 1, 1);
+                lockImgs_CarbonGrp[i].rectTransform.eulerAngles = new Vector3(0, 0, 0);
+                lockImgs_CarbonGrp[i].gameObject.SetActive(false);
+                badgeImgs_CarbonGrp[i].rectTransform.localScale = new Vector3(1, 1, 1);
+                badgeImgs_CarbonGrp[i].rectTransform.eulerAngles = new Vector3(0, 0, 0);
+                badgeImgs_CarbonGrp[i].gameObject.SetActive(true);
+            }
+            else
+            {
+                lockImgs_CarbonGrp[i].rectTransform.localScale = new Vector3(1, 1, 1);
+                lockImgs_CarbonGrp[i].rectTransform.eulerAngles = new Vector3(0, 0, 0);
+                lockImgs_CarbonGrp[i].gameObject.SetActive(true);
+                badgeImgs_CarbonGrp[i].rectTransform.localScale = new Vector3(1, 1, 1);
+                badgeImgs_CarbonGrp[i].rectTransform.eulerAngles = new Vector3(0, 90, 0);
+                badgeImgs_CarbonGrp[i].gameObject.SetActive(false);
+            }
+        }
         canvasGrp_Carbon.DOFade(1, aniTime);
     }
 
@@ -37,23 +84,49 @@ public class StatusBarManager : MonoBehaviour
         canvasGrp_Carbon.DOFade(0, aniTime);
     }
     
-    public void Update_Carbon(bool boss1)
+    public void BadgeAni_Carbon(float waitTime)
     {
-        if (boss1)
+        StartCoroutine(Ani());
+        IEnumerator Ani()
         {
-            img_Boss1.sprite = dot_Open;
-            text_Carbon.text = "1/1";
-        }
-        else
-        {
-            img_Boss1.sprite = dot_Lock;
-            text_Carbon.text = "0/1";
+            yield return new WaitForSeconds(waitTime);
+            lockImgs_CarbonGrp[0].rectTransform.DOScale(new Vector3(2, 2, 2), 0.5f);
+            yield return new WaitForSeconds(0.5f);
+            lockImgs_CarbonGrp[0].rectTransform.DOLocalRotate(new Vector3(0, 90, 0), 0.2f);
+            yield return new WaitForSeconds(0.2f);
+            lockImgs_CarbonGrp[0].gameObject.SetActive(false);
+            badgeImgs_CarbonGrp[0].gameObject.SetActive(true);
+            badgeImgs_CarbonGrp[0].rectTransform.localScale = new Vector3(2, 2, 2);
+            badgeImgs_CarbonGrp[0].rectTransform.DOLocalRotate(new Vector3(0, 0, 0), 0.2f);
+            yield return new WaitForSeconds(1f);
+            badgeImgs_CarbonGrp[0].rectTransform.DOScale(new Vector3(1, 1, 1), 0.5f);
         }
     }
 
 
     public void Show_Permian(float aniTime)
     {
+        for (int i = 0; i < commonUtils.bosses.Count; i++)
+        {
+            if (commonUtils.bosses[i].IsSuccessCollectDone)
+            {
+                lockImgs_PermianGrp[i].rectTransform.localScale = new Vector3(1, 1, 1);
+                lockImgs_PermianGrp[i].rectTransform.eulerAngles = new Vector3(0, 0, 0);
+                lockImgs_PermianGrp[i].gameObject.SetActive(false);
+                badgeImgs_PermianGrp[i].rectTransform.localScale = new Vector3(1, 1, 1);
+                badgeImgs_PermianGrp[i].rectTransform.eulerAngles = new Vector3(0, 0, 0);
+                badgeImgs_PermianGrp[i].gameObject.SetActive(true);
+            }
+            else
+            {
+                lockImgs_PermianGrp[i].rectTransform.localScale = new Vector3(1, 1, 1);
+                lockImgs_PermianGrp[i].rectTransform.eulerAngles = new Vector3(0, 0, 0);
+                lockImgs_PermianGrp[i].gameObject.SetActive(true);
+                badgeImgs_PermianGrp[i].rectTransform.localScale = new Vector3(1, 1, 1);
+                badgeImgs_PermianGrp[i].rectTransform.eulerAngles = new Vector3(0, 90, 0);
+                badgeImgs_PermianGrp[i].gameObject.SetActive(false);
+            }
+        }
         canvasGrp_Permian.DOFade(1, aniTime);
     }
 
@@ -64,29 +137,30 @@ public class StatusBarManager : MonoBehaviour
 
     public void Update_Permian(bool boss2, bool boss3)
     {
-        if (!boss2 && !boss3)
-        {
-            img_Boss2.sprite = dot_Lock;
-            img_Boss3.sprite = dot_Lock;
-            text_Permian.text = "0/2";
-        }
-        else if (boss2 && !boss3)
-        {
-            img_Boss2.sprite = dot_Open;
-            img_Boss3.sprite = dot_Lock;
-            text_Permian.text = "1/2";
-        }
-        else if (!boss2 && boss3)
-        {
-            img_Boss2.sprite = dot_Lock;
-            img_Boss3.sprite = dot_Open;
-            text_Permian.text = "1/2";
-        }
-        else if (boss2 && boss3)
-        {
-            img_Boss2.sprite = dot_Open;
-            img_Boss3.sprite = dot_Open;
-            text_Permian.text = "2/2";
-        }
+        //if (!boss2 && !boss3)
+        //{
+        //    img_Boss2.sprite = dot_Lock;
+        //    img_Boss3.sprite = dot_Lock;
+        //    text_Permian.text = "0/2";
+        //}
+        //else if (boss2 && !boss3)
+        //{
+        //    img_Boss2.sprite = dot_Open;
+        //    img_Boss3.sprite = dot_Lock;
+        //    text_Permian.text = "1/2";
+        //}
+        //else if (!boss2 && boss3)
+        //{
+        //    img_Boss2.sprite = dot_Lock;
+        //    img_Boss3.sprite = dot_Open;
+        //    text_Permian.text = "1/2";
+        //}
+        //else if (boss2 && boss3)
+        //{
+        //    img_Boss2.sprite = dot_Open;
+        //    img_Boss3.sprite = dot_Open;
+        //    text_Permian.text = "2/2";
+        //}
     }
+
 }

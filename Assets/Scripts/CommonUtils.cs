@@ -243,7 +243,7 @@ public class CommonUtils : MonoBehaviour
         npc_5.IsSuccessCollectDone = false;
         ConfigData_DialogBox dialog_51 = new ConfigData_DialogBox();
         dialog_51.ByWhom = "AVA";
-        dialog_51.ImagePath = "";
+        dialog_51.ImagePath = "Images/SupportImage/Lystrosaurus_SupportImg1";
         dialog_51.Text_TC = "噢，是彼得足螈！";
         npc_5.DialogBoxes.Add(dialog_51);
         ConfigData_DialogBox dialog_52 = new ConfigData_DialogBox();
