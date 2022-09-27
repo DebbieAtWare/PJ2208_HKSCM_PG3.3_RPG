@@ -27,6 +27,9 @@ public class CollectionBookManager : MonoBehaviour
 
     [Header("Main")]
     public GameObject main_RootObj;
+    public List<GameObject> main_LangObjs_TC = new List<GameObject>();
+    public List<GameObject> main_LangObjs_SC = new List<GameObject>();
+    public List<GameObject> main_LangObjs_EN = new List<GameObject>();
     public List<CollectionBookBossObject> main_BossObjs = new List<CollectionBookBossObject>();
     public List<CollectionBookNPCObject> main_NPCObjs = new List<CollectionBookNPCObject>();
     public RectTransform main_Scroll_ContentRect;
@@ -54,6 +57,10 @@ public class CollectionBookManager : MonoBehaviour
     public TextMeshProUGUI detail_Text_R_SC;
     public TextMeshProUGUI detail_Text_R_EN;
     public GameObject detail_ExitFrameObj;
+    public GameObject detail_ExitText_TC;
+    public GameObject detail_ExitText_SC;
+    public GameObject detail_ExitText_EN;
+
 
     [Header("Success")]
     public GameObject success_RootObj;
@@ -302,7 +309,6 @@ public class CollectionBookManager : MonoBehaviour
 
     public void Show_Main()
     {
-        Debug.Log("Show_Main");
         canvasGroup.gameObject.SetActive(true);
         main_RootObj.SetActive(true);
         detail_RootObj.SetActive(false);
@@ -317,6 +323,52 @@ public class CollectionBookManager : MonoBehaviour
         main_Scroll_VisibleIndex = 0;
         main_Scroll_PosGap_IsSmall_Next = true;
         main_Scroll_PosGap_IsSmall_Previous = true;
+
+        if (commonUtils.currLang == Language.TC)
+        {
+            for (int i = 0; i < main_LangObjs_TC.Count; i++)
+            {
+                main_LangObjs_TC[i].SetActive(true);
+            }
+            for (int i = 0; i < main_LangObjs_SC.Count; i++)
+            {
+                main_LangObjs_SC[i].SetActive(false);
+            }
+            for (int i = 0; i < main_LangObjs_EN.Count; i++)
+            {
+                main_LangObjs_EN[i].SetActive(false);
+            }
+        }
+        else if (commonUtils.currLang == Language.SC)
+        {
+            for (int i = 0; i < main_LangObjs_TC.Count; i++)
+            {
+                main_LangObjs_TC[i].SetActive(false);
+            }
+            for (int i = 0; i < main_LangObjs_SC.Count; i++)
+            {
+                main_LangObjs_SC[i].SetActive(true);
+            }
+            for (int i = 0; i < main_LangObjs_EN.Count; i++)
+            {
+                main_LangObjs_EN[i].SetActive(false);
+            }
+        }
+        else if (commonUtils.currLang == Language.EN)
+        {
+            for (int i = 0; i < main_LangObjs_TC.Count; i++)
+            {
+                main_LangObjs_TC[i].SetActive(false);
+            }
+            for (int i = 0; i < main_LangObjs_SC.Count; i++)
+            {
+                main_LangObjs_SC[i].SetActive(false);
+            }
+            for (int i = 0; i < main_LangObjs_EN.Count; i++)
+            {
+                main_LangObjs_EN[i].SetActive(true);
+            }
+        }
 
         for (int i = 0; i < main_BossObjs.Count; i++)
         {
@@ -361,6 +413,17 @@ public class CollectionBookManager : MonoBehaviour
                 detail_Title_NPC_TC.SetActive(false);
                 detail_Title_NPC_SC.SetActive(false);
                 detail_Title_NPC_EN.SetActive(false);
+                detail_Text_L_TC.text = character.Info1_TC;
+                detail_Text_L_TC.gameObject.SetActive(true);
+                detail_Text_L_SC.gameObject.SetActive(false);
+                detail_Text_L_EN.gameObject.SetActive(false);
+                detail_Text_R_TC.text = character.Info2_TC;
+                detail_Text_R_TC.gameObject.SetActive(true);
+                detail_Text_R_SC.gameObject.SetActive(false);
+                detail_Text_R_EN.gameObject.SetActive(false);
+                detail_ExitText_TC.SetActive(true);
+                detail_ExitText_SC.SetActive(false);
+                detail_ExitText_EN.SetActive(false);
             }
             else if (commonUtils.currLang == Language.SC)
             {
@@ -370,8 +433,19 @@ public class CollectionBookManager : MonoBehaviour
                 detail_Title_NPC_TC.SetActive(false);
                 detail_Title_NPC_SC.SetActive(false);
                 detail_Title_NPC_EN.SetActive(false);
+                detail_Text_L_SC.text = character.Info1_SC;
+                detail_Text_L_TC.gameObject.SetActive(false);
+                detail_Text_L_SC.gameObject.SetActive(true);
+                detail_Text_L_EN.gameObject.SetActive(false);
+                detail_Text_R_SC.text = character.Info2_SC;
+                detail_Text_R_TC.gameObject.SetActive(false);
+                detail_Text_R_SC.gameObject.SetActive(true);
+                detail_Text_R_EN.gameObject.SetActive(false);
+                detail_ExitText_TC.SetActive(false);
+                detail_ExitText_SC.SetActive(true);
+                detail_ExitText_EN.SetActive(false);
             }
-            else if (commonUtils.currLang == Language.SC)
+            else if (commonUtils.currLang == Language.EN)
             {
                 detail_Title_Boss_TC.SetActive(false);
                 detail_Title_Boss_SC.SetActive(false);
@@ -379,6 +453,17 @@ public class CollectionBookManager : MonoBehaviour
                 detail_Title_NPC_TC.SetActive(false);
                 detail_Title_NPC_SC.SetActive(false);
                 detail_Title_NPC_EN.SetActive(false);
+                detail_Text_L_EN.text = character.Info1_EN;
+                detail_Text_L_TC.gameObject.SetActive(false);
+                detail_Text_L_SC.gameObject.SetActive(false);
+                detail_Text_L_EN.gameObject.SetActive(true);
+                detail_Text_R_EN.text = character.Info2_EN;
+                detail_Text_R_TC.gameObject.SetActive(false);
+                detail_Text_R_SC.gameObject.SetActive(false);
+                detail_Text_R_EN.gameObject.SetActive(true);
+                detail_ExitText_TC.SetActive(false);
+                detail_ExitText_SC.SetActive(false);
+                detail_ExitText_EN.SetActive(true);
             }
             for (int i = 0; i < detail_NPCObjs.Count; i++)
             {
@@ -416,6 +501,17 @@ public class CollectionBookManager : MonoBehaviour
                 detail_Title_NPC_TC.SetActive(true);
                 detail_Title_NPC_SC.SetActive(false);
                 detail_Title_NPC_EN.SetActive(false);
+                detail_Text_L_TC.text = character.Info1_TC;
+                detail_Text_L_TC.gameObject.SetActive(true);
+                detail_Text_L_SC.gameObject.SetActive(false);
+                detail_Text_L_EN.gameObject.SetActive(false);
+                detail_Text_R_TC.text = character.Info2_TC;
+                detail_Text_R_TC.gameObject.SetActive(true);
+                detail_Text_R_SC.gameObject.SetActive(false);
+                detail_Text_R_EN.gameObject.SetActive(false);
+                detail_ExitText_TC.SetActive(true);
+                detail_ExitText_SC.SetActive(false);
+                detail_ExitText_EN.SetActive(false);
             }
             else if (commonUtils.currLang == Language.SC)
             {
@@ -425,8 +521,19 @@ public class CollectionBookManager : MonoBehaviour
                 detail_Title_NPC_TC.SetActive(false);
                 detail_Title_NPC_SC.SetActive(true);
                 detail_Title_NPC_EN.SetActive(false);
+                detail_Text_L_SC.text = character.Info1_SC;
+                detail_Text_L_TC.gameObject.SetActive(false);
+                detail_Text_L_SC.gameObject.SetActive(true);
+                detail_Text_L_EN.gameObject.SetActive(false);
+                detail_Text_R_SC.text = character.Info2_SC;
+                detail_Text_R_TC.gameObject.SetActive(false);
+                detail_Text_R_SC.gameObject.SetActive(true);
+                detail_Text_R_EN.gameObject.SetActive(false);
+                detail_ExitText_TC.SetActive(false);
+                detail_ExitText_SC.SetActive(true);
+                detail_ExitText_EN.SetActive(false);
             }
-            else if (commonUtils.currLang == Language.SC)
+            else if (commonUtils.currLang == Language.EN)
             {
                 detail_Title_Boss_TC.SetActive(false);
                 detail_Title_Boss_SC.SetActive(false);
@@ -434,6 +541,17 @@ public class CollectionBookManager : MonoBehaviour
                 detail_Title_NPC_TC.SetActive(false);
                 detail_Title_NPC_SC.SetActive(false);
                 detail_Title_NPC_EN.SetActive(true);
+                detail_Text_L_EN.text = character.Info1_EN;
+                detail_Text_L_TC.gameObject.SetActive(false);
+                detail_Text_L_SC.gameObject.SetActive(false);
+                detail_Text_L_EN.gameObject.SetActive(true);
+                detail_Text_R_EN.text = character.Info2_EN;
+                detail_Text_R_TC.gameObject.SetActive(false);
+                detail_Text_R_SC.gameObject.SetActive(false);
+                detail_Text_R_EN.gameObject.SetActive(true);
+                detail_ExitText_TC.SetActive(false);
+                detail_ExitText_SC.SetActive(false);
+                detail_ExitText_EN.SetActive(true);
             }
             for (int i = 0; i < detail_BossObjs.Count; i++)
             {
@@ -453,12 +571,6 @@ public class CollectionBookManager : MonoBehaviour
                 }
             }
         }
-        detail_Text_L_TC.text = character.Info1_TC;
-        detail_Text_L_SC.text = character.Info1_SC;
-        detail_Text_L_EN.text = character.Info1_EN;
-        detail_Text_R_TC.text = character.Info2_TC;
-        detail_Text_R_SC.text = character.Info2_SC;
-        detail_Text_R_EN.text = character.Info2_EN;
 
         detail_ExitFrameObj.SetActive(true);
 
@@ -558,9 +670,18 @@ public class CollectionBookManager : MonoBehaviour
                 success_BossObjs[1].GrayOutAni();
                 success_BossObjs[2].GrayOutAni();
                 yield return new WaitForSeconds(1f);
-                success_Text_TC.DOFade(1f, 1f);
-                success_Text_SC.DOFade(1f, 1f);
-                success_Text_EN.DOFade(1f, 1f);
+                if (commonUtils.currLang == Language.TC)
+                {
+                    success_Text_TC.DOFade(1f, 1f);
+                }
+                else if (commonUtils.currLang == Language.SC)
+                {
+                    success_Text_SC.DOFade(1f, 1f);
+                }
+                else if (commonUtils.currLang == Language.EN)
+                {
+                    success_Text_EN.DOFade(1f, 1f);
+                }
             }
         }
         else if (character.Id == CharacterID.M02.ToString())
@@ -582,9 +703,18 @@ public class CollectionBookManager : MonoBehaviour
                 success_BossObjs[0].GrayOutAni();
                 success_BossObjs[2].GrayOutAni();
                 yield return new WaitForSeconds(1f);
-                success_Text_TC.DOFade(1f, 1f);
-                success_Text_SC.DOFade(1f, 1f);
-                success_Text_EN.DOFade(1f, 1f);
+                if (commonUtils.currLang == Language.TC)
+                {
+                    success_Text_TC.DOFade(1f, 1f);
+                }
+                else if (commonUtils.currLang == Language.SC)
+                {
+                    success_Text_SC.DOFade(1f, 1f);
+                }
+                else if (commonUtils.currLang == Language.EN)
+                {
+                    success_Text_EN.DOFade(1f, 1f);
+                }
             }
         }
         else if (character.Id == CharacterID.M03.ToString())
@@ -606,9 +736,18 @@ public class CollectionBookManager : MonoBehaviour
                 success_BossObjs[0].GrayOutAni();
                 success_BossObjs[1].GrayOutAni();
                 yield return new WaitForSeconds(1f);
-                success_Text_TC.DOFade(1f, 1f);
-                success_Text_SC.DOFade(1f, 1f);
-                success_Text_EN.DOFade(1f, 1f);
+                if (commonUtils.currLang == Language.TC)
+                {
+                    success_Text_TC.DOFade(1f, 1f);
+                }
+                else if (commonUtils.currLang == Language.SC)
+                {
+                    success_Text_SC.DOFade(1f, 1f);
+                }
+                else if (commonUtils.currLang == Language.EN)
+                {
+                    success_Text_EN.DOFade(1f, 1f);
+                }
             }
         }
 

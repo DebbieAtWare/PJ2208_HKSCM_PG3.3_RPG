@@ -153,7 +153,11 @@ public class CommonUtils : MonoBehaviour
         npc_1.IsFirstMeetDone = false;
         npc_1.IsSuccessCollectDone = false;
         npc_1.Info1_TC = "<b>鱗木屬</b><br>屬名：<i>Lepidodendron</i><br>意思：帶鱗片的樹木<br>分類：石松綱<br>生存時代：石炭紀<br>高度：可超過 30 米<br>化石分布：世界各地<br>";
-        npc_1.Info2_TC = "<br>特徵：<br>• 早期無籽維管植物，現代石松的近親<br>• 石炭紀最常見的植物之一<br>• 樹幹被葉覆蓋，葉脫落後留下鑽石型的葉痕"; 
+        npc_1.Info1_SC = "<b>鳞木属</b><br>属名：<i>Lepidodendron</i><br>意思：带鳞片的树木<br>分类：石松纲<br>生存时代：石炭纪<br>高度：可超过 30 米<br>化石分布：世界各地<br>";
+        npc_1.Info1_EN = "<b><i>Lepidodendron</i></b><br>Genus: <i>Lepidodendron</i><br>Meaning: Scale tree<br>Classification: Lycopodiopsida<br>Period: Carboniferous<br>Length: can be over 30 m<br>Fossil distribution: Worldwide";
+        npc_1.Info2_TC = "<br>特徵：<br>• 早期無籽維管植物，現代石松的近親<br>• 石炭紀最常見的植物之一<br>• 樹幹被葉覆蓋，葉脫落後留下鑽石型的葉痕";
+        npc_1.Info2_SC = "<br>特征：<br>• 早期无籽维管植物，现代石松的近亲<br>• 石炭纪最常见的植物之一<br>• 树干被叶覆盖，叶脱落后留下钻石型的叶痕";
+        npc_1.Info2_EN = "<br>Feature:<br>•  Early seedless vascular plants closely related to club mosses of today<br>•  One of the most abundant plants of the Carboniferous<br>•  Trunk covered with leaves that leave diamond - shaped scars";
         ConfigData_DialogBox dialog_11 = new ConfigData_DialogBox();
         dialog_11.ByWhom = "DRO";
         dialog_11.ImagePath = "";
@@ -300,7 +304,11 @@ public class CommonUtils : MonoBehaviour
         boss1.IsFirstMeetDone = false;
         boss1.IsSuccessCollectDone = false;
         boss1.Info1_TC = "<b>林蜥</b><br>屬名：<i>Hylonomus</i> <br>意思：森林居住者<br>分類：蜥形綱<br>生存時代：石炭紀晚期<br>身長：約 20 厘米<br>食物：昆蟲<br>化石分布：加拿大";
+        boss1.Info1_SC = "<b>林蜥</b><br>属名：<i>Hylonomus</i> <br>意思：森林居住者<br>分类：蜥形纲<br>生存时代：石炭纪晚期<br>身长：约 20 厘米<br>食物：昆虫<br>化石分布：加拿大";
+        boss1.Info1_EN = "<b><i>Hylonomus</i></b><br>Genus: <i>Hylonomus</i><br>Meaning: Forest dweller<br>Classification: Sauropsida<br>Period: Late Carboniferous<br>Length: ~20 cm<br>Diet: Insects<br>Fossil distribution: Canada";
         boss1.Info2_TC = "<br>特徵：<br>• 外形與現代蜥蝪非常相似，有長長的尾巴和四足行走<br>• 皮膚由鱗片覆蓋，牙齒尖銳和向內彎曲<br>• 已知最早的爬行動物";
+        boss1.Info2_SC = "<br>特征：<br>• 外形与现代蜥蝪非常相似，有长长的尾巴和四足行走<br>• 皮肤由鳞片覆盖，牙齿尖锐和向内弯曲<br>• 已知最早的爬行动物";
+        boss1.Info2_EN = "<br>Feature: <br>•  Superficially lizard-like overall, with a long tail and walk on four legs<br>•  Skin covered in scale, pointy teeth curved inward<br>•  The earliest known reptile";
         ConfigData_DialogBox dialog_m11 = new ConfigData_DialogBox();
         dialog_m11.ByWhom = "AVA";
         dialog_m11.ImagePath = "";
