@@ -52,7 +52,6 @@ public class Boss01Manager : MonoBehaviour
         InputManager.instance.canInput_Confirm = false;
         commonUtils.bosses[currUtilsIndex].IsFirstMeetDone = true;
         bossObj.canShowAlert = false;
-        //StatusBarManager.instance.Update_Carbon(true);
         if (!commonUtils.bosses[currUtilsIndex].IsSuccessCollectDone)
         {
             SoundManager.instance.Play_SFX(9);
@@ -71,8 +70,9 @@ public class Boss01Manager : MonoBehaviour
     {
         SoundManager.instance.FadeOutStop_SFX(0.5f);
         CollectionBookManager.instance.Hide_Succuss(0.5f);
-        commonUtils.bosses[currUtilsIndex].IsSuccessCollectDone = true;
+        StatusBarManager.instance.Show_Carbon(0.5f);
         StatusBarManager.instance.BadgeAni_Carbon(0.5f);
+        commonUtils.bosses[currUtilsIndex].IsSuccessCollectDone = true;
         Invoke("TeleportControl", 3.5f);
     }
 

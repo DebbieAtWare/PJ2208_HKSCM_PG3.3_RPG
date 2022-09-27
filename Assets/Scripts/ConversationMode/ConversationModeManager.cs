@@ -221,6 +221,13 @@ public class ConversationModeManager : MonoBehaviour
         conversationModeCanvasGrp.gameObject.SetActive(false);
         CancelInvoke("BkgLoopAni");
         CancelInvoke("BkgTopAni");
+        CancelInvoke("BkgTopAni_Reverse");
+        avatarObj.ResetAll();
+        droneObj.ResetAll();
+        for (int i = 0; i < bossObjs.Count; i++)
+        {
+            bossObjs[i].ResetAll();
+        }
         bkg.sprite = bkgSprites[0];
         currBkgIndex = 0;
         bkgTop.sprite = bkgTopSprites[0];

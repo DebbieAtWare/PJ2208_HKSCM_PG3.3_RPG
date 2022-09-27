@@ -139,7 +139,7 @@ public class BossObject : MonoBehaviour
                 ViewBoxManager.instance.HideViewBox();
                 SoundManager.instance.Play_Input(2);
                 MinimapManager.instance.Hide(0.5f);
-                //StatusBarManager.instance.Hide_Carbon(0.5f);
+                StatusBarManager.instance.Hide_Carbon(0.5f);
                 StatusBarManager.instance.Hide_Permian(0.5f);
                 ConversationModeManager.instance.Ani_Start(id, info.Name_TC, info.DescriptionTag_TC);
                 ConversationModeManager.instance.BossAni_Idle();

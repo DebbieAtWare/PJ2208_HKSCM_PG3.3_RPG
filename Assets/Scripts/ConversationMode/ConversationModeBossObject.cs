@@ -90,4 +90,15 @@ public class ConversationModeBossObject : MonoBehaviour
         Invoke("LoopAni_Talk", aniTime_Talk);
     }
 
+    //----
+
+    public void ResetAll()
+    {
+        CancelInvoke("LoopAni_Talk");
+        CancelInvoke("LoopAni_Idle");
+        currIndex_Idle = 0;
+        currIndex_Talk = 0;
+        currStage = BossStage.None;
+        img.sprite = sprites_Idle[currIndex_Idle];
+    }
 }

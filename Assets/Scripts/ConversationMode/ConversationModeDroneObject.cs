@@ -29,4 +29,13 @@ public class ConversationModeDroneObject : MonoBehaviour
         img.sprite = sprites[currIndex];
         Invoke("LoopAni", aniTime);
     }
+
+    //------
+
+    public void ResetAll()
+    {
+        CancelInvoke("LoopAni");
+        currIndex = 0;
+        img.sprite = sprites[currIndex];
+    }
 }

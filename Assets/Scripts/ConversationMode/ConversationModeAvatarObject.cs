@@ -78,5 +78,15 @@ public class ConversationModeAvatarObject : MonoBehaviour
         Invoke("LoopAni_Walk_L", aniTime);
     }
 
+    //-----
 
+    public void ResetAll()
+    {
+        CancelInvoke("LoopAni_Walk_L");
+        CancelInvoke("LoopAni_Walk_R");
+        CancelInvoke("LoopAni_Idle");
+        currIndex_Walk_L = 0;
+        currIndex_Walk_R = 0;
+        currIndex_Idle = 0;
+    }
 }
