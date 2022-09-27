@@ -50,6 +50,9 @@ public class CommonUtils : MonoBehaviour
     public delegate void OnSetupDone();
     public OnSetupDone onSetupDoneCallback;
 
+    public delegate void OnChangeLang();
+    public OnChangeLang onChangeLangCallback;
+
     [Header("PlayerPos")]
     public Vector3 playerPos_Carboniferous;
     public Vector3 playerPos_Permian;
@@ -142,7 +145,32 @@ public class CommonUtils : MonoBehaviour
         }
     }
 
-    //--------
+    public void ChangeLanguage(Language lang)
+    {
+        currLang = lang;
+        if (onChangeLangCallback != null)
+        {
+            onChangeLangCallback.Invoke();
+        }
+    }
+
+    //-------- tmp
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            ChangeLanguage(Language.TC);
+        }
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            ChangeLanguage(Language.SC);
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            ChangeLanguage(Language.EN);
+        }
+    }
 
     void TmpExcelControl()
     {
@@ -706,23 +734,6 @@ public class CommonUtils : MonoBehaviour
         successCollectText.Text_EN = "You’ve got <<NPC name>>!";
 
     }
-
-    //tmp keyboard change scene
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.I))
-    //    {
-    //        SceneManager.LoadScene("MainScene");
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.O))
-    //    {
-    //        SceneManager.LoadScene("CarboniferousScene");
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.P))
-    //    {
-    //        SceneManager.LoadScene("PermianScene");
-    //    }
-    //}
 }
 
 [Serializable]

@@ -30,7 +30,12 @@ public class CollectionBookBossObject : MonoBehaviour
     [Header("Frame")]
     public GameObject frameObj;
 
-    public void Setup(string name_TC, string name_SC, string name_EN)
+    [Header("Lang")]
+    public List<GameObject> langObjs_TC = new List<GameObject>();
+    public List<GameObject> langObjs_SC = new List<GameObject>();
+    public List<GameObject> langObjs_EN = new List<GameObject>();
+
+    public void Setup(string name_TC, string name_SC, string name_EN, Language lang)
     {
         nameText_TC.text = name_TC;
         nameText_SC.text = name_SC;
@@ -49,6 +54,56 @@ public class CollectionBookBossObject : MonoBehaviour
         uiShadow_Boss.enabled = false;
         uiEffect_Boss.enabled = false;
         img_Boss.gameObject.SetActive(false);
+        ChangeLanguage(lang);
+    }
+
+    public void ChangeLanguage(Language lang)
+    {
+        if (lang == Language.TC)
+        {
+            for (int i = 0; i < langObjs_TC.Count; i++)
+            {
+                langObjs_TC[i].SetActive(true);
+            }
+            for (int i = 0; i < langObjs_SC.Count; i++)
+            {
+                langObjs_SC[i].SetActive(false);
+            }
+            for (int i = 0; i < langObjs_EN.Count; i++)
+            {
+                langObjs_EN[i].SetActive(false);
+            }
+        }
+        else if (lang == Language.SC)
+        {
+            for (int i = 0; i < langObjs_TC.Count; i++)
+            {
+                langObjs_TC[i].SetActive(false);
+            }
+            for (int i = 0; i < langObjs_SC.Count; i++)
+            {
+                langObjs_SC[i].SetActive(true);
+            }
+            for (int i = 0; i < langObjs_EN.Count; i++)
+            {
+                langObjs_EN[i].SetActive(false);
+            }
+        }
+        else if (lang == Language.EN)
+        {
+            for (int i = 0; i < langObjs_TC.Count; i++)
+            {
+                langObjs_TC[i].SetActive(false);
+            }
+            for (int i = 0; i < langObjs_SC.Count; i++)
+            {
+                langObjs_SC[i].SetActive(false);
+            }
+            for (int i = 0; i < langObjs_EN.Count; i++)
+            {
+                langObjs_EN[i].SetActive(true);
+            }
+        }
     }
 
     public void UnlockAni()

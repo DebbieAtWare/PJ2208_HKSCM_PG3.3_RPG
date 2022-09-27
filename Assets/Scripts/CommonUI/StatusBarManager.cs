@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class StatusBarManager : MonoBehaviour
 {
@@ -13,11 +14,22 @@ public class StatusBarManager : MonoBehaviour
     public CanvasGroup canvasGrp_Carbon;
     public List<Image> lockImgs_CarbonGrp = new List<Image>();
     public List<Image> badgeImgs_CarbonGrp = new List<Image>();
+    public RectTransform rectL_CarbonGrp;
+    public HorizontalLayoutGroup horiLayoutL_CarbonGrp;
+    public RectTransform rectR_CarbonGrp;
+
 
     [Header("Permian")]
     public CanvasGroup canvasGrp_Permian;
     public List<Image> lockImgs_PermianGrp = new List<Image>();
     public List<Image> badgeImgs_PermianGrp = new List<Image>();
+    public RectTransform rectL_PermianGrp;
+    public RectTransform rectR_PermianGrp;
+
+    [Header("Lang")]
+    public List<GameObject> langObjs_TC = new List<GameObject>();
+    public List<GameObject> langObjs_SC = new List<GameObject>();
+    public List<GameObject> langObjs_EN = new List<GameObject>();
 
     CommonUtils commonUtils;
 
@@ -35,6 +47,7 @@ public class StatusBarManager : MonoBehaviour
     public void Setup()
     {
         commonUtils = CommonUtils.instance;
+        commonUtils.onChangeLangCallback += CommonUtils_OnChangeLang;
 
         for (int i = 0; i < lockImgs_CarbonGrp.Count; i++)
         {
@@ -51,6 +64,81 @@ public class StatusBarManager : MonoBehaviour
             badgeImgs_PermianGrp[i].rectTransform.eulerAngles = new Vector3(0, 90, 0);
             badgeImgs_PermianGrp[i].gameObject.SetActive(false);
         }
+
+        ChangeLanguage();
+    }
+
+    private void CommonUtils_OnChangeLang()
+    {
+        ChangeLanguage();
+    }
+
+    void ChangeLanguage()
+    {
+        if (commonUtils.currLang == Language.TC)
+        {
+            for (int i = 0; i < langObjs_TC.Count; i++)
+            {
+                langObjs_TC[i].SetActive(true);
+            }
+            for (int i = 0; i < langObjs_SC.Count; i++)
+            {
+                langObjs_SC[i].SetActive(false);
+            }
+            for (int i = 0; i < langObjs_EN.Count; i++)
+            {
+                langObjs_EN[i].SetActive(false);
+            }
+            RebuildLayout();
+        }
+        else if (commonUtils.currLang == Language.SC)
+        {
+            for (int i = 0; i < langObjs_TC.Count; i++)
+            {
+                langObjs_TC[i].SetActive(false);
+            }
+            for (int i = 0; i < langObjs_SC.Count; i++)
+            {
+                langObjs_SC[i].SetActive(true);
+            }
+            for (int i = 0; i < langObjs_EN.Count; i++)
+            {
+                langObjs_EN[i].SetActive(false);
+            }
+            RebuildLayout();
+        }
+        else if (commonUtils.currLang == Language.EN)
+        {
+            for (int i = 0; i < langObjs_TC.Count; i++)
+            {
+                langObjs_TC[i].SetActive(false);
+            }
+            for (int i = 0; i < langObjs_SC.Count; i++)
+            {
+                langObjs_SC[i].SetActive(false);
+            }
+            for (int i = 0; i < langObjs_EN.Count; i++)
+            {
+                langObjs_EN[i].SetActive(true);
+            }
+            RebuildLayout();
+        }
+    }
+
+    void RebuildLayout()
+    {
+        //call twice
+        LayoutRebuilder.ForceRebuildLayoutImmediate(rectL_CarbonGrp);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(rectL_CarbonGrp);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(rectR_CarbonGrp);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(rectR_CarbonGrp);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(rectL_PermianGrp);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(rectL_PermianGrp);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(rectR_PermianGrp);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(rectR_PermianGrp);
+        rectR_CarbonGrp.anchoredPosition = new Vector2(rectL_CarbonGrp.sizeDelta.x, 0);
+        rectL_PermianGrp.anchoredPosition = new Vector2(rectL_PermianGrp.sizeDelta.x, 0);
+        rectR_PermianGrp.anchoredPosition = new Vector2(rectL_PermianGrp.sizeDelta.x + rectR_PermianGrp.sizeDelta.x, 0);
     }
 
     public void Show_Carbon(float aniTime)
@@ -172,5 +260,4 @@ public class StatusBarManager : MonoBehaviour
             badgeImgs_PermianGrp[2].rectTransform.DOScale(new Vector3(1, 1, 1), 0.5f);
         }
     }
-
 }

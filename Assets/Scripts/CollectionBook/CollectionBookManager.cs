@@ -61,7 +61,6 @@ public class CollectionBookManager : MonoBehaviour
     public GameObject detail_ExitText_SC;
     public GameObject detail_ExitText_EN;
 
-
     [Header("Success")]
     public GameObject success_RootObj;
     public List<CollectionBookBossObject> success_BossObjs = new List<CollectionBookBossObject>();
@@ -86,6 +85,7 @@ public class CollectionBookManager : MonoBehaviour
     public void Setup()
     {
         commonUtils = CommonUtils.instance;
+        commonUtils.onChangeLangCallback += CommonUtils_OnChangeLang;
 
         inputManager = InputManager.instance;
         inputManager.onValueChanged_VerticalCallback += InputManager_OnValueChanged_Vertical;
@@ -101,15 +101,15 @@ public class CollectionBookManager : MonoBehaviour
         {
             if (commonUtils.bosses[i].Id == main_BossObjs[i].id.ToString())
             {
-                main_BossObjs[i].Setup(commonUtils.bosses[i].Name_TC, commonUtils.bosses[i].Name_SC, commonUtils.bosses[i].Name_EN);
+                main_BossObjs[i].Setup(commonUtils.bosses[i].Name_TC, commonUtils.bosses[i].Name_SC, commonUtils.bosses[i].Name_EN, commonUtils.currLang);
             }
             if (commonUtils.bosses[i].Id == detail_BossObjs[i].id.ToString())
             {
-                detail_BossObjs[i].Setup(commonUtils.bosses[i].Name_TC, commonUtils.bosses[i].Name_SC, commonUtils.bosses[i].Name_EN);
+                detail_BossObjs[i].Setup(commonUtils.bosses[i].Name_TC, commonUtils.bosses[i].Name_SC, commonUtils.bosses[i].Name_EN, commonUtils.currLang);
             }
             if (commonUtils.bosses[i].Id == success_BossObjs[i].id.ToString())
             {
-                success_BossObjs[i].Setup(commonUtils.bosses[i].Name_TC, commonUtils.bosses[i].Name_SC, commonUtils.bosses[i].Name_EN);
+                success_BossObjs[i].Setup(commonUtils.bosses[i].Name_TC, commonUtils.bosses[i].Name_SC, commonUtils.bosses[i].Name_EN, commonUtils.currLang);
             }
         }
 
@@ -143,8 +143,18 @@ public class CollectionBookManager : MonoBehaviour
                     }
                     break;
                 }
-                
             }
+        }
+    }
+
+    private void CommonUtils_OnChangeLang()
+    {
+        ChangeLanguage();
+        for (int i = 0; i < main_BossObjs.Count; i++)
+        {
+            main_BossObjs[i].ChangeLanguage(commonUtils.currLang);
+            detail_BossObjs[i].ChangeLanguage(commonUtils.currLang);
+            success_BossObjs[i].ChangeLanguage(commonUtils.currLang);
         }
     }
 
@@ -324,51 +334,7 @@ public class CollectionBookManager : MonoBehaviour
         main_Scroll_PosGap_IsSmall_Next = true;
         main_Scroll_PosGap_IsSmall_Previous = true;
 
-        if (commonUtils.currLang == Language.TC)
-        {
-            for (int i = 0; i < main_LangObjs_TC.Count; i++)
-            {
-                main_LangObjs_TC[i].SetActive(true);
-            }
-            for (int i = 0; i < main_LangObjs_SC.Count; i++)
-            {
-                main_LangObjs_SC[i].SetActive(false);
-            }
-            for (int i = 0; i < main_LangObjs_EN.Count; i++)
-            {
-                main_LangObjs_EN[i].SetActive(false);
-            }
-        }
-        else if (commonUtils.currLang == Language.SC)
-        {
-            for (int i = 0; i < main_LangObjs_TC.Count; i++)
-            {
-                main_LangObjs_TC[i].SetActive(false);
-            }
-            for (int i = 0; i < main_LangObjs_SC.Count; i++)
-            {
-                main_LangObjs_SC[i].SetActive(true);
-            }
-            for (int i = 0; i < main_LangObjs_EN.Count; i++)
-            {
-                main_LangObjs_EN[i].SetActive(false);
-            }
-        }
-        else if (commonUtils.currLang == Language.EN)
-        {
-            for (int i = 0; i < main_LangObjs_TC.Count; i++)
-            {
-                main_LangObjs_TC[i].SetActive(false);
-            }
-            for (int i = 0; i < main_LangObjs_SC.Count; i++)
-            {
-                main_LangObjs_SC[i].SetActive(false);
-            }
-            for (int i = 0; i < main_LangObjs_EN.Count; i++)
-            {
-                main_LangObjs_EN[i].SetActive(true);
-            }
-        }
+        ChangeLanguage();
 
         for (int i = 0; i < main_BossObjs.Count; i++)
         {
@@ -405,66 +371,6 @@ public class CollectionBookManager : MonoBehaviour
     {
         if (character.Id == CharacterID.M01.ToString() || character.Id == CharacterID.M02.ToString() || character.Id == CharacterID.M03.ToString())
         {
-            if (commonUtils.currLang == Language.TC)
-            {
-                detail_Title_Boss_TC.SetActive(true);
-                detail_Title_Boss_SC.SetActive(false);
-                detail_Title_Boss_EN.SetActive(false);
-                detail_Title_NPC_TC.SetActive(false);
-                detail_Title_NPC_SC.SetActive(false);
-                detail_Title_NPC_EN.SetActive(false);
-                detail_Text_L_TC.text = character.Info1_TC;
-                detail_Text_L_TC.gameObject.SetActive(true);
-                detail_Text_L_SC.gameObject.SetActive(false);
-                detail_Text_L_EN.gameObject.SetActive(false);
-                detail_Text_R_TC.text = character.Info2_TC;
-                detail_Text_R_TC.gameObject.SetActive(true);
-                detail_Text_R_SC.gameObject.SetActive(false);
-                detail_Text_R_EN.gameObject.SetActive(false);
-                detail_ExitText_TC.SetActive(true);
-                detail_ExitText_SC.SetActive(false);
-                detail_ExitText_EN.SetActive(false);
-            }
-            else if (commonUtils.currLang == Language.SC)
-            {
-                detail_Title_Boss_TC.SetActive(false);
-                detail_Title_Boss_SC.SetActive(true);
-                detail_Title_Boss_EN.SetActive(false);
-                detail_Title_NPC_TC.SetActive(false);
-                detail_Title_NPC_SC.SetActive(false);
-                detail_Title_NPC_EN.SetActive(false);
-                detail_Text_L_SC.text = character.Info1_SC;
-                detail_Text_L_TC.gameObject.SetActive(false);
-                detail_Text_L_SC.gameObject.SetActive(true);
-                detail_Text_L_EN.gameObject.SetActive(false);
-                detail_Text_R_SC.text = character.Info2_SC;
-                detail_Text_R_TC.gameObject.SetActive(false);
-                detail_Text_R_SC.gameObject.SetActive(true);
-                detail_Text_R_EN.gameObject.SetActive(false);
-                detail_ExitText_TC.SetActive(false);
-                detail_ExitText_SC.SetActive(true);
-                detail_ExitText_EN.SetActive(false);
-            }
-            else if (commonUtils.currLang == Language.EN)
-            {
-                detail_Title_Boss_TC.SetActive(false);
-                detail_Title_Boss_SC.SetActive(false);
-                detail_Title_Boss_EN.SetActive(true);
-                detail_Title_NPC_TC.SetActive(false);
-                detail_Title_NPC_SC.SetActive(false);
-                detail_Title_NPC_EN.SetActive(false);
-                detail_Text_L_EN.text = character.Info1_EN;
-                detail_Text_L_TC.gameObject.SetActive(false);
-                detail_Text_L_SC.gameObject.SetActive(false);
-                detail_Text_L_EN.gameObject.SetActive(true);
-                detail_Text_R_EN.text = character.Info2_EN;
-                detail_Text_R_TC.gameObject.SetActive(false);
-                detail_Text_R_SC.gameObject.SetActive(false);
-                detail_Text_R_EN.gameObject.SetActive(true);
-                detail_ExitText_TC.SetActive(false);
-                detail_ExitText_SC.SetActive(false);
-                detail_ExitText_EN.SetActive(true);
-            }
             for (int i = 0; i < detail_NPCObjs.Count; i++)
             {
                 detail_NPCObjs[i].gameObject.SetActive(false);
@@ -493,66 +399,6 @@ public class CollectionBookManager : MonoBehaviour
         }
         else
         {
-            if (commonUtils.currLang == Language.TC)
-            {
-                detail_Title_Boss_TC.SetActive(false);
-                detail_Title_Boss_SC.SetActive(false);
-                detail_Title_Boss_EN.SetActive(false);
-                detail_Title_NPC_TC.SetActive(true);
-                detail_Title_NPC_SC.SetActive(false);
-                detail_Title_NPC_EN.SetActive(false);
-                detail_Text_L_TC.text = character.Info1_TC;
-                detail_Text_L_TC.gameObject.SetActive(true);
-                detail_Text_L_SC.gameObject.SetActive(false);
-                detail_Text_L_EN.gameObject.SetActive(false);
-                detail_Text_R_TC.text = character.Info2_TC;
-                detail_Text_R_TC.gameObject.SetActive(true);
-                detail_Text_R_SC.gameObject.SetActive(false);
-                detail_Text_R_EN.gameObject.SetActive(false);
-                detail_ExitText_TC.SetActive(true);
-                detail_ExitText_SC.SetActive(false);
-                detail_ExitText_EN.SetActive(false);
-            }
-            else if (commonUtils.currLang == Language.SC)
-            {
-                detail_Title_Boss_TC.SetActive(false);
-                detail_Title_Boss_SC.SetActive(false);
-                detail_Title_Boss_EN.SetActive(false);
-                detail_Title_NPC_TC.SetActive(false);
-                detail_Title_NPC_SC.SetActive(true);
-                detail_Title_NPC_EN.SetActive(false);
-                detail_Text_L_SC.text = character.Info1_SC;
-                detail_Text_L_TC.gameObject.SetActive(false);
-                detail_Text_L_SC.gameObject.SetActive(true);
-                detail_Text_L_EN.gameObject.SetActive(false);
-                detail_Text_R_SC.text = character.Info2_SC;
-                detail_Text_R_TC.gameObject.SetActive(false);
-                detail_Text_R_SC.gameObject.SetActive(true);
-                detail_Text_R_EN.gameObject.SetActive(false);
-                detail_ExitText_TC.SetActive(false);
-                detail_ExitText_SC.SetActive(true);
-                detail_ExitText_EN.SetActive(false);
-            }
-            else if (commonUtils.currLang == Language.EN)
-            {
-                detail_Title_Boss_TC.SetActive(false);
-                detail_Title_Boss_SC.SetActive(false);
-                detail_Title_Boss_EN.SetActive(false);
-                detail_Title_NPC_TC.SetActive(false);
-                detail_Title_NPC_SC.SetActive(false);
-                detail_Title_NPC_EN.SetActive(true);
-                detail_Text_L_EN.text = character.Info1_EN;
-                detail_Text_L_TC.gameObject.SetActive(false);
-                detail_Text_L_SC.gameObject.SetActive(false);
-                detail_Text_L_EN.gameObject.SetActive(true);
-                detail_Text_R_EN.text = character.Info2_EN;
-                detail_Text_R_TC.gameObject.SetActive(false);
-                detail_Text_R_SC.gameObject.SetActive(false);
-                detail_Text_R_EN.gameObject.SetActive(true);
-                detail_ExitText_TC.SetActive(false);
-                detail_ExitText_SC.SetActive(false);
-                detail_ExitText_EN.SetActive(true);
-            }
             for (int i = 0; i < detail_BossObjs.Count; i++)
             {
                 detail_BossObjs[i].gameObject.SetActive(false);
@@ -571,6 +417,14 @@ public class CollectionBookManager : MonoBehaviour
                 }
             }
         }
+
+        detail_Text_L_TC.text = character.Info1_TC;
+        detail_Text_R_TC.text = character.Info2_TC;
+        detail_Text_L_SC.text = character.Info1_SC;
+        detail_Text_R_SC.text = character.Info2_SC;
+        detail_Text_L_EN.text = character.Info1_EN;
+        detail_Text_R_EN.text = character.Info2_EN;
+        ChangeLanguage();
 
         detail_ExitFrameObj.SetActive(true);
 
@@ -753,7 +607,7 @@ public class CollectionBookManager : MonoBehaviour
 
     }
 
-    //--- Hide --
+    //--- Hide ---
 
     void Hide_Main(float aniTime)
     {
@@ -771,5 +625,134 @@ public class CollectionBookManager : MonoBehaviour
         DroneController.instance.ShowTalkHint();
         DroneController.instance.canShowTalkHint = true;
         GameManager.instance.dialogActive = false;
+    }
+
+    //--- Language ---
+
+    void ChangeLanguage()
+    {
+        if (commonUtils.currLang == Language.TC)
+        {
+            //main
+            for (int i = 0; i < main_LangObjs_TC.Count; i++)
+            {
+                main_LangObjs_TC[i].SetActive(true);
+            }
+            for (int i = 0; i < main_LangObjs_SC.Count; i++)
+            {
+                main_LangObjs_SC[i].SetActive(false);
+            }
+            for (int i = 0; i < main_LangObjs_EN.Count; i++)
+            {
+                main_LangObjs_EN[i].SetActive(false);
+            }
+
+            //detail
+            if (currRow == 0)
+            {
+                detail_Title_Boss_TC.SetActive(true);
+                detail_Title_NPC_TC.SetActive(false);
+            }
+            else if (currRow == 1)
+            {
+                detail_Title_Boss_TC.SetActive(false);
+                detail_Title_NPC_TC.SetActive(true);
+            }
+            detail_Title_Boss_SC.SetActive(false);
+            detail_Title_Boss_EN.SetActive(false);
+            detail_Title_NPC_SC.SetActive(false);
+            detail_Title_NPC_EN.SetActive(false);
+            detail_Text_L_TC.gameObject.SetActive(true);
+            detail_Text_L_SC.gameObject.SetActive(false);
+            detail_Text_L_EN.gameObject.SetActive(false);
+            detail_Text_R_TC.gameObject.SetActive(true);
+            detail_Text_R_SC.gameObject.SetActive(false);
+            detail_Text_R_EN.gameObject.SetActive(false);
+            detail_ExitText_TC.SetActive(true);
+            detail_ExitText_SC.SetActive(false);
+            detail_ExitText_EN.SetActive(false);
+        }
+        else if (commonUtils.currLang == Language.SC)
+        {
+            //main
+            for (int i = 0; i < main_LangObjs_TC.Count; i++)
+            {
+                main_LangObjs_TC[i].SetActive(false);
+            }
+            for (int i = 0; i < main_LangObjs_SC.Count; i++)
+            {
+                main_LangObjs_SC[i].SetActive(true);
+            }
+            for (int i = 0; i < main_LangObjs_EN.Count; i++)
+            {
+                main_LangObjs_EN[i].SetActive(false);
+            }
+
+            //detail
+            if (currRow == 0)
+            {
+                detail_Title_Boss_SC.SetActive(true);
+                detail_Title_NPC_SC.SetActive(false);
+            }
+            else if(currRow == 1)
+            {
+                detail_Title_Boss_SC.SetActive(false);
+                detail_Title_NPC_SC.SetActive(true);
+            }
+            detail_Title_Boss_TC.SetActive(false);
+            detail_Title_Boss_EN.SetActive(false);
+            detail_Title_NPC_TC.SetActive(false);
+            detail_Title_NPC_EN.SetActive(false);
+            detail_Text_L_TC.gameObject.SetActive(false);
+            detail_Text_L_SC.gameObject.SetActive(true);
+            detail_Text_L_EN.gameObject.SetActive(false);
+            detail_Text_R_TC.gameObject.SetActive(false);
+            detail_Text_R_SC.gameObject.SetActive(true);
+            detail_Text_R_EN.gameObject.SetActive(false);
+            detail_ExitText_TC.SetActive(false);
+            detail_ExitText_SC.SetActive(true);
+            detail_ExitText_EN.SetActive(false);
+        }
+        else if (commonUtils.currLang == Language.EN)
+        {
+            //main
+            for (int i = 0; i < main_LangObjs_TC.Count; i++)
+            {
+                main_LangObjs_TC[i].SetActive(false);
+            }
+            for (int i = 0; i < main_LangObjs_SC.Count; i++)
+            {
+                main_LangObjs_SC[i].SetActive(false);
+            }
+            for (int i = 0; i < main_LangObjs_EN.Count; i++)
+            {
+                main_LangObjs_EN[i].SetActive(true);
+            }
+
+            //detail
+            if (currRow == 0)
+            {
+                detail_Title_Boss_EN.SetActive(true);
+                detail_Title_NPC_EN.SetActive(false);
+            }
+            else if (currRow == 1)
+            {
+                detail_Title_Boss_EN.SetActive(false);
+                detail_Title_NPC_EN.SetActive(true);
+            }
+            detail_Title_Boss_TC.SetActive(false);
+            detail_Title_Boss_SC.SetActive(false);
+            detail_Title_NPC_TC.SetActive(false);
+            detail_Title_NPC_SC.SetActive(false);
+            detail_Text_L_TC.gameObject.SetActive(false);
+            detail_Text_L_SC.gameObject.SetActive(false);
+            detail_Text_L_EN.gameObject.SetActive(true);
+            detail_Text_R_TC.gameObject.SetActive(false);
+            detail_Text_R_SC.gameObject.SetActive(false);
+            detail_Text_R_EN.gameObject.SetActive(true);
+            detail_ExitText_TC.SetActive(false);
+            detail_ExitText_SC.SetActive(false);
+            detail_ExitText_EN.SetActive(true);
+        }
     }
 }
