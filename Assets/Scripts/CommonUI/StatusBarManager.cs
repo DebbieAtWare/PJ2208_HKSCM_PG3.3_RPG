@@ -135,32 +135,42 @@ public class StatusBarManager : MonoBehaviour
         canvasGrp_Permian.DOFade(0, aniTime);
     }
 
-    public void Update_Permian(bool boss2, bool boss3)
+    public void BadgeAni_Permian1(float waitTime)
     {
-        //if (!boss2 && !boss3)
-        //{
-        //    img_Boss2.sprite = dot_Lock;
-        //    img_Boss3.sprite = dot_Lock;
-        //    text_Permian.text = "0/2";
-        //}
-        //else if (boss2 && !boss3)
-        //{
-        //    img_Boss2.sprite = dot_Open;
-        //    img_Boss3.sprite = dot_Lock;
-        //    text_Permian.text = "1/2";
-        //}
-        //else if (!boss2 && boss3)
-        //{
-        //    img_Boss2.sprite = dot_Lock;
-        //    img_Boss3.sprite = dot_Open;
-        //    text_Permian.text = "1/2";
-        //}
-        //else if (boss2 && boss3)
-        //{
-        //    img_Boss2.sprite = dot_Open;
-        //    img_Boss3.sprite = dot_Open;
-        //    text_Permian.text = "2/2";
-        //}
+        StartCoroutine(Ani());
+        IEnumerator Ani()
+        {
+            yield return new WaitForSeconds(waitTime);
+            lockImgs_PermianGrp[1].rectTransform.DOScale(new Vector3(2, 2, 2), 0.5f);
+            yield return new WaitForSeconds(0.5f);
+            lockImgs_PermianGrp[1].rectTransform.DOLocalRotate(new Vector3(0, 90, 0), 0.2f);
+            yield return new WaitForSeconds(0.2f);
+            lockImgs_PermianGrp[1].gameObject.SetActive(false);
+            badgeImgs_PermianGrp[1].gameObject.SetActive(true);
+            badgeImgs_PermianGrp[1].rectTransform.localScale = new Vector3(2, 2, 2);
+            badgeImgs_PermianGrp[1].rectTransform.DOLocalRotate(new Vector3(0, 0, 0), 0.2f);
+            yield return new WaitForSeconds(1f);
+            badgeImgs_PermianGrp[1].rectTransform.DOScale(new Vector3(1, 1, 1), 0.5f);
+        }
+    }
+
+    public void BadgeAni_Permian2(float waitTime)
+    {
+        StartCoroutine(Ani());
+        IEnumerator Ani()
+        {
+            yield return new WaitForSeconds(waitTime);
+            lockImgs_PermianGrp[2].rectTransform.DOScale(new Vector3(2, 2, 2), 0.5f);
+            yield return new WaitForSeconds(0.5f);
+            lockImgs_PermianGrp[2].rectTransform.DOLocalRotate(new Vector3(0, 90, 0), 0.2f);
+            yield return new WaitForSeconds(0.2f);
+            lockImgs_PermianGrp[2].gameObject.SetActive(false);
+            badgeImgs_PermianGrp[2].gameObject.SetActive(true);
+            badgeImgs_PermianGrp[2].rectTransform.localScale = new Vector3(2, 2, 2);
+            badgeImgs_PermianGrp[2].rectTransform.DOLocalRotate(new Vector3(0, 0, 0), 0.2f);
+            yield return new WaitForSeconds(1f);
+            badgeImgs_PermianGrp[2].rectTransform.DOScale(new Vector3(1, 1, 1), 0.5f);
+        }
     }
 
 }

@@ -92,7 +92,6 @@ public class PermianManager : MonoBehaviour
             InputManager.instance.canInput_Confirm = false;
             commonUtils.bosses[currUtilsIndex_Boss2].IsFirstMeetDone = true;
             bossObj2.canShowAlert = false;
-            StatusBarManager.instance.Update_Permian(commonUtils.bosses[currUtilsIndex_Boss2].IsFirstMeetDone, commonUtils.bosses[currUtilsIndex_Boss3].IsFirstMeetDone);
             if (!commonUtils.bosses[currUtilsIndex_Boss2].IsSuccessCollectDone)
             {
                 SoundManager.instance.Play_SFX(9);
@@ -121,7 +120,6 @@ public class PermianManager : MonoBehaviour
             InputManager.instance.canInput_Confirm = false;
             commonUtils.bosses[currUtilsIndex_Boss3].IsFirstMeetDone = true;
             bossObj3.canShowAlert = false;
-            StatusBarManager.instance.Update_Permian(commonUtils.bosses[currUtilsIndex_Boss2].IsFirstMeetDone, commonUtils.bosses[currUtilsIndex_Boss3].IsFirstMeetDone);
             if (!commonUtils.bosses[currUtilsIndex_Boss3].IsSuccessCollectDone)
             {
                 SoundManager.instance.Play_SFX(9);
@@ -148,6 +146,7 @@ public class PermianManager : MonoBehaviour
         CollectionBookManager.instance.Hide_Succuss(0.5f);
         MinimapManager.instance.Show(0.5f);
         StatusBarManager.instance.Show_Permian(0.5f);
+        StatusBarManager.instance.BadgeAni_Permian1(0.5f);
         commonUtils.bosses[currUtilsIndex_Boss2].IsSuccessCollectDone = true;
         GameManager.instance.dialogActive = false;
         InputManager.instance.canInput_Confirm = true;
@@ -161,6 +160,7 @@ public class PermianManager : MonoBehaviour
         CollectionBookManager.instance.Hide_Succuss(0.5f);
         MinimapManager.instance.Show(0.5f);
         StatusBarManager.instance.Show_Permian(0.5f);
+        StatusBarManager.instance.BadgeAni_Permian2(0.5f);
         commonUtils.bosses[currUtilsIndex_Boss3].IsSuccessCollectDone = true;
         GameManager.instance.dialogActive = false;
         InputManager.instance.canInput_Confirm = true;
