@@ -152,6 +152,8 @@ public class CommonUtils : MonoBehaviour
         npc_1.IsCollectable = false;
         npc_1.IsFirstMeetDone = false;
         npc_1.IsSuccessCollectDone = false;
+        npc_1.Info1_TC = "<b>鱗木屬</b><br>屬名：<i>Lepidodendron</i><br>意思：帶鱗片的樹木<br>分類：石松綱<br>生存時代：石炭紀<br>高度：可超過 30 米<br>化石分布：世界各地<br>";
+        npc_1.Info2_TC = "<br>特徵：<br>• 早期無籽維管植物，現代石松的近親<br>• 石炭紀最常見的植物之一<br>• 樹幹被葉覆蓋，葉脫落後留下鑽石型的葉痕"; 
         ConfigData_DialogBox dialog_11 = new ConfigData_DialogBox();
         dialog_11.ByWhom = "DRO";
         dialog_11.ImagePath = "";
@@ -297,8 +299,8 @@ public class CommonUtils : MonoBehaviour
         boss1.IsCollectable = true;
         boss1.IsFirstMeetDone = false;
         boss1.IsSuccessCollectDone = false;
-        boss1.Info1_TC = "屬名：<i>Hylonomus</i> <br>意思：森林居住者<br>分類：蜥形綱<br>生存時代：石炭紀晚期<br>身長：約 20 厘米<br>食物：昆蟲<br>化石分布：加拿大";
-        boss1.Info2_TC = "特徵：<br>• 外形與現代蜥蝪非常相似，有長長的尾巴和四足行走<br>• 皮膚由鱗片覆蓋，牙齒尖銳和向內彎曲<br>• 已知最早的爬行動物";
+        boss1.Info1_TC = "<b>林蜥</b><br>屬名：<i>Hylonomus</i> <br>意思：森林居住者<br>分類：蜥形綱<br>生存時代：石炭紀晚期<br>身長：約 20 厘米<br>食物：昆蟲<br>化石分布：加拿大";
+        boss1.Info2_TC = "<br>特徵：<br>• 外形與現代蜥蝪非常相似，有長長的尾巴和四足行走<br>• 皮膚由鱗片覆蓋，牙齒尖銳和向內彎曲<br>• 已知最早的爬行動物";
         ConfigData_DialogBox dialog_m11 = new ConfigData_DialogBox();
         dialog_m11.ByWhom = "AVA";
         dialog_m11.ImagePath = "";

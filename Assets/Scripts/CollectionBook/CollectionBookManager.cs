@@ -267,7 +267,14 @@ public class CollectionBookManager : MonoBehaviour
         {
             if (currRow == 0)
             {
-                Show_Detail(commonUtils.bosses[currIndex_Boss]);
+                if (commonUtils.bosses[currIndex_Boss].IsSuccessCollectDone)
+                {
+                    Show_Detail(commonUtils.bosses[currIndex_Boss]);
+                }
+                else
+                {
+                    main_BossObjs[currIndex_Boss].ShakeAni();
+                }
             }
             else if (currRow == 1)
             {
@@ -306,6 +313,8 @@ public class CollectionBookManager : MonoBehaviour
         currRow = 0;
         currIndex_Boss = 0;
         currIndex_NPC = 0;
+        main_Scroll_ContentRect.anchoredPosition = new Vector2(0f, 0f);
+        main_Scroll_VisibleIndex = 0;
         main_Scroll_PosGap_IsSmall_Next = true;
         main_Scroll_PosGap_IsSmall_Previous = true;
 
@@ -615,5 +624,8 @@ public class CollectionBookManager : MonoBehaviour
     {
         canvasGroup.gameObject.SetActive(false);
         currStage = CollectionBookStage.None;
+        DroneController.instance.ShowTalkHint();
+        DroneController.instance.canShowTalkHint = true;
+        GameManager.instance.dialogActive = false;
     }
 }

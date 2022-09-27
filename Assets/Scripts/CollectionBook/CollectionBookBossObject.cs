@@ -12,6 +12,7 @@ public class CollectionBookBossObject : MonoBehaviour
     [Header("Main")]
     public CharacterID id;
     public RectTransform rect;
+    Vector3 originalScale;
 
     [Header("Card")]
     public Image img_Boss;
@@ -34,7 +35,8 @@ public class CollectionBookBossObject : MonoBehaviour
         nameText_TC.text = name_TC;
         nameText_SC.text = name_SC;
         nameText_EN.text = name_EN;
-        rect.localScale = new Vector3(1, 1, 1);
+        originalScale = rect.localScale;
+        rect.localScale = originalScale;
         img_Lock.rectTransform.eulerAngles = new Vector3(0, 0, 0);
         img_Lock.color = new Color(1, 1, 1, 1);
         uiShadow_Lock.effectColor = new Color(1, 1, 1, 0);
@@ -85,6 +87,11 @@ public class CollectionBookBossObject : MonoBehaviour
         img_Boss.rectTransform.eulerAngles = new Vector3(0, 0, 0);
     }
 
+    public void ShakeAni()
+    {
+        img_Lock.rectTransform.DOShakePosition(0.3f, 10f, 20, 0f);
+    }
+
     public void SetSelection(bool val)
     {
         frameObj.SetActive(val);
@@ -92,7 +99,7 @@ public class CollectionBookBossObject : MonoBehaviour
 
     public void ResetAll()
     {
-        rect.localScale = new Vector3(1, 1, 1);
+        rect.localScale = originalScale;
         img_Lock.rectTransform.eulerAngles = new Vector3(0, 0, 0);
         img_Lock.color = new Color(1, 1, 1, 1);
         uiShadow_Lock.effectColor = new Color(1, 1, 1, 0);

@@ -13003,6 +13003,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1207019784}
     m_Modifications:
+    - target: {fileID: 5917773699759588093, guid: aaa35536a5638d043b08c5e3b01d0263,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: -1144487295480978960, guid: aee96bc531e6eba468ec405e536f515f,
+        type: 2}
+    - target: {fileID: 7963402280402903791, guid: aaa35536a5638d043b08c5e3b01d0263,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: -1144487295480978960, guid: aee96bc531e6eba468ec405e536f515f,
+        type: 2}
     - target: {fileID: 8507626649105911505, guid: aaa35536a5638d043b08c5e3b01d0263,
         type: 3}
       propertyPath: m_Pivot.x
@@ -13276,6 +13288,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BossCard_M01 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 8507626650466378129, guid: aaa35536a5638d043b08c5e3b01d0263,
+        type: 3}
+      propertyPath: tmp1
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8507626650466378129, guid: aaa35536a5638d043b08c5e3b01d0263,
+        type: 3}
+      propertyPath: tmp2
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aaa35536a5638d043b08c5e3b01d0263, type: 3}
