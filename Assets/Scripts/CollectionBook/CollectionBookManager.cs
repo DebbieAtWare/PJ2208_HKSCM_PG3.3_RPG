@@ -34,7 +34,8 @@ public class CollectionBookManager : MonoBehaviour
     float main_Scroll_PosGap_Small = 73;
     float main_Scroll_PosGap_Full = 185;
     public int main_Scroll_VisibleIndex = 0;
-    public bool main_Scroll_PosGap_IsSmall = true;
+    public bool main_Scroll_PosGap_IsSmall_Next = true;
+    public bool main_Scroll_PosGap_IsSmall_Previous = true;
 
     [Header("Detail")]
     public GameObject detail_RootObj;
@@ -204,9 +205,10 @@ public class CollectionBookManager : MonoBehaviour
                     if (main_Scroll_VisibleIndex < 0)
                     {
                         main_Scroll_VisibleIndex = 0;
-
-                        if (main_Scroll_PosGap_IsSmall)
+                        main_Scroll_PosGap_IsSmall_Next = true;
+                        if (main_Scroll_PosGap_IsSmall_Previous)
                         {
+                            main_Scroll_PosGap_IsSmall_Previous = false;
                             main_Scroll_ContentRect.anchoredPosition = new Vector2(main_Scroll_ContentRect.anchoredPosition.x + main_Scroll_PosGap_Small, 0f);
                         }
                         else
@@ -227,13 +229,13 @@ public class CollectionBookManager : MonoBehaviour
                     if (main_Scroll_VisibleIndex > 3)
                     {
                         main_Scroll_VisibleIndex = 3;
-
-                        if (main_Scroll_PosGap_IsSmall)
+                        main_Scroll_PosGap_IsSmall_Previous = true;
+                        if (main_Scroll_PosGap_IsSmall_Next)
                         {
-                            main_Scroll_PosGap_IsSmall = false;
+                            main_Scroll_PosGap_IsSmall_Next = false;
                             main_Scroll_ContentRect.anchoredPosition = new Vector2(main_Scroll_ContentRect.anchoredPosition.x - main_Scroll_PosGap_Small, 0f);
                         }
-                        else
+                        else 
                         {
                             main_Scroll_ContentRect.anchoredPosition = new Vector2(main_Scroll_ContentRect.anchoredPosition.x - main_Scroll_PosGap_Full, 0);
                         }
