@@ -76,16 +76,21 @@ public class CommonUtils : MonoBehaviour
     public float playerAutoWalkSpeed = 0.2f;
     public float droneAutoWalkSpeed = 0.2f;
 
-    [Header("ConfigData")]
+    [Header("ConfigData - Character")]
     public List<ConfigData_Character> NPC_Carboniferous = new List<ConfigData_Character>();
     public List<ConfigData_Character> NPC_Permian = new List<ConfigData_Character>();
     public ConfigData_DialogBox dialogBox_BossAlert;
     public List<ConfigData_Character> bosses = new List<ConfigData_Character>();
+
+    [Header("ConfigData - Drone")]
     public ConfigData_DialogBox dialogBox_TipsByDrone;
     public List<ConfigData_DialogBox> dialogBox_TipsByDrone_Hints = new List<ConfigData_DialogBox>();
     public ConfigData_DialogBox dialogBox_TipsByDrone_CollectionBook;
     public ConfigData_DialogBox dialogBox_TipsByDrone_ChangeMap;
+
+    [Header("ConfigData - Content")]
     public ConfigData_Text successCollectText;
+    public ConfigData_Menu menuData;
 
     [Header("Curr")]
     public MapID currMapId;
@@ -733,6 +738,9 @@ public class CommonUtils : MonoBehaviour
         successCollectText.Text_SC = "成功收集<<NPC name>>！";
         successCollectText.Text_EN = "You’ve got <<NPC name>>!";
 
+        //-------
+
+
     }
 }
 
@@ -780,4 +788,28 @@ public class ConfigData_Text
     public string Text_TC;
     public string Text_SC;
     public string Text_EN;
+}
+
+[Serializable]
+public class ConfigData_Menu
+{
+    public ConfigData_Text MenuBtn;
+    public ConfigData_Text CloseBtn;
+
+    //Main
+    public List<ConfigData_Text> Main_OptionTexts = new List<ConfigData_Text>();
+
+    //Language
+    public List<ConfigData_Text> Language_OptionTexts = new List<ConfigData_Text>();
+
+    //Control
+    public List<ConfigData_Text> Control_OptionTexts = new List<ConfigData_Text>();
+    public ConfigData_Text Control_ArrowText1;
+    public ConfigData_Text Control_ArrowText2;
+    public ConfigData_Text Control_ABtnText;
+    public ConfigData_Text Control_BBtnText;
+
+    //Reset
+    public ConfigData_Text Reset_Text;
+    public List<ConfigData_Text> Reset_OptionTexts = new List<ConfigData_Text>();
 }

@@ -127,7 +127,7 @@ public class StatusBarManager : MonoBehaviour
 
     void RebuildLayout()
     {
-        //call twice
+        //each call twice
         LayoutRebuilder.ForceRebuildLayoutImmediate(rectL_CarbonGrp);
         LayoutRebuilder.ForceRebuildLayoutImmediate(rectL_CarbonGrp);
         LayoutRebuilder.ForceRebuildLayoutImmediate(rectR_CarbonGrp);

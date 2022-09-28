@@ -23,9 +23,15 @@ public class InputManager : MonoBehaviour
     public delegate void OnValueChanged_Confirm();
     public OnValueChanged_Confirm onValueChanged_ConfirmCallback;
 
+    [Header("Option")]
+    public bool canInput_Option;
+    public delegate void OnValueChanged_Option();
+    public OnValueChanged_Option onValueChanged_OptionCallback;
+
     bool isAxisInUse_Vertical = false;
     bool isAxisInUse_Horizontal = false;
     bool isAxisInUse_Confirm = false;
+    bool isAxisInUse_Option = false;
 
     //for share in multiple scenes
     void Awake()
@@ -136,5 +142,29 @@ public class InputManager : MonoBehaviour
             }
         }
 
+        //-----
+
+        if (canInput_Option)
+        {
+            if (Input.GetAxisRaw("RPGOptionPC") != 0)
+            {
+                if (!isAxisInUse_Option)
+                {
+                    if (Input.GetAxisRaw("RPGOptionPC") > 0)
+                    {
+                        if (onValueChanged_OptionCallback != null)
+                        {
+                            onValueChanged_OptionCallback.Invoke();
+                        }
+                    }
+                    isAxisInUse_Option = true;
+                }
+            }
+            if (Input.GetAxisRaw("RPGOptionPC") == 0)
+            {
+                isAxisInUse_Option = false;
+            }
+        }
     }
 }
+

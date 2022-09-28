@@ -41,6 +41,7 @@ public class MainManger : MonoBehaviour
         //SceneManager.LoadScene("PermianScene");
         StatusBarManager.instance.Setup();
         CollectionBookManager.instance.Setup();
+        OptionManager.instance.Setup();
         TransitionManager.instance.ChangeMap(commonUtils.currMapId, MapID.Carboniferous);
     }
 }
