@@ -101,6 +101,11 @@ public class DroneController : MonoBehaviour
         }
     }
 
+    public void ForceShowTalkHint()
+    {
+        talkHintObj.SetActive(true);
+    }
+
     private void OnTriggerEnter()
     {
         isAtTrigger = true;
@@ -120,7 +125,7 @@ public class DroneController : MonoBehaviour
 
     private void InputManager_OnValueChanged_Vertical(int val)
     {
-        if (talkHintObj.activeInHierarchy)
+        if (talkHintObj.activeInHierarchy && MainManger.instance.currStage == MainStage.InGame)
         {
             if (currDroneStage == DroneStage.Tips)
             {
@@ -184,7 +189,7 @@ public class DroneController : MonoBehaviour
 
     private void InputManager_OnValueChanged_Confirm()
     {
-        if (talkHintObj.activeInHierarchy)
+        if (talkHintObj.activeInHierarchy && MainManger.instance.currStage == MainStage.InGame)
         {
             if (currDroneStage == DroneStage.None)
             {

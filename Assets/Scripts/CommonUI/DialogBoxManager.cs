@@ -15,17 +15,41 @@ public class DialogBoxManager : MonoBehaviour
     public Image profilePic;
     public CanvasGroup supportImgCanvasGrp;
     public RawImage supportImg;
-    
-    [Header("Text")]
+
+    [Header("NormapGrp")]
+    public GameObject normalGrpObj; 
     public TextMeshProUGUI text_TC;
     public List<TextMeshProUGUI> optionTexts_TC;
     public List<GameObject> arrowObjs;
     public DialogWriter.DialogWriterSingle dialogWriterSingle;
 
+    [Header("ControlGrp")]
+    public GameObject controlGrpObj;
+    public TextMeshProUGUI controlGrp_TitleText_TC;
+    public TextMeshProUGUI controlGrp_TitleText_SC;
+    public TextMeshProUGUI controlGrp_TitleText_EN;
+    public TextMeshProUGUI controlGrp_ArrowText1_TC;
+    public TextMeshProUGUI controlGrp_ArrowText1_SC;
+    public TextMeshProUGUI controlGrp_ArrowText1_EN;
+    public TextMeshProUGUI controlGrp_ArrowText2_TC;
+    public TextMeshProUGUI controlGrp_ArrowText2_SC;
+    public TextMeshProUGUI controlGrp_ArrowText2_EN;
+    public TextMeshProUGUI controlGrp_ABtnText_TC;
+    public TextMeshProUGUI controlGrp_ABtnText_SC;
+    public TextMeshProUGUI controlGrp_ABtnText_EN;
+    public TextMeshProUGUI controlGrp_BBtnText_TC;
+    public TextMeshProUGUI controlGrp_BBtnText_SC;
+    public TextMeshProUGUI controlGrp_BBtnText_EN;
+
     [Header("ZoomImg")]
     public CanvasGroup zoomImgCanvasGrp;
     public GameObject zoomObj_NPC_P09;
     public GameObject zoomObj_NPC_P10;
+
+    [Header("Lang")]
+    public List<GameObject> langObjs_TC = new List<GameObject>();
+    public List<GameObject> langObjs_SC = new List<GameObject>();
+    public List<GameObject> langObjs_EN = new List<GameObject>();
 
     public delegate void OnDialogEnd();
     public OnDialogEnd onDialogEndCallback;
@@ -33,16 +57,88 @@ public class DialogBoxManager : MonoBehaviour
     CommonUtils commonUtils;
     Vector2 supportImgSizeTarget = new Vector2(720, 480);
 
-    void Start()
+    void Awake()
+    {
+        Debug.Log("DialogBoxManager Awake");
+        if (instance != null)
+        {
+            Debug.Log("More than one instance of DialogBoxManager");
+            return;
+        }
+        instance = this;
+    }
+
+    public void Setup()
     {
         instance = this;
+        
         commonUtils = CommonUtils.instance;
+        commonUtils.onChangeLangCallback += CommonUtils_OnChangeLang;
+
         for (int i = 0; i < optionTexts_TC.Count; i++)
         {
             optionTexts_TC[i].gameObject.SetActive(false);
             arrowObjs[i].SetActive(false);
         }
+        normalGrpObj.SetActive(false);
+        controlGrpObj.SetActive(false);
         dialogBoxGrp.SetActive(false);
+
+        ChangeLanguage();
+    }
+
+    private void CommonUtils_OnChangeLang()
+    {
+        ChangeLanguage();
+    }
+
+    public void ChangeLanguage()
+    {
+        if (commonUtils.currLang == Language.TC)
+        {
+            for (int i = 0; i < langObjs_TC.Count; i++)
+            {
+                langObjs_TC[i].SetActive(true);
+            }
+            for (int i = 0; i < langObjs_SC.Count; i++)
+            {
+                langObjs_SC[i].SetActive(false);
+            }
+            for (int i = 0; i < langObjs_EN.Count; i++)
+            {
+                langObjs_EN[i].SetActive(false);
+            }
+        }
+        else if (commonUtils.currLang == Language.SC)
+        {
+            for (int i = 0; i < langObjs_TC.Count; i++)
+            {
+                langObjs_TC[i].SetActive(false);
+            }
+            for (int i = 0; i < langObjs_SC.Count; i++)
+            {
+                langObjs_SC[i].SetActive(true);
+            }
+            for (int i = 0; i < langObjs_EN.Count; i++)
+            {
+                langObjs_EN[i].SetActive(false);
+            }
+        }
+        else if (commonUtils.currLang == Language.EN)
+        {
+            for (int i = 0; i < langObjs_TC.Count; i++)
+            {
+                langObjs_TC[i].SetActive(false);
+            }
+            for (int i = 0; i < langObjs_SC.Count; i++)
+            {
+                langObjs_SC[i].SetActive(false);
+            }
+            for (int i = 0; i < langObjs_EN.Count; i++)
+            {
+                langObjs_EN[i].SetActive(true);
+            }
+        }
     }
 
     public void FinishCurrentDialog()
@@ -53,6 +149,8 @@ public class DialogBoxManager : MonoBehaviour
     public void ShowDialog(ConfigData_DialogBox dialogBox)
     {
         dialogBoxGrp.SetActive(true);
+        normalGrpObj.SetActive(true);
+        controlGrpObj.SetActive(false);
 
         if (!string.IsNullOrEmpty(dialogBox.ByWhom) && !string.IsNullOrWhiteSpace(dialogBox.ByWhom))
         {
@@ -197,6 +295,21 @@ public class DialogBoxManager : MonoBehaviour
     }
 
     //------
+
+    public void ShowControl()
+    {
+        dialogBoxGrp.SetActive(true);
+        normalGrpObj.SetActive(false);
+        controlGrpObj.SetActive(true);
+    }
+
+    public void HideControl()
+    {
+        controlGrpObj.SetActive(false);
+    }
+
+    //------
+
 
     public void SetOptionArrow(int val)
     {

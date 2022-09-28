@@ -9,8 +9,14 @@ public class MinimapManager : MonoBehaviour
 
     public CanvasGroup canvasGrp;
 
-    void Start()
+    void Awake()
     {
+        Debug.Log("MinimapManager Awake");
+        if (instance != null)
+        {
+            Debug.Log("More than one instance of MinimapManager");
+            return;
+        }
         instance = this;
     }
 

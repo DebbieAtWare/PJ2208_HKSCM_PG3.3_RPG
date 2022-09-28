@@ -89,6 +89,7 @@ public class CommonUtils : MonoBehaviour
     public ConfigData_DialogBox dialogBox_TipsByDrone_ChangeMap;
 
     [Header("ConfigData - Content")]
+    public List<ConfigData_DialogBox> gameplayInstructions = new List<ConfigData_DialogBox>();
     public ConfigData_Text successCollectText;
     public ConfigData_Menu menuData;
 
@@ -740,7 +741,22 @@ public class CommonUtils : MonoBehaviour
 
         //-------
 
-
+        ConfigData_DialogBox dialog_Gameplay1 = new ConfigData_DialogBox();
+        dialog_Gameplay1.ByWhom = "DRO";
+        dialog_Gameplay1.Text_TC = "試試和我對話吧！";
+        gameplayInstructions.Add(dialog_Gameplay1);
+        ConfigData_DialogBox dialog_Gameplay2 = new ConfigData_DialogBox();
+        dialog_Gameplay2.ByWhom = "DRO";
+        dialog_Gameplay2.Text_TC = "控制教學：<br>【方向鍵】<br>上、下、左、右<br>【選單】<br>【確定】";
+        gameplayInstructions.Add(dialog_Gameplay2);
+        ConfigData_DialogBox dialog_Gameplay3 = new ConfigData_DialogBox();
+        dialog_Gameplay3.ByWhom = "DRO";
+        dialog_Gameplay3.Text_TC = "你想前往哪個時代探險？";
+        List<string> option_Gameplay3 = new List<string>();
+        option_Gameplay3.Add("石炭紀");
+        option_Gameplay3.Add("二疊紀");
+        dialog_Gameplay3.OptionTexts_TC = option_Gameplay3;
+        gameplayInstructions.Add(dialog_Gameplay3);
     }
 }
 

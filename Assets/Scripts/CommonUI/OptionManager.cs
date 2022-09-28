@@ -112,13 +112,16 @@ public class OptionManager : MonoBehaviour
 
     private void InputManager_OnValueChanged_Option()
     {
-        if (currStage == OptionStage.None)
+        if (MainManger.instance.currStage == MainStage.StartLab || MainManger.instance.currStage == MainStage.InGame)
         {
-            ChangeControl_Main();
-        }
-        else
-        {
-            Close_ResetAll();
+            if (currStage == OptionStage.None)
+            {
+                ChangeControl_Main();
+            }
+            else
+            {
+                Close_ResetAll();
+            }
         }
     }
 
@@ -460,15 +463,25 @@ public class OptionManager : MonoBehaviour
 
     void Close_ResetAll()
     {
-        topBtnObj.SetActive(true);
-        popupObj_Root.SetActive(false);
-        mainGrp_CurrIndex = 0;
-        langGrp_CurrIndex = 0;
-        controlGrp_CurrIndex = 0;
-        currStage = OptionStage.None;
-        DroneController.instance.ShowTalkHint();
-        DroneController.instance.canShowTalkHint = true;
-        GameManager.instance.dialogActive = false;
+        //close and wait to reset currStage to prevent press A to trigger other
+        StartCoroutine(Ani());
+        IEnumerator Ani()
+        {
+            topBtnObj.SetActive(true);
+            popupObj_Root.SetActive(false);
+            mainGrp_CurrIndex = 0;
+            langGrp_CurrIndex = 0;
+            controlGrp_CurrIndex = 0;
+            yield return new WaitForSeconds(0.2f);
+            currStage = OptionStage.None;
+            DroneController.instance.ShowTalkHint();
+            DroneController.instance.canShowTalkHint = true;
+            if (MainManger.instance.currStage == MainStage.InGame)
+            {
+                GameManager.instance.dialogActive = false;
+            }
+        }
+
     }
 
 }

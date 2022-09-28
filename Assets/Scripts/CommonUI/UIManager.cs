@@ -7,8 +7,6 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
 
-    public CanvasGroup bkgCanvasGrp;
-
     //for share in multiple scenes
     void Awake()
     {

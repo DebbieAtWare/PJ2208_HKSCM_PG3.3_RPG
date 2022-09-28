@@ -186,8 +186,13 @@ public class TransitionManager : MonoBehaviour
             yield return new WaitForSeconds(1.4f);
             CancelInvoke("BkgLoopAni");
             GameManager.instance.fadingBetweenAreas = false;
+            GameManager.instance.dialogActive = false;
             InputManager.instance.canInput_Confirm = true;
             commonUtils.currMapId = targetMap;
+            if (currMap == MapID.Lab)
+            {
+                MainManger.instance.currStage = MainStage.InGame;
+            }
         }
     }
 
