@@ -42,7 +42,9 @@ public class MainManger : MonoBehaviour
         StatusBarManager.instance.Setup();
         CollectionBookManager.instance.Setup();
         OptionManager.instance.Setup();
+        PlayerController.instance.transform.position = new Vector3(-1, 0, 0);
+        DroneController.instance.ChangePos(new Vector3(0.7f, -0.8f, 0f));
         //TransitionManager.instance.ChangeMap(commonUtils.currMapId, MapID.Carboniferous);
-        TransitionManager.instance.ChangeMap(commonUtils.currMapId, MapID.Permian);
+        //TransitionManager.instance.ChangeMap(commonUtils.currMapId, MapID.Permian);
     }
 }
