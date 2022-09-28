@@ -42,6 +42,7 @@ public class MainManger : MonoBehaviour
         StatusBarManager.instance.Setup();
         CollectionBookManager.instance.Setup();
         OptionManager.instance.Setup();
-        TransitionManager.instance.ChangeMap(commonUtils.currMapId, MapID.Carboniferous);
+        //TransitionManager.instance.ChangeMap(commonUtils.currMapId, MapID.Carboniferous);
+        TransitionManager.instance.ChangeMap(commonUtils.currMapId, MapID.Permian);
     }
 }

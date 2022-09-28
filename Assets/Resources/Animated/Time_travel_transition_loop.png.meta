@@ -1,0 +1,1260 @@
+fileFormatVersion: 2
+guid: 41cfbbd0bfba6d148a84588fafca301e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1348904413461184045
+    second: Time_travel_transition_loop_0
+  - first:
+      213: 4056404967770607245
+    second: Time_travel_transition_loop_1
+  - first:
+      213: 3091709680282786650
+    second: Time_travel_transition_loop_2
+  - first:
+      213: 8070976348060379125
+    second: Time_travel_transition_loop_3
+  - first:
+      213: 6025378742910209025
+    second: Time_travel_transition_loop_4
+  - first:
+      213: 5156823067122426984
+    second: Time_travel_transition_loop_5
+  - first:
+      213: 4171690405263048603
+    second: Time_travel_transition_loop_6
+  - first:
+      213: -4963810824001162814
+    second: Time_travel_transition_loop_7
+  - first:
+      213: -8992184846749309782
+    second: Time_travel_transition_loop_8
+  - first:
+      213: -1460379873532824136
+    second: Time_travel_transition_loop_9
+  - first:
+      213: 8237422390702253468
+    second: Time_travel_transition_loop_10
+  - first:
+      213: -4363455307708335464
+    second: Time_travel_transition_loop_11
+  - first:
+      213: 3711917881763504418
+    second: Time_travel_transition_loop_12
+  - first:
+      213: -6510347333348931786
+    second: Time_travel_transition_loop_13
+  - first:
+      213: -234331669138525362
+    second: Time_travel_transition_loop_14
+  - first:
+      213: -6866779622166415693
+    second: Time_travel_transition_loop_15
+  - first:
+      213: 1863110043643045433
+    second: Time_travel_transition_loop_16
+  - first:
+      213: 5700732965826371397
+    second: Time_travel_transition_loop_17
+  - first:
+      213: 7350126929299020441
+    second: Time_travel_transition_loop_18
+  - first:
+      213: 5469456037676153860
+    second: Time_travel_transition_loop_19
+  - first:
+      213: -442745686658325879
+    second: Time_travel_transition_loop_20
+  - first:
+      213: 7504529555561435164
+    second: Time_travel_transition_loop_21
+  - first:
+      213: -334975221209521011
+    second: Time_travel_transition_loop_22
+  - first:
+      213: 1790267247447225045
+    second: Time_travel_transition_loop_23
+  - first:
+      213: 4588326014048948558
+    second: Time_travel_transition_loop_24
+  - first:
+      213: -8244370455387963664
+    second: Time_travel_transition_loop_25
+  - first:
+      213: 78247004644153928
+    second: Time_travel_transition_loop_26
+  - first:
+      213: -2810780462747335296
+    second: Time_travel_transition_loop_27
+  - first:
+      213: 1418956343898767938
+    second: Time_travel_transition_loop_28
+  - first:
+      213: 7133869454399011905
+    second: Time_travel_transition_loop_29
+  - first:
+      213: 6582701680598275183
+    second: Time_travel_transition_loop_30
+  - first:
+      213: -3210515485477580612
+    second: Time_travel_transition_loop_31
+  - first:
+      213: -4729417053878320466
+    second: Time_travel_transition_loop_32
+  - first:
+      213: -7097270351759987399
+    second: Time_travel_transition_loop_33
+  - first:
+      213: 4462816469834239890
+    second: Time_travel_transition_loop_34
+  - first:
+      213: 1026927661620039076
+    second: Time_travel_transition_loop_35
+  - first:
+      213: -4250363581946724823
+    second: Time_travel_transition_loop_36
+  - first:
+      213: 9039605564765359801
+    second: Time_travel_transition_loop_37
+  - first:
+      213: -914740431059983018
+    second: Time_travel_transition_loop_38
+  - first:
+      213: 1725509931621375744
+    second: Time_travel_transition_loop_39
+  - first:
+      213: 5535850218425282066
+    second: Time_travel_transition_loop_40
+  - first:
+      213: -415821024140419819
+    second: Time_travel_transition_loop_41
+  - first:
+      213: 5343992666833795959
+    second: Time_travel_transition_loop_42
+  - first:
+      213: -6536798266045877755
+    second: Time_travel_transition_loop_43
+  - first:
+      213: 7028852307806415718
+    second: Time_travel_transition_loop_44
+  - first:
+      213: 6079579989688908410
+    second: Time_travel_transition_loop_45
+  - first:
+      213: 8223253198377591285
+    second: Time_travel_transition_loop_46
+  - first:
+      213: 1055850902427737653
+    second: Time_travel_transition_loop_47
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1275
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2e7f40da6548b210800000000000000
+      internalID: 1348904413461184045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_1
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 1275
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8ec81193de3b4830800000000000000
+      internalID: 4056404967770607245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_2
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 1275
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5b54e9d295f7ea20800000000000000
+      internalID: 3091709680282786650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_3
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 1275
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f7e7b80a3ed10070800000000000000
+      internalID: 8070976348060379125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_4
+      rect:
+        serializedVersion: 2
+        x: 1289
+        y: 1275
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10c4a58fa027e9350800000000000000
+      internalID: 6025378742910209025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_5
+      rect:
+        serializedVersion: 2
+        x: 1611
+        y: 1275
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8646f5de147b09740800000000000000
+      internalID: 5156823067122426984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_6
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1093
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9ffb9e2252d4e930800000000000000
+      internalID: 4171690405263048603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_7
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 1093
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c1fb2fda500d1bb0800000000000000
+      internalID: -4963810824001162814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_8
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 1093
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa46bd64687553380800000000000000
+      internalID: -8992184846749309782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_9
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 1093
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b532f01e30bbbbe0800000000000000
+      internalID: -1460379873532824136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_10
+      rect:
+        serializedVersion: 2
+        x: 1289
+        y: 1093
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9528a64504315270800000000000000
+      internalID: 8237422390702253468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_11
+      rect:
+        serializedVersion: 2
+        x: 1611
+        y: 1093
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89a70c62484e173c0800000000000000
+      internalID: -4363455307708335464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_12
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 911
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2212fe995a1638330800000000000000
+      internalID: 3711917881763504418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_13
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 911
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6374357f79996a5a0800000000000000
+      internalID: -6510347333348931786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_14
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 911
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e43bf55a69c7fbcf0800000000000000
+      internalID: -234331669138525362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_15
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 911
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b631edb05c44b0a0800000000000000
+      internalID: -6866779622166415693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_16
+      rect:
+        serializedVersion: 2
+        x: 1289
+        y: 911
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9366ec8a6b81bd910800000000000000
+      internalID: 1863110043643045433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_17
+      rect:
+        serializedVersion: 2
+        x: 1611
+        y: 911
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54f907bbd621d1f40800000000000000
+      internalID: 5700732965826371397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_18
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 729
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99a96e2ef75e00660800000000000000
+      internalID: 7350126929299020441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_19
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 729
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40c7d40b94967eb40800000000000000
+      internalID: 5469456037676153860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_20
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 729
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 982e4ecc42d0bd9f0800000000000000
+      internalID: -442745686658325879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_21
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 729
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c10d8adbed1752860800000000000000
+      internalID: 7504529555561435164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_22
+      rect:
+        serializedVersion: 2
+        x: 1289
+        y: 729
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d84af33afcde95bf0800000000000000
+      internalID: -334975221209521011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_23
+      rect:
+        serializedVersion: 2
+        x: 1611
+        y: 729
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d2bb19839e48d810800000000000000
+      internalID: 1790267247447225045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_24
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 547
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e41521523320daf30800000000000000
+      internalID: 4588326014048948558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_25
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 547
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0feffd950cc169d80800000000000000
+      internalID: -8244370455387963664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_26
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 547
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84a9d847c3df51100800000000000000
+      internalID: 78247004644153928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_27
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 547
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0854650bf0a1ef8d0800000000000000
+      internalID: -2810780462747335296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_28
+      rect:
+        serializedVersion: 2
+        x: 1289
+        y: 547
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2428fddd64521b310800000000000000
+      internalID: 1418956343898767938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_29
+      rect:
+        serializedVersion: 2
+        x: 1611
+        y: 547
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14c767fc878900360800000000000000
+      internalID: 7133869454399011905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_30
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 365
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f645d664d447a5b50800000000000000
+      internalID: 6582701680598275183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_31
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 365
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb0d73e0d25f173d0800000000000000
+      internalID: -3210515485477580612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_32
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 365
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea288ec3f3cbd5eb0800000000000000
+      internalID: -4729417053878320466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_33
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 365
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93d2f60d73e618d90800000000000000
+      internalID: -7097270351759987399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_34
+      rect:
+        serializedVersion: 2
+        x: 1289
+        y: 365
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29f8b3e2feb1fed30800000000000000
+      internalID: 4462816469834239890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_35
+      rect:
+        serializedVersion: 2
+        x: 1611
+        y: 365
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ad82e07441604e00800000000000000
+      internalID: 1026927661620039076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_36
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 183
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92efec377dca305c0800000000000000
+      internalID: -4250363581946724823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_37
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 183
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9becb750e51237d70800000000000000
+      internalID: 9039605564765359801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_38
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 183
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6556bf8ac603e43f0800000000000000
+      internalID: -914740431059983018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_39
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 183
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00f53b2042e32f710800000000000000
+      internalID: 1725509931621375744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_40
+      rect:
+        serializedVersion: 2
+        x: 1289
+        y: 183
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21ee107817a43dc40800000000000000
+      internalID: 5535850218425282066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_41
+      rect:
+        serializedVersion: 2
+        x: 1611
+        y: 183
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51d98fd4bf4ba3af0800000000000000
+      internalID: -415821024140419819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_42
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77bbbec440da92a40800000000000000
+      internalID: 5343992666833795959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_43
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 1
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50232f74c90a845a0800000000000000
+      internalID: -6536798266045877755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_44
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 1
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66b6c79feef7b8160800000000000000
+      internalID: 7028852307806415718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_45
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 1
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7afaf42ac10f5450800000000000000
+      internalID: 6079579989688908410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_46
+      rect:
+        serializedVersion: 2
+        x: 1289
+        y: 1
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f1246b173dde1270800000000000000
+      internalID: 8223253198377591285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Time_travel_transition_loop_47
+      rect:
+        serializedVersion: 2
+        x: 1611
+        y: 1
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53e1bf63dc227ae00800000000000000
+      internalID: 1055850902427737653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

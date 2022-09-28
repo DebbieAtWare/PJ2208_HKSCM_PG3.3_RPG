@@ -118,9 +118,6 @@ public class OptionManager : MonoBehaviour
         }
         else
         {
-            DroneController.instance.ShowTalkHint();
-            DroneController.instance.canShowTalkHint = true;
-            GameManager.instance.dialogActive = false;
             Close_ResetAll();
         }
     }
@@ -306,19 +303,11 @@ public class OptionManager : MonoBehaviour
             }
             else if (resetGrp_CurrIndex == 1)
             {
-                //TODO reset game
+                //TODO reset game !!!!!
                 Close_ResetAll();
-
-                //tmp add 
-                DroneController.instance.ShowTalkHint();
-                DroneController.instance.canShowTalkHint = true;
-                GameManager.instance.dialogActive = false;
             }
             else if (resetGrp_CurrIndex == 2)
             {
-                DroneController.instance.ShowTalkHint();
-                DroneController.instance.canShowTalkHint = true;
-                GameManager.instance.dialogActive = false;
                 Close_ResetAll();
             }
         }
@@ -477,6 +466,9 @@ public class OptionManager : MonoBehaviour
         langGrp_CurrIndex = 0;
         controlGrp_CurrIndex = 0;
         currStage = OptionStage.None;
+        DroneController.instance.ShowTalkHint();
+        DroneController.instance.canShowTalkHint = true;
+        GameManager.instance.dialogActive = false;
     }
 
 }

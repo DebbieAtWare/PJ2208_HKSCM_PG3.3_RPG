@@ -15,11 +15,19 @@ public class TransitionManager : MonoBehaviour
     public GameObject rootObj;
     public RawImage camFeedImg;
     public Image timeTravelBkgImg;
+    public List<Sprite> bkgSprites = new List<Sprite>();
+    //48 frame, 12 fps, 4 sec. 4/48 = 0.083
+    public float bkgAniTime = 0.083f;
+    public int currBkgIndex;
     public Image blackImg;
 
     [Header("Transition Pic")]
-    public Texture2D transitionTexture_Carboniferous;
-    public Texture2D transitionTexture_Permian;
+    public Texture2D transitionTexture_Carboniferous_TC;
+    public Texture2D transitionTexture_Carboniferous_SC;
+    public Texture2D transitionTexture_Carboniferous_EN;
+    public Texture2D transitionTexture_Permian_TC;
+    public Texture2D transitionTexture_Permian_SC;
+    public Texture2D transitionTexture_Permian_EN;
 
     CommonUtils commonUtils;
 
@@ -63,21 +71,50 @@ public class TransitionManager : MonoBehaviour
                 commonUtils.playerPos_Carboniferous = PlayerController.instance.transform.position;
                 commonUtils.playerDir_Carboniferous = PlayerController.instance.GetDirection();
                 commonUtils.dronePos_Carboniferous = DroneController.instance.transform.position;
-                transitionTexture_Carboniferous = tex;
-                camFeedImg.texture = transitionTexture_Carboniferous;
+                if (commonUtils.currLang == Language.TC)
+                {
+                    transitionTexture_Carboniferous_TC = tex;
+                    camFeedImg.texture = transitionTexture_Carboniferous_TC;
+                }
+                else if (commonUtils.currLang == Language.SC)
+                {
+                    transitionTexture_Carboniferous_SC = tex;
+                    camFeedImg.texture = transitionTexture_Carboniferous_SC;
+                }
+                else if (commonUtils.currLang == Language.EN)
+                {
+                    transitionTexture_Carboniferous_EN = tex;
+                    camFeedImg.texture = transitionTexture_Carboniferous_EN;
+                }
             }
             else if (currMap == MapID.Permian)
             {
                 commonUtils.playerPos_Permian = PlayerController.instance.transform.position;
                 commonUtils.playerDir_Permian = PlayerController.instance.GetDirection();
                 commonUtils.dronePos_Permian = DroneController.instance.transform.position;
-                transitionTexture_Permian = tex;
-                camFeedImg.texture = transitionTexture_Permian;
+                if (commonUtils.currLang == Language.TC)
+                {
+                    transitionTexture_Permian_TC = tex;
+                    camFeedImg.texture = transitionTexture_Permian_TC;
+                }
+                else if (commonUtils.currLang == Language.SC)
+                {
+                    transitionTexture_Permian_SC = tex;
+                    camFeedImg.texture = transitionTexture_Permian_SC;
+                }
+                else if (commonUtils.currLang == Language.EN)
+                {
+                    transitionTexture_Permian_EN = tex;
+                    camFeedImg.texture = transitionTexture_Permian_EN;
+                }
+                
             }
             camFeedImg.DOFade(1f, 1f);
             camFeedImg.material.DOFloat(50f, "_PixelateSize", 1f).From(512f).SetEase(Ease.Linear);
             yield return new WaitForSeconds(1f);
             //fade in time travel bkg
+            currBkgIndex = 0;
+            BkgLoopAni();
             timeTravelBkgImg.DOFade(1f, 1f);
             yield return new WaitForSeconds(1f);
             //change scene
@@ -114,21 +151,57 @@ public class TransitionManager : MonoBehaviour
             //show next map and depixelate
             if (targetMap == MapID.Permian)
             {
-                camFeedImg.texture = transitionTexture_Permian;
+                if (commonUtils.currLang == Language.TC)
+                {
+                    camFeedImg.texture = transitionTexture_Permian_TC;
+                }
+                else if (commonUtils.currLang == Language.SC)
+                {
+                    camFeedImg.texture = transitionTexture_Permian_SC;
+                }
+                else if (commonUtils.currLang == Language.EN)
+                {
+                    camFeedImg.texture = transitionTexture_Permian_EN;
+                }
             }
             else if (targetMap == MapID.Carboniferous)
             {
-                camFeedImg.texture = transitionTexture_Carboniferous;
+                if (commonUtils.currLang == Language.TC)
+                {
+                    camFeedImg.texture = transitionTexture_Carboniferous_TC;
+                }
+                else if (commonUtils.currLang == Language.SC)
+                {
+                    camFeedImg.texture = transitionTexture_Carboniferous_SC;
+                }
+                else if (commonUtils.currLang == Language.EN)
+                {
+                    camFeedImg.texture = transitionTexture_Carboniferous_EN;
+                }
             }
             timeTravelBkgImg.DOFade(0f, 1f);
             yield return new WaitForSeconds(0.6f);
             camFeedImg.material.DOFloat(512f, "_PixelateSize", 1f).From(50f).SetEase(Ease.Linear);
             camFeedImg.DOFade(0f, 1f);
             yield return new WaitForSeconds(1.4f);
+            CancelInvoke("BkgLoopAni");
             GameManager.instance.fadingBetweenAreas = false;
             InputManager.instance.canInput_Confirm = true;
             commonUtils.currMapId = targetMap;
         }
+    }
+
+    void BkgLoopAni()
+    {
+        currBkgIndex++;
+
+        if (currBkgIndex == bkgSprites.Count)
+        {
+            currBkgIndex = 0;
+        }
+
+        timeTravelBkgImg.sprite = bkgSprites[currBkgIndex];
+        Invoke("BkgLoopAni", bkgAniTime);
     }
 
     public void ChangeToInsideTreeCave()
