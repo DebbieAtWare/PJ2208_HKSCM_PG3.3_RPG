@@ -15,8 +15,10 @@ public class PermianManager : MonoBehaviour
     public BossObject bossObj3;
 
     CommonUtils commonUtils;
+    InputManager inputManager;
     int currUtilsIndex_Boss2;
     int currUtilsIndex_Boss3;
+    int firstGreetingDialogIndex;
 
     void Awake()
     {
@@ -32,6 +34,9 @@ public class PermianManager : MonoBehaviour
     public void Setup()
     {
         commonUtils = CommonUtils.instance;
+
+        inputManager = InputManager.instance;
+        inputManager.onValueChanged_ConfirmCallback += InputManager_OnValueChanged_Confirm;
 
         for (int i = 0; i < commonUtils.bosses.Count; i++)
         {
@@ -82,6 +87,46 @@ public class PermianManager : MonoBehaviour
         StatusBarManager.instance.Show_Permian(0.5f);
 
         SoundManager.instance.Play_BGM(3);
+
+        firstGreetingDialogIndex = -1;
+    }
+
+    private void InputManager_OnValueChanged_Confirm()
+    {
+        if (OptionManager.instance.currStage == OptionStage.None)
+        {
+            if (!commonUtils.isFirstGreetingDone)
+            {
+                if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
+                {
+                    DialogBoxManager.instance.FinishCurrentDialog();
+                }
+                else
+                {
+                    if (firstGreetingDialogIndex == (commonUtils.firstGreeting_Permian.Count - 1))
+                    {
+                        commonUtils.isFirstGreetingDone = true;
+                        DialogBoxManager.instance.HideDialog();
+                        GameManager.instance.dialogActive = false;
+                    }
+                    else
+                    {
+                        firstGreetingDialogIndex++;
+                        DialogBoxManager.instance.ShowDialog(commonUtils.firstGreeting_Permian[firstGreetingDialogIndex]);
+                    }
+                }
+            }
+        }
+    }
+
+    public void FirstGreetingControl()
+    {
+        if (!commonUtils.isFirstGreetingDone)
+        {
+            GameManager.instance.dialogActive = true;
+            firstGreetingDialogIndex++;
+            DialogBoxManager.instance.ShowDialog(commonUtils.firstGreeting_Permian[firstGreetingDialogIndex]);
+        }
     }
 
     private void OnFinishedConversation_Boss2()

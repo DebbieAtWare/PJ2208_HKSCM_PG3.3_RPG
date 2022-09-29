@@ -15,7 +15,9 @@ public class CarboniferousManager : MonoBehaviour
     public OnTriggerControl treeCaveTriggerControl;
 
     CommonUtils commonUtils;
+    InputManager inputManager;
     int currUtilsIndex_Boss;
+    int firstGreetingDialogIndex;
 
     void Awake()
     {
@@ -31,6 +33,9 @@ public class CarboniferousManager : MonoBehaviour
     public void Setup()
     {
         commonUtils = CommonUtils.instance;
+
+        inputManager = InputManager.instance;
+        inputManager.onValueChanged_ConfirmCallback += InputManager_OnValueChanged_Confirm;
 
         treeCaveTriggerControl.onTriggerEnterCallback += TreeCave_OnTriggerEnter;
 
@@ -66,11 +71,51 @@ public class CarboniferousManager : MonoBehaviour
         StatusBarManager.instance.Show_Carbon(0.5f);
 
         SoundManager.instance.Play_BGM(2);
+
+        firstGreetingDialogIndex = -1;
+    }
+
+    private void InputManager_OnValueChanged_Confirm()
+    {
+        if (OptionManager.instance.currStage == OptionStage.None)
+        {
+            if (!commonUtils.isFirstGreetingDone)
+            {
+                if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
+                {
+                    DialogBoxManager.instance.FinishCurrentDialog();
+                }
+                else
+                {
+                    if (firstGreetingDialogIndex == (commonUtils.firstGreeting_Carboniferous.Count - 1))
+                    {
+                        commonUtils.isFirstGreetingDone = true;
+                        DialogBoxManager.instance.HideDialog();
+                        GameManager.instance.dialogActive = false;
+                    }
+                    else
+                    {
+                        firstGreetingDialogIndex++;
+                        DialogBoxManager.instance.ShowDialog(commonUtils.firstGreeting_Carboniferous[firstGreetingDialogIndex]);
+                    }
+                }
+            }
+        }
     }
 
     private void TreeCave_OnTriggerEnter()
     {
         TransitionManager.instance.ChangeToInsideTreeCave();
+    }
+
+    public void FirstGreetingControl()
+    {
+        if (!commonUtils.isFirstGreetingDone)
+        {
+            GameManager.instance.dialogActive = true;
+            firstGreetingDialogIndex++;
+            DialogBoxManager.instance.ShowDialog(commonUtils.firstGreeting_Carboniferous[firstGreetingDialogIndex]);
+        }
     }
 
 }

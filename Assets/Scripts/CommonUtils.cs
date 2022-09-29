@@ -90,6 +90,9 @@ public class CommonUtils : MonoBehaviour
 
     [Header("ConfigData - Content")]
     public List<ConfigData_DialogBox> gameplayInstructions = new List<ConfigData_DialogBox>();
+    public List<ConfigData_DialogBox> firstGreeting_Carboniferous = new List<ConfigData_DialogBox>();
+    public List<ConfigData_DialogBox> firstGreeting_Permian = new List<ConfigData_DialogBox>();
+    public bool isFirstGreetingDone = false;
     public ConfigData_Text successCollectText;
     public ConfigData_Menu menuData;
 
@@ -325,7 +328,7 @@ public class CommonUtils : MonoBehaviour
         ConfigData_DialogBox dialog = new ConfigData_DialogBox();
         dialog.ByWhom = "DRO";
         dialog.ImagePath = "";
-        dialog.Text_TC = "機械人嘅直覺話比我知即將有新發現。快啲過去睇吓啦。";
+        dialog.Text_TC = "咇咇……發現目標，快點過去看看吧！";
         dialogBox_BossAlert = dialog;
 
         ConfigData_Character boss1 = new ConfigData_Character();
@@ -757,6 +760,31 @@ public class CommonUtils : MonoBehaviour
         option_Gameplay3.Add("二疊紀");
         dialog_Gameplay3.OptionTexts_TC = option_Gameplay3;
         gameplayInstructions.Add(dialog_Gameplay3);
+
+        //-------
+
+        ConfigData_DialogBox dialog_FG_C1 = new ConfigData_DialogBox();
+        dialog_FG_C1.ByWhom = "DRO";
+        dialog_FG_C1.Text_TC = "我們即將穿越到石炭紀。<br>旅途中有甚麼疑難就問我吧。相信我們將會是最佳拍檔！";
+        firstGreeting_Carboniferous.Add(dialog_FG_C1);
+        ConfigData_DialogBox dialog_FG_C2 = new ConfigData_DialogBox();
+        dialog_FG_C2.ByWhom = "DRO";
+        dialog_FG_C2.Text_TC = "噢，來到石炭紀了！<br>開始進行搜索！";
+        firstGreeting_Carboniferous.Add(dialog_FG_C2);
+        ConfigData_DialogBox dialog_FG_C3 = new ConfigData_DialogBox();
+        dialog_FG_C3.ByWhom = "AVA";
+        dialog_FG_C3.Text_TC = "看來石炭紀大陸到處都是沼澤。<br>呼，這裏真潮濕。";
+        firstGreeting_Carboniferous.Add(dialog_FG_C3);
+
+
+        ConfigData_DialogBox dialog_FG_P1 = new ConfigData_DialogBox();
+        dialog_FG_P1.ByWhom = "DRO";
+        dialog_FG_P1.Text_TC = "你選擇了二疊紀，是古生代最後的地質時代。<br>旅途中有甚麼疑難就問我吧。相信我們將會是最佳拍檔！";
+        firstGreeting_Permian.Add(dialog_FG_P1);
+        ConfigData_DialogBox dialog_FG_P2 = new ConfigData_DialogBox();
+        dialog_FG_P2.ByWhom = "DRO";
+        dialog_FG_P2.Text_TC = "（深呼吸） 呼，空氣清新，一起開展一段刺激的旅程吧！<br>嗯…這裡很溫暖，還挺乾燥的。";
+        firstGreeting_Permian.Add(dialog_FG_P2);
     }
 }
 

@@ -22,12 +22,8 @@ public class TransitionManager : MonoBehaviour
     public Image blackImg;
 
     [Header("Transition Pic")]
-    public Texture2D transitionTexture_Carboniferous_TC;
-    public Texture2D transitionTexture_Carboniferous_SC;
-    public Texture2D transitionTexture_Carboniferous_EN;
-    public Texture2D transitionTexture_Permian_TC;
-    public Texture2D transitionTexture_Permian_SC;
-    public Texture2D transitionTexture_Permian_EN;
+    public Texture2D transitionTexture_Carboniferous;
+    public Texture2D transitionTexture_Permian;
 
     CommonUtils commonUtils;
 
@@ -71,43 +67,16 @@ public class TransitionManager : MonoBehaviour
                 commonUtils.playerPos_Carboniferous = PlayerController.instance.transform.position;
                 commonUtils.playerDir_Carboniferous = PlayerController.instance.GetDirection();
                 commonUtils.dronePos_Carboniferous = DroneController.instance.transform.position;
-                if (commonUtils.currLang == Language.TC)
-                {
-                    transitionTexture_Carboniferous_TC = tex;
-                    camFeedImg.texture = transitionTexture_Carboniferous_TC;
-                }
-                else if (commonUtils.currLang == Language.SC)
-                {
-                    transitionTexture_Carboniferous_SC = tex;
-                    camFeedImg.texture = transitionTexture_Carboniferous_SC;
-                }
-                else if (commonUtils.currLang == Language.EN)
-                {
-                    transitionTexture_Carboniferous_EN = tex;
-                    camFeedImg.texture = transitionTexture_Carboniferous_EN;
-                }
+                transitionTexture_Carboniferous = tex;
+                camFeedImg.texture = transitionTexture_Carboniferous;
             }
             else if (currMap == MapID.Permian)
             {
                 commonUtils.playerPos_Permian = PlayerController.instance.transform.position;
                 commonUtils.playerDir_Permian = PlayerController.instance.GetDirection();
                 commonUtils.dronePos_Permian = DroneController.instance.transform.position;
-                if (commonUtils.currLang == Language.TC)
-                {
-                    transitionTexture_Permian_TC = tex;
-                    camFeedImg.texture = transitionTexture_Permian_TC;
-                }
-                else if (commonUtils.currLang == Language.SC)
-                {
-                    transitionTexture_Permian_SC = tex;
-                    camFeedImg.texture = transitionTexture_Permian_SC;
-                }
-                else if (commonUtils.currLang == Language.EN)
-                {
-                    transitionTexture_Permian_EN = tex;
-                    camFeedImg.texture = transitionTexture_Permian_EN;
-                }
-                
+                transitionTexture_Permian = tex;
+                camFeedImg.texture = transitionTexture_Permian;
             }
             camFeedImg.DOFade(1f, 1f);
             camFeedImg.material.DOFloat(50f, "_PixelateSize", 1f).From(512f).SetEase(Ease.Linear);
@@ -125,7 +94,7 @@ public class TransitionManager : MonoBehaviour
                 PlayerController.instance.SetDirection(commonUtils.playerDir_Permian);
                 if (currMap == MapID.Lab)
                 {
-                    DroneController.instance.ChangePos_FollowStopDist(commonUtils.playerDir_Permian);
+                    DroneController.instance.ChangePos(commonUtils.dronePos_Permian);
                 }
                 else
                 {
@@ -139,7 +108,7 @@ public class TransitionManager : MonoBehaviour
                 PlayerController.instance.SetDirection(commonUtils.playerDir_Carboniferous);
                 if (currMap == MapID.Lab)
                 {
-                    DroneController.instance.ChangePos_FollowStopDist(commonUtils.playerDir_Carboniferous);
+                    DroneController.instance.ChangePos(commonUtils.dronePos_Carboniferous);
                 }
                 else
                 {
@@ -151,33 +120,11 @@ public class TransitionManager : MonoBehaviour
             //show next map and depixelate
             if (targetMap == MapID.Permian)
             {
-                if (commonUtils.currLang == Language.TC)
-                {
-                    camFeedImg.texture = transitionTexture_Permian_TC;
-                }
-                else if (commonUtils.currLang == Language.SC)
-                {
-                    camFeedImg.texture = transitionTexture_Permian_SC;
-                }
-                else if (commonUtils.currLang == Language.EN)
-                {
-                    camFeedImg.texture = transitionTexture_Permian_EN;
-                }
+                camFeedImg.texture = transitionTexture_Permian;
             }
             else if (targetMap == MapID.Carboniferous)
             {
-                if (commonUtils.currLang == Language.TC)
-                {
-                    camFeedImg.texture = transitionTexture_Carboniferous_TC;
-                }
-                else if (commonUtils.currLang == Language.SC)
-                {
-                    camFeedImg.texture = transitionTexture_Carboniferous_SC;
-                }
-                else if (commonUtils.currLang == Language.EN)
-                {
-                    camFeedImg.texture = transitionTexture_Carboniferous_EN;
-                }
+                camFeedImg.texture = transitionTexture_Carboniferous;
             }
             timeTravelBkgImg.DOFade(0f, 1f);
             yield return new WaitForSeconds(0.6f);
@@ -186,13 +133,25 @@ public class TransitionManager : MonoBehaviour
             yield return new WaitForSeconds(1.4f);
             CancelInvoke("BkgLoopAni");
             GameManager.instance.fadingBetweenAreas = false;
-            GameManager.instance.dialogActive = false;
             InputManager.instance.canInput_Confirm = true;
-            commonUtils.currMapId = targetMap;
             if (currMap == MapID.Lab)
             {
                 MainManger.instance.currStage = MainStage.InGame;
+                if (targetMap == MapID.Carboniferous)
+                {
+                    CarboniferousManager.instance.FirstGreetingControl();
+                }
+                else if (targetMap == MapID.Permian)
+                {
+                    PermianManager.instance.FirstGreetingControl();
+                }
             }
+            else if (currMap == MapID.Carboniferous || currMap == MapID.Permian)
+            {
+                GameManager.instance.dialogActive = false;
+            }
+            commonUtils.currMapId = targetMap;
+            
         }
     }
 
@@ -252,24 +211,24 @@ public class TransitionManager : MonoBehaviour
     }
 
 
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.J))
-    //    {
-    //        Debug.Log("ScreenCap1");
-    //        StartCoroutine(ScreenShot());
-    //        IEnumerator ScreenShot()
-    //        {
-    //            Debug.Log("ScreenCap2");
-    //            yield return new WaitForEndOfFrame();
-    //            Debug.Log("ScreenCap3");
-    //            Texture2D tex = new Texture2D(Screen.width, Screen.height, TextureFormat.ARGB32, false);
-    //            tex.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
-    //            tex.Apply();
-    //            Byte[] bytes = tex.EncodeToPNG();
-    //            File.WriteAllBytes(Path.Combine(Application.streamingAssetsPath, "Image.png"), bytes);
-    //            Debug.Log("ScreenCap4");
-    //        }
-    //    }
-    //}
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            Debug.Log("ScreenCap1");
+            StartCoroutine(ScreenShot());
+            IEnumerator ScreenShot()
+            {
+                Debug.Log("ScreenCap2");
+                yield return new WaitForEndOfFrame();
+                Debug.Log("ScreenCap3");
+                Texture2D tex = new Texture2D(Screen.width, Screen.height, TextureFormat.ARGB32, false);
+                tex.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+                tex.Apply();
+                Byte[] bytes = tex.EncodeToPNG();
+                File.WriteAllBytes(Path.Combine(Application.streamingAssetsPath, "Image.png"), bytes);
+                Debug.Log("ScreenCap4");
+            }
+        }
+    }
 }
