@@ -57,15 +57,19 @@ public class DialogBoxManager : MonoBehaviour
     CommonUtils commonUtils;
     Vector2 supportImgSizeTarget = new Vector2(720, 480);
 
+    //for share in multiple scenes
     void Awake()
     {
         Debug.Log("DialogBoxManager Awake");
         if (instance != null)
         {
-            Debug.Log("More than one instance of DialogBoxManager");
-            return;
+            Destroy(gameObject);
         }
-        instance = this;
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     public void Setup()
@@ -171,7 +175,7 @@ public class DialogBoxManager : MonoBehaviour
                 SoundManager.instance.Play_Dialog(3);
             }
         }
-            
+
         dialogWriterSingle = DialogWriter.AddWriter_Static(text_TC, dialogBox.Text_TC, 0.05f, true, OnDialogLineEnd);
 
         if (dialogBox.OptionTexts_TC != null && dialogBox.OptionTexts_TC.Count != 0)

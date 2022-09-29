@@ -33,6 +33,7 @@ public class CollectionBookManager : MonoBehaviour
     public List<CollectionBookBossObject> main_BossObjs = new List<CollectionBookBossObject>();
     public List<CollectionBookNPCObject> main_NPCObjs = new List<CollectionBookNPCObject>();
     public RectTransform main_Scroll_ContentRect;
+    public GameObject main_ExitObj;
     public GameObject main_ExitFrameObj;
     float main_Scroll_PosGap_Small = 73;
     float main_Scroll_PosGap_Full = 185;
@@ -71,15 +72,19 @@ public class CollectionBookManager : MonoBehaviour
     CommonUtils commonUtils;
     InputManager inputManager;
 
+    //for share in multiple scenes
     void Awake()
     {
         Debug.Log("CollectionBookManager Awake");
         if (instance != null)
         {
-            Debug.Log("More than one instance of CollectionBookManager");
-            return;
+            Destroy(gameObject);
         }
-        instance = this;
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     public void Setup()
@@ -179,7 +184,7 @@ public class CollectionBookManager : MonoBehaviour
                     main_NPCObjs[currIndex_NPC].SetSelection(false);
                     main_BossObjs[currIndex_Boss].SetSelection(true);
                 }
-                else if (val == -1)
+                else if (val == -1 && main_ExitObj.activeInHierarchy)
                 {
                     currRow = 2;
                     main_NPCObjs[currIndex_NPC].SetSelection(false);
@@ -304,7 +309,7 @@ public class CollectionBookManager : MonoBehaviour
                     Show_Detail(commonUtils.NPC_Permian[main_NPCObjs[currIndex_NPC].configDataIndex]);
                 }
             }
-            else if (currRow == 2)
+            else if (currRow == 2 && main_ExitObj.activeInHierarchy)
             {
                 Hide_Main(0.5f);
             }
@@ -317,7 +322,7 @@ public class CollectionBookManager : MonoBehaviour
 
     //----- Main -----
 
-    public void Show_Main()
+    public void Show_Main(bool isShowExitBtn)
     {
         canvasGroup.gameObject.SetActive(true);
         main_RootObj.SetActive(true);
@@ -358,8 +363,17 @@ public class CollectionBookManager : MonoBehaviour
         }
         main_Scroll_ContentRect.anchoredPosition = new Vector2(0, 0);
 
-        main_ExitFrameObj.SetActive(false);
-
+        if (isShowExitBtn)
+        {
+            main_ExitFrameObj.SetActive(false);
+            main_ExitObj.SetActive(true);
+        }
+        else
+        {
+            main_ExitFrameObj.SetActive(false);
+            main_ExitObj.SetActive(false);
+        }
+        
         //----
 
         canvasGroup.DOFade(1f, 0.5f).OnComplete(() => currStage = CollectionBookStage.Main);
@@ -417,7 +431,7 @@ public class CollectionBookManager : MonoBehaviour
                 }
             }
         }
-
+        
         detail_Text_L_TC.text = character.Info1_TC;
         detail_Text_R_TC.text = character.Info2_TC;
         detail_Text_L_SC.text = character.Info1_SC;
@@ -425,13 +439,14 @@ public class CollectionBookManager : MonoBehaviour
         detail_Text_L_EN.text = character.Info1_EN;
         detail_Text_R_EN.text = character.Info2_EN;
         ChangeLanguage();
-
+        
         detail_ExitFrameObj.SetActive(true);
-
+        
         //----
         main_RootObj.gameObject.SetActive(false);
         detail_RootObj.gameObject.SetActive(true);
-        currStage = CollectionBookStage.Detail;
+        currStage = CollectionBookStage.Detail; 
+        
     }
 
     public void Hide_Detail()
@@ -611,20 +626,27 @@ public class CollectionBookManager : MonoBehaviour
 
     void Hide_Main(float aniTime)
     {
-        canvasGroup.DOFade(0, aniTime).OnComplete(HideComplete);
+        canvasGroup.DOFade(0, aniTime).OnComplete(HideComplete_Main);
     }
 
     public void Hide_Succuss(float aniTime)
     {
-        canvasGroup.DOFade(0, aniTime).OnComplete(HideComplete);
+        canvasGroup.DOFade(0, aniTime).OnComplete(HideComplete_Succuss);
     }
-    void HideComplete()
+    void HideComplete_Main()
     {
         canvasGroup.gameObject.SetActive(false);
         currStage = CollectionBookStage.None;
         DroneController.instance.ShowTalkHint();
         DroneController.instance.canShowTalkHint = true;
-        //GameManager.instance.dialogActive = false;
+        GameManager.instance.dialogActive = false;
+    }
+    void HideComplete_Succuss()
+    {
+        canvasGroup.gameObject.SetActive(false);
+        currStage = CollectionBookStage.None;
+        DroneController.instance.ShowTalkHint();
+        DroneController.instance.canShowTalkHint = true;
     }
 
     //--- Language ---

@@ -9,15 +9,19 @@ public class MinimapManager : MonoBehaviour
 
     public CanvasGroup canvasGrp;
 
+    //for share in multiple scenes
     void Awake()
     {
         Debug.Log("MinimapManager Awake");
         if (instance != null)
         {
-            Debug.Log("More than one instance of MinimapManager");
-            return;
+            Destroy(gameObject);
         }
-        instance = this;
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     public void Show(float aniTime)

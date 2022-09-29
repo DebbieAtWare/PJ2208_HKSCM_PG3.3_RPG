@@ -10,9 +10,19 @@ public class DialogWriter : MonoBehaviour
 
     List<DialogWriterSingle> dialogWriterSingles = new List<DialogWriterSingle>();
 
-    private void Awake()
+    //for share in multiple scenes
+    void Awake()
     {
-        instance = this;
+        Debug.Log("DialogWriter Awake");
+        if (instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     public static DialogWriterSingle AddWriter_Static(TextMeshProUGUI uiText, string textToWrite, float timePerCharacter, bool removeWriterBeforeAdd, Action onComplete)

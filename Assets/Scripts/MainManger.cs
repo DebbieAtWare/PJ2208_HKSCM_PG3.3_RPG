@@ -12,7 +12,9 @@ public enum MainStage
     Language,
     Intro,
     StartLab,
-    InGame
+    InGame,
+    EndLab_CollectionBookTrigger,
+    EndLab_CollectionBookUpdate
 }
 
 public class MainManger : MonoBehaviour
@@ -237,6 +239,12 @@ public class MainManger : MonoBehaviour
                     }
                 }
             }
+            else if (currStage == MainStage.EndLab_CollectionBookTrigger)
+            {
+                currStage = MainStage.EndLab_CollectionBookUpdate;
+                DialogBoxManager.instance.HideDialog();
+                CollectionBookManager.instance.Show_Main(false);
+            }
         }
     }
 
@@ -301,5 +309,12 @@ public class MainManger : MonoBehaviour
         DroneController.instance.ForceShowTalkHint();
         startLab_CurrDialogIndex++;
         DialogBoxManager.instance.ShowDialog(commonUtils.gameplayInstructions[startLab_CurrDialogIndex]);
+    }
+
+    public void ChangeStage_EndLab()
+    {
+        currStage = MainStage.EndLab_CollectionBookTrigger;
+        DialogBoxManager.instance.ShowDialog(commonUtils.endCheck_AfterEndingVideo);
+        inputManager.canInput_Confirm = true;
     }
 }

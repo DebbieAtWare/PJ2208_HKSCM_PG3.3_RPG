@@ -218,10 +218,18 @@ public class TransitionManager : MonoBehaviour
 
     public void EndingVideoToLab()
     {
-        SceneManager.LoadScene("MainScene");
-        PlayerController.instance.SetDirection(PlayerDirection.Down);
-        PlayerController.instance.transform.position = new Vector3(-1.6f, 0f, 0f);
-        DroneController.instance.ChangePos(new Vector3(0.8f, -0.8f, 0f));
+        StartCoroutine(Ani());
+        IEnumerator Ani()
+        {
+            SceneManager.LoadScene("MainScene");
+            commonUtils.currMapId = MapID.Lab;
+            PlayerController.instance.SetDirection(PlayerDirection.Down);
+            PlayerController.instance.transform.position = new Vector3(-1.6f, 0f, 0f);
+            DroneController.instance.ChangePos(new Vector3(0.8f, -0.8f, 0f));
+            yield return new WaitForSeconds(1f);
+            //wait the ending video fade out
+            MainManger.instance.ChangeStage_EndLab();
+        }
     }
 
     //private void Update()

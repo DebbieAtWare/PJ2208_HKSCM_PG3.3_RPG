@@ -76,15 +76,19 @@ public class OptionManager : MonoBehaviour
     CommonUtils commonUtils;
     InputManager inputManager;
 
+    //for share in multiple scenes
     void Awake()
     {
         Debug.Log("OptionManager Awake");
         if (instance != null)
         {
-            Debug.Log("More than one instance of OptionManager");
-            return;
+            Destroy(gameObject);
         }
-        instance = this;
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     public void Setup()

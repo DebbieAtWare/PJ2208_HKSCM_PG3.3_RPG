@@ -33,15 +33,19 @@ public class StatusBarManager : MonoBehaviour
 
     CommonUtils commonUtils;
 
+    //for share in multiple scenes
     void Awake()
     {
         Debug.Log("StatusBarManager Awake");
         if (instance != null)
         {
-            Debug.Log("More than one instance of StatusBarManager");
-            return;
+            Destroy(gameObject);
         }
-        instance = this;
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     public void Setup()

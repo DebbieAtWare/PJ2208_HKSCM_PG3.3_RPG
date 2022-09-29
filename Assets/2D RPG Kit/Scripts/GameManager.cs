@@ -68,19 +68,33 @@ public class GameManager : MonoBehaviour {
     public bool invincible;
     public bool infiniteGold;
     public bool noEncounters;
-    
 
-    // Use this for initialization
-    void Start () {
-        instance = this;
+    //for share in multiple scenes
+    void Awake()
+    {
+        Debug.Log("GameManager Awake");
+        if (instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
 
-        DontDestroyOnLoad(gameObject);
+    //   // Use this for initialization
+    //   void Start () {
+    //       instance = this;
 
-        SortItems();
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    //       DontDestroyOnLoad(gameObject);
+
+    //       SortItems();
+    //}
+
+    // Update is called once per frame
+    void Update () {
 
         if (infiniteGold)
         {
