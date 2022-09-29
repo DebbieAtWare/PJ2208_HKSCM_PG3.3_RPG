@@ -92,8 +92,8 @@ public class TransitionManager : MonoBehaviour
                 SceneManager.LoadScene("PermianScene");
                 if (currMap == MapID.Lab)
                 {
-                    //first greeting: player facing drone
-                    PlayerController.instance.SetDirection(PlayerDirection.Left);
+                    //first greeting: player facing down
+                    PlayerController.instance.SetDirection(PlayerDirection.Down);
                 }
                 else
                 {
@@ -107,8 +107,8 @@ public class TransitionManager : MonoBehaviour
                 SceneManager.LoadScene("CarboniferousScene");
                 if (currMap == MapID.Lab)
                 {
-                    //first greeting: player facing drone
-                    PlayerController.instance.SetDirection(PlayerDirection.Right);
+                    //first greeting: player facing down
+                    PlayerController.instance.SetDirection(PlayerDirection.Down);
                 }
                 else
                 {

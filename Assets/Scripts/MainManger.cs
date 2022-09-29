@@ -212,7 +212,7 @@ public class MainManger : MonoBehaviour
             else if (currStage == MainStage.StartLab)
             {
                 SoundManager.instance.Play_Input(2);
-                if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
+                if (DialogBoxManager.instance.dialogWriterSingle != null && DialogBoxManager.instance.dialogWriterSingle.IsActive())
                 {
                     DialogBoxManager.instance.FinishCurrentDialog();
                 }
@@ -225,12 +225,12 @@ public class MainManger : MonoBehaviour
                         float time = dist * commonUtils.playerAutoWalkSpeed;
                         PlayerController.instance.transform.DOMove(targetPos, time);
                         startLab_CurrDialogIndex++;
-                        DialogBoxManager.instance.ShowControl();
+                        DialogBoxManager.instance.ShowDialog(commonUtils.gameplayInstructions[startLab_CurrDialogIndex]);
+                        DialogBoxManager.instance.HideControl();
                     }
                     else if (startLab_CurrDialogIndex == 1)
                     {
                         startLab_CurrDialogIndex++;
-                        DialogBoxManager.instance.HideControl();
                         DialogBoxManager.instance.ShowDialog(commonUtils.gameplayInstructions[startLab_CurrDialogIndex]);
                         DialogBoxManager.instance.SetOptionArrow(startLab_CurrArrowIndex);
                     }
@@ -320,7 +320,7 @@ public class MainManger : MonoBehaviour
             yield return new WaitForSeconds(1f);
             DroneController.instance.ForceShowTalkHint();
             startLab_CurrDialogIndex++;
-            DialogBoxManager.instance.ShowDialog(commonUtils.gameplayInstructions[startLab_CurrDialogIndex]);
+            DialogBoxManager.instance.ShowControl();
         }
     }
 

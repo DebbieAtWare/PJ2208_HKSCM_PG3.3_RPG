@@ -302,6 +302,8 @@ public class DialogBoxManager : MonoBehaviour
 
     public void ShowControl()
     {
+        profilePic.gameObject.SetActive(true);
+        profilePic.sprite = PlayerController.instance.dialogBoxProfileSprite;
         dialogBoxGrp.SetActive(true);
         normalGrpObj.SetActive(false);
         controlGrpObj.SetActive(true);

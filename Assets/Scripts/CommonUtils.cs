@@ -859,14 +859,14 @@ public class CommonUtils : MonoBehaviour
 
         //-------
 
-        ConfigData_DialogBox dialog_Gameplay1 = new ConfigData_DialogBox();
-        dialog_Gameplay1.ByWhom = "DRO";
-        dialog_Gameplay1.Text_TC = "試試和我對話吧！";
-        gameplayInstructions.Add(dialog_Gameplay1);
         ConfigData_DialogBox dialog_Gameplay2 = new ConfigData_DialogBox();
         dialog_Gameplay2.ByWhom = "DRO";
         dialog_Gameplay2.Text_TC = "控制教學：<br>【方向鍵】<br>上、下、左、右<br>【選單】<br>【確定】";
         gameplayInstructions.Add(dialog_Gameplay2);
+        ConfigData_DialogBox dialog_Gameplay1 = new ConfigData_DialogBox();
+        dialog_Gameplay1.ByWhom = "DRO";
+        dialog_Gameplay1.Text_TC = "試試和我對話吧！";
+        gameplayInstructions.Add(dialog_Gameplay1);
         ConfigData_DialogBox dialog_Gameplay3 = new ConfigData_DialogBox();
         dialog_Gameplay3.ByWhom = "DRO";
         dialog_Gameplay3.Text_TC = "你想前往哪個時代探險？";
