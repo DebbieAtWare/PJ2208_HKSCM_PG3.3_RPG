@@ -108,116 +108,126 @@ public class BossObject : MonoBehaviour
 
     private void InputManager_OnValueChanged_Confirm()
     {
-       if (currBossStage == BossStage.Alert)
-       {
-            StartCoroutine(Alert());
-            IEnumerator Alert()
+        if (OptionManager.instance.currStage == OptionStage.None)
+        {
+            if (currBossStage == BossStage.Alert)
             {
-                SoundManager.instance.FadeOutStop_Dialog(0.3f);
-                SoundManager.instance.Play_Input(2);
-                SoundManager.instance.Play_SFX(5);
-                DialogBoxManager.instance.HideDialog();
-                float dist = Vector3.Distance(PlayerController.instance.transform.position, avatarAutoPosObj.transform.position);
-                float time = dist * commonUtils.playerAutoWalkSpeed;
-                PlayerController.instance.transform.DOMove(avatarAutoPosObj.transform.position, time);
-                yield return new WaitForSeconds(time);
-                if (canFadeOutAlertSFX)
+                if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
                 {
-                    //in carbon can't fade out caz auto walk and jump to cave sound using same track
-                    SoundManager.instance.FadeOutStop_SFX(0.5f);
-                }
-            }
-       }
-       else if (currBossStage == BossStage.View)
-       {
-            StartCoroutine(Ani());
-            IEnumerator Ani()
-            {
-                GameManager.instance.dialogActive = true;
-                currBossStage = BossStage.Transition_ConversationStart;
-                SoundManager.instance.Play_BGM(1);
-                ViewBoxManager.instance.HideViewBox();
-                SoundManager.instance.Play_Input(2);
-                MinimapManager.instance.Hide(0.5f);
-                StatusBarManager.instance.Hide_Carbon(0.5f);
-                StatusBarManager.instance.Hide_Permian(0.5f);
-                ConversationModeManager.instance.Ani_Start(id, info.Name_TC, info.DescriptionTag_TC);
-                ConversationModeManager.instance.BossAni_Idle();
-                yield return new WaitForSeconds(3f);
-                currDialogLine++;
-                DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
-                if (info.DialogBoxes[currDialogLine].ByWhom == CharacterID.M01.ToString() || info.DialogBoxes[currDialogLine].ByWhom == CharacterID.M02.ToString() || info.DialogBoxes[currDialogLine].ByWhom == CharacterID.M03.ToString())
-                {
-                    ConversationModeManager.instance.BossAni_Talk();
-                }
-                currBossStage = BossStage.ConversationMode;
-            }
-        }
-       else if (currBossStage == BossStage.ConversationMode)
-       {
-            SoundManager.instance.Play_Input(2);
-            if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
-            {
-                DialogBoxManager.instance.FinishCurrentDialog();
-                ConversationModeManager.instance.BossAni_Idle();
-            }
-            else
-            {
-
-                if (currDialogLine == 0)
-                {
-                    SoundManager.instance.Play_Input(2);
-                    ConversationModeManager.instance.Ani_AvatarIn();
-                    currDialogLine++;
-                    DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
-                    if (info.DialogBoxes[currDialogLine].ByWhom == CharacterID.M01.ToString() || info.DialogBoxes[currDialogLine].ByWhom == CharacterID.M02.ToString() || info.DialogBoxes[currDialogLine].ByWhom == CharacterID.M03.ToString())
-                    {
-                        ConversationModeManager.instance.BossAni_Talk();
-                    }
-                }
-                else if (currDialogLine == (info.DialogBoxes.Count - 2))
-                {
-                    ConversationModeManager.instance.Ani_BossCenter();
-                    currDialogLine++;
-                    DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
-                    if (info.DialogBoxes[currDialogLine].ByWhom == CharacterID.M01.ToString() || info.DialogBoxes[currDialogLine].ByWhom == CharacterID.M02.ToString() || info.DialogBoxes[currDialogLine].ByWhom == CharacterID.M03.ToString())
-                    {
-                        ConversationModeManager.instance.BossAni_Talk();
-                    }
-                }
-                else if (currDialogLine == (info.DialogBoxes.Count - 1))
-                {
-                    StartCoroutine(LastLine());
-                    IEnumerator LastLine()
-                    {
-                        currBossStage = BossStage.Transition_ConversationEnd;
-                        DialogBoxManager.instance.HideDialog();
-                        ConversationModeManager.instance.HideFade(1f);
-                        currDialogLine = -1;
-                        for (int i = 0; i < arrowObjs_Green.Count; i++)
-                        {
-                            arrowObjs_Green[i].SetActive(false);
-                            arrowObjs_Grey[i].SetActive(true);
-                        }
-                        minimapDot_Red.SetActive(false);
-                        minimapDot_Grey.SetActive(true);
-                        OutlineHide();
-                        yield return new WaitForSeconds(1f);
-                        currBossStage = BossStage.None;
-                        if (onFinishedConversationCallback != null)
-                        {
-                            onFinishedConversationCallback.Invoke();
-                        }
-                    }
+                    DialogBoxManager.instance.FinishCurrentDialog();
                 }
                 else
                 {
-                    ConversationModeManager.instance.Ani_AvatarOut();
+                    StartCoroutine(Alert());
+                    IEnumerator Alert()
+                    {
+                        SoundManager.instance.FadeOutStop_Dialog(0.3f);
+                        SoundManager.instance.Play_Input(2);
+                        SoundManager.instance.Play_SFX(5);
+                        DialogBoxManager.instance.HideDialog();
+                        float dist = Vector3.Distance(PlayerController.instance.transform.position, avatarAutoPosObj.transform.position);
+                        float time = dist * commonUtils.playerAutoWalkSpeed;
+                        PlayerController.instance.transform.DOMove(avatarAutoPosObj.transform.position, time);
+                        yield return new WaitForSeconds(time);
+                        if (canFadeOutAlertSFX)
+                        {
+                            //in carbon can't fade out caz auto walk and jump to cave sound using same track
+                            SoundManager.instance.FadeOutStop_SFX(0.5f);
+                        }
+                    }
+                }
+            }
+            else if (currBossStage == BossStage.View)
+            {
+                StartCoroutine(Ani());
+                IEnumerator Ani()
+                {
+                    GameManager.instance.dialogActive = true;
+                    currBossStage = BossStage.Transition_ConversationStart;
+                    SoundManager.instance.Play_BGM(1);
+                    ViewBoxManager.instance.HideViewBox();
+                    SoundManager.instance.Play_Input(2);
+                    MinimapManager.instance.Hide(0.5f);
+                    StatusBarManager.instance.Hide_Carbon(0.5f);
+                    StatusBarManager.instance.Hide_Permian(0.5f);
+                    ConversationModeManager.instance.Ani_Start(id, info.Name_TC, info.DescriptionTag_TC);
+                    ConversationModeManager.instance.BossAni_Idle();
+                    yield return new WaitForSeconds(3f);
                     currDialogLine++;
                     DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
                     if (info.DialogBoxes[currDialogLine].ByWhom == CharacterID.M01.ToString() || info.DialogBoxes[currDialogLine].ByWhom == CharacterID.M02.ToString() || info.DialogBoxes[currDialogLine].ByWhom == CharacterID.M03.ToString())
                     {
                         ConversationModeManager.instance.BossAni_Talk();
+                    }
+                    currBossStage = BossStage.ConversationMode;
+                }
+            }
+            else if (currBossStage == BossStage.ConversationMode)
+            {
+                SoundManager.instance.Play_Input(2);
+                if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
+                {
+                    DialogBoxManager.instance.FinishCurrentDialog();
+                    ConversationModeManager.instance.BossAni_Idle();
+                }
+                else
+                {
+
+                    if (currDialogLine == 0)
+                    {
+                        SoundManager.instance.Play_Input(2);
+                        ConversationModeManager.instance.Ani_AvatarIn();
+                        currDialogLine++;
+                        DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
+                        if (info.DialogBoxes[currDialogLine].ByWhom == CharacterID.M01.ToString() || info.DialogBoxes[currDialogLine].ByWhom == CharacterID.M02.ToString() || info.DialogBoxes[currDialogLine].ByWhom == CharacterID.M03.ToString())
+                        {
+                            ConversationModeManager.instance.BossAni_Talk();
+                        }
+                    }
+                    else if (currDialogLine == (info.DialogBoxes.Count - 2))
+                    {
+                        ConversationModeManager.instance.Ani_BossCenter();
+                        currDialogLine++;
+                        DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
+                        if (info.DialogBoxes[currDialogLine].ByWhom == CharacterID.M01.ToString() || info.DialogBoxes[currDialogLine].ByWhom == CharacterID.M02.ToString() || info.DialogBoxes[currDialogLine].ByWhom == CharacterID.M03.ToString())
+                        {
+                            ConversationModeManager.instance.BossAni_Talk();
+                        }
+                    }
+                    else if (currDialogLine == (info.DialogBoxes.Count - 1))
+                    {
+                        StartCoroutine(LastLine());
+                        IEnumerator LastLine()
+                        {
+                            currBossStage = BossStage.Transition_ConversationEnd;
+                            DialogBoxManager.instance.HideDialog();
+                            ConversationModeManager.instance.HideFade(1f);
+                            currDialogLine = -1;
+                            for (int i = 0; i < arrowObjs_Green.Count; i++)
+                            {
+                                arrowObjs_Green[i].SetActive(false);
+                                arrowObjs_Grey[i].SetActive(true);
+                            }
+                            minimapDot_Red.SetActive(false);
+                            minimapDot_Grey.SetActive(true);
+                            OutlineHide();
+                            yield return new WaitForSeconds(1f);
+                            currBossStage = BossStage.None;
+                            if (onFinishedConversationCallback != null)
+                            {
+                                onFinishedConversationCallback.Invoke();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        ConversationModeManager.instance.Ani_AvatarOut();
+                        currDialogLine++;
+                        DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
+                        if (info.DialogBoxes[currDialogLine].ByWhom == CharacterID.M01.ToString() || info.DialogBoxes[currDialogLine].ByWhom == CharacterID.M02.ToString() || info.DialogBoxes[currDialogLine].ByWhom == CharacterID.M03.ToString())
+                        {
+                            ConversationModeManager.instance.BossAni_Talk();
+                        }
                     }
                 }
             }

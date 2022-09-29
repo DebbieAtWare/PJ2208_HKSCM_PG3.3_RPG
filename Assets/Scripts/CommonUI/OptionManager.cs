@@ -72,6 +72,7 @@ public class OptionManager : MonoBehaviour
 
     [Header("Curr")]
     public OptionStage currStage;
+    public bool isPreviouDialogActive;
 
     CommonUtils commonUtils;
     InputManager inputManager;
@@ -379,6 +380,7 @@ public class OptionManager : MonoBehaviour
         currStage = OptionStage.Main;
         DroneController.instance.HideTalkHint();
         DroneController.instance.canShowTalkHint = false;
+        isPreviouDialogActive = GameManager.instance.dialogActive;
         GameManager.instance.dialogActive = true;
         topBtnObj.SetActive(false);
         mainGrp_Root.SetActive(true);
@@ -482,7 +484,7 @@ public class OptionManager : MonoBehaviour
             DroneController.instance.canShowTalkHint = true;
             if (MainManger.instance.currStage == MainStage.InGame)
             {
-                GameManager.instance.dialogActive = false;
+                GameManager.instance.dialogActive = isPreviouDialogActive;
             }
         }
 

@@ -125,7 +125,7 @@ public class DroneController : MonoBehaviour
 
     private void InputManager_OnValueChanged_Vertical(int val)
     {
-        if (talkHintObj.activeInHierarchy && MainManger.instance.currStage == MainStage.InGame)
+        if (talkHintObj.activeInHierarchy && MainManger.instance.currStage == MainStage.InGame && OptionManager.instance.currStage == OptionStage.None)
         {
             if (currDroneStage == DroneStage.Tips)
             {
