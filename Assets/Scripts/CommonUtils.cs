@@ -122,6 +122,7 @@ public class CommonUtils : MonoBehaviour
     public EndingCheckStage currEndingCheck;
 
     InputManager inputManager;
+    VideoManager videoManager;
 
     //for share in multiple scenes
     void Awake()
@@ -147,6 +148,9 @@ public class CommonUtils : MonoBehaviour
         inputManager = InputManager.instance;
         inputManager.onValueChanged_ConfirmCallback += InputManager_OnValueChanged_Confirm;
 
+        videoManager = VideoManager.instance;
+        videoManager.onVideoFinishedCallback_Ending += VideoManager_OnVideoFinished_Ending;
+
         currEndingCheck = EndingCheckStage.None;
 
         TmpExcelControl();
@@ -166,7 +170,7 @@ public class CommonUtils : MonoBehaviour
 
         if (scene.name == "MainScene")
         {
-            
+            Debug.Log("MainScene");
         }
         else if (scene.name == "CarboniferousScene")
         {
@@ -210,9 +214,21 @@ public class CommonUtils : MonoBehaviour
                         DialogBoxManager.instance.HideDialog();
                         TransitionManager.instance.ChangeMap(currMapId, MapID.Carboniferous);
                     }
+                    else if (currEndingCheck == EndingCheckStage.ToEndingVideo)
+                    {
+                        currEndingCheck = EndingCheckStage.None;
+                        DialogBoxManager.instance.HideDialog();
+                        inputManager.canInput_Confirm = false;
+                        videoManager.Play_Ending();
+                    }
                 }
             }
         }
+    }
+
+    private void VideoManager_OnVideoFinished_Ending()
+    {
+        TransitionManager.instance.EndingVideoToLab();
     }
 
     public void ChangeLanguage(Language lang)
@@ -229,6 +245,8 @@ public class CommonUtils : MonoBehaviour
         if (bosses[0].IsSuccessCollectDone && bosses[1].IsSuccessCollectDone && bosses[2].IsSuccessCollectDone)
         {
             currEndingCheck = EndingCheckStage.ToEndingVideo;
+            GameManager.instance.dialogActive = true;
+            DialogBoxManager.instance.ShowDialog(endCheck_ChangeToEndingVideo);
         }
         else
         {

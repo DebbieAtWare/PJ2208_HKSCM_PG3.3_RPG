@@ -207,11 +207,12 @@
     <Compile Include="Assets\FlexReader\Excel2007\WorkSheet.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleTargetButton.cs" />
     <Compile Include="Assets\Coffee\UIExtensions\UIEffect\Scripts\UIFlip.cs" />
+    <Compile Include="Assets\Scripts\CommonUI\OptionManager.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\AttackEffect.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\DamageNumber.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleNotification.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\QuestManager.cs" />
-    <Compile Include="Assets\Scripts\CommonUI\OptionManager.cs" />
+    <Compile Include="Assets\Scripts\CommonUI\VideoManager.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Coffee\UIExtensions\UIEffect\Shaders\UI-Effect-Shiny.shader" />

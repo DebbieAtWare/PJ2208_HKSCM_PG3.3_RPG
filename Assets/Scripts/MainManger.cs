@@ -19,6 +19,9 @@ public class MainManger : MonoBehaviour
 {
     public static MainManger instance;
 
+    public delegate void OnEndingVideoFinished();
+    public OnEndingVideoFinished onEndingVideoFinishedCallback;
+
     [Header("Home")]
     public CanvasGroup homeGrp_CanvasGrp;
 
@@ -27,31 +30,30 @@ public class MainManger : MonoBehaviour
     public List<GameObject> langGrp_ArrowObjs = new List<GameObject>();
     public int langGrp_CurrIndex;
 
-    [Header("Intro")]
-    public CanvasGroup introGrp_CanvasGrp;
-
     [Header("Start Lab")]
     public int startLab_CurrDialogIndex;
     public int startLab_CurrArrowIndex;
-
-    [Header("Ending")]
-    public CanvasGroup endingGrp_CanvasGrp;
 
     [Header("Curr")]
     public MainStage currStage;
 
     CommonUtils commonUtils;
     InputManager inputManager;
+    VideoManager videoManager;
 
+    //for share in multiple scenes
     void Awake()
     {
         Debug.Log("MainManger Awake");
         if (instance != null)
         {
-            Debug.Log("More than one instance of MainManger");
-            return;
+            Destroy(gameObject);
         }
-        instance = this;
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     void Start()
@@ -69,6 +71,11 @@ public class MainManger : MonoBehaviour
         inputManager.canInput_Horizontal = true;
         inputManager.canInput_Confirm = true;
 
+        videoManager = VideoManager.instance;
+        videoManager.onVideoStartedCallback_Intro += VideoManager_OnVideoStarted_Intro;
+        videoManager.onVideoFinishedCallback_Intro += VideoManager_OnVideoFinished_Intro;
+        videoManager.onVideoFinishedCallback_Ending += VideoManager_OnVideoFinished_Ending;
+
         homeGrp_CanvasGrp.alpha = 1;
         for (int i = 0; i < langGrp_ArrowObjs.Count; i++)
         {
@@ -83,10 +90,8 @@ public class MainManger : MonoBehaviour
         }
         langGrp_CurrIndex = 0;
         langGrp_CanvasGrp.alpha = 0;
-        introGrp_CanvasGrp.alpha = 0;
         startLab_CurrDialogIndex = -1;
         startLab_CurrArrowIndex = 0;
-        endingGrp_CanvasGrp.alpha = 0;
 
         currStage = MainStage.None;
     }
@@ -190,7 +195,9 @@ public class MainManger : MonoBehaviour
                 {
                     commonUtils.ChangeLanguage(Language.EN);
                 }
-                ChangeStage_Intro();
+                currStage = MainStage.Intro;
+                videoManager.Play_Intro();
+                
             }
             else if (currStage == MainStage.StartLab)
             {
@@ -252,6 +259,7 @@ public class MainManger : MonoBehaviour
         CollectionBookManager.instance.Setup();
         OptionManager.instance.Setup();
         DialogBoxManager.instance.Setup();
+        VideoManager.instance.Setup();
 
         StatusBarManager.instance.Hide_Carbon(0f);
         StatusBarManager.instance.Hide_Permian(0f);
@@ -266,28 +274,25 @@ public class MainManger : MonoBehaviour
         //TransitionManager.instance.ChangeMap(commonUtils.currMapId, MapID.Permian);
     }
 
+    private void VideoManager_OnVideoStarted_Intro()
+    {
+        homeGrp_CanvasGrp.alpha = 0;
+        langGrp_CanvasGrp.alpha = 0;
+    }
+
+    private void VideoManager_OnVideoFinished_Intro()
+    {
+        ChangeStage_StartLab();
+    }
+
+    private void VideoManager_OnVideoFinished_Ending()
+    {
+        
+    }
+
     void ChangeStage_Language()
     {
         langGrp_CanvasGrp.DOFade(1f, 0.5f).OnComplete(() => currStage = MainStage.Language);
-    }
-
-    void ChangeStage_Intro()
-    {
-        //TODO play intro video
-        currStage = MainStage.Intro;
-
-        //tmp
-        StartCoroutine(Ani());
-        IEnumerator Ani()
-        {
-            introGrp_CanvasGrp.DOFade(1f, 1f);
-            yield return new WaitForSeconds(3f);
-            homeGrp_CanvasGrp.alpha = 0;
-            langGrp_CanvasGrp.alpha = 0;
-            introGrp_CanvasGrp.DOFade(0f, 1f);
-            yield return new WaitForSeconds(1f);
-            ChangeStage_StartLab();
-        }
     }
 
     void ChangeStage_StartLab()

@@ -349,8 +349,4 @@ public class DroneController : MonoBehaviour
         transform.position = pos;
     }
 
-    private void OnDestroy()
-    {
-        inputManager.onValueChanged_VerticalCallback -= InputManager_OnValueChanged_Vertical;
-    }
 }

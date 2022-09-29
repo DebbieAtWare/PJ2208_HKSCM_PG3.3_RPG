@@ -216,25 +216,32 @@ public class TransitionManager : MonoBehaviour
         }
     }
 
-
-    private void Update()
+    public void EndingVideoToLab()
     {
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            Debug.Log("ScreenCap1");
-            StartCoroutine(ScreenShot());
-            IEnumerator ScreenShot()
-            {
-                Debug.Log("ScreenCap2");
-                yield return new WaitForEndOfFrame();
-                Debug.Log("ScreenCap3");
-                Texture2D tex = new Texture2D(Screen.width, Screen.height, TextureFormat.ARGB32, false);
-                tex.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
-                tex.Apply();
-                Byte[] bytes = tex.EncodeToPNG();
-                File.WriteAllBytes(Path.Combine(Application.streamingAssetsPath, "Image.png"), bytes);
-                Debug.Log("ScreenCap4");
-            }
-        }
+        SceneManager.LoadScene("MainScene");
+        PlayerController.instance.SetDirection(PlayerDirection.Down);
+        PlayerController.instance.transform.position = new Vector3(-1.6f, 0f, 0f);
+        DroneController.instance.ChangePos(new Vector3(0.8f, -0.8f, 0f));
     }
+
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.J))
+    //    {
+    //        Debug.Log("ScreenCap1");
+    //        StartCoroutine(ScreenShot());
+    //        IEnumerator ScreenShot()
+    //        {
+    //            Debug.Log("ScreenCap2");
+    //            yield return new WaitForEndOfFrame();
+    //            Debug.Log("ScreenCap3");
+    //            Texture2D tex = new Texture2D(Screen.width, Screen.height, TextureFormat.ARGB32, false);
+    //            tex.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+    //            tex.Apply();
+    //            Byte[] bytes = tex.EncodeToPNG();
+    //            File.WriteAllBytes(Path.Combine(Application.streamingAssetsPath, "Image.png"), bytes);
+    //            Debug.Log("ScreenCap4");
+    //        }
+    //    }
+    //}
 }
