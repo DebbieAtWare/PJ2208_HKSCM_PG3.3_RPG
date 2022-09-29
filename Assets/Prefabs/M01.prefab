@@ -785,8 +785,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7599020739601794815}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -23.04, y: 6.7, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -22.883, y: 4.042, z: 0}
+  m_LocalScale: {x: 0.0263, y: 0.0263, z: 1}
   m_Children: []
   m_Father: {fileID: 8431520836166522265}
   m_RootOrder: 0
@@ -831,7 +831,7 @@ SpriteRenderer:
   m_SortingLayerID: -76193021
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8ff863ba1cf324d488e85d5bf7d6c7b5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 12ab69dd5e3eca54ea403a52c2a5effe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -896,9 +896,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ecd4b534c37484994ef98ed367171a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossSprite: {fileID: 21300000, guid: e6d88c1803bd51746ba4c6ff89ff7181, type: 3}
-  collectionBookThumbnailSprite: {fileID: 21300000, guid: fbfd419d67b2dc94c97942613633cb1d,
-    type: 3}
+  id: 0
+  dialogBoxProfileSprite: {fileID: 0}
   bossRenderer: {fileID: 8431520836371937102}
   caveRenderer: {fileID: 5042795226185651086}
   alertTriggerControl: {fileID: 2466623942951677255}
@@ -931,10 +930,17 @@ MonoBehaviour:
     DescriptionTag_EN: 
     IsCollectable: 0
     DialogBoxes: []
+    Info1_TC: 
+    Info1_SC: 
+    Info1_EN: 
+    Info2_TC: 
+    Info2_SC: 
+    Info2_EN: 
     IsFirstMeetDone: 0
     IsSuccessCollectDone: 0
   currDialogLine: 0
   canShowAlert: 0
+  canFadeOutAlertSFX: 0
   isAtAlertTrigger: 0
   isAtViewTrigger: 0
   currBossStage: 0
