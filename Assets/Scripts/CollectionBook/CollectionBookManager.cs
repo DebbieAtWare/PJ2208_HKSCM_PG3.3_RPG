@@ -624,7 +624,7 @@ public class CollectionBookManager : MonoBehaviour
         currStage = CollectionBookStage.None;
         DroneController.instance.ShowTalkHint();
         DroneController.instance.canShowTalkHint = true;
-        GameManager.instance.dialogActive = false;
+        //GameManager.instance.dialogActive = false;
     }
 
     //--- Language ---

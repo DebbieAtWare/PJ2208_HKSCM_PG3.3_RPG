@@ -194,10 +194,21 @@ public class CommonUtils : MonoBehaviour
                 }
                 else
                 {
-                    if (currEndingCheck == EndingCheckStage.ToPermian)
+                    if (currEndingCheck == EndingCheckStage.OneLeftInPermian)
+                    {
+                        DialogBoxManager.instance.HideDialog();
+                        GameManager.instance.dialogActive = false;
+                        currEndingCheck = EndingCheckStage.None;
+                    }
+                    else if (currEndingCheck == EndingCheckStage.ToPermian)
                     {
                         DialogBoxManager.instance.HideDialog();
                         TransitionManager.instance.ChangeMap(currMapId, MapID.Permian);
+                    }
+                    else if (currEndingCheck == EndingCheckStage.ToCarboniferous)
+                    {
+                        DialogBoxManager.instance.HideDialog();
+                        TransitionManager.instance.ChangeMap(currMapId, MapID.Carboniferous);
                     }
                 }
             }
@@ -235,10 +246,14 @@ public class CommonUtils : MonoBehaviour
                 if (bosses[1].IsSuccessCollectDone && bosses[2].IsSuccessCollectDone)
                 {
                     currEndingCheck = EndingCheckStage.ToCarboniferous;
+                    GameManager.instance.dialogActive = true;
+                    DialogBoxManager.instance.ShowDialog(endCheck_ChangeToCarboniferous);
                 }
                 else 
                 {
                     currEndingCheck = EndingCheckStage.OneLeftInPermian;
+                    GameManager.instance.dialogActive = true;
+                    DialogBoxManager.instance.ShowDialog(endCheck_PermianOneLeft);
                 }
             }
         }

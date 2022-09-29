@@ -204,8 +204,9 @@ public class TransitionManager : MonoBehaviour
             PlayerController.instance.SetDirection(commonUtils.playerDir_OutsideTreeCave);
             DroneController.instance.ChangePos(commonUtils.dronePos_OutsideTreeCave);
             PlayerController.instance.GetComponent<SpriteRenderer>().sortingLayerName = "Player";
-            yield return new WaitForSeconds(0.7f);
+            yield return new WaitForSeconds(0.5f);
             blackImg.DOFade(0f, 1f);
+            yield return new WaitForSeconds(1f);
             //GameManager.instance.fadingBetweenAreas = false;
             //GameManager.instance.dialogActive = false;
             //InputManager.instance.canInput_Confirm = true;

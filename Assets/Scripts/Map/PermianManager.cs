@@ -151,10 +151,10 @@ public class PermianManager : MonoBehaviour
                 MinimapManager.instance.Show(0.5f);
                 StatusBarManager.instance.Show_Permian(0.5f);
                 InputManager.instance.canInput_Confirm = true;
-                GameManager.instance.dialogActive = false;
+                yield return new WaitForSeconds(0.5f);
+                commonUtils.EndingCheck();
             }
         }
-        
     }
 
     private void OnFinishedConversation_Boss3()
@@ -179,37 +179,48 @@ public class PermianManager : MonoBehaviour
                 MinimapManager.instance.Show(0.5f);
                 StatusBarManager.instance.Show_Permian(0.5f);
                 InputManager.instance.canInput_Confirm = true;
-                GameManager.instance.dialogActive = false;
+                yield return new WaitForSeconds(0.5f);
+                commonUtils.EndingCheck();
             }
         }
     }
 
     void CloseSuccessCollect_Boss2()
     {
-        SoundManager.instance.FadeOutStop_SFX(0.5f);
-        SoundManager.instance.Play_BGM(3);
-        CollectionBookManager.instance.Hide_Succuss(0.5f);
-        MinimapManager.instance.Show(0.5f);
-        StatusBarManager.instance.Show_Permian(0.5f);
-        StatusBarManager.instance.BadgeAni_Permian1(0.5f);
-        commonUtils.bosses[currUtilsIndex_Boss2].IsSuccessCollectDone = true;
-        GameManager.instance.dialogActive = false;
-        InputManager.instance.canInput_Confirm = true;
-        DroneController.instance.canShowTalkHint = true;
+        StartCoroutine(Ani());
+        IEnumerator Ani()
+        {
+            SoundManager.instance.FadeOutStop_SFX(0.5f);
+            SoundManager.instance.Play_BGM(3);
+            CollectionBookManager.instance.Hide_Succuss(0.5f);
+            MinimapManager.instance.Show(0.5f);
+            StatusBarManager.instance.Show_Permian(0.5f);
+            StatusBarManager.instance.BadgeAni_Permian1(0.5f);
+            commonUtils.bosses[currUtilsIndex_Boss2].IsSuccessCollectDone = true;
+            yield return new WaitForSeconds(2.5f);
+            InputManager.instance.canInput_Confirm = true;
+            DroneController.instance.canShowTalkHint = true;
+            commonUtils.EndingCheck();
+        }
     }
 
     void CloseSuccessCollect_Boss3()
     {
-        SoundManager.instance.FadeOutStop_SFX(0.5f);
-        SoundManager.instance.Play_BGM(3);
-        CollectionBookManager.instance.Hide_Succuss(0.5f);
-        MinimapManager.instance.Show(0.5f);
-        StatusBarManager.instance.Show_Permian(0.5f);
-        StatusBarManager.instance.BadgeAni_Permian2(0.5f);
-        commonUtils.bosses[currUtilsIndex_Boss3].IsSuccessCollectDone = true;
-        GameManager.instance.dialogActive = false;
-        InputManager.instance.canInput_Confirm = true;
-        DroneController.instance.canShowTalkHint = true;
+        StartCoroutine(Ani());
+        IEnumerator Ani()
+        {
+            SoundManager.instance.FadeOutStop_SFX(0.5f);
+            SoundManager.instance.Play_BGM(3);
+            CollectionBookManager.instance.Hide_Succuss(0.5f);
+            MinimapManager.instance.Show(0.5f);
+            StatusBarManager.instance.Show_Permian(0.5f);
+            StatusBarManager.instance.BadgeAni_Permian2(0.5f);
+            commonUtils.bosses[currUtilsIndex_Boss3].IsSuccessCollectDone = true;
+            yield return new WaitForSeconds(2.5f);
+            InputManager.instance.canInput_Confirm = true;
+            DroneController.instance.canShowTalkHint = true;
+            commonUtils.EndingCheck();
+        }
     }
 
     private void OnDestroy()
