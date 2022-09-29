@@ -43,6 +43,15 @@ public enum Language
     EN
 }
 
+public enum EndingCheckStage
+{
+    None,
+    ToCarboniferous,
+    OneLeftInPermian,
+    ToPermian,
+    ToEndingVideo
+}
+
 public class CommonUtils : MonoBehaviour
 {
     public static CommonUtils instance;
@@ -76,11 +85,14 @@ public class CommonUtils : MonoBehaviour
     public float playerAutoWalkSpeed = 0.2f;
     public float droneAutoWalkSpeed = 0.2f;
 
-    [Header("ConfigData - Character")]
-    public List<ConfigData_Character> NPC_Carboniferous = new List<ConfigData_Character>();
-    public List<ConfigData_Character> NPC_Permian = new List<ConfigData_Character>();
+    [Header("ConfigData - Boss")]
     public ConfigData_DialogBox dialogBox_BossAlert;
     public List<ConfigData_Character> bosses = new List<ConfigData_Character>();
+    public ConfigData_Text successCollectText;
+
+    [Header("ConfigData - NPC")]
+    public List<ConfigData_Character> NPC_Carboniferous = new List<ConfigData_Character>();
+    public List<ConfigData_Character> NPC_Permian = new List<ConfigData_Character>();
 
     [Header("ConfigData - Drone")]
     public ConfigData_DialogBox dialogBox_TipsByDrone;
@@ -88,17 +100,28 @@ public class CommonUtils : MonoBehaviour
     public ConfigData_DialogBox dialogBox_TipsByDrone_CollectionBook;
     public ConfigData_DialogBox dialogBox_TipsByDrone_ChangeMap;
 
-    [Header("ConfigData - Content")]
+    [Header("ConfigData - Menu, Gameplay Instruction")]
+    public ConfigData_Menu menuData;
     public List<ConfigData_DialogBox> gameplayInstructions = new List<ConfigData_DialogBox>();
+
+    [Header("ConfigData - First Greeting")]
     public List<ConfigData_DialogBox> firstGreeting_Carboniferous = new List<ConfigData_DialogBox>();
     public List<ConfigData_DialogBox> firstGreeting_Permian = new List<ConfigData_DialogBox>();
     public bool isFirstGreetingDone = false;
-    public ConfigData_Text successCollectText;
-    public ConfigData_Menu menuData;
+
+    [Header("ConfigData - End Check")]
+    public ConfigData_DialogBox endCheck_ChangeToPermian = new ConfigData_DialogBox();
+    public ConfigData_DialogBox endCheck_PermianOneLeft = new ConfigData_DialogBox();
+    public ConfigData_DialogBox endCheck_ChangeToCarboniferous = new ConfigData_DialogBox();
+    public ConfigData_DialogBox endCheck_ChangeToEndingVideo = new ConfigData_DialogBox();
+    public ConfigData_DialogBox endCheck_AfterEndingVideo = new ConfigData_DialogBox();
 
     [Header("Curr")]
     public MapID currMapId;
     public Language currLang;
+    public EndingCheckStage currEndingCheck;
+
+    InputManager inputManager;
 
     //for share in multiple scenes
     void Awake()
@@ -120,6 +143,11 @@ public class CommonUtils : MonoBehaviour
         Debug.Log("CommonUtils Start");
 
         SceneManager.sceneLoaded += OnSceneLoaded;
+
+        inputManager = InputManager.instance;
+        inputManager.onValueChanged_ConfirmCallback += InputManager_OnValueChanged_Confirm;
+
+        currEndingCheck = EndingCheckStage.None;
 
         TmpExcelControl();
 
@@ -154,12 +182,65 @@ public class CommonUtils : MonoBehaviour
         }
     }
 
+    private void InputManager_OnValueChanged_Confirm()
+    {
+        if (OptionManager.instance.currStage == OptionStage.None)
+        {
+            if (currEndingCheck != EndingCheckStage.None)
+            {
+                if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
+                {
+                    DialogBoxManager.instance.FinishCurrentDialog();
+                }
+                else
+                {
+                    if (currEndingCheck == EndingCheckStage.ToPermian)
+                    {
+                        DialogBoxManager.instance.HideDialog();
+                        TransitionManager.instance.ChangeMap(currMapId, MapID.Permian);
+                    }
+                }
+            }
+        }
+    }
+
     public void ChangeLanguage(Language lang)
     {
         currLang = lang;
         if (onChangeLangCallback != null)
         {
             onChangeLangCallback.Invoke();
+        }
+    }
+
+    public void EndingCheck()
+    {
+        if (bosses[0].IsSuccessCollectDone && bosses[1].IsSuccessCollectDone && bosses[2].IsSuccessCollectDone)
+        {
+            currEndingCheck = EndingCheckStage.ToEndingVideo;
+        }
+        else
+        {
+            if (currMapId == MapID.Carboniferous)
+            {
+                if (bosses[0].IsSuccessCollectDone)
+                {
+                    currEndingCheck = EndingCheckStage.ToPermian;
+                    GameManager.instance.dialogActive = true;
+                    DialogBoxManager.instance.ShowDialog(endCheck_ChangeToPermian);
+                }
+            }
+            else if (currMapId == MapID.Permian)
+            {
+                if (bosses[1].IsSuccessCollectDone && bosses[2].IsSuccessCollectDone)
+                {
+                    currEndingCheck = EndingCheckStage.ToCarboniferous;
+                }
+                else 
+                {
+                    currEndingCheck = EndingCheckStage.OneLeftInPermian;
+                }
+            }
         }
     }
 
@@ -785,6 +866,33 @@ public class CommonUtils : MonoBehaviour
         dialog_FG_P2.ByWhom = "DRO";
         dialog_FG_P2.Text_TC = "（深呼吸） 呼，空氣清新，一起開展一段刺激的旅程吧！<br>嗯…這裡很溫暖，還挺乾燥的。";
         firstGreeting_Permian.Add(dialog_FG_P2);
+
+        //-------
+
+        ConfigData_DialogBox dialog_EC_1 = new ConfigData_DialogBox();
+        dialog_EC_1.ByWhom = "DRO";
+        dialog_EC_1.Text_TC = "已經找到目標羊膜動物！再接再厲，馬上穿越到二疊紀繼續旅程吧！";
+        endCheck_ChangeToPermian = dialog_EC_1;
+
+        ConfigData_DialogBox dialog_EC_2 = new ConfigData_DialogBox();
+        dialog_EC_2.ByWhom = "DRO";
+        dialog_EC_2.Text_TC = "這時代還有另一隻目標羊膜動物，加油！";
+        endCheck_PermianOneLeft = dialog_EC_2;
+
+        ConfigData_DialogBox dialog_EC_3 = new ConfigData_DialogBox();
+        dialog_EC_3.ByWhom = "DRO";
+        dialog_EC_3.Text_TC = "已經找到目標羊膜動物！讓我們馬上前往石炭紀繼續這次探險之旅吧！";
+        endCheck_ChangeToCarboniferous = dialog_EC_3;
+
+        ConfigData_DialogBox dialog_EC_4 = new ConfigData_DialogBox();
+        dialog_EC_4.ByWhom = "DRO";
+        dialog_EC_4.Text_TC = "根據我的高智能分析，你已經收集了全部古生物圖鑑卡！想不到你在不同的地質時代，都可以相識滿天下，真是可喜可賀。";
+        endCheck_ChangeToEndingVideo = dialog_EC_4;
+
+        ConfigData_DialogBox dialog_EC_5 = new ConfigData_DialogBox();
+        dialog_EC_5.ByWhom = "DRO";
+        dialog_EC_5.Text_TC = "任務已經完成，離開前可以在圖鑑中翻查一下剛才的資訊，進一步了解羊膜生物及其他古生物的！";
+        endCheck_AfterEndingVideo = dialog_EC_5;
     }
 }
 

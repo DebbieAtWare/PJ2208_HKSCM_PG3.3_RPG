@@ -90,30 +90,32 @@ public class TransitionManager : MonoBehaviour
             if (targetMap == MapID.Permian)
             {
                 SceneManager.LoadScene("PermianScene");
-                PlayerController.instance.transform.position = commonUtils.playerPos_Permian;
-                PlayerController.instance.SetDirection(commonUtils.playerDir_Permian);
                 if (currMap == MapID.Lab)
                 {
-                    DroneController.instance.ChangePos(commonUtils.dronePos_Permian);
+                    //first greeting: player facing drone
+                    PlayerController.instance.SetDirection(PlayerDirection.Left);
                 }
                 else
                 {
-                    DroneController.instance.ChangePos(commonUtils.dronePos_Permian);
+                    PlayerController.instance.SetDirection(commonUtils.playerDir_Permian);
                 }
+                PlayerController.instance.transform.position = commonUtils.playerPos_Permian;
+                DroneController.instance.ChangePos(commonUtils.dronePos_Permian);
             }
             else if (targetMap == MapID.Carboniferous)
             {
                 SceneManager.LoadScene("CarboniferousScene");
-                PlayerController.instance.transform.position = commonUtils.playerPos_Carboniferous;
-                PlayerController.instance.SetDirection(commonUtils.playerDir_Carboniferous);
                 if (currMap == MapID.Lab)
                 {
-                    DroneController.instance.ChangePos(commonUtils.dronePos_Carboniferous);
+                    //first greeting: player facing drone
+                    PlayerController.instance.SetDirection(PlayerDirection.Right);
                 }
                 else
                 {
-                    DroneController.instance.ChangePos(commonUtils.dronePos_Carboniferous);
+                    PlayerController.instance.SetDirection(commonUtils.playerDir_Carboniferous);
                 }
+                PlayerController.instance.transform.position = commonUtils.playerPos_Carboniferous;
+                DroneController.instance.ChangePos(commonUtils.dronePos_Carboniferous);
             }
             PlayerController.instance.GetComponent<SpriteRenderer>().sortingLayerName = "Player";
             yield return new WaitForSeconds(1f);
@@ -148,6 +150,7 @@ public class TransitionManager : MonoBehaviour
             }
             else if (currMap == MapID.Carboniferous || currMap == MapID.Permian)
             {
+                commonUtils.currEndingCheck = EndingCheckStage.None;
                 GameManager.instance.dialogActive = false;
             }
             commonUtils.currMapId = targetMap;
@@ -201,12 +204,14 @@ public class TransitionManager : MonoBehaviour
             PlayerController.instance.SetDirection(commonUtils.playerDir_OutsideTreeCave);
             DroneController.instance.ChangePos(commonUtils.dronePos_OutsideTreeCave);
             PlayerController.instance.GetComponent<SpriteRenderer>().sortingLayerName = "Player";
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.7f);
             blackImg.DOFade(0f, 1f);
-            GameManager.instance.fadingBetweenAreas = false;
-            GameManager.instance.dialogActive = false;
+            //GameManager.instance.fadingBetweenAreas = false;
+            //GameManager.instance.dialogActive = false;
+            //InputManager.instance.canInput_Confirm = true;
+            //DroneController.instance.canShowTalkHint = true;
             InputManager.instance.canInput_Confirm = true;
-            DroneController.instance.canShowTalkHint = true;
+            commonUtils.EndingCheck();
         }
     }
 

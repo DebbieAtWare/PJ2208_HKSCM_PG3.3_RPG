@@ -5145,8 +5145,8 @@ MonoBehaviour:
   playerPos_Permian: {x: -23.33, y: 2.19, z: 1}
   playerPos_InsideTreeCave: {x: -1.45, y: -1.69, z: 1}
   playerPos_OutsideTreeCave: {x: -23, y: -0.35, z: 1}
-  playerDir_Carboniferous: 3
-  playerDir_Permian: 1
+  playerDir_Carboniferous: 1
+  playerDir_Permian: 3
   playerDir_InsideTreeCave: 3
   playerDir_OutsideTreeCave: 3
   dronePos_Carboniferous: {x: 28.72, y: 5.78, z: 1}
@@ -5155,8 +5155,6 @@ MonoBehaviour:
   dronePos_OutsideTreeCave: {x: -26, y: -0.35, z: 1}
   playerAutoWalkSpeed: 0.25
   droneAutoWalkSpeed: 0.25
-  NPC_Carboniferous: []
-  NPC_Permian: []
   dialogBox_BossAlert:
     ByWhom: 
     ImagePath: 
@@ -5167,6 +5165,12 @@ MonoBehaviour:
     OptionTexts_SC: []
     OptionTexts_EN: []
   bosses: []
+  successCollectText:
+    Text_TC: 
+    Text_SC: 
+    Text_EN: 
+  NPC_Carboniferous: []
+  NPC_Permian: []
   dialogBox_TipsByDrone:
     ByWhom: 
     ImagePath: 
@@ -5195,14 +5199,6 @@ MonoBehaviour:
     OptionTexts_TC: []
     OptionTexts_SC: []
     OptionTexts_EN: []
-  gameplayInstructions: []
-  firstGreeting_Carboniferous: []
-  firstGreeting_Permian: []
-  isFirstGreetingDone: 0
-  successCollectText:
-    Text_TC: 
-    Text_SC: 
-    Text_EN: 
   menuData:
     MenuBtn:
       Text_TC: 
@@ -5236,8 +5232,58 @@ MonoBehaviour:
       Text_SC: 
       Text_EN: 
     Reset_OptionTexts: []
+  gameplayInstructions: []
+  firstGreeting_Carboniferous: []
+  firstGreeting_Permian: []
+  isFirstGreetingDone: 0
+  endCheck_ChangeToPermian:
+    ByWhom: 
+    ImagePath: 
+    Text_TC: 
+    Text_SC: 
+    Text_EN: 
+    OptionTexts_TC: []
+    OptionTexts_SC: []
+    OptionTexts_EN: []
+  endCheck_PermianOneLeft:
+    ByWhom: 
+    ImagePath: 
+    Text_TC: 
+    Text_SC: 
+    Text_EN: 
+    OptionTexts_TC: []
+    OptionTexts_SC: []
+    OptionTexts_EN: []
+  endCheck_ChangeToCarboniferous:
+    ByWhom: 
+    ImagePath: 
+    Text_TC: 
+    Text_SC: 
+    Text_EN: 
+    OptionTexts_TC: []
+    OptionTexts_SC: []
+    OptionTexts_EN: []
+  endCheck_ChangeToEndingVideo:
+    ByWhom: 
+    ImagePath: 
+    Text_TC: 
+    Text_SC: 
+    Text_EN: 
+    OptionTexts_TC: []
+    OptionTexts_SC: []
+    OptionTexts_EN: []
+  endCheck_AfterEndingVideo:
+    ByWhom: 
+    ImagePath: 
+    Text_TC: 
+    Text_SC: 
+    Text_EN: 
+    OptionTexts_TC: []
+    OptionTexts_SC: []
+    OptionTexts_EN: []
   currMapId: 0
   currLang: 2
+  currEndingCheck: 0
 --- !u!4 &314690101
 Transform:
   m_ObjectHideFlags: 0
