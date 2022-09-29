@@ -1909,8 +1909,8 @@ MonoBehaviour:
   clips_BGM:
   - {fileID: 8300000, guid: afbfe5088c2c55c469eef96a486df850, type: 3}
   - {fileID: 8300000, guid: 56021468943e5ab4e9f99140cca812a6, type: 3}
-  - {fileID: 8300000, guid: d3b5fa978131d3348a7adecd05a75058, type: 3}
   - {fileID: 8300000, guid: 38a09d8c847b0444386f6e8bdd963466, type: 3}
+  - {fileID: 8300000, guid: d3b5fa978131d3348a7adecd05a75058, type: 3}
   - {fileID: 8300000, guid: 00efbea0e95dd6343b01e15eee23dc26, type: 3}
   currSourcIndex_BGM: -1
   audioSource_SFX: {fileID: 1153055663}
@@ -1927,6 +1927,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: afe6b9ce546e3444eb3daa72dbb39a8c, type: 3}
   - {fileID: 8300000, guid: 6353a440dc29e3a499a69649b76a763e, type: 3}
   - {fileID: 8300000, guid: 893eb8022894047429f69064eb02be0f, type: 3}
+  - {fileID: 8300000, guid: 970e4dfe780166b46948ea2929eca5ca, type: 3}
   audioSource_Input: {fileID: 952452064}
   clips_Input:
   - {fileID: 8300000, guid: d35f39bfcdb8e9049a321aa7cc2520fc, type: 3}
@@ -1937,7 +1938,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 63a6252ace0c67746bc6d147ddd00d41, type: 3}
   - {fileID: 8300000, guid: 3b1d3d14ba60e124e89e3e9ded3ae2b0, type: 3}
   - {fileID: 8300000, guid: 66d54544e23dba34782ea0b3f28c9df7, type: 3}
-  - {fileID: 8300000, guid: 66d54544e23dba34782ea0b3f28c9df7, type: 3}
+  - {fileID: 8300000, guid: 99f79b8c638a85f4293ada57dee4f3be, type: 3}
   audioSource_Walk: {fileID: 933847363}
 --- !u!4 &104764990
 Transform:
@@ -30657,6 +30658,7 @@ MonoBehaviour:
   - {fileID: 66624361}
   - {fileID: 301259425}
   currStage: 0
+  isPreviouDialogActive: 0
 --- !u!4 &1624436903
 Transform:
   m_ObjectHideFlags: 0

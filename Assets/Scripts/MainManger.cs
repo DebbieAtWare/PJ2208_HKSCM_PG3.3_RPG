@@ -78,6 +78,8 @@ public class MainManger : MonoBehaviour
         videoManager.onVideoFinishedCallback_Intro += VideoManager_OnVideoFinished_Intro;
         videoManager.onVideoFinishedCallback_Ending += VideoManager_OnVideoFinished_Ending;
 
+        SoundManager.instance.Play_BGM(0);
+
         homeGrp_CanvasGrp.alpha = 1;
         for (int i = 0; i < langGrp_ArrowObjs.Count; i++)
         {
@@ -104,10 +106,12 @@ public class MainManger : MonoBehaviour
         {
             if (currStage == MainStage.None)
             {
+                SoundManager.instance.Play_Input(0);
                 ChangeStage_Language();
             }
             else if (currStage == MainStage.Language)
             {
+                SoundManager.instance.Play_Input(0);
                 if (langGrp_CurrIndex == 0)
                 {
                     if (val == -1)
@@ -144,6 +148,7 @@ public class MainManger : MonoBehaviour
             }
             else if (currStage == MainStage.StartLab && startLab_CurrDialogIndex == 2)
             {
+                SoundManager.instance.Play_Input(0);
                 if (startLab_CurrArrowIndex == 0)
                 {
                     if (val == -1)
@@ -170,6 +175,7 @@ public class MainManger : MonoBehaviour
         {
             if (currStage == MainStage.None)
             {
+                SoundManager.instance.Play_Input(0);
                 ChangeStage_Language();
             }
         }
@@ -181,10 +187,12 @@ public class MainManger : MonoBehaviour
         {
             if (currStage == MainStage.None)
             {
+                SoundManager.instance.Play_Input(2);
                 ChangeStage_Language();
             }
             else if (currStage == MainStage.Language)
             {
+                SoundManager.instance.Play_Input(2);
                 if (langGrp_CurrIndex == 0)
                 {
                     commonUtils.ChangeLanguage(Language.TC);
@@ -203,6 +211,7 @@ public class MainManger : MonoBehaviour
             }
             else if (currStage == MainStage.StartLab)
             {
+                SoundManager.instance.Play_Input(2);
                 if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
                 {
                     DialogBoxManager.instance.FinishCurrentDialog();
@@ -241,6 +250,7 @@ public class MainManger : MonoBehaviour
             }
             else if (currStage == MainStage.EndLab_CollectionBookTrigger)
             {
+                SoundManager.instance.Play_Input(2);
                 currStage = MainStage.EndLab_CollectionBookUpdate;
                 DialogBoxManager.instance.HideDialog();
                 CollectionBookManager.instance.Show_Main(false);
@@ -254,6 +264,7 @@ public class MainManger : MonoBehaviour
         {
             if (currStage == MainStage.None)
             {
+                SoundManager.instance.Play_Input(2);
                 ChangeStage_Language();
             }
         }
@@ -276,10 +287,6 @@ public class MainManger : MonoBehaviour
         PlayerController.instance.SetDirection(PlayerDirection.Down);
         PlayerController.instance.transform.position = new Vector3(-1.6f, 0f, 0f);
         DroneController.instance.ChangePos(new Vector3(0.8f, -0.8f, 0f));
-
-
-        //TransitionManager.instance.ChangeMap(commonUtils.currMapId, MapID.Carboniferous);
-        //TransitionManager.instance.ChangeMap(commonUtils.currMapId, MapID.Permian);
     }
 
     private void VideoManager_OnVideoStarted_Intro()
@@ -305,15 +312,22 @@ public class MainManger : MonoBehaviour
 
     void ChangeStage_StartLab()
     {
-        currStage = MainStage.StartLab;
-        DroneController.instance.ForceShowTalkHint();
-        startLab_CurrDialogIndex++;
-        DialogBoxManager.instance.ShowDialog(commonUtils.gameplayInstructions[startLab_CurrDialogIndex]);
+        StartCoroutine(Ani());
+        IEnumerator Ani()
+        {
+            currStage = MainStage.StartLab;
+            SoundManager.instance.Play_BGM(4);
+            yield return new WaitForSeconds(1f);
+            DroneController.instance.ForceShowTalkHint();
+            startLab_CurrDialogIndex++;
+            DialogBoxManager.instance.ShowDialog(commonUtils.gameplayInstructions[startLab_CurrDialogIndex]);
+        }
     }
 
     public void ChangeStage_EndLab()
     {
         currStage = MainStage.EndLab_CollectionBookTrigger;
+        SoundManager.instance.Play_BGM(4);
         DialogBoxManager.instance.ShowDialog(commonUtils.endCheck_AfterEndingVideo);
         inputManager.canInput_Confirm = true;
     }

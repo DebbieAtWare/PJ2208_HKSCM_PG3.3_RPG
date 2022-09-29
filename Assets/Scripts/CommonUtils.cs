@@ -192,6 +192,7 @@ public class CommonUtils : MonoBehaviour
         {
             if (currEndingCheck != EndingCheckStage.None)
             {
+                SoundManager.instance.Play_Input(2);
                 if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
                 {
                     DialogBoxManager.instance.FinishCurrentDialog();

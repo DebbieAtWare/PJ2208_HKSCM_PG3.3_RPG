@@ -184,6 +184,7 @@ public class StatusBarManager : MonoBehaviour
             yield return new WaitForSeconds(waitTime);
             lockImgs_CarbonGrp[0].rectTransform.DOScale(new Vector3(2, 2, 2), 0.5f);
             yield return new WaitForSeconds(0.5f);
+            SoundManager.instance.Play_SFX(0);
             lockImgs_CarbonGrp[0].rectTransform.DOLocalRotate(new Vector3(0, 90, 0), 0.2f);
             yield return new WaitForSeconds(0.2f);
             lockImgs_CarbonGrp[0].gameObject.SetActive(false);
@@ -235,6 +236,7 @@ public class StatusBarManager : MonoBehaviour
             yield return new WaitForSeconds(waitTime);
             lockImgs_PermianGrp[1].rectTransform.DOScale(new Vector3(2, 2, 2), 0.5f);
             yield return new WaitForSeconds(0.5f);
+            SoundManager.instance.Play_SFX(0);
             lockImgs_PermianGrp[1].rectTransform.DOLocalRotate(new Vector3(0, 90, 0), 0.2f);
             yield return new WaitForSeconds(0.2f);
             lockImgs_PermianGrp[1].gameObject.SetActive(false);
@@ -254,6 +256,7 @@ public class StatusBarManager : MonoBehaviour
             yield return new WaitForSeconds(waitTime);
             lockImgs_PermianGrp[2].rectTransform.DOScale(new Vector3(2, 2, 2), 0.5f);
             yield return new WaitForSeconds(0.5f);
+            SoundManager.instance.Play_SFX(0);
             lockImgs_PermianGrp[2].rectTransform.DOLocalRotate(new Vector3(0, 90, 0), 0.2f);
             yield return new WaitForSeconds(0.2f);
             lockImgs_PermianGrp[2].gameObject.SetActive(false);

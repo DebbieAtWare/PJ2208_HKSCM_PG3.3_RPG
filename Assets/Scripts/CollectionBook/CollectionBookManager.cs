@@ -169,6 +169,7 @@ public class CollectionBookManager : MonoBehaviour
         {
             if (currStage == CollectionBookStage.Main)
             {
+                SoundManager.instance.Play_Input(0);
                 if (currRow == 0)
                 {
                     if (val == -1)
@@ -212,6 +213,7 @@ public class CollectionBookManager : MonoBehaviour
         {
             if (currStage == CollectionBookStage.Main)
             {
+                SoundManager.instance.Play_Input(0);
                 if (currRow == 0)
                 {
                     if (val == -1)
@@ -299,6 +301,7 @@ public class CollectionBookManager : MonoBehaviour
                 {
                     if (commonUtils.bosses[currIndex_Boss].IsSuccessCollectDone)
                     {
+                        SoundManager.instance.Play_SFX(0);
                         Show_Detail(commonUtils.bosses[currIndex_Boss]);
                     }
                     else
@@ -310,20 +313,24 @@ public class CollectionBookManager : MonoBehaviour
                 {
                     if (main_NPCObjs[currIndex_NPC].mapID == MapID.Carboniferous)
                     {
+                        SoundManager.instance.Play_SFX(0);
                         Show_Detail(commonUtils.NPC_Carboniferous[main_NPCObjs[currIndex_NPC].configDataIndex]);
                     }
                     else if (main_NPCObjs[currIndex_NPC].mapID == MapID.Permian)
                     {
+                        SoundManager.instance.Play_SFX(0);
                         Show_Detail(commonUtils.NPC_Permian[main_NPCObjs[currIndex_NPC].configDataIndex]);
                     }
                 }
                 else if (currRow == 2 && main_ExitObj.activeInHierarchy)
                 {
+                    SoundManager.instance.Play_Input(1);
                     Hide_Main(0.5f);
                 }
             }
             else if (currStage == CollectionBookStage.Detail)
             {
+                SoundManager.instance.Play_Input(1);
                 Hide_Detail();
             }
         }
@@ -382,9 +389,10 @@ public class CollectionBookManager : MonoBehaviour
             main_ExitFrameObj.SetActive(false);
             main_ExitObj.SetActive(false);
         }
-        
+
         //----
 
+        SoundManager.instance.Play_SFX(1);
         canvasGroup.DOFade(1f, 0.5f).OnComplete(() => currStage = CollectionBookStage.Main);
     }
 

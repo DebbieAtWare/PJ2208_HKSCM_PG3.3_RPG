@@ -121,10 +121,12 @@ public class OptionManager : MonoBehaviour
         {
             if (currStage == OptionStage.None)
             {
+                SoundManager.instance.Play_SFX(12);
                 ChangeControl_Main();
             }
             else
             {
+                SoundManager.instance.Play_Input(1);
                 Close_ResetAll();
             }
         }
@@ -134,6 +136,7 @@ public class OptionManager : MonoBehaviour
     {
         if (currStage == OptionStage.Main)
         {
+            SoundManager.instance.Play_Input(0);
             if (mainGrp_CurrIndex == 0)
             {
                 if (val == -1)
@@ -170,6 +173,7 @@ public class OptionManager : MonoBehaviour
         }
         else if (currStage == OptionStage.Language)
         {
+            SoundManager.instance.Play_Input(0);
             if (langGrp_CurrIndex == 0)
             {
                 if (val == -1)
@@ -221,6 +225,7 @@ public class OptionManager : MonoBehaviour
         }
         else if (currStage == OptionStage.Restart)
         {
+            SoundManager.instance.Play_Input(0);
             if (resetGrp_CurrIndex == 0)
             {
                 if (val == -1)
@@ -261,6 +266,7 @@ public class OptionManager : MonoBehaviour
     {
         if (currStage == OptionStage.Main)
         {
+            SoundManager.instance.Play_Input(2);
             if (mainGrp_CurrIndex == 0)
             {
                 ChangeControl_Language();
@@ -276,12 +282,14 @@ public class OptionManager : MonoBehaviour
         }
         else if (currStage == OptionStage.Language)
         {
+            SoundManager.instance.Play_Input(2);
             if (langGrp_CurrIndex == 0)
             {
                 ChangeControl_Main();
             }
             else if (langGrp_CurrIndex == 1)
             {
+
                 commonUtils.ChangeLanguage(Language.TC);
                 Close_ResetAll();
             }
@@ -298,6 +306,7 @@ public class OptionManager : MonoBehaviour
         }
         else if (currStage == OptionStage.Control)
         {
+            SoundManager.instance.Play_Input(2);
             if (controlGrp_CurrIndex == 0)
             {
                 ChangeControl_Main();
@@ -305,6 +314,7 @@ public class OptionManager : MonoBehaviour
         }
         else if (currStage == OptionStage.Restart)
         {
+            SoundManager.instance.Play_Input(2);
             if (resetGrp_CurrIndex == 0)
             {
                 ChangeControl_Main();
