@@ -817,6 +817,7 @@ public class CommonUtils : MonoBehaviour
         options_tips.Add("提示");
         options_tips.Add("古生物圖鑑");
         options_tips.Add("傳送門");
+        options_tips.Add("不用了，謝謝");
         dialog_tips.OptionTexts_TC = options_tips;
         dialogBox_TipsByDrone = dialog_tips;
 

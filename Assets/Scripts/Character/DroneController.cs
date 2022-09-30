@@ -70,6 +70,7 @@ public class DroneController : MonoBehaviour
 
         inputManager = InputManager.instance;
         inputManager.onValueChanged_VerticalCallback += InputManager_OnValueChanged_Vertical;
+        inputManager.onValueChanged_HorizontalCallback += InputManager_OnValueChanged_Horizontal;
         inputManager.onValueChanged_ConfirmCallback += InputManager_OnValueChanged_Confirm;
 
         onTriggerControl.onTriggerEnterCallback += OnTriggerEnter;
@@ -169,6 +170,21 @@ public class DroneController : MonoBehaviour
                         currSelectedOption = 1;
                         DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
                     }
+                    else if (val == -1)
+                    {
+                        SoundManager.instance.Play_Input(0);
+                        currSelectedOption = 3;
+                        DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                    }
+                }
+                else if (currSelectedOption == 3)
+                {
+                    if (val == 1)
+                    {
+                        SoundManager.instance.Play_Input(0);
+                        currSelectedOption = 2;
+                        DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                    }
                 }
             }
             else if (currDroneStage == DroneStage.CollectionBook || currDroneStage == DroneStage.ChangeMap)
@@ -185,6 +201,34 @@ public class DroneController : MonoBehaviour
                 else if (currSelectedOption == 1)
                 {
                     if (val == 1)
+                    {
+                        SoundManager.instance.Play_Input(0);
+                        currSelectedOption = 0;
+                        DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                    }
+                }
+            }
+        }
+    }
+
+    private void InputManager_OnValueChanged_Horizontal(int val)
+    {
+        if (talkHintObj.activeInHierarchy && MainManger.instance.currStage == MainStage.InGame && OptionManager.instance.currStage == OptionStage.None)
+        {
+            if (currDroneStage == DroneStage.Tips)
+            {
+                if (currSelectedOption == 0 || currSelectedOption == 1 || currSelectedOption == 2)
+                {
+                    if (val == 1)
+                    {
+                        SoundManager.instance.Play_Input(0);
+                        currSelectedOption = 3;
+                        DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                    }
+                }
+                else if (currSelectedOption == 3)
+                {
+                    if (val == -1)
                     {
                         SoundManager.instance.Play_Input(0);
                         currSelectedOption = 0;
@@ -227,6 +271,13 @@ public class DroneController : MonoBehaviour
                     SoundManager.instance.Play_Input(2);
                     currDroneStage = DroneStage.ChangeMap;
                     DialogBoxManager.instance.ShowDialog(commonUtils.dialogBox_TipsByDrone_ChangeMap);
+                    currSelectedOption = 0;
+                }
+                else if (currSelectedOption == 3)
+                {
+                    SoundManager.instance.Play_Input(2);
+                    currDroneStage = DroneStage.None;
+                    DialogBoxManager.instance.HideDialog();
                     currSelectedOption = 0;
                 }
             }
