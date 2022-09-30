@@ -182,42 +182,42 @@ public class PlayerController : MonoBehaviour {
 
 
         //self add
-        if (Input.GetAxisRaw("Horizontal") == 1)
-        {
-            //right
-            minimapArrowTrans.eulerAngles = new Vector3(0, 0, 90);
-        }
-        else if (Input.GetAxisRaw("Horizontal") == -1)
-        {
-            //left
-            minimapArrowTrans.eulerAngles = new Vector3(0, 0, -90);
-        }
-        else if (Input.GetAxisRaw("Vertical") == 1)
-        {
-            //up
-            minimapArrowTrans.eulerAngles = new Vector3(0, 0, 180);
-        }
-        else if (Input.GetAxisRaw("Vertical") == -1)
-        {
-            //down
-            minimapArrowTrans.eulerAngles = new Vector3(0, 0, 0);
-        }
+        //if (Input.GetAxisRaw("Horizontal") == 1)
+        //{
+        //    //right
+        //    minimapArrowTrans.eulerAngles = new Vector3(0, 0, 90);
+        //}
+        //else if (Input.GetAxisRaw("Horizontal") == -1)
+        //{
+        //    //left
+        //    minimapArrowTrans.eulerAngles = new Vector3(0, 0, -90);
+        //}
+        //else if (Input.GetAxisRaw("Vertical") == 1)
+        //{
+        //    //up
+        //    minimapArrowTrans.eulerAngles = new Vector3(0, 0, 180);
+        //}
+        //else if (Input.GetAxisRaw("Vertical") == -1)
+        //{
+        //    //down
+        //    minimapArrowTrans.eulerAngles = new Vector3(0, 0, 0);
+        //}
 
-        if (canMove)
-        {
-            if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
-            {
-                SoundManager.instance.Play_Walk();
-            }
-            else
-            {
-                SoundManager.instance.FadeOutStop_Walk(0.3f);
-            }
-        }
-        else
-        {
-            SoundManager.instance.FadeOutStop_Walk(0.3f);
-        }
+        //if (canMove)
+        //{
+        //    if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+        //    {
+        //        SoundManager.instance.Play_Walk();
+        //    }
+        //    else
+        //    {
+        //        SoundManager.instance.FadeOutStop_Walk(0.3f);
+        //    }
+        //}
+        //else
+        //{
+        //    SoundManager.instance.FadeOutStop_Walk(0.3f);
+        //}
 
         //self add
 
