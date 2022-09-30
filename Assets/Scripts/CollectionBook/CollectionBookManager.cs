@@ -11,7 +11,8 @@ public enum CollectionBookStage
     None,
     Main,
     Detail,
-    Success
+    Success,
+    Restart
 }
 
 public class CollectionBookManager : MonoBehaviour
@@ -33,8 +34,10 @@ public class CollectionBookManager : MonoBehaviour
     public List<CollectionBookBossObject> main_BossObjs = new List<CollectionBookBossObject>();
     public List<CollectionBookNPCObject> main_NPCObjs = new List<CollectionBookNPCObject>();
     public RectTransform main_Scroll_ContentRect;
-    public GameObject main_ExitObj;
-    public GameObject main_ExitFrameObj;
+    public GameObject main_CloseIpadObj;
+    public GameObject main_CloseIpadFrameObj;
+    public GameObject main_RestartGameObj;
+    public GameObject main_RestartGameFrameObj;
     float main_Scroll_PosGap_Small = 73;
     float main_Scroll_PosGap_Full = 185;
     public int main_Scroll_VisibleIndex = 0;
@@ -69,6 +72,11 @@ public class CollectionBookManager : MonoBehaviour
     public TextMeshProUGUI success_Text_SC;
     public TextMeshProUGUI success_Text_EN;
 
+    [Header("Restart")]
+    public CanvasGroup restart_CanvasGrp;
+    public List<GameObject> restart_ArrowObjs = new List<GameObject>();
+    public int restart_CurrIndex;
+
     CommonUtils commonUtils;
     InputManager inputManager;
 
@@ -101,6 +109,7 @@ public class CollectionBookManager : MonoBehaviour
         currRow = -1;
         currIndex_Boss = -1;
         currIndex_NPC = -1;
+        restart_CurrIndex = 0;
 
         for (int i = 0; i < commonUtils.bosses.Count; i++)
         {
@@ -150,6 +159,8 @@ public class CollectionBookManager : MonoBehaviour
                 }
             }
         }
+
+        restart_CanvasGrp.alpha = 0;
     }
 
     private void CommonUtils_OnChangeLang()
@@ -169,9 +180,10 @@ public class CollectionBookManager : MonoBehaviour
         {
             if (currStage == CollectionBookStage.Main)
             {
-                SoundManager.instance.Play_Input(0);
+                
                 if (currRow == 0)
                 {
+                    SoundManager.instance.Play_Input(0);
                     if (val == -1)
                     {
                         currRow = 1;
@@ -181,26 +193,66 @@ public class CollectionBookManager : MonoBehaviour
                 }
                 else if (currRow == 1)
                 {
+                    SoundManager.instance.Play_Input(0);
                     if (val == 1)
                     {
                         currRow = 0;
                         main_NPCObjs[currIndex_NPC].SetSelection(false);
                         main_BossObjs[currIndex_Boss].SetSelection(true);
                     }
-                    else if (val == -1 && main_ExitObj.activeInHierarchy)
+                    else if (val == -1)
                     {
                         currRow = 2;
                         main_NPCObjs[currIndex_NPC].SetSelection(false);
-                        main_ExitFrameObj.SetActive(true);
+                        if (commonUtils.currMapId == MapID.Lab)
+                        {
+                            main_RestartGameFrameObj.SetActive(true);
+                        }
+                        else
+                        {
+                            main_CloseIpadFrameObj.SetActive(true);
+                        }
                     }
                 }
                 else if (currRow == 2)
                 {
+                    SoundManager.instance.Play_Input(0);
                     if (val == 1)
                     {
                         currRow = 1;
-                        main_ExitFrameObj.SetActive(false);
+                        if (commonUtils.currMapId == MapID.Lab)
+                        {
+                            main_RestartGameFrameObj.SetActive(false);
+                        }
+                        else
+                        {
+                            main_CloseIpadFrameObj.SetActive(false);
+                        }
                         main_NPCObjs[currIndex_NPC].SetSelection(true);
+                    }
+                }
+            }
+            else if (currStage == CollectionBookStage.Restart)
+            {
+                if (restart_CurrIndex == 0)
+                {
+                    SoundManager.instance.Play_Input(0);
+                    if (val == -1)
+                    {
+                        
+                        restart_ArrowObjs[restart_CurrIndex].SetActive(false);
+                        restart_CurrIndex = 1;
+                        restart_ArrowObjs[restart_CurrIndex].SetActive(true);
+                    }
+                }
+                else if (restart_CurrIndex == 1)
+                {
+                    SoundManager.instance.Play_Input(0);
+                    if (val == 1)
+                    {
+                        restart_ArrowObjs[restart_CurrIndex].SetActive(false);
+                        restart_CurrIndex = 0;
+                        restart_ArrowObjs[restart_CurrIndex].SetActive(true);
                     }
                 }
             }
@@ -213,9 +265,10 @@ public class CollectionBookManager : MonoBehaviour
         {
             if (currStage == CollectionBookStage.Main)
             {
-                SoundManager.instance.Play_Input(0);
+                
                 if (currRow == 0)
                 {
+                    SoundManager.instance.Play_Input(0);
                     if (val == -1)
                     {
                         if (currIndex_Boss != 0)
@@ -237,6 +290,7 @@ public class CollectionBookManager : MonoBehaviour
                 }
                 else if (currRow == 1)
                 {
+                    SoundManager.instance.Play_Input(0);
                     if (val == -1)
                     {
                         if (currIndex_NPC != 0)
@@ -288,6 +342,7 @@ public class CollectionBookManager : MonoBehaviour
                     }
                 }
             }
+            
         }
     }
 
@@ -322,10 +377,17 @@ public class CollectionBookManager : MonoBehaviour
                         Show_Detail(commonUtils.NPC_Permian[main_NPCObjs[currIndex_NPC].configDataIndex]);
                     }
                 }
-                else if (currRow == 2 && main_ExitObj.activeInHierarchy)
+                else if (currRow == 2)
                 {
                     SoundManager.instance.Play_Input(1);
-                    Hide_Main(0.5f);
+                    if (commonUtils.currMapId == MapID.Lab)
+                    {
+                        Show_Restart();
+                    }
+                    else
+                    {
+                        Hide_Main(0.5f);
+                    }
                 }
             }
             else if (currStage == CollectionBookStage.Detail)
@@ -333,12 +395,25 @@ public class CollectionBookManager : MonoBehaviour
                 SoundManager.instance.Play_Input(1);
                 Hide_Detail();
             }
+            else if (currStage == CollectionBookStage.Restart)
+            {
+                SoundManager.instance.Play_Input(2);
+                if (restart_CurrIndex == 0)
+                {
+                    //TODO Reset game
+                    Hide_Restart();
+                }
+                else if (restart_CurrIndex == 1)
+                {
+                    Hide_Restart();
+                }
+            }
         }
     }
 
     //----- Main -----
 
-    public void Show_Main(bool isShowExitBtn)
+    public void Show_Main()
     {
         canvasGroup.gameObject.SetActive(true);
         main_RootObj.SetActive(true);
@@ -379,15 +454,17 @@ public class CollectionBookManager : MonoBehaviour
         }
         main_Scroll_ContentRect.anchoredPosition = new Vector2(0, 0);
 
-        if (isShowExitBtn)
+        if (commonUtils.currMapId == MapID.Lab)
         {
-            main_ExitFrameObj.SetActive(false);
-            main_ExitObj.SetActive(true);
+            main_RestartGameFrameObj.SetActive(false);
+            main_RestartGameObj.SetActive(true);
+            main_CloseIpadObj.SetActive(false);
         }
         else
         {
-            main_ExitFrameObj.SetActive(false);
-            main_ExitObj.SetActive(false);
+            main_CloseIpadFrameObj.SetActive(false);
+            main_CloseIpadObj.SetActive(true);
+            main_RestartGameObj.SetActive(false);
         }
 
         //----
@@ -439,8 +516,9 @@ public class CollectionBookManager : MonoBehaviour
             {
                 if (character.Id == detail_NPCObjs[i].characterID.ToString())
                 {
+                    //NPC selection false, caz now is select Exit
                     detail_NPCObjs[i].gameObject.SetActive(true);
-                    detail_NPCObjs[i].SetSelection(true);
+                    detail_NPCObjs[i].SetSelection(false);
                 }
                 else
                 {
@@ -638,6 +716,31 @@ public class CollectionBookManager : MonoBehaviour
             }
         }
 
+    }
+
+    //--- Restart ---
+
+    void Show_Restart()
+    {
+        currStage = CollectionBookStage.Restart;
+        restart_CurrIndex = 0;
+        for (int i = 0; i < restart_ArrowObjs.Count; i++)
+        {
+            if (i == restart_CurrIndex)
+            {
+                restart_ArrowObjs[i].SetActive(true);
+            }
+            else
+            {
+                restart_ArrowObjs[i].SetActive(false);
+            }
+        }
+        restart_CanvasGrp.DOFade(1f, 0.5f);
+    }
+
+    void Hide_Restart()
+    {
+        restart_CanvasGrp.DOFade(0f, 0.5f).OnComplete(() => currStage = CollectionBookStage.Main);
     }
 
     //--- Hide ---

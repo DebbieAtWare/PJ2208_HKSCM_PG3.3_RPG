@@ -117,7 +117,7 @@ public class OptionManager : MonoBehaviour
 
     private void InputManager_OnValueChanged_Option()
     {
-        if (MainManger.instance.currStage == MainStage.StartLab || MainManger.instance.currStage == MainStage.InGame)
+        if (MainManger.instance.currStage == MainStage.StartLab || MainManger.instance.currStage == MainStage.InGame || MainManger.instance.currStage == MainStage.EndLab_CollectionBookUpdate)
         {
             if (currStage == OptionStage.None)
             {

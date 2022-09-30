@@ -253,7 +253,7 @@ public class MainManger : MonoBehaviour
                 SoundManager.instance.Play_Input(2);
                 currStage = MainStage.EndLab_CollectionBookUpdate;
                 DialogBoxManager.instance.HideDialog();
-                CollectionBookManager.instance.Show_Main(false);
+                CollectionBookManager.instance.Show_Main();
             }
         }
     }
@@ -328,6 +328,7 @@ public class MainManger : MonoBehaviour
     {
         currStage = MainStage.EndLab_CollectionBookTrigger;
         SoundManager.instance.Play_BGM(4);
+        MinimapManager.instance.Hide(0);
         DialogBoxManager.instance.ShowDialog(commonUtils.endCheck_AfterEndingVideo);
         inputManager.canInput_Confirm = true;
     }

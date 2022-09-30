@@ -74,6 +74,13 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    public void FadeOutStop_BGM(float t)
+    {
+        currSourcIndex_BGM = -1;
+        audioSources_BGM[0].DOFade(0f, t).OnComplete(() => audioSources_BGM[0].Stop());
+        audioSources_BGM[1].DOFade(0f, t).OnComplete(() => audioSources_BGM[1].Stop());
+    }
+
     //---------
 
     public void Play_SFX(int index)

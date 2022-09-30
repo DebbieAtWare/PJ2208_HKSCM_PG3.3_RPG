@@ -25,7 +25,7 @@ public class CollectionBookNPCObject : MonoBehaviour
     {
         if (val)
         {
-            frame_In.SetActive(false);
+            frame_In.SetActive(true);
             frame_Out.SetActive(true);
             numText_In.gameObject.SetActive(false);
             numText_Out.gameObject.SetActive(true);

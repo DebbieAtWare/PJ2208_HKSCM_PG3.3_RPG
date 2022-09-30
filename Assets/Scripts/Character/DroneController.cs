@@ -253,7 +253,7 @@ public class DroneController : MonoBehaviour
                 {
                     SoundManager.instance.Play_Input(2);
                     DialogBoxManager.instance.HideDialog();
-                    CollectionBookManager.instance.Show_Main(true);
+                    CollectionBookManager.instance.Show_Main();
                     HideTalkHint();
                     canShowTalkHint = false;
                     currDroneStage = DroneStage.None;

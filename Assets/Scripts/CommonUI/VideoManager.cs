@@ -51,6 +51,7 @@ public class VideoManager : MonoBehaviour
         StartCoroutine(Ani());
         IEnumerator Ani()
         {
+            SoundManager.instance.FadeOutStop_BGM(1f);
             introGrp_CanvasGrp.DOFade(1f, 1f);
             yield return new WaitForSeconds(1f);
             if (onVideoStartedCallback_Intro != null)
@@ -74,6 +75,7 @@ public class VideoManager : MonoBehaviour
         StartCoroutine(Ani());
         IEnumerator Ani()
         {
+            SoundManager.instance.FadeOutStop_BGM(1f);
             endingGrp_CanvasGrp.DOFade(1f, 1f);
             yield return new WaitForSeconds(3f);
             //call before fade out
