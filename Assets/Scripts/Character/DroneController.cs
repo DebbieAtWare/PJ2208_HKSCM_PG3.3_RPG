@@ -90,6 +90,7 @@ public class DroneController : MonoBehaviour
     public void HideTalkHint()
     {
         talkHintObj.SetActive(false);
+        ViewBoxManager.instance.HideViewBox_Drone();
     }
 
     //when user leave NPC first trigger and inside drone trigger
@@ -98,12 +99,14 @@ public class DroneController : MonoBehaviour
         if (isAtTrigger)
         {
             talkHintObj.SetActive(true);
+            ViewBoxManager.instance.ShowViewBox_Drone();
         }
     }
 
     public void ForceShowTalkHint()
     {
         talkHintObj.SetActive(true);
+        ViewBoxManager.instance.HideViewBox_Drone();
     }
 
     private void OnTriggerEnter()
@@ -112,6 +115,10 @@ public class DroneController : MonoBehaviour
         if (canShowTalkHint)
         {
             talkHintObj.SetActive(true);
+            if (commonUtils.currMapId != MapID.Lab)
+            {
+                ViewBoxManager.instance.ShowViewBox_Drone();
+            }
         }
     }
 
@@ -119,6 +126,7 @@ public class DroneController : MonoBehaviour
     {
         isAtTrigger = false;
         talkHintObj.SetActive(false);
+        ViewBoxManager.instance.HideViewBox_Drone();
     }
 
     //-----

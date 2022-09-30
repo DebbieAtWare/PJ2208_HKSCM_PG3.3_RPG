@@ -279,6 +279,7 @@ public class MainManger : MonoBehaviour
         OptionManager.instance.Setup();
         DialogBoxManager.instance.Setup();
         VideoManager.instance.Setup();
+        ViewBoxManager.instance.Setup();
 
         StatusBarManager.instance.Hide_Carbon(0f);
         StatusBarManager.instance.Hide_Permian(0f);

@@ -80,7 +80,7 @@ public class NPCObject : MonoBehaviour
                 IEnumerator ScanAni()
                 {
                     GameManager.instance.dialogActive = true;
-                    ViewBoxManager.instance.HideViewBox();
+                    ViewBoxManager.instance.HideViewBox_NPC();
                     DroneController.instance.canShowTalkHint = false;
                     DroneController.instance.HideTalkHint();
                     float dist_player = Vector3.Distance(PlayerController.instance.transform.position, scan_AvatarPosObj.transform.position);
@@ -191,7 +191,7 @@ public class NPCObject : MonoBehaviour
     private void ViewTrigger_OnEnter()
     {
         currStage = NPCStage.View;
-        ViewBoxManager.instance.ShowViewBox();
+        ViewBoxManager.instance.ShowViewBox_NPC();
         isAtViewTrigger = true;
         DroneController.instance.canShowTalkHint = false;
         DroneController.instance.HideTalkHint();
@@ -202,7 +202,7 @@ public class NPCObject : MonoBehaviour
         if (currStage != NPCStage.Dialog && currStage != NPCStage.Scan)
         {
             currStage = NPCStage.None;
-            ViewBoxManager.instance.HideViewBox();
+            ViewBoxManager.instance.HideViewBox_NPC();
             isAtViewTrigger = false;
             DroneController.instance.canShowTalkHint = true;
             DroneController.instance.ShowTalkHint();

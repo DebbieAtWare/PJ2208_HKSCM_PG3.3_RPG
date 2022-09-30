@@ -6,21 +6,47 @@ public class ViewBoxManager : MonoBehaviour
 {
     public static ViewBoxManager instance;
 
-    public GameObject viewBoxObj;
+    public GameObject npcObj;
+    public GameObject droneObj;
 
-    private void Start()
+    //for share in multiple scenes
+    void Awake()
     {
-        instance = this;
-        HideViewBox();
+        Debug.Log("ViewBoxManager Awake");
+        if (instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
-    public void ShowViewBox()
+    public void Setup()
     {
-        viewBoxObj.SetActive(true);
+        HideViewBox_NPC();
+        HideViewBox_Drone();
     }
 
-    public void HideViewBox()
+    public void ShowViewBox_NPC()
     {
-        viewBoxObj.SetActive(false);
+        npcObj.SetActive(true);
+    }
+
+    public void HideViewBox_NPC()
+    {
+        npcObj.SetActive(false);
+    }
+
+    public void ShowViewBox_Drone()
+    {
+        droneObj.SetActive(true);
+    }
+
+    public void HideViewBox_Drone()
+    {
+        droneObj.SetActive(false);
     }
 }

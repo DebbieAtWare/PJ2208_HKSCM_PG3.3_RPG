@@ -145,7 +145,7 @@ public class BossObject : MonoBehaviour
                     GameManager.instance.dialogActive = true;
                     currBossStage = BossStage.Transition_ConversationStart;
                     SoundManager.instance.Play_BGM(1);
-                    ViewBoxManager.instance.HideViewBox();
+                    ViewBoxManager.instance.HideViewBox_NPC();
                     SoundManager.instance.Play_Input(2);
                     MinimapManager.instance.Hide(0.5f);
                     StatusBarManager.instance.Hide_Carbon(0.5f);
@@ -305,14 +305,14 @@ public class BossObject : MonoBehaviour
     private void ViewTrigger_OnEnter()
     {
         isAtViewTrigger = true;
-        ViewBoxManager.instance.ShowViewBox();
+        ViewBoxManager.instance.ShowViewBox_NPC();
         currBossStage = BossStage.View;
     }
 
     private void ViewTrigger_OnExit()
     {
         isAtViewTrigger = false;
-        ViewBoxManager.instance.HideViewBox();
+        ViewBoxManager.instance.HideViewBox_NPC();
         currBossStage = BossStage.None;
     }
 
