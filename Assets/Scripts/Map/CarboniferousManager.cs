@@ -101,6 +101,21 @@ public class CarboniferousManager : MonoBehaviour
                     }
                 }
             }
+            else if (!commonUtils.isEverytimeChangeMapDone)
+            {
+                SoundManager.instance.Play_Input(2);
+                if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
+                {
+                    DialogBoxManager.instance.FinishCurrentDialog();
+                }
+                else
+                {
+                    commonUtils.isEverytimeChangeMapDone = true;
+                    DialogBoxManager.instance.HideDialog();
+                    GameManager.instance.dialogActive = false;
+                    
+                }
+            }
         }
     }
 
@@ -116,6 +131,16 @@ public class CarboniferousManager : MonoBehaviour
             GameManager.instance.dialogActive = true;
             firstGreetingDialogIndex++;
             DialogBoxManager.instance.ShowDialog(commonUtils.firstGreeting_Carboniferous[firstGreetingDialogIndex]);
+        }
+    }
+
+    public void EverytimeChangeMapControl()
+    {
+        if (!commonUtils.isEverytimeChangeMapDone)
+        {
+            GameManager.instance.dialogActive = true;
+            DialogBoxManager.instance.ShowDialog(commonUtils.everytimeChangeMap_Carboniferous);
+            DroneController.instance.HideTalkHint();
         }
     }
 

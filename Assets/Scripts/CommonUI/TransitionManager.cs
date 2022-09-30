@@ -151,10 +151,17 @@ public class TransitionManager : MonoBehaviour
             else if (currMap == MapID.Carboniferous || currMap == MapID.Permian)
             {
                 commonUtils.currEndingCheck = EndingCheckStage.None;
-                GameManager.instance.dialogActive = false;
+                commonUtils.isEverytimeChangeMapDone = false;
+                if (targetMap == MapID.Carboniferous)
+                {
+                    CarboniferousManager.instance.EverytimeChangeMapControl();
+                }
+                else if (targetMap == MapID.Permian)
+                {
+                    PermianManager.instance.EverytimeChangeMapControl();
+                }
             }
             commonUtils.currMapId = targetMap;
-            
         }
     }
 
