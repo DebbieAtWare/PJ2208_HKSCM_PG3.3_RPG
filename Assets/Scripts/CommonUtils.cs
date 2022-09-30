@@ -885,25 +885,25 @@ public class CommonUtils : MonoBehaviour
 
         ConfigData_DialogBox dialog_FG_C1 = new ConfigData_DialogBox();
         dialog_FG_C1.ByWhom = "DRO";
-        dialog_FG_C1.Text_TC = "我們即將穿越到石炭紀。<br>旅途中有甚麼疑難就問我吧。相信我們將會是最佳拍檔！";
+        dialog_FG_C1.Text_TC = "我們即將穿越到石炭紀。旅途中有甚麼疑難就問我吧。相信我們將會是最佳拍檔！";
         firstGreeting_Carboniferous.Add(dialog_FG_C1);
         ConfigData_DialogBox dialog_FG_C2 = new ConfigData_DialogBox();
         dialog_FG_C2.ByWhom = "DRO";
-        dialog_FG_C2.Text_TC = "噢，來到石炭紀了！<br>開始進行搜索！";
+        dialog_FG_C2.Text_TC = "噢，來到石炭紀了！開始進行搜索！";
         firstGreeting_Carboniferous.Add(dialog_FG_C2);
         ConfigData_DialogBox dialog_FG_C3 = new ConfigData_DialogBox();
         dialog_FG_C3.ByWhom = "AVA";
-        dialog_FG_C3.Text_TC = "看來石炭紀大陸到處都是沼澤。<br>呼，這裏真潮濕。";
+        dialog_FG_C3.Text_TC = "看來石炭紀大陸到處都是沼澤。呼，這裏真潮濕。";
         firstGreeting_Carboniferous.Add(dialog_FG_C3);
 
 
         ConfigData_DialogBox dialog_FG_P1 = new ConfigData_DialogBox();
         dialog_FG_P1.ByWhom = "DRO";
-        dialog_FG_P1.Text_TC = "你選擇了二疊紀，是古生代最後的地質時代。<br>旅途中有甚麼疑難就問我吧。相信我們將會是最佳拍檔！";
+        dialog_FG_P1.Text_TC = "你選擇了二疊紀，是古生代最後的地質時代。旅途中有甚麼疑難就問我吧。相信我們將會是最佳拍檔！";
         firstGreeting_Permian.Add(dialog_FG_P1);
         ConfigData_DialogBox dialog_FG_P2 = new ConfigData_DialogBox();
         dialog_FG_P2.ByWhom = "DRO";
-        dialog_FG_P2.Text_TC = "（深呼吸） 呼，空氣清新，一起開展一段刺激的旅程吧！<br>嗯…這裡很溫暖，還挺乾燥的。";
+        dialog_FG_P2.Text_TC = "（深呼吸） 呼，空氣清新，一起開展一段刺激的旅程吧！嗯…這裡很溫暖，還挺乾燥的。";
         firstGreeting_Permian.Add(dialog_FG_P2);
 
         //-------
