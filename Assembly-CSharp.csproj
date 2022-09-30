@@ -173,6 +173,7 @@
     <Compile Include="Assets\Scripts\CommonUtils.cs" />
     <Compile Include="Assets\Scripts\Character\BossObject.cs" />
     <Compile Include="Assets\FlexReader\Converter\CustomConverters\RectConverter.cs" />
+    <Compile Include="Assets\Scripts\CommonUI\VideoManager.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\EventManager.cs" />
     <Compile Include="Assets\Scripts\ConversationMode\ConversationModeBossObject.cs" />
     <Compile Include="Assets\Coffee\UIExtensions\UIEffect\Scripts\UIShadow.cs" />
@@ -212,7 +213,6 @@
     <Compile Include="Assets\2D RPG Kit\Scripts\DamageNumber.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleNotification.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\QuestManager.cs" />
-    <Compile Include="Assets\Scripts\CommonUI\VideoManager.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Coffee\UIExtensions\UIEffect\Shaders\UI-Effect-Shiny.shader" />
@@ -933,6 +933,10 @@
     <ProjectReference Include="AllIn1SpriteShaderAssembly.csproj">
       <Project>{AA0F1F9B-3B35-FA24-701F-0D8D6E5D26A3}</Project>
       <Name>AllIn1SpriteShaderAssembly</Name>
+    </ProjectReference>
+    <ProjectReference Include="FullscreenEditor.csproj">
+      <Project>{3CD585B1-A708-CB94-7418-57D1AC0955B4}</Project>
+      <Name>FullscreenEditor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

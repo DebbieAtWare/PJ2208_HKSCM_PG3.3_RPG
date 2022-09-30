@@ -784,6 +784,10 @@
       <Project>{AA0F1F9B-3B35-FA24-701F-0D8D6E5D26A3}</Project>
       <Name>AllIn1SpriteShaderAssembly</Name>
     </ProjectReference>
+    <ProjectReference Include="FullscreenEditor.csproj">
+      <Project>{3CD585B1-A708-CB94-7418-57D1AC0955B4}</Project>
+      <Name>FullscreenEditor</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
