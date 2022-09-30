@@ -285,7 +285,7 @@ public class BossObject : MonoBehaviour
                 GameManager.instance.dialogActive = true;
                 DroneController.instance.canShowTalkHint = false;
                 DroneController.instance.HideTalkHint();
-                SoundManager.instance.Play_SFX(4);
+                SoundManager.instance.Play_BGM(5);
                 yield return new WaitForSeconds(0.5f);
                 DialogBoxManager.instance.ShowDialog(dialogBox_Alert);
                 currBossStage = BossStage.Alert;

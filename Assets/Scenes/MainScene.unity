@@ -2052,6 +2052,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 38a09d8c847b0444386f6e8bdd963466, type: 3}
   - {fileID: 8300000, guid: d3b5fa978131d3348a7adecd05a75058, type: 3}
   - {fileID: 8300000, guid: 00efbea0e95dd6343b01e15eee23dc26, type: 3}
+  - {fileID: 8300000, guid: 60835c19c559a444ea54c0c808e70b6b, type: 3}
   currSourcIndex_BGM: -1
   audioSource_SFX: {fileID: 1153055663}
   clips_SFX:
