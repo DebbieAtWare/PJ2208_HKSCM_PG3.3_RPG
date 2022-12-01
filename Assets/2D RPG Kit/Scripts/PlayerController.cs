@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour {
     private Vector3 boundary1;
     private Vector3 boundary2;
 
-    [HideInInspector]
+    //[HideInInspector]
     public bool canMove = true;
 
     //self add
@@ -41,6 +41,11 @@ public class PlayerController : MonoBehaviour {
 
     [Header("MinimapArrow")]
     public Transform minimapArrowTrans;
+
+    //-1 = move left
+    //0 = not move
+    //1 = move right
+    public int isAutoWalk = 0;
 
 	// Use this for initialization
 	void Awake () {
@@ -158,15 +163,39 @@ public class PlayerController : MonoBehaviour {
         {
             rigidBody.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
             rigidBody.velocity = rigidBody.velocity.normalized * moveSpeed;
+            animator.SetFloat("moveX", rigidBody.velocity.x);
+            animator.SetFloat("moveY", rigidBody.velocity.y);
         }
         else
         {
             rigidBody.velocity = Vector2.zero;
-
+            if (isAutoWalk == 0)
+            {
+                animator.SetFloat("moveX", 0);
+                animator.SetFloat("moveY", 0);
+            }
+            else if (isAutoWalk == 1)
+            {
+                if (animator.GetFloat("lastMoveY") == -1f)
+                {
+                    animator.SetFloat("moveY", -moveSpeed);
+                }
+                if (animator.GetFloat("lastMoveX") == -1f)
+                {
+                    animator.SetFloat("moveX", -moveSpeed);
+                }
+                if (animator.GetFloat("lastMoveY") == 1f)
+                {
+                    animator.SetFloat("moveY", moveSpeed);
+                }
+                if (animator.GetFloat("lastMoveX") == 1f)
+                {
+                    animator.SetFloat("moveX", moveSpeed);
+                }
+            }
         }
 
-        animator.SetFloat("moveX", rigidBody.velocity.x);
-        animator.SetFloat("moveY", rigidBody.velocity.y);
+        
 
         if (Input.GetAxisRaw("Horizontal") == 1 || Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Vertical") == 1 || Input.GetAxisRaw("Vertical") == -1)
         {
@@ -179,48 +208,6 @@ public class PlayerController : MonoBehaviour {
 
         //This calculates the bounds and doesn't let the player go beyond the defined bounds
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, boundary1.x, boundary2.x), Mathf.Clamp(transform.position.y, boundary1.y, boundary2.y), transform.position.z);
-
-
-        //self add
-        //if (Input.GetAxisRaw("Horizontal") == 1)
-        //{
-        //    //right
-        //    minimapArrowTrans.eulerAngles = new Vector3(0, 0, 90);
-        //}
-        //else if (Input.GetAxisRaw("Horizontal") == -1)
-        //{
-        //    //left
-        //    minimapArrowTrans.eulerAngles = new Vector3(0, 0, -90);
-        //}
-        //else if (Input.GetAxisRaw("Vertical") == 1)
-        //{
-        //    //up
-        //    minimapArrowTrans.eulerAngles = new Vector3(0, 0, 180);
-        //}
-        //else if (Input.GetAxisRaw("Vertical") == -1)
-        //{
-        //    //down
-        //    minimapArrowTrans.eulerAngles = new Vector3(0, 0, 0);
-        //}
-
-        //if (canMove)
-        //{
-        //    if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
-        //    {
-        //        SoundManager.instance.Play_Walk();
-        //    }
-        //    else
-        //    {
-        //        SoundManager.instance.FadeOutStop_Walk(0.3f);
-        //    }
-        //}
-        //else
-        //{
-        //    SoundManager.instance.FadeOutStop_Walk(0.3f);
-        //}
-
-        //self add
-
     }
     //self add
 
@@ -283,6 +270,11 @@ public class PlayerController : MonoBehaviour {
         {
             return PlayerDirection.Down;
         }
+    }
+
+    public void SetAutoWalk(int val)
+    {
+        isAutoWalk = val;
     }
     //self add
 }

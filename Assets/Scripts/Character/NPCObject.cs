@@ -87,6 +87,7 @@ public class NPCObject : MonoBehaviour
                     float time_player = dist_player * commonUtils.playerAutoWalkSpeed;
                     PlayerController.instance.transform.DOLocalMove(scan_AvatarPosObj.transform.position, time_player);
                     PlayerController.instance.SetDirection(scan_AvatarDir);
+                    PlayerController.instance.SetAutoWalk(1);
                     Vector3 pos_Drone = new Vector3(scan_DronePosObj.transform.position.x, scan_LightPosObj_Start.transform.position.y, scan_DronePosObj.transform.position.z);
                     float dist_Drone = Vector3.Distance(DroneController.instance.transform.position, pos_Drone);
                     float time_Drone = dist_Drone * commonUtils.droneAutoWalkSpeed;
@@ -94,10 +95,16 @@ public class NPCObject : MonoBehaviour
                     if (time_player > time_Drone)
                     {
                         yield return new WaitForSeconds(time_player);
+                        //stop auto walk = 0
+                        PlayerController.instance.SetAutoWalk(0);
+                        
                     }
                     else
                     {
-                        yield return new WaitForSeconds(time_Drone);
+                        yield return new WaitForSeconds(time_player);
+                        //stop auto walk = 0
+                        PlayerController.instance.SetAutoWalk(0);
+                        yield return new WaitForSeconds(time_Drone - time_player);
                     }
                     DroneController.instance.animator.SetTrigger("Scan");
                     SoundManager.instance.Play_SFX(10);
