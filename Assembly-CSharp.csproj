@@ -88,8 +88,8 @@
     <Compile Include="Assets\FlexReader\Converter\IConverter.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\Save.cs" />
     <Compile Include="Assets\Coffee\UIExtensions\UIEffect\Scripts\Common\MaterialResolver.cs" />
-    <Compile Include="Assets\2D RPG Kit\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Coffee\UIExtensions\UIEffect\Scripts\UIShiny.cs" />
+    <Compile Include="Assets\2D RPG Kit\Scripts\AudioManager.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\AutoSave.cs" />
     <Compile Include="Assets\Coffee\UIExtensions\UIEffect\Scripts\Common\ColorMode.cs" />
     <Compile Include="Assets\Scripts\SoundManager.cs" />
@@ -213,6 +213,7 @@
     <Compile Include="Assets\2D RPG Kit\Scripts\DamageNumber.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleNotification.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\QuestManager.cs" />
+    <Compile Include="Assets\Scripts\CommonUI\EndVideoManager.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Coffee\UIExtensions\UIEffect\Shaders\UI-Effect-Shiny.shader" />
@@ -930,10 +931,6 @@
       <Project>{8B491F33-0696-1E05-44A8-DC58BE58737F}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
     </ProjectReference>
-    <ProjectReference Include="AllIn1SpriteShaderAssembly.csproj">
-      <Project>{AA0F1F9B-3B35-FA24-701F-0D8D6E5D26A3}</Project>
-      <Name>AllIn1SpriteShaderAssembly</Name>
-    </ProjectReference>
     <ProjectReference Include="FullscreenEditor.csproj">
       <Project>{3CD585B1-A708-CB94-7418-57D1AC0955B4}</Project>
       <Name>FullscreenEditor</Name>
@@ -945,6 +942,10 @@
     <ProjectReference Include="IngameDebugConsole.Runtime.csproj">
       <Project>{3A36F6D0-C800-E627-F078-115E3CA9002E}</Project>
       <Name>IngameDebugConsole.Runtime</Name>
+    </ProjectReference>
+    <ProjectReference Include="AllIn1SpriteShaderAssembly.csproj">
+      <Project>{AA0F1F9B-3B35-FA24-701F-0D8D6E5D26A3}</Project>
+      <Name>AllIn1SpriteShaderAssembly</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
