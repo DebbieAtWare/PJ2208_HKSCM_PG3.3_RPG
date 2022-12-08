@@ -81,6 +81,7 @@
     <Compile Include="Assets\Coffee\UIExtensions\UIEffect\Scripts\Common\Packer.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\Chest.cs" />
     <Compile Include="Assets\FlexReader\Mapping\IGenerator.cs" />
+    <Compile Include="Assets\Scripts\IntroEnd\EndVideoManager.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\PlayerLoader.cs" />
     <Compile Include="Assets\FlexReader\Mapping\Mapping.cs" />
     <Compile Include="Assets\Coffee\UIExtensions\UIEffect\Scripts\UIHsvModifier.cs" />
@@ -213,7 +214,7 @@
     <Compile Include="Assets\2D RPG Kit\Scripts\DamageNumber.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleNotification.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\QuestManager.cs" />
-    <Compile Include="Assets\Scripts\CommonUI\EndVideoManager.cs" />
+    <Compile Include="Assets\Scripts\IntroEnd\IntroVideoManager.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Coffee\UIExtensions\UIEffect\Shaders\UI-Effect-Shiny.shader" />
