@@ -11,7 +11,13 @@ public enum EndVideoStage
     Page1_EndWaiting,
     Page2_Playing,
     Page2_FastIn,
-    Page2_EndWaiting
+    Page2_EndWaiting,
+    Page3_Playing,
+    Page3_FastIn,
+    Page3_EndWaiting,
+    Page4_Playing,
+    Page4_FastIn,
+    Page4_EndWaiting
 }
 
 public class EndVideoManager : MonoBehaviour
@@ -93,6 +99,11 @@ public class EndVideoManager : MonoBehaviour
     IEnumerator page1_Coroutine_FastIn;
     IEnumerator page2_Coroutine_Play;
     IEnumerator page2_Coroutine_FastIn;
+    IEnumerator page3_Coroutine_Play;
+    IEnumerator page3_Coroutine_FastIn;
+    IEnumerator page4_Coroutine_Play;
+    IEnumerator page4_Coroutine_FastIn;
+
 
     CommonUtils commonUtils;
 
@@ -143,6 +154,26 @@ public class EndVideoManager : MonoBehaviour
                 page2_Coroutine_FastIn = Page2_Ani_FastIn();
                 StartCoroutine(page2_Coroutine_FastIn);
             }
+            else if (currStage == EndVideoStage.Page2_EndWaiting)
+            {
+                page3_Coroutine_Play = Page3_Ani_Play();
+                StartCoroutine(page3_Coroutine_Play);
+            }
+            else if (currStage == EndVideoStage.Page3_Playing)
+            {
+                page3_Coroutine_FastIn = Page3_Ani_FastIn();
+                StartCoroutine(page3_Coroutine_FastIn);
+            }
+            else if (currStage == EndVideoStage.Page3_EndWaiting)
+            {
+                page4_Coroutine_Play = Page4_Ani_Play();
+                StartCoroutine(page4_Coroutine_Play);
+            }
+            else if (currStage == EndVideoStage.Page4_Playing)
+            {
+                page4_Coroutine_FastIn = Page4_Ani_FastIn();
+                StartCoroutine(page4_Coroutine_FastIn);
+            }
         }
 
 
@@ -170,6 +201,20 @@ public class EndVideoManager : MonoBehaviour
                 page2_bkgRect.anchoredPosition = new Vector2(page2_bkgRect.anchoredPosition.x, page2_bkgRect.anchoredPosition.y + aniTime_BkgSpeed);
             }
         }
+        else if (currStage == EndVideoStage.Page3_Playing || currStage == EndVideoStage.Page3_FastIn || currStage == EndVideoStage.Page3_EndWaiting)
+        {
+            if (page3_bkgRect.anchoredPosition.y <= bkgPosYTarget_Bottom_Permian)
+            {
+                page3_bkgRect.anchoredPosition = new Vector2(page3_bkgRect.anchoredPosition.x, page3_bkgRect.anchoredPosition.y + aniTime_BkgSpeed);
+            }
+        }
+        else if (currStage == EndVideoStage.Page4_Playing || currStage == EndVideoStage.Page4_FastIn || currStage == EndVideoStage.Page4_EndWaiting)
+        {
+            if (page4_bkgRect.anchoredPosition.y <= bkgPosYTarget_Bottom_Permian)
+            {
+                page4_bkgRect.anchoredPosition = new Vector2(page4_bkgRect.anchoredPosition.x, page4_bkgRect.anchoredPosition.y + aniTime_BkgSpeed);
+            }
+        }
     }
 
     public void Setup()
@@ -179,6 +224,10 @@ public class EndVideoManager : MonoBehaviour
         page1_Coroutine_FastIn = Page1_Ani_FaseIn();
         page2_Coroutine_Play = Page2_Ani_Play();
         page2_Coroutine_FastIn = Page2_Ani_FastIn();
+        page3_Coroutine_Play = Page3_Ani_Play();
+        page3_Coroutine_FastIn = Page3_Ani_FastIn();
+        page4_Coroutine_Play = Page4_Ani_Play();
+        page4_Coroutine_FastIn = Page4_Ani_FastIn();
         ResetAll();
     }
 
@@ -248,6 +297,8 @@ public class EndVideoManager : MonoBehaviour
         currStage = EndVideoStage.Page1_EndWaiting;
     }
 
+    //----------
+
     IEnumerator Page2_Ani_Play()
     {
         StopCoroutine(page1_Coroutine_Play);
@@ -311,6 +362,136 @@ public class EndVideoManager : MonoBehaviour
         currStage = EndVideoStage.Page2_EndWaiting;
     }
 
+    //----------
+
+    IEnumerator Page3_Ani_Play()
+    {
+        StopCoroutine(page2_Coroutine_Play);
+        StopCoroutine(page2_Coroutine_FastIn);
+        if (commonUtils.currLang == Language.TC)
+        {
+            page2_textRect_TC.DOAnchorPos(textPosTarget_Up, aniTime_Text_Out).SetEase(Ease.Linear);
+        }
+        else if (commonUtils.currLang == Language.SC)
+        {
+            page2_textRect_SC.DOAnchorPos(textPosTarget_Up, aniTime_Text_Out).SetEase(Ease.Linear);
+        }
+        else if (commonUtils.currLang == Language.EN)
+        {
+            page2_textRect_EN.DOAnchorPos(textPosTarget_Up, aniTime_Text_Out).SetEase(Ease.Linear);
+        }
+        page2_imgRect.DOAnchorPos(imgPosTarget_Off, aniTime_Img_Out).SetEase(Ease.Linear);
+        yield return new WaitForSeconds(0.2f);
+        currStage = EndVideoStage.Page3_Playing;
+        page3_bkgCanvasGrp.DOFade(1f, aniTime_BkgFadeIn);
+        page3_bossObj.ChangeAni_Idle();
+        if (commonUtils.currLang == Language.TC)
+        {
+            page3_textRect_TC.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
+        }
+        else if (commonUtils.currLang == Language.SC)
+        {
+            page3_textRect_SC.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
+        }
+        else if (commonUtils.currLang == Language.EN)
+        {
+            page3_textRect_EN.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
+        }
+        page3_imgRect.DOAnchorPos(imgPosTarget_On, aniTime_Img_SlowIn).SetEase(Ease.Linear);
+        yield return new WaitForSeconds(aniTime_Text_SlowIn);
+        currStage = EndVideoStage.Page3_EndWaiting;
+    }
+
+    IEnumerator Page3_Ani_FastIn()
+    {
+        currStage = EndVideoStage.Page3_FastIn;
+        StopCoroutine(page3_Coroutine_Play);
+        DOTween.Kill(page3_textRect_TC);
+        DOTween.Kill(page3_textRect_SC);
+        DOTween.Kill(page3_textRect_EN);
+        DOTween.Kill(page3_imgRect);
+        if (commonUtils.currLang == Language.TC)
+        {
+            page3_textRect_TC.DOAnchorPos(textPosTarget_On, aniTime_Text_FastIn).SetEase(Ease.Linear);
+        }
+        else if (commonUtils.currLang == Language.SC)
+        {
+            page3_textRect_SC.DOAnchorPos(textPosTarget_On, aniTime_Text_FastIn).SetEase(Ease.Linear);
+        }
+        else if (commonUtils.currLang == Language.EN)
+        {
+            page3_textRect_EN.DOAnchorPos(textPosTarget_On, aniTime_Text_FastIn).SetEase(Ease.Linear);
+        }
+        page3_imgRect.DOAnchorPos(imgPosTarget_On, aniTime_Img_FastIn).SetEase(Ease.Linear);
+        yield return new WaitForSeconds(aniTime_Img_FastIn);
+        currStage = EndVideoStage.Page3_EndWaiting;
+    }
+
+    //----------
+
+    IEnumerator Page4_Ani_Play()
+    {
+        StopCoroutine(page3_Coroutine_Play);
+        StopCoroutine(page3_Coroutine_FastIn);
+        if (commonUtils.currLang == Language.TC)
+        {
+            page3_textRect_TC.DOAnchorPos(textPosTarget_Up, aniTime_Text_Out).SetEase(Ease.Linear);
+        }
+        else if (commonUtils.currLang == Language.SC)
+        {
+            page3_textRect_SC.DOAnchorPos(textPosTarget_Up, aniTime_Text_Out).SetEase(Ease.Linear);
+        }
+        else if (commonUtils.currLang == Language.EN)
+        {
+            page3_textRect_EN.DOAnchorPos(textPosTarget_Up, aniTime_Text_Out).SetEase(Ease.Linear);
+        }
+        page3_imgRect.DOAnchorPos(imgPosTarget_Off, aniTime_Img_Out).SetEase(Ease.Linear);
+        yield return new WaitForSeconds(0.2f);
+        currStage = EndVideoStage.Page4_Playing;
+        page4_bkgCanvasGrp.DOFade(1f, aniTime_BkgFadeIn);
+        page4_bossObj.ChangeAni_Idle();
+        if (commonUtils.currLang == Language.TC)
+        {
+            page4_textRect_TC.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
+        }
+        else if (commonUtils.currLang == Language.SC)
+        {
+            page4_textRect_SC.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
+        }
+        else if (commonUtils.currLang == Language.EN)
+        {
+            page4_textRect_EN.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
+        }
+        page4_imgRect.DOAnchorPos(imgPosTarget_On, aniTime_Img_SlowIn).SetEase(Ease.Linear);
+        yield return new WaitForSeconds(aniTime_Text_SlowIn);
+        currStage = EndVideoStage.Page4_EndWaiting;
+    }
+
+    IEnumerator Page4_Ani_FastIn()
+    {
+        currStage = EndVideoStage.Page4_FastIn;
+        StopCoroutine(page4_Coroutine_Play);
+        DOTween.Kill(page4_textRect_TC);
+        DOTween.Kill(page4_textRect_SC);
+        DOTween.Kill(page4_textRect_EN);
+        DOTween.Kill(page4_imgRect);
+        if (commonUtils.currLang == Language.TC)
+        {
+            page4_textRect_TC.DOAnchorPos(textPosTarget_On, aniTime_Text_FastIn).SetEase(Ease.Linear);
+        }
+        else if (commonUtils.currLang == Language.SC)
+        {
+            page4_textRect_SC.DOAnchorPos(textPosTarget_On, aniTime_Text_FastIn).SetEase(Ease.Linear);
+        }
+        else if (commonUtils.currLang == Language.EN)
+        {
+            page4_textRect_EN.DOAnchorPos(textPosTarget_On, aniTime_Text_FastIn).SetEase(Ease.Linear);
+        }
+        page4_imgRect.DOAnchorPos(imgPosTarget_On, aniTime_Img_FastIn).SetEase(Ease.Linear);
+        yield return new WaitForSeconds(aniTime_Img_FastIn);
+        currStage = EndVideoStage.Page4_EndWaiting;
+    }
+
     public void ResetAll()
     {
         currStage = EndVideoStage.None;
@@ -318,6 +499,10 @@ public class EndVideoManager : MonoBehaviour
         StopCoroutine(page1_Coroutine_FastIn);
         StopCoroutine(page2_Coroutine_Play);
         StopCoroutine(page2_Coroutine_FastIn);
+        StopCoroutine(page3_Coroutine_Play);
+        StopCoroutine(page3_Coroutine_FastIn);
+        StopCoroutine(page4_Coroutine_Play);
+        StopCoroutine(page4_Coroutine_FastIn);
         DOTween.Kill(blackBkgRect);
         DOTween.Kill(page1_textRect_TC);
         DOTween.Kill(page1_textRect_SC);
@@ -327,6 +512,14 @@ public class EndVideoManager : MonoBehaviour
         DOTween.Kill(page2_textRect_SC);
         DOTween.Kill(page2_textRect_EN);
         DOTween.Kill(page2_imgRect);
+        DOTween.Kill(page3_textRect_TC);
+        DOTween.Kill(page3_textRect_SC);
+        DOTween.Kill(page3_textRect_EN);
+        DOTween.Kill(page3_imgRect);
+        DOTween.Kill(page4_textRect_TC);
+        DOTween.Kill(page4_textRect_SC);
+        DOTween.Kill(page4_textRect_EN);
+        DOTween.Kill(page4_imgRect);
         blackBkgRect.localScale = new Vector3(1, 0, 1);
         page1_bkgCanvasGrp_Carbon.alpha = 0;
         page1_bkgRect_Carbon.anchoredPosition = new Vector2(page1_bkgRect_Carbon.anchoredPosition.x, bkgPosYTarget_Top);
@@ -343,5 +536,20 @@ public class EndVideoManager : MonoBehaviour
         page2_textRect_EN.anchoredPosition = textPosTarget_Down;
         page2_imgRect.anchoredPosition = imgPosTarget_Off;
         page2_bossObj.ResetAll();
+        page3_bkgCanvasGrp.alpha = 0;
+        page3_bkgRect.anchoredPosition = new Vector2(page3_bkgRect.anchoredPosition.x, bkgPosYTarget_Top);
+        page3_textRect_TC.anchoredPosition = textPosTarget_Down;
+        page3_textRect_SC.anchoredPosition = textPosTarget_Down;
+        page3_textRect_EN.anchoredPosition = textPosTarget_Down;
+        page3_imgRect.anchoredPosition = imgPosTarget_Off;
+        page3_bossObj.ResetAll();
+        page4_bkgCanvasGrp.alpha = 0;
+        page4_bkgRect.anchoredPosition = new Vector2(page4_bkgRect.anchoredPosition.x, bkgPosYTarget_Top);
+        //TODO textPosTarget_Down should be generate dynamic but not hardcode!!
+        page4_textRect_TC.anchoredPosition = new Vector2(0, -515f);
+        page4_textRect_SC.anchoredPosition = textPosTarget_Down;
+        page4_textRect_EN.anchoredPosition = textPosTarget_Down;
+        page4_imgRect.anchoredPosition = imgPosTarget_Off;
+        page4_bossObj.ResetAll();
     }
 }
