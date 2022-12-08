@@ -64,13 +64,13 @@ public class EndVideoManager : MonoBehaviour
     Vector2 imgPosTarget_On = new Vector2(0, 0);
     Vector2 imgPosTarget_Off = new Vector2(970, 0);
 
-    float aniTime_Text_SlowIn = 5f;
+    float aniTime_Text_SlowIn = 3f;
     float aniTime_Text_FastIn = 0.3f;
-    float aniTime_Text_Out = 0.5f;
+    float aniTime_Text_Out = 0.3f;
 
     float aniTime_Img_SlowIn = 2f;
     float aniTime_Img_FastIn = 0.3f;
-    float aniTime_Img_Out = 0.5f;
+    float aniTime_Img_Out = 0.3f;
 
     IEnumerator page1_Coroutine_Play;
     IEnumerator page1_Coroutine_FastIn;
@@ -114,10 +114,15 @@ public class EndVideoManager : MonoBehaviour
                 page1_Coroutine_FastIn = Page1_Ani_FaseIn();
                 StartCoroutine(page1_Coroutine_FastIn);
             }
-            if (currStage == EndVideoStage.Page1_EndWaiting)
+            else if (currStage == EndVideoStage.Page1_EndWaiting)
             {
                 page2_Coroutine_Play = Page2_Ani_Play();
                 StartCoroutine(page2_Coroutine_Play);
+            }
+            else if (currStage == EndVideoStage.Page2_Playing)
+            {
+                page2_Coroutine_FastIn = Page2_Ani_FastIn();
+                StartCoroutine(page2_Coroutine_FastIn);
             }
         }
     }
@@ -127,6 +132,7 @@ public class EndVideoManager : MonoBehaviour
         page1_Coroutine_Play = Page1_Ani_Play();
         page1_Coroutine_FastIn = Page1_Ani_FaseIn();
         page2_Coroutine_Play = Page2_Ani_Play();
+        page2_Coroutine_FastIn = Page2_Ani_FastIn();
         ResetAll();
     }
 
@@ -150,6 +156,7 @@ public class EndVideoManager : MonoBehaviour
     IEnumerator Page1_Ani_FaseIn()
     {
         currStage = EndVideoStage.Page1_FastIn;
+        StopCoroutine(page1_Coroutine_Play);
         DOTween.Kill(blackBkgRect);
         DOTween.Kill(page1_textRect_TC);
         DOTween.Kill(page1_textRect_SC);
@@ -164,13 +171,30 @@ public class EndVideoManager : MonoBehaviour
 
     IEnumerator Page2_Ani_Play()
     {
+        StopCoroutine(page1_Coroutine_Play);
+        StopCoroutine(page1_Coroutine_FastIn);
         page1_textRect_TC.DOAnchorPos(textPosTarget_Up, aniTime_Text_Out).SetEase(Ease.Linear);
         page1_imgRect.DOAnchorPos(imgPosTarget_Off, aniTime_Img_Out).SetEase(Ease.Linear);
         yield return new WaitForSeconds(aniTime_Text_Out);
         currStage = EndVideoStage.Page2_Playing;
+        page2_bossObj.ChangeAni_Idle();
         page2_textRect_TC.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
         page2_imgRect.DOAnchorPos(imgPosTarget_On, aniTime_Img_SlowIn).SetEase(Ease.Linear);
         yield return new WaitForSeconds(aniTime_Text_SlowIn);
+        currStage = EndVideoStage.Page2_EndWaiting;
+    }
+
+    IEnumerator Page2_Ani_FastIn()
+    {
+        currStage = EndVideoStage.Page2_FastIn;
+        StopCoroutine(page2_Coroutine_Play);
+        DOTween.Kill(page2_textRect_TC);
+        DOTween.Kill(page2_textRect_SC);
+        DOTween.Kill(page2_textRect_EN);
+        DOTween.Kill(page2_imgRect);
+        page2_textRect_TC.DOAnchorPos(textPosTarget_On, aniTime_Text_FastIn).SetEase(Ease.Linear);
+        page2_imgRect.DOAnchorPos(imgPosTarget_On, aniTime_Img_FastIn).SetEase(Ease.Linear);
+        yield return new WaitForSeconds(aniTime_Img_FastIn);
         currStage = EndVideoStage.Page2_EndWaiting;
     }
 
@@ -180,6 +204,7 @@ public class EndVideoManager : MonoBehaviour
         StopCoroutine(page1_Coroutine_Play);
         StopCoroutine(page1_Coroutine_FastIn);
         StopCoroutine(page2_Coroutine_Play);
+        StopCoroutine(page2_Coroutine_FastIn);
         DOTween.Kill(blackBkgRect);
         DOTween.Kill(page1_textRect_TC);
         DOTween.Kill(page1_textRect_SC);
@@ -198,5 +223,6 @@ public class EndVideoManager : MonoBehaviour
         page2_textRect_SC.anchoredPosition = textPosTarget_Down;
         page2_textRect_EN.anchoredPosition = textPosTarget_Down;
         page2_imgRect.anchoredPosition = imgPosTarget_Off;
+        page2_bossObj.ResetAll();
     }
 }
