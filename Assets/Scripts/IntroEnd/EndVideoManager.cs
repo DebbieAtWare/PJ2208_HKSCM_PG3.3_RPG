@@ -68,25 +68,24 @@ public class EndVideoManager : MonoBehaviour
     float bkgPosYTarget_Top = 0;
     float bkgPosYTarget_Bottom_Carbon = 2568;
     float bkgPosYTarget_Bottom_Permian = 4314;
-    int bkgMoveDir = 0;
 
     Vector2 textPosTarget_Up = new Vector2(0, 540f);
-    Vector2 textPosTarget_Down = new Vector2(0, -540f);
+    Vector2 textPosTarget_Down = new Vector2(0, -480f);
     Vector2 textPosTarget_On = new Vector2(0, 0);
 
     Vector2 imgPosTarget_On = new Vector2(0, 0);
     Vector2 imgPosTarget_Off = new Vector2(970, 0);
 
-    public float aniTime_BkgSpeed = 0.1f;
-    public float aniTime_BkgFadeIn = 0.5f;
+    float aniTime_BkgSpeed = 0.3f;
+    float aniTime_BkgFadeIn = 0.5f;
 
-    public float aniTime_Text_SlowIn = 6f;
-    public float aniTime_Text_FastIn = 0.3f;
-    public float aniTime_Text_Out = 0.3f;
+    float aniTime_Text_SlowIn = 6f;
+    float aniTime_Text_FastIn = 0.3f;
+    float aniTime_Text_Out = 0.3f;
 
-    public float aniTime_Img_SlowIn = 2f;
-    public float aniTime_Img_FastIn = 0.3f;
-    public float aniTime_Img_Out = 0.3f;
+    float aniTime_Img_SlowIn = 2f;
+    float aniTime_Img_FastIn = 0.3f;
+    float aniTime_Img_Out = 0.3f;
 
     IEnumerator page1_Coroutine_Play;
     IEnumerator page1_Coroutine_FastIn;
@@ -145,46 +144,16 @@ public class EndVideoManager : MonoBehaviour
 
         if (currStage == EndVideoStage.Page1_Playing || currStage == EndVideoStage.Page1_FastIn || currStage == EndVideoStage.Page1_EndWaiting)
         {
-            if (page1_bkgRect.anchoredPosition.y <= bkgPosYTarget_Top)
-            {
-                page1_bkgRect.anchoredPosition = new Vector2(page1_bkgRect.anchoredPosition.x, bkgPosYTarget_Top);
-                bkgMoveDir = 0;
-            }
-            else if (page1_bkgRect.anchoredPosition.y >= bkgPosYTarget_Bottom_Carbon)
-            {
-                page1_bkgRect.anchoredPosition = new Vector2(page1_bkgRect.anchoredPosition.x, bkgPosYTarget_Bottom_Carbon);
-                bkgMoveDir = 1;
-            }
-
-            if (bkgMoveDir == 0)
+            if (page1_bkgRect.anchoredPosition.y <= bkgPosYTarget_Bottom_Carbon)
             {
                 page1_bkgRect.anchoredPosition = new Vector2(page1_bkgRect.anchoredPosition.x, page1_bkgRect.anchoredPosition.y + aniTime_BkgSpeed);
-            }
-            else if (bkgMoveDir == 1)
-            {
-                page1_bkgRect.anchoredPosition = new Vector2(page1_bkgRect.anchoredPosition.x, page1_bkgRect.anchoredPosition.y - aniTime_BkgSpeed);
             }
         }
         else if (currStage == EndVideoStage.Page2_Playing || currStage == EndVideoStage.Page2_FastIn || currStage == EndVideoStage.Page2_EndWaiting)
         {
-            if (page2_bkgRect.anchoredPosition.y <= bkgPosYTarget_Top)
-            {
-                page2_bkgRect.anchoredPosition = new Vector2(page2_bkgRect.anchoredPosition.x, bkgPosYTarget_Top);
-                bkgMoveDir = 0;
-            }
-            else if (page2_bkgRect.anchoredPosition.y >= bkgPosYTarget_Bottom_Carbon)
-            {
-                page2_bkgRect.anchoredPosition = new Vector2(page2_bkgRect.anchoredPosition.x, bkgPosYTarget_Bottom_Carbon);
-                bkgMoveDir = 1;
-            }
-
-            if (bkgMoveDir == 0)
+            if (page2_bkgRect.anchoredPosition.y <= bkgPosYTarget_Bottom_Carbon)
             {
                 page2_bkgRect.anchoredPosition = new Vector2(page2_bkgRect.anchoredPosition.x, page2_bkgRect.anchoredPosition.y + aniTime_BkgSpeed);
-            }
-            else if (bkgMoveDir == 1)
-            {
-                page2_bkgRect.anchoredPosition = new Vector2(page2_bkgRect.anchoredPosition.x, page2_bkgRect.anchoredPosition.y - aniTime_BkgSpeed);
             }
         }
     }
@@ -209,8 +178,8 @@ public class EndVideoManager : MonoBehaviour
         currStage = EndVideoStage.Page1_Playing;
         blackBkgRect.DOScale(new Vector3(1, 1, 1), 1f).SetEase(Ease.Linear);
         yield return new WaitForSeconds(0.7f);
-        page1_bkgCanvasGrp.DOFade(1, aniTime_BkgFadeIn);
         page1_textRect_TC.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
+        page1_bkgCanvasGrp.DOFade(1, aniTime_BkgFadeIn);
         page1_imgRect.DOAnchorPos(imgPosTarget_On, aniTime_Img_SlowIn).SetEase(Ease.Linear);
         yield return new WaitForSeconds(aniTime_Text_SlowIn);
         currStage = EndVideoStage.Page1_EndWaiting;
@@ -238,7 +207,7 @@ public class EndVideoManager : MonoBehaviour
         StopCoroutine(page1_Coroutine_FastIn);
         page1_textRect_TC.DOAnchorPos(textPosTarget_Up, aniTime_Text_Out).SetEase(Ease.Linear);
         page1_imgRect.DOAnchorPos(imgPosTarget_Off, aniTime_Img_Out).SetEase(Ease.Linear);
-        yield return new WaitForSeconds(aniTime_Text_Out);
+        yield return new WaitForSeconds(0.2f);
         currStage = EndVideoStage.Page2_Playing;
         page2_bkgCanvasGrp.DOFade(1f, aniTime_BkgFadeIn);
         page2_bossObj.ChangeAni_Idle();

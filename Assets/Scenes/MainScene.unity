@@ -9725,7 +9725,6 @@ MonoBehaviour:
   page4_imgRect: {fileID: 1878621078}
   page4_bossObj: {fileID: 1878621079}
   currStage: 0
-  aniTime_BkgSpeed: 0.3
 --- !u!1 &416789262
 GameObject:
   m_ObjectHideFlags: 0
@@ -27412,7 +27411,7 @@ GameObject:
   - component: {fileID: 1208632371}
   - component: {fileID: 1208632373}
   m_Layer: 5
-  m_Name: Bkg4
+  m_Name: Bkg4_Permian
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30134,7 +30133,7 @@ GameObject:
   - component: {fileID: 1227152939}
   - component: {fileID: 1227152941}
   m_Layer: 5
-  m_Name: Bkg3
+  m_Name: Bkg3_Permian
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30157,7 +30156,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -1920, y: 0}
+  m_AnchoredPosition: {x: -1905, y: 4039}
   m_SizeDelta: {x: 5760, y: 5394}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1227152939
@@ -35350,7 +35349,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1483969932
 RectTransform:
   m_ObjectHideFlags: 0
@@ -40575,7 +40574,7 @@ GameObject:
   - component: {fileID: 1717128602}
   - component: {fileID: 1717128604}
   m_Layer: 5
-  m_Name: Bkg2
+  m_Name: Bkg2_Carbon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41236,7 +41235,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1747793903
 RectTransform:
   m_ObjectHideFlags: 0
@@ -42146,7 +42145,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1822649591
 RectTransform:
   m_ObjectHideFlags: 0
