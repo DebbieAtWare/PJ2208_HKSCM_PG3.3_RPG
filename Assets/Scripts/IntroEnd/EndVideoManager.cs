@@ -17,7 +17,8 @@ public enum EndVideoStage
     Page3_EndWaiting,
     Page4_Playing,
     Page4_FastIn,
-    Page4_EndWaiting
+    Page4_EndWaiting,
+    Page5
 }
 
 public class EndVideoManager : MonoBehaviour
@@ -173,6 +174,11 @@ public class EndVideoManager : MonoBehaviour
             {
                 page4_Coroutine_FastIn = Page4_Ani_FastIn();
                 StartCoroutine(page4_Coroutine_FastIn);
+            }
+            else if (currStage == EndVideoStage.Page4_EndWaiting)
+            {
+                currStage = EndVideoStage.Page5;
+                page4_bossObj.ResetAll();
             }
         }
 

@@ -118,7 +118,7 @@ public class CommonUtils : MonoBehaviour
     public ConfigData_DialogBox endCheck_ChangeToPermian = new ConfigData_DialogBox();
     public ConfigData_DialogBox endCheck_PermianOneLeft = new ConfigData_DialogBox();
     public ConfigData_DialogBox endCheck_ChangeToCarboniferous = new ConfigData_DialogBox();
-    public ConfigData_DialogBox endCheck_ChangeToEndingVideo = new ConfigData_DialogBox();
+    public List<ConfigData_DialogBox> endCheck_ChangeToEndingVideos = new List<ConfigData_DialogBox>();
     public ConfigData_DialogBox endCheck_AfterEndingVideo = new ConfigData_DialogBox();
 
     [Header("Curr")]
@@ -252,7 +252,7 @@ public class CommonUtils : MonoBehaviour
         {
             currEndingCheck = EndingCheckStage.ToEndingVideo;
             GameManager.instance.dialogActive = true;
-            DialogBoxManager.instance.ShowDialog(endCheck_ChangeToEndingVideo);
+            DialogBoxManager.instance.ShowDialog(endCheck_ChangeToEndingVideos[0]);
         }
         else
         {
@@ -937,10 +937,18 @@ public class CommonUtils : MonoBehaviour
         dialog_EC_3.Text_TC = "已經找到目標羊膜動物！讓我們馬上前往石炭紀繼續這次探險之旅吧！";
         endCheck_ChangeToCarboniferous = dialog_EC_3;
 
-        ConfigData_DialogBox dialog_EC_4 = new ConfigData_DialogBox();
-        dialog_EC_4.ByWhom = "DRO";
-        dialog_EC_4.Text_TC = "根據我的高智能分析，你已經收集了全部古生物圖鑑卡！想不到你在不同的地質時代，都可以相識滿天下，真是可喜可賀。";
-        endCheck_ChangeToEndingVideo = dialog_EC_4;
+        ConfigData_DialogBox dialog_EC_41 = new ConfigData_DialogBox();
+        dialog_EC_41.ByWhom = "DRO";
+        dialog_EC_41.Text_TC = "根據我的高智能分析，你已經收集了全部古生物圖鑑卡！想不到你在不同的地質時代，都可以相識滿天下，真是可喜可賀。";
+        endCheck_ChangeToEndingVideos.Add(dialog_EC_41);
+        ConfigData_DialogBox dialog_EC_42 = new ConfigData_DialogBox();
+        dialog_EC_42.ByWhom = "DRO";
+        dialog_EC_42.Text_TC = "太棒了！在這次旅程中，我們成功收集了三種具代表性的羊膜動物！";
+        endCheck_ChangeToEndingVideos.Add(dialog_EC_42);
+        ConfigData_DialogBox dialog_EC_43 = new ConfigData_DialogBox();
+        dialog_EC_43.ByWhom = "DRO";
+        dialog_EC_43.Text_TC = "來看看我們辛苦收集的資料吧！";
+        endCheck_ChangeToEndingVideos.Add(dialog_EC_43);
 
         ConfigData_DialogBox dialog_EC_5 = new ConfigData_DialogBox();
         dialog_EC_5.ByWhom = "DRO";
