@@ -42,9 +42,18 @@ public class Boss01Manager : MonoBehaviour
 
         //to stop user move input
         GameManager.instance.dialogActive = true;
-        DOTween.To(() => PlayerController.instance.transform.position, x => PlayerController.instance.transform.position = x, new Vector3(0.6f, -1.69f, 0f), 0.8f).SetEase(Ease.Linear).SetDelay(0.8f);
-
+        
         MinimapManager.instance.Hide(0.5f);
+
+        StartCoroutine(Ani());
+        IEnumerator Ani()
+        {
+            yield return new WaitForSeconds(0.8f);
+            DOTween.To(() => PlayerController.instance.transform.position, x => PlayerController.instance.transform.position = x, new Vector3(0.6f, -1.69f, 0f), 0.8f).SetEase(Ease.Linear);
+            PlayerController.instance.SetAutoWalk(1);
+            yield return new WaitForSeconds(0.8f);
+            PlayerController.instance.SetAutoWalk(0);
+        }
     }
 
     private void OnFinishedConversation()

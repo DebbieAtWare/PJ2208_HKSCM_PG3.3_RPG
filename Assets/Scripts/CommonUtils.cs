@@ -120,6 +120,7 @@ public class CommonUtils : MonoBehaviour
     public ConfigData_DialogBox endCheck_ChangeToCarboniferous = new ConfigData_DialogBox();
     public List<ConfigData_DialogBox> endCheck_ChangeToEndingVideos = new List<ConfigData_DialogBox>();
     public ConfigData_DialogBox endCheck_AfterEndingVideo = new ConfigData_DialogBox();
+    int endCheck_ChangeToEndingVideoDialogIndex = -1;
 
     [Header("Curr")]
     public MapID currMapId;
@@ -128,6 +129,7 @@ public class CommonUtils : MonoBehaviour
 
     InputManager inputManager;
     VideoManager videoManager;
+    EndVideoManager endVideoManager;
 
     //for share in multiple scenes
     void Awake()
@@ -156,6 +158,9 @@ public class CommonUtils : MonoBehaviour
         videoManager = VideoManager.instance;
         videoManager.onVideoFinishedCallback_Ending += VideoManager_OnVideoFinished_Ending;
 
+        endVideoManager = EndVideoManager.instance;
+
+        endCheck_ChangeToEndingVideoDialogIndex = -1;
         currEndingCheck = EndingCheckStage.None;
 
         TmpExcelControl();
@@ -222,10 +227,26 @@ public class CommonUtils : MonoBehaviour
                     }
                     else if (currEndingCheck == EndingCheckStage.ToEndingVideo)
                     {
-                        currEndingCheck = EndingCheckStage.None;
-                        DialogBoxManager.instance.HideDialog();
-                        inputManager.canInput_Confirm = false;
-                        videoManager.Play_Ending();
+                        if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
+                        {
+                            DialogBoxManager.instance.FinishCurrentDialog();
+                        }
+                        else
+                        {
+                            if (endCheck_ChangeToEndingVideoDialogIndex == (endCheck_ChangeToEndingVideos.Count - 1))
+                            {
+                                currEndingCheck = EndingCheckStage.None;
+                                DialogBoxManager.instance.HideDialog();
+                                inputManager.canInput_Option = false;
+                                endVideoManager.Play();
+                            }
+                            else
+                            {
+                                endCheck_ChangeToEndingVideoDialogIndex++;
+                                DialogBoxManager.instance.ShowDialog(endCheck_ChangeToEndingVideos[endCheck_ChangeToEndingVideoDialogIndex]);
+                            }
+                        }
+                        
                     }
                 }
             }
@@ -252,7 +273,8 @@ public class CommonUtils : MonoBehaviour
         {
             currEndingCheck = EndingCheckStage.ToEndingVideo;
             GameManager.instance.dialogActive = true;
-            DialogBoxManager.instance.ShowDialog(endCheck_ChangeToEndingVideos[0]);
+            endCheck_ChangeToEndingVideoDialogIndex++;
+            DialogBoxManager.instance.ShowDialog(endCheck_ChangeToEndingVideos[endCheck_ChangeToEndingVideoDialogIndex]);
         }
         else
         {

@@ -279,6 +279,7 @@ public class MainManger : MonoBehaviour
         OptionManager.instance.Setup();
         DialogBoxManager.instance.Setup();
         VideoManager.instance.Setup();
+        EndVideoManager.instance.Setup();
         ViewBoxManager.instance.Setup();
 
         StatusBarManager.instance.Hide_Carbon(0f);
@@ -332,8 +333,7 @@ public class MainManger : MonoBehaviour
     {
         currStage = MainStage.EndLab_CollectionBookTrigger;
         SoundManager.instance.Play_BGM(4);
-        MinimapManager.instance.Hide(0);
         DialogBoxManager.instance.ShowDialog(commonUtils.endCheck_AfterEndingVideo);
-        inputManager.canInput_Confirm = true;
+        inputManager.canInput_Option = true;
     }
 }

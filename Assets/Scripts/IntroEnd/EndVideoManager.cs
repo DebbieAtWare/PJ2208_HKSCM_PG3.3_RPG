@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System;
 
 public enum EndVideoStage
 {
@@ -105,8 +106,8 @@ public class EndVideoManager : MonoBehaviour
     IEnumerator page4_Coroutine_Play;
     IEnumerator page4_Coroutine_FastIn;
 
-
     CommonUtils commonUtils;
+    InputManager inputManager;
 
     //for share in multiple scenes
     void Awake()
@@ -123,66 +124,78 @@ public class EndVideoManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void Setup()
     {
-        Setup();
+        commonUtils = CommonUtils.instance;
+        inputManager = InputManager.instance;
+        inputManager.onValueChanged_ConfirmCallback += InputManager_OnValueChanged_Confirm;
+
+        page1_Coroutine_Play = Page1_Ani_Play();
+        page1_Coroutine_FastIn = Page1_Ani_FaseIn();
+        page2_Coroutine_Play = Page2_Ani_Play();
+        page2_Coroutine_FastIn = Page2_Ani_FastIn();
+        page3_Coroutine_Play = Page3_Ani_Play();
+        page3_Coroutine_FastIn = Page3_Ani_FastIn();
+        page4_Coroutine_Play = Page4_Ani_Play();
+        page4_Coroutine_FastIn = Page4_Ani_FastIn();
+        ResetAll();
+    }
+
+    private void InputManager_OnValueChanged_Confirm()
+    {
+        if (currStage == EndVideoStage.Page1_Playing)
+        {
+            SoundManager.instance.Play_Input(2);
+            page1_Coroutine_FastIn = Page1_Ani_FaseIn();
+            StartCoroutine(page1_Coroutine_FastIn);
+        }
+        else if (currStage == EndVideoStage.Page1_EndWaiting)
+        {
+            SoundManager.instance.Play_Input(2);
+            page2_Coroutine_Play = Page2_Ani_Play();
+            StartCoroutine(page2_Coroutine_Play);
+        }
+        else if (currStage == EndVideoStage.Page2_Playing)
+        {
+            SoundManager.instance.Play_Input(2);
+            page2_Coroutine_FastIn = Page2_Ani_FastIn();
+            StartCoroutine(page2_Coroutine_FastIn);
+        }
+        else if (currStage == EndVideoStage.Page2_EndWaiting)
+        {
+            SoundManager.instance.Play_Input(2);
+            page3_Coroutine_Play = Page3_Ani_Play();
+            StartCoroutine(page3_Coroutine_Play);
+        }
+        else if (currStage == EndVideoStage.Page3_Playing)
+        {
+            SoundManager.instance.Play_Input(2);
+            page3_Coroutine_FastIn = Page3_Ani_FastIn();
+            StartCoroutine(page3_Coroutine_FastIn);
+        }
+        else if (currStage == EndVideoStage.Page3_EndWaiting)
+        {
+            SoundManager.instance.Play_Input(2);
+            page4_Coroutine_Play = Page4_Ani_Play();
+            StartCoroutine(page4_Coroutine_Play);
+        }
+        else if (currStage == EndVideoStage.Page4_Playing)
+        {
+            SoundManager.instance.Play_Input(2);
+            page4_Coroutine_FastIn = Page4_Ani_FastIn();
+            StartCoroutine(page4_Coroutine_FastIn);
+        }
+        else if (currStage == EndVideoStage.Page4_EndWaiting)
+        {
+            SoundManager.instance.Play_Input(2);
+            currStage = EndVideoStage.Page5;
+            page4_bossObj.ResetAll();
+            TransitionManager.instance.EndingVideoToLab();
+        }
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            ResetAll();
-        }
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            Play();
-        }
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            if (currStage == EndVideoStage.Page1_Playing)
-            {
-                page1_Coroutine_FastIn = Page1_Ani_FaseIn();
-                StartCoroutine(page1_Coroutine_FastIn);
-            }
-            else if (currStage == EndVideoStage.Page1_EndWaiting)
-            {
-                page2_Coroutine_Play = Page2_Ani_Play();
-                StartCoroutine(page2_Coroutine_Play);
-            }
-            else if (currStage == EndVideoStage.Page2_Playing)
-            {
-                page2_Coroutine_FastIn = Page2_Ani_FastIn();
-                StartCoroutine(page2_Coroutine_FastIn);
-            }
-            else if (currStage == EndVideoStage.Page2_EndWaiting)
-            {
-                page3_Coroutine_Play = Page3_Ani_Play();
-                StartCoroutine(page3_Coroutine_Play);
-            }
-            else if (currStage == EndVideoStage.Page3_Playing)
-            {
-                page3_Coroutine_FastIn = Page3_Ani_FastIn();
-                StartCoroutine(page3_Coroutine_FastIn);
-            }
-            else if (currStage == EndVideoStage.Page3_EndWaiting)
-            {
-                page4_Coroutine_Play = Page4_Ani_Play();
-                StartCoroutine(page4_Coroutine_Play);
-            }
-            else if (currStage == EndVideoStage.Page4_Playing)
-            {
-                page4_Coroutine_FastIn = Page4_Ani_FastIn();
-                StartCoroutine(page4_Coroutine_FastIn);
-            }
-            else if (currStage == EndVideoStage.Page4_EndWaiting)
-            {
-                currStage = EndVideoStage.Page5;
-                page4_bossObj.ResetAll();
-            }
-        }
-
-
         if (currStage == EndVideoStage.Page1_Playing || currStage == EndVideoStage.Page1_FastIn || currStage == EndVideoStage.Page1_EndWaiting)
         {
             if (commonUtils.currMapId == MapID.Carboniferous)
@@ -223,20 +236,6 @@ public class EndVideoManager : MonoBehaviour
         }
     }
 
-    public void Setup()
-    {
-        commonUtils = CommonUtils.instance;
-        page1_Coroutine_Play = Page1_Ani_Play();
-        page1_Coroutine_FastIn = Page1_Ani_FaseIn();
-        page2_Coroutine_Play = Page2_Ani_Play();
-        page2_Coroutine_FastIn = Page2_Ani_FastIn();
-        page3_Coroutine_Play = Page3_Ani_Play();
-        page3_Coroutine_FastIn = Page3_Ani_FastIn();
-        page4_Coroutine_Play = Page4_Ani_Play();
-        page4_Coroutine_FastIn = Page4_Ani_FastIn();
-        ResetAll();
-    }
-
     public void Play()
     {
         page1_Coroutine_Play = Page1_Ani_Play();
@@ -245,7 +244,7 @@ public class EndVideoManager : MonoBehaviour
 
     IEnumerator Page1_Ani_Play()
     {
-        
+        SoundManager.instance.FadeOutStop_BGM(1f);
         blackBkgRect.DOScale(new Vector3(1, 1, 1), 1f).SetEase(Ease.Linear);
         yield return new WaitForSeconds(0.7f);
         if (commonUtils.currMapId == MapID.Carboniferous)
@@ -269,9 +268,12 @@ public class EndVideoManager : MonoBehaviour
             page1_textRect_EN.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
         }
         page1_imgRect.DOAnchorPos(imgPosTarget_On, aniTime_Img_SlowIn).SetEase(Ease.Linear);
-        page1_bossObj1.ChangeLanguage(commonUtils.currLang);
-        page1_bossObj2.ChangeLanguage(commonUtils.currLang);
-        page1_bossObj3.ChangeLanguage(commonUtils.currLang);
+        page1_bossObj1.Setup(commonUtils.bosses[0].Name_TC, commonUtils.bosses[0].Name_SC, commonUtils.bosses[0].Name_EN, commonUtils.currLang);
+        page1_bossObj2.Setup(commonUtils.bosses[1].Name_TC, commonUtils.bosses[1].Name_SC, commonUtils.bosses[1].Name_EN, commonUtils.currLang);
+        page1_bossObj3.Setup(commonUtils.bosses[2].Name_TC, commonUtils.bosses[2].Name_SC, commonUtils.bosses[2].Name_EN, commonUtils.currLang);
+        page1_bossObj1.UnlockDirect();
+        page1_bossObj2.UnlockDirect();
+        page1_bossObj3.UnlockDirect();
         yield return new WaitForSeconds(aniTime_Text_SlowIn);
         currStage = EndVideoStage.Page1_EndWaiting;
     }

@@ -128,7 +128,9 @@ public class BossObject : MonoBehaviour
                         float dist = Vector3.Distance(PlayerController.instance.transform.position, avatarAutoPosObj.transform.position);
                         float time = dist * commonUtils.playerAutoWalkSpeed;
                         PlayerController.instance.transform.DOMove(avatarAutoPosObj.transform.position, time);
+                        PlayerController.instance.SetAutoWalk(1);
                         yield return new WaitForSeconds(time);
+                        PlayerController.instance.SetAutoWalk(0);
                         if (canFadeOutAlertSFX)
                         {
                             //in carbon can't fade out caz auto walk and jump to cave sound using same track

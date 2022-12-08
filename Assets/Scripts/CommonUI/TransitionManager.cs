@@ -6,6 +6,7 @@ using DG.Tweening;
 using UnityEngine.SceneManagement;
 using System;
 using System.IO;
+using TMPro;
 
 public class TransitionManager : MonoBehaviour
 {
@@ -24,6 +25,12 @@ public class TransitionManager : MonoBehaviour
     [Header("Transition Pic")]
     public Texture2D transitionTexture_Carboniferous;
     public Texture2D transitionTexture_Permian;
+    public Texture2D transitionTexture_Lab;
+
+    [Header("End to Lab")]
+    public TextMeshProUGUI endToLab_Text_TC;
+    public TextMeshProUGUI endToLab_Text_SC;
+    public TextMeshProUGUI endToLab_Text_EN;
 
     CommonUtils commonUtils;
 
@@ -228,13 +235,62 @@ public class TransitionManager : MonoBehaviour
         StartCoroutine(Ani());
         IEnumerator Ani()
         {
+            GameManager.instance.fadingBetweenAreas = true;
+            SoundManager.instance.Play_SFX(11);
+            yield return new WaitForEndOfFrame();
+            //screen cap current map and pixelate
+            Texture2D tex = new Texture2D(Screen.width, Screen.height, TextureFormat.ARGB32, false);
+            tex.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+            tex.Apply();
+            camFeedImg.texture = tex;
+            camFeedImg.DOFade(1f, 1f);
+            camFeedImg.material.DOFloat(50f, "_PixelateSize", 1f).From(512f).SetEase(Ease.Linear);
+            yield return new WaitForSeconds(1f);
+            EndVideoManager.instance.ResetAll();
+            //fade in time travel bkg
+            currBkgIndex = 0;
+            BkgLoopAni();
+            timeTravelBkgImg.DOFade(1f, 1f);
+            if (commonUtils.currLang == Language.TC)
+            {
+                endToLab_Text_TC.DOFade(1f, 1f);
+                endToLab_Text_SC.alpha = 0;
+                endToLab_Text_EN.alpha = 0;
+            }
+            else if (commonUtils.currLang == Language.SC)
+            {
+                endToLab_Text_TC.alpha = 0;
+                endToLab_Text_SC.DOFade(1f, 1f);
+                endToLab_Text_EN.alpha = 0;
+            }
+            else if (commonUtils.currLang == Language.EN)
+            {
+                endToLab_Text_TC.alpha = 0;
+                endToLab_Text_SC.alpha = 0;
+                endToLab_Text_EN.DOFade(1f, 1f);
+            }
+            yield return new WaitForSeconds(1f);
             SceneManager.LoadScene("MainScene");
             commonUtils.currMapId = MapID.Lab;
             PlayerController.instance.SetDirection(PlayerDirection.Down);
             PlayerController.instance.transform.position = new Vector3(-1.6f, 0f, 0f);
             DroneController.instance.ChangePos(new Vector3(0.8f, -0.8f, 0f));
-            yield return new WaitForSeconds(1f);
-            //wait the ending video fade out
+            MinimapManager.instance.Hide(0);
+            StatusBarManager.instance.Hide_Carbon(0);
+            StatusBarManager.instance.Hide_Permian(0);
+            yield return new WaitForSeconds(2f);
+            //show next map and depixelate
+            camFeedImg.texture = transitionTexture_Lab;
+            timeTravelBkgImg.DOFade(0f, 1f);
+            endToLab_Text_TC.DOFade(0f, 1f);
+            endToLab_Text_SC.DOFade(0f, 1f);
+            endToLab_Text_EN.DOFade(0f, 1f);
+            yield return new WaitForSeconds(0.6f);
+            camFeedImg.material.DOFloat(512f, "_PixelateSize", 1f).From(50f).SetEase(Ease.Linear);
+            camFeedImg.DOFade(0f, 1f);
+            yield return new WaitForSeconds(1.4f);
+            CancelInvoke("BkgLoopAni");
+            GameManager.instance.fadingBetweenAreas = false;
             MainManger.instance.ChangeStage_EndLab();
         }
     }
