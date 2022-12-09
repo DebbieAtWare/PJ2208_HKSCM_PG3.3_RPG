@@ -81,6 +81,11 @@ public class IntroObject_Map : MonoBehaviour
         Invoke("Ani", aniTime);
     }
 
+    public bool IsInLoopArea()
+    {
+        return currIndex >= loopFirstFrame;
+    }
+
     public void ResetAll()
     {
         CancelInvoke("Ani");

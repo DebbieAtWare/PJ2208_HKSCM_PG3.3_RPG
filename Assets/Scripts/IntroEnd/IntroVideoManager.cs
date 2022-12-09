@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public enum IntroVideoStage
 {
@@ -12,7 +13,10 @@ public enum IntroVideoStage
     Page1,
     Page2,
     Transition_Page2To3,
-    Page3
+    Page3,
+    Page4,
+    Transition_Page4To5,
+    Page5
 }
 
 public class IntroVideoManager : MonoBehaviour
@@ -34,6 +38,10 @@ public class IntroVideoManager : MonoBehaviour
     [Header("Pixelate")]
     public RawImage pixelateImg1;
     public RawImage pixelateImg2;
+
+    [Header("Text")]
+    public DialogWriter.DialogWriterSingle dialogWriterSingle;
+    public TextMeshProUGUI text_TC;
 
     [Header("Curr")]
     public IntroVideoStage currStage;
@@ -95,6 +103,30 @@ public class IntroVideoManager : MonoBehaviour
                 TransitionAni_Page2To3();
             }
         }
+        else if (currStage == IntroVideoStage.Page3)
+        {
+            if (!DialogBoxManager.instance.dialogWriterSingle.IsActive() && mapObj.IsInLoopArea())
+            {
+                currStage = IntroVideoStage.Page4;
+                ShowDialog(commonUtils.introVideoDialogs[3]);
+            }
+            else
+            {
+                DialogBoxManager.instance.FinishCurrentDialog();
+                mapObj.ChangeFPS_Fast();
+            }
+        }
+        else if (currStage == IntroVideoStage.Page4)
+        {
+            if (!DialogBoxManager.instance.dialogWriterSingle.IsActive() && mapObj.IsInLoopArea())
+            {
+                TransitionAni_Page4To5();
+            }
+            else
+            {
+                DialogBoxManager.instance.FinishCurrentDialog();
+            }
+        }
     }
 
     public void Play()
@@ -147,7 +179,7 @@ public class IntroVideoManager : MonoBehaviour
             pixelateImg1.DOFade(0f, 0f);
             pixelateImg2.material.DOFloat(512f, "_PixelateSize", 1f).From(50f).SetEase(Ease.Linear);
             pixelateImg2.DOFade(0f, 1f);
-            yield return new WaitForSeconds(1.4f);
+            yield return new WaitForSeconds(0.5f);
             mapObj.Play();
         }
     }
@@ -155,5 +187,49 @@ public class IntroVideoManager : MonoBehaviour
     private void Map_OnTransitionStartDone()
     {
         currStage = IntroVideoStage.Page3;
+        ShowDialog(commonUtils.introVideoDialogs[2]);
+    }
+
+    void TransitionAni_Page4To5()
+    {
+        //StartCoroutine(Ani());
+        //IEnumerator Ani()
+        //{
+            
+        //}
+    }
+
+    //-------
+
+    public void ShowDialog(ConfigData_DialogBox dialogBox)
+    {
+        dialogWriterSingle = DialogWriter.AddWriter_Static(text_TC, dialogBox.Text_TC, 0.05f, true, OnDialogLineEnd);
+    }
+
+    void OnDialogLineEnd()
+    {
+        
+    }
+
+
+
+
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            labObj.ResetAll();
+            labObj.AlphaAni(0, 0);
+            mapObj.ResetAll();
+            mapObj.AlphaAni(0, 0);
+            pixelateImg1.DOFade(0, 0);
+            pixelateImg2.DOFade(0, 0);
+            text_TC.DOFade(0, 0);
+            if (onVideoFinishedCallback != null)
+            {
+                onVideoFinishedCallback.Invoke();
+            }
+        }
     }
 }
