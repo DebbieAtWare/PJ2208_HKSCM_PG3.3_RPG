@@ -25,7 +25,7 @@ public class MainManger : MonoBehaviour
     public OnEndingVideoFinished onEndingVideoFinishedCallback;
 
     [Header("Home")]
-    public CanvasGroup homeGrp_CanvasGrp;
+    public HomeControl homeControl;
 
     [Header("Language")]
     public CanvasGroup langGrp_CanvasGrp;
@@ -80,7 +80,9 @@ public class MainManger : MonoBehaviour
 
         SoundManager.instance.Play_BGM(0);
 
-        homeGrp_CanvasGrp.alpha = 1;
+        homeControl.SetAlpha(1, 0);
+        homeControl.PlayBkg();
+
         for (int i = 0; i < langGrp_ArrowObjs.Count; i++)
         {
             if (i == 0)
@@ -293,7 +295,7 @@ public class MainManger : MonoBehaviour
 
     private void VideoManager_OnVideoStarted_Intro()
     {
-        homeGrp_CanvasGrp.alpha = 0;
+        homeControl.ResetAll();
         langGrp_CanvasGrp.alpha = 0;
     }
 
