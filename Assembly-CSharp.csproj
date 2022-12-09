@@ -216,6 +216,9 @@
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleNotification.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\QuestManager.cs" />
     <Compile Include="Assets\Scripts\CommonUI\HomeControl.cs" />
+    <Compile Include="Assets\Scripts\IntroEnd\IntroAnimationObject.cs" />
+    <Compile Include="Assets\Scripts\IntroEnd\IntroObject_Lab.cs" />
+    <Compile Include="Assets\Scripts\IntroEnd\IntroObject_Map.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Coffee\UIExtensions\UIEffect\Shaders\UI-Effect-Shiny.shader" />

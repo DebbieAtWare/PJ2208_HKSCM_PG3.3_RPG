@@ -100,6 +100,9 @@ public class CommonUtils : MonoBehaviour
     public ConfigData_DialogBox dialogBox_TipsByDrone_CollectionBook;
     public ConfigData_DialogBox dialogBox_TipsByDrone_ChangeMap;
 
+    [Header("ConfigData - Intro")]
+    public List<ConfigData_DialogBox> introVideoDialogs = new List<ConfigData_DialogBox>();
+
     [Header("ConfigData - Menu, Gameplay Instruction")]
     public ConfigData_Menu menuData;
     public List<ConfigData_DialogBox> gameplayInstructions = new List<ConfigData_DialogBox>();
@@ -887,13 +890,56 @@ public class CommonUtils : MonoBehaviour
 
         //-------
 
+        ConfigData_DialogBox dialog_Intro1 = new ConfigData_DialogBox();
+        dialog_Intro1.ByWhom = "DRO";
+        dialog_Intro1.Text_TC = "博士，準備好出發執行任務了嗎？";
+        introVideoDialogs.Add(dialog_Intro1);
+        ConfigData_DialogBox dialog_Intro2 = new ConfigData_DialogBox();
+        dialog_Intro2.ByWhom = "AVA";
+        dialog_Intro2.Text_TC = "噢！研究實在太忙了，差點忘記今天是穿越時空尋找早期羊膜動物的大日子！";
+        introVideoDialogs.Add(dialog_Intro2);
+        ConfigData_DialogBox dialog_Intro3 = new ConfigData_DialogBox();
+        dialog_Intro3.ByWhom = "DRO";
+        dialog_Intro3.Text_TC = "約在三億四千萬年前的石炭紀，原始四足動物演化出最早期的羊膜動物。";
+        introVideoDialogs.Add(dialog_Intro3);
+        ConfigData_DialogBox dialog_Intro4 = new ConfigData_DialogBox();
+        dialog_Intro4.ByWhom = "DRO";
+        dialog_Intro4.Text_TC = "和魚或兩棲動物不同，羊膜動物能產出「羊膜卵」，使胎兒可以在陸地上孵化。";
+        introVideoDialogs.Add(dialog_Intro4);
+        ConfigData_DialogBox dialog_Intro5 = new ConfigData_DialogBox();
+        dialog_Intro5.ByWhom = "DRO";
+        dialog_Intro5.Text_TC = "羊膜卵有外殼和胚外膜。防水且透氣的外殼和胚外膜能保護胚胎在陸上孵化時，不會因脫水而亡。";
+        introVideoDialogs.Add(dialog_Intro5);
+        ConfigData_DialogBox dialog_Intro6 = new ConfigData_DialogBox();
+        dialog_Intro6.ByWhom = "DRO";
+        dialog_Intro6.Text_TC = "羊膜動物不再在水生環境繁殖，能在比較乾燥的陸地上生活。";
+        introVideoDialogs.Add(dialog_Intro6);
+        ConfigData_DialogBox dialog_Intro7 = new ConfigData_DialogBox();
+        dialog_Intro7.ByWhom = "DRO";
+        dialog_Intro7.Text_TC = "早期羊膜動物演化出兩個支系：蜥形綱和合弓綱。";
+        introVideoDialogs.Add(dialog_Intro7);
+        ConfigData_DialogBox dialog_Intro8 = new ConfigData_DialogBox();
+        dialog_Intro8.ByWhom = "DRO";
+        dialog_Intro8.Text_TC = "蜥形綱動物包括爬行動物、恐龍和鳥類；";
+        introVideoDialogs.Add(dialog_Intro8);
+        ConfigData_DialogBox dialog_Intro9 = new ConfigData_DialogBox();
+        dialog_Intro9.ByWhom = "DRO";
+        dialog_Intro9.Text_TC = "合弓綱則演化出哺乳動物，包括人類。";
+        introVideoDialogs.Add(dialog_Intro9);
+        ConfigData_DialogBox dialog_Intro10 = new ConfigData_DialogBox();
+        dialog_Intro10.ByWhom = "DRO";
+        dialog_Intro10.Text_TC = "坐上時光機回到石炭紀和二疊紀，一起來認識早期羊膜動物。";
+        introVideoDialogs.Add(dialog_Intro10);
+
+        //-------
+
         ConfigData_DialogBox dialog_Gameplay2 = new ConfigData_DialogBox();
         dialog_Gameplay2.ByWhom = "DRO";
-        dialog_Gameplay2.Text_TC = "控制教學：<br>【方向鍵】<br>上、下、左、右<br>【選單】<br>【確定】";
+        dialog_Gameplay2.Text_TC = "你的任務是穿梭石炭紀和二疊紀，訪尋三種目標早期羊膜生物，豐富古生物資料庫。";
         gameplayInstructions.Add(dialog_Gameplay2);
         ConfigData_DialogBox dialog_Gameplay1 = new ConfigData_DialogBox();
         dialog_Gameplay1.ByWhom = "DRO";
-        dialog_Gameplay1.Text_TC = "試試和我對話吧！";
+        dialog_Gameplay1.Text_TC = "控制教學：<br>【方向鍵】<br>上、下、左、右<br>【選單】<br>【確定】";
         gameplayInstructions.Add(dialog_Gameplay1);
         ConfigData_DialogBox dialog_Gameplay3 = new ConfigData_DialogBox();
         dialog_Gameplay3.ByWhom = "DRO";

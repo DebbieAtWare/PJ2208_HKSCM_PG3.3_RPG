@@ -18,6 +18,9 @@ public class OptionManager : MonoBehaviour
 {
     public static OptionManager instance;
 
+    [Header("Root")]
+    public GameObject rootObj;
+
     [Header("Top Btn")]
     public GameObject topBtnObj;
     public TextMeshProUGUI topBtn_OptionText_TC;
@@ -112,7 +115,14 @@ public class OptionManager : MonoBehaviour
         popupObj_Root.SetActive(false);
         mainGrp_CurrIndex = 0;
 
+        SetActive(false);
+
         currStage = OptionStage.None;
+    }
+
+    public void SetActive(bool val)
+    {
+        rootObj.SetActive(val);
     }
 
     private void InputManager_OnValueChanged_Option()

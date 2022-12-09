@@ -42,6 +42,7 @@ public class MainManger : MonoBehaviour
     CommonUtils commonUtils;
     InputManager inputManager;
     VideoManager videoManager;
+    IntroVideoManager introVideoManager;
 
     //for share in multiple scenes
     void Awake()
@@ -77,6 +78,10 @@ public class MainManger : MonoBehaviour
         videoManager.onVideoStartedCallback_Intro += VideoManager_OnVideoStarted_Intro;
         videoManager.onVideoFinishedCallback_Intro += VideoManager_OnVideoFinished_Intro;
         videoManager.onVideoFinishedCallback_Ending += VideoManager_OnVideoFinished_Ending;
+
+        introVideoManager = IntroVideoManager.instance;
+        introVideoManager.onVideoStartedCallback += IntroVideoManager_OnVideoStarted;
+        introVideoManager.onVideoFinishedCallback += IntroVideoManager_OnVideoFinished;
 
         SoundManager.instance.Play_BGM(0);
 
@@ -208,8 +213,8 @@ public class MainManger : MonoBehaviour
                     commonUtils.ChangeLanguage(Language.EN);
                 }
                 currStage = MainStage.Intro;
-                videoManager.Play_Intro();
-                
+                //videoManager.Play_Intro();
+                introVideoManager.Play();
             }
             else if (currStage == MainStage.StartLab)
             {
@@ -281,6 +286,7 @@ public class MainManger : MonoBehaviour
         OptionManager.instance.Setup();
         DialogBoxManager.instance.Setup();
         VideoManager.instance.Setup();
+        IntroVideoManager.instance.Setup();
         EndVideoManager.instance.Setup();
         ViewBoxManager.instance.Setup();
 
@@ -295,18 +301,26 @@ public class MainManger : MonoBehaviour
 
     private void VideoManager_OnVideoStarted_Intro()
     {
-        homeControl.ResetAll();
-        langGrp_CanvasGrp.alpha = 0;
+        //homeControl.ResetAll();
+        //langGrp_CanvasGrp.alpha = 0;
     }
-
     private void VideoManager_OnVideoFinished_Intro()
     {
-        ChangeStage_StartLab();
+        //ChangeStage_StartLab();
     }
-
     private void VideoManager_OnVideoFinished_Ending()
     {
         
+    }
+
+    private void IntroVideoManager_OnVideoStarted()
+    {
+        homeControl.ResetAll();
+        langGrp_CanvasGrp.alpha = 0;
+    }
+    private void IntroVideoManager_OnVideoFinished()
+    {
+        ChangeStage_StartLab();
     }
 
     void ChangeStage_Language()
@@ -321,6 +335,7 @@ public class MainManger : MonoBehaviour
         {
             currStage = MainStage.StartLab;
             SoundManager.instance.Play_BGM(4);
+            OptionManager.instance.SetActive(true);
             yield return new WaitForSeconds(1f);
             DroneController.instance.ForceShowTalkHint();
             startLab_CurrDialogIndex++;
