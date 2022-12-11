@@ -16,7 +16,9 @@ public enum IntroVideoStage
     Page3,
     Page4,
     Transition_Page4To5,
-    Page5
+    Page5,
+    Transition_Page5To6,
+    Page6
 }
 
 public class IntroVideoManager : MonoBehaviour
@@ -35,6 +37,9 @@ public class IntroVideoManager : MonoBehaviour
     public IntroObject_Map mapObj;
     public Texture mapFirstFrameTexture;
 
+    [Header("Egg")]
+    public IntroObject_Egg eggObj;
+
     [Header("Pixelate")]
     public RawImage pixelateImg1;
     public RawImage pixelateImg2;
@@ -42,6 +47,8 @@ public class IntroVideoManager : MonoBehaviour
     [Header("Text")]
     public DialogWriter.DialogWriterSingle dialogWriterSingle;
     public TextMeshProUGUI text_TC;
+    public TextMeshProUGUI text_SC;
+    public TextMeshProUGUI text_EN;
 
     [Header("Curr")]
     public IntroVideoStage currStage;
@@ -76,6 +83,11 @@ public class IntroVideoManager : MonoBehaviour
         labObj.Setup();
         mapObj.onTransitionStartDoneCallback += Map_OnTransitionStartDone;
         mapObj.Setup();
+        eggObj.Setup();
+
+        text_TC.alpha = 0;
+        text_SC.alpha = 0;
+        text_EN.alpha = 0;
 
         currStage = IntroVideoStage.None;
     }
@@ -96,6 +108,7 @@ public class IntroVideoManager : MonoBehaviour
         }
         else if (currStage == IntroVideoStage.Page2)
         {
+            //use dialog box's dialog writer
             if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
             {
                 DialogBoxManager.instance.FinishCurrentDialog();
@@ -107,26 +120,39 @@ public class IntroVideoManager : MonoBehaviour
         }
         else if (currStage == IntroVideoStage.Page3)
         {
-            if (!DialogBoxManager.instance.dialogWriterSingle.IsActive() && mapObj.IsInLoopArea())
+            //use current script dialog writer
+            if (!dialogWriterSingle.IsActive() && mapObj.IsInLoopArea())
             {
                 currStage = IntroVideoStage.Page4;
                 ShowDialog(commonUtils.introVideoDialogs[3]);
             }
             else
             {
-                DialogBoxManager.instance.FinishCurrentDialog();
+                FinishCurrentDialog();
                 mapObj.ChangeFPS_Fast();
             }
         }
         else if (currStage == IntroVideoStage.Page4)
         {
-            if (!DialogBoxManager.instance.dialogWriterSingle.IsActive() && mapObj.IsInLoopArea())
+            if (!dialogWriterSingle.IsActive() && mapObj.IsInLoopArea())
             {
                 TransitionAni_Page4To5();
             }
             else
             {
-                DialogBoxManager.instance.FinishCurrentDialog();
+                FinishCurrentDialog();
+            }
+        }
+        else if (currStage == IntroVideoStage.Page5)
+        {
+            if (!dialogWriterSingle.IsActive())
+            {
+                currStage = IntroVideoStage.Transition_Page5To6;
+            }
+            else
+            {
+                FinishCurrentDialog();
+                eggObj.DirectShowAllText();
             }
         }
     }
@@ -138,6 +164,24 @@ public class IntroVideoManager : MonoBehaviour
         {
             currStage = IntroVideoStage.Transition_Start;
             SoundManager.instance.FadeOutStop_BGM(1f);
+            if (commonUtils.currLang == Language.TC)
+            {
+                text_TC.alpha = 1;
+                text_SC.alpha = 0;
+                text_EN.alpha = 0;
+            }
+            else if (commonUtils.currLang == Language.SC)
+            {
+                text_TC.alpha = 0;
+                text_SC.alpha = 1;
+                text_EN.alpha = 0;
+            }
+            else if (commonUtils.currLang == Language.EN)
+            {
+                text_TC.alpha = 0;
+                text_SC.alpha = 0;
+                text_EN.alpha = 1;
+            }
             labObj.AlphaAni(1f, 1f);
             yield return new WaitForSeconds(1f);
             labObj.Play();
@@ -194,18 +238,35 @@ public class IntroVideoManager : MonoBehaviour
 
     void TransitionAni_Page4To5()
     {
-        //StartCoroutine(Ani());
-        //IEnumerator Ani()
-        //{
-            
-        //}
+        StartCoroutine(Ani());
+        IEnumerator Ani()
+        {
+            currStage = IntroVideoStage.Transition_Page4To5;
+            eggObj.AlphaAni(1, 1);
+            ClearDialog();
+            yield return new WaitForSeconds(1f);
+            currStage = IntroVideoStage.Page5;
+            eggObj.Play();
+            ShowDialog(commonUtils.introVideoDialogs[4]);
+        }
     }
 
     //-------
 
     public void ShowDialog(ConfigData_DialogBox dialogBox)
     {
-        dialogWriterSingle = DialogWriter.AddWriter_Static(text_TC, dialogBox.Text_TC, 0.05f, true, OnDialogLineEnd);
+        if (commonUtils.currLang == Language.TC)
+        {
+            dialogWriterSingle = DialogWriter.AddWriter_Static(text_TC, dialogBox.Text_TC, 0.05f, true, OnDialogLineEnd);
+        }
+        else if(commonUtils.currLang == Language.SC)
+        {
+            dialogWriterSingle = DialogWriter.AddWriter_Static(text_SC, dialogBox.Text_SC, 0.05f, true, OnDialogLineEnd);
+        }
+        else if (commonUtils.currLang == Language.EN)
+        {
+            dialogWriterSingle = DialogWriter.AddWriter_Static(text_EN, dialogBox.Text_SC, 0.05f, true, OnDialogLineEnd);
+        }
     }
 
     void OnDialogLineEnd()
@@ -213,9 +274,19 @@ public class IntroVideoManager : MonoBehaviour
         
     }
 
+    void FinishCurrentDialog()
+    {
+        dialogWriterSingle.WriteAllAndDestroy();
+    }
 
+    void ClearDialog()
+    {
+        text_TC.text = "";
+        text_SC.text = "";
+        text_EN.text = "";
+    }
 
-
+    //-----------
 
     private void Update()
     {
@@ -233,8 +304,6 @@ public class IntroVideoManager : MonoBehaviour
                 onVideoFinishedCallback.Invoke();
             }
         }
-
-
 
         if (Input.GetKeyDown(KeyCode.N))
         {

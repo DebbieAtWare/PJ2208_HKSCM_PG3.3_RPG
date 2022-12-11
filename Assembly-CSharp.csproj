@@ -151,6 +151,7 @@
     <Compile Include="Assets\2D RPG Kit\Scripts\ChestObjectActivator.cs" />
     <Compile Include="Assets\FlexReader\Excel2007\WorkBook.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\IntroEnd\IntroObject_Map.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\Switch.cs" />
     <Compile Include="Assets\Coffee\UIExtensions\UIEffect\Scripts\Common\ParameterTexture.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\TeleportFrom.cs" />
@@ -160,6 +161,7 @@
     <Compile Include="Assets\FlexReader\Excel2007\SharedStringCollection.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleSkill.cs" />
     <Compile Include="Assets\FlexReader\Mapping\TableMapper.cs" />
+    <Compile Include="Assets\Scripts\IntroEnd\IntroObject_Lab.cs" />
     <Compile Include="Assets\FlexReader\Demo\Scripts\SceneReference.cs" />
     <Compile Include="Assets\FlexReader\CSV\Document.cs" />
     <Compile Include="Assets\FlexReader\Converter\CustomConverters\ListConverter.cs" />
@@ -171,6 +173,7 @@
     <Compile Include="Assets\Scripts\Map\CarboniferousManager.cs" />
     <Compile Include="Assets\Scripts\CommonUI\StatusBarManager.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\CompleteQuest.cs" />
+    <Compile Include="Assets\Scripts\CommonUI\HomeControl.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\Credits.cs" />
     <Compile Include="Assets\Scripts\CommonUtils.cs" />
     <Compile Include="Assets\Scripts\Character\BossObject.cs" />
@@ -210,15 +213,13 @@
     <Compile Include="Assets\FlexReader\Excel2007\WorkSheet.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleTargetButton.cs" />
     <Compile Include="Assets\Coffee\UIExtensions\UIEffect\Scripts\UIFlip.cs" />
+    <Compile Include="Assets\Scripts\IntroEnd\IntroAnimationObject.cs" />
     <Compile Include="Assets\Scripts\CommonUI\OptionManager.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\AttackEffect.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\DamageNumber.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleNotification.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\QuestManager.cs" />
-    <Compile Include="Assets\Scripts\CommonUI\HomeControl.cs" />
-    <Compile Include="Assets\Scripts\IntroEnd\IntroAnimationObject.cs" />
-    <Compile Include="Assets\Scripts\IntroEnd\IntroObject_Lab.cs" />
-    <Compile Include="Assets\Scripts\IntroEnd\IntroObject_Map.cs" />
+    <Compile Include="Assets\Scripts\IntroEnd\IntroObject_Egg.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Coffee\UIExtensions\UIEffect\Shaders\UI-Effect-Shiny.shader" />
