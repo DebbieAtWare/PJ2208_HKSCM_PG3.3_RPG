@@ -213,7 +213,6 @@ public class MainManger : MonoBehaviour
                     commonUtils.ChangeLanguage(Language.EN);
                 }
                 currStage = MainStage.Intro;
-                //videoManager.Play_Intro();
                 introVideoManager.Play();
             }
             else if (currStage == MainStage.StartLab)

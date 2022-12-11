@@ -18,7 +18,13 @@ public enum IntroVideoStage
     Transition_Page4To5,
     Page5,
     Transition_Page5To6,
-    Page6
+    Page6,
+    Transition_Page6To7,
+    Page7,
+    Transition_Page7To8,
+    Page8,
+    Transition_Page8To9,
+    Page9
 }
 
 public class IntroVideoManager : MonoBehaviour
@@ -39,6 +45,13 @@ public class IntroVideoManager : MonoBehaviour
 
     [Header("Egg")]
     public IntroObject_Egg eggObj;
+
+    [Header("Boss")]
+    public IntroObject_Boss bossObj;
+
+    [Header("CharacterGroup")]
+    public IntroObject_CharacterGroup characterGrp1;
+    public IntroObject_CharacterGroup characterGrp2;
 
     [Header("Pixelate")]
     public RawImage pixelateImg1;
@@ -84,6 +97,9 @@ public class IntroVideoManager : MonoBehaviour
         mapObj.onTransitionStartDoneCallback += Map_OnTransitionStartDone;
         mapObj.Setup();
         eggObj.Setup();
+        bossObj.Setup();
+        characterGrp1.Setup();
+        characterGrp2.Setup();
 
         text_TC.alpha = 0;
         text_SC.alpha = 0;
@@ -147,7 +163,7 @@ public class IntroVideoManager : MonoBehaviour
         {
             if (!dialogWriterSingle.IsActive())
             {
-                currStage = IntroVideoStage.Transition_Page5To6;
+                TransitionAni_Page5To6();
             }
             else
             {
@@ -155,11 +171,62 @@ public class IntroVideoManager : MonoBehaviour
                 eggObj.DirectShowAllText();
             }
         }
+        else if (currStage == IntroVideoStage.Page6)
+        {
+            if (!dialogWriterSingle.IsActive())
+            {
+                TransitionAni_Page6To7();
+            }
+            else
+            {
+                FinishCurrentDialog();
+            }
+        }
+        else if (currStage == IntroVideoStage.Page7)
+        {
+            if (!dialogWriterSingle.IsActive())
+            {
+                TransitionAni_Page7To8();
+            }
+            else
+            {
+                FinishCurrentDialog();
+                bossObj.DirectShowAllText();
+            }
+        }
+        else if (currStage == IntroVideoStage.Page8)
+        {
+            if (!dialogWriterSingle.IsActive() && characterGrp1.IsInLoopArea())
+            {
+                TransitionAni_Page8To9();
+            }
+            else
+            {
+                FinishCurrentDialog();
+                characterGrp1.ChangeFPS_Fast();
+            }
+        }
+        else if (currStage == IntroVideoStage.Page9)
+        {
+            if (!dialogWriterSingle.IsActive() && characterGrp2.IsInLoopArea())
+            {
+
+            }
+            else
+            {
+                FinishCurrentDialog();
+                characterGrp2.ChangeFPS_Fast();
+            }
+        }
     }
 
     public void Play()
     {
-        StartCoroutine(Ani());
+        //prevent user press A many time and play many time
+        if (currStage == IntroVideoStage.None)
+        {
+            StartCoroutine(Ani());
+        }
         IEnumerator Ani()
         {
             currStage = IntroVideoStage.Transition_Start;
@@ -251,6 +318,66 @@ public class IntroVideoManager : MonoBehaviour
         }
     }
 
+    void TransitionAni_Page5To6()
+    {
+        StartCoroutine(Ani());
+        IEnumerator Ani()
+        {
+            currStage = IntroVideoStage.Transition_Page5To6;
+            eggObj.AlphaAni(0, 1);
+            ClearDialog();
+            yield return new WaitForSeconds(1f);
+            currStage = IntroVideoStage.Page6;
+            ShowDialog(commonUtils.introVideoDialogs[5]);
+            eggObj.ResetAll();
+        }
+    }
+
+    void TransitionAni_Page6To7()
+    {
+        StartCoroutine(Ani());
+        IEnumerator Ani()
+        {
+            currStage = IntroVideoStage.Transition_Page6To7;
+            bossObj.AlphaAni(1, 1);
+            ClearDialog();
+            yield return new WaitForSeconds(1f);
+            currStage = IntroVideoStage.Page7;
+            ShowDialog(commonUtils.introVideoDialogs[6]);
+            bossObj.Play();
+        }
+    }
+
+    void TransitionAni_Page7To8()
+    {
+        StartCoroutine(Ani());
+        IEnumerator Ani()
+        {
+            currStage = IntroVideoStage.Transition_Page7To8;
+            characterGrp1.AlphaAni(1, 1);
+            ClearDialog();
+            yield return new WaitForSeconds(1f);
+            currStage = IntroVideoStage.Page8;
+            ShowDialog(commonUtils.introVideoDialogs[7]);
+            characterGrp1.Play();
+        }
+    }
+
+    void TransitionAni_Page8To9()
+    {
+        StartCoroutine(Ani());
+        IEnumerator Ani()
+        {
+            currStage = IntroVideoStage.Transition_Page8To9;
+            characterGrp2.AlphaAni(1, 1);
+            ClearDialog();
+            yield return new WaitForSeconds(1f);
+            currStage = IntroVideoStage.Page9;
+            ShowDialog(commonUtils.introVideoDialogs[8]);
+            characterGrp2.Play();
+        }
+    }
+
     //-------
 
     public void ShowDialog(ConfigData_DialogBox dialogBox)
@@ -265,7 +392,7 @@ public class IntroVideoManager : MonoBehaviour
         }
         else if (commonUtils.currLang == Language.EN)
         {
-            dialogWriterSingle = DialogWriter.AddWriter_Static(text_EN, dialogBox.Text_SC, 0.05f, true, OnDialogLineEnd);
+            dialogWriterSingle = DialogWriter.AddWriter_Static(text_EN, dialogBox.Text_EN, 0.05f, true, OnDialogLineEnd);
         }
     }
 

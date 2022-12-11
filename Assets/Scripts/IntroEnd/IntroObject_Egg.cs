@@ -40,6 +40,15 @@ public class IntroObject_Egg : MonoBehaviour
     public void AlphaAni(float val, float aniTime)
     {
         img.DOFade(val, aniTime);
+        if (val == 0)
+        {
+            text_TC_L.DOFade(val, aniTime);
+            text_SC_L.DOFade(val, aniTime);
+            text_EN_L.DOFade(val, aniTime);
+            text_TC_R.DOFade(val, aniTime);
+            text_SC_R.DOFade(val, aniTime);
+            text_EN_R.DOFade(val, aniTime);
+        }
     }
 
     public void Play()
