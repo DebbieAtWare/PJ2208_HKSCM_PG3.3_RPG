@@ -222,6 +222,7 @@
     <Compile Include="Assets\Scripts\IntroEnd\IntroObject_Egg.cs" />
     <Compile Include="Assets\Scripts\IntroEnd\IntroObject_Boss.cs" />
     <Compile Include="Assets\Scripts\IntroEnd\IntroObject_CharacterGroup.cs" />
+    <Compile Include="Assets\Scripts\IntroEnd\IntroObject_BlackBar.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Coffee\UIExtensions\UIEffect\Shaders\UI-Effect-Shiny.shader" />

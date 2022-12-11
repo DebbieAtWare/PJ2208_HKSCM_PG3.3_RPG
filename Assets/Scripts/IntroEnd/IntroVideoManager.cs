@@ -24,7 +24,10 @@ public enum IntroVideoStage
     Transition_Page7To8,
     Page8,
     Transition_Page8To9,
-    Page9
+    Page9,
+    Transition_Page9To10,
+    Page10,
+    Transition_End
 }
 
 public class IntroVideoManager : MonoBehaviour
@@ -52,6 +55,10 @@ public class IntroVideoManager : MonoBehaviour
     [Header("CharacterGroup")]
     public IntroObject_CharacterGroup characterGrp1;
     public IntroObject_CharacterGroup characterGrp2;
+
+    [Header("BlackBar")]
+    public IntroObject_BlackBar blackBarObj;
+    public Texture labBlackBarTexture;
 
     [Header("Pixelate")]
     public RawImage pixelateImg1;
@@ -100,6 +107,8 @@ public class IntroVideoManager : MonoBehaviour
         bossObj.Setup();
         characterGrp1.Setup();
         characterGrp2.Setup();
+        blackBarObj.onVideoEndCallback += BlackBar_OnVideoEnd;
+        blackBarObj.Setup();
 
         text_TC.alpha = 0;
         text_SC.alpha = 0;
@@ -112,6 +121,7 @@ public class IntroVideoManager : MonoBehaviour
     {
         if (currStage == IntroVideoStage.Page1)
         {
+            SoundManager.instance.Play_Input(2);
             if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
             {
                 DialogBoxManager.instance.FinishCurrentDialog();
@@ -124,6 +134,7 @@ public class IntroVideoManager : MonoBehaviour
         }
         else if (currStage == IntroVideoStage.Page2)
         {
+            SoundManager.instance.Play_Input(2);
             //use dialog box's dialog writer
             if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
             {
@@ -136,6 +147,7 @@ public class IntroVideoManager : MonoBehaviour
         }
         else if (currStage == IntroVideoStage.Page3)
         {
+            SoundManager.instance.Play_Input(2);
             //use current script dialog writer
             if (!dialogWriterSingle.IsActive() && mapObj.IsInLoopArea())
             {
@@ -150,6 +162,7 @@ public class IntroVideoManager : MonoBehaviour
         }
         else if (currStage == IntroVideoStage.Page4)
         {
+            SoundManager.instance.Play_Input(2);
             if (!dialogWriterSingle.IsActive() && mapObj.IsInLoopArea())
             {
                 TransitionAni_Page4To5();
@@ -161,6 +174,7 @@ public class IntroVideoManager : MonoBehaviour
         }
         else if (currStage == IntroVideoStage.Page5)
         {
+            SoundManager.instance.Play_Input(2);
             if (!dialogWriterSingle.IsActive())
             {
                 TransitionAni_Page5To6();
@@ -173,6 +187,7 @@ public class IntroVideoManager : MonoBehaviour
         }
         else if (currStage == IntroVideoStage.Page6)
         {
+            SoundManager.instance.Play_Input(2);
             if (!dialogWriterSingle.IsActive())
             {
                 TransitionAni_Page6To7();
@@ -184,6 +199,7 @@ public class IntroVideoManager : MonoBehaviour
         }
         else if (currStage == IntroVideoStage.Page7)
         {
+            SoundManager.instance.Play_Input(2);
             if (!dialogWriterSingle.IsActive())
             {
                 TransitionAni_Page7To8();
@@ -196,6 +212,7 @@ public class IntroVideoManager : MonoBehaviour
         }
         else if (currStage == IntroVideoStage.Page8)
         {
+            SoundManager.instance.Play_Input(2);
             if (!dialogWriterSingle.IsActive() && characterGrp1.IsInLoopArea())
             {
                 TransitionAni_Page8To9();
@@ -208,14 +225,27 @@ public class IntroVideoManager : MonoBehaviour
         }
         else if (currStage == IntroVideoStage.Page9)
         {
+            SoundManager.instance.Play_Input(2);
             if (!dialogWriterSingle.IsActive() && characterGrp2.IsInLoopArea())
             {
-
+                TransitionAni_Page9To10();
             }
             else
             {
                 FinishCurrentDialog();
                 characterGrp2.ChangeFPS_Fast();
+            }
+        }
+        else if (currStage == IntroVideoStage.Page10)
+        {
+            SoundManager.instance.Play_Input(2);
+            if (!dialogWriterSingle.IsActive())
+            {
+                TransitionAni_End();
+            }
+            else
+            {
+                FinishCurrentDialog();
             }
         }
     }
@@ -354,9 +384,9 @@ public class IntroVideoManager : MonoBehaviour
         IEnumerator Ani()
         {
             currStage = IntroVideoStage.Transition_Page7To8;
-            characterGrp1.AlphaAni(1, 1);
+            characterGrp1.AlphaAni(1, 0.5f);
             ClearDialog();
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.2f);
             currStage = IntroVideoStage.Page8;
             ShowDialog(commonUtils.introVideoDialogs[7]);
             characterGrp1.Play();
@@ -369,12 +399,80 @@ public class IntroVideoManager : MonoBehaviour
         IEnumerator Ani()
         {
             currStage = IntroVideoStage.Transition_Page8To9;
-            characterGrp2.AlphaAni(1, 1);
+            characterGrp2.AlphaAni(1, 0.5f);
             ClearDialog();
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.2f);
             currStage = IntroVideoStage.Page9;
             ShowDialog(commonUtils.introVideoDialogs[8]);
             characterGrp2.Play();
+        }
+    }
+
+    void TransitionAni_Page9To10()
+    {
+        StartCoroutine(Ani());
+        IEnumerator Ani()
+        {
+            currStage = IntroVideoStage.Transition_Page9To10;
+            ClearDialog();
+            yield return new WaitForEndOfFrame();
+            //screen cap page 9 and pixelate
+            Texture2D tex = new Texture2D(Screen.width, Screen.height, TextureFormat.ARGB32, false);
+            tex.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+            tex.Apply();
+            pixelateImg1.texture = tex;
+            pixelateImg1.DOFade(1f, 1f);
+            pixelateImg1.material.DOFloat(50f, "_PixelateSize", 1f).From(512f).SetEase(Ease.Linear);
+            SoundManager.instance.Play_SFX(11);
+            yield return new WaitForSeconds(1f);
+            //fade in pixelate game lab scene
+            pixelateImg2.texture = labBlackBarTexture;
+            pixelateImg2.material.SetFloat("_PixelateSize", 50f);
+            pixelateImg2.DOFade(1f, 1f);
+            yield return new WaitForSeconds(1f);
+            //depixelate lab
+            labObj.AlphaAni(0, 0);
+            mapObj.AlphaAni(0, 0);
+            eggObj.AlphaAni(0, 0);
+            bossObj.AlphaAni(0, 0);
+            characterGrp1.AlphaAni(0, 0);
+            characterGrp2.AlphaAni(0, 0);
+            blackBarObj.AlphaAni(1f, 0f);
+            pixelateImg1.DOFade(0f, 0f);
+            pixelateImg2.material.DOFloat(512f, "_PixelateSize", 1f).From(50f).SetEase(Ease.Linear);
+            pixelateImg2.DOFade(0f, 1f);
+            yield return new WaitForSeconds(0.5f);
+            currStage = IntroVideoStage.Page10;
+            ShowDialog(commonUtils.introVideoDialogs[9]);
+        }
+    }
+
+    void TransitionAni_End()
+    {
+        currStage = IntroVideoStage.Transition_End;
+        ClearDialog();
+        blackBarObj.Play();
+    }
+
+    private void BlackBar_OnVideoEnd()
+    {
+        labObj.AlphaAni(0, 0);
+        labObj.ResetAll();
+        mapObj.AlphaAni(0, 0);
+        mapObj.ResetAll();
+        eggObj.AlphaAni(0, 0);
+        eggObj.ResetAll();
+        bossObj.AlphaAni(0, 0);
+        bossObj.ResetAll();
+        characterGrp1.AlphaAni(0, 0);
+        characterGrp1.ResetAll();
+        characterGrp2.AlphaAni(0, 0);
+        characterGrp2.ResetAll();
+        blackBarObj.AlphaAni(0, 0);
+        blackBarObj.ResetAll();
+        if (onVideoFinishedCallback != null)
+        {
+            onVideoFinishedCallback.Invoke();
         }
     }
 
@@ -413,32 +511,12 @@ public class IntroVideoManager : MonoBehaviour
         text_EN.text = "";
     }
 
-    //-----------
-
     private void Update()
     {
+        //hotkey skip intro
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            labObj.ResetAll();
-            labObj.AlphaAni(0, 0);
-            mapObj.ResetAll();
-            mapObj.AlphaAni(0, 0);
-            pixelateImg1.DOFade(0, 0);
-            pixelateImg2.DOFade(0, 0);
-            text_TC.DOFade(0, 0);
-            if (onVideoFinishedCallback != null)
-            {
-                onVideoFinishedCallback.Invoke();
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            tmp.Play();
-        }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            tmp.ResetAll();
+            BlackBar_OnVideoEnd();
         }
     }
 }

@@ -24,14 +24,17 @@ public class IntroObject_CharacterGroup : MonoBehaviour
     public void Setup()
     {
         AlphaAni(0, 0);
-        text_TC.gameObject.SetActive(false);
-        text_SC.gameObject.SetActive(false);
-        text_EN.gameObject.SetActive(false);
     }
 
     public void AlphaAni(float val, float aniTime)
     {
         img.DOFade(val, aniTime);
+        if (val == 0)
+        {
+            text_TC.gameObject.SetActive(false);
+            text_SC.gameObject.SetActive(false);
+            text_EN.gameObject.SetActive(false);
+        }
     }
 
     void ChangeFPS_Normal()

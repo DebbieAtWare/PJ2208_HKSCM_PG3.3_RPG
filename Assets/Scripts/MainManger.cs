@@ -226,10 +226,10 @@ public class MainManger : MonoBehaviour
                 {
                     if (startLab_CurrDialogIndex == 0)
                     {
-                        Vector3 targetPos = new Vector3(-0.7f, 0, 0);
-                        float dist = Vector3.Distance(PlayerController.instance.transform.position, targetPos);
-                        float time = dist * commonUtils.playerAutoWalkSpeed;
-                        PlayerController.instance.transform.DOMove(targetPos, time);
+                        //Vector3 targetPos = new Vector3(-0.7f, 0, 0);
+                        //float dist = Vector3.Distance(PlayerController.instance.transform.position, targetPos);
+                        //float time = dist * commonUtils.playerAutoWalkSpeed;
+                        //PlayerController.instance.transform.DOMove(targetPos, time);
                         startLab_CurrDialogIndex++;
                         DialogBoxManager.instance.ShowDialog(commonUtils.gameplayInstructions[startLab_CurrDialogIndex]);
                         DialogBoxManager.instance.HideControl();
@@ -294,8 +294,9 @@ public class MainManger : MonoBehaviour
         MinimapManager.instance.Hide(0f);
 
         PlayerController.instance.SetDirection(PlayerDirection.Down);
-        PlayerController.instance.transform.position = new Vector3(-1.6f, 0f, 0f);
-        DroneController.instance.ChangePos(new Vector3(0.8f, -0.8f, 0f));
+        PlayerController.instance.transform.position = new Vector3(-0.96f, 0f, 0f);
+        DroneController.instance.ChangePos(new Vector3(0.68f, -0.49f, 0f));
+        DroneController.instance.canShowTalkHint = false;
     }
 
     private void VideoManager_OnVideoStarted_Intro()
@@ -336,6 +337,7 @@ public class MainManger : MonoBehaviour
             SoundManager.instance.Play_BGM(4);
             OptionManager.instance.SetActive(true);
             yield return new WaitForSeconds(1f);
+            DroneController.instance.canShowTalkHint = true;
             DroneController.instance.ForceShowTalkHint();
             startLab_CurrDialogIndex++;
             DialogBoxManager.instance.ShowControl();

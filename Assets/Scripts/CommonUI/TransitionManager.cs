@@ -295,24 +295,24 @@ public class TransitionManager : MonoBehaviour
         }
     }
 
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.J))
-    //    {
-    //        Debug.Log("ScreenCap1");
-    //        StartCoroutine(ScreenShot());
-    //        IEnumerator ScreenShot()
-    //        {
-    //            Debug.Log("ScreenCap2");
-    //            yield return new WaitForEndOfFrame();
-    //            Debug.Log("ScreenCap3");
-    //            Texture2D tex = new Texture2D(Screen.width, Screen.height, TextureFormat.ARGB32, false);
-    //            tex.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
-    //            tex.Apply();
-    //            Byte[] bytes = tex.EncodeToPNG();
-    //            File.WriteAllBytes(Path.Combine(Application.streamingAssetsPath, "Image.png"), bytes);
-    //            Debug.Log("ScreenCap4");
-    //        }
-    //    }
-    //}
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Keypad0))
+        {
+            Debug.Log("ScreenCap1");
+            StartCoroutine(ScreenShot());
+            IEnumerator ScreenShot()
+            {
+                Debug.Log("ScreenCap2");
+                yield return new WaitForEndOfFrame();
+                Debug.Log("ScreenCap3");
+                Texture2D tex = new Texture2D(Screen.width, Screen.height, TextureFormat.ARGB32, false);
+                tex.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+                tex.Apply();
+                Byte[] bytes = tex.EncodeToPNG();
+                File.WriteAllBytes(Path.Combine(Application.streamingAssetsPath, "Image.png"), bytes);
+                Debug.Log("ScreenCap4");
+            }
+        }
+    }
 }
