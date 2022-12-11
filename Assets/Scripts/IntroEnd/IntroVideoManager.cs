@@ -73,8 +73,6 @@ public class IntroVideoManager : MonoBehaviour
     [Header("Curr")]
     public IntroVideoStage currStage;
 
-    public IntroAnimationObject tmp;
-
     CommonUtils commonUtils;
     InputManager inputManager;
 

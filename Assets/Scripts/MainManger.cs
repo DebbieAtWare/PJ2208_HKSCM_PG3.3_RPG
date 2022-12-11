@@ -41,7 +41,6 @@ public class MainManger : MonoBehaviour
 
     CommonUtils commonUtils;
     InputManager inputManager;
-    VideoManager videoManager;
     IntroVideoManager introVideoManager;
 
     //for share in multiple scenes
@@ -73,11 +72,6 @@ public class MainManger : MonoBehaviour
         inputManager.canInput_Vertical = true;
         inputManager.canInput_Horizontal = true;
         inputManager.canInput_Confirm = true;
-
-        videoManager = VideoManager.instance;
-        videoManager.onVideoStartedCallback_Intro += VideoManager_OnVideoStarted_Intro;
-        videoManager.onVideoFinishedCallback_Intro += VideoManager_OnVideoFinished_Intro;
-        videoManager.onVideoFinishedCallback_Ending += VideoManager_OnVideoFinished_Ending;
 
         introVideoManager = IntroVideoManager.instance;
         introVideoManager.onVideoStartedCallback += IntroVideoManager_OnVideoStarted;
@@ -226,17 +220,16 @@ public class MainManger : MonoBehaviour
                 {
                     if (startLab_CurrDialogIndex == 0)
                     {
-                        //Vector3 targetPos = new Vector3(-0.7f, 0, 0);
-                        //float dist = Vector3.Distance(PlayerController.instance.transform.position, targetPos);
-                        //float time = dist * commonUtils.playerAutoWalkSpeed;
-                        //PlayerController.instance.transform.DOMove(targetPos, time);
+                        //first dialog is text, second dialog in control diagram
                         startLab_CurrDialogIndex++;
-                        DialogBoxManager.instance.ShowDialog(commonUtils.gameplayInstructions[startLab_CurrDialogIndex]);
-                        DialogBoxManager.instance.HideControl();
+                        DialogBoxManager.instance.ShowControl();
+                        //DialogBoxManager.instance.ShowDialog(commonUtils.gameplayInstructions[startLab_CurrDialogIndex]);
+                        //DialogBoxManager.instance.HideControl();
                     }
                     else if (startLab_CurrDialogIndex == 1)
                     {
                         startLab_CurrDialogIndex++;
+                        DialogBoxManager.instance.HideControl();
                         DialogBoxManager.instance.ShowDialog(commonUtils.gameplayInstructions[startLab_CurrDialogIndex]);
                         DialogBoxManager.instance.SetOptionArrow(startLab_CurrArrowIndex);
                     }
@@ -284,7 +277,6 @@ public class MainManger : MonoBehaviour
         CollectionBookManager.instance.Setup();
         OptionManager.instance.Setup();
         DialogBoxManager.instance.Setup();
-        VideoManager.instance.Setup();
         IntroVideoManager.instance.Setup();
         EndVideoManager.instance.Setup();
         ViewBoxManager.instance.Setup();
@@ -297,20 +289,6 @@ public class MainManger : MonoBehaviour
         PlayerController.instance.transform.position = new Vector3(-0.96f, 0f, 0f);
         DroneController.instance.ChangePos(new Vector3(0.68f, -0.49f, 0f));
         DroneController.instance.canShowTalkHint = false;
-    }
-
-    private void VideoManager_OnVideoStarted_Intro()
-    {
-        //homeControl.ResetAll();
-        //langGrp_CanvasGrp.alpha = 0;
-    }
-    private void VideoManager_OnVideoFinished_Intro()
-    {
-        //ChangeStage_StartLab();
-    }
-    private void VideoManager_OnVideoFinished_Ending()
-    {
-        
     }
 
     private void IntroVideoManager_OnVideoStarted()
@@ -339,8 +317,10 @@ public class MainManger : MonoBehaviour
             yield return new WaitForSeconds(1f);
             DroneController.instance.canShowTalkHint = true;
             DroneController.instance.ForceShowTalkHint();
+            //first dialog is text, second dialog in control diagram
             startLab_CurrDialogIndex++;
-            DialogBoxManager.instance.ShowControl();
+            DialogBoxManager.instance.ShowDialog(commonUtils.gameplayInstructions[startLab_CurrDialogIndex]);
+            //DialogBoxManager.instance.ShowControl();
             SoundManager.instance.Play_Dialog(1);
             yield return new WaitForSeconds(0.5f);
             SoundManager.instance.FadeOutStop_Dialog(0.3f);

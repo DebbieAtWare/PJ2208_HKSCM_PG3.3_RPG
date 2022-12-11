@@ -178,7 +178,6 @@
     <Compile Include="Assets\Scripts\CommonUtils.cs" />
     <Compile Include="Assets\Scripts\Character\BossObject.cs" />
     <Compile Include="Assets\FlexReader\Converter\CustomConverters\RectConverter.cs" />
-    <Compile Include="Assets\Scripts\CommonUI\VideoManager.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\EventManager.cs" />
     <Compile Include="Assets\Scripts\ConversationMode\ConversationModeBossObject.cs" />
     <Compile Include="Assets\Coffee\UIExtensions\UIEffect\Scripts\UIShadow.cs" />
@@ -213,7 +212,6 @@
     <Compile Include="Assets\FlexReader\Excel2007\WorkSheet.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleTargetButton.cs" />
     <Compile Include="Assets\Coffee\UIExtensions\UIEffect\Scripts\UIFlip.cs" />
-    <Compile Include="Assets\Scripts\IntroEnd\IntroAnimationObject.cs" />
     <Compile Include="Assets\Scripts\CommonUI\OptionManager.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\AttackEffect.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\DamageNumber.cs" />

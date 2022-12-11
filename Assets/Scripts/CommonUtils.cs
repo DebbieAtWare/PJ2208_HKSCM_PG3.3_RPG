@@ -131,7 +131,6 @@ public class CommonUtils : MonoBehaviour
     public EndingCheckStage currEndingCheck;
 
     InputManager inputManager;
-    VideoManager videoManager;
     EndVideoManager endVideoManager;
 
     //for share in multiple scenes
@@ -157,9 +156,6 @@ public class CommonUtils : MonoBehaviour
 
         inputManager = InputManager.instance;
         inputManager.onValueChanged_ConfirmCallback += InputManager_OnValueChanged_Confirm;
-
-        videoManager = VideoManager.instance;
-        videoManager.onVideoFinishedCallback_Ending += VideoManager_OnVideoFinished_Ending;
 
         endVideoManager = EndVideoManager.instance;
 
