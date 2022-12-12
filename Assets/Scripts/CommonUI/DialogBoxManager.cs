@@ -25,21 +25,6 @@ public class DialogBoxManager : MonoBehaviour
 
     [Header("ControlGrp")]
     public GameObject controlGrpObj;
-    public TextMeshProUGUI controlGrp_TitleText_TC;
-    public TextMeshProUGUI controlGrp_TitleText_SC;
-    public TextMeshProUGUI controlGrp_TitleText_EN;
-    public TextMeshProUGUI controlGrp_ArrowText1_TC;
-    public TextMeshProUGUI controlGrp_ArrowText1_SC;
-    public TextMeshProUGUI controlGrp_ArrowText1_EN;
-    public TextMeshProUGUI controlGrp_ArrowText2_TC;
-    public TextMeshProUGUI controlGrp_ArrowText2_SC;
-    public TextMeshProUGUI controlGrp_ArrowText2_EN;
-    public TextMeshProUGUI controlGrp_ABtnText_TC;
-    public TextMeshProUGUI controlGrp_ABtnText_SC;
-    public TextMeshProUGUI controlGrp_ABtnText_EN;
-    public TextMeshProUGUI controlGrp_BBtnText_TC;
-    public TextMeshProUGUI controlGrp_BBtnText_SC;
-    public TextMeshProUGUI controlGrp_BBtnText_EN;
 
     [Header("ZoomImg")]
     public CanvasGroup zoomImgCanvasGrp;
