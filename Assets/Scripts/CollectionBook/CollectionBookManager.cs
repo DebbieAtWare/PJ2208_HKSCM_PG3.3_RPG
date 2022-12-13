@@ -313,11 +313,10 @@ public class CollectionBookManager : MonoBehaviour
                             if (currIndex_NPC == 0)
                             {
                                 main_ArrowImgL.sprite = main_ArrowSprite_OffIdle;
-                                main_ArrowImgR.sprite = main_ArrowSprite_OnIdle;
                             }
-                            else
+                            if (currIndex_NPC < 8)
                             {
-                                main_ArrowImgL.sprite = main_ArrowSprite_OnIdle;
+                                main_ArrowImgR.sprite = main_ArrowSprite_OnIdle;
                             }
                         }
                     }
@@ -334,14 +333,13 @@ public class CollectionBookManager : MonoBehaviour
                             main_NPCObjs[currIndex_NPC].SetSelection(false);
                             currIndex_NPC++;
                             main_NPCObjs[currIndex_NPC].SetSelection(true);
-                            if (currIndex_NPC == main_NPCObjs.Count - 1)
+                            if (currIndex_NPC > 5)
                             {
-                                main_ArrowImgR.sprite = main_ArrowSprite_OffIdle;
                                 main_ArrowImgL.sprite = main_ArrowSprite_OnIdle;
                             }
-                            else
+                            if (currIndex_NPC == (main_NPCObjs.Count - 1))
                             {
-                                main_ArrowImgR.sprite = main_ArrowSprite_OnIdle;
+                                main_ArrowImgR.sprite = main_ArrowSprite_OffIdle;
                             }
                         }
                     }
