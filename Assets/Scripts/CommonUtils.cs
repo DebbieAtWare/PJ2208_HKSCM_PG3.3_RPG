@@ -889,10 +889,14 @@ public class CommonUtils : MonoBehaviour
         ConfigData_DialogBox dialog_Intro1 = new ConfigData_DialogBox();
         dialog_Intro1.ByWhom = "DRO";
         dialog_Intro1.Text_TC = "博士，準備好出發執行任務了嗎？";
+        dialog_Intro1.Text_SC = "博士，准备好出发执行任务了吗？";
+        dialog_Intro1.Text_EN = "Doctor, are you ready for our trip?";
         introVideoDialogs.Add(dialog_Intro1);
         ConfigData_DialogBox dialog_Intro2 = new ConfigData_DialogBox();
         dialog_Intro2.ByWhom = "AVA";
         dialog_Intro2.Text_TC = "噢！研究實在太忙了，差點忘記今天是穿越時空尋找早期羊膜動物的大日子！";
+        dialog_Intro2.Text_SC = "噢！研究实在太忙了，差点忘记今天是穿越时空寻找早期羊膜动物的大日子！";
+        dialog_Intro2.Text_EN = "Aha! Look at me, I’m just buried in work! It’s our big day to travel through time and meet the early amniotes!";
         introVideoDialogs.Add(dialog_Intro2);
         ConfigData_DialogBox dialog_Intro3 = new ConfigData_DialogBox();
         dialog_Intro3.ByWhom = "DRO";

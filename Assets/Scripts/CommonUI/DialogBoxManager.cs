@@ -19,7 +19,11 @@ public class DialogBoxManager : MonoBehaviour
     [Header("NormapGrp")]
     public GameObject normalGrpObj; 
     public TextMeshProUGUI text_TC;
+    public TextMeshProUGUI text_SC;
+    public TextMeshProUGUI text_EN;
     public List<TextMeshProUGUI> optionTexts_TC;
+    public List<TextMeshProUGUI> optionTexts_SC;
+    public List<TextMeshProUGUI> optionTexts_EN;
     public List<GameObject> arrowObjs;
     public DialogWriter.DialogWriterSingle dialogWriterSingle;
 
@@ -67,6 +71,8 @@ public class DialogBoxManager : MonoBehaviour
         for (int i = 0; i < optionTexts_TC.Count; i++)
         {
             optionTexts_TC[i].gameObject.SetActive(false);
+            optionTexts_SC[i].gameObject.SetActive(false);
+            optionTexts_EN[i].gameObject.SetActive(false);
             arrowObjs[i].SetActive(false);
         }
         normalGrpObj.SetActive(false);
@@ -161,7 +167,18 @@ public class DialogBoxManager : MonoBehaviour
             }
         }
 
-        dialogWriterSingle = DialogWriter.AddWriter_Static(text_TC, dialogBox.Text_TC, 0.05f, true, OnDialogLineEnd);
+        if (commonUtils.currLang == Language.TC)
+        {
+            dialogWriterSingle = DialogWriter.AddWriter_Static(text_TC, dialogBox.Text_TC, 0.05f, true, OnDialogLineEnd);
+        }
+        else if (commonUtils.currLang == Language.SC)
+        {
+            dialogWriterSingle = DialogWriter.AddWriter_Static(text_SC, dialogBox.Text_SC, 0.05f, true, OnDialogLineEnd);
+        }
+        else if (commonUtils.currLang == Language.EN)
+        {
+            dialogWriterSingle = DialogWriter.AddWriter_Static(text_EN, dialogBox.Text_EN, 0.05f, true, OnDialogLineEnd);
+        }
 
         if (dialogBox.OptionTexts_TC != null && dialogBox.OptionTexts_TC.Count != 0)
         {
@@ -169,13 +186,36 @@ public class DialogBoxManager : MonoBehaviour
             {
                 if (i < dialogBox.OptionTexts_TC.Count)
                 {
-                    optionTexts_TC[i].gameObject.SetActive(true);
                     optionTexts_TC[i].text = dialogBox.OptionTexts_TC[i];
+                    optionTexts_SC[i].text = dialogBox.OptionTexts_SC[i];
+                    optionTexts_EN[i].text = dialogBox.OptionTexts_EN[i];
+                    if (commonUtils.currLang == Language.TC)
+                    {
+                        optionTexts_TC[i].gameObject.SetActive(true);
+                        optionTexts_SC[i].gameObject.SetActive(false);
+                        optionTexts_EN[i].gameObject.SetActive(false);
+                    }
+                    else if (commonUtils.currLang == Language.SC)
+                    {
+                        optionTexts_TC[i].gameObject.SetActive(false);
+                        optionTexts_SC[i].gameObject.SetActive(true);
+                        optionTexts_EN[i].gameObject.SetActive(false);
+                    }
+                    else if (commonUtils.currLang == Language.EN)
+                    {
+                        optionTexts_TC[i].gameObject.SetActive(false);
+                        optionTexts_SC[i].gameObject.SetActive(false);
+                        optionTexts_EN[i].gameObject.SetActive(true);
+                    }
                 }
                 else
                 {
                     optionTexts_TC[i].text = "";
+                    optionTexts_SC[i].text = "";
+                    optionTexts_EN[i].text = "";
                     optionTexts_TC[i].gameObject.SetActive(false);
+                    optionTexts_SC[i].gameObject.SetActive(false);
+                    optionTexts_EN[i].gameObject.SetActive(false);
                 }
 
                 if (i == 0)
@@ -193,6 +233,8 @@ public class DialogBoxManager : MonoBehaviour
             for (int i = 0; i < optionTexts_TC.Count; i++)
             {
                 optionTexts_TC[i].gameObject.SetActive(false);
+                optionTexts_SC[i].gameObject.SetActive(false);
+                optionTexts_EN[i].gameObject.SetActive(false);
                 arrowObjs[i].SetActive(false);
             }
         }

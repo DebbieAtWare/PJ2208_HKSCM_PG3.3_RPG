@@ -97,11 +97,23 @@ public class DialogWriter : MonoBehaviour
             {
                 timer += timePerCharacter;
                 characterIndex++;
-                string txt = textToWrite.Substring(0, characterIndex);
-                txt += "<color=#00000000>" + textToWrite.Substring(characterIndex) + "</color>";
-                uiText.text = txt;
 
-                if (characterIndex >= textToWrite.Length)
+                if (!string.IsNullOrEmpty(textToWrite) && !string.IsNullOrWhiteSpace(textToWrite))
+                {
+                    string txt = textToWrite.Substring(0, characterIndex);
+                    txt += "<color=#00000000>" + textToWrite.Substring(characterIndex) + "</color>";
+                    uiText.text = txt;
+
+                    if (characterIndex >= textToWrite.Length)
+                    {
+                        if (onComplete != null)
+                        {
+                            onComplete();
+                        }
+                        return true;
+                    }
+                }
+                else
                 {
                     if (onComplete != null)
                     {
