@@ -28,7 +28,8 @@ public class CollectionBookBossObject : MonoBehaviour
     public TextMeshProUGUI nameText_EN;
 
     [Header("Frame")]
-    public GameObject frameObj;
+    public GameObject frameObj_Idle;
+    public GameObject frameObj_Selected;
 
     [Header("Lang")]
     public List<GameObject> langObjs_TC = new List<GameObject>();
@@ -149,7 +150,16 @@ public class CollectionBookBossObject : MonoBehaviour
 
     public void SetSelection(bool val)
     {
-        frameObj.SetActive(val);
+        if (val)
+        {
+            frameObj_Idle.SetActive(false);
+            frameObj_Selected.SetActive(true);
+        }
+        else
+        {
+            frameObj_Idle.SetActive(true);
+            frameObj_Selected.SetActive(false);
+        }
     }
 
     public void ResetAll()

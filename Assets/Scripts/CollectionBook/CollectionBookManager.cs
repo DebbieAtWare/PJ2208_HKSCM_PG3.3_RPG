@@ -35,7 +35,8 @@ public class CollectionBookManager : MonoBehaviour
     public List<CollectionBookNPCObject> main_NPCObjs = new List<CollectionBookNPCObject>();
     public RectTransform main_Scroll_ContentRect;
     public GameObject main_CloseIpadObj;
-    public GameObject main_CloseIpadFrameObj;
+    public GameObject main_CloseIpadFrameIdleObj;
+    public GameObject main_CloseIpadFrameSelectedObj;
     public GameObject main_RestartGameObj;
     public GameObject main_RestartGameFrameObj;
     float main_Scroll_PosGap_Small = 73;
@@ -210,7 +211,8 @@ public class CollectionBookManager : MonoBehaviour
                         }
                         else
                         {
-                            main_CloseIpadFrameObj.SetActive(true);
+                            main_CloseIpadFrameIdleObj.SetActive(false);
+                            main_CloseIpadFrameSelectedObj.SetActive(true);
                         }
                     }
                 }
@@ -226,7 +228,8 @@ public class CollectionBookManager : MonoBehaviour
                         }
                         else
                         {
-                            main_CloseIpadFrameObj.SetActive(false);
+                            main_CloseIpadFrameIdleObj.SetActive(true);
+                            main_CloseIpadFrameSelectedObj.SetActive(false);
                         }
                         main_NPCObjs[currIndex_NPC].SetSelection(true);
                     }
@@ -462,7 +465,8 @@ public class CollectionBookManager : MonoBehaviour
         }
         else
         {
-            main_CloseIpadFrameObj.SetActive(false);
+            main_CloseIpadFrameIdleObj.SetActive(true);
+            main_CloseIpadFrameSelectedObj.SetActive(false);
             main_CloseIpadObj.SetActive(true);
             main_RestartGameObj.SetActive(false);
         }
