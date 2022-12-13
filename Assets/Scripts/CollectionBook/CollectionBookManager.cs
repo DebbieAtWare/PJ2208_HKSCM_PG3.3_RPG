@@ -39,11 +39,14 @@ public class CollectionBookManager : MonoBehaviour
     public GameObject main_CloseIpadFrameSelectedObj;
     public GameObject main_RestartGameObj;
     public GameObject main_RestartGameFrameObj;
-    float main_Scroll_PosGap_Small = 73;
-    float main_Scroll_PosGap_Full = 185;
+    public Image main_ArrowImgL;
+    public Image main_ArrowImgR;
+    public Sprite main_ArrowSprite_OnIdle;
+    public Sprite main_ArrowSprite_OnSelected;
+    public Sprite main_ArrowSprite_OffIdle;
+    public Sprite main_ArrowSprite_OffSelected;
+    float main_Scroll_PosGap = 170;
     public int main_Scroll_VisibleIndex = 0;
-    public bool main_Scroll_PosGap_IsSmall_Next = true;
-    public bool main_Scroll_PosGap_IsSmall_Previous = true;
 
     [Header("Detail")]
     public GameObject detail_RootObj;
@@ -302,20 +305,20 @@ public class CollectionBookManager : MonoBehaviour
                             if (main_Scroll_VisibleIndex < 0)
                             {
                                 main_Scroll_VisibleIndex = 0;
-                                main_Scroll_PosGap_IsSmall_Next = true;
-                                if (main_Scroll_PosGap_IsSmall_Previous)
-                                {
-                                    main_Scroll_PosGap_IsSmall_Previous = false;
-                                    main_Scroll_ContentRect.anchoredPosition = new Vector2(main_Scroll_ContentRect.anchoredPosition.x + main_Scroll_PosGap_Small, 0f);
-                                }
-                                else
-                                {
-                                    main_Scroll_ContentRect.anchoredPosition = new Vector2(main_Scroll_ContentRect.anchoredPosition.x + main_Scroll_PosGap_Full, 0);
-                                }
+                                main_Scroll_ContentRect.anchoredPosition = new Vector2(main_Scroll_ContentRect.anchoredPosition.x + main_Scroll_PosGap, 0);
                             }
                             main_NPCObjs[currIndex_NPC].SetSelection(false);
                             currIndex_NPC--;
                             main_NPCObjs[currIndex_NPC].SetSelection(true);
+                            if (currIndex_NPC == 0)
+                            {
+                                main_ArrowImgL.sprite = main_ArrowSprite_OffIdle;
+                                main_ArrowImgR.sprite = main_ArrowSprite_OnIdle;
+                            }
+                            else
+                            {
+                                main_ArrowImgL.sprite = main_ArrowSprite_OnIdle;
+                            }
                         }
                     }
                     else if (val == 1)
@@ -323,24 +326,23 @@ public class CollectionBookManager : MonoBehaviour
                         if (currIndex_NPC < main_NPCObjs.Count - 1)
                         {
                             main_Scroll_VisibleIndex++;
-                            if (main_Scroll_VisibleIndex > 3)
+                            if (main_Scroll_VisibleIndex > 5)
                             {
-                                main_Scroll_VisibleIndex = 3;
-                                main_Scroll_PosGap_IsSmall_Previous = true;
-                                if (main_Scroll_PosGap_IsSmall_Next)
-                                {
-                                    main_Scroll_PosGap_IsSmall_Next = false;
-                                    main_Scroll_ContentRect.anchoredPosition = new Vector2(main_Scroll_ContentRect.anchoredPosition.x - main_Scroll_PosGap_Small, 0f);
-                                }
-                                else
-                                {
-                                    main_Scroll_ContentRect.anchoredPosition = new Vector2(main_Scroll_ContentRect.anchoredPosition.x - main_Scroll_PosGap_Full, 0);
-                                }
+                                main_Scroll_VisibleIndex = 5;
+                                main_Scroll_ContentRect.anchoredPosition = new Vector2(main_Scroll_ContentRect.anchoredPosition.x - main_Scroll_PosGap, 0);
                             }
                             main_NPCObjs[currIndex_NPC].SetSelection(false);
                             currIndex_NPC++;
                             main_NPCObjs[currIndex_NPC].SetSelection(true);
-
+                            if (currIndex_NPC == main_NPCObjs.Count - 1)
+                            {
+                                main_ArrowImgR.sprite = main_ArrowSprite_OffIdle;
+                                main_ArrowImgL.sprite = main_ArrowSprite_OnIdle;
+                            }
+                            else
+                            {
+                                main_ArrowImgR.sprite = main_ArrowSprite_OnIdle;
+                            }
                         }
                     }
                 }
@@ -430,8 +432,6 @@ public class CollectionBookManager : MonoBehaviour
         currIndex_NPC = 0;
         main_Scroll_ContentRect.anchoredPosition = new Vector2(0f, 0f);
         main_Scroll_VisibleIndex = 0;
-        main_Scroll_PosGap_IsSmall_Next = true;
-        main_Scroll_PosGap_IsSmall_Previous = true;
 
         ChangeLanguage();
 
@@ -470,6 +470,9 @@ public class CollectionBookManager : MonoBehaviour
             main_CloseIpadObj.SetActive(true);
             main_RestartGameObj.SetActive(false);
         }
+
+        main_ArrowImgL.sprite = main_ArrowSprite_OffIdle;
+        main_ArrowImgR.sprite = main_ArrowSprite_OnIdle;
 
         //----
 
