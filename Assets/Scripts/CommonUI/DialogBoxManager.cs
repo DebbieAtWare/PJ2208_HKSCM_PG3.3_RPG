@@ -170,13 +170,19 @@ public class DialogBoxManager : MonoBehaviour
         if (commonUtils.currLang == Language.TC)
         {
             dialogWriterSingle = DialogWriter.AddWriter_Static(text_TC, dialogBox.Text_TC, 0.05f, true, OnDialogLineEnd);
+            text_SC.text = dialogBox.Text_SC;
+            text_EN.text = dialogBox.Text_EN;
         }
         else if (commonUtils.currLang == Language.SC)
         {
+            text_TC.text = dialogBox.Text_TC;
             dialogWriterSingle = DialogWriter.AddWriter_Static(text_SC, dialogBox.Text_SC, 0.05f, true, OnDialogLineEnd);
+            text_EN.text = dialogBox.Text_EN;
         }
         else if (commonUtils.currLang == Language.EN)
         {
+            text_TC.text = dialogBox.Text_TC;
+            text_SC.text = dialogBox.Text_SC;
             dialogWriterSingle = DialogWriter.AddWriter_Static(text_EN, dialogBox.Text_EN, 0.05f, true, OnDialogLineEnd);
         }
 
@@ -187,8 +193,14 @@ public class DialogBoxManager : MonoBehaviour
                 if (i < dialogBox.OptionTexts_TC.Count)
                 {
                     optionTexts_TC[i].text = dialogBox.OptionTexts_TC[i];
-                    optionTexts_SC[i].text = dialogBox.OptionTexts_SC[i];
-                    optionTexts_EN[i].text = dialogBox.OptionTexts_EN[i];
+                    if (dialogBox.OptionTexts_SC != null && dialogBox.OptionTexts_SC.Count != 0)
+                    {
+                        optionTexts_SC[i].text = dialogBox.OptionTexts_SC[i];
+                    }
+                    if (dialogBox.OptionTexts_EN != null && dialogBox.OptionTexts_EN.Count != 0)
+                    {
+                        optionTexts_EN[i].text = dialogBox.OptionTexts_EN[i];
+                    }
                     if (commonUtils.currLang == Language.TC)
                     {
                         optionTexts_TC[i].gameObject.SetActive(true);
@@ -232,6 +244,9 @@ public class DialogBoxManager : MonoBehaviour
         {
             for (int i = 0; i < optionTexts_TC.Count; i++)
             {
+                optionTexts_TC[i].text = "";
+                optionTexts_SC[i].text = "";
+                optionTexts_EN[i].text = "";
                 optionTexts_TC[i].gameObject.SetActive(false);
                 optionTexts_SC[i].gameObject.SetActive(false);
                 optionTexts_EN[i].gameObject.SetActive(false);

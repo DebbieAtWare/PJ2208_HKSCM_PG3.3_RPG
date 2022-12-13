@@ -834,12 +834,26 @@ public class CommonUtils : MonoBehaviour
         dialog_tips.ByWhom = "DRO";
         dialog_tips.ImagePath = "";
         dialog_tips.Text_TC = "有甚麼需要幫忙的嗎？";
+        dialog_tips.Text_SC = "有什么需要帮忙的吗？";
+        dialog_tips.Text_EN = "Is there anything I can help you with?";
         List<string> options_tips = new List<string>();
         options_tips.Add("提示");
         options_tips.Add("古生物圖鑑");
         options_tips.Add("傳送門");
         options_tips.Add("不用了，謝謝");
         dialog_tips.OptionTexts_TC = options_tips;
+        List<string> options_tips2 = new List<string>();
+        options_tips2.Add("提示");
+        options_tips2.Add("古生物图鉴");
+        options_tips2.Add("传送门");
+        options_tips2.Add("不用了，谢谢");
+        dialog_tips.OptionTexts_SC = options_tips2;
+        List<string> options_tips3 = new List<string>();
+        options_tips3.Add("Hint");
+        options_tips3.Add("Palaeobio-pedia");
+        options_tips3.Add("Maps");
+        options_tips3.Add("No, thanks");
+        dialog_tips.OptionTexts_EN = options_tips3;
         dialogBox_TipsByDrone = dialog_tips;
 
         List<ConfigData_DialogBox> dialog_hints = new List<ConfigData_DialogBox>();
@@ -952,6 +966,8 @@ public class CommonUtils : MonoBehaviour
         ConfigData_DialogBox dialog_Gameplay2 = new ConfigData_DialogBox();
         dialog_Gameplay2.ByWhom = "DRO";
         dialog_Gameplay2.Text_TC = "你的任務是穿梭石炭紀和二疊紀，訪尋三種目標早期羊膜生物，豐富古生物資料庫。";
+        dialog_Gameplay2.Text_SC = "你的任务是穿梭石炭纪和二叠纪，访寻三种目标早期羊膜生物，丰富古生物资料库。";
+        dialog_Gameplay2.Text_EN = "Travel through time and back to the Carboniferous and the Permian period. Your mission is to visit three targeted early amniotes and enrich your knowledge on the palaeobios.";
         gameplayInstructions.Add(dialog_Gameplay2);
         ConfigData_DialogBox dialog_Gameplay1 = new ConfigData_DialogBox();
         dialog_Gameplay1.ByWhom = "DRO";
@@ -960,10 +976,20 @@ public class CommonUtils : MonoBehaviour
         ConfigData_DialogBox dialog_Gameplay3 = new ConfigData_DialogBox();
         dialog_Gameplay3.ByWhom = "DRO";
         dialog_Gameplay3.Text_TC = "你想前往哪個時代探險？";
+        dialog_Gameplay3.Text_SC = "你想前往哪个时代探险？";
+        dialog_Gameplay3.Text_EN = "Which period do you want to start your adventure?";
         List<string> option_Gameplay3 = new List<string>();
         option_Gameplay3.Add("石炭紀");
         option_Gameplay3.Add("二疊紀");
         dialog_Gameplay3.OptionTexts_TC = option_Gameplay3;
+        List<string> option_Gameplay32 = new List<string>();
+        option_Gameplay32.Add("石炭纪");
+        option_Gameplay32.Add("二叠纪");
+        dialog_Gameplay3.OptionTexts_SC = option_Gameplay32;
+        List<string> option_Gameplay33 = new List<string>();
+        option_Gameplay33.Add("Carboniferous");
+        option_Gameplay33.Add("Permian");
+        dialog_Gameplay3.OptionTexts_EN = option_Gameplay33;
         gameplayInstructions.Add(dialog_Gameplay3);
 
         //-------
@@ -971,24 +997,34 @@ public class CommonUtils : MonoBehaviour
         ConfigData_DialogBox dialog_FG_C1 = new ConfigData_DialogBox();
         dialog_FG_C1.ByWhom = "DRO";
         dialog_FG_C1.Text_TC = "我們即將穿越到石炭紀。旅途中有甚麼疑難就問我吧。相信我們將會是最佳拍檔！";
+        dialog_FG_C1.Text_SC = "我們即將穿越到石炭紀。旅途中有甚麼疑難就問我吧。相信我們將會是最佳拍檔！";
+        dialog_FG_C1.Text_EN = "We are about to travel back to the Carboniferous period.<br>Just ask me questions if you have any. Trust me, we will be the best partner ever!";
         firstGreeting_Carboniferous.Add(dialog_FG_C1);
         ConfigData_DialogBox dialog_FG_C2 = new ConfigData_DialogBox();
         dialog_FG_C2.ByWhom = "DRO";
         dialog_FG_C2.Text_TC = "噢，來到石炭紀了！開始進行搜索！";
+        dialog_FG_C2.Text_SC = "噢，来到石炭纪了！开始进行搜索！";
+        dialog_FG_C2.Text_EN = "Oh, we have arrived at the Carboniferous!Let's start searching around!";
         firstGreeting_Carboniferous.Add(dialog_FG_C2);
         ConfigData_DialogBox dialog_FG_C3 = new ConfigData_DialogBox();
         dialog_FG_C3.ByWhom = "AVA";
         dialog_FG_C3.Text_TC = "看來石炭紀大陸到處都是沼澤。呼，這裏真潮濕。";
+        dialog_FG_C3.Text_SC = "看来石炭纪大陆到处都是沼泽。呼，这里真潮湿。";
+        dialog_FG_C3.Text_EN = "It seems that the Carboniferous continent is full of swamps. Phew, it's humid here.";
         firstGreeting_Carboniferous.Add(dialog_FG_C3);
 
 
         ConfigData_DialogBox dialog_FG_P1 = new ConfigData_DialogBox();
         dialog_FG_P1.ByWhom = "DRO";
         dialog_FG_P1.Text_TC = "你選擇了二疊紀，是古生代最後的地質時代。旅途中有甚麼疑難就問我吧。相信我們將會是最佳拍檔！";
+        dialog_FG_P1.Text_SC = "你選擇了二疊紀，是古生代最後的地質時代。旅途中有甚麼疑難就問我吧。相信我們將會是最佳拍檔！";
+        dialog_FG_P1.Text_EN = "You picked the Permian, the last geological period of the Paleozoic era.<br>Just ask me questions if you have any. Trust me, we will be the best partner ever!";
         firstGreeting_Permian.Add(dialog_FG_P1);
         ConfigData_DialogBox dialog_FG_P2 = new ConfigData_DialogBox();
         dialog_FG_P2.ByWhom = "DRO";
         dialog_FG_P2.Text_TC = "（深呼吸） 呼，空氣清新，一起開展一段刺激的旅程吧！嗯…這裡很溫暖，還挺乾燥的。";
+        dialog_FG_P2.Text_SC = "（深呼吸） 呼，空气清新，一起开展一段刺激的旅程吧！嗯…这里很温暖，还挺干燥的。";
+        dialog_FG_P2.Text_EN = "(yawning) Fresh air!! What an exciting trip!Hmm…It's warm and dry here.";
         firstGreeting_Permian.Add(dialog_FG_P2);
 
         //-------

@@ -132,7 +132,15 @@ public class DialogWriter : MonoBehaviour
 
         public bool IsActive()
         {
-            return characterIndex < textToWrite.Length;
+            //return characterIndex < textToWrite.Length;
+            if (!string.IsNullOrEmpty(textToWrite) && !string.IsNullOrWhiteSpace(textToWrite))
+            {
+                return characterIndex < textToWrite.Length;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public void WriteAllAndDestroy()
