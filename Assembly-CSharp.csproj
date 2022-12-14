@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\2D RPG Kit\Scripts\CompleteEvent.cs" />
     <Compile Include="Assets\Scripts\CommonUI\UIManager.cs" />
+    <Compile Include="Assets\Scripts\IntroEnd\IntroObject_Egg.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\RewardScreen.cs" />
     <Compile Include="Assets\Scripts\CommonUI\MinimapManager.cs" />
     <Compile Include="Assets\FlexReader\Mapping\MapperBase.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="Assets\2D RPG Kit\Scripts\Chest.cs" />
     <Compile Include="Assets\FlexReader\Mapping\IGenerator.cs" />
     <Compile Include="Assets\Scripts\IntroEnd\EndVideoManager.cs" />
+    <Compile Include="Assets\Scripts\IntroEnd\IntroObject_BlackBar.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\PlayerLoader.cs" />
     <Compile Include="Assets\FlexReader\Mapping\Mapping.cs" />
     <Compile Include="Assets\Coffee\UIExtensions\UIEffect\Scripts\UIHsvModifier.cs" />
@@ -108,6 +110,7 @@
     <Compile Include="Assets\FlexReader\Demo\Scripts\FlexLoader.cs" />
     <Compile Include="Assets\Scripts\Character\DroneController.cs" />
     <Compile Include="Assets\Scripts\MainManger.cs" />
+    <Compile Include="Assets\Scripts\IntroEnd\IntroObject_Boss.cs" />
     <Compile Include="Assets\FlexReader\Demo\Scripts\Loading.cs" />
     <Compile Include="Assets\2D RPG Kit\Touch Support\CrossPlatformInput\Scripts\TouchPad.cs" />
     <Compile Include="Assets\Scripts\ConversationMode\ConversationModeAvatarObject.cs" />
@@ -194,6 +197,7 @@
     <Compile Include="Assets\Coffee\UIExtensions\UIEffect\Scripts\UIDissolve.cs" />
     <Compile Include="Assets\Scripts\CollectionBook\CollectionBookBossObject.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\TeleportTo.cs" />
+    <Compile Include="Assets\Scripts\IntroEnd\IntroObject_CharacterGroup.cs" />
     <Compile Include="Assets\Scripts\CommonUI\ViewBoxManager.cs" />
     <Compile Include="Assets\Scripts\Map\Boss01Manager.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleCharacter.cs" />
@@ -217,10 +221,7 @@
     <Compile Include="Assets\2D RPG Kit\Scripts\DamageNumber.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleNotification.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\QuestManager.cs" />
-    <Compile Include="Assets\Scripts\IntroEnd\IntroObject_Egg.cs" />
-    <Compile Include="Assets\Scripts\IntroEnd\IntroObject_Boss.cs" />
-    <Compile Include="Assets\Scripts\IntroEnd\IntroObject_CharacterGroup.cs" />
-    <Compile Include="Assets\Scripts\IntroEnd\IntroObject_BlackBar.cs" />
+    <Compile Include="Assets\Scripts\CommonUI\ConfirmButtonControl.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Coffee\UIExtensions\UIEffect\Shaders\UI-Effect-Shiny.shader" />

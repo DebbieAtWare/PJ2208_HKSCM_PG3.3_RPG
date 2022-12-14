@@ -84,6 +84,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7440802218051039963}
+  - component: {fileID: 7422809868727259851}
+  - component: {fileID: 1070330733980132179}
   m_Layer: 5
   m_Name: ConfirmButton
   m_TagString: Untagged
@@ -113,6 +115,34 @@ RectTransform:
   m_AnchoredPosition: {x: 420, y: -164}
   m_SizeDelta: {x: 41.5, y: 69}
   m_Pivot: {x: 0.5, y: 1}
+--- !u!114 &7422809868727259851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7440802218051039964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfc76a13baf8b2848a120b7afdb4521c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasGroup: {fileID: 1070330733980132179}
+  arrowRect: {fileID: 3606768356182850605}
+  frontRect: {fileID: 1537011077485731016}
+  isAutoPlay: 0
+--- !u!225 &1070330733980132179
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7440802218051039964}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &7440802218508081760
 GameObject:
   m_ObjectHideFlags: 0

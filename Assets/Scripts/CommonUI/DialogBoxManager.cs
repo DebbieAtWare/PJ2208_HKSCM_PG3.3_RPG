@@ -15,6 +15,7 @@ public class DialogBoxManager : MonoBehaviour
     public Image profilePic;
     public CanvasGroup supportImgCanvasGrp;
     public RawImage supportImg;
+    public ConfirmButtonControl confirmBtnControl;
 
     [Header("NormapGrp")]
     public GameObject normalGrpObj; 
@@ -146,6 +147,9 @@ public class DialogBoxManager : MonoBehaviour
         dialogBoxGrp.SetActive(true);
         normalGrpObj.SetActive(true);
         controlGrpObj.SetActive(false);
+        CancelInvoke("InvokeShowConfirmBtn");
+        confirmBtnControl.SetAlpha(0, 0);
+        Invoke("InvokeShowConfirmBtn", 1f);
 
         if (!string.IsNullOrEmpty(dialogBox.ByWhom) && !string.IsNullOrWhiteSpace(dialogBox.ByWhom))
         {
@@ -329,6 +333,11 @@ public class DialogBoxManager : MonoBehaviour
         }
     }
 
+    void InvokeShowConfirmBtn()
+    {
+        confirmBtnControl.SetAlpha(1, 0);
+    }
+
     void OnDialogLineEnd()
     {
         if (onDialogEndCallback != null)
@@ -341,6 +350,7 @@ public class DialogBoxManager : MonoBehaviour
     public void HideDialog()
     {
         dialogBoxGrp.SetActive(false);
+        confirmBtnControl.SetAlpha(0, 0);
     }
 
     //------
@@ -352,11 +362,13 @@ public class DialogBoxManager : MonoBehaviour
         dialogBoxGrp.SetActive(true);
         normalGrpObj.SetActive(false);
         controlGrpObj.SetActive(true);
+        confirmBtnControl.SetAlpha(1, 0);
     }
 
     public void HideControl()
     {
         controlGrpObj.SetActive(false);
+        confirmBtnControl.SetAlpha(0, 0);
     }
 
     //------
