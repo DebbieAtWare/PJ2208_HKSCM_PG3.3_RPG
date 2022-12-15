@@ -59,13 +59,7 @@ public class OptionManager : MonoBehaviour
 
     [Header("Reset Group")]
     public GameObject resetGrp_Root;
-    public List<TextMeshProUGUI> resetGrp_OptionTexts_TC = new List<TextMeshProUGUI>();
-    public List<TextMeshProUGUI> resetGrp_OptionTexts_SC = new List<TextMeshProUGUI>();
-    public List<TextMeshProUGUI> resetGrp_OptionTexts_EN = new List<TextMeshProUGUI>();
     public List<GameObject> resetGrp_ArrowObjs = new List<GameObject>();
-    public TextMeshProUGUI resetGrp_Text_TC;
-    public TextMeshProUGUI resetGrp_Text_SC;
-    public TextMeshProUGUI resetGrp_Text_EN;
     public int resetGrp_CurrIndex = 0;
 
     [Header("Language")]
@@ -253,21 +247,6 @@ public class OptionManager : MonoBehaviour
                     resetGrp_CurrIndex = 0;
                     resetGrp_ArrowObjs[resetGrp_CurrIndex].SetActive(true);
                 }
-                else if (val == -1)
-                {
-                    resetGrp_ArrowObjs[resetGrp_CurrIndex].SetActive(false);
-                    resetGrp_CurrIndex = 2;
-                    resetGrp_ArrowObjs[resetGrp_CurrIndex].SetActive(true);
-                }
-            }
-            else if (resetGrp_CurrIndex == 2)
-            {
-                if (val == 1)
-                {
-                    resetGrp_ArrowObjs[resetGrp_CurrIndex].SetActive(false);
-                    resetGrp_CurrIndex = 1;
-                    resetGrp_ArrowObjs[resetGrp_CurrIndex].SetActive(true);
-                }
             }
         }
     }
@@ -327,14 +306,10 @@ public class OptionManager : MonoBehaviour
             SoundManager.instance.Play_Input(2);
             if (resetGrp_CurrIndex == 0)
             {
-                ChangeControl_Main();
-            }
-            else if (resetGrp_CurrIndex == 1)
-            {
                 //TODO reset game !!!!!
                 Close_ResetAll();
             }
-            else if (resetGrp_CurrIndex == 2)
+            else if (resetGrp_CurrIndex == 1)
             {
                 Close_ResetAll();
             }
@@ -409,7 +384,9 @@ public class OptionManager : MonoBehaviour
         controlGrp_Root.SetActive(false);
         controlGrp_CurrIndex = 0;
         resetGrp_Root.SetActive(false);
-        resetGrp_CurrIndex = 0;
+        resetGrp_CurrIndex = 1;
+        resetGrp_ArrowObjs[0].SetActive(false);
+        resetGrp_ArrowObjs[1].SetActive(true);
         for (int i = 0; i < mainGrp_ArrowObjs.Count; i++)
         {
             if (i == mainGrp_CurrIndex)
