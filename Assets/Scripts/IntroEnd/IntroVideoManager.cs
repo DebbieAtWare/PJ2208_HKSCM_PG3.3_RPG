@@ -316,8 +316,8 @@ public class IntroVideoManager : MonoBehaviour
             //fade in pixelate map
             pixelateImg2.texture = mapFirstFrameTexture;
             pixelateImg2.material.SetFloat("_PixelateSize", 50f);
-            pixelateImg2.DOFade(1f, 1f);
-            yield return new WaitForSeconds(1f);
+            pixelateImg2.DOFade(1f, 0.5f);
+            yield return new WaitForSeconds(0.5f);
             //depixelate map
             mapObj.AlphaAni(1f, 0f);
             pixelateImg1.DOFade(0f, 0f);
@@ -422,15 +422,15 @@ public class IntroVideoManager : MonoBehaviour
             tex.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
             tex.Apply();
             pixelateImg1.texture = tex;
-            pixelateImg1.DOFade(1f, 1f);
-            pixelateImg1.material.DOFloat(50f, "_PixelateSize", 1f).From(512f).SetEase(Ease.Linear);
+            pixelateImg1.DOFade(1f, 0.8f);
+            pixelateImg1.material.DOFloat(200f, "_PixelateSize", 0.8f).From(512f).SetEase(Ease.Linear);
             SoundManager.instance.Play_SFX(11);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.8f);
             //fade in pixelate game lab scene
             pixelateImg2.texture = labBlackBarTexture;
-            pixelateImg2.material.SetFloat("_PixelateSize", 50f);
-            pixelateImg2.DOFade(1f, 1f);
-            yield return new WaitForSeconds(1f);
+            pixelateImg2.material.SetFloat("_PixelateSize", 200f);
+            pixelateImg2.DOFade(1f, 0.5f);
+            yield return new WaitForSeconds(0.5f);
             //depixelate lab
             labObj.AlphaAni(0, 0);
             mapObj.AlphaAni(0, 0);
@@ -440,8 +440,8 @@ public class IntroVideoManager : MonoBehaviour
             characterGrp2.AlphaAni(0, 0);
             blackBarObj.AlphaAni(1f, 0f);
             pixelateImg1.DOFade(0f, 0f);
-            pixelateImg2.material.DOFloat(512f, "_PixelateSize", 1f).From(50f).SetEase(Ease.Linear);
-            pixelateImg2.DOFade(0f, 1f);
+            pixelateImg2.material.DOFloat(512f, "_PixelateSize", 0.8f).From(200f).SetEase(Ease.Linear);
+            pixelateImg2.DOFade(0f, 0.8f);
             yield return new WaitForSeconds(0.5f);
             currStage = IntroVideoStage.Page10;
             ShowDialog(commonUtils.introVideoDialogs[9]);

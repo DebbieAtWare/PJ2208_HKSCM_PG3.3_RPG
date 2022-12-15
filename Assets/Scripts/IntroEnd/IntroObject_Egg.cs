@@ -7,6 +7,7 @@ using DG.Tweening;
 
 public class IntroObject_Egg : MonoBehaviour
 {
+    public CanvasGroup canvasGrp;
     public Image img;
     public List<Sprite> sprites;
     public TextMeshProUGUI text_TC_L;
@@ -35,10 +36,12 @@ public class IntroObject_Egg : MonoBehaviour
         text_SC_R.alpha = 0;
         text_EN_R.alpha = 0;
         AlphaAni(0, 0);
+        
     }
 
     public void AlphaAni(float val, float aniTime)
     {
+        canvasGrp.DOFade(val, aniTime);
         img.DOFade(val, aniTime);
         if (val == 0)
         {

@@ -93,7 +93,6 @@ public class IntroObject_Boss : MonoBehaviour
     {
         yield return new WaitForSeconds(0.7f);
         arrowGrp1.SetActive(true);
-        yield return new WaitForSeconds(0.3f);
         arrowGrp2.SetActive(true);
     }
 
