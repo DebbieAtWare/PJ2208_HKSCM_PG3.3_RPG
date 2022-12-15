@@ -122,6 +122,7 @@
     <Compile Include="Assets\Coffee\UIExtensions\UIEffect\Scripts\Common\EffectPlayer.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\GameOver.cs" />
     <Compile Include="Assets\Coffee\UIExtensions\UIEffect\Scripts\UIEffectCapturedImage.cs" />
+    <Compile Include="Assets\Scripts\CommonUI\ConfirmButtonControl.cs" />
     <Compile Include="Assets\Scripts\IntroEnd\IntroVideoManager.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\DestroyOverLifetime.cs" />
     <Compile Include="Assets\Coffee\UIExtensions\UIEffect\Scripts\Common\MaterialCache.cs" />
@@ -221,7 +222,7 @@
     <Compile Include="Assets\2D RPG Kit\Scripts\DamageNumber.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleNotification.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\QuestManager.cs" />
-    <Compile Include="Assets\Scripts\CommonUI\ConfirmButtonControl.cs" />
+    <Compile Include="Assets\Scripts\CollectionBook\CollectionBookFeatureObject.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Coffee\UIExtensions\UIEffect\Shaders\UI-Effect-Shiny.shader" />
