@@ -70,6 +70,9 @@ public class IntroVideoManager : MonoBehaviour
     public TextMeshProUGUI text_SC;
     public TextMeshProUGUI text_EN;
 
+    [Header("Confirm")]
+    public ConfirmButtonControl confirmBtnControl;
+
     [Header("Curr")]
     public IntroVideoStage currStage;
 
@@ -490,6 +493,14 @@ public class IntroVideoManager : MonoBehaviour
         {
             dialogWriterSingle = DialogWriter.AddWriter_Static(text_EN, dialogBox.Text_EN, 0.05f, true, OnDialogLineEnd);
         }
+        CancelInvoke("InvokeShowConfirmBtn");
+        confirmBtnControl.SetAlpha(0, 0);
+        Invoke("InvokeShowConfirmBtn", 1f);
+    }
+
+    void InvokeShowConfirmBtn()
+    {
+        confirmBtnControl.SetAlpha(1, 0);
     }
 
     void OnDialogLineEnd()
@@ -507,6 +518,7 @@ public class IntroVideoManager : MonoBehaviour
         text_TC.text = "";
         text_SC.text = "";
         text_EN.text = "";
+        confirmBtnControl.SetAlpha(0, 0);
     }
 
     private void Update()

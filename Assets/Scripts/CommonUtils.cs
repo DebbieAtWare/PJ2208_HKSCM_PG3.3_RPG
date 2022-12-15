@@ -477,7 +477,9 @@ public class CommonUtils : MonoBehaviour
         boss1.Name_TC = "林蜥";
         boss1.Name_SC = "林蜥";
         boss1.Name_EN = "<i>Hylonomus</i>";
-        boss1.DescriptionTag_TC = "體積：約20厘米";
+        boss1.DescriptionTag_TC = "身長：約20厘米";
+        boss1.DescriptionTag_SC = "身长：约20厘米";
+        boss1.DescriptionTag_EN = "Length: About 20 cm";
         boss1.IsCollectable = true;
         boss1.IsFirstMeetDone = false;
         boss1.IsSuccessCollectDone = false;
@@ -544,7 +546,9 @@ public class CommonUtils : MonoBehaviour
         boss2.Name_TC = "異齒龍";
         boss2.Name_SC = "异齿龙";
         boss2.Name_EN = "<i>Dimetrodon</i>";
-        boss2.DescriptionTag_TC = "體積：約3.5米";
+        boss2.DescriptionTag_TC = "身長：約3.5米";
+        boss2.DescriptionTag_SC = "身长：约3.5米";
+        boss2.DescriptionTag_EN = "Length: About 3.5m";
         boss2.IsCollectable = true;
         boss2.IsFirstMeetDone = false;
         boss2.IsSuccessCollectDone = false;
@@ -590,7 +594,9 @@ public class CommonUtils : MonoBehaviour
         boss3.Name_TC = "水龍獸";
         boss3.Name_SC = "水龙兽";
         boss3.Name_EN = "<i>Lystrosaurus</i>";
-        boss3.DescriptionTag_TC = "體積：約0.9米";
+        boss3.DescriptionTag_TC = "身長：約1米";
+        boss3.DescriptionTag_SC = "身长：约1米";
+        boss3.DescriptionTag_EN = "Length: About 1m";
         boss3.IsCollectable = true;
         boss3.IsFirstMeetDone = false;
         boss3.IsSuccessCollectDone = false;

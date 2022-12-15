@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using System;
 
 public class ConversationModeManager : MonoBehaviour
 {
@@ -42,16 +43,40 @@ public class ConversationModeManager : MonoBehaviour
 
     [Header("Tag")]
     public CanvasGroup tagCanvasGrp;
+    public RectTransform tagRect;
     public TextMeshProUGUI tag_NameText_TC;
     public TextMeshProUGUI tag_DescriptionText_TC;
+    public TextMeshProUGUI tag_NameText_SC;
+    public TextMeshProUGUI tag_DescriptionText_SC;
+    public TextMeshProUGUI tag_NameText_EN;
+    public TextMeshProUGUI tag_DescriptionText_EN;
     public Image tag_BadgeImg;
     public List<Sprite> tag_BadgeSprites = new List<Sprite>();
 
     int currBossIndex;
 
-    void Start()
+    CommonUtils commonUtils;
+
+    //for share in multiple scenes
+    void Awake()
     {
-        instance = this;
+        Debug.Log("ConversationModeManager Awake");
+        if (instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
+    public void Setup()
+    {
+        commonUtils = CommonUtils.instance;
+        commonUtils.onChangeLangCallback += CommonUtils_OnChangeLang;
+
         bossPosTargets_Center.Add(new Vector2(0f, 110f));
         bossPosTargets_Center.Add(new Vector2(0f, 65f));
         bossPosTargets_Center.Add(new Vector2(0f, 110f));
@@ -70,6 +95,46 @@ public class ConversationModeManager : MonoBehaviour
         bossScaleTargets_Off.Add(new Vector3(1.1f, 1.1f, 1.1f));
         bossScaleTargets_Off.Add(new Vector3(1.1f, 1.1f, 1.1f));
         bossScaleTargets_Off.Add(new Vector3(1.1f, 1.1f, 1.1f));
+        ChangeLanguage();
+    }
+
+    private void CommonUtils_OnChangeLang()
+    {
+        ChangeLanguage();
+    }
+
+    void ChangeLanguage()
+    {
+        if (commonUtils.currLang == Language.TC)
+        {
+            tag_NameText_TC.gameObject.SetActive(true);
+            tag_DescriptionText_TC.gameObject.SetActive(true);
+            tag_NameText_SC.gameObject.SetActive(false);
+            tag_DescriptionText_SC.gameObject.SetActive(false);
+            tag_NameText_EN.gameObject.SetActive(false);
+            tag_DescriptionText_EN.gameObject.SetActive(false);
+            tagRect.sizeDelta = new Vector2(375, 125);
+        }
+        else if (commonUtils.currLang == Language.SC)
+        {
+            tag_NameText_TC.gameObject.SetActive(false);
+            tag_DescriptionText_TC.gameObject.SetActive(false);
+            tag_NameText_SC.gameObject.SetActive(true);
+            tag_DescriptionText_SC.gameObject.SetActive(true);
+            tag_NameText_EN.gameObject.SetActive(false);
+            tag_DescriptionText_EN.gameObject.SetActive(false);
+            tagRect.sizeDelta = new Vector2(375, 125);
+        }
+        if (commonUtils.currLang == Language.EN)
+        {
+            tag_NameText_TC.gameObject.SetActive(false);
+            tag_DescriptionText_TC.gameObject.SetActive(false);
+            tag_NameText_SC.gameObject.SetActive(false);
+            tag_DescriptionText_SC.gameObject.SetActive(false);
+            tag_NameText_EN.gameObject.SetActive(true);
+            tag_DescriptionText_EN.gameObject.SetActive(true);
+            tagRect.sizeDelta = new Vector2(430, 125);
+        }
     }
 
     void BkgLoopAni()
@@ -112,7 +177,7 @@ public class ConversationModeManager : MonoBehaviour
     }
 
 
-    public void Ani_Start(CharacterID id, string name_TC, string tag_TC)
+    public void Ani_Start(CharacterID id, ConfigData_Character info)
     {
         //setup
         conversationModeCanvasGrp.gameObject.SetActive(true);
@@ -122,8 +187,12 @@ public class ConversationModeManager : MonoBehaviour
         currBkgTopIndex = bkgTopSprites.Count - 1;
         bkgTop.sprite = bkgTopSprites[currBkgTopIndex];
         bkgTop.DOFade(1, 0);
-        tag_NameText_TC.text = name_TC;
-        tag_DescriptionText_TC.text = tag_TC;
+        tag_NameText_TC.text = info.Name_TC;
+        tag_DescriptionText_TC.text = info.DescriptionTag_TC;
+        tag_NameText_SC.text = info.Name_SC;
+        tag_DescriptionText_SC.text = info.DescriptionTag_SC;
+        tag_NameText_EN.text = info.Name_EN;
+        tag_DescriptionText_EN.text = info.DescriptionTag_EN;
         tagCanvasGrp.alpha = 0;
         avatarGrpRect.anchoredPosition = avatarGrpPosTarget_Off;
         if (id == CharacterID.M01)

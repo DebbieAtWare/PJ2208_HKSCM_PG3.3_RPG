@@ -280,6 +280,7 @@ public class MainManger : MonoBehaviour
         IntroVideoManager.instance.Setup();
         EndVideoManager.instance.Setup();
         ViewBoxManager.instance.Setup();
+        ConversationModeManager.instance.Setup();
 
         StatusBarManager.instance.Hide_Carbon(0f);
         StatusBarManager.instance.Hide_Permian(0f);

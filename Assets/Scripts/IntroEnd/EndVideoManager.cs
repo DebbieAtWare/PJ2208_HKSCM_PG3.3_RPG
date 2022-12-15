@@ -31,6 +31,7 @@ public class EndVideoManager : MonoBehaviour
 
     [Header("Main")]
     public RectTransform blackBkgRect;
+    public ConfirmButtonControl confirmBtnControl;
 
     [Header("Page1")]
     public RectTransform page1_bkgRect_Carbon;
@@ -274,6 +275,9 @@ public class EndVideoManager : MonoBehaviour
         page1_bossObj1.UnlockDirect();
         page1_bossObj2.UnlockDirect();
         page1_bossObj3.UnlockDirect();
+        CancelInvoke("InvokeShowConfirmBtn");
+        confirmBtnControl.SetAlpha(0, 0);
+        Invoke("InvokeShowConfirmBtn", 1f);
         yield return new WaitForSeconds(aniTime_Text_SlowIn);
         currStage = EndVideoStage.Page1_EndWaiting;
     }
@@ -311,6 +315,8 @@ public class EndVideoManager : MonoBehaviour
     {
         StopCoroutine(page1_Coroutine_Play);
         StopCoroutine(page1_Coroutine_FastIn);
+        CancelInvoke("InvokeShowConfirmBtn");
+        confirmBtnControl.SetAlpha(0, 0);
         if (commonUtils.currLang == Language.TC)
         {
             page1_textRect_TC.DOAnchorPos(textPosTarget_Up, aniTime_Text_Out).SetEase(Ease.Linear);
@@ -341,6 +347,9 @@ public class EndVideoManager : MonoBehaviour
             page2_textRect_EN.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
         }
         page2_imgRect.DOAnchorPos(imgPosTarget_On, aniTime_Img_SlowIn).SetEase(Ease.Linear);
+        CancelInvoke("InvokeShowConfirmBtn");
+        confirmBtnControl.SetAlpha(0, 0);
+        Invoke("InvokeShowConfirmBtn", 1f);
         yield return new WaitForSeconds(aniTime_Text_SlowIn);
         currStage = EndVideoStage.Page2_EndWaiting;
     }
@@ -376,6 +385,8 @@ public class EndVideoManager : MonoBehaviour
     {
         StopCoroutine(page2_Coroutine_Play);
         StopCoroutine(page2_Coroutine_FastIn);
+        CancelInvoke("InvokeShowConfirmBtn");
+        confirmBtnControl.SetAlpha(0, 0);
         if (commonUtils.currLang == Language.TC)
         {
             page2_textRect_TC.DOAnchorPos(textPosTarget_Up, aniTime_Text_Out).SetEase(Ease.Linear);
@@ -406,6 +417,9 @@ public class EndVideoManager : MonoBehaviour
             page3_textRect_EN.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
         }
         page3_imgRect.DOAnchorPos(imgPosTarget_On, aniTime_Img_SlowIn).SetEase(Ease.Linear);
+        CancelInvoke("InvokeShowConfirmBtn");
+        confirmBtnControl.SetAlpha(0, 0);
+        Invoke("InvokeShowConfirmBtn", 1f);
         yield return new WaitForSeconds(aniTime_Text_SlowIn);
         currStage = EndVideoStage.Page3_EndWaiting;
     }
@@ -441,6 +455,8 @@ public class EndVideoManager : MonoBehaviour
     {
         StopCoroutine(page3_Coroutine_Play);
         StopCoroutine(page3_Coroutine_FastIn);
+        CancelInvoke("InvokeShowConfirmBtn");
+        confirmBtnControl.SetAlpha(0, 0);
         if (commonUtils.currLang == Language.TC)
         {
             page3_textRect_TC.DOAnchorPos(textPosTarget_Up, aniTime_Text_Out).SetEase(Ease.Linear);
@@ -471,6 +487,9 @@ public class EndVideoManager : MonoBehaviour
             page4_textRect_EN.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
         }
         page4_imgRect.DOAnchorPos(imgPosTarget_On, aniTime_Img_SlowIn).SetEase(Ease.Linear);
+        CancelInvoke("InvokeShowConfirmBtn");
+        confirmBtnControl.SetAlpha(0, 0);
+        Invoke("InvokeShowConfirmBtn", 1f);
         yield return new WaitForSeconds(aniTime_Text_SlowIn);
         currStage = EndVideoStage.Page4_EndWaiting;
     }
@@ -559,5 +578,12 @@ public class EndVideoManager : MonoBehaviour
         page4_textRect_EN.anchoredPosition = textPosTarget_Down;
         page4_imgRect.anchoredPosition = imgPosTarget_Off;
         page4_bossObj.ResetAll();
+        CancelInvoke("InvokeShowConfirmBtn");
+        confirmBtnControl.SetAlpha(0, 0);
+    }
+
+    void InvokeShowConfirmBtn()
+    {
+        confirmBtnControl.SetAlpha(1, 0);
     }
 }
