@@ -58,16 +58,27 @@ public class CollectionBookManager : MonoBehaviour
     public GameObject detail_Title_NPC_EN;
     public List<CollectionBookBossObject> detail_BossObjs = new List<CollectionBookBossObject>();
     public List<CollectionBookNPCObject> detail_NPCObjs = new List<CollectionBookNPCObject>();
-    public TextMeshProUGUI detail_Text_L_TC;
-    public TextMeshProUGUI detail_Text_L_SC;
-    public TextMeshProUGUI detail_Text_L_EN;
-    public TextMeshProUGUI detail_Text_R_TC;
-    public TextMeshProUGUI detail_Text_R_SC;
-    public TextMeshProUGUI detail_Text_R_EN;
+    public TextMeshProUGUI detail_Info_TC;
+    public TextMeshProUGUI detail_Info_SC;
+    public TextMeshProUGUI detail_Info_EN;
+    public TextMeshProUGUI detail_Feature_Title_TC;
+    public TextMeshProUGUI detail_Feature_Title_SC;
+    public TextMeshProUGUI detail_Feature_Title_EN;
+    public GameObject detail_FeatureObjsRoot_TC;
+    public GameObject detail_FeatureObjsRoot_SC;
+    public GameObject detail_FeatureObjsRoot_EN;
+    public List<CollectionBookFeatureObject> detail_FeatureObjs_TC = new List<CollectionBookFeatureObject>();
+    public List<CollectionBookFeatureObject> detail_FeatureObjs_SC = new List<CollectionBookFeatureObject>();
+    public List<CollectionBookFeatureObject> detail_FeatureObjs_EN = new List<CollectionBookFeatureObject>();
     public GameObject detail_ExitFrameObj;
     public GameObject detail_ExitText_TC;
     public GameObject detail_ExitText_SC;
     public GameObject detail_ExitText_EN;
+    public Image detail_ArrowL;
+    public Image detail_ArrowR;
+    public Sprite detail_ArrowSprite_On;
+    public Sprite detail_ArrowSprite_Off;
+    public int detail_CurrPage = 0;
 
     [Header("Success")]
     public GameObject success_RootObj;
@@ -345,7 +356,27 @@ public class CollectionBookManager : MonoBehaviour
                     }
                 }
             }
-            
+            else if (currStage == CollectionBookStage.Detail)
+            {
+                SoundManager.instance.Play_Input(0);
+                if (val == -1)
+                {
+                    if (detail_CurrPage == 1)
+                    {
+                        detail_CurrPage = 0;
+                        //use change lang function, to switch detail info and feature page
+                        ChangeLanguage();
+                    }
+                }
+                else if (val == 1)
+                {
+                    if (detail_CurrPage == 0)
+                    {
+                        detail_CurrPage = 1;
+                        ChangeLanguage();
+                    }
+                }
+            }
         }
     }
 
@@ -533,12 +564,43 @@ public class CollectionBookManager : MonoBehaviour
             }
         }
         
-        detail_Text_L_TC.text = character.Info1_TC;
-        detail_Text_R_TC.text = character.Info2_TC;
-        detail_Text_L_SC.text = character.Info1_SC;
-        detail_Text_R_SC.text = character.Info2_SC;
-        detail_Text_L_EN.text = character.Info1_EN;
-        detail_Text_R_EN.text = character.Info2_EN;
+        detail_Info_TC.text = character.InfoText.Text_TC;
+        detail_Info_SC.text = character.InfoText.Text_SC;
+        detail_Info_EN.text = character.InfoText.Text_EN;
+        for (int i = 0; i < detail_FeatureObjs_TC.Count; i++)
+        {
+            if (i < character.FeatureTexts.Count)
+            {
+                detail_FeatureObjs_TC[i].Setup(character.FeatureTexts[i].Text_TC, 10);
+            }
+            else
+            {
+                detail_FeatureObjs_TC[i].Setup("", 0);
+            }
+        }
+        for (int i = 0; i < detail_FeatureObjs_SC.Count; i++)
+        {
+            if (i < character.FeatureTexts.Count)
+            {
+                detail_FeatureObjs_SC[i].Setup(character.FeatureTexts[i].Text_SC, 10);
+            }
+            else
+            {
+                detail_FeatureObjs_SC[i].Setup("", 0);
+            }
+        }
+        for (int i = 0; i < detail_FeatureObjs_EN.Count; i++)
+        {
+            if (i < character.FeatureTexts.Count)
+            {
+                detail_FeatureObjs_EN[i].Setup(character.FeatureTexts[i].Text_EN, 10);
+            }
+            else
+            {
+                detail_FeatureObjs_EN[i].Setup("", 0);
+            }
+        }
+        detail_CurrPage = 0;
         ChangeLanguage();
         
         detail_ExitFrameObj.SetActive(true);
@@ -818,12 +880,30 @@ public class CollectionBookManager : MonoBehaviour
             detail_Title_Boss_EN.SetActive(false);
             detail_Title_NPC_SC.SetActive(false);
             detail_Title_NPC_EN.SetActive(false);
-            detail_Text_L_TC.gameObject.SetActive(true);
-            detail_Text_L_SC.gameObject.SetActive(false);
-            detail_Text_L_EN.gameObject.SetActive(false);
-            detail_Text_R_TC.gameObject.SetActive(true);
-            detail_Text_R_SC.gameObject.SetActive(false);
-            detail_Text_R_EN.gameObject.SetActive(false);
+            if (detail_CurrPage == 0)
+            {
+                detail_Info_TC.gameObject.SetActive(true);
+                detail_Info_SC.gameObject.SetActive(false);
+                detail_Info_EN.gameObject.SetActive(false);
+                detail_Feature_Title_TC.gameObject.SetActive(false);
+                detail_Feature_Title_SC.gameObject.SetActive(false);
+                detail_Feature_Title_EN.gameObject.SetActive(false);
+                detail_FeatureObjsRoot_TC.gameObject.SetActive(false);
+                detail_FeatureObjsRoot_SC.gameObject.SetActive(false);
+                detail_FeatureObjsRoot_EN.gameObject.SetActive(false);
+            }
+            else if (detail_CurrPage == 1)
+            {
+                detail_Info_TC.gameObject.SetActive(false);
+                detail_Info_SC.gameObject.SetActive(false);
+                detail_Info_EN.gameObject.SetActive(false);
+                detail_Feature_Title_TC.gameObject.SetActive(true);
+                detail_Feature_Title_SC.gameObject.SetActive(false);
+                detail_Feature_Title_EN.gameObject.SetActive(false);
+                detail_FeatureObjsRoot_TC.gameObject.SetActive(true);
+                detail_FeatureObjsRoot_SC.gameObject.SetActive(false);
+                detail_FeatureObjsRoot_EN.gameObject.SetActive(false);
+            }
             detail_ExitText_TC.SetActive(true);
             detail_ExitText_SC.SetActive(false);
             detail_ExitText_EN.SetActive(false);
@@ -859,12 +939,30 @@ public class CollectionBookManager : MonoBehaviour
             detail_Title_Boss_EN.SetActive(false);
             detail_Title_NPC_TC.SetActive(false);
             detail_Title_NPC_EN.SetActive(false);
-            detail_Text_L_TC.gameObject.SetActive(false);
-            detail_Text_L_SC.gameObject.SetActive(true);
-            detail_Text_L_EN.gameObject.SetActive(false);
-            detail_Text_R_TC.gameObject.SetActive(false);
-            detail_Text_R_SC.gameObject.SetActive(true);
-            detail_Text_R_EN.gameObject.SetActive(false);
+            if (detail_CurrPage == 0)
+            {
+                detail_Info_TC.gameObject.SetActive(false);
+                detail_Info_SC.gameObject.SetActive(true);
+                detail_Info_EN.gameObject.SetActive(false);
+                detail_Feature_Title_TC.gameObject.SetActive(false);
+                detail_Feature_Title_SC.gameObject.SetActive(false);
+                detail_Feature_Title_EN.gameObject.SetActive(false);
+                detail_FeatureObjsRoot_TC.gameObject.SetActive(false);
+                detail_FeatureObjsRoot_SC.gameObject.SetActive(false);
+                detail_FeatureObjsRoot_EN.gameObject.SetActive(false);
+            }
+            else if (detail_CurrPage == 1)
+            {
+                detail_Info_TC.gameObject.SetActive(false);
+                detail_Info_SC.gameObject.SetActive(false);
+                detail_Info_EN.gameObject.SetActive(false);
+                detail_Feature_Title_TC.gameObject.SetActive(false);
+                detail_Feature_Title_SC.gameObject.SetActive(true);
+                detail_Feature_Title_EN.gameObject.SetActive(false);
+                detail_FeatureObjsRoot_TC.gameObject.SetActive(false);
+                detail_FeatureObjsRoot_SC.gameObject.SetActive(true);
+                detail_FeatureObjsRoot_EN.gameObject.SetActive(false);
+            }
             detail_ExitText_TC.SetActive(false);
             detail_ExitText_SC.SetActive(true);
             detail_ExitText_EN.SetActive(false);
@@ -900,15 +998,46 @@ public class CollectionBookManager : MonoBehaviour
             detail_Title_Boss_SC.SetActive(false);
             detail_Title_NPC_TC.SetActive(false);
             detail_Title_NPC_SC.SetActive(false);
-            detail_Text_L_TC.gameObject.SetActive(false);
-            detail_Text_L_SC.gameObject.SetActive(false);
-            detail_Text_L_EN.gameObject.SetActive(true);
-            detail_Text_R_TC.gameObject.SetActive(false);
-            detail_Text_R_SC.gameObject.SetActive(false);
-            detail_Text_R_EN.gameObject.SetActive(true);
+            if (detail_CurrPage == 0)
+            {
+                detail_Info_TC.gameObject.SetActive(false);
+                detail_Info_SC.gameObject.SetActive(false);
+                detail_Info_EN.gameObject.SetActive(true);
+                detail_Feature_Title_TC.gameObject.SetActive(false);
+                detail_Feature_Title_SC.gameObject.SetActive(false);
+                detail_Feature_Title_EN.gameObject.SetActive(false);
+                detail_FeatureObjsRoot_TC.gameObject.SetActive(false);
+                detail_FeatureObjsRoot_SC.gameObject.SetActive(false);
+                detail_FeatureObjsRoot_EN.gameObject.SetActive(false);
+            }
+            else if (detail_CurrPage == 1)
+            {
+                detail_Info_TC.gameObject.SetActive(false);
+                detail_Info_SC.gameObject.SetActive(false);
+                detail_Info_EN.gameObject.SetActive(false);
+                detail_Feature_Title_TC.gameObject.SetActive(false);
+                detail_Feature_Title_SC.gameObject.SetActive(false);
+                detail_Feature_Title_EN.gameObject.SetActive(true);
+                detail_FeatureObjsRoot_TC.gameObject.SetActive(false);
+                detail_FeatureObjsRoot_SC.gameObject.SetActive(false);
+                detail_FeatureObjsRoot_EN.gameObject.SetActive(true);
+            }
             detail_ExitText_TC.SetActive(false);
             detail_ExitText_SC.SetActive(false);
             detail_ExitText_EN.SetActive(true);
         }
+
+        //detail page arrow 
+        if (detail_CurrPage == 0)
+        {
+            detail_ArrowL.sprite = detail_ArrowSprite_Off;
+            detail_ArrowR.sprite = detail_ArrowSprite_On;
+        }
+        else if (detail_CurrPage == 1)
+        {
+            detail_ArrowL.sprite = detail_ArrowSprite_On;
+            detail_ArrowR.sprite = detail_ArrowSprite_Off;
+        }
     }
+
 }
