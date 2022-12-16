@@ -405,12 +405,12 @@ public class DialogBoxManager : MonoBehaviour
         {
             supportImg.rectTransform.sizeDelta = new Vector2((supportImgSizeTarget.y * texture.width) / texture.height, supportImgSizeTarget.y);
         }
-        supportImgCanvasGrp.DOFade(1, 0.5f);
+        supportImgCanvasGrp.DOFade(1, 0f);
     }
 
     public void HideSupportImg()
     {
-        supportImgCanvasGrp.DOFade(0, 0.5f).OnComplete(() => supportImgCanvasGrp.gameObject.SetActive(false));
+        supportImgCanvasGrp.DOFade(0, 0f).OnComplete(() => supportImgCanvasGrp.gameObject.SetActive(false));
     }
 
     //------
