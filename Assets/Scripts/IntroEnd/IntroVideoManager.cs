@@ -39,6 +39,9 @@ public class IntroVideoManager : MonoBehaviour
     public delegate void OnVideoFinished();
     public OnVideoFinished onVideoFinishedCallback;
 
+    [Header("Root")]
+    public GameObject root;
+
     [Header("Lab")]
     public IntroObject_Lab labObj;
 
@@ -116,6 +119,7 @@ public class IntroVideoManager : MonoBehaviour
         text_EN.alpha = 0;
 
         currStage = IntroVideoStage.None;
+        root.SetActive(false);
     }
 
     private void InputManager_OnValueChanged_Confirm()
@@ -260,6 +264,7 @@ public class IntroVideoManager : MonoBehaviour
         }
         IEnumerator Ani()
         {
+            root.SetActive(true);
             currStage = IntroVideoStage.Transition_Start;
             SoundManager.instance.FadeOutStop_BGM(1f);
             if (commonUtils.currLang == Language.TC)
@@ -471,6 +476,7 @@ public class IntroVideoManager : MonoBehaviour
         characterGrp2.ResetAll();
         blackBarObj.AlphaAni(0, 0);
         blackBarObj.ResetAll();
+        root.SetActive(false);
         if (onVideoFinishedCallback != null)
         {
             onVideoFinishedCallback.Invoke();

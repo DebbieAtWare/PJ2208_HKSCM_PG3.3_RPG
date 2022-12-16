@@ -21,6 +21,7 @@ public class CollectionBookBossObject : MonoBehaviour
     public Image img_Lock;
     public UIEffect uiEffect_Lock;
     public UIShadow uiShadow_Lock;
+    public CanvasGroup img_Gray;
 
     [Header("Text")]
     public TextMeshProUGUI nameText_TC;
@@ -55,6 +56,7 @@ public class CollectionBookBossObject : MonoBehaviour
         uiShadow_Boss.enabled = false;
         uiEffect_Boss.enabled = false;
         img_Boss.gameObject.SetActive(false);
+        img_Gray.DOFade(0, 0);
         ChangeLanguage(lang);
     }
 
@@ -112,6 +114,7 @@ public class CollectionBookBossObject : MonoBehaviour
         StartCoroutine(Ani());
         IEnumerator Ani()
         {
+            img_Gray.DOFade(0, 0);
             rect.DOScale(new Vector3(1.3f, 1.3f, 1.3f), 0.5f);
             uiEffect_Lock.enabled = true;
             uiShadow_Lock.enabled = true;
@@ -132,12 +135,12 @@ public class CollectionBookBossObject : MonoBehaviour
 
     public void GrayOutAni()
     {
-        img_Lock.DOColor(new Color(0.4f, 0.4f, 0.4f, 1), 0.5f);
-        img_Boss.DOColor(new Color(0.4f, 0.4f, 0.4f, 1), 0.5f);
+        img_Gray.DOFade(1, 0.5f);
     }
 
     public void UnlockDirect()
     {
+        img_Gray.DOFade(0, 0);
         img_Lock.gameObject.SetActive(false);
         img_Boss.gameObject.SetActive(true);
         img_Boss.rectTransform.eulerAngles = new Vector3(0, 0, 0);
@@ -177,5 +180,6 @@ public class CollectionBookBossObject : MonoBehaviour
         uiShadow_Boss.enabled = false;
         uiEffect_Boss.enabled = false;
         img_Boss.gameObject.SetActive(false);
+        img_Gray.DOFade(0, 0);
     }
 }
