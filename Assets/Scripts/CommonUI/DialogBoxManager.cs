@@ -22,11 +22,14 @@ public class DialogBoxManager : MonoBehaviour
     public TextMeshProUGUI text_TC;
     public TextMeshProUGUI text_SC;
     public TextMeshProUGUI text_EN;
+    public RectTransform optionGrpRect;
     public List<TextMeshProUGUI> optionTexts_TC;
     public List<TextMeshProUGUI> optionTexts_SC;
     public List<TextMeshProUGUI> optionTexts_EN;
     public List<GameObject> arrowObjs;
     public DialogWriter.DialogWriterSingle dialogWriterSingle;
+    Vector2 optionGrpPosTarget_OneLine = new Vector2(-12.85f, -20f);
+    Vector2 optionGrpPosTarget_TwoLine = new Vector2(-12.85f, -57f);
 
     [Header("ControlGrp")]
     public GameObject controlGrpObj;
@@ -104,6 +107,14 @@ public class DialogBoxManager : MonoBehaviour
             {
                 langObjs_EN[i].SetActive(false);
             }
+            if (text_TC.preferredHeight < 80)
+            {
+                optionGrpRect.anchoredPosition = optionGrpPosTarget_OneLine;
+            }
+            else
+            {
+                optionGrpRect.anchoredPosition = optionGrpPosTarget_TwoLine;
+            }
         }
         else if (commonUtils.currLang == Language.SC)
         {
@@ -119,6 +130,14 @@ public class DialogBoxManager : MonoBehaviour
             {
                 langObjs_EN[i].SetActive(false);
             }
+            if (text_SC.preferredHeight < 80)
+            {
+                optionGrpRect.anchoredPosition = optionGrpPosTarget_OneLine;
+            }
+            else
+            {
+                optionGrpRect.anchoredPosition = optionGrpPosTarget_TwoLine;
+            }
         }
         else if (commonUtils.currLang == Language.EN)
         {
@@ -133,6 +152,14 @@ public class DialogBoxManager : MonoBehaviour
             for (int i = 0; i < langObjs_EN.Count; i++)
             {
                 langObjs_EN[i].SetActive(true);
+            }
+            if (text_EN.preferredHeight < 80)
+            {
+                optionGrpRect.anchoredPosition = optionGrpPosTarget_OneLine;
+            }
+            else
+            {
+                optionGrpRect.anchoredPosition = optionGrpPosTarget_TwoLine;
             }
         }
     }
@@ -195,6 +222,39 @@ public class DialogBoxManager : MonoBehaviour
 
         if (dialogBox.OptionTexts_TC != null && dialogBox.OptionTexts_TC.Count != 0)
         {
+            if (commonUtils.currLang == Language.TC)
+            {
+                if (text_TC.preferredHeight < 80)
+                {
+                    optionGrpRect.anchoredPosition = optionGrpPosTarget_OneLine;
+                }
+                else
+                {
+                    optionGrpRect.anchoredPosition = optionGrpPosTarget_TwoLine;
+                }
+            }
+            else if (commonUtils.currLang == Language.SC)
+            {
+                if (text_SC.preferredHeight < 80)
+                {
+                    optionGrpRect.anchoredPosition = optionGrpPosTarget_OneLine;
+                }
+                else
+                {
+                    optionGrpRect.anchoredPosition = optionGrpPosTarget_TwoLine;
+                }
+            }
+            else if (commonUtils.currLang == Language.EN)
+            {
+                if (text_EN.preferredHeight < 80)
+                {
+                    optionGrpRect.anchoredPosition = optionGrpPosTarget_OneLine;
+                }
+                else
+                {
+                    optionGrpRect.anchoredPosition = optionGrpPosTarget_TwoLine;
+                }
+            }
             for (int i = 0; i < optionTexts_TC.Count; i++)
             {
                 if (i < dialogBox.OptionTexts_TC.Count)

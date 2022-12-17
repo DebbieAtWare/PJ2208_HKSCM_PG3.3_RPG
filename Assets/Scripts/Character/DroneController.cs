@@ -142,7 +142,13 @@ public class DroneController : MonoBehaviour
             {
                 if (currSelectedOption == 0)
                 {
-                    if (val == -1)
+                    if (val == 1)
+                    {
+                        SoundManager.instance.Play_Input(0);
+                        currSelectedOption = 3;
+                        DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                    }
+                    else if (val == -1)
                     {
                         SoundManager.instance.Play_Input(0);
                         currSelectedOption = 1;
@@ -187,6 +193,12 @@ public class DroneController : MonoBehaviour
                         currSelectedOption = 2;
                         DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
                     }
+                    else if (val == -1)
+                    {
+                        SoundManager.instance.Play_Input(0);
+                        currSelectedOption = 0;
+                        DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                    }
                 }
             }
             else if (currDroneStage == DroneStage.CollectionBook || currDroneStage == DroneStage.ChangeMap)
@@ -219,12 +231,48 @@ public class DroneController : MonoBehaviour
         {
             if (currDroneStage == DroneStage.Tips)
             {
-                if (currSelectedOption == 0 || currSelectedOption == 1 || currSelectedOption == 2)
+                if (currSelectedOption == 0)
                 {
-                    if (val == 1)
+                    if (val == -1)
+                    {
+                        SoundManager.instance.Play_Input(0);
+                        currSelectedOption = 2;
+                        DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                    }
+                    else if (val == 1)
+                    {
+                        SoundManager.instance.Play_Input(0);
+                        currSelectedOption = 2;
+                        DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                    }
+                }
+                else if (currSelectedOption == 1)
+                {
+                    if (val == -1)
                     {
                         SoundManager.instance.Play_Input(0);
                         currSelectedOption = 3;
+                        DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                    }
+                    else if (val == 1)
+                    {
+                        SoundManager.instance.Play_Input(0);
+                        currSelectedOption = 3;
+                        DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                    }
+                }
+                else if (currSelectedOption == 2)
+                {
+                    if (val == -1)
+                    {
+                        SoundManager.instance.Play_Input(0);
+                        currSelectedOption = 0;
+                        DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                    }
+                    else if (val == 1)
+                    {
+                        SoundManager.instance.Play_Input(0);
+                        currSelectedOption = 0;
                         DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
                     }
                 }
@@ -233,7 +281,13 @@ public class DroneController : MonoBehaviour
                     if (val == -1)
                     {
                         SoundManager.instance.Play_Input(0);
-                        currSelectedOption = 0;
+                        currSelectedOption = 1;
+                        DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                    }
+                    else if (val == 1)
+                    {
+                        SoundManager.instance.Play_Input(0);
+                        currSelectedOption = 1;
                         DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
                     }
                 }
