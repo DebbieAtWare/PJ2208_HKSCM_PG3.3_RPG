@@ -102,6 +102,27 @@ public class DialogWriter : MonoBehaviour
                 if (!string.IsNullOrEmpty(textToWrite) && !string.IsNullOrWhiteSpace(textToWrite))
                 {
                     string txt = textToWrite.Substring(0, characterIndex);
+                    //to prevent showing <> rich tag in running text ani
+                    if (textToWrite[characterIndex - 1] == '<')
+                    {
+                        for (int i = characterIndex; i < textToWrite.Length; i++)
+                        {
+                            if (textToWrite[i] == '>')
+                            {
+                                if (i + 2 < (textToWrite.Length - 1))
+                                {
+                                    characterIndex = i + 2;
+                                    txt = textToWrite.Substring(0, characterIndex);
+                                }
+                                else
+                                {
+                                    characterIndex = textToWrite.Length;
+                                    txt = textToWrite.Substring(0, characterIndex);
+                                }
+                                break;
+                            }
+                        }
+                    }
                     txt += "<color=#00000000>" + textToWrite.Substring(characterIndex) + "</color>";
                     uiText.text = txt;
 

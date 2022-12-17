@@ -997,7 +997,7 @@ public class CommonUtils : MonoBehaviour
 
         ConfigData_DialogBox dialog_Gameplay2 = new ConfigData_DialogBox();
         dialog_Gameplay2.ByWhom = "DRO";
-        dialog_Gameplay2.Text_TC = "你的任務是穿梭石炭紀和二疊紀，訪尋三種目標早期羊膜生物，豐富古生物資料庫。";
+        dialog_Gameplay2.Text_TC = "<i>你</i>的任務是穿梭<br>石炭紀和二疊紀，訪尋三種目標早期羊膜生物，豐富古生物資料<b>庫。</b>";
         dialog_Gameplay2.Text_SC = "你的任务是穿梭石炭纪和二叠纪，访寻三种目标早期羊膜生物，丰富古生物资料库。";
         dialog_Gameplay2.Text_EN = "Travel through time and back to the Carboniferous and the Permian period. Your mission is to visit three targeted early amniotes and enrich your knowledge on the palaeobios.";
         gameplayInstructions.Add(dialog_Gameplay2);
@@ -1007,7 +1007,7 @@ public class CommonUtils : MonoBehaviour
         gameplayInstructions.Add(dialog_Gameplay1);
         ConfigData_DialogBox dialog_Gameplay3 = new ConfigData_DialogBox();
         dialog_Gameplay3.ByWhom = "DRO";
-        dialog_Gameplay3.Text_TC = "你想前往哪個時代探險？";
+        dialog_Gameplay3.Text_TC = "你想前往<b>哪個時代探</b>險？";
         dialog_Gameplay3.Text_SC = "你想前往哪个时代探险？";
         dialog_Gameplay3.Text_EN = "Which period do you want to start your adventure?";
         List<string> option_Gameplay3 = new List<string>();
