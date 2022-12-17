@@ -73,12 +73,13 @@ public class DialogWriter : MonoBehaviour
 
     public class DialogWriterSingle
     {
-        TextMeshProUGUI uiText;
-        string textToWrite;
-        int characterIndex;
-        float timePerCharacter;
-        float timer;
+        public TextMeshProUGUI uiText;
+        public string textToWrite;
+        public int characterIndex;
+        public float timePerCharacter;
+        public float timer;
         Action onComplete;
+
 
         public DialogWriterSingle(TextMeshProUGUI uiText, string textToWrite, float timePerCharacter, Action onComplete)
         {

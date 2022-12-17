@@ -158,14 +158,14 @@ public class TransitionManager : MonoBehaviour
             else if (currMap == MapID.Carboniferous || currMap == MapID.Permian)
             {
                 commonUtils.currEndingCheck = EndingCheckStage.None;
-                commonUtils.isEverytimeChangeMapDone = false;
+                //every time change map will call first greeting
                 if (targetMap == MapID.Carboniferous)
                 {
-                    CarboniferousManager.instance.EverytimeChangeMapControl();
+                    CarboniferousManager.instance.FirstGreetingControl();
                 }
                 else if (targetMap == MapID.Permian)
                 {
-                    PermianManager.instance.EverytimeChangeMapControl();
+                    PermianManager.instance.FirstGreetingControl();
                 }
             }
             commonUtils.currMapId = targetMap;

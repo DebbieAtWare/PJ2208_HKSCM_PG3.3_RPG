@@ -95,7 +95,7 @@ public class PermianManager : MonoBehaviour
     {
         if (OptionManager.instance.currStage == OptionStage.None)
         {
-            if (!commonUtils.isFirstGreetingDone)
+            if (firstGreetingDialogIndex > -1)
             {
                 SoundManager.instance.Play_Input(2);
                 if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
@@ -106,7 +106,7 @@ public class PermianManager : MonoBehaviour
                 {
                     if (firstGreetingDialogIndex == (commonUtils.firstGreeting_Permian.Count - 1))
                     {
-                        commonUtils.isFirstGreetingDone = true;
+                        firstGreetingDialogIndex = -1;
                         DialogBoxManager.instance.HideDialog();
                         GameManager.instance.dialogActive = false;
                     }
@@ -117,41 +117,15 @@ public class PermianManager : MonoBehaviour
                     }
                 }
             }
-            else if (!commonUtils.isEverytimeChangeMapDone)
-            {
-                SoundManager.instance.Play_Input(2);
-                if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
-                {
-                    DialogBoxManager.instance.FinishCurrentDialog();
-                }
-                else
-                {
-                    commonUtils.isEverytimeChangeMapDone = true;
-                    DialogBoxManager.instance.HideDialog();
-                    GameManager.instance.dialogActive = false;
-                }
-            }
         }
     }
 
     public void FirstGreetingControl()
     {
-        if (!commonUtils.isFirstGreetingDone)
-        {
-            GameManager.instance.dialogActive = true;
-            firstGreetingDialogIndex++;
-            DialogBoxManager.instance.ShowDialog(commonUtils.firstGreeting_Permian[firstGreetingDialogIndex]);
-        }
-    }
-
-    public void EverytimeChangeMapControl()
-    {
-        if (!commonUtils.isEverytimeChangeMapDone)
-        {
-            GameManager.instance.dialogActive = true;
-            DialogBoxManager.instance.ShowDialog(commonUtils.everytimeChangeMap_Permian);
-            DroneController.instance.HideTalkHint();
-        }
+        GameManager.instance.dialogActive = true;
+        firstGreetingDialogIndex = -1;
+        firstGreetingDialogIndex++;
+        DialogBoxManager.instance.ShowDialog(commonUtils.firstGreeting_Permian[firstGreetingDialogIndex]);
     }
 
     private void OnFinishedConversation_Boss2()

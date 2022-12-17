@@ -79,7 +79,7 @@ public class CarboniferousManager : MonoBehaviour
     {
         if (OptionManager.instance.currStage == OptionStage.None)
         {
-            if (!commonUtils.isFirstGreetingDone)
+            if (firstGreetingDialogIndex > -1)
             {
                 SoundManager.instance.Play_Input(2);
                 if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
@@ -90,7 +90,7 @@ public class CarboniferousManager : MonoBehaviour
                 {
                     if (firstGreetingDialogIndex == (commonUtils.firstGreeting_Carboniferous.Count - 1))
                     {
-                        commonUtils.isFirstGreetingDone = true;
+                        firstGreetingDialogIndex = -1;
                         DialogBoxManager.instance.HideDialog();
                         GameManager.instance.dialogActive = false;
                     }
@@ -99,21 +99,6 @@ public class CarboniferousManager : MonoBehaviour
                         firstGreetingDialogIndex++;
                         DialogBoxManager.instance.ShowDialog(commonUtils.firstGreeting_Carboniferous[firstGreetingDialogIndex]);
                     }
-                }
-            }
-            else if (!commonUtils.isEverytimeChangeMapDone)
-            {
-                SoundManager.instance.Play_Input(2);
-                if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
-                {
-                    DialogBoxManager.instance.FinishCurrentDialog();
-                }
-                else
-                {
-                    commonUtils.isEverytimeChangeMapDone = true;
-                    DialogBoxManager.instance.HideDialog();
-                    GameManager.instance.dialogActive = false;
-                    
                 }
             }
         }
@@ -126,22 +111,10 @@ public class CarboniferousManager : MonoBehaviour
 
     public void FirstGreetingControl()
     {
-        if (!commonUtils.isFirstGreetingDone)
-        {
-            GameManager.instance.dialogActive = true;
-            firstGreetingDialogIndex++;
-            DialogBoxManager.instance.ShowDialog(commonUtils.firstGreeting_Carboniferous[firstGreetingDialogIndex]);
-        }
-    }
-
-    public void EverytimeChangeMapControl()
-    {
-        if (!commonUtils.isEverytimeChangeMapDone)
-        {
-            GameManager.instance.dialogActive = true;
-            DialogBoxManager.instance.ShowDialog(commonUtils.everytimeChangeMap_Carboniferous);
-            DroneController.instance.HideTalkHint();
-        }
+        GameManager.instance.dialogActive = true;
+        firstGreetingDialogIndex = -1;
+        firstGreetingDialogIndex++;
+        DialogBoxManager.instance.ShowDialog(commonUtils.firstGreeting_Carboniferous[firstGreetingDialogIndex]);
     }
 
 }

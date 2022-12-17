@@ -110,12 +110,6 @@ public class CommonUtils : MonoBehaviour
     [Header("ConfigData - First Greeting")]
     public List<ConfigData_DialogBox> firstGreeting_Carboniferous = new List<ConfigData_DialogBox>();
     public List<ConfigData_DialogBox> firstGreeting_Permian = new List<ConfigData_DialogBox>();
-    public bool isFirstGreetingDone = false;
-
-    [Header("ConfigData - Everytime Change Map")]
-    public ConfigData_DialogBox everytimeChangeMap_Carboniferous = new ConfigData_DialogBox();
-    public ConfigData_DialogBox everytimeChangeMap_Permian = new ConfigData_DialogBox();
-    public bool isEverytimeChangeMapDone = false;
 
     [Header("ConfigData - End Check")]
     public ConfigData_DialogBox endCheck_ChangeToPermian = new ConfigData_DialogBox();
@@ -1064,19 +1058,6 @@ public class CommonUtils : MonoBehaviour
         dialog_FG_P2.Text_SC = "（深呼吸） 呼，空气清新，一起开展一段刺激的旅程吧！嗯…这里很温暖，还挺干燥的。";
         dialog_FG_P2.Text_EN = "(yawning) Fresh air!! What an exciting trip!Hmm…It's warm and dry here.";
         firstGreeting_Permian.Add(dialog_FG_P2);
-
-        //-------
-
-        ConfigData_DialogBox dialog_CM1 = new ConfigData_DialogBox();
-        dialog_CM1.ByWhom = "DRO";
-        dialog_CM1.Text_TC = "我們到達石炭紀啦！";
-        everytimeChangeMap_Carboniferous = dialog_CM1;
-
-
-        ConfigData_DialogBox dialog_CM2 = new ConfigData_DialogBox();
-        dialog_CM2.ByWhom = "DRO";
-        dialog_CM2.Text_TC = "看，這裡是二疊紀啊！";
-        everytimeChangeMap_Permian = dialog_CM2;
 
         //-------
 
