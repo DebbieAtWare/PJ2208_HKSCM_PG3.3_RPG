@@ -64,6 +64,8 @@ public class TransitionManager : MonoBehaviour
         IEnumerator ChangeMap()
         {
             GameManager.instance.fadingBetweenAreas = true;
+            DroneController.instance.canShowTalkHint = false;
+            DroneController.instance.HideTalkHint();
             yield return new WaitForEndOfFrame();
             //screen cap current map and pixelate
             Texture2D tex = new Texture2D(Screen.width, Screen.height, TextureFormat.ARGB32, false);

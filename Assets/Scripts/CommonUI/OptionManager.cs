@@ -74,6 +74,8 @@ public class OptionManager : MonoBehaviour
     CommonUtils commonUtils;
     InputManager inputManager;
 
+    bool canDroneShowTalkHint = false;
+
     //for share in multiple scenes
     void Awake()
     {
@@ -126,6 +128,12 @@ public class OptionManager : MonoBehaviour
             if (currStage == OptionStage.None)
             {
                 SoundManager.instance.Play_SFX(12);
+                //save a record when option is not yet open
+                DroneController.instance.HideTalkHint();
+                canDroneShowTalkHint = DroneController.instance.canShowTalkHint;
+                DroneController.instance.canShowTalkHint = false;
+                isPreviouDialogActive = GameManager.instance.dialogActive;
+                GameManager.instance.dialogActive = true;
                 ChangeControl_Main();
             }
             else
@@ -278,7 +286,6 @@ public class OptionManager : MonoBehaviour
             }
             else if (langGrp_CurrIndex == 1)
             {
-
                 commonUtils.ChangeLanguage(Language.TC);
                 Close_ResetAll();
             }
@@ -373,10 +380,6 @@ public class OptionManager : MonoBehaviour
     void ChangeControl_Main()
     {
         currStage = OptionStage.Main;
-        DroneController.instance.HideTalkHint();
-        DroneController.instance.canShowTalkHint = false;
-        isPreviouDialogActive = GameManager.instance.dialogActive;
-        GameManager.instance.dialogActive = true;
         topBtnObj.SetActive(false);
         mainGrp_Root.SetActive(true);
         langGrp_Root.SetActive(false);
@@ -477,8 +480,18 @@ public class OptionManager : MonoBehaviour
             controlGrp_CurrIndex = 0;
             yield return new WaitForSeconds(0.2f);
             currStage = OptionStage.None;
-            DroneController.instance.ShowTalkHint();
-            DroneController.instance.canShowTalkHint = true;
+            //revert the setting before the option open
+            //eg. when in greeting msg after change map, drone is at side of player
+            if (canDroneShowTalkHint)
+            {
+                DroneController.instance.ShowTalkHint();
+                DroneController.instance.canShowTalkHint = true;
+            }
+            else
+            {
+                DroneController.instance.HideTalkHint();
+                DroneController.instance.canShowTalkHint = false;
+            }
             if (MainManger.instance.currStage == MainStage.InGame)
             {
                 GameManager.instance.dialogActive = isPreviouDialogActive;

@@ -93,6 +93,8 @@ public class CarboniferousManager : MonoBehaviour
                         firstGreetingDialogIndex = -1;
                         DialogBoxManager.instance.HideDialog();
                         GameManager.instance.dialogActive = false;
+                        DroneController.instance.canShowTalkHint = true;
+                        DroneController.instance.ShowTalkHint();
                     }
                     else
                     {

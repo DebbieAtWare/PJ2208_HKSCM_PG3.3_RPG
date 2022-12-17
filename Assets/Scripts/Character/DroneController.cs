@@ -87,7 +87,8 @@ public class DroneController : MonoBehaviour
         currDroneStage = DroneStage.None;
     }
 
-    //close drone talk hint when inside NPC first trigger
+    //when inside NPC first trigger
+    //when change map
     public void HideTalkHint()
     {
         talkHintObj.SetActive(false);
@@ -95,6 +96,7 @@ public class DroneController : MonoBehaviour
     }
 
     //when user leave NPC first trigger and inside drone trigger
+    //after change map and finish greeting msg
     public void ShowTalkHint()
     {
         if (isAtTrigger)
