@@ -333,6 +333,7 @@ public class MainManger : MonoBehaviour
         currStage = MainStage.EndLab_CollectionBookTrigger;
         SoundManager.instance.Play_BGM(4);
         DialogBoxManager.instance.ShowDialog(commonUtils.endCheck_AfterEndingVideo);
+        OptionManager.instance.SetActive(true);
         inputManager.canInput_Option = true;
     }
 }
