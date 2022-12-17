@@ -165,6 +165,24 @@ public class PlayerController : MonoBehaviour {
             rigidBody.velocity = rigidBody.velocity.normalized * moveSpeed;
             animator.SetFloat("moveX", rigidBody.velocity.x);
             animator.SetFloat("moveY", rigidBody.velocity.y);
+
+            //minimap arrow
+            if (GetDirection() == PlayerDirection.Down)
+            {
+                minimapArrowTrans.eulerAngles = new Vector3(0, 0, 0);
+            }
+            else if (GetDirection() == PlayerDirection.Left)
+            {
+                minimapArrowTrans.eulerAngles = new Vector3(0, 0, -90);
+            }
+            else if (GetDirection() == PlayerDirection.Up)
+            {
+                minimapArrowTrans.eulerAngles = new Vector3(0, 0, 180);
+            }
+            else if (GetDirection() == PlayerDirection.Right)
+            {
+                minimapArrowTrans.eulerAngles = new Vector3(0, 0, 90);
+            }
         }
         else
         {
