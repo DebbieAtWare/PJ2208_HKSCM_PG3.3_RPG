@@ -15,6 +15,7 @@ public class TransitionManager : MonoBehaviour
     [Header("UI")]
     public GameObject rootObj;
     public RawImage camFeedImg;
+    public RawImage camFeedImg2;
     public Image timeTravelBkgImg;
     public List<Sprite> bkgSprites = new List<Sprite>();
     //48 frame, 12 fps, 4 sec. 4/48 = 0.083
@@ -26,6 +27,8 @@ public class TransitionManager : MonoBehaviour
     public Texture2D transitionTexture_Carboniferous;
     public Texture2D transitionTexture_Permian;
     public Texture2D transitionTexture_Lab;
+    public Texture2D transitionTexture_InsideTreeCave;
+    Texture2D transitionTexture_OutsideTreeCave;
 
     [Header("End to Lab")]
     public TextMeshProUGUI endToLab_Text_TC;
@@ -71,7 +74,11 @@ public class TransitionManager : MonoBehaviour
             Texture2D tex = new Texture2D(Screen.width, Screen.height, TextureFormat.ARGB32, false);
             tex.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
             tex.Apply();
-            if (currMap == MapID.Carboniferous)
+            if (currMap == MapID.Lab)
+            {
+                camFeedImg.texture = tex;
+            }
+            else if (currMap == MapID.Carboniferous)
             {
                 commonUtils.playerPos_Carboniferous = PlayerController.instance.transform.position;
                 commonUtils.playerDir_Carboniferous = PlayerController.instance.GetDirection();
@@ -138,7 +145,7 @@ public class TransitionManager : MonoBehaviour
                 camFeedImg.texture = transitionTexture_Carboniferous;
             }
             timeTravelBkgImg.DOFade(0f, 1f);
-            yield return new WaitForSeconds(0.6f);
+            yield return new WaitForSeconds(0.5f);
             camFeedImg.material.DOFloat(512f, "_PixelateSize", 1f).From(50f).SetEase(Ease.Linear);
             camFeedImg.DOFade(0f, 1f);
             yield return new WaitForSeconds(1.4f);
@@ -194,15 +201,32 @@ public class TransitionManager : MonoBehaviour
         IEnumerator ChangeToTreeCave()
         {
             GameManager.instance.fadingBetweenAreas = true;
-            blackImg.DOFade(1f, 1f);
+            yield return new WaitForSeconds(0.7f);
+            yield return new WaitForEndOfFrame();
+            //screen cap current map and pixelate
+            Texture2D tex = new Texture2D(Screen.width, Screen.height, TextureFormat.ARGB32, false);
+            tex.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+            tex.Apply();
+            transitionTexture_OutsideTreeCave = tex;
+            camFeedImg.texture = transitionTexture_OutsideTreeCave;
+            camFeedImg.DOFade(1f, 1f);
+            camFeedImg.material.DOFloat(50f, "_PixelateSize", 1f).From(512f).SetEase(Ease.Linear);
+            yield return new WaitForSeconds(1f);
+            //fade in inside cave pixelate img
+            camFeedImg2.texture = transitionTexture_InsideTreeCave;
+            camFeedImg2.material.SetFloat("_PixelateSize", 50f);
+            camFeedImg2.DOFade(1f, 0.5f);
+            yield return new WaitForSeconds(0.5f);
+            //depixelate outside cave img
+            camFeedImg.DOFade(0f, 0f);
+            camFeedImg2.material.DOFloat(512f, "_PixelateSize", 1f).From(50f).SetEase(Ease.Linear);
+            camFeedImg2.DOFade(0f, 1f);
             yield return new WaitForSeconds(1f);
             SceneManager.LoadScene("Boss01Scene");
             PlayerController.instance.transform.position = commonUtils.playerPos_InsideTreeCave;
             PlayerController.instance.SetDirection(commonUtils.playerDir_InsideTreeCave);
             DroneController.instance.ChangePos(commonUtils.dronePos_InsideTreeCave);
             PlayerController.instance.GetComponent<SpriteRenderer>().sortingLayerName = "Player";
-            yield return new WaitForSeconds(0.5f);
-            blackImg.DOFade(0f, 1f);
             GameManager.instance.fadingBetweenAreas = false;
         }
     }

@@ -335,6 +335,7 @@ public class DroneController : MonoBehaviour
                     currDroneStage = DroneStage.None;
                     DialogBoxManager.instance.HideDialog();
                     currSelectedOption = 0;
+                    GameManager.instance.dialogActive = false;
                 }
             }
             else if (currDroneStage == DroneStage.Hint)
