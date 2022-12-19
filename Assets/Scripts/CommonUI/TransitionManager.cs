@@ -28,7 +28,9 @@ public class TransitionManager : MonoBehaviour
     public Texture2D transitionTexture_Permian;
     public Texture2D transitionTexture_Lab;
     public Texture2D transitionTexture_InsideTreeCave;
-    Texture2D transitionTexture_OutsideTreeCave;
+    public Texture2D transitionTexture_OutsideTreeCave;
+    //inside tree cave: only map in cave
+    //outside tree cave: only map after player visit M01 and back to carbon map
 
     [Header("End to Lab")]
     public TextMeshProUGUI endToLab_Text_TC;
@@ -206,8 +208,7 @@ public class TransitionManager : MonoBehaviour
             Texture2D tex = new Texture2D(Screen.width, Screen.height, TextureFormat.ARGB32, false);
             tex.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
             tex.Apply();
-            transitionTexture_OutsideTreeCave = tex;
-            camFeedImg.texture = transitionTexture_OutsideTreeCave;
+            camFeedImg.texture = tex;
             camFeedImg.DOFade(1f, 1f);
             camFeedImg.material.DOFloat(50f, "_PixelateSize", 1f).From(512f).SetEase(Ease.Linear);
             yield return new WaitForSeconds(1f);
@@ -236,20 +237,30 @@ public class TransitionManager : MonoBehaviour
         IEnumerator ChangeToOutsideTreeCave()
         {
             GameManager.instance.fadingBetweenAreas = true;
-            blackImg.DOFade(1f, 1f);
+            yield return new WaitForEndOfFrame();
+            //screen cap current map and pixelate
+            Texture2D tex = new Texture2D(Screen.width, Screen.height, TextureFormat.ARGB32, false);
+            tex.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+            tex.Apply();
+            camFeedImg.texture = tex;
+            camFeedImg.DOFade(1f, 1f);
+            camFeedImg.material.DOFloat(50f, "_PixelateSize", 1f).From(512f).SetEase(Ease.Linear);
             yield return new WaitForSeconds(1f);
+            //fade in outside cave pixelate img
+            camFeedImg2.texture = transitionTexture_OutsideTreeCave;
+            camFeedImg2.material.SetFloat("_PixelateSize", 50f);
+            camFeedImg2.DOFade(1f, 0.5f);
+            yield return new WaitForSeconds(0.5f);
             SceneManager.LoadScene("CarboniferousScene");
             PlayerController.instance.transform.position = commonUtils.playerPos_OutsideTreeCave;
             PlayerController.instance.SetDirection(commonUtils.playerDir_OutsideTreeCave);
             DroneController.instance.ChangePos(commonUtils.dronePos_OutsideTreeCave);
             PlayerController.instance.GetComponent<SpriteRenderer>().sortingLayerName = "Player";
-            yield return new WaitForSeconds(0.5f);
-            blackImg.DOFade(0f, 1f);
+            //depixelate inside cave img
+            camFeedImg.DOFade(0f, 0f);
+            camFeedImg2.material.DOFloat(512f, "_PixelateSize", 1f).From(50f).SetEase(Ease.Linear);
+            camFeedImg2.DOFade(0f, 1f);
             yield return new WaitForSeconds(1f);
-            //GameManager.instance.fadingBetweenAreas = false;
-            //GameManager.instance.dialogActive = false;
-            //InputManager.instance.canInput_Confirm = true;
-            //DroneController.instance.canShowTalkHint = true;
             InputManager.instance.canInput_Confirm = true;
             commonUtils.EndingCheck();
         }

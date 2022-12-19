@@ -3960,7 +3960,9 @@ MonoBehaviour:
     type: 3}
   transitionTexture_Lab: {fileID: 2800000, guid: aa14e453ecbcd1443be0da4ccd05a94f,
     type: 3}
-  transitionTexture_InsideTreeCave: {fileID: 2800000, guid: 2d449b01310b9dc4e92980b076883d97,
+  transitionTexture_InsideTreeCave: {fileID: 2800000, guid: 0c2169ed681c21c4da2e81c31dbfd33f,
+    type: 3}
+  transitionTexture_OutsideTreeCave: {fileID: 2800000, guid: a84fa6aba589ad54586a23cfeb1c162b,
     type: 3}
   endToLab_Text_TC: {fileID: 116732209}
   endToLab_Text_SC: {fileID: 1747398718}
