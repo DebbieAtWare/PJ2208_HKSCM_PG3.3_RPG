@@ -108,8 +108,12 @@ public class CarboniferousManager : MonoBehaviour
 
     private void TreeCave_OnTriggerEnter()
     {
-        //not using on trigger to change scene, but use auto walk in "BossObject"
-        //TransitionManager.instance.ChangeToInsideTreeCave();
+        //when hvnt collect the boss: use auto walk in "BossObject"
+        //when collected the boss:use on trigger to change scene
+        if (commonUtils.bosses[0].IsSuccessCollectDone)
+        {
+            TransitionManager.instance.ChangeToInsideTreeCave();
+        }
     }
 
     public void FirstGreetingControl()
