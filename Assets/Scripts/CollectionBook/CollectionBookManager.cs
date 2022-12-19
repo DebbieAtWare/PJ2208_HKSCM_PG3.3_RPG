@@ -38,7 +38,7 @@ public class CollectionBookManager : MonoBehaviour
     public GameObject main_CloseIpadFrameIdleObj;
     public GameObject main_CloseIpadFrameSelectedObj;
     public GameObject main_RestartGameObj;
-    public GameObject main_RestartGameFrameObj;
+    public List<GameObject> main_RestartGameFrameObjs = new List<GameObject>();
     public Image main_ArrowImgL;
     public Image main_ArrowImgR;
     public Sprite main_ArrowSprite_OnIdle;
@@ -221,7 +221,10 @@ public class CollectionBookManager : MonoBehaviour
                         main_NPCObjs[currIndex_NPC].SetSelection(false);
                         if (commonUtils.currMapId == MapID.Lab)
                         {
-                            main_RestartGameFrameObj.SetActive(true);
+                            for (int i = 0; i < main_RestartGameFrameObjs.Count; i++)
+                            {
+                                main_RestartGameFrameObjs[i].SetActive(true);
+                            }
                         }
                         else
                         {
@@ -238,7 +241,10 @@ public class CollectionBookManager : MonoBehaviour
                         currRow = 1;
                         if (commonUtils.currMapId == MapID.Lab)
                         {
-                            main_RestartGameFrameObj.SetActive(false);
+                            for (int i = 0; i < main_RestartGameFrameObjs.Count; i++)
+                            {
+                                main_RestartGameFrameObjs[i].SetActive(false);
+                            }
                         }
                         else
                         {
@@ -488,7 +494,10 @@ public class CollectionBookManager : MonoBehaviour
 
         if (commonUtils.currMapId == MapID.Lab)
         {
-            main_RestartGameFrameObj.SetActive(false);
+            for (int i = 0; i < main_RestartGameFrameObjs.Count; i++)
+            {
+                main_RestartGameFrameObjs[i].SetActive(false);
+            }
             main_RestartGameObj.SetActive(true);
             main_CloseIpadObj.SetActive(false);
         }
