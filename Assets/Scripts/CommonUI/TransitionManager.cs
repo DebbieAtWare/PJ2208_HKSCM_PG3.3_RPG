@@ -201,7 +201,6 @@ public class TransitionManager : MonoBehaviour
         IEnumerator ChangeToTreeCave()
         {
             GameManager.instance.fadingBetweenAreas = true;
-            yield return new WaitForSeconds(0.7f);
             yield return new WaitForEndOfFrame();
             //screen cap current map and pixelate
             Texture2D tex = new Texture2D(Screen.width, Screen.height, TextureFormat.ARGB32, false);
@@ -217,16 +216,16 @@ public class TransitionManager : MonoBehaviour
             camFeedImg2.material.SetFloat("_PixelateSize", 50f);
             camFeedImg2.DOFade(1f, 0.5f);
             yield return new WaitForSeconds(0.5f);
-            //depixelate outside cave img
-            camFeedImg.DOFade(0f, 0f);
-            camFeedImg2.material.DOFloat(512f, "_PixelateSize", 1f).From(50f).SetEase(Ease.Linear);
-            camFeedImg2.DOFade(0f, 1f);
-            yield return new WaitForSeconds(1f);
             SceneManager.LoadScene("Boss01Scene");
             PlayerController.instance.transform.position = commonUtils.playerPos_InsideTreeCave;
             PlayerController.instance.SetDirection(commonUtils.playerDir_InsideTreeCave);
             DroneController.instance.ChangePos(commonUtils.dronePos_InsideTreeCave);
             PlayerController.instance.GetComponent<SpriteRenderer>().sortingLayerName = "Player";
+            //depixelate outside cave img
+            camFeedImg.DOFade(0f, 0f);
+            camFeedImg2.material.DOFloat(512f, "_PixelateSize", 1f).From(50f).SetEase(Ease.Linear);
+            camFeedImg2.DOFade(0f, 1f);
+            yield return new WaitForSeconds(1f);
             GameManager.instance.fadingBetweenAreas = false;
         }
     }

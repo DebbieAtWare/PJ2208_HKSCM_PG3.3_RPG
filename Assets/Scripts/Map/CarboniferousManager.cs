@@ -108,7 +108,8 @@ public class CarboniferousManager : MonoBehaviour
 
     private void TreeCave_OnTriggerEnter()
     {
-        TransitionManager.instance.ChangeToInsideTreeCave();
+        //not using on trigger to change scene, but use auto walk in "BossObject"
+        //TransitionManager.instance.ChangeToInsideTreeCave();
     }
 
     public void FirstGreetingControl()

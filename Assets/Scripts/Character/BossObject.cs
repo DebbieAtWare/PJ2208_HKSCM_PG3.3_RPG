@@ -49,6 +49,7 @@ public class BossObject : MonoBehaviour
     public int currDialogLine;
     public bool canShowAlert;
     public bool canFadeOutAlertSFX;
+    public bool isAfterAlertGoToTreeCave = false;
     public bool isAtAlertTrigger;
     public bool isAtViewTrigger;
     public BossStage currBossStage;
@@ -56,6 +57,8 @@ public class BossObject : MonoBehaviour
     InputManager inputManager;
     CommonUtils commonUtils;
     DialogBoxManager dialogBoxManager;
+
+    
 
     public void Setup(ConfigData_DialogBox _dialogBox_Alert, ConfigData_Character _info, bool _canShowAlert, bool isFirstMeetDone, bool _canFadeOutAlertSFX)
     {
@@ -135,6 +138,10 @@ public class BossObject : MonoBehaviour
                         {
                             //in carbon can't fade out caz auto walk and jump to cave sound using same track
                             SoundManager.instance.FadeOutStop_SFX(0.5f);
+                        }
+                        if (isAfterAlertGoToTreeCave)
+                        {
+                            TransitionManager.instance.ChangeToInsideTreeCave();
                         }
                     }
                 }

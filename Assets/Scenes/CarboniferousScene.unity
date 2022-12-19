@@ -30074,6 +30074,11 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 8431520836166522264, guid: da2dcf02e3e8989489a30bc94806ef18,
         type: 3}
+      propertyPath: isAfterAlertGoToTreeCave
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8431520836166522264, guid: da2dcf02e3e8989489a30bc94806ef18,
+        type: 3}
       propertyPath: collectionBookThumbnailSprite
       value: 
       objectReference: {fileID: 21300000, guid: a11e40274b2a77c41917c7f7f07d5870,
