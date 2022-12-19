@@ -98,72 +98,76 @@ public class MainManger : MonoBehaviour
         startLab_CurrDialogIndex = -1;
         startLab_CurrArrowIndex = 0;
 
+        commonUtils.isAtHomePage = true;
         currStage = MainStage.None;
     }
 
     private void InputManager_OnValueChanged_Vertical(int val)
     {
-        if (OptionManager.instance.currStage == OptionStage.None)
+        if (!TimeoutManager.instance.isTimeoutUIActive)
         {
-            if (currStage == MainStage.None)
+            if (OptionManager.instance.currStage == OptionStage.None)
             {
-                SoundManager.instance.Play_Input(0);
-                ChangeStage_Language();
-            }
-            else if (currStage == MainStage.Language)
-            {
-                SoundManager.instance.Play_Input(0);
-                if (langGrp_CurrIndex == 0)
+                if (currStage == MainStage.None)
                 {
-                    if (val == -1)
+                    SoundManager.instance.Play_Input(0);
+                    ChangeStage_Language();
+                }
+                else if (currStage == MainStage.Language)
+                {
+                    SoundManager.instance.Play_Input(0);
+                    if (langGrp_CurrIndex == 0)
                     {
-                        langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(false);
-                        langGrp_CurrIndex = 1;
-                        langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(true);
+                        if (val == -1)
+                        {
+                            langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(false);
+                            langGrp_CurrIndex = 1;
+                            langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(true);
+                        }
+                    }
+                    else if (langGrp_CurrIndex == 1)
+                    {
+                        if (val == 1)
+                        {
+                            langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(false);
+                            langGrp_CurrIndex = 0;
+                            langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(true);
+                        }
+                        else if (val == -1)
+                        {
+                            langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(false);
+                            langGrp_CurrIndex = 2;
+                            langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(true);
+                        }
+                    }
+                    else if (langGrp_CurrIndex == 2)
+                    {
+                        if (val == 1)
+                        {
+                            langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(false);
+                            langGrp_CurrIndex = 1;
+                            langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(true);
+                        }
                     }
                 }
-                else if (langGrp_CurrIndex == 1)
+                else if (currStage == MainStage.StartLab && startLab_CurrDialogIndex == 2)
                 {
-                    if (val == 1)
+                    SoundManager.instance.Play_Input(0);
+                    if (startLab_CurrArrowIndex == 0)
                     {
-                        langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(false);
-                        langGrp_CurrIndex = 0;
-                        langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(true);
+                        if (val == -1)
+                        {
+                            startLab_CurrArrowIndex = 1;
+                            DialogBoxManager.instance.SetOptionArrow(startLab_CurrArrowIndex);
+                        }
                     }
-                    else if (val == -1)
+                    else if (startLab_CurrArrowIndex == 1)
                     {
-                        langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(false);
-                        langGrp_CurrIndex = 2;
-                        langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(true);
-                    }
-                }
-                else if (langGrp_CurrIndex == 2)
-                {
-                    if (val == 1)
-                    {
-                        langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(false);
-                        langGrp_CurrIndex = 1;
-                        langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(true);
-                    }
-                }
-            }
-            else if (currStage == MainStage.StartLab && startLab_CurrDialogIndex == 2)
-            {
-                SoundManager.instance.Play_Input(0);
-                if (startLab_CurrArrowIndex == 0)
-                {
-                    if (val == -1)
-                    {
-                        startLab_CurrArrowIndex = 1;
-                        DialogBoxManager.instance.SetOptionArrow(startLab_CurrArrowIndex);
-                    }
-                }
-                else if (startLab_CurrArrowIndex == 1)
-                {
-                    if (val == 1)
-                    {
-                        startLab_CurrArrowIndex = 0;
-                        DialogBoxManager.instance.SetOptionArrow(startLab_CurrArrowIndex);
+                        if (val == 1)
+                        {
+                            startLab_CurrArrowIndex = 0;
+                            DialogBoxManager.instance.SetOptionArrow(startLab_CurrArrowIndex);
+                        }
                     }
                 }
             }
@@ -172,99 +176,111 @@ public class MainManger : MonoBehaviour
 
     private void InputManager_OnValueChanged_Horizontal(int val)
     {
-        if (OptionManager.instance.currStage == OptionStage.None)
+        if (!TimeoutManager.instance.isTimeoutUIActive)
         {
-            if (currStage == MainStage.None)
+            if (OptionManager.instance.currStage == OptionStage.None)
             {
-                SoundManager.instance.Play_Input(0);
-                ChangeStage_Language();
+                if (currStage == MainStage.None)
+                {
+                    SoundManager.instance.Play_Input(0);
+                    ChangeStage_Language();
+                }
             }
         }
+        
     }
 
     private void InputManager_OnValueChanged_Confirm()
     {
-        if (OptionManager.instance.currStage == OptionStage.None)
+        if (!TimeoutManager.instance.isTimeoutUIActive)
         {
-            if (currStage == MainStage.None)
+            if (OptionManager.instance.currStage == OptionStage.None)
             {
-                SoundManager.instance.Play_Input(2);
-                ChangeStage_Language();
-            }
-            else if (currStage == MainStage.Language)
-            {
-                SoundManager.instance.Play_Input(2);
-                if (langGrp_CurrIndex == 0)
+                if (currStage == MainStage.None)
                 {
-                    commonUtils.ChangeLanguage(Language.TC);
+                    SoundManager.instance.Play_Input(2);
+                    ChangeStage_Language();
                 }
-                else if (langGrp_CurrIndex == 1)
+                else if (currStage == MainStage.Language)
                 {
-                    commonUtils.ChangeLanguage(Language.SC);
-                }
-                else if (langGrp_CurrIndex == 2)
-                {
-                    commonUtils.ChangeLanguage(Language.EN);
-                }
-                currStage = MainStage.Intro;
-                introVideoManager.Play();
-            }
-            else if (currStage == MainStage.StartLab)
-            {
-                SoundManager.instance.Play_Input(2);
-                if (DialogBoxManager.instance.dialogWriterSingle != null && DialogBoxManager.instance.dialogWriterSingle.IsActive())
-                {
-                    DialogBoxManager.instance.FinishCurrentDialog();
-                }
-                else
-                {
-                    if (startLab_CurrDialogIndex == 0)
+                    SoundManager.instance.Play_Input(2);
+                    if (langGrp_CurrIndex == 0)
                     {
-                        //first dialog is text, second dialog in control diagram
-                        startLab_CurrDialogIndex++;
-                        DialogBoxManager.instance.ShowControl();
-                        //DialogBoxManager.instance.ShowDialog(commonUtils.gameplayInstructions[startLab_CurrDialogIndex]);
-                        //DialogBoxManager.instance.HideControl();
+                        commonUtils.ChangeLanguage(Language.TC);
                     }
-                    else if (startLab_CurrDialogIndex == 1)
+                    else if (langGrp_CurrIndex == 1)
                     {
-                        startLab_CurrDialogIndex++;
-                        DialogBoxManager.instance.HideControl();
-                        DialogBoxManager.instance.ShowDialog(commonUtils.gameplayInstructions[startLab_CurrDialogIndex]);
-                        DialogBoxManager.instance.SetOptionArrow(startLab_CurrArrowIndex);
+                        commonUtils.ChangeLanguage(Language.SC);
                     }
-                    else if (startLab_CurrDialogIndex == 2)
+                    else if (langGrp_CurrIndex == 2)
                     {
-                        DialogBoxManager.instance.HideDialog();
-                        if (startLab_CurrArrowIndex == 0)
+                        commonUtils.ChangeLanguage(Language.EN);
+                    }
+                    currStage = MainStage.Intro;
+                    introVideoManager.Play();
+                }
+                else if (currStage == MainStage.StartLab)
+                {
+                    SoundManager.instance.Play_Input(2);
+                    if (DialogBoxManager.instance.dialogWriterSingle != null && DialogBoxManager.instance.dialogWriterSingle.IsActive())
+                    {
+                        DialogBoxManager.instance.FinishCurrentDialog();
+                    }
+                    else
+                    {
+                        if (startLab_CurrDialogIndex == 0)
                         {
-                            TransitionManager.instance.ChangeMap(commonUtils.currMapId, MapID.Carboniferous);
+                            //first dialog is text, second dialog in control diagram
+                            startLab_CurrDialogIndex++;
+                            DialogBoxManager.instance.ShowControl();
+                            //DialogBoxManager.instance.ShowDialog(commonUtils.gameplayInstructions[startLab_CurrDialogIndex]);
+                            //DialogBoxManager.instance.HideControl();
                         }
-                        else if (startLab_CurrArrowIndex == 1)
+                        else if (startLab_CurrDialogIndex == 1)
                         {
-                            TransitionManager.instance.ChangeMap(commonUtils.currMapId, MapID.Permian);
+                            startLab_CurrDialogIndex++;
+                            DialogBoxManager.instance.HideControl();
+                            DialogBoxManager.instance.ShowDialog(commonUtils.gameplayInstructions[startLab_CurrDialogIndex]);
+                            DialogBoxManager.instance.SetOptionArrow(startLab_CurrArrowIndex);
+                        }
+                        else if (startLab_CurrDialogIndex == 2)
+                        {
+                            DialogBoxManager.instance.HideDialog();
+                            if (startLab_CurrArrowIndex == 0)
+                            {
+                                TransitionManager.instance.ChangeMap(commonUtils.currMapId, MapID.Carboniferous);
+                            }
+                            else if (startLab_CurrArrowIndex == 1)
+                            {
+                                TransitionManager.instance.ChangeMap(commonUtils.currMapId, MapID.Permian);
+                            }
                         }
                     }
                 }
-            }
-            else if (currStage == MainStage.EndLab_CollectionBookTrigger)
-            {
-                SoundManager.instance.Play_Input(2);
-                currStage = MainStage.EndLab_CollectionBookUpdate;
-                DialogBoxManager.instance.HideDialog();
-                CollectionBookManager.instance.Show_Main();
+                else if (currStage == MainStage.EndLab_CollectionBookTrigger)
+                {
+                    SoundManager.instance.Play_Input(2);
+                    currStage = MainStage.EndLab_CollectionBookUpdate;
+                    DialogBoxManager.instance.HideDialog();
+                    CollectionBookManager.instance.Show_Main();
+                }
             }
         }
+
+        
     }
 
     private void InputManager_OnValueChanged_Option()
     {
-        if (OptionManager.instance.currStage == OptionStage.None)
+        if (!TimeoutManager.instance.isTimeoutUIActive)
         {
-            if (currStage == MainStage.None)
+            if (OptionManager.instance.currStage == OptionStage.None)
             {
-                SoundManager.instance.Play_Input(2);
-                ChangeStage_Language();
+                if (currStage == MainStage.None)
+                {
+                    SoundManager.instance.Play_Input(2);
+                    ChangeStage_Language();
+                }
             }
         }
     }
@@ -281,6 +297,7 @@ public class MainManger : MonoBehaviour
         EndVideoManager.instance.Setup();
         ViewBoxManager.instance.Setup();
         ConversationModeManager.instance.Setup();
+        TimeoutManager.instance.Setup();
 
         StatusBarManager.instance.Hide_Carbon(0f);
         StatusBarManager.instance.Hide_Permian(0f);
@@ -304,7 +321,12 @@ public class MainManger : MonoBehaviour
 
     void ChangeStage_Language()
     {
-        langGrp_CanvasGrp.DOFade(1f, 0.5f).OnComplete(() => currStage = MainStage.Language);
+        langGrp_CanvasGrp.DOFade(1f, 0.5f).OnComplete(ChangeStageLangCompleted);
+    }
+    void ChangeStageLangCompleted()
+    {
+        commonUtils.isAtHomePage = false;
+        currStage = MainStage.Language;
     }
 
     void ChangeStage_StartLab()

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public enum MapID
 {
@@ -123,6 +124,7 @@ public class CommonUtils : MonoBehaviour
     public MapID currMapId;
     public Language currLang;
     public EndingCheckStage currEndingCheck;
+    public bool isAtHomePage;
 
     InputManager inputManager;
     EndVideoManager endVideoManager;
@@ -191,63 +193,68 @@ public class CommonUtils : MonoBehaviour
 
     private void InputManager_OnValueChanged_Confirm()
     {
-        if (OptionManager.instance.currStage == OptionStage.None)
+        if (!TimeoutManager.instance.isTimeoutUIActive)
         {
-            if (currEndingCheck != EndingCheckStage.None)
+            if (OptionManager.instance.currStage == OptionStage.None)
             {
-                SoundManager.instance.Play_Input(2);
-                if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
+                if (currEndingCheck != EndingCheckStage.None)
                 {
-                    DialogBoxManager.instance.FinishCurrentDialog();
-                }
-                else
-                {
-                    if (currEndingCheck == EndingCheckStage.OneLeftInPermian)
+                    SoundManager.instance.Play_Input(2);
+                    if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
                     {
-                        DialogBoxManager.instance.HideDialog();
-                        GameManager.instance.dialogActive = false;
-                        currEndingCheck = EndingCheckStage.None;
+                        DialogBoxManager.instance.FinishCurrentDialog();
                     }
-                    else if (currEndingCheck == EndingCheckStage.ToPermian)
+                    else
                     {
-                        DialogBoxManager.instance.HideDialog();
-                        TransitionManager.instance.ChangeMap(currMapId, MapID.Permian);
-                    }
-                    else if (currEndingCheck == EndingCheckStage.ToCarboniferous)
-                    {
-                        DialogBoxManager.instance.HideDialog();
-                        TransitionManager.instance.ChangeMap(currMapId, MapID.Carboniferous);
-                    }
-                    else if (currEndingCheck == EndingCheckStage.ToEndingVideo)
-                    {
-                        if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
+                        if (currEndingCheck == EndingCheckStage.OneLeftInPermian)
                         {
-                            DialogBoxManager.instance.FinishCurrentDialog();
+                            DialogBoxManager.instance.HideDialog();
+                            GameManager.instance.dialogActive = false;
+                            currEndingCheck = EndingCheckStage.None;
                         }
-                        else
+                        else if (currEndingCheck == EndingCheckStage.ToPermian)
                         {
-                            if (endCheck_ChangeToEndingVideoDialogIndex == (endCheck_ChangeToEndingVideos.Count - 1))
+                            DialogBoxManager.instance.HideDialog();
+                            TransitionManager.instance.ChangeMap(currMapId, MapID.Permian);
+                        }
+                        else if (currEndingCheck == EndingCheckStage.ToCarboniferous)
+                        {
+                            DialogBoxManager.instance.HideDialog();
+                            TransitionManager.instance.ChangeMap(currMapId, MapID.Carboniferous);
+                        }
+                        else if (currEndingCheck == EndingCheckStage.ToEndingVideo)
+                        {
+                            if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
                             {
-                                currEndingCheck = EndingCheckStage.None;
-                                DialogBoxManager.instance.HideDialog();
-                                StatusBarManager.instance.Hide_Carbon(0);
-                                StatusBarManager.instance.Hide_Permian(0);
-                                MinimapManager.instance.Hide(0);
-                                OptionManager.instance.SetActive(false);
-                                inputManager.canInput_Option = false;
-                                endVideoManager.Play();
+                                DialogBoxManager.instance.FinishCurrentDialog();
                             }
                             else
                             {
-                                endCheck_ChangeToEndingVideoDialogIndex++;
-                                DialogBoxManager.instance.ShowDialog(endCheck_ChangeToEndingVideos[endCheck_ChangeToEndingVideoDialogIndex]);
+                                if (endCheck_ChangeToEndingVideoDialogIndex == (endCheck_ChangeToEndingVideos.Count - 1))
+                                {
+                                    currEndingCheck = EndingCheckStage.None;
+                                    DialogBoxManager.instance.HideDialog();
+                                    StatusBarManager.instance.Hide_Carbon(0);
+                                    StatusBarManager.instance.Hide_Permian(0);
+                                    MinimapManager.instance.Hide(0);
+                                    OptionManager.instance.SetActive(false);
+                                    inputManager.canInput_Option = false;
+                                    endVideoManager.Play();
+                                }
+                                else
+                                {
+                                    endCheck_ChangeToEndingVideoDialogIndex++;
+                                    DialogBoxManager.instance.ShowDialog(endCheck_ChangeToEndingVideos[endCheck_ChangeToEndingVideoDialogIndex]);
+                                }
                             }
+
                         }
-                        
                     }
                 }
             }
         }
+
+        
     }
 
     private void VideoManager_OnVideoFinished_Ending()

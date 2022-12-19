@@ -26,6 +26,7 @@ public class ResetControl : MonoBehaviour
         DestroyImmediate(GameObject.Find("ViewBoxManager"));
         DestroyImmediate(GameObject.Find("ConversationModeManager"));
         DestroyImmediate(GameObject.Find("UI"));
+        DestroyImmediate(GameObject.Find("TimeoutManager"));
         SceneManager.LoadScene("MainScene");
         Debug.Log("ResetControl 2");
     }

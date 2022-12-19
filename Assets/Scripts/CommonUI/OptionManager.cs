@@ -123,205 +123,220 @@ public class OptionManager : MonoBehaviour
 
     private void InputManager_OnValueChanged_Option()
     {
-        if (MainManger.instance.currStage == MainStage.StartLab || MainManger.instance.currStage == MainStage.InGame || MainManger.instance.currStage == MainStage.EndLab_CollectionBookUpdate)
+        if (!TimeoutManager.instance.isTimeoutUIActive)
         {
-            if (currStage == OptionStage.None)
+            if (MainManger.instance.currStage == MainStage.StartLab || MainManger.instance.currStage == MainStage.InGame || MainManger.instance.currStage == MainStage.EndLab_CollectionBookUpdate)
             {
-                SoundManager.instance.Play_SFX(12);
-                //save a record when option is not yet open
-                DroneController.instance.HideTalkHint();
-                canDroneShowTalkHint = DroneController.instance.canShowTalkHint;
-                DroneController.instance.canShowTalkHint = false;
-                isPreviouDialogActive = GameManager.instance.dialogActive;
-                GameManager.instance.dialogActive = true;
-                ChangeControl_Main();
+                if (currStage == OptionStage.None)
+                {
+                    SoundManager.instance.Play_SFX(12);
+                    //save a record when option is not yet open
+                    DroneController.instance.HideTalkHint();
+                    canDroneShowTalkHint = DroneController.instance.canShowTalkHint;
+                    DroneController.instance.canShowTalkHint = false;
+                    isPreviouDialogActive = GameManager.instance.dialogActive;
+                    GameManager.instance.dialogActive = true;
+                    ChangeControl_Main();
+                }
+                else
+                {
+                    SoundManager.instance.Play_Input(1);
+                    Close_ResetAll();
+                }
             }
-            else
-            {
-                SoundManager.instance.Play_Input(1);
-                Close_ResetAll();
-            }
+
         }
+
     }
 
     private void InputManager_OnValueChanged_Vertical(int val)
     {
-        if (currStage == OptionStage.Main)
+        if (!TimeoutManager.instance.isTimeoutUIActive)
         {
-            SoundManager.instance.Play_Input(0);
-            if (mainGrp_CurrIndex == 0)
+            if (currStage == OptionStage.Main)
             {
-                if (val == -1)
+                SoundManager.instance.Play_Input(0);
+                if (mainGrp_CurrIndex == 0)
                 {
-                    mainGrp_ArrowObjs[mainGrp_CurrIndex].SetActive(false);
-                    mainGrp_CurrIndex = 1;
-                    mainGrp_ArrowObjs[mainGrp_CurrIndex].SetActive(true);
+                    if (val == -1)
+                    {
+                        mainGrp_ArrowObjs[mainGrp_CurrIndex].SetActive(false);
+                        mainGrp_CurrIndex = 1;
+                        mainGrp_ArrowObjs[mainGrp_CurrIndex].SetActive(true);
+                    }
+                }
+                else if (mainGrp_CurrIndex == 1)
+                {
+                    if (val == 1)
+                    {
+                        mainGrp_ArrowObjs[mainGrp_CurrIndex].SetActive(false);
+                        mainGrp_CurrIndex = 0;
+                        mainGrp_ArrowObjs[mainGrp_CurrIndex].SetActive(true);
+                    }
+                    else if (val == -1)
+                    {
+                        mainGrp_ArrowObjs[mainGrp_CurrIndex].SetActive(false);
+                        mainGrp_CurrIndex = 2;
+                        mainGrp_ArrowObjs[mainGrp_CurrIndex].SetActive(true);
+                    }
+                }
+                else if (mainGrp_CurrIndex == 2)
+                {
+                    if (val == 1)
+                    {
+                        mainGrp_ArrowObjs[mainGrp_CurrIndex].SetActive(false);
+                        mainGrp_CurrIndex = 1;
+                        mainGrp_ArrowObjs[mainGrp_CurrIndex].SetActive(true);
+                    }
                 }
             }
-            else if (mainGrp_CurrIndex == 1)
+            else if (currStage == OptionStage.Language)
             {
-                if (val == 1)
+                SoundManager.instance.Play_Input(0);
+                if (langGrp_CurrIndex == 0)
                 {
-                    mainGrp_ArrowObjs[mainGrp_CurrIndex].SetActive(false);
-                    mainGrp_CurrIndex = 0;
-                    mainGrp_ArrowObjs[mainGrp_CurrIndex].SetActive(true);
+                    if (val == -1)
+                    {
+                        langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(false);
+                        langGrp_CurrIndex = 1;
+                        langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(true);
+                    }
                 }
-                else if (val == -1)
+                else if (langGrp_CurrIndex == 1)
                 {
-                    mainGrp_ArrowObjs[mainGrp_CurrIndex].SetActive(false);
-                    mainGrp_CurrIndex = 2;
-                    mainGrp_ArrowObjs[mainGrp_CurrIndex].SetActive(true);
+                    if (val == 1)
+                    {
+                        langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(false);
+                        langGrp_CurrIndex = 0;
+                        langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(true);
+                    }
+                    else if (val == -1)
+                    {
+                        langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(false);
+                        langGrp_CurrIndex = 2;
+                        langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(true);
+                    }
+                }
+                else if (langGrp_CurrIndex == 2)
+                {
+                    if (val == 1)
+                    {
+                        langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(false);
+                        langGrp_CurrIndex = 1;
+                        langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(true);
+                    }
+                    else if (val == -1)
+                    {
+                        langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(false);
+                        langGrp_CurrIndex = 3;
+                        langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(true);
+                    }
+                }
+                else if (langGrp_CurrIndex == 3)
+                {
+                    if (val == 1)
+                    {
+                        langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(false);
+                        langGrp_CurrIndex = 2;
+                        langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(true);
+                    }
                 }
             }
-            else if (mainGrp_CurrIndex == 2)
+            else if (currStage == OptionStage.Restart)
             {
-                if (val == 1)
+                SoundManager.instance.Play_Input(0);
+                if (resetGrp_CurrIndex == 0)
                 {
-                    mainGrp_ArrowObjs[mainGrp_CurrIndex].SetActive(false);
-                    mainGrp_CurrIndex = 1;
-                    mainGrp_ArrowObjs[mainGrp_CurrIndex].SetActive(true);
+                    if (val == -1)
+                    {
+                        resetGrp_ArrowObjs[resetGrp_CurrIndex].SetActive(false);
+                        resetGrp_CurrIndex = 1;
+                        resetGrp_ArrowObjs[resetGrp_CurrIndex].SetActive(true);
+                    }
+                }
+                else if (resetGrp_CurrIndex == 1)
+                {
+                    if (val == 1)
+                    {
+                        resetGrp_ArrowObjs[resetGrp_CurrIndex].SetActive(false);
+                        resetGrp_CurrIndex = 0;
+                        resetGrp_ArrowObjs[resetGrp_CurrIndex].SetActive(true);
+                    }
                 }
             }
         }
-        else if (currStage == OptionStage.Language)
-        {
-            SoundManager.instance.Play_Input(0);
-            if (langGrp_CurrIndex == 0)
-            {
-                if (val == -1)
-                {
-                    langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(false);
-                    langGrp_CurrIndex = 1;
-                    langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(true);
-                }
-            }
-            else if (langGrp_CurrIndex == 1)
-            {
-                if (val == 1)
-                {
-                    langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(false);
-                    langGrp_CurrIndex = 0;
-                    langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(true);
-                }
-                else if (val == -1)
-                {
-                    langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(false);
-                    langGrp_CurrIndex = 2;
-                    langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(true);
-                }
-            }
-            else if (langGrp_CurrIndex == 2)
-            {
-                if (val == 1)
-                {
-                    langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(false);
-                    langGrp_CurrIndex = 1;
-                    langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(true);
-                }
-                else if (val == -1)
-                {
-                    langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(false);
-                    langGrp_CurrIndex = 3;
-                    langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(true);
-                }
-            }
-            else if (langGrp_CurrIndex == 3)
-            {
-                if (val == 1)
-                {
-                    langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(false);
-                    langGrp_CurrIndex = 2;
-                    langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(true);
-                }
-            }
-        }
-        else if (currStage == OptionStage.Restart)
-        {
-            SoundManager.instance.Play_Input(0);
-            if (resetGrp_CurrIndex == 0)
-            {
-                if (val == -1)
-                {
-                    resetGrp_ArrowObjs[resetGrp_CurrIndex].SetActive(false);
-                    resetGrp_CurrIndex = 1;
-                    resetGrp_ArrowObjs[resetGrp_CurrIndex].SetActive(true);
-                }
-            }
-            else if (resetGrp_CurrIndex == 1)
-            {
-                if (val == 1)
-                {
-                    resetGrp_ArrowObjs[resetGrp_CurrIndex].SetActive(false);
-                    resetGrp_CurrIndex = 0;
-                    resetGrp_ArrowObjs[resetGrp_CurrIndex].SetActive(true);
-                }
-            }
-        }
+
+
     }
 
     private void InputManager_OnValueChanged_Confirm()
     {
-        if (currStage == OptionStage.Main)
+        if (!TimeoutManager.instance.isTimeoutUIActive)
         {
-            SoundManager.instance.Play_Input(2);
-            if (mainGrp_CurrIndex == 0)
+            if (currStage == OptionStage.Main)
             {
-                ChangeControl_Language();
+                SoundManager.instance.Play_Input(2);
+                if (mainGrp_CurrIndex == 0)
+                {
+                    ChangeControl_Language();
+                }
+                else if (mainGrp_CurrIndex == 1)
+                {
+                    ChangeControl_Control();
+                }
+                else if (mainGrp_CurrIndex == 2)
+                {
+                    ChangeControl_Reset();
+                }
             }
-            else if (mainGrp_CurrIndex == 1)
+            else if (currStage == OptionStage.Language)
             {
-                ChangeControl_Control();
+                SoundManager.instance.Play_Input(2);
+                if (langGrp_CurrIndex == 0)
+                {
+                    ChangeControl_Main();
+                }
+                else if (langGrp_CurrIndex == 1)
+                {
+                    commonUtils.ChangeLanguage(Language.TC);
+                    Close_ResetAll();
+                }
+                else if (langGrp_CurrIndex == 2)
+                {
+                    commonUtils.ChangeLanguage(Language.SC);
+                    Close_ResetAll();
+                }
+                else if (langGrp_CurrIndex == 3)
+                {
+                    commonUtils.ChangeLanguage(Language.EN);
+                    Close_ResetAll();
+                }
             }
-            else if (mainGrp_CurrIndex == 2)
+            else if (currStage == OptionStage.Control)
             {
-                ChangeControl_Reset();
+                SoundManager.instance.Play_Input(2);
+                if (controlGrp_CurrIndex == 0)
+                {
+                    ChangeControl_Main();
+                }
+            }
+            else if (currStage == OptionStage.Restart)
+            {
+                SoundManager.instance.Play_Input(2);
+                if (resetGrp_CurrIndex == 0)
+                {
+                    //TODO reset game !!!!!
+                    Close_ResetAll();
+                    commonUtils.ResetGame();
+                }
+                else if (resetGrp_CurrIndex == 1)
+                {
+                    Close_ResetAll();
+                }
             }
         }
-        else if (currStage == OptionStage.Language)
-        {
-            SoundManager.instance.Play_Input(2);
-            if (langGrp_CurrIndex == 0)
-            {
-                ChangeControl_Main();
-            }
-            else if (langGrp_CurrIndex == 1)
-            {
-                commonUtils.ChangeLanguage(Language.TC);
-                Close_ResetAll();
-            }
-            else if (langGrp_CurrIndex == 2)
-            {
-                commonUtils.ChangeLanguage(Language.SC);
-                Close_ResetAll();
-            }
-            else if (langGrp_CurrIndex == 3)
-            {
-                commonUtils.ChangeLanguage(Language.EN);
-                Close_ResetAll();
-            }
-        }
-        else if (currStage == OptionStage.Control)
-        {
-            SoundManager.instance.Play_Input(2);
-            if (controlGrp_CurrIndex == 0)
-            {
-                ChangeControl_Main();
-            }
-        }
-        else if (currStage == OptionStage.Restart)
-        {
-            SoundManager.instance.Play_Input(2);
-            if (resetGrp_CurrIndex == 0)
-            {
-                //TODO reset game !!!!!
-                Close_ResetAll();
-                commonUtils.ResetGame();
-            }
-            else if (resetGrp_CurrIndex == 1)
-            {
-                Close_ResetAll();
-            }
-        }
+
+
     }
 
     private void CommonUtils_OnChangeLang()

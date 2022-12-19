@@ -93,33 +93,38 @@ public class PermianManager : MonoBehaviour
 
     private void InputManager_OnValueChanged_Confirm()
     {
-        if (OptionManager.instance.currStage == OptionStage.None)
+        if (!TimeoutManager.instance.isTimeoutUIActive)
         {
-            if (firstGreetingDialogIndex > -1)
+            if (OptionManager.instance.currStage == OptionStage.None)
             {
-                SoundManager.instance.Play_Input(2);
-                if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
+                if (firstGreetingDialogIndex > -1)
                 {
-                    DialogBoxManager.instance.FinishCurrentDialog();
-                }
-                else
-                {
-                    if (firstGreetingDialogIndex == (commonUtils.firstGreeting_Permian.Count - 1))
+                    SoundManager.instance.Play_Input(2);
+                    if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
                     {
-                        firstGreetingDialogIndex = -1;
-                        DialogBoxManager.instance.HideDialog();
-                        GameManager.instance.dialogActive = false;
-                        DroneController.instance.canShowTalkHint = true;
-                        DroneController.instance.ShowTalkHint();
+                        DialogBoxManager.instance.FinishCurrentDialog();
                     }
                     else
                     {
-                        firstGreetingDialogIndex++;
-                        DialogBoxManager.instance.ShowDialog(commonUtils.firstGreeting_Permian[firstGreetingDialogIndex]);
+                        if (firstGreetingDialogIndex == (commonUtils.firstGreeting_Permian.Count - 1))
+                        {
+                            firstGreetingDialogIndex = -1;
+                            DialogBoxManager.instance.HideDialog();
+                            GameManager.instance.dialogActive = false;
+                            DroneController.instance.canShowTalkHint = true;
+                            DroneController.instance.ShowTalkHint();
+                        }
+                        else
+                        {
+                            firstGreetingDialogIndex++;
+                            DialogBoxManager.instance.ShowDialog(commonUtils.firstGreeting_Permian[firstGreetingDialogIndex]);
+                        }
                     }
                 }
             }
         }
+
+        
     }
 
     public void FirstGreetingControl()

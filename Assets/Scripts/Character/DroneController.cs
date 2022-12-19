@@ -136,89 +136,92 @@ public class DroneController : MonoBehaviour
 
     private void InputManager_OnValueChanged_Vertical(int val)
     {
-        if (talkHintObj.activeInHierarchy && MainManger.instance.currStage == MainStage.InGame && OptionManager.instance.currStage == OptionStage.None)
+        if (!TimeoutManager.instance.isTimeoutUIActive)
         {
-            if (currDroneStage == DroneStage.Tips)
+            if (talkHintObj.activeInHierarchy && MainManger.instance.currStage == MainStage.InGame && OptionManager.instance.currStage == OptionStage.None)
             {
-                if (currSelectedOption == 0)
+                if (currDroneStage == DroneStage.Tips)
                 {
-                    if (val == 1)
+                    if (currSelectedOption == 0)
                     {
-                        SoundManager.instance.Play_Input(0);
-                        currSelectedOption = 3;
-                        DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                        if (val == 1)
+                        {
+                            SoundManager.instance.Play_Input(0);
+                            currSelectedOption = 3;
+                            DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                        }
+                        else if (val == -1)
+                        {
+                            SoundManager.instance.Play_Input(0);
+                            currSelectedOption = 1;
+                            DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                        }
                     }
-                    else if (val == -1)
+                    else if (currSelectedOption == 1)
                     {
-                        SoundManager.instance.Play_Input(0);
-                        currSelectedOption = 1;
-                        DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                        if (val == 1)
+                        {
+                            SoundManager.instance.Play_Input(0);
+                            currSelectedOption = 0;
+                            DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                        }
+                        else if (val == -1)
+                        {
+                            SoundManager.instance.Play_Input(0);
+                            currSelectedOption = 2;
+                            DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                        }
+                    }
+                    else if (currSelectedOption == 2)
+                    {
+                        if (val == 1)
+                        {
+                            SoundManager.instance.Play_Input(0);
+                            currSelectedOption = 1;
+                            DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                        }
+                        else if (val == -1)
+                        {
+                            SoundManager.instance.Play_Input(0);
+                            currSelectedOption = 3;
+                            DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                        }
+                    }
+                    else if (currSelectedOption == 3)
+                    {
+                        if (val == 1)
+                        {
+                            SoundManager.instance.Play_Input(0);
+                            currSelectedOption = 2;
+                            DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                        }
+                        else if (val == -1)
+                        {
+                            SoundManager.instance.Play_Input(0);
+                            currSelectedOption = 0;
+                            DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                        }
                     }
                 }
-                else if (currSelectedOption == 1)
+                else if (currDroneStage == DroneStage.CollectionBook || currDroneStage == DroneStage.ChangeMap)
                 {
-                    if (val == 1)
+                    if (currSelectedOption == 0)
                     {
-                        SoundManager.instance.Play_Input(0);
-                        currSelectedOption = 0;
-                        DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                        if (val == -1)
+                        {
+                            SoundManager.instance.Play_Input(0);
+                            currSelectedOption = 1;
+                            DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                        }
                     }
-                    else if (val == -1)
+                    else if (currSelectedOption == 1)
                     {
-                        SoundManager.instance.Play_Input(0);
-                        currSelectedOption = 2;
-                        DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
-                    }
-                }
-                else if (currSelectedOption == 2)
-                {
-                    if (val == 1)
-                    {
-                        SoundManager.instance.Play_Input(0);
-                        currSelectedOption = 1;
-                        DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
-                    }
-                    else if (val == -1)
-                    {
-                        SoundManager.instance.Play_Input(0);
-                        currSelectedOption = 3;
-                        DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
-                    }
-                }
-                else if (currSelectedOption == 3)
-                {
-                    if (val == 1)
-                    {
-                        SoundManager.instance.Play_Input(0);
-                        currSelectedOption = 2;
-                        DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
-                    }
-                    else if (val == -1)
-                    {
-                        SoundManager.instance.Play_Input(0);
-                        currSelectedOption = 0;
-                        DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
-                    }
-                }
-            }
-            else if (currDroneStage == DroneStage.CollectionBook || currDroneStage == DroneStage.ChangeMap)
-            {
-                if (currSelectedOption == 0)
-                {
-                    if (val == -1)
-                    {
-                        SoundManager.instance.Play_Input(0);
-                        currSelectedOption = 1;
-                        DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
-                    }
-                }
-                else if (currSelectedOption == 1)
-                {
-                    if (val == 1)
-                    {
-                        SoundManager.instance.Play_Input(0);
-                        currSelectedOption = 0;
-                        DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                        if (val == 1)
+                        {
+                            SoundManager.instance.Play_Input(0);
+                            currSelectedOption = 0;
+                            DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                        }
                     }
                 }
             }
@@ -227,195 +230,205 @@ public class DroneController : MonoBehaviour
 
     private void InputManager_OnValueChanged_Horizontal(int val)
     {
-        if (talkHintObj.activeInHierarchy && MainManger.instance.currStage == MainStage.InGame && OptionManager.instance.currStage == OptionStage.None)
+        if (!TimeoutManager.instance.isTimeoutUIActive)
         {
-            if (currDroneStage == DroneStage.Tips)
+            if (talkHintObj.activeInHierarchy && MainManger.instance.currStage == MainStage.InGame && OptionManager.instance.currStage == OptionStage.None)
             {
-                if (currSelectedOption == 0)
+                if (currDroneStage == DroneStage.Tips)
                 {
-                    if (val == -1)
+                    if (currSelectedOption == 0)
                     {
-                        SoundManager.instance.Play_Input(0);
-                        currSelectedOption = 2;
-                        DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                        if (val == -1)
+                        {
+                            SoundManager.instance.Play_Input(0);
+                            currSelectedOption = 2;
+                            DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                        }
+                        else if (val == 1)
+                        {
+                            SoundManager.instance.Play_Input(0);
+                            currSelectedOption = 2;
+                            DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                        }
                     }
-                    else if (val == 1)
+                    else if (currSelectedOption == 1)
                     {
-                        SoundManager.instance.Play_Input(0);
-                        currSelectedOption = 2;
-                        DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                        if (val == -1)
+                        {
+                            SoundManager.instance.Play_Input(0);
+                            currSelectedOption = 3;
+                            DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                        }
+                        else if (val == 1)
+                        {
+                            SoundManager.instance.Play_Input(0);
+                            currSelectedOption = 3;
+                            DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                        }
                     }
-                }
-                else if (currSelectedOption == 1)
-                {
-                    if (val == -1)
+                    else if (currSelectedOption == 2)
                     {
-                        SoundManager.instance.Play_Input(0);
-                        currSelectedOption = 3;
-                        DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                        if (val == -1)
+                        {
+                            SoundManager.instance.Play_Input(0);
+                            currSelectedOption = 0;
+                            DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                        }
+                        else if (val == 1)
+                        {
+                            SoundManager.instance.Play_Input(0);
+                            currSelectedOption = 0;
+                            DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                        }
                     }
-                    else if (val == 1)
+                    else if (currSelectedOption == 3)
                     {
-                        SoundManager.instance.Play_Input(0);
-                        currSelectedOption = 3;
-                        DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
-                    }
-                }
-                else if (currSelectedOption == 2)
-                {
-                    if (val == -1)
-                    {
-                        SoundManager.instance.Play_Input(0);
-                        currSelectedOption = 0;
-                        DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
-                    }
-                    else if (val == 1)
-                    {
-                        SoundManager.instance.Play_Input(0);
-                        currSelectedOption = 0;
-                        DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
-                    }
-                }
-                else if (currSelectedOption == 3)
-                {
-                    if (val == -1)
-                    {
-                        SoundManager.instance.Play_Input(0);
-                        currSelectedOption = 1;
-                        DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
-                    }
-                    else if (val == 1)
-                    {
-                        SoundManager.instance.Play_Input(0);
-                        currSelectedOption = 1;
-                        DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                        if (val == -1)
+                        {
+                            SoundManager.instance.Play_Input(0);
+                            currSelectedOption = 1;
+                            DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                        }
+                        else if (val == 1)
+                        {
+                            SoundManager.instance.Play_Input(0);
+                            currSelectedOption = 1;
+                            DialogBoxManager.instance.SetOptionArrow(currSelectedOption);
+                        }
                     }
                 }
             }
         }
+
+        
     }
 
     private void InputManager_OnValueChanged_Confirm()
     {
-        if (talkHintObj.activeInHierarchy && MainManger.instance.currStage == MainStage.InGame)
+        if (!TimeoutManager.instance.isTimeoutUIActive)
         {
-            if (currDroneStage == DroneStage.None)
+            if (talkHintObj.activeInHierarchy && MainManger.instance.currStage == MainStage.InGame)
             {
-                SoundManager.instance.Play_Input(2);
-                GameManager.instance.dialogActive = true;
-                DialogBoxManager.instance.ShowDialog(commonUtils.dialogBox_TipsByDrone);
-                currDroneStage = DroneStage.Tips;
-            }
-            else if (currDroneStage == DroneStage.Tips)
-            {
-                if (currSelectedOption == 0)
+                if (currDroneStage == DroneStage.None)
                 {
                     SoundManager.instance.Play_Input(2);
-                    currDroneStage = DroneStage.Hint;
-                    currDialogLine_Hint++;
-                    DialogBoxManager.instance.ShowDialog(commonUtils.dialogBox_TipsByDrone_Hints[currDialogLine_Hint]);
+                    GameManager.instance.dialogActive = true;
+                    DialogBoxManager.instance.ShowDialog(commonUtils.dialogBox_TipsByDrone);
+                    currDroneStage = DroneStage.Tips;
                 }
-                else if (currSelectedOption == 1)
+                else if (currDroneStage == DroneStage.Tips)
                 {
-                    SoundManager.instance.Play_Input(2);
-                    currDroneStage = DroneStage.CollectionBook;
-                    DialogBoxManager.instance.ShowDialog(commonUtils.dialogBox_TipsByDrone_CollectionBook);
-                    currSelectedOption = 0;
-                }
-                else if (currSelectedOption == 2)
-                {
-                    SoundManager.instance.Play_Input(2);
-                    currDroneStage = DroneStage.ChangeMap;
-                    DialogBoxManager.instance.ShowDialog(commonUtils.dialogBox_TipsByDrone_ChangeMap);
-                    currSelectedOption = 0;
-                }
-                else if (currSelectedOption == 3)
-                {
-                    SoundManager.instance.Play_Input(2);
-                    currDroneStage = DroneStage.None;
-                    DialogBoxManager.instance.HideDialog();
-                    currSelectedOption = 0;
-                    GameManager.instance.dialogActive = false;
-                }
-            }
-            else if (currDroneStage == DroneStage.Hint)
-            {
-                SoundManager.instance.Play_Input(2);
-
-                if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
-                {
-                    DialogBoxManager.instance.FinishCurrentDialog();
-                }
-                else
-                {
-                    if (currDialogLine_Hint == (commonUtils.dialogBox_TipsByDrone_Hints.Count - 1))
+                    if (currSelectedOption == 0)
                     {
+                        SoundManager.instance.Play_Input(2);
+                        currDroneStage = DroneStage.Hint;
+                        currDialogLine_Hint++;
+                        DialogBoxManager.instance.ShowDialog(commonUtils.dialogBox_TipsByDrone_Hints[currDialogLine_Hint]);
+                    }
+                    else if (currSelectedOption == 1)
+                    {
+                        SoundManager.instance.Play_Input(2);
+                        currDroneStage = DroneStage.CollectionBook;
+                        DialogBoxManager.instance.ShowDialog(commonUtils.dialogBox_TipsByDrone_CollectionBook);
+                        currSelectedOption = 0;
+                    }
+                    else if (currSelectedOption == 2)
+                    {
+                        SoundManager.instance.Play_Input(2);
+                        currDroneStage = DroneStage.ChangeMap;
+                        DialogBoxManager.instance.ShowDialog(commonUtils.dialogBox_TipsByDrone_ChangeMap);
+                        currSelectedOption = 0;
+                    }
+                    else if (currSelectedOption == 3)
+                    {
+                        SoundManager.instance.Play_Input(2);
+                        currDroneStage = DroneStage.None;
+                        DialogBoxManager.instance.HideDialog();
+                        currSelectedOption = 0;
+                        GameManager.instance.dialogActive = false;
+                    }
+                }
+                else if (currDroneStage == DroneStage.Hint)
+                {
+                    SoundManager.instance.Play_Input(2);
+
+                    if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
+                    {
+                        DialogBoxManager.instance.FinishCurrentDialog();
+                    }
+                    else
+                    {
+                        if (currDialogLine_Hint == (commonUtils.dialogBox_TipsByDrone_Hints.Count - 1))
+                        {
+                            DialogBoxManager.instance.HideDialog();
+                            currDialogLine_Hint = -1;
+                            currSelectedOption = 0;
+                            currDroneStage = DroneStage.None;
+                            GameManager.instance.dialogActive = false;
+                        }
+                        else
+                        {
+                            currDialogLine_Hint++;
+                            DialogBoxManager.instance.ShowDialog(commonUtils.dialogBox_TipsByDrone_Hints[currDialogLine_Hint]);
+                        }
+                    }
+                }
+                else if (currDroneStage == DroneStage.CollectionBook)
+                {
+                    if (currSelectedOption == 0)
+                    {
+                        SoundManager.instance.Play_Input(2);
+                        DialogBoxManager.instance.HideDialog();
+                        CollectionBookManager.instance.Show_Main();
+                        HideTalkHint();
+                        canShowTalkHint = false;
+                        currDroneStage = DroneStage.None;
+                        GameManager.instance.dialogActive = true;
+                    }
+                    else if (currSelectedOption == 1)
+                    {
+                        SoundManager.instance.Play_Input(2);
                         DialogBoxManager.instance.HideDialog();
                         currDialogLine_Hint = -1;
                         currSelectedOption = 0;
                         currDroneStage = DroneStage.None;
                         GameManager.instance.dialogActive = false;
                     }
-                    else
-                    {
-                        currDialogLine_Hint++;
-                        DialogBoxManager.instance.ShowDialog(commonUtils.dialogBox_TipsByDrone_Hints[currDialogLine_Hint]);
-                    }
                 }
-            }
-            else if (currDroneStage == DroneStage.CollectionBook)
-            {
-                if (currSelectedOption == 0)
+                else if (currDroneStage == DroneStage.ChangeMap)
                 {
-                    SoundManager.instance.Play_Input(2);
-                    DialogBoxManager.instance.HideDialog();
-                    CollectionBookManager.instance.Show_Main();
-                    HideTalkHint();
-                    canShowTalkHint = false;
-                    currDroneStage = DroneStage.None;
-                    GameManager.instance.dialogActive = true;
-                }
-                else if (currSelectedOption == 1)
-                {
-                    SoundManager.instance.Play_Input(2);
-                    DialogBoxManager.instance.HideDialog();
-                    currDialogLine_Hint = -1;
-                    currSelectedOption = 0;
-                    currDroneStage = DroneStage.None;
-                    GameManager.instance.dialogActive = false;
-                }
-            }
-            else if (currDroneStage == DroneStage.ChangeMap)
-            {
-                if (currSelectedOption == 0)
-                {
-                    SoundManager.instance.Play_Input(2);
-                    DialogBoxManager.instance.HideDialog();
-                    currDialogLine_Hint = -1;
-                    currSelectedOption = 0;
-                    currDroneStage = DroneStage.None;
-                    GameManager.instance.dialogActive = false;
-                    if (commonUtils.currMapId == MapID.Carboniferous)
+                    if (currSelectedOption == 0)
                     {
-                        TransitionManager.instance.ChangeMap(commonUtils.currMapId, MapID.Permian);
-                    }
-                    else if (commonUtils.currMapId == MapID.Permian)
-                    {
-                        TransitionManager.instance.ChangeMap(commonUtils.currMapId, MapID.Carboniferous);
-                    }
+                        SoundManager.instance.Play_Input(2);
+                        DialogBoxManager.instance.HideDialog();
+                        currDialogLine_Hint = -1;
+                        currSelectedOption = 0;
+                        currDroneStage = DroneStage.None;
+                        GameManager.instance.dialogActive = false;
+                        if (commonUtils.currMapId == MapID.Carboniferous)
+                        {
+                            TransitionManager.instance.ChangeMap(commonUtils.currMapId, MapID.Permian);
+                        }
+                        else if (commonUtils.currMapId == MapID.Permian)
+                        {
+                            TransitionManager.instance.ChangeMap(commonUtils.currMapId, MapID.Carboniferous);
+                        }
 
-                }
-                else if (currSelectedOption == 1)
-                {
-                    SoundManager.instance.Play_Input(2);
-                    DialogBoxManager.instance.HideDialog();
-                    currDialogLine_Hint = -1;
-                    currSelectedOption = 0;
-                    currDroneStage = DroneStage.None;
-                    GameManager.instance.dialogActive = false;
+                    }
+                    else if (currSelectedOption == 1)
+                    {
+                        SoundManager.instance.Play_Input(2);
+                        DialogBoxManager.instance.HideDialog();
+                        currDialogLine_Hint = -1;
+                        currSelectedOption = 0;
+                        currDroneStage = DroneStage.None;
+                        GameManager.instance.dialogActive = false;
+                    }
                 }
             }
         }
+
+        
     }
 
     void Update()

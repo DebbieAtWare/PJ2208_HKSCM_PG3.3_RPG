@@ -191,265 +191,280 @@ public class CollectionBookManager : MonoBehaviour
 
     private void InputManager_OnValueChanged_Vertical(int val)
     {
-        if (OptionManager.instance.currStage == OptionStage.None)
+        if (!TimeoutManager.instance.isTimeoutUIActive)
         {
-            if (currStage == CollectionBookStage.Main)
+            if (OptionManager.instance.currStage == OptionStage.None)
             {
-                
-                if (currRow == 0)
+                if (currStage == CollectionBookStage.Main)
                 {
-                    SoundManager.instance.Play_Input(0);
-                    if (val == -1)
+
+                    if (currRow == 0)
                     {
-                        currRow = 1;
-                        main_BossObjs[currIndex_Boss].SetSelection(false);
-                        main_NPCObjs[currIndex_NPC].SetSelection(true);
-                    }
-                }
-                else if (currRow == 1)
-                {
-                    SoundManager.instance.Play_Input(0);
-                    if (val == 1)
-                    {
-                        currRow = 0;
-                        main_NPCObjs[currIndex_NPC].SetSelection(false);
-                        main_BossObjs[currIndex_Boss].SetSelection(true);
-                    }
-                    else if (val == -1)
-                    {
-                        currRow = 2;
-                        main_NPCObjs[currIndex_NPC].SetSelection(false);
-                        if (commonUtils.currMapId == MapID.Lab)
+                        SoundManager.instance.Play_Input(0);
+                        if (val == -1)
                         {
-                            for (int i = 0; i < main_RestartGameFrameObjs.Count; i++)
+                            currRow = 1;
+                            main_BossObjs[currIndex_Boss].SetSelection(false);
+                            main_NPCObjs[currIndex_NPC].SetSelection(true);
+                        }
+                    }
+                    else if (currRow == 1)
+                    {
+                        SoundManager.instance.Play_Input(0);
+                        if (val == 1)
+                        {
+                            currRow = 0;
+                            main_NPCObjs[currIndex_NPC].SetSelection(false);
+                            main_BossObjs[currIndex_Boss].SetSelection(true);
+                        }
+                        else if (val == -1)
+                        {
+                            currRow = 2;
+                            main_NPCObjs[currIndex_NPC].SetSelection(false);
+                            if (commonUtils.currMapId == MapID.Lab)
                             {
-                                main_RestartGameFrameObjs[i].SetActive(true);
+                                for (int i = 0; i < main_RestartGameFrameObjs.Count; i++)
+                                {
+                                    main_RestartGameFrameObjs[i].SetActive(true);
+                                }
+                            }
+                            else
+                            {
+                                main_CloseIpadFrameIdleObj.SetActive(false);
+                                main_CloseIpadFrameSelectedObj.SetActive(true);
                             }
                         }
-                        else
-                        {
-                            main_CloseIpadFrameIdleObj.SetActive(false);
-                            main_CloseIpadFrameSelectedObj.SetActive(true);
-                        }
                     }
-                }
-                else if (currRow == 2)
-                {
-                    SoundManager.instance.Play_Input(0);
-                    if (val == 1)
+                    else if (currRow == 2)
                     {
-                        currRow = 1;
-                        if (commonUtils.currMapId == MapID.Lab)
+                        SoundManager.instance.Play_Input(0);
+                        if (val == 1)
                         {
-                            for (int i = 0; i < main_RestartGameFrameObjs.Count; i++)
+                            currRow = 1;
+                            if (commonUtils.currMapId == MapID.Lab)
                             {
-                                main_RestartGameFrameObjs[i].SetActive(false);
+                                for (int i = 0; i < main_RestartGameFrameObjs.Count; i++)
+                                {
+                                    main_RestartGameFrameObjs[i].SetActive(false);
+                                }
                             }
+                            else
+                            {
+                                main_CloseIpadFrameIdleObj.SetActive(true);
+                                main_CloseIpadFrameSelectedObj.SetActive(false);
+                            }
+                            main_NPCObjs[currIndex_NPC].SetSelection(true);
                         }
-                        else
+                    }
+                }
+                else if (currStage == CollectionBookStage.Restart)
+                {
+                    if (restart_CurrIndex == 0)
+                    {
+                        SoundManager.instance.Play_Input(0);
+                        if (val == -1)
                         {
-                            main_CloseIpadFrameIdleObj.SetActive(true);
-                            main_CloseIpadFrameSelectedObj.SetActive(false);
+
+                            restart_ArrowObjs[restart_CurrIndex].SetActive(false);
+                            restart_CurrIndex = 1;
+                            restart_ArrowObjs[restart_CurrIndex].SetActive(true);
                         }
-                        main_NPCObjs[currIndex_NPC].SetSelection(true);
                     }
-                }
-            }
-            else if (currStage == CollectionBookStage.Restart)
-            {
-                if (restart_CurrIndex == 0)
-                {
-                    SoundManager.instance.Play_Input(0);
-                    if (val == -1)
+                    else if (restart_CurrIndex == 1)
                     {
-                        
-                        restart_ArrowObjs[restart_CurrIndex].SetActive(false);
-                        restart_CurrIndex = 1;
-                        restart_ArrowObjs[restart_CurrIndex].SetActive(true);
-                    }
-                }
-                else if (restart_CurrIndex == 1)
-                {
-                    SoundManager.instance.Play_Input(0);
-                    if (val == 1)
-                    {
-                        restart_ArrowObjs[restart_CurrIndex].SetActive(false);
-                        restart_CurrIndex = 0;
-                        restart_ArrowObjs[restart_CurrIndex].SetActive(true);
+                        SoundManager.instance.Play_Input(0);
+                        if (val == 1)
+                        {
+                            restart_ArrowObjs[restart_CurrIndex].SetActive(false);
+                            restart_CurrIndex = 0;
+                            restart_ArrowObjs[restart_CurrIndex].SetActive(true);
+                        }
                     }
                 }
             }
         }
+
+        
     }
 
     private void InputManager_OnValueChanged_Horizontal(int val)
     {
-        if (OptionManager.instance.currStage == OptionStage.None) 
+        if (!TimeoutManager.instance.isTimeoutUIActive)
         {
-            if (currStage == CollectionBookStage.Main)
+            if (OptionManager.instance.currStage == OptionStage.None)
             {
-                
-                if (currRow == 0)
+                if (currStage == CollectionBookStage.Main)
+                {
+
+                    if (currRow == 0)
+                    {
+                        SoundManager.instance.Play_Input(0);
+                        if (val == -1)
+                        {
+                            if (currIndex_Boss != 0)
+                            {
+                                main_BossObjs[currIndex_Boss].SetSelection(false);
+                                currIndex_Boss--;
+                                main_BossObjs[currIndex_Boss].SetSelection(true);
+                            }
+                        }
+                        else if (val == 1)
+                        {
+                            if (currIndex_Boss < main_BossObjs.Count - 1)
+                            {
+                                main_BossObjs[currIndex_Boss].SetSelection(false);
+                                currIndex_Boss++;
+                                main_BossObjs[currIndex_Boss].SetSelection(true);
+                            }
+                        }
+                    }
+                    else if (currRow == 1)
+                    {
+                        SoundManager.instance.Play_Input(0);
+                        if (val == -1)
+                        {
+                            if (currIndex_NPC != 0)
+                            {
+                                main_Scroll_VisibleIndex--;
+                                if (main_Scroll_VisibleIndex < 0)
+                                {
+                                    main_Scroll_VisibleIndex = 0;
+                                    main_Scroll_ContentRect.anchoredPosition = new Vector2(main_Scroll_ContentRect.anchoredPosition.x + main_Scroll_PosGap, 0);
+                                }
+                                main_NPCObjs[currIndex_NPC].SetSelection(false);
+                                currIndex_NPC--;
+                                main_NPCObjs[currIndex_NPC].SetSelection(true);
+                                if (currIndex_NPC == 0)
+                                {
+                                    main_ArrowImgL.sprite = main_ArrowSprite_OffIdle;
+                                }
+                                if (currIndex_NPC < 8)
+                                {
+                                    main_ArrowImgR.sprite = main_ArrowSprite_OnIdle;
+                                }
+                            }
+                        }
+                        else if (val == 1)
+                        {
+                            if (currIndex_NPC < main_NPCObjs.Count - 1)
+                            {
+                                main_Scroll_VisibleIndex++;
+                                if (main_Scroll_VisibleIndex > 5)
+                                {
+                                    main_Scroll_VisibleIndex = 5;
+                                    main_Scroll_ContentRect.anchoredPosition = new Vector2(main_Scroll_ContentRect.anchoredPosition.x - main_Scroll_PosGap, 0);
+                                }
+                                main_NPCObjs[currIndex_NPC].SetSelection(false);
+                                currIndex_NPC++;
+                                main_NPCObjs[currIndex_NPC].SetSelection(true);
+                                if (currIndex_NPC > 5)
+                                {
+                                    main_ArrowImgL.sprite = main_ArrowSprite_OnIdle;
+                                }
+                                if (currIndex_NPC == (main_NPCObjs.Count - 1))
+                                {
+                                    main_ArrowImgR.sprite = main_ArrowSprite_OffIdle;
+                                }
+                            }
+                        }
+                    }
+                }
+                else if (currStage == CollectionBookStage.Detail)
                 {
                     SoundManager.instance.Play_Input(0);
                     if (val == -1)
                     {
-                        if (currIndex_Boss != 0)
+                        if (detail_CurrPage == 1)
                         {
-                            main_BossObjs[currIndex_Boss].SetSelection(false);
-                            currIndex_Boss--;
-                            main_BossObjs[currIndex_Boss].SetSelection(true);
+                            detail_CurrPage = 0;
+                            //use change lang function, to switch detail info and feature page
+                            ChangeLanguage();
                         }
                     }
                     else if (val == 1)
                     {
-                        if (currIndex_Boss < main_BossObjs.Count - 1)
+                        if (detail_CurrPage == 0)
                         {
-                            main_BossObjs[currIndex_Boss].SetSelection(false);
-                            currIndex_Boss++;
-                            main_BossObjs[currIndex_Boss].SetSelection(true);
+                            detail_CurrPage = 1;
+                            ChangeLanguage();
                         }
-                    }
-                }
-                else if (currRow == 1)
-                {
-                    SoundManager.instance.Play_Input(0);
-                    if (val == -1)
-                    {
-                        if (currIndex_NPC != 0)
-                        {
-                            main_Scroll_VisibleIndex--;
-                            if (main_Scroll_VisibleIndex < 0)
-                            {
-                                main_Scroll_VisibleIndex = 0;
-                                main_Scroll_ContentRect.anchoredPosition = new Vector2(main_Scroll_ContentRect.anchoredPosition.x + main_Scroll_PosGap, 0);
-                            }
-                            main_NPCObjs[currIndex_NPC].SetSelection(false);
-                            currIndex_NPC--;
-                            main_NPCObjs[currIndex_NPC].SetSelection(true);
-                            if (currIndex_NPC == 0)
-                            {
-                                main_ArrowImgL.sprite = main_ArrowSprite_OffIdle;
-                            }
-                            if (currIndex_NPC < 8)
-                            {
-                                main_ArrowImgR.sprite = main_ArrowSprite_OnIdle;
-                            }
-                        }
-                    }
-                    else if (val == 1)
-                    {
-                        if (currIndex_NPC < main_NPCObjs.Count - 1)
-                        {
-                            main_Scroll_VisibleIndex++;
-                            if (main_Scroll_VisibleIndex > 5)
-                            {
-                                main_Scroll_VisibleIndex = 5;
-                                main_Scroll_ContentRect.anchoredPosition = new Vector2(main_Scroll_ContentRect.anchoredPosition.x - main_Scroll_PosGap, 0);
-                            }
-                            main_NPCObjs[currIndex_NPC].SetSelection(false);
-                            currIndex_NPC++;
-                            main_NPCObjs[currIndex_NPC].SetSelection(true);
-                            if (currIndex_NPC > 5)
-                            {
-                                main_ArrowImgL.sprite = main_ArrowSprite_OnIdle;
-                            }
-                            if (currIndex_NPC == (main_NPCObjs.Count - 1))
-                            {
-                                main_ArrowImgR.sprite = main_ArrowSprite_OffIdle;
-                            }
-                        }
-                    }
-                }
-            }
-            else if (currStage == CollectionBookStage.Detail)
-            {
-                SoundManager.instance.Play_Input(0);
-                if (val == -1)
-                {
-                    if (detail_CurrPage == 1)
-                    {
-                        detail_CurrPage = 0;
-                        //use change lang function, to switch detail info and feature page
-                        ChangeLanguage();
-                    }
-                }
-                else if (val == 1)
-                {
-                    if (detail_CurrPage == 0)
-                    {
-                        detail_CurrPage = 1;
-                        ChangeLanguage();
                     }
                 }
             }
         }
+
+        
     }
 
     private void InputManager_OnValueChanged_Confirm()
     {
-        if (OptionManager.instance.currStage == OptionStage.None)
+        if (!TimeoutManager.instance.isTimeoutUIActive)
         {
-            if (currStage == CollectionBookStage.Main)
+            if (OptionManager.instance.currStage == OptionStage.None)
             {
-                if (currRow == 0)
+                if (currStage == CollectionBookStage.Main)
                 {
-                    if (commonUtils.bosses[currIndex_Boss].IsSuccessCollectDone)
+                    if (currRow == 0)
                     {
-                        SoundManager.instance.Play_SFX(0);
-                        Show_Detail(commonUtils.bosses[currIndex_Boss]);
+                        if (commonUtils.bosses[currIndex_Boss].IsSuccessCollectDone)
+                        {
+                            SoundManager.instance.Play_SFX(0);
+                            Show_Detail(commonUtils.bosses[currIndex_Boss]);
+                        }
+                        else
+                        {
+                            main_BossObjs[currIndex_Boss].ShakeAni();
+                        }
                     }
-                    else
+                    else if (currRow == 1)
                     {
-                        main_BossObjs[currIndex_Boss].ShakeAni();
+                        if (main_NPCObjs[currIndex_NPC].mapID == MapID.Carboniferous)
+                        {
+                            SoundManager.instance.Play_SFX(0);
+                            Show_Detail(commonUtils.NPC_Carboniferous[main_NPCObjs[currIndex_NPC].configDataIndex]);
+                        }
+                        else if (main_NPCObjs[currIndex_NPC].mapID == MapID.Permian)
+                        {
+                            SoundManager.instance.Play_SFX(0);
+                            Show_Detail(commonUtils.NPC_Permian[main_NPCObjs[currIndex_NPC].configDataIndex]);
+                        }
+                    }
+                    else if (currRow == 2)
+                    {
+                        SoundManager.instance.Play_Input(1);
+                        if (commonUtils.currMapId == MapID.Lab)
+                        {
+                            Show_Restart();
+                        }
+                        else
+                        {
+                            Hide_Main(0.5f);
+                        }
                     }
                 }
-                else if (currRow == 1)
-                {
-                    if (main_NPCObjs[currIndex_NPC].mapID == MapID.Carboniferous)
-                    {
-                        SoundManager.instance.Play_SFX(0);
-                        Show_Detail(commonUtils.NPC_Carboniferous[main_NPCObjs[currIndex_NPC].configDataIndex]);
-                    }
-                    else if (main_NPCObjs[currIndex_NPC].mapID == MapID.Permian)
-                    {
-                        SoundManager.instance.Play_SFX(0);
-                        Show_Detail(commonUtils.NPC_Permian[main_NPCObjs[currIndex_NPC].configDataIndex]);
-                    }
-                }
-                else if (currRow == 2)
+                else if (currStage == CollectionBookStage.Detail)
                 {
                     SoundManager.instance.Play_Input(1);
-                    if (commonUtils.currMapId == MapID.Lab)
-                    {
-                        Show_Restart();
-                    }
-                    else
-                    {
-                        Hide_Main(0.5f);
-                    }
+                    Hide_Detail();
                 }
-            }
-            else if (currStage == CollectionBookStage.Detail)
-            {
-                SoundManager.instance.Play_Input(1);
-                Hide_Detail();
-            }
-            else if (currStage == CollectionBookStage.Restart)
-            {
-                SoundManager.instance.Play_Input(2);
-                if (restart_CurrIndex == 0)
+                else if (currStage == CollectionBookStage.Restart)
                 {
-                    //TODO Reset game
-                    Hide_Restart();
-                    commonUtils.ResetGame();
-                }
-                else if (restart_CurrIndex == 1)
-                {
-                    Hide_Restart();
+                    SoundManager.instance.Play_Input(2);
+                    if (restart_CurrIndex == 0)
+                    {
+                        //TODO Reset game
+                        Hide_Restart();
+                        commonUtils.ResetGame();
+                    }
+                    else if (restart_CurrIndex == 1)
+                    {
+                        Hide_Restart();
+                    }
                 }
             }
         }
+
+        
     }
 
     //----- Main -----

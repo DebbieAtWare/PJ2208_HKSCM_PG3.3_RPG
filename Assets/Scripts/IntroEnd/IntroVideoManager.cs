@@ -124,135 +124,140 @@ public class IntroVideoManager : MonoBehaviour
 
     private void InputManager_OnValueChanged_Confirm()
     {
-        if (currStage == IntroVideoStage.Page1)
+        if (!TimeoutManager.instance.isTimeoutUIActive)
         {
-            SoundManager.instance.Play_Input(2);
-            if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
+            if (currStage == IntroVideoStage.Page1)
             {
-                DialogBoxManager.instance.FinishCurrentDialog();
+                SoundManager.instance.Play_Input(2);
+                if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
+                {
+                    DialogBoxManager.instance.FinishCurrentDialog();
+                }
+                else
+                {
+                    currStage = IntroVideoStage.Page2;
+                    DialogBoxManager.instance.ShowDialog(commonUtils.introVideoDialogs[1]);
+                }
             }
-            else
+            else if (currStage == IntroVideoStage.Page2)
             {
-                currStage = IntroVideoStage.Page2;
-                DialogBoxManager.instance.ShowDialog(commonUtils.introVideoDialogs[1]);
+                SoundManager.instance.Play_Input(2);
+                //use dialog box's dialog writer
+                if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
+                {
+                    DialogBoxManager.instance.FinishCurrentDialog();
+                }
+                else
+                {
+                    TransitionAni_Page2To3();
+                }
+            }
+            else if (currStage == IntroVideoStage.Page3)
+            {
+                SoundManager.instance.Play_Input(2);
+                //use current script dialog writer
+                if (!dialogWriterSingle.IsActive() && mapObj.IsInLoopArea())
+                {
+                    currStage = IntroVideoStage.Page4;
+                    ShowDialog(commonUtils.introVideoDialogs[3]);
+                }
+                else
+                {
+                    FinishCurrentDialog();
+                    mapObj.ChangeFPS_Fast();
+                }
+            }
+            else if (currStage == IntroVideoStage.Page4)
+            {
+                SoundManager.instance.Play_Input(2);
+                if (!dialogWriterSingle.IsActive() && mapObj.IsInLoopArea())
+                {
+                    TransitionAni_Page4To5();
+                }
+                else
+                {
+                    FinishCurrentDialog();
+                }
+            }
+            else if (currStage == IntroVideoStage.Page5)
+            {
+                SoundManager.instance.Play_Input(2);
+                if (!dialogWriterSingle.IsActive())
+                {
+                    TransitionAni_Page5To6();
+                }
+                else
+                {
+                    FinishCurrentDialog();
+                    eggObj.DirectShowAllText();
+                }
+            }
+            else if (currStage == IntroVideoStage.Page6)
+            {
+                SoundManager.instance.Play_Input(2);
+                if (!dialogWriterSingle.IsActive())
+                {
+                    TransitionAni_Page6To7();
+                }
+                else
+                {
+                    FinishCurrentDialog();
+                }
+            }
+            else if (currStage == IntroVideoStage.Page7)
+            {
+                SoundManager.instance.Play_Input(2);
+                if (!dialogWriterSingle.IsActive())
+                {
+                    TransitionAni_Page7To8();
+                }
+                else
+                {
+                    FinishCurrentDialog();
+                    bossObj.DirectShowAllText();
+                }
+            }
+            else if (currStage == IntroVideoStage.Page8)
+            {
+                SoundManager.instance.Play_Input(2);
+                if (!dialogWriterSingle.IsActive() && characterGrp1.IsInLoopArea())
+                {
+                    TransitionAni_Page8To9();
+                }
+                else
+                {
+                    FinishCurrentDialog();
+                    characterGrp1.ChangeFPS_Fast();
+                }
+            }
+            else if (currStage == IntroVideoStage.Page9)
+            {
+                SoundManager.instance.Play_Input(2);
+                if (!dialogWriterSingle.IsActive() && characterGrp2.IsInLoopArea())
+                {
+                    TransitionAni_Page9To10();
+                }
+                else
+                {
+                    FinishCurrentDialog();
+                    characterGrp2.ChangeFPS_Fast();
+                }
+            }
+            else if (currStage == IntroVideoStage.Page10)
+            {
+                SoundManager.instance.Play_Input(2);
+                if (!dialogWriterSingle.IsActive())
+                {
+                    TransitionAni_End();
+                }
+                else
+                {
+                    FinishCurrentDialog();
+                }
             }
         }
-        else if (currStage == IntroVideoStage.Page2)
-        {
-            SoundManager.instance.Play_Input(2);
-            //use dialog box's dialog writer
-            if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
-            {
-                DialogBoxManager.instance.FinishCurrentDialog();
-            }
-            else
-            {
-                TransitionAni_Page2To3();
-            }
-        }
-        else if (currStage == IntroVideoStage.Page3)
-        {
-            SoundManager.instance.Play_Input(2);
-            //use current script dialog writer
-            if (!dialogWriterSingle.IsActive() && mapObj.IsInLoopArea())
-            {
-                currStage = IntroVideoStage.Page4;
-                ShowDialog(commonUtils.introVideoDialogs[3]);
-            }
-            else
-            {
-                FinishCurrentDialog();
-                mapObj.ChangeFPS_Fast();
-            }
-        }
-        else if (currStage == IntroVideoStage.Page4)
-        {
-            SoundManager.instance.Play_Input(2);
-            if (!dialogWriterSingle.IsActive() && mapObj.IsInLoopArea())
-            {
-                TransitionAni_Page4To5();
-            }
-            else
-            {
-                FinishCurrentDialog();
-            }
-        }
-        else if (currStage == IntroVideoStage.Page5)
-        {
-            SoundManager.instance.Play_Input(2);
-            if (!dialogWriterSingle.IsActive())
-            {
-                TransitionAni_Page5To6();
-            }
-            else
-            {
-                FinishCurrentDialog();
-                eggObj.DirectShowAllText();
-            }
-        }
-        else if (currStage == IntroVideoStage.Page6)
-        {
-            SoundManager.instance.Play_Input(2);
-            if (!dialogWriterSingle.IsActive())
-            {
-                TransitionAni_Page6To7();
-            }
-            else
-            {
-                FinishCurrentDialog();
-            }
-        }
-        else if (currStage == IntroVideoStage.Page7)
-        {
-            SoundManager.instance.Play_Input(2);
-            if (!dialogWriterSingle.IsActive())
-            {
-                TransitionAni_Page7To8();
-            }
-            else
-            {
-                FinishCurrentDialog();
-                bossObj.DirectShowAllText();
-            }
-        }
-        else if (currStage == IntroVideoStage.Page8)
-        {
-            SoundManager.instance.Play_Input(2);
-            if (!dialogWriterSingle.IsActive() && characterGrp1.IsInLoopArea())
-            {
-                TransitionAni_Page8To9();
-            }
-            else
-            {
-                FinishCurrentDialog();
-                characterGrp1.ChangeFPS_Fast();
-            }
-        }
-        else if (currStage == IntroVideoStage.Page9)
-        {
-            SoundManager.instance.Play_Input(2);
-            if (!dialogWriterSingle.IsActive() && characterGrp2.IsInLoopArea())
-            {
-                TransitionAni_Page9To10();
-            }
-            else
-            {
-                FinishCurrentDialog();
-                characterGrp2.ChangeFPS_Fast();
-            }
-        }
-        else if (currStage == IntroVideoStage.Page10)
-        {
-            SoundManager.instance.Play_Input(2);
-            if (!dialogWriterSingle.IsActive())
-            {
-                TransitionAni_End();
-            }
-            else
-            {
-                FinishCurrentDialog();
-            }
-        }
+
+    
     }
 
     public void Play()
