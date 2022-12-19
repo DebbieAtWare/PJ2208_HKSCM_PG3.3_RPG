@@ -226,6 +226,7 @@ public class PermianManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        inputManager.onValueChanged_ConfirmCallback -= InputManager_OnValueChanged_Confirm;
         bossObj2.onFinishedConversationCallback -= OnFinishedConversation_Boss2;
         bossObj3.onFinishedConversationCallback -= OnFinishedConversation_Boss3;
     }

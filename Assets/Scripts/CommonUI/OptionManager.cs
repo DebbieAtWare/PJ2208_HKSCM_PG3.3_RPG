@@ -500,4 +500,12 @@ public class OptionManager : MonoBehaviour
 
     }
 
+    private void OnDestroy()
+    {
+        commonUtils.onChangeLangCallback -= CommonUtils_OnChangeLang;
+
+        inputManager.onValueChanged_OptionCallback -= InputManager_OnValueChanged_Option;
+        inputManager.onValueChanged_VerticalCallback -= InputManager_OnValueChanged_Vertical;
+        inputManager.onValueChanged_ConfirmCallback -= InputManager_OnValueChanged_Confirm;
+    }
 }

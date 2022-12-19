@@ -535,4 +535,15 @@ public class IntroVideoManager : MonoBehaviour
             BlackBar_OnVideoEnd();
         }
     }
+
+    private void OnDestroy()
+    {
+        inputManager.onValueChanged_ConfirmCallback -= InputManager_OnValueChanged_Confirm;
+
+        labObj.onTransitionStartDoneCallback -= Lab_OnTransitionStartDone;
+
+        mapObj.onTransitionStartDoneCallback -= Map_OnTransitionStartDone;
+
+        blackBarObj.onVideoEndCallback -= BlackBar_OnVideoEnd;
+    }
 }

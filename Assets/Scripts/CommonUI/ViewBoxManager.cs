@@ -115,4 +115,9 @@ public class ViewBoxManager : MonoBehaviour
             }
         }
     }
+
+    private void OnDestroy()
+    {
+        commonUtils.onChangeLangCallback -= CommonUtils_OnChangeLang;
+    }
 }

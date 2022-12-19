@@ -336,4 +336,17 @@ public class MainManger : MonoBehaviour
         OptionManager.instance.SetActive(true);
         inputManager.canInput_Option = true;
     }
+
+    private void OnDestroy()
+    {
+        commonUtils.onSetupDoneCallback -= CommonUtils_OnSetupDone;
+
+        inputManager.onValueChanged_VerticalCallback -= InputManager_OnValueChanged_Vertical;
+        inputManager.onValueChanged_HorizontalCallback -= InputManager_OnValueChanged_Horizontal;
+        inputManager.onValueChanged_ConfirmCallback -= InputManager_OnValueChanged_Confirm;
+        inputManager.onValueChanged_OptionCallback -= InputManager_OnValueChanged_Option;
+
+        introVideoManager.onVideoStartedCallback -= IntroVideoManager_OnVideoStarted;
+        introVideoManager.onVideoFinishedCallback -= IntroVideoManager_OnVideoFinished;
+    }
 }

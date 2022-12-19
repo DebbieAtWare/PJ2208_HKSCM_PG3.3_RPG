@@ -308,4 +308,9 @@ public class ConversationModeManager : MonoBehaviour
         conversationModeCanvasGrp.alpha = 0;
         conversationModeCanvasGrp.gameObject.SetActive(false);
     }
+
+    private void OnDestroy()
+    {
+        commonUtils.onChangeLangCallback -= CommonUtils_OnChangeLang;
+    }
 }

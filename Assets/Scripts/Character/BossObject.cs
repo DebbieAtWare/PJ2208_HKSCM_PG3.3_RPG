@@ -115,6 +115,7 @@ public class BossObject : MonoBehaviour
         {
             if (currBossStage == BossStage.Alert)
             {
+                Debug.Log("boss alert" + "  " + gameObject.GetInstanceID());
                 if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
                 {
                     DialogBoxManager.instance.FinishCurrentDialog();
@@ -148,6 +149,7 @@ public class BossObject : MonoBehaviour
             }
             else if (currBossStage == BossStage.View)
             {
+                Debug.Log("boss View" + "  " + gameObject.GetInstanceID());
                 StartCoroutine(Ani());
                 IEnumerator Ani()
                 {
@@ -330,6 +332,8 @@ public class BossObject : MonoBehaviour
     private void OnDestroy()
     {
         inputManager.onValueChanged_ConfirmCallback -= InputManager_OnValueChanged_Confirm;
+
+        dialogBoxManager.onDialogEndCallback -= DialogBoxManager_OnDialogEnd;
 
         alertTriggerControl.onTriggerEnterCallback -= AlertTrigger_OnEnter;
         alertTriggerControl.onTriggerExitCallback -= AlertTrigger_OnExit;

@@ -120,4 +120,10 @@ public class CarboniferousManager : MonoBehaviour
         DialogBoxManager.instance.ShowDialog(commonUtils.firstGreeting_Carboniferous[firstGreetingDialogIndex]);
     }
 
+    private void OnDestroy()
+    {
+        inputManager.onValueChanged_ConfirmCallback -= InputManager_OnValueChanged_Confirm;
+
+        treeCaveTriggerControl.onTriggerEnterCallback -= TreeCave_OnTriggerEnter;
+    }
 }

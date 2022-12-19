@@ -218,8 +218,9 @@ public class NPCObject : MonoBehaviour
 
     private void OnDestroy()
     {
+        inputManager.onValueChanged_ConfirmCallback -= InputManager_OnValueChanged_Confirm;
+
         viewTriggerControl.onTriggerEnterCallback -= ViewTrigger_OnEnter;
         viewTriggerControl.onTriggerExitCallback -= ViewTrigger_OnExit;
-        inputManager.onValueChanged_ConfirmCallback -= InputManager_OnValueChanged_Confirm;
     }
 }

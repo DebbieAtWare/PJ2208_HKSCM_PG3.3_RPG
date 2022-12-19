@@ -302,6 +302,20 @@ public class CommonUtils : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        inputManager.onValueChanged_ConfirmCallback -= InputManager_OnValueChanged_Confirm;
+    }
+
+
+
+
+
+
+
+
+
     //-------- tmp
 
     private void Update()
@@ -317,6 +331,10 @@ public class CommonUtils : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             ChangeLanguage(Language.EN);
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad9))
+        {
+            SceneManager.LoadScene("ResetScene");
         }
     }
 

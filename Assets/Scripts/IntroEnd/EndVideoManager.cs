@@ -586,4 +586,9 @@ public class EndVideoManager : MonoBehaviour
     {
         confirmBtnControl.SetAlpha(1, 0);
     }
+
+    private void OnDestroy()
+    {
+        inputManager.onValueChanged_ConfirmCallback -= InputManager_OnValueChanged_Confirm;
+    }
 }

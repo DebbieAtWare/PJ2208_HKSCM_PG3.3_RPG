@@ -1049,4 +1049,12 @@ public class CollectionBookManager : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        commonUtils.onChangeLangCallback -= CommonUtils_OnChangeLang;
+
+        inputManager.onValueChanged_VerticalCallback -= InputManager_OnValueChanged_Vertical;
+        inputManager.onValueChanged_HorizontalCallback -= InputManager_OnValueChanged_Horizontal;
+        inputManager.onValueChanged_ConfirmCallback -= InputManager_OnValueChanged_Confirm;
+    }
 }

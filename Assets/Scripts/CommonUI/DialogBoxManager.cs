@@ -496,4 +496,8 @@ public class DialogBoxManager : MonoBehaviour
         zoomImgCanvasGrp.DOFade(0, aniTime).OnComplete(() => zoomImgCanvasGrp.gameObject.SetActive(false));
     }
 
+    private void OnDestroy()
+    {
+        commonUtils.onChangeLangCallback -= CommonUtils_OnChangeLang;
+    }
 }

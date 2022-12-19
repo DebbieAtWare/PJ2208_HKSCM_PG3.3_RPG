@@ -267,4 +267,9 @@ public class StatusBarManager : MonoBehaviour
             badgeImgs_PermianGrp[2].rectTransform.DOScale(new Vector3(1, 1, 1), 0.5f);
         }
     }
+
+    private void OnDestroy()
+    {
+        commonUtils.onChangeLangCallback -= CommonUtils_OnChangeLang;
+    }
 }
