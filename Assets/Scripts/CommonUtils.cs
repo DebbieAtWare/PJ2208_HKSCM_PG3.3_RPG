@@ -302,6 +302,11 @@ public class CommonUtils : MonoBehaviour
         }
     }
 
+    public void ResetGame()
+    {
+        SceneManager.LoadScene("ResetScene");
+    }
+
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
@@ -331,10 +336,6 @@ public class CommonUtils : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             ChangeLanguage(Language.EN);
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad9))
-        {
-            SceneManager.LoadScene("ResetScene");
         }
     }
 

@@ -442,6 +442,7 @@ public class CollectionBookManager : MonoBehaviour
                 {
                     //TODO Reset game
                     Hide_Restart();
+                    commonUtils.ResetGame();
                 }
                 else if (restart_CurrIndex == 1)
                 {

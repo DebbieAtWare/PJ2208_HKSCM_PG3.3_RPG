@@ -315,6 +315,7 @@ public class OptionManager : MonoBehaviour
             {
                 //TODO reset game !!!!!
                 Close_ResetAll();
+                commonUtils.ResetGame();
             }
             else if (resetGrp_CurrIndex == 1)
             {
