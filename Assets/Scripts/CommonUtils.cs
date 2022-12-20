@@ -120,6 +120,9 @@ public class CommonUtils : MonoBehaviour
     public ConfigData_DialogBox endCheck_AfterEndingVideo = new ConfigData_DialogBox();
     int endCheck_ChangeToEndingVideoDialogIndex = -1;
 
+    [Header("ConfigData - Ending")]
+    public List<ConfigData_Text> endVideoTexts = new List<ConfigData_Text>();
+
     [Header("Curr")]
     public MapID currMapId;
     public Language currLang;
@@ -1123,6 +1126,31 @@ public class CommonUtils : MonoBehaviour
         dialog_EC_5.ByWhom = "DRO";
         dialog_EC_5.Text_TC = "任務已經完成，離開前可以在圖鑑中翻查一下剛才的資訊，進一步了解羊膜生物及其他古生物的！";
         endCheck_AfterEndingVideo = dialog_EC_5;
+
+        //---------
+
+        List<ConfigData_Text> endTexts = new List<ConfigData_Text>();
+        ConfigData_Text endText1 = new ConfigData_Text();
+        endText1.Text_TC = "羊膜動物憑着牠們適應了陸地生活的優勢，迅速佔領了大部分陸地生境，後期更演化出爬行類、鳥類、哺乳類等動物。";
+        endText1.Text_SC = "羊膜动物凭着它们适应了陆地生活的优势，迅速占领了大部分陆地生境，后期更演化出爬行类、鸟类、哺乳类等动物。";
+        endText1.Text_EN = "Amniotes quickly occupied most of the terrestrial habitats by their adaptations for life on land, eventually giving rise to mammals, reptiles, and birds.";
+        endTexts.Add(endText1);
+        ConfigData_Text endText2 = new ConfigData_Text();
+        endText2.Text_TC = "當中最古老的羊膜動物是生活在石炭紀的林蜥，牠亦是已知最早的爬行動物之一。";
+        endText2.Text_SC = "羊膜动物凭着它们适应了陆地生活的优势，迅速占领了大部分陆地生境，后期更演化出爬行类、鸟类、哺乳类等动物。";
+        endText2.Text_EN = "Amniotes quickly occupied most of the terrestrial habitats by their adaptations for life on land, eventually giving rise to mammals, reptiles, and birds.";
+        endTexts.Add(endText2);
+        ConfigData_Text endText3 = new ConfigData_Text();
+        endText3.Text_TC = "在二疊紀發現的異齒龍，其實牠跟哺乳動物都是源自同一演化支——合弓綱。";
+        endText3.Text_SC = "羊膜动物凭着它们适应了陆地生活的优势，迅速占领了大部分陆地生境，后期更演化出爬行类、鸟类、哺乳类等动物。";
+        endText3.Text_EN = "Amniotes quickly occupied most of the terrestrial habitats by their adaptations for life on land, eventually giving rise to mammals, reptiles, and birds.";
+        endTexts.Add(endText3);
+        ConfigData_Text endText4 = new ConfigData_Text();
+        endText4.Text_TC = "水龍獸也是合弓綱動物。擅長挖地穴的牠成功逃過了二疊紀大滅絕，並成爲了三疊紀早期最常見的陸棲動物。";
+        endText4.Text_SC = "羊膜动物凭着它们适应了陆地生活的优势，迅速占领了大部分陆地生境，后期更演化出爬行类、鸟类、哺乳类等动物。";
+        endText4.Text_EN = "Amniotes quickly occupied most of the terrestrial habitats by their adaptations for life on land, eventually giving rise to mammals, reptiles, and birds.";
+        endTexts.Add(endText4);
+        endVideoTexts = endTexts;
     }
 }
 

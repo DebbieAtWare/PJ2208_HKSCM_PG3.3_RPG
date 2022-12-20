@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using System;
+using TMPro;
 
 public enum EndVideoStage
 {
@@ -38,9 +39,9 @@ public class EndVideoManager : MonoBehaviour
     public CanvasGroup page1_bkgCanvasGrp_Carbon;
     public RectTransform page1_bkgRect_Permian;
     public CanvasGroup page1_bkgCanvasGrp_Permian;
-    public RectTransform page1_textRect_TC;
-    public RectTransform page1_textRect_SC;
-    public RectTransform page1_textRect_EN;
+    public TextMeshProUGUI page1_textRect_TC;
+    public TextMeshProUGUI page1_textRect_SC;
+    public TextMeshProUGUI page1_textRect_EN;
     public RectTransform page1_imgRect;
     public CollectionBookBossObject page1_bossObj1;
     public CollectionBookBossObject page1_bossObj2;
@@ -49,27 +50,27 @@ public class EndVideoManager : MonoBehaviour
     [Header("Page2")]
     public RectTransform page2_bkgRect;
     public CanvasGroup page2_bkgCanvasGrp;
-    public RectTransform page2_textRect_TC;
-    public RectTransform page2_textRect_SC;
-    public RectTransform page2_textRect_EN;
+    public TextMeshProUGUI page2_textRect_TC;
+    public TextMeshProUGUI page2_textRect_SC;
+    public TextMeshProUGUI page2_textRect_EN;
     public RectTransform page2_imgRect;
     public ConversationModeBossObject page2_bossObj;
 
     [Header("Page3")]
     public RectTransform page3_bkgRect;
     public CanvasGroup page3_bkgCanvasGrp;
-    public RectTransform page3_textRect_TC;
-    public RectTransform page3_textRect_SC;
-    public RectTransform page3_textRect_EN;
+    public TextMeshProUGUI page3_textRect_TC;
+    public TextMeshProUGUI page3_textRect_SC;
+    public TextMeshProUGUI page3_textRect_EN;
     public RectTransform page3_imgRect;
     public ConversationModeBossObject page3_bossObj;
 
     [Header("Page4")]
     public RectTransform page4_bkgRect;
     public CanvasGroup page4_bkgCanvasGrp;
-    public RectTransform page4_textRect_TC;
-    public RectTransform page4_textRect_SC;
-    public RectTransform page4_textRect_EN;
+    public TextMeshProUGUI page4_textRect_TC;
+    public TextMeshProUGUI page4_textRect_SC;
+    public TextMeshProUGUI page4_textRect_EN;
     public RectTransform page4_imgRect;
     public ConversationModeBossObject page4_bossObj;
 
@@ -79,10 +80,6 @@ public class EndVideoManager : MonoBehaviour
     float bkgPosYTarget_Top = 0;
     float bkgPosYTarget_Bottom_Carbon = 2568;
     float bkgPosYTarget_Bottom_Permian = 4314;
-
-    Vector2 textPosTarget_Up = new Vector2(0, 540f);
-    Vector2 textPosTarget_Down = new Vector2(0, -480f);
-    Vector2 textPosTarget_On = new Vector2(0, 0);
 
     Vector2 imgPosTarget_On = new Vector2(0, 0);
     Vector2 imgPosTarget_Off = new Vector2(970, 0);
@@ -130,6 +127,19 @@ public class EndVideoManager : MonoBehaviour
         commonUtils = CommonUtils.instance;
         inputManager = InputManager.instance;
         inputManager.onValueChanged_ConfirmCallback += InputManager_OnValueChanged_Confirm;
+
+        page1_textRect_TC.text = commonUtils.endVideoTexts[0].Text_TC;
+        page1_textRect_SC.text = commonUtils.endVideoTexts[0].Text_SC;
+        page1_textRect_EN.text = commonUtils.endVideoTexts[0].Text_EN;
+        page2_textRect_TC.text = commonUtils.endVideoTexts[1].Text_TC;
+        page2_textRect_SC.text = commonUtils.endVideoTexts[1].Text_SC;
+        page2_textRect_EN.text = commonUtils.endVideoTexts[1].Text_EN;
+        page3_textRect_TC.text = commonUtils.endVideoTexts[2].Text_TC;
+        page3_textRect_SC.text = commonUtils.endVideoTexts[2].Text_SC;
+        page3_textRect_EN.text = commonUtils.endVideoTexts[2].Text_EN;
+        page4_textRect_TC.text = commonUtils.endVideoTexts[3].Text_TC;
+        page4_textRect_SC.text = commonUtils.endVideoTexts[3].Text_SC;
+        page4_textRect_EN.text = commonUtils.endVideoTexts[3].Text_EN;
 
         page1_Coroutine_Play = Page1_Ani_Play();
         page1_Coroutine_FastIn = Page1_Ani_FaseIn();
@@ -263,15 +273,19 @@ public class EndVideoManager : MonoBehaviour
         }
         if (commonUtils.currLang == Language.TC)
         {
-            page1_textRect_TC.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
+            Vector2 textPosTarget_On = new Vector2(page1_textRect_TC.rectTransform.anchoredPosition.x, -blackBkgRect.sizeDelta.y / 2f + page1_textRect_TC.preferredHeight / 2f);
+            page1_textRect_TC.rectTransform.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
+            Debug.Log(textPosTarget_On + "  " + aniTime_Text_SlowIn);
         }
         else if (commonUtils.currLang == Language.SC)
         {
-            page1_textRect_SC.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
+            Vector2 textPosTarget_On = new Vector2(page1_textRect_SC.rectTransform.anchoredPosition.x, -blackBkgRect.sizeDelta.y / 2f + page1_textRect_SC.preferredHeight / 2f);
+            page1_textRect_SC.rectTransform.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
         }
         else if (commonUtils.currLang == Language.EN)
         {
-            page1_textRect_EN.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
+            Vector2 textPosTarget_On = new Vector2(page1_textRect_EN.rectTransform.anchoredPosition.x, -blackBkgRect.sizeDelta.y / 2f + page1_textRect_EN.preferredHeight / 2f);
+            page1_textRect_EN.rectTransform.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
         }
         page1_imgRect.DOAnchorPos(imgPosTarget_On, aniTime_Img_SlowIn).SetEase(Ease.Linear);
         page1_bossObj1.Setup(commonUtils.bosses[0].Name_TC, commonUtils.bosses[0].Name_SC, commonUtils.bosses[0].Name_EN, commonUtils.currLang);
@@ -292,22 +306,26 @@ public class EndVideoManager : MonoBehaviour
         currStage = EndVideoStage.Page1_FastIn;
         StopCoroutine(page1_Coroutine_Play);
         DOTween.Kill(blackBkgRect);
-        DOTween.Kill(page1_textRect_TC);
-        DOTween.Kill(page1_textRect_SC);
-        DOTween.Kill(page1_textRect_EN);
+        DOTween.Kill(page1_textRect_TC.rectTransform);
+        DOTween.Kill(page1_textRect_SC.rectTransform);
+        DOTween.Kill(page1_textRect_EN.rectTransform);
         DOTween.Kill(page1_imgRect);
         blackBkgRect.DOScale(new Vector3(1, 1, 1), aniTime_Img_FastIn).SetEase(Ease.Linear);
         if (commonUtils.currLang == Language.TC)
         {
-            page1_textRect_TC.DOAnchorPos(textPosTarget_On, aniTime_Text_FastIn).SetEase(Ease.Linear);
+            Vector2 textPosTarget_On = new Vector2(page1_textRect_TC.rectTransform.anchoredPosition.x, -blackBkgRect.sizeDelta.y / 2f + page1_textRect_TC.preferredHeight / 2f);
+            page1_textRect_TC.rectTransform.DOAnchorPos(textPosTarget_On, aniTime_Text_FastIn).SetEase(Ease.Linear);
+            Debug.Log(textPosTarget_On + "  " + aniTime_Text_FastIn);
         }
         else if (commonUtils.currLang == Language.SC)
         {
-            page1_textRect_SC.DOAnchorPos(textPosTarget_On, aniTime_Text_FastIn).SetEase(Ease.Linear);
+            Vector2 textPosTarget_On = new Vector2(page1_textRect_SC.rectTransform.anchoredPosition.x, -blackBkgRect.sizeDelta.y / 2f + page1_textRect_SC.preferredHeight / 2f);
+            page1_textRect_SC.rectTransform.DOAnchorPos(textPosTarget_On, aniTime_Text_FastIn).SetEase(Ease.Linear);
         }
         else if (commonUtils.currLang == Language.EN)
         {
-            page1_textRect_EN.DOAnchorPos(textPosTarget_On, aniTime_Text_FastIn).SetEase(Ease.Linear);
+            Vector2 textPosTarget_On = new Vector2(page1_textRect_EN.rectTransform.anchoredPosition.x, -blackBkgRect.sizeDelta.y / 2f + page1_textRect_EN.preferredHeight / 2f);
+            page1_textRect_EN.rectTransform.DOAnchorPos(textPosTarget_On, aniTime_Text_FastIn).SetEase(Ease.Linear);
         }
         page1_imgRect.DOAnchorPos(imgPosTarget_On, aniTime_Img_FastIn).SetEase(Ease.Linear);
         yield return new WaitForSeconds(aniTime_Img_FastIn);
@@ -324,15 +342,18 @@ public class EndVideoManager : MonoBehaviour
         confirmBtnControl.SetAlpha(0, 0);
         if (commonUtils.currLang == Language.TC)
         {
-            page1_textRect_TC.DOAnchorPos(textPosTarget_Up, aniTime_Text_Out).SetEase(Ease.Linear);
+            Vector2 textPosTarget_Up = new Vector2(page1_textRect_TC.rectTransform.anchoredPosition.x, page1_textRect_TC.preferredHeight);
+            page1_textRect_TC.rectTransform.DOAnchorPos(textPosTarget_Up, aniTime_Text_Out).SetEase(Ease.Linear);
         }
         else if (commonUtils.currLang == Language.SC)
         {
-            page1_textRect_SC.DOAnchorPos(textPosTarget_Up, aniTime_Text_Out).SetEase(Ease.Linear);
+            Vector2 textPosTarget_Up = new Vector2(page1_textRect_SC.rectTransform.anchoredPosition.x, page1_textRect_SC.preferredHeight);
+            page1_textRect_SC.rectTransform.DOAnchorPos(textPosTarget_Up, aniTime_Text_Out).SetEase(Ease.Linear);
         }
         else if (commonUtils.currLang == Language.EN)
         {
-            page1_textRect_EN.DOAnchorPos(textPosTarget_Up, aniTime_Text_Out).SetEase(Ease.Linear);
+            Vector2 textPosTarget_Up = new Vector2(page1_textRect_EN.rectTransform.anchoredPosition.x, page1_textRect_EN.preferredHeight);
+            page1_textRect_EN.rectTransform.DOAnchorPos(textPosTarget_Up, aniTime_Text_Out).SetEase(Ease.Linear);
         }
         page1_imgRect.DOAnchorPos(imgPosTarget_Off, aniTime_Img_Out).SetEase(Ease.Linear);
         yield return new WaitForSeconds(0.2f);
@@ -341,15 +362,18 @@ public class EndVideoManager : MonoBehaviour
         page2_bossObj.ChangeAni_Idle();
         if (commonUtils.currLang == Language.TC)
         {
-            page2_textRect_TC.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
+            Vector2 textPosTarget_On = new Vector2(page2_textRect_TC.rectTransform.anchoredPosition.x, -blackBkgRect.sizeDelta.y / 2f + page2_textRect_TC.preferredHeight / 2f);
+            page2_textRect_TC.rectTransform.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
         }
         else if (commonUtils.currLang == Language.SC)
         {
-            page2_textRect_SC.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
+            Vector2 textPosTarget_On = new Vector2(page2_textRect_SC.rectTransform.anchoredPosition.x, -blackBkgRect.sizeDelta.y / 2f + page2_textRect_SC.preferredHeight / 2f);
+            page2_textRect_SC.rectTransform.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
         }
         else if (commonUtils.currLang == Language.EN)
         {
-            page2_textRect_EN.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
+            Vector2 textPosTarget_On = new Vector2(page2_textRect_EN.rectTransform.anchoredPosition.x, -blackBkgRect.sizeDelta.y / 2f + page2_textRect_EN.preferredHeight / 2f);
+            page2_textRect_EN.rectTransform.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
         }
         page2_imgRect.DOAnchorPos(imgPosTarget_On, aniTime_Img_SlowIn).SetEase(Ease.Linear);
         CancelInvoke("InvokeShowConfirmBtn");
@@ -363,21 +387,24 @@ public class EndVideoManager : MonoBehaviour
     {
         currStage = EndVideoStage.Page2_FastIn;
         StopCoroutine(page2_Coroutine_Play);
-        DOTween.Kill(page2_textRect_TC);
-        DOTween.Kill(page2_textRect_SC);
-        DOTween.Kill(page2_textRect_EN);
+        DOTween.Kill(page2_textRect_TC.rectTransform);
+        DOTween.Kill(page2_textRect_SC.rectTransform);
+        DOTween.Kill(page2_textRect_EN.rectTransform);
         DOTween.Kill(page2_imgRect);
         if (commonUtils.currLang == Language.TC)
         {
-            page2_textRect_TC.DOAnchorPos(textPosTarget_On, aniTime_Text_FastIn).SetEase(Ease.Linear);
+            Vector2 textPosTarget_On = new Vector2(page2_textRect_TC.rectTransform.anchoredPosition.x, -blackBkgRect.sizeDelta.y / 2f + page2_textRect_TC.preferredHeight / 2f);
+            page2_textRect_TC.rectTransform.DOAnchorPos(textPosTarget_On, aniTime_Text_FastIn).SetEase(Ease.Linear);
         }
         else if (commonUtils.currLang == Language.SC)
         {
-            page2_textRect_SC.DOAnchorPos(textPosTarget_On, aniTime_Text_FastIn).SetEase(Ease.Linear);
+            Vector2 textPosTarget_On = new Vector2(page2_textRect_SC.rectTransform.anchoredPosition.x, -blackBkgRect.sizeDelta.y / 2f + page2_textRect_SC.preferredHeight / 2f);
+            page2_textRect_SC.rectTransform.DOAnchorPos(textPosTarget_On, aniTime_Text_FastIn).SetEase(Ease.Linear);
         }
         else if (commonUtils.currLang == Language.EN)
         {
-            page2_textRect_EN.DOAnchorPos(textPosTarget_On, aniTime_Text_FastIn).SetEase(Ease.Linear);
+            Vector2 textPosTarget_On = new Vector2(page2_textRect_EN.rectTransform.anchoredPosition.x, -blackBkgRect.sizeDelta.y / 2f + page2_textRect_EN.preferredHeight / 2f);
+            page2_textRect_EN.rectTransform.DOAnchorPos(textPosTarget_On, aniTime_Text_FastIn).SetEase(Ease.Linear);
         }
         page2_imgRect.DOAnchorPos(imgPosTarget_On, aniTime_Img_FastIn).SetEase(Ease.Linear);
         yield return new WaitForSeconds(aniTime_Img_FastIn);
@@ -394,15 +421,18 @@ public class EndVideoManager : MonoBehaviour
         confirmBtnControl.SetAlpha(0, 0);
         if (commonUtils.currLang == Language.TC)
         {
-            page2_textRect_TC.DOAnchorPos(textPosTarget_Up, aniTime_Text_Out).SetEase(Ease.Linear);
+            Vector2 textPosTarget_Up = new Vector2(page2_textRect_TC.rectTransform.anchoredPosition.x, page2_textRect_TC.preferredHeight);
+            page2_textRect_TC.rectTransform.DOAnchorPos(textPosTarget_Up, aniTime_Text_Out).SetEase(Ease.Linear);
         }
         else if (commonUtils.currLang == Language.SC)
         {
-            page2_textRect_SC.DOAnchorPos(textPosTarget_Up, aniTime_Text_Out).SetEase(Ease.Linear);
+            Vector2 textPosTarget_Up = new Vector2(page2_textRect_SC.rectTransform.anchoredPosition.x, page2_textRect_SC.preferredHeight);
+            page2_textRect_SC.rectTransform.DOAnchorPos(textPosTarget_Up, aniTime_Text_Out).SetEase(Ease.Linear);
         }
         else if (commonUtils.currLang == Language.EN)
         {
-            page2_textRect_EN.DOAnchorPos(textPosTarget_Up, aniTime_Text_Out).SetEase(Ease.Linear);
+            Vector2 textPosTarget_Up = new Vector2(page2_textRect_EN.rectTransform.anchoredPosition.x, page2_textRect_EN.preferredHeight);
+            page2_textRect_EN.rectTransform.DOAnchorPos(textPosTarget_Up, aniTime_Text_Out).SetEase(Ease.Linear);
         }
         page2_imgRect.DOAnchorPos(imgPosTarget_Off, aniTime_Img_Out).SetEase(Ease.Linear);
         yield return new WaitForSeconds(0.2f);
@@ -411,15 +441,18 @@ public class EndVideoManager : MonoBehaviour
         page3_bossObj.ChangeAni_Idle();
         if (commonUtils.currLang == Language.TC)
         {
-            page3_textRect_TC.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
+            Vector2 textPosTarget_On = new Vector2(page3_textRect_TC.rectTransform.anchoredPosition.x, -blackBkgRect.sizeDelta.y / 2f + page3_textRect_TC.preferredHeight / 2f);
+            page3_textRect_TC.rectTransform.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
         }
         else if (commonUtils.currLang == Language.SC)
         {
-            page3_textRect_SC.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
+            Vector2 textPosTarget_On = new Vector2(page3_textRect_SC.rectTransform.anchoredPosition.x, -blackBkgRect.sizeDelta.y / 2f + page3_textRect_SC.preferredHeight / 2f);
+            page3_textRect_SC.rectTransform.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
         }
         else if (commonUtils.currLang == Language.EN)
         {
-            page3_textRect_EN.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
+            Vector2 textPosTarget_On = new Vector2(page3_textRect_EN.rectTransform.anchoredPosition.x, -blackBkgRect.sizeDelta.y / 2f + page3_textRect_EN.preferredHeight / 2f);
+            page3_textRect_EN.rectTransform.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
         }
         page3_imgRect.DOAnchorPos(imgPosTarget_On, aniTime_Img_SlowIn).SetEase(Ease.Linear);
         CancelInvoke("InvokeShowConfirmBtn");
@@ -433,21 +466,24 @@ public class EndVideoManager : MonoBehaviour
     {
         currStage = EndVideoStage.Page3_FastIn;
         StopCoroutine(page3_Coroutine_Play);
-        DOTween.Kill(page3_textRect_TC);
-        DOTween.Kill(page3_textRect_SC);
-        DOTween.Kill(page3_textRect_EN);
+        DOTween.Kill(page3_textRect_TC.rectTransform);
+        DOTween.Kill(page3_textRect_SC.rectTransform);
+        DOTween.Kill(page3_textRect_EN.rectTransform);
         DOTween.Kill(page3_imgRect);
         if (commonUtils.currLang == Language.TC)
         {
-            page3_textRect_TC.DOAnchorPos(textPosTarget_On, aniTime_Text_FastIn).SetEase(Ease.Linear);
+            Vector2 textPosTarget_On = new Vector2(page3_textRect_TC.rectTransform.anchoredPosition.x, -blackBkgRect.sizeDelta.y / 2f + page3_textRect_TC.preferredHeight / 2f);
+            page3_textRect_TC.rectTransform.DOAnchorPos(textPosTarget_On, aniTime_Text_FastIn).SetEase(Ease.Linear);
         }
         else if (commonUtils.currLang == Language.SC)
         {
-            page3_textRect_SC.DOAnchorPos(textPosTarget_On, aniTime_Text_FastIn).SetEase(Ease.Linear);
+            Vector2 textPosTarget_On = new Vector2(page3_textRect_SC.rectTransform.anchoredPosition.x, -blackBkgRect.sizeDelta.y / 2f + page3_textRect_SC.preferredHeight / 2f);
+            page3_textRect_SC.rectTransform.DOAnchorPos(textPosTarget_On, aniTime_Text_FastIn).SetEase(Ease.Linear);
         }
         else if (commonUtils.currLang == Language.EN)
         {
-            page3_textRect_EN.DOAnchorPos(textPosTarget_On, aniTime_Text_FastIn).SetEase(Ease.Linear);
+            Vector2 textPosTarget_On = new Vector2(page3_textRect_EN.rectTransform.anchoredPosition.x, -blackBkgRect.sizeDelta.y / 2f + page3_textRect_EN.preferredHeight / 2f);
+            page3_textRect_EN.rectTransform.DOAnchorPos(textPosTarget_On, aniTime_Text_FastIn).SetEase(Ease.Linear);
         }
         page3_imgRect.DOAnchorPos(imgPosTarget_On, aniTime_Img_FastIn).SetEase(Ease.Linear);
         yield return new WaitForSeconds(aniTime_Img_FastIn);
@@ -464,15 +500,18 @@ public class EndVideoManager : MonoBehaviour
         confirmBtnControl.SetAlpha(0, 0);
         if (commonUtils.currLang == Language.TC)
         {
-            page3_textRect_TC.DOAnchorPos(textPosTarget_Up, aniTime_Text_Out).SetEase(Ease.Linear);
+            Vector2 textPosTarget_Up = new Vector2(page3_textRect_TC.rectTransform.anchoredPosition.x, page3_textRect_TC.preferredHeight);
+            page3_textRect_TC.rectTransform.DOAnchorPos(textPosTarget_Up, aniTime_Text_Out).SetEase(Ease.Linear);
         }
         else if (commonUtils.currLang == Language.SC)
         {
-            page3_textRect_SC.DOAnchorPos(textPosTarget_Up, aniTime_Text_Out).SetEase(Ease.Linear);
+            Vector2 textPosTarget_Up = new Vector2(page3_textRect_SC.rectTransform.anchoredPosition.x, page3_textRect_SC.preferredHeight);
+            page3_textRect_SC.rectTransform.DOAnchorPos(textPosTarget_Up, aniTime_Text_Out).SetEase(Ease.Linear);
         }
         else if (commonUtils.currLang == Language.EN)
         {
-            page3_textRect_EN.DOAnchorPos(textPosTarget_Up, aniTime_Text_Out).SetEase(Ease.Linear);
+            Vector2 textPosTarget_Up = new Vector2(page3_textRect_EN.rectTransform.anchoredPosition.x, page3_textRect_EN.preferredHeight);
+            page3_textRect_EN.rectTransform.DOAnchorPos(textPosTarget_Up, aniTime_Text_Out).SetEase(Ease.Linear);
         }
         page3_imgRect.DOAnchorPos(imgPosTarget_Off, aniTime_Img_Out).SetEase(Ease.Linear);
         yield return new WaitForSeconds(0.2f);
@@ -481,15 +520,18 @@ public class EndVideoManager : MonoBehaviour
         page4_bossObj.ChangeAni_Idle();
         if (commonUtils.currLang == Language.TC)
         {
-            page4_textRect_TC.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
+            Vector2 textPosTarget_On = new Vector2(page4_textRect_TC.rectTransform.anchoredPosition.x, -blackBkgRect.sizeDelta.y / 2f + page4_textRect_TC.preferredHeight / 2f);
+            page4_textRect_TC.rectTransform.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
         }
         else if (commonUtils.currLang == Language.SC)
         {
-            page4_textRect_SC.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
+            Vector2 textPosTarget_On = new Vector2(page4_textRect_SC.rectTransform.anchoredPosition.x, -blackBkgRect.sizeDelta.y / 2f + page4_textRect_SC.preferredHeight / 2f);
+            page4_textRect_SC.rectTransform.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
         }
         else if (commonUtils.currLang == Language.EN)
         {
-            page4_textRect_EN.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
+            Vector2 textPosTarget_On = new Vector2(page4_textRect_EN.rectTransform.anchoredPosition.x, -blackBkgRect.sizeDelta.y / 2f + page4_textRect_EN.preferredHeight / 2f);
+            page4_textRect_EN.rectTransform.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
         }
         page4_imgRect.DOAnchorPos(imgPosTarget_On, aniTime_Img_SlowIn).SetEase(Ease.Linear);
         CancelInvoke("InvokeShowConfirmBtn");
@@ -503,21 +545,24 @@ public class EndVideoManager : MonoBehaviour
     {
         currStage = EndVideoStage.Page4_FastIn;
         StopCoroutine(page4_Coroutine_Play);
-        DOTween.Kill(page4_textRect_TC);
-        DOTween.Kill(page4_textRect_SC);
-        DOTween.Kill(page4_textRect_EN);
+        DOTween.Kill(page4_textRect_TC.rectTransform);
+        DOTween.Kill(page4_textRect_SC.rectTransform);
+        DOTween.Kill(page4_textRect_EN.rectTransform);
         DOTween.Kill(page4_imgRect);
         if (commonUtils.currLang == Language.TC)
         {
-            page4_textRect_TC.DOAnchorPos(textPosTarget_On, aniTime_Text_FastIn).SetEase(Ease.Linear);
+            Vector2 textPosTarget_On = new Vector2(page4_textRect_TC.rectTransform.anchoredPosition.x, -blackBkgRect.sizeDelta.y / 2f + page4_textRect_TC.preferredHeight / 2f);
+            page4_textRect_TC.rectTransform.DOAnchorPos(textPosTarget_On, aniTime_Text_FastIn).SetEase(Ease.Linear);
         }
         else if (commonUtils.currLang == Language.SC)
         {
-            page4_textRect_SC.DOAnchorPos(textPosTarget_On, aniTime_Text_FastIn).SetEase(Ease.Linear);
+            Vector2 textPosTarget_On = new Vector2(page4_textRect_SC.rectTransform.anchoredPosition.x, -blackBkgRect.sizeDelta.y / 2f + page4_textRect_SC.preferredHeight / 2f);
+            page4_textRect_SC.rectTransform.DOAnchorPos(textPosTarget_On, aniTime_Text_FastIn).SetEase(Ease.Linear);
         }
         else if (commonUtils.currLang == Language.EN)
         {
-            page4_textRect_EN.DOAnchorPos(textPosTarget_On, aniTime_Text_FastIn).SetEase(Ease.Linear);
+            Vector2 textPosTarget_On = new Vector2(page4_textRect_EN.rectTransform.anchoredPosition.x, -blackBkgRect.sizeDelta.y / 2f + page4_textRect_EN.preferredHeight / 2f);
+            page4_textRect_EN.rectTransform.DOAnchorPos(textPosTarget_On, aniTime_Text_FastIn).SetEase(Ease.Linear);
         }
         page4_imgRect.DOAnchorPos(imgPosTarget_On, aniTime_Img_FastIn).SetEase(Ease.Linear);
         yield return new WaitForSeconds(aniTime_Img_FastIn);
@@ -536,51 +581,51 @@ public class EndVideoManager : MonoBehaviour
         StopCoroutine(page4_Coroutine_Play);
         StopCoroutine(page4_Coroutine_FastIn);
         DOTween.Kill(blackBkgRect);
-        DOTween.Kill(page1_textRect_TC);
-        DOTween.Kill(page1_textRect_SC);
-        DOTween.Kill(page1_textRect_EN);
+        DOTween.Kill(page1_textRect_TC.rectTransform);
+        DOTween.Kill(page1_textRect_SC.rectTransform);
+        DOTween.Kill(page1_textRect_EN.rectTransform);
         DOTween.Kill(page1_imgRect);
-        DOTween.Kill(page2_textRect_TC);
-        DOTween.Kill(page2_textRect_SC);
-        DOTween.Kill(page2_textRect_EN);
+        DOTween.Kill(page2_textRect_TC.rectTransform);
+        DOTween.Kill(page2_textRect_SC.rectTransform);
+        DOTween.Kill(page2_textRect_EN.rectTransform);
         DOTween.Kill(page2_imgRect);
-        DOTween.Kill(page3_textRect_TC);
-        DOTween.Kill(page3_textRect_SC);
-        DOTween.Kill(page3_textRect_EN);
+        DOTween.Kill(page3_textRect_TC.rectTransform);
+        DOTween.Kill(page3_textRect_SC.rectTransform);
+        DOTween.Kill(page3_textRect_EN.rectTransform);
         DOTween.Kill(page3_imgRect);
-        DOTween.Kill(page4_textRect_TC);
-        DOTween.Kill(page4_textRect_SC);
-        DOTween.Kill(page4_textRect_EN);
+        DOTween.Kill(page4_textRect_TC.rectTransform);
+        DOTween.Kill(page4_textRect_SC.rectTransform);
+        DOTween.Kill(page4_textRect_EN.rectTransform);
         DOTween.Kill(page4_imgRect);
         blackBkgRect.localScale = new Vector3(1, 0, 1);
         page1_bkgCanvasGrp_Carbon.alpha = 0;
         page1_bkgRect_Carbon.anchoredPosition = new Vector2(page1_bkgRect_Carbon.anchoredPosition.x, bkgPosYTarget_Top);
         page1_bkgCanvasGrp_Permian.alpha = 0;
         page1_bkgRect_Permian.anchoredPosition = new Vector2(page1_bkgRect_Permian.anchoredPosition.x, bkgPosYTarget_Top);
-        page1_textRect_TC.anchoredPosition = textPosTarget_Down;
-        page1_textRect_SC.anchoredPosition = textPosTarget_Down;
-        page1_textRect_EN.anchoredPosition = textPosTarget_Down;
+        Vector2 textPosTarget_Down = new Vector2(page1_textRect_TC.rectTransform.anchoredPosition.x, -blackBkgRect.sizeDelta.y);
+        page1_textRect_TC.rectTransform.anchoredPosition = textPosTarget_Down;
+        page1_textRect_SC.rectTransform.anchoredPosition = textPosTarget_Down;
+        page1_textRect_EN.rectTransform.anchoredPosition = textPosTarget_Down;
         page1_imgRect.anchoredPosition = imgPosTarget_Off;
         page2_bkgCanvasGrp.alpha = 0;
         page2_bkgRect.anchoredPosition = new Vector2(page2_bkgRect.anchoredPosition.x, bkgPosYTarget_Top);
-        page2_textRect_TC.anchoredPosition = textPosTarget_Down;
-        page2_textRect_SC.anchoredPosition = textPosTarget_Down;
-        page2_textRect_EN.anchoredPosition = textPosTarget_Down;
+        page2_textRect_TC.rectTransform.anchoredPosition = textPosTarget_Down;
+        page2_textRect_SC.rectTransform.anchoredPosition = textPosTarget_Down;
+        page2_textRect_EN.rectTransform.anchoredPosition = textPosTarget_Down;
         page2_imgRect.anchoredPosition = imgPosTarget_Off;
         page2_bossObj.ResetAll();
         page3_bkgCanvasGrp.alpha = 0;
         page3_bkgRect.anchoredPosition = new Vector2(page3_bkgRect.anchoredPosition.x, bkgPosYTarget_Top);
-        page3_textRect_TC.anchoredPosition = textPosTarget_Down;
-        page3_textRect_SC.anchoredPosition = textPosTarget_Down;
-        page3_textRect_EN.anchoredPosition = textPosTarget_Down;
+        page3_textRect_TC.rectTransform.anchoredPosition = textPosTarget_Down;
+        page3_textRect_SC.rectTransform.anchoredPosition = textPosTarget_Down;
+        page3_textRect_EN.rectTransform.anchoredPosition = textPosTarget_Down;
         page3_imgRect.anchoredPosition = imgPosTarget_Off;
         page3_bossObj.ResetAll();
         page4_bkgCanvasGrp.alpha = 0;
         page4_bkgRect.anchoredPosition = new Vector2(page4_bkgRect.anchoredPosition.x, bkgPosYTarget_Top);
-        //TODO textPosTarget_Down should be generate dynamic but not hardcode!!
-        page4_textRect_TC.anchoredPosition = new Vector2(0, -515f);
-        page4_textRect_SC.anchoredPosition = textPosTarget_Down;
-        page4_textRect_EN.anchoredPosition = textPosTarget_Down;
+        page4_textRect_TC.rectTransform.anchoredPosition = textPosTarget_Down;
+        page4_textRect_SC.rectTransform.anchoredPosition = textPosTarget_Down;
+        page4_textRect_EN.rectTransform.anchoredPosition = textPosTarget_Down;
         page4_imgRect.anchoredPosition = imgPosTarget_Off;
         page4_bossObj.ResetAll();
         CancelInvoke("InvokeShowConfirmBtn");
