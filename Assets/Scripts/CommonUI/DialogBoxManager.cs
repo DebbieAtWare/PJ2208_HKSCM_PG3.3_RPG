@@ -22,6 +22,9 @@ public class DialogBoxManager : MonoBehaviour
     public TextMeshProUGUI text_TC;
     public TextMeshProUGUI text_SC;
     public TextMeshProUGUI text_EN;
+    public TextMeshProUGUI refText_TC;
+    public TextMeshProUGUI refText_SC;
+    public TextMeshProUGUI refText_EN;
     public RectTransform optionGrpRect;
     public List<TextMeshProUGUI> optionTexts_TC;
     public List<TextMeshProUGUI> optionTexts_SC;
@@ -224,7 +227,8 @@ public class DialogBoxManager : MonoBehaviour
         {
             if (commonUtils.currLang == Language.TC)
             {
-                if (text_TC.preferredHeight < 80)
+                refText_TC.text = dialogBox.Text_TC;
+                if (refText_TC.preferredHeight < 80)
                 {
                     optionGrpRect.anchoredPosition = optionGrpPosTarget_OneLine;
                 }
@@ -235,7 +239,8 @@ public class DialogBoxManager : MonoBehaviour
             }
             else if (commonUtils.currLang == Language.SC)
             {
-                if (text_SC.preferredHeight < 80)
+                refText_SC.text = dialogBox.Text_SC;
+                if (refText_SC.preferredHeight < 80)
                 {
                     optionGrpRect.anchoredPosition = optionGrpPosTarget_OneLine;
                 }
@@ -246,7 +251,8 @@ public class DialogBoxManager : MonoBehaviour
             }
             else if (commonUtils.currLang == Language.EN)
             {
-                if (text_EN.preferredHeight < 80)
+                refText_EN.text = dialogBox.Text_EN;
+                if (refText_EN.preferredHeight < 80)
                 {
                     optionGrpRect.anchoredPosition = optionGrpPosTarget_OneLine;
                 }

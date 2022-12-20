@@ -25,9 +25,7 @@ public enum IntroVideoStage
     Page8,
     Transition_Page8To9,
     Page9,
-    Transition_Page9To10,
-    Page10,
-    Transition_End
+    Transition_Page9To10
 }
 
 public class IntroVideoManager : MonoBehaviour
@@ -243,21 +241,7 @@ public class IntroVideoManager : MonoBehaviour
                     characterGrp2.ChangeFPS_Fast();
                 }
             }
-            else if (currStage == IntroVideoStage.Page10)
-            {
-                SoundManager.instance.Play_Input(2);
-                if (!dialogWriterSingle.IsActive())
-                {
-                    TransitionAni_End();
-                }
-                else
-                {
-                    FinishCurrentDialog();
-                }
-            }
         }
-
-    
     }
 
     public void Play()
@@ -453,16 +437,9 @@ public class IntroVideoManager : MonoBehaviour
             pixelateImg2.material.DOFloat(512f, "_PixelateSize", 0.8f).From(200f).SetEase(Ease.Linear);
             pixelateImg2.DOFade(0f, 0.8f);
             yield return new WaitForSeconds(0.5f);
-            currStage = IntroVideoStage.Page10;
-            ShowDialog(commonUtils.introVideoDialogs[9]);
+            ClearDialog();
+            blackBarObj.Play();
         }
-    }
-
-    void TransitionAni_End()
-    {
-        currStage = IntroVideoStage.Transition_End;
-        ClearDialog();
-        blackBarObj.Play();
     }
 
     private void BlackBar_OnVideoEnd()
