@@ -172,9 +172,7 @@ public class CommonUtils : MonoBehaviour
         endCheck_ChangeToEndingVideoDialogIndex = -1;
         currEndingCheck = EndingCheckStage.None;
 
-        TmpExcelControl();
         LoadCMSExcel();
-        
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
@@ -754,6 +752,10 @@ public class CommonUtils : MonoBehaviour
                         {
                             dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            if (!string.IsNullOrEmpty(dialog.ImagePath))
+                            {
+                                dialog.ImageTexture = GetImageTexture(dialog.ImagePath);
+                            }
                             dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
@@ -782,6 +784,10 @@ public class CommonUtils : MonoBehaviour
                         {
                             dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            if (!string.IsNullOrEmpty(dialog.ImagePath))
+                            {
+                                dialog.ImageTexture = GetImageTexture(dialog.ImagePath);
+                            }
                             dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
@@ -810,6 +816,10 @@ public class CommonUtils : MonoBehaviour
                         {
                             dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            if (!string.IsNullOrEmpty(dialog.ImagePath))
+                            {
+                                dialog.ImageTexture = GetImageTexture(dialog.ImagePath);
+                            }
                             dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
@@ -838,6 +848,10 @@ public class CommonUtils : MonoBehaviour
                         {
                             dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            if (!string.IsNullOrEmpty(dialog.ImagePath))
+                            {
+                                dialog.ImageTexture = GetImageTexture(dialog.ImagePath);
+                            }
                             dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
@@ -866,6 +880,10 @@ public class CommonUtils : MonoBehaviour
                         {
                             dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            if (!string.IsNullOrEmpty(dialog.ImagePath))
+                            {
+                                dialog.ImageTexture = GetImageTexture(dialog.ImagePath);
+                            }
                             dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
@@ -894,6 +912,10 @@ public class CommonUtils : MonoBehaviour
                         {
                             dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            if (!string.IsNullOrEmpty(dialog.ImagePath))
+                            {
+                                dialog.ImageTexture = GetImageTexture(dialog.ImagePath);
+                            }
                             dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
@@ -922,6 +944,10 @@ public class CommonUtils : MonoBehaviour
                         {
                             dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            if (!string.IsNullOrEmpty(dialog.ImagePath))
+                            {
+                                dialog.ImageTexture = GetImageTexture(dialog.ImagePath);
+                            }
                             dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
@@ -950,6 +976,10 @@ public class CommonUtils : MonoBehaviour
                         {
                             dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            if (!string.IsNullOrEmpty(dialog.ImagePath))
+                            {
+                                dialog.ImageTexture = GetImageTexture(dialog.ImagePath);
+                            }
                             dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
@@ -978,6 +1008,10 @@ public class CommonUtils : MonoBehaviour
                         {
                             dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            if (!string.IsNullOrEmpty(dialog.ImagePath))
+                            {
+                                dialog.ImageTexture = GetImageTexture(dialog.ImagePath);
+                            }
                             dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
@@ -1006,6 +1040,10 @@ public class CommonUtils : MonoBehaviour
                         {
                             dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            if (!string.IsNullOrEmpty(dialog.ImagePath))
+                            {
+                                dialog.ImageTexture = GetImageTexture(dialog.ImagePath);
+                            }
                             dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
@@ -1034,6 +1072,10 @@ public class CommonUtils : MonoBehaviour
                         {
                             dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            if (!string.IsNullOrEmpty(dialog.ImagePath))
+                            {
+                                dialog.ImageTexture = GetImageTexture(dialog.ImagePath);
+                            }
                             dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
@@ -1062,6 +1104,10 @@ public class CommonUtils : MonoBehaviour
                         {
                             dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            if (!string.IsNullOrEmpty(dialog.ImagePath))
+                            {
+                                dialog.ImageTexture = GetImageTexture(dialog.ImagePath);
+                            }
                             dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
@@ -1090,6 +1136,10 @@ public class CommonUtils : MonoBehaviour
                         {
                             dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            if (!string.IsNullOrEmpty(dialog.ImagePath))
+                            {
+                                dialog.ImageTexture = GetImageTexture(dialog.ImagePath);
+                            }
                             dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
@@ -1118,6 +1168,10 @@ public class CommonUtils : MonoBehaviour
                         {
                             dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            if (!string.IsNullOrEmpty(dialog.ImagePath))
+                            {
+                                dialog.ImageTexture = GetImageTexture(dialog.ImagePath);
+                            }
                             dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
@@ -1146,6 +1200,10 @@ public class CommonUtils : MonoBehaviour
                         {
                             dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            if (!string.IsNullOrEmpty(dialog.ImagePath))
+                            {
+                                dialog.ImageTexture = GetImageTexture(dialog.ImagePath);
+                            }
                             dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
@@ -1174,6 +1232,10 @@ public class CommonUtils : MonoBehaviour
                         {
                             dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            if (!string.IsNullOrEmpty(dialog.ImagePath))
+                            {
+                                dialog.ImageTexture = GetImageTexture(dialog.ImagePath);
+                            }
                             dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
@@ -1202,6 +1264,10 @@ public class CommonUtils : MonoBehaviour
                         {
                             dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            if (!string.IsNullOrEmpty(dialog.ImagePath))
+                            {
+                                dialog.ImageTexture = GetImageTexture(dialog.ImagePath);
+                            }
                             dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
@@ -1230,6 +1296,10 @@ public class CommonUtils : MonoBehaviour
                         {
                             dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            if (!string.IsNullOrEmpty(dialog.ImagePath))
+                            {
+                                dialog.ImageTexture = GetImageTexture(dialog.ImagePath);
+                            }
                             dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
@@ -1258,6 +1328,10 @@ public class CommonUtils : MonoBehaviour
                         {
                             dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            if (!string.IsNullOrEmpty(dialog.ImagePath))
+                            {
+                                dialog.ImageTexture = GetImageTexture(dialog.ImagePath);
+                            }
                             dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
                             dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
@@ -1700,6 +1774,24 @@ public class CommonUtils : MonoBehaviour
     {
         return txt.Replace("\r", "").Replace("\n", "");
     }
+    Texture2D GetImageTexture(string fileName)
+    {
+        string path = Path.Combine(Application.streamingAssetsPath + "/SupportImage/" + fileName);
+        Texture2D tex = new Texture2D(2, 2);
+        if (File.Exists(path))
+        {
+            byte[] fileData = File.ReadAllBytes(path);
+            tex.LoadImage(fileData);
+            //tex.filterMode = FilterMode.Point;
+            tex.wrapMode = TextureWrapMode.Clamp;
+            return tex;
+        }
+        else
+        {
+            Debug.Log(path + " not exits");
+            return tex;
+        }
+    }
 
     public void EndingCheck()
     {
@@ -1775,369 +1867,6 @@ public class CommonUtils : MonoBehaviour
             ChangeLanguage(Language.EN);
         }
     }
-
-    void TmpExcelControl()
-    {
-        ConfigData_Character npc_1 = new ConfigData_Character();
-        npc_1.Id = "NPC_C01";
-        npc_1.Name_TC = "鱗木屬";
-        npc_1.IsCollectable = false;
-        npc_1.IsFirstMeetDone = false;
-        npc_1.IsSuccessCollectDone = false;
-        ConfigData_Text info1 = new ConfigData_Text();
-        info1.Text_TC = "<b>鱗木屬</b><br>屬名：<i>Lepidodendron</i><br>意思：帶鱗片的樹木<br>分類：石松綱<br>生存時代：石炭紀<br>高度：可超過 30 米<br>化石分布：世界各地<br>";
-        info1.Text_SC = "<b>鳞木属</b><br>属名：<i>Lepidodendron</i><br>意思：带鳞片的树木<br>分类：石松纲<br>生存时代：石炭纪<br>高度：可超过 30 米<br>化石分布：世界各地<br>";
-        info1.Text_EN = "<b><i>Lepidodendron</i></b><br>Genus: <i>Lepidodendron</i><br>Meaning: Scale tree<br>Classification: Lycopodiopsida<br>Period: Carboniferous<br>Length: can be over 30 m<br>Fossil distribution: Worldwide";
-        npc_1.InfoText = info1;
-        List<ConfigData_Text> features1 = new List<ConfigData_Text>();
-        ConfigData_Text feature1 = new ConfigData_Text();
-        feature1.Text_TC = "早期無籽維管植物，現代石松的近親";
-        feature1.Text_SC = "早期无籽维管植物，现代石松的近亲";
-        feature1.Text_EN = "Early seedless vascular plants closely related to club mosses of today";
-        features1.Add(feature1);
-        ConfigData_Text feature2 = new ConfigData_Text();
-        feature2.Text_TC = "石炭紀最常見的植物之一";
-        feature2.Text_SC = "石炭纪最常见的植物之一";
-        feature2.Text_EN = "One of the most abundant plants of the Carboniferous";
-        features1.Add(feature2);
-        ConfigData_Text feature3 = new ConfigData_Text();
-        feature3.Text_TC = "樹幹被葉覆蓋，葉脫落後留下鑽石型的葉痕";
-        feature3.Text_SC = "树干被叶覆盖，叶脱落后留下钻石型的叶痕";
-        feature3.Text_EN = "Trunk covered with leaves that leave diamond - shaped scars";
-        features1.Add(feature3);
-        npc_1.FeatureTexts = features1;
-        ConfigData_DialogBox dialog_11 = new ConfigData_DialogBox();
-        dialog_11.ByWhom = "DRO";
-        dialog_11.ImagePath = "";
-        dialog_11.Text_TC = "看看這個是鱗木屬呀!";
-        npc_1.DialogBoxes.Add(dialog_11);
-        ConfigData_DialogBox dialog_12 = new ConfigData_DialogBox();
-        dialog_12.ByWhom = "DRO";
-        dialog_12.ImagePath = "";
-        dialog_12.Text_TC = "鱗木是一屬已滅絕的石松類，為一類高大的樹狀蕨類，生長在炎熱潮濕的沼澤地帶中。";
-        npc_1.DialogBoxes.Add(dialog_12);
-        //NPC_Carboniferous.Add(npc_1);
-
-        ConfigData_Character npc_2 = new ConfigData_Character();
-        npc_2.Id = "NPC_C02";
-        npc_2.Name_TC = "科達樹";
-        npc_2.IsCollectable = false;
-        npc_2.IsFirstMeetDone = false;
-        npc_2.IsSuccessCollectDone = false;
-        ConfigData_DialogBox dialog_21 = new ConfigData_DialogBox();
-        dialog_21.ByWhom = "AVA";
-        dialog_21.ImagePath = "";
-        dialog_21.Text_TC = "這些科達樹長得真高！";
-        npc_2.DialogBoxes.Add(dialog_21);
-        ConfigData_DialogBox dialog_22 = new ConfigData_DialogBox();
-        dialog_22.ByWhom = "DRO";
-        dialog_22.ImagePath = "";
-        dialog_22.Text_TC = "科達樹可達 30 米以上，葉片窄長，呈舌頭狀。它們是裸子植物，有原始的毬果，是松柏類植物的祖先。";
-        npc_2.DialogBoxes.Add(dialog_22);
-        ConfigData_DialogBox dialog_23 = new ConfigData_DialogBox();
-        dialog_23.ByWhom = "DRO";
-        dialog_23.ImagePath = "";
-        dialog_23.Text_TC = "石炭紀的氣候溫暖潮濕，非常適合植物生長。科達樹和其他植物殘骸最終形成大量的煤。";
-        npc_2.DialogBoxes.Add(dialog_23);
-        ConfigData_DialogBox dialog_24 = new ConfigData_DialogBox();
-        dialog_24.ByWhom = "AVA";
-        dialog_24.ImagePath = "";
-        dialog_24.Text_TC = "嗯嗯…石炭的意思就是煤，亦是這個地質時期命名為「石炭紀」的原因。";
-        npc_2.DialogBoxes.Add(dialog_24);
-        //NPC_Carboniferous.Add(npc_2);
-
-        ConfigData_Character npc_3 = new ConfigData_Character();
-        npc_3.Id = "NPC_C03";
-        npc_3.Name_TC = "節胸屬";
-        npc_3.IsCollectable = false;
-        npc_3.IsFirstMeetDone = false;
-        npc_3.IsSuccessCollectDone = false;
-        ConfigData_DialogBox dialog_31 = new ConfigData_DialogBox();
-        dialog_31.ByWhom = "DRO";
-        dialog_31.ImagePath = "";
-        dialog_31.Text_TC = "看看這個是節胸屬呀!";
-        npc_3.DialogBoxes.Add(dialog_31);
-        ConfigData_DialogBox dialog_32 = new ConfigData_DialogBox();
-        dialog_32.ByWhom = "DRO";
-        dialog_32.ImagePath = "";
-        dialog_32.Text_TC = "節胸屬，又稱節胸蜈蚣屬，是史前的倍足綱動物，即現今蜈蚣及馬陸的遠古親屬。";
-        npc_3.DialogBoxes.Add(dialog_32);
-        //NPC_Carboniferous.Add(npc_3);
-
-        ConfigData_Character npc_4 = new ConfigData_Character();
-        npc_4.Id = "NPC_C04";
-        npc_4.Name_TC = "巨脈蜻蜓";
-        npc_4.IsCollectable = false;
-        npc_4.IsFirstMeetDone = false;
-        npc_4.IsSuccessCollectDone = false;
-        ConfigData_DialogBox dialog_41 = new ConfigData_DialogBox();
-        dialog_41.ByWhom = "DRO";
-        dialog_41.ImagePath = "";
-        dialog_41.Text_TC = "看看這個是巨脈蜻蜓呀!";
-        npc_4.DialogBoxes.Add(dialog_41);
-        ConfigData_DialogBox dialog_42 = new ConfigData_DialogBox();
-        dialog_42.ByWhom = "DRO";
-        dialog_42.ImagePath = "";
-        dialog_42.Text_TC = "巨脈蜻蜓，又名大尾蜻蜓或巨尾蜻蜓，是3億年前石炭紀一種已滅絕的昆蟲。";
-        npc_4.DialogBoxes.Add(dialog_42);
-        //NPC_Carboniferous.Add(npc_4);
-
-
-        ConfigData_Character npc_5 = new ConfigData_Character();
-        npc_5.Id = "NPC_C05";
-        npc_5.Name_TC = "芬氏彼得足螈";
-        npc_5.IsCollectable = false;
-        npc_5.IsFirstMeetDone = false;
-        npc_5.IsSuccessCollectDone = false;
-        ConfigData_DialogBox dialog_51 = new ConfigData_DialogBox();
-        dialog_51.ByWhom = "AVA";
-        dialog_51.ImagePath = "Images/SupportImage/Lystrosaurus_SupportImg1";
-        dialog_51.Text_TC = "噢，是彼得足螈！";
-        npc_5.DialogBoxes.Add(dialog_51);
-        ConfigData_DialogBox dialog_52 = new ConfigData_DialogBox();
-        dialog_52.ByWhom = "DRO";
-        dialog_52.ImagePath = "";
-        dialog_52.Text_TC = "彼得足螈是水棲四足類和陸棲四足類之間的過渡物種。";
-        npc_5.DialogBoxes.Add(dialog_52);
-        ConfigData_DialogBox dialog_53 = new ConfigData_DialogBox();
-        dialog_53.ByWhom = "DRO";
-        dialog_53.ImagePath = "";
-        dialog_53.Text_TC = "牠的腳趾朝向身體前方，能夠有效地行走，所以彼得足螈被認為是最早適應在陸地「行走」的脊椎動物！";
-        npc_5.DialogBoxes.Add(dialog_53);
-        ConfigData_DialogBox dialog_54 = new ConfigData_DialogBox();
-        dialog_54.ByWhom = "AVA";
-        dialog_54.ImagePath = "";
-        dialog_54.Text_TC = "可是，牠只能緩步前進。";
-        npc_5.DialogBoxes.Add(dialog_54);
-        ConfigData_DialogBox dialog_55 = new ConfigData_DialogBox();
-        dialog_55.ByWhom = "NPC_C05";
-        dialog_55.ImagePath = "";
-        dialog_55.Text_TC = "一二，一二......等等......";
-        npc_5.DialogBoxes.Add(dialog_55);
-        //NPC_Carboniferous.Add(npc_5);
-
-        ConfigData_Character npc_6 = new ConfigData_Character();
-        npc_6.Id = "NPC_C06";
-        npc_6.Name_TC = "引螈屬";
-        npc_6.IsCollectable = false;
-        npc_6.IsFirstMeetDone = false;
-        npc_6.IsSuccessCollectDone = false;
-        ConfigData_DialogBox dialog_61 = new ConfigData_DialogBox();
-        dialog_61.ByWhom = "DRO";
-        dialog_61.ImagePath = "";
-        dialog_61.Text_TC = "看看這個是引螈屬呀!";
-        npc_6.DialogBoxes.Add(dialog_61);
-        ConfigData_DialogBox dialog_62 = new ConfigData_DialogBox();
-        dialog_62.ByWhom = "DRO";
-        dialog_62.ImagePath = "";
-        dialog_62.Text_TC = "引螈是石炭紀、二疊紀探索上最大的動物。體長1.8米以上。";
-        npc_6.DialogBoxes.Add(dialog_62);
-        //NPC_Carboniferous.Add(npc_6);
-
-        //---
-
-        //----
-
-        ConfigData_Character npc_p2 = new ConfigData_Character();
-        npc_p2.Id = "NPC_P01";
-        npc_p2.Name_TC = "節胸屬";
-        npc_p2.IsCollectable = false;
-        npc_p2.IsFirstMeetDone = false;
-        npc_p2.IsSuccessCollectDone = false;
-        ConfigData_DialogBox dialog_p21 = new ConfigData_DialogBox();
-        dialog_p21.ByWhom = "DRO";
-        dialog_p21.ImagePath = "";
-        dialog_p21.Text_TC = "看看這個是節胸屬呀!";
-        npc_p2.DialogBoxes.Add(dialog_p21);
-        ConfigData_DialogBox dialog_p22 = new ConfigData_DialogBox();
-        dialog_p22.ByWhom = "DRO";
-        dialog_p22.ImagePath = "";
-        dialog_p22.Text_TC = "節胸屬在石炭紀才是全盛時期。";
-        npc_p2.DialogBoxes.Add(dialog_p22);
-        //NPC_Permian.Add(npc_p2);
-
-        ConfigData_Character npc_p6 = new ConfigData_Character();
-        npc_p6.Id = "NPC_P02";
-        npc_p6.Name_TC = "引螈屬";
-        npc_p6.IsCollectable = false;
-        npc_p6.IsFirstMeetDone = false;
-        npc_p6.IsSuccessCollectDone = false;
-        ConfigData_DialogBox dialog_p61 = new ConfigData_DialogBox();
-        dialog_p61.ByWhom = "DRO";
-        dialog_p61.ImagePath = "";
-        dialog_p61.Text_TC = "看看這個是引螈屬呀!";
-        npc_p6.DialogBoxes.Add(dialog_p61);
-        ConfigData_DialogBox dialog_p62 = new ConfigData_DialogBox();
-        dialog_p62.ByWhom = "DRO";
-        dialog_p62.ImagePath = "";
-        dialog_p62.Text_TC = "引螈屬在石炭紀才是全盛時期。";
-        npc_p6.DialogBoxes.Add(dialog_p62);
-        //NPC_Permian.Add(npc_p6);
-
-        ConfigData_Character npc_p4 = new ConfigData_Character();
-        npc_p4.Id = "NPC_P03";
-        npc_p4.Name_TC = "銀杏目";
-        npc_p4.IsCollectable = false;
-        npc_p4.IsFirstMeetDone = false;
-        npc_p4.IsSuccessCollectDone = false;
-        ConfigData_DialogBox dialog_p41 = new ConfigData_DialogBox();
-        dialog_p41.ByWhom = "DRO";
-        dialog_p41.ImagePath = "";
-        dialog_p41.Text_TC = "看看這個是銀杏目呀!";
-        npc_p4.DialogBoxes.Add(dialog_p41);
-        ConfigData_DialogBox dialog_p42 = new ConfigData_DialogBox();
-        dialog_p42.ByWhom = "DRO";
-        dialog_p42.ImagePath = "";
-        dialog_p42.Text_TC = "銀杏類植物為高大多枝落葉喬木、具有挺拔的樹幹與獨特的扇形葉片。";
-        npc_p4.DialogBoxes.Add(dialog_p42);
-        //NPC_Permian.Add(npc_p4);
-
-        ConfigData_Character npc_p5 = new ConfigData_Character();
-        npc_p5.Id = "NPC_P04";
-        npc_p5.Name_TC = "舌羊齒屬";
-        npc_p5.IsCollectable = false;
-        npc_p5.IsFirstMeetDone = false;
-        npc_p5.IsSuccessCollectDone = false;
-        ConfigData_DialogBox dialog_p51 = new ConfigData_DialogBox();
-        dialog_p51.ByWhom = "DRO";
-        dialog_p51.ImagePath = "";
-        dialog_p51.Text_TC = "看看這個是舌羊齒屬呀!";
-        npc_p5.DialogBoxes.Add(dialog_p51);
-        ConfigData_DialogBox dialog_p52 = new ConfigData_DialogBox();
-        dialog_p52.ByWhom = "DRO";
-        dialog_p52.ImagePath = "";
-        dialog_p52.Text_TC = "舌羊齒的典型植株高度約為8公尺，呈喬木狀。葉片的大小與寬度各異，呈羊舌狀。";
-        npc_p5.DialogBoxes.Add(dialog_p52);
-        //NPC_Permian.Add(npc_p5);
-
-        ConfigData_Character npc_p7 = new ConfigData_Character();
-        npc_p7.Id = "NPC_P05";
-        npc_p7.Name_TC = "空尾蜥屬";
-        npc_p7.IsCollectable = false;
-        npc_p7.IsFirstMeetDone = false;
-        npc_p7.IsSuccessCollectDone = false;
-        ConfigData_DialogBox dialog_p71 = new ConfigData_DialogBox();
-        dialog_p71.ByWhom = "DRO";
-        dialog_p71.ImagePath = "";
-        dialog_p71.Text_TC = "看看這個是空尾蜥屬呀!";
-        npc_p7.DialogBoxes.Add(dialog_p71);
-        ConfigData_DialogBox dialog_p72 = new ConfigData_DialogBox();
-        dialog_p72.ByWhom = "DRO";
-        dialog_p72.ImagePath = "";
-        dialog_p72.Text_TC = "空尾蜥屬擁有特化的類似翅膀結構，使牠可以滑翔。";
-        npc_p7.DialogBoxes.Add(dialog_p72);
-        //NPC_Permian.Add(npc_p7);
-
-        ConfigData_Character npc_p8 = new ConfigData_Character();
-        npc_p8.Id = "NPC_P06";
-        npc_p8.Name_TC = "瘤頭龍屬";
-        npc_p8.IsCollectable = false;
-        npc_p8.IsFirstMeetDone = false;
-        npc_p8.IsSuccessCollectDone = false;
-        ConfigData_DialogBox dialog_p81 = new ConfigData_DialogBox();
-        dialog_p81.ByWhom = "DRO";
-        dialog_p81.ImagePath = "";
-        dialog_p81.Text_TC = "看看這個是瘤頭龍屬呀!";
-        npc_p8.DialogBoxes.Add(dialog_p81);
-        ConfigData_DialogBox dialog_p82 = new ConfigData_DialogBox();
-        dialog_p82.ByWhom = "DRO";
-        dialog_p82.ImagePath = "";
-        dialog_p82.Text_TC = "瘤頭龍屬與現代牛差不多大，背部有一個多節的頭骨和骨質板甲。";
-        npc_p8.DialogBoxes.Add(dialog_p82);
-        //NPC_Permian.Add(npc_p8);
-
-        ConfigData_Character npc_p9 = new ConfigData_Character();
-        npc_p9.Id = "NPC_P07";
-        npc_p9.Name_TC = "盾甲龍屬";
-        npc_p9.IsCollectable = false;
-        npc_p9.IsFirstMeetDone = false;
-        npc_p9.IsSuccessCollectDone = false;
-        ConfigData_DialogBox dialog_p91 = new ConfigData_DialogBox();
-        dialog_p91.ByWhom = "DRO";
-        dialog_p91.ImagePath = "";
-        dialog_p91.Text_TC = "看看這個是盾甲龍屬呀!";
-        npc_p9.DialogBoxes.Add(dialog_p91);
-        ConfigData_DialogBox dialog_p92 = new ConfigData_DialogBox();
-        dialog_p92.ByWhom = "DRO";
-        dialog_p92.ImagePath = "";
-        dialog_p92.Text_TC = "盾甲龍屬是大型無孔類爬行動物，而且不像其他爬行動物，牠們的腿是位在他們的身體底下，以支撐牠們的重量。";
-        npc_p9.DialogBoxes.Add(dialog_p92);
-        //NPC_Permian.Add(npc_p9);
-
-        ConfigData_Character npc_p10 = new ConfigData_Character();
-        npc_p10.Id = "NPC_P08";
-        npc_p10.Name_TC = "狼蜥獸屬";
-        npc_p10.IsCollectable = false;
-        npc_p10.IsFirstMeetDone = false;
-        npc_p10.IsSuccessCollectDone = false;
-        ConfigData_DialogBox dialog_p101 = new ConfigData_DialogBox();
-        dialog_p101.ByWhom = "DRO";
-        dialog_p101.ImagePath = "";
-        dialog_p101.Text_TC = "看看這個是狼蜥獸屬呀!";
-        npc_p10.DialogBoxes.Add(dialog_p101);
-        ConfigData_DialogBox dialog_p102 = new ConfigData_DialogBox();
-        dialog_p102.ByWhom = "DRO";
-        dialog_p102.ImagePath = "";
-        dialog_p102.Text_TC = "狼蜥獸屬是四足動物，四肢直立於身體下方。頭顱骨長45公分，身長約3到4公尺。";
-        npc_p10.DialogBoxes.Add(dialog_p102);
-        //NPC_Permian.Add(npc_p10);
-
-        ConfigData_Character npc_p12 = new ConfigData_Character();
-        npc_p12.Id = "NPC_P09";
-        npc_p12.Name_TC = "原鞘翅目";
-        npc_p12.IsCollectable = false;
-        npc_p12.IsFirstMeetDone = false;
-        npc_p12.IsSuccessCollectDone = false;
-        ConfigData_DialogBox dialog_p121 = new ConfigData_DialogBox();
-        dialog_p121.ByWhom = "AVA";
-        dialog_p121.ImagePath = "";
-        dialog_p121.Text_TC = "這些小不點是原始甲蟲。";
-        npc_p12.DialogBoxes.Add(dialog_p121);
-        ConfigData_DialogBox dialog_p122 = new ConfigData_DialogBox();
-        dialog_p122.ByWhom = "DRO";
-        dialog_p122.ImagePath = "";
-        dialog_p122.Text_TC = "這些原始甲蟲屬於已滅絕的原鞘翅目，主要食物是木材。";
-        npc_p12.DialogBoxes.Add(dialog_p122);
-        ConfigData_DialogBox dialog_p123 = new ConfigData_DialogBox();
-        dialog_p123.ByWhom = "AVA";
-        dialog_p123.ImagePath = "";
-        dialog_p123.Text_TC = "相比石炭紀的昆蟲，二疊紀的昆蟲較細小。";
-        npc_p12.DialogBoxes.Add(dialog_p123);
-        //NPC_Permian.Add(npc_p12);
-
-        ConfigData_Character npc_p13 = new ConfigData_Character();
-        npc_p13.Id = "NPC_P10";
-        npc_p13.Name_TC = "古網翅目";
-        npc_p13.IsCollectable = false;
-        npc_p13.IsFirstMeetDone = false;
-        npc_p13.IsSuccessCollectDone = false;
-        ConfigData_DialogBox dialog_p131 = new ConfigData_DialogBox();
-        dialog_p131.ByWhom = "AVA";
-        dialog_p131.ImagePath = "";
-        dialog_p131.Text_TC = "這些是古網翅目昆蟲。牠的樣子哪裏怪怪的。";
-        npc_p13.DialogBoxes.Add(dialog_p131);
-        ConfigData_DialogBox dialog_p132 = new ConfigData_DialogBox();
-        dialog_p132.ByWhom = "DRO";
-        dialog_p132.ImagePath = "";
-        dialog_p132.Text_TC = "不像現代的昆蟲有四隻翅膀，牠們有六隻翅膀。";
-        npc_p13.DialogBoxes.Add(dialog_p132);
-        ConfigData_DialogBox dialog_p133 = new ConfigData_DialogBox();
-        dialog_p133.ByWhom = "DRO";
-        dialog_p133.ImagePath = "";
-        dialog_p133.Text_TC = "牠們用像鳥喙一般的口器吮吸植物的汁液。";
-        npc_p13.DialogBoxes.Add(dialog_p133);
-        ConfigData_DialogBox dialog_p134 = new ConfigData_DialogBox();
-        dialog_p134.ByWhom = "NPC_P10";
-        dialog_p134.ImagePath = "";
-        dialog_p134.Text_TC = "真美味，你們也要來一口嗎？";
-        npc_p13.DialogBoxes.Add(dialog_p134);
-        //NPC_Permian.Add(npc_p13);
-
-        //-------
-
-        //-------
-
-    }
 }
 
 [Serializable]
@@ -2164,6 +1893,7 @@ public class ConfigData_Character
 [Serializable]
 public class ConfigData_DialogBox
 {
+    //for excel
     public string ByWhom;
     public string ImagePath;
     public string Text_TC;
@@ -2172,6 +1902,8 @@ public class ConfigData_DialogBox
     public List<string> OptionTexts_TC;
     public List<string> OptionTexts_SC;
     public List<string> OptionTexts_EN;
+    //for program
+    public Texture2D ImageTexture;
 }
 
 [Serializable]

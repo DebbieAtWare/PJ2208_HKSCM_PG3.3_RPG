@@ -391,7 +391,7 @@ public class DialogBoxManager : MonoBehaviour
         //support img
         if (!String.IsNullOrEmpty(dialogBox.ImagePath) && !string.IsNullOrEmpty(dialogBox.ImagePath))
         {
-            ShowSupportImg(dialogBox.ImagePath);
+            ShowSupportImg(dialogBox.ImageTexture);
         }
         else
         {
@@ -457,11 +457,11 @@ public class DialogBoxManager : MonoBehaviour
 
     //------
 
-    public void ShowSupportImg(string imgPath)
+    public void ShowSupportImg(Texture2D texture)
     {
         supportImgCanvasGrp.gameObject.SetActive(true);
         //tmp only load from resouces folder
-        Texture2D texture = Resources.Load<Texture2D>(imgPath);
+        //Texture2D texture = Resources.Load<Texture2D>(imgPath);
         supportImg.texture = texture;
         if (((float)texture.width / texture.height) >= (float)(supportImgSizeTarget.x / supportImgSizeTarget.y))
         {
