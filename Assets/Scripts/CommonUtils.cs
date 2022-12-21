@@ -174,6 +174,7 @@ public class CommonUtils : MonoBehaviour
 
         TmpExcelControl();
         LoadCMSExcel();
+        
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
@@ -714,6 +715,969 @@ public class CommonUtils : MonoBehaviour
             }
             #endregion
 
+
+            #region Boss and NPC
+            int conversation_IDCol = 0;
+            int conversation_NameTCCol = 1;
+            int conversation_NameSCCol = 2;
+            int conversation_NameENCol = 3;
+            int conversation_DescriptionTCCol = 4;
+            int conversation_DescriptionSCCol = 5;
+            int conversation_DescriptionENCol = 6;
+            int conversation_Dialog_ByWhomFirstCol = 7;
+            int conversation_Dialog_TCFirstCol = 8;
+            int conversation_Dialog_SCFirstCol = 9;
+            int conversation_Dialog_ENFirstCol = 10;
+            int conversation_Dialog_ImgFirstCol = 11;
+            int conversation_Dialog_Increasement = 5;
+            int conversation_Dialog_Max = 11;
+            //conversation
+            for (int i = 0; i < 50; i++)
+            {
+                if (GetSingleLineString(book[2].Rows[i][conversation_IDCol].Text) == "M01")
+                {
+                    ConfigData_Character boss = new ConfigData_Character();
+                    boss.Id = "M01";
+                    boss.Name_TC = GetSingleLineString(book[2].Rows[i][conversation_NameTCCol].Text);
+                    boss.Name_SC = GetSingleLineString(book[2].Rows[i][conversation_NameSCCol].Text);
+                    boss.Name_EN = GetSingleLineString(book[2].Rows[i][conversation_NameENCol].Text);
+                    boss.DescriptionTag_TC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionTCCol].Text);
+                    boss.DescriptionTag_SC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionSCCol].Text);
+                    boss.DescriptionTag_EN = GetSingleLineString(book[2].Rows[i][conversation_DescriptionENCol].Text);
+                    boss.IsCollectable = true;
+                    boss.IsFirstMeetDone = false;
+                    boss.IsSuccessCollectDone = false;
+                    for (int j = 0; j < conversation_Dialog_Max; j++)
+                    {
+                        ConfigData_DialogBox dialog = new ConfigData_DialogBox();
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text)))
+                        {
+                            dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
+                            boss.DialogBoxes.Add(dialog);
+                        }
+                    }
+                    bosses.Add(boss);
+                }
+                else if (GetSingleLineString(book[2].Rows[i][conversation_IDCol].Text) == "M02")
+                {
+                    ConfigData_Character boss = new ConfigData_Character();
+                    boss.Id = "M02";
+                    boss.Name_TC = GetSingleLineString(book[2].Rows[i][conversation_NameTCCol].Text);
+                    boss.Name_SC = GetSingleLineString(book[2].Rows[i][conversation_NameSCCol].Text);
+                    boss.Name_EN = GetSingleLineString(book[2].Rows[i][conversation_NameENCol].Text);
+                    boss.DescriptionTag_TC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionTCCol].Text);
+                    boss.DescriptionTag_SC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionSCCol].Text);
+                    boss.DescriptionTag_EN = GetSingleLineString(book[2].Rows[i][conversation_DescriptionENCol].Text);
+                    boss.IsCollectable = true;
+                    boss.IsFirstMeetDone = false;
+                    boss.IsSuccessCollectDone = false;
+                    for (int j = 0; j < conversation_Dialog_Max; j++)
+                    {
+                        ConfigData_DialogBox dialog = new ConfigData_DialogBox();
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text)))
+                        {
+                            dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
+                            boss.DialogBoxes.Add(dialog);
+                        }
+                    }
+                    bosses.Add(boss);
+                }
+                else if (GetSingleLineString(book[2].Rows[i][conversation_IDCol].Text) == "M03")
+                {
+                    ConfigData_Character boss = new ConfigData_Character();
+                    boss.Id = "M03";
+                    boss.Name_TC = GetSingleLineString(book[2].Rows[i][conversation_NameTCCol].Text);
+                    boss.Name_SC = GetSingleLineString(book[2].Rows[i][conversation_NameSCCol].Text);
+                    boss.Name_EN = GetSingleLineString(book[2].Rows[i][conversation_NameENCol].Text);
+                    boss.DescriptionTag_TC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionTCCol].Text);
+                    boss.DescriptionTag_SC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionSCCol].Text);
+                    boss.DescriptionTag_EN = GetSingleLineString(book[2].Rows[i][conversation_DescriptionENCol].Text);
+                    boss.IsCollectable = true;
+                    boss.IsFirstMeetDone = false;
+                    boss.IsSuccessCollectDone = false;
+                    for (int j = 0; j < conversation_Dialog_Max; j++)
+                    {
+                        ConfigData_DialogBox dialog = new ConfigData_DialogBox();
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text)))
+                        {
+                            dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
+                            boss.DialogBoxes.Add(dialog);
+                        }
+                    }
+                    bosses.Add(boss);
+                }
+                else if (GetSingleLineString(book[2].Rows[i][conversation_IDCol].Text) == "NPC_C01")
+                {
+                    ConfigData_Character npc = new ConfigData_Character();
+                    npc.Id = "NPC_C01";
+                    npc.Name_TC = GetSingleLineString(book[2].Rows[i][conversation_NameTCCol].Text);
+                    npc.Name_SC = GetSingleLineString(book[2].Rows[i][conversation_NameSCCol].Text);
+                    npc.Name_EN = GetSingleLineString(book[2].Rows[i][conversation_NameENCol].Text);
+                    npc.DescriptionTag_TC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionTCCol].Text);
+                    npc.DescriptionTag_SC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionSCCol].Text);
+                    npc.DescriptionTag_EN = GetSingleLineString(book[2].Rows[i][conversation_DescriptionENCol].Text);
+                    npc.IsCollectable = false;
+                    npc.IsFirstMeetDone = false;
+                    npc.IsSuccessCollectDone = false;
+                    for (int j = 0; j < conversation_Dialog_Max; j++)
+                    {
+                        ConfigData_DialogBox dialog = new ConfigData_DialogBox();
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text)))
+                        {
+                            dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
+                            npc.DialogBoxes.Add(dialog);
+                        }
+                    }
+                    NPC_Carboniferous.Add(npc);
+                }
+                else if (GetSingleLineString(book[2].Rows[i][conversation_IDCol].Text) == "NPC_C02")
+                {
+                    ConfigData_Character npc = new ConfigData_Character();
+                    npc.Id = "NPC_C02";
+                    npc.Name_TC = GetSingleLineString(book[2].Rows[i][conversation_NameTCCol].Text);
+                    npc.Name_SC = GetSingleLineString(book[2].Rows[i][conversation_NameSCCol].Text);
+                    npc.Name_EN = GetSingleLineString(book[2].Rows[i][conversation_NameENCol].Text);
+                    npc.DescriptionTag_TC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionTCCol].Text);
+                    npc.DescriptionTag_SC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionSCCol].Text);
+                    npc.DescriptionTag_EN = GetSingleLineString(book[2].Rows[i][conversation_DescriptionENCol].Text);
+                    npc.IsCollectable = false;
+                    npc.IsFirstMeetDone = false;
+                    npc.IsSuccessCollectDone = false;
+                    for (int j = 0; j < conversation_Dialog_Max; j++)
+                    {
+                        ConfigData_DialogBox dialog = new ConfigData_DialogBox();
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text)))
+                        {
+                            dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
+                            npc.DialogBoxes.Add(dialog);
+                        }
+                    }
+                    NPC_Carboniferous.Add(npc);
+                }
+                else if (GetSingleLineString(book[2].Rows[i][conversation_IDCol].Text) == "NPC_C03")
+                {
+                    ConfigData_Character npc = new ConfigData_Character();
+                    npc.Id = "NPC_C03";
+                    npc.Name_TC = GetSingleLineString(book[2].Rows[i][conversation_NameTCCol].Text);
+                    npc.Name_SC = GetSingleLineString(book[2].Rows[i][conversation_NameSCCol].Text);
+                    npc.Name_EN = GetSingleLineString(book[2].Rows[i][conversation_NameENCol].Text);
+                    npc.DescriptionTag_TC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionTCCol].Text);
+                    npc.DescriptionTag_SC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionSCCol].Text);
+                    npc.DescriptionTag_EN = GetSingleLineString(book[2].Rows[i][conversation_DescriptionENCol].Text);
+                    npc.IsCollectable = false;
+                    npc.IsFirstMeetDone = false;
+                    npc.IsSuccessCollectDone = false;
+                    for (int j = 0; j < conversation_Dialog_Max; j++)
+                    {
+                        ConfigData_DialogBox dialog = new ConfigData_DialogBox();
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text)))
+                        {
+                            dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
+                            npc.DialogBoxes.Add(dialog);
+                        }
+                    }
+                    NPC_Carboniferous.Add(npc);
+                }
+                else if (GetSingleLineString(book[2].Rows[i][conversation_IDCol].Text) == "NPC_C04")
+                {
+                    ConfigData_Character npc = new ConfigData_Character();
+                    npc.Id = "NPC_C04";
+                    npc.Name_TC = GetSingleLineString(book[2].Rows[i][conversation_NameTCCol].Text);
+                    npc.Name_SC = GetSingleLineString(book[2].Rows[i][conversation_NameSCCol].Text);
+                    npc.Name_EN = GetSingleLineString(book[2].Rows[i][conversation_NameENCol].Text);
+                    npc.DescriptionTag_TC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionTCCol].Text);
+                    npc.DescriptionTag_SC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionSCCol].Text);
+                    npc.DescriptionTag_EN = GetSingleLineString(book[2].Rows[i][conversation_DescriptionENCol].Text);
+                    npc.IsCollectable = false;
+                    npc.IsFirstMeetDone = false;
+                    npc.IsSuccessCollectDone = false;
+                    for (int j = 0; j < conversation_Dialog_Max; j++)
+                    {
+                        ConfigData_DialogBox dialog = new ConfigData_DialogBox();
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text)))
+                        {
+                            dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
+                            npc.DialogBoxes.Add(dialog);
+                        }
+                    }
+                    NPC_Carboniferous.Add(npc);
+                }
+                else if (GetSingleLineString(book[2].Rows[i][conversation_IDCol].Text) == "NPC_C05")
+                {
+                    ConfigData_Character npc = new ConfigData_Character();
+                    npc.Id = "NPC_C05";
+                    npc.Name_TC = GetSingleLineString(book[2].Rows[i][conversation_NameTCCol].Text);
+                    npc.Name_SC = GetSingleLineString(book[2].Rows[i][conversation_NameSCCol].Text);
+                    npc.Name_EN = GetSingleLineString(book[2].Rows[i][conversation_NameENCol].Text);
+                    npc.DescriptionTag_TC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionTCCol].Text);
+                    npc.DescriptionTag_SC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionSCCol].Text);
+                    npc.DescriptionTag_EN = GetSingleLineString(book[2].Rows[i][conversation_DescriptionENCol].Text);
+                    npc.IsCollectable = false;
+                    npc.IsFirstMeetDone = false;
+                    npc.IsSuccessCollectDone = false;
+                    for (int j = 0; j < conversation_Dialog_Max; j++)
+                    {
+                        ConfigData_DialogBox dialog = new ConfigData_DialogBox();
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text)))
+                        {
+                            dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
+                            npc.DialogBoxes.Add(dialog);
+                        }
+                    }
+                    NPC_Carboniferous.Add(npc);
+                }
+                else if (GetSingleLineString(book[2].Rows[i][conversation_IDCol].Text) == "NPC_C06")
+                {
+                    ConfigData_Character npc = new ConfigData_Character();
+                    npc.Id = "NPC_C06";
+                    npc.Name_TC = GetSingleLineString(book[2].Rows[i][conversation_NameTCCol].Text);
+                    npc.Name_SC = GetSingleLineString(book[2].Rows[i][conversation_NameSCCol].Text);
+                    npc.Name_EN = GetSingleLineString(book[2].Rows[i][conversation_NameENCol].Text);
+                    npc.DescriptionTag_TC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionTCCol].Text);
+                    npc.DescriptionTag_SC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionSCCol].Text);
+                    npc.DescriptionTag_EN = GetSingleLineString(book[2].Rows[i][conversation_DescriptionENCol].Text);
+                    npc.IsCollectable = false;
+                    npc.IsFirstMeetDone = false;
+                    npc.IsSuccessCollectDone = false;
+                    for (int j = 0; j < conversation_Dialog_Max; j++)
+                    {
+                        ConfigData_DialogBox dialog = new ConfigData_DialogBox();
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text)))
+                        {
+                            dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
+                            npc.DialogBoxes.Add(dialog);
+                        }
+                    }
+                    NPC_Carboniferous.Add(npc);
+                }
+                else if (GetSingleLineString(book[2].Rows[i][conversation_IDCol].Text) == "NPC_P01")
+                {
+                    ConfigData_Character npc = new ConfigData_Character();
+                    npc.Id = "NPC_P01";
+                    npc.Name_TC = GetSingleLineString(book[2].Rows[i][conversation_NameTCCol].Text);
+                    npc.Name_SC = GetSingleLineString(book[2].Rows[i][conversation_NameSCCol].Text);
+                    npc.Name_EN = GetSingleLineString(book[2].Rows[i][conversation_NameENCol].Text);
+                    npc.DescriptionTag_TC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionTCCol].Text);
+                    npc.DescriptionTag_SC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionSCCol].Text);
+                    npc.DescriptionTag_EN = GetSingleLineString(book[2].Rows[i][conversation_DescriptionENCol].Text);
+                    npc.IsCollectable = false;
+                    npc.IsFirstMeetDone = false;
+                    npc.IsSuccessCollectDone = false;
+                    for (int j = 0; j < conversation_Dialog_Max; j++)
+                    {
+                        ConfigData_DialogBox dialog = new ConfigData_DialogBox();
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text)))
+                        {
+                            dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
+                            npc.DialogBoxes.Add(dialog);
+                        }
+                    }
+                    NPC_Permian.Add(npc);
+                }
+                else if (GetSingleLineString(book[2].Rows[i][conversation_IDCol].Text) == "NPC_P02")
+                {
+                    ConfigData_Character npc = new ConfigData_Character();
+                    npc.Id = "NPC_P02";
+                    npc.Name_TC = GetSingleLineString(book[2].Rows[i][conversation_NameTCCol].Text);
+                    npc.Name_SC = GetSingleLineString(book[2].Rows[i][conversation_NameSCCol].Text);
+                    npc.Name_EN = GetSingleLineString(book[2].Rows[i][conversation_NameENCol].Text);
+                    npc.DescriptionTag_TC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionTCCol].Text);
+                    npc.DescriptionTag_SC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionSCCol].Text);
+                    npc.DescriptionTag_EN = GetSingleLineString(book[2].Rows[i][conversation_DescriptionENCol].Text);
+                    npc.IsCollectable = false;
+                    npc.IsFirstMeetDone = false;
+                    npc.IsSuccessCollectDone = false;
+                    for (int j = 0; j < conversation_Dialog_Max; j++)
+                    {
+                        ConfigData_DialogBox dialog = new ConfigData_DialogBox();
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text)))
+                        {
+                            dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
+                            npc.DialogBoxes.Add(dialog);
+                        }
+                    }
+                    NPC_Permian.Add(npc);
+                }
+                else if (GetSingleLineString(book[2].Rows[i][conversation_IDCol].Text) == "NPC_P03")
+                {
+                    ConfigData_Character npc = new ConfigData_Character();
+                    npc.Id = "NPC_P03";
+                    npc.Name_TC = GetSingleLineString(book[2].Rows[i][conversation_NameTCCol].Text);
+                    npc.Name_SC = GetSingleLineString(book[2].Rows[i][conversation_NameSCCol].Text);
+                    npc.Name_EN = GetSingleLineString(book[2].Rows[i][conversation_NameENCol].Text);
+                    npc.DescriptionTag_TC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionTCCol].Text);
+                    npc.DescriptionTag_SC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionSCCol].Text);
+                    npc.DescriptionTag_EN = GetSingleLineString(book[2].Rows[i][conversation_DescriptionENCol].Text);
+                    npc.IsCollectable = false;
+                    npc.IsFirstMeetDone = false;
+                    npc.IsSuccessCollectDone = false;
+                    for (int j = 0; j < conversation_Dialog_Max; j++)
+                    {
+                        ConfigData_DialogBox dialog = new ConfigData_DialogBox();
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text)))
+                        {
+                            dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
+                            npc.DialogBoxes.Add(dialog);
+                        }
+                    }
+                    NPC_Permian.Add(npc);
+                }
+                else if (GetSingleLineString(book[2].Rows[i][conversation_IDCol].Text) == "NPC_P04")
+                {
+                    ConfigData_Character npc = new ConfigData_Character();
+                    npc.Id = "NPC_P04";
+                    npc.Name_TC = GetSingleLineString(book[2].Rows[i][conversation_NameTCCol].Text);
+                    npc.Name_SC = GetSingleLineString(book[2].Rows[i][conversation_NameSCCol].Text);
+                    npc.Name_EN = GetSingleLineString(book[2].Rows[i][conversation_NameENCol].Text);
+                    npc.DescriptionTag_TC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionTCCol].Text);
+                    npc.DescriptionTag_SC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionSCCol].Text);
+                    npc.DescriptionTag_EN = GetSingleLineString(book[2].Rows[i][conversation_DescriptionENCol].Text);
+                    npc.IsCollectable = false;
+                    npc.IsFirstMeetDone = false;
+                    npc.IsSuccessCollectDone = false;
+                    for (int j = 0; j < conversation_Dialog_Max; j++)
+                    {
+                        ConfigData_DialogBox dialog = new ConfigData_DialogBox();
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text)))
+                        {
+                            dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
+                            npc.DialogBoxes.Add(dialog);
+                        }
+                    }
+                    NPC_Permian.Add(npc);
+                }
+                else if (GetSingleLineString(book[2].Rows[i][conversation_IDCol].Text) == "NPC_P05")
+                {
+                    ConfigData_Character npc = new ConfigData_Character();
+                    npc.Id = "NPC_P05";
+                    npc.Name_TC = GetSingleLineString(book[2].Rows[i][conversation_NameTCCol].Text);
+                    npc.Name_SC = GetSingleLineString(book[2].Rows[i][conversation_NameSCCol].Text);
+                    npc.Name_EN = GetSingleLineString(book[2].Rows[i][conversation_NameENCol].Text);
+                    npc.DescriptionTag_TC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionTCCol].Text);
+                    npc.DescriptionTag_SC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionSCCol].Text);
+                    npc.DescriptionTag_EN = GetSingleLineString(book[2].Rows[i][conversation_DescriptionENCol].Text);
+                    npc.IsCollectable = false;
+                    npc.IsFirstMeetDone = false;
+                    npc.IsSuccessCollectDone = false;
+                    for (int j = 0; j < conversation_Dialog_Max; j++)
+                    {
+                        ConfigData_DialogBox dialog = new ConfigData_DialogBox();
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text)))
+                        {
+                            dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
+                            npc.DialogBoxes.Add(dialog);
+                        }
+                    }
+                    NPC_Permian.Add(npc);
+                }
+                else if (GetSingleLineString(book[2].Rows[i][conversation_IDCol].Text) == "NPC_P06")
+                {
+                    ConfigData_Character npc = new ConfigData_Character();
+                    npc.Id = "NPC_P06";
+                    npc.Name_TC = GetSingleLineString(book[2].Rows[i][conversation_NameTCCol].Text);
+                    npc.Name_SC = GetSingleLineString(book[2].Rows[i][conversation_NameSCCol].Text);
+                    npc.Name_EN = GetSingleLineString(book[2].Rows[i][conversation_NameENCol].Text);
+                    npc.DescriptionTag_TC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionTCCol].Text);
+                    npc.DescriptionTag_SC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionSCCol].Text);
+                    npc.DescriptionTag_EN = GetSingleLineString(book[2].Rows[i][conversation_DescriptionENCol].Text);
+                    npc.IsCollectable = false;
+                    npc.IsFirstMeetDone = false;
+                    npc.IsSuccessCollectDone = false;
+                    for (int j = 0; j < conversation_Dialog_Max; j++)
+                    {
+                        ConfigData_DialogBox dialog = new ConfigData_DialogBox();
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text)))
+                        {
+                            dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
+                            npc.DialogBoxes.Add(dialog);
+                        }
+                    }
+                    NPC_Permian.Add(npc);
+                }
+                else if (GetSingleLineString(book[2].Rows[i][conversation_IDCol].Text) == "NPC_P07")
+                {
+                    ConfigData_Character npc = new ConfigData_Character();
+                    npc.Id = "NPC_P07";
+                    npc.Name_TC = GetSingleLineString(book[2].Rows[i][conversation_NameTCCol].Text);
+                    npc.Name_SC = GetSingleLineString(book[2].Rows[i][conversation_NameSCCol].Text);
+                    npc.Name_EN = GetSingleLineString(book[2].Rows[i][conversation_NameENCol].Text);
+                    npc.DescriptionTag_TC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionTCCol].Text);
+                    npc.DescriptionTag_SC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionSCCol].Text);
+                    npc.DescriptionTag_EN = GetSingleLineString(book[2].Rows[i][conversation_DescriptionENCol].Text);
+                    npc.IsCollectable = false;
+                    npc.IsFirstMeetDone = false;
+                    npc.IsSuccessCollectDone = false;
+                    for (int j = 0; j < conversation_Dialog_Max; j++)
+                    {
+                        ConfigData_DialogBox dialog = new ConfigData_DialogBox();
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text)))
+                        {
+                            dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
+                            npc.DialogBoxes.Add(dialog);
+                        }
+                    }
+                    NPC_Permian.Add(npc);
+                }
+                else if (GetSingleLineString(book[2].Rows[i][conversation_IDCol].Text) == "NPC_P08")
+                {
+                    ConfigData_Character npc = new ConfigData_Character();
+                    npc.Id = "NPC_P08";
+                    npc.Name_TC = GetSingleLineString(book[2].Rows[i][conversation_NameTCCol].Text);
+                    npc.Name_SC = GetSingleLineString(book[2].Rows[i][conversation_NameSCCol].Text);
+                    npc.Name_EN = GetSingleLineString(book[2].Rows[i][conversation_NameENCol].Text);
+                    npc.DescriptionTag_TC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionTCCol].Text);
+                    npc.DescriptionTag_SC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionSCCol].Text);
+                    npc.DescriptionTag_EN = GetSingleLineString(book[2].Rows[i][conversation_DescriptionENCol].Text);
+                    npc.IsCollectable = false;
+                    npc.IsFirstMeetDone = false;
+                    npc.IsSuccessCollectDone = false;
+                    for (int j = 0; j < conversation_Dialog_Max; j++)
+                    {
+                        ConfigData_DialogBox dialog = new ConfigData_DialogBox();
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text)))
+                        {
+                            dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
+                            npc.DialogBoxes.Add(dialog);
+                        }
+                    }
+                    NPC_Permian.Add(npc);
+                }
+                else if (GetSingleLineString(book[2].Rows[i][conversation_IDCol].Text) == "NPC_P09")
+                {
+                    ConfigData_Character npc = new ConfigData_Character();
+                    npc.Id = "NPC_P09";
+                    npc.Name_TC = GetSingleLineString(book[2].Rows[i][conversation_NameTCCol].Text);
+                    npc.Name_SC = GetSingleLineString(book[2].Rows[i][conversation_NameSCCol].Text);
+                    npc.Name_EN = GetSingleLineString(book[2].Rows[i][conversation_NameENCol].Text);
+                    npc.DescriptionTag_TC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionTCCol].Text);
+                    npc.DescriptionTag_SC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionSCCol].Text);
+                    npc.DescriptionTag_EN = GetSingleLineString(book[2].Rows[i][conversation_DescriptionENCol].Text);
+                    npc.IsCollectable = false;
+                    npc.IsFirstMeetDone = false;
+                    npc.IsSuccessCollectDone = false;
+                    for (int j = 0; j < conversation_Dialog_Max; j++)
+                    {
+                        ConfigData_DialogBox dialog = new ConfigData_DialogBox();
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text)))
+                        {
+                            dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
+                            npc.DialogBoxes.Add(dialog);
+                        }
+                    }
+                    NPC_Permian.Add(npc);
+                }
+                else if (GetSingleLineString(book[2].Rows[i][conversation_IDCol].Text) == "NPC_P10")
+                {
+                    ConfigData_Character npc = new ConfigData_Character();
+                    npc.Id = "NPC_P10";
+                    npc.Name_TC = GetSingleLineString(book[2].Rows[i][conversation_NameTCCol].Text);
+                    npc.Name_SC = GetSingleLineString(book[2].Rows[i][conversation_NameSCCol].Text);
+                    npc.Name_EN = GetSingleLineString(book[2].Rows[i][conversation_NameENCol].Text);
+                    npc.DescriptionTag_TC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionTCCol].Text);
+                    npc.DescriptionTag_SC = GetSingleLineString(book[2].Rows[i][conversation_DescriptionSCCol].Text);
+                    npc.DescriptionTag_EN = GetSingleLineString(book[2].Rows[i][conversation_DescriptionENCol].Text);
+                    npc.IsCollectable = false;
+                    npc.IsFirstMeetDone = false;
+                    npc.IsSuccessCollectDone = false;
+                    for (int j = 0; j < conversation_Dialog_Max; j++)
+                    {
+                        ConfigData_DialogBox dialog = new ConfigData_DialogBox();
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text)))
+                        {
+                            dialog.ByWhom = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ByWhomFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.ImagePath = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ImgFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_TC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_TCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_SC = GetSingleLineString(book[2].Rows[i][conversation_Dialog_SCFirstCol + conversation_Dialog_Increasement * j].Text);
+                            dialog.Text_EN = GetSingleLineString(book[2].Rows[i][conversation_Dialog_ENFirstCol + conversation_Dialog_Increasement * j].Text);
+                            npc.DialogBoxes.Add(dialog);
+                        }
+                    }
+                    NPC_Permian.Add(npc);
+                }
+            }
+            int collection_IDCol = 0;
+            int collection_InfoTCCol = 3;
+            int collection_InfoSCCol = 4;
+            int collection_InfoENCol = 5;
+            //collection book
+            for (int i = 0; i < 100; i++)
+            {
+                if (GetSingleLineString(book[1].Rows[i][collection_IDCol].Text) == bosses[0].Id)
+                {
+                    ConfigData_Text info = new ConfigData_Text();
+                    info.Text_TC = GetSingleLineString(book[1].Rows[i][collection_InfoTCCol].Text);
+                    info.Text_SC = GetSingleLineString(book[1].Rows[i][collection_InfoSCCol].Text);
+                    info.Text_EN = GetSingleLineString(book[1].Rows[i][collection_InfoENCol].Text);
+                    for (int j = 0; j < 4; j++)
+                    {
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text)))
+                        {
+                            ConfigData_Text feature = new ConfigData_Text();
+                            feature.Text_TC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text);
+                            feature.Text_SC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text);
+                            feature.Text_EN = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text);
+                            bosses[0].FeatureTexts.Add(feature);
+                        }
+                    }
+                    bosses[0].InfoText = info;
+                }
+                else if (GetSingleLineString(book[1].Rows[i][collection_IDCol].Text) == bosses[1].Id)
+                {
+                    ConfigData_Text info = new ConfigData_Text();
+                    info.Text_TC = GetSingleLineString(book[1].Rows[i][collection_InfoTCCol].Text);
+                    info.Text_SC = GetSingleLineString(book[1].Rows[i][collection_InfoSCCol].Text);
+                    info.Text_EN = GetSingleLineString(book[1].Rows[i][collection_InfoENCol].Text);
+                    for (int j = 0; j < 4; j++)
+                    {
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text)))
+                        {
+                            ConfigData_Text feature = new ConfigData_Text();
+                            feature.Text_TC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text);
+                            feature.Text_SC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text);
+                            feature.Text_EN = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text);
+                            bosses[1].FeatureTexts.Add(feature);
+                        }
+                    }
+                    bosses[1].InfoText = info;
+                }
+                else if (GetSingleLineString(book[1].Rows[i][collection_IDCol].Text) == bosses[2].Id)
+                {
+                    ConfigData_Text info = new ConfigData_Text();
+                    info.Text_TC = GetSingleLineString(book[1].Rows[i][collection_InfoTCCol].Text);
+                    info.Text_SC = GetSingleLineString(book[1].Rows[i][collection_InfoSCCol].Text);
+                    info.Text_EN = GetSingleLineString(book[1].Rows[i][collection_InfoENCol].Text);
+                    for (int j = 0; j < 4; j++)
+                    {
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text)))
+                        {
+                            ConfigData_Text feature = new ConfigData_Text();
+                            feature.Text_TC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text);
+                            feature.Text_SC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text);
+                            feature.Text_EN = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text);
+                            bosses[2].FeatureTexts.Add(feature);
+                        }
+                    }
+                    bosses[2].InfoText = info;
+                }
+                else if (GetSingleLineString(book[1].Rows[i][collection_IDCol].Text) == NPC_Carboniferous[0].Id)
+                {
+                    ConfigData_Text info = new ConfigData_Text();
+                    info.Text_TC = GetSingleLineString(book[1].Rows[i][collection_InfoTCCol].Text);
+                    info.Text_SC = GetSingleLineString(book[1].Rows[i][collection_InfoSCCol].Text);
+                    info.Text_EN = GetSingleLineString(book[1].Rows[i][collection_InfoENCol].Text);
+                    for (int j = 0; j < 4; j++)
+                    {
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text)))
+                        {
+                            ConfigData_Text feature = new ConfigData_Text();
+                            feature.Text_TC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text);
+                            feature.Text_SC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text);
+                            feature.Text_EN = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text);
+                            NPC_Carboniferous[0].FeatureTexts.Add(feature);
+                        }
+                    }
+                    NPC_Carboniferous[0].InfoText = info;
+                }
+                else if (GetSingleLineString(book[1].Rows[i][collection_IDCol].Text) == NPC_Carboniferous[1].Id)
+                {
+                    ConfigData_Text info = new ConfigData_Text();
+                    info.Text_TC = GetSingleLineString(book[1].Rows[i][collection_InfoTCCol].Text);
+                    info.Text_SC = GetSingleLineString(book[1].Rows[i][collection_InfoSCCol].Text);
+                    info.Text_EN = GetSingleLineString(book[1].Rows[i][collection_InfoENCol].Text);
+                    for (int j = 0; j < 4; j++)
+                    {
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text)))
+                        {
+                            ConfigData_Text feature = new ConfigData_Text();
+                            feature.Text_TC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text);
+                            feature.Text_SC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text);
+                            feature.Text_EN = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text);
+                            NPC_Carboniferous[1].FeatureTexts.Add(feature);
+                        }
+                    }
+                    NPC_Carboniferous[1].InfoText = info;
+                }
+                else if (GetSingleLineString(book[1].Rows[i][collection_IDCol].Text) == NPC_Carboniferous[2].Id)
+                {
+                    ConfigData_Text info = new ConfigData_Text();
+                    info.Text_TC = GetSingleLineString(book[1].Rows[i][collection_InfoTCCol].Text);
+                    info.Text_SC = GetSingleLineString(book[1].Rows[i][collection_InfoSCCol].Text);
+                    info.Text_EN = GetSingleLineString(book[1].Rows[i][collection_InfoENCol].Text);
+                    for (int j = 0; j < 4; j++)
+                    {
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text)))
+                        {
+                            ConfigData_Text feature = new ConfigData_Text();
+                            feature.Text_TC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text);
+                            feature.Text_SC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text);
+                            feature.Text_EN = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text);
+                            NPC_Carboniferous[2].FeatureTexts.Add(feature);
+                        }
+                    }
+                    NPC_Carboniferous[2].InfoText = info;
+                }
+                else if (GetSingleLineString(book[1].Rows[i][collection_IDCol].Text) == NPC_Carboniferous[3].Id)
+                {
+                    ConfigData_Text info = new ConfigData_Text();
+                    info.Text_TC = GetSingleLineString(book[1].Rows[i][collection_InfoTCCol].Text);
+                    info.Text_SC = GetSingleLineString(book[1].Rows[i][collection_InfoSCCol].Text);
+                    info.Text_EN = GetSingleLineString(book[1].Rows[i][collection_InfoENCol].Text);
+                    for (int j = 0; j < 4; j++)
+                    {
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text)))
+                        {
+                            ConfigData_Text feature = new ConfigData_Text();
+                            feature.Text_TC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text);
+                            feature.Text_SC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text);
+                            feature.Text_EN = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text);
+                            NPC_Carboniferous[3].FeatureTexts.Add(feature);
+                        }
+                    }
+                    NPC_Carboniferous[3].InfoText = info;
+                }
+                else if (GetSingleLineString(book[1].Rows[i][collection_IDCol].Text) == NPC_Carboniferous[4].Id)
+                {
+                    ConfigData_Text info = new ConfigData_Text();
+                    info.Text_TC = GetSingleLineString(book[1].Rows[i][collection_InfoTCCol].Text);
+                    info.Text_SC = GetSingleLineString(book[1].Rows[i][collection_InfoSCCol].Text);
+                    info.Text_EN = GetSingleLineString(book[1].Rows[i][collection_InfoENCol].Text);
+                    for (int j = 0; j < 4; j++)
+                    {
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text)))
+                        {
+                            ConfigData_Text feature = new ConfigData_Text();
+                            feature.Text_TC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text);
+                            feature.Text_SC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text);
+                            feature.Text_EN = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text);
+                            NPC_Carboniferous[4].FeatureTexts.Add(feature);
+                        }
+                    }
+                    NPC_Carboniferous[4].InfoText = info;
+                }
+                else if (GetSingleLineString(book[1].Rows[i][collection_IDCol].Text) == NPC_Carboniferous[5].Id)
+                {
+                    ConfigData_Text info = new ConfigData_Text();
+                    info.Text_TC = GetSingleLineString(book[1].Rows[i][collection_InfoTCCol].Text);
+                    info.Text_SC = GetSingleLineString(book[1].Rows[i][collection_InfoSCCol].Text);
+                    info.Text_EN = GetSingleLineString(book[1].Rows[i][collection_InfoENCol].Text);
+                    for (int j = 0; j < 4; j++)
+                    {
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text)))
+                        {
+                            ConfigData_Text feature = new ConfigData_Text();
+                            feature.Text_TC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text);
+                            feature.Text_SC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text);
+                            feature.Text_EN = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text);
+                            NPC_Carboniferous[5].FeatureTexts.Add(feature);
+                        }
+                    }
+                    NPC_Carboniferous[5].InfoText = info;
+                }
+                else if (GetSingleLineString(book[1].Rows[i][collection_IDCol].Text) == NPC_Permian[0].Id)
+                {
+                    ConfigData_Text info = new ConfigData_Text();
+                    info.Text_TC = GetSingleLineString(book[1].Rows[i][collection_InfoTCCol].Text);
+                    info.Text_SC = GetSingleLineString(book[1].Rows[i][collection_InfoSCCol].Text);
+                    info.Text_EN = GetSingleLineString(book[1].Rows[i][collection_InfoENCol].Text);
+                    for (int j = 0; j < 4; j++)
+                    {
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text)))
+                        {
+                            ConfigData_Text feature = new ConfigData_Text();
+                            feature.Text_TC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text);
+                            feature.Text_SC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text);
+                            feature.Text_EN = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text);
+                            NPC_Permian[0].FeatureTexts.Add(feature);
+                        }
+                    }
+                    NPC_Permian[0].InfoText = info;
+                }
+                else if (GetSingleLineString(book[1].Rows[i][collection_IDCol].Text) == NPC_Permian[1].Id)
+                {
+                    ConfigData_Text info = new ConfigData_Text();
+                    info.Text_TC = GetSingleLineString(book[1].Rows[i][collection_InfoTCCol].Text);
+                    info.Text_SC = GetSingleLineString(book[1].Rows[i][collection_InfoSCCol].Text);
+                    info.Text_EN = GetSingleLineString(book[1].Rows[i][collection_InfoENCol].Text);
+                    for (int j = 0; j < 4; j++)
+                    {
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text)))
+                        {
+                            ConfigData_Text feature = new ConfigData_Text();
+                            feature.Text_TC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text);
+                            feature.Text_SC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text);
+                            feature.Text_EN = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text);
+                            NPC_Permian[1].FeatureTexts.Add(feature);
+                        }
+                    }
+                    NPC_Permian[1].InfoText = info;
+                }
+                else if (GetSingleLineString(book[1].Rows[i][collection_IDCol].Text) == NPC_Permian[2].Id)
+                {
+                    ConfigData_Text info = new ConfigData_Text();
+                    info.Text_TC = GetSingleLineString(book[1].Rows[i][collection_InfoTCCol].Text);
+                    info.Text_SC = GetSingleLineString(book[1].Rows[i][collection_InfoSCCol].Text);
+                    info.Text_EN = GetSingleLineString(book[1].Rows[i][collection_InfoENCol].Text);
+                    for (int j = 0; j < 4; j++)
+                    {
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text)))
+                        {
+                            ConfigData_Text feature = new ConfigData_Text();
+                            feature.Text_TC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text);
+                            feature.Text_SC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text);
+                            feature.Text_EN = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text);
+                            NPC_Permian[2].FeatureTexts.Add(feature);
+                        }
+                    }
+                    NPC_Permian[2].InfoText = info;
+                }
+                else if (GetSingleLineString(book[1].Rows[i][collection_IDCol].Text) == NPC_Permian[3].Id)
+                {
+                    ConfigData_Text info = new ConfigData_Text();
+                    info.Text_TC = GetSingleLineString(book[1].Rows[i][collection_InfoTCCol].Text);
+                    info.Text_SC = GetSingleLineString(book[1].Rows[i][collection_InfoSCCol].Text);
+                    info.Text_EN = GetSingleLineString(book[1].Rows[i][collection_InfoENCol].Text);
+                    for (int j = 0; j < 4; j++)
+                    {
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text)))
+                        {
+                            ConfigData_Text feature = new ConfigData_Text();
+                            feature.Text_TC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text);
+                            feature.Text_SC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text);
+                            feature.Text_EN = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text);
+                            NPC_Permian[3].FeatureTexts.Add(feature);
+                        }
+                    }
+                    NPC_Permian[3].InfoText = info;
+                }
+                else if (GetSingleLineString(book[1].Rows[i][collection_IDCol].Text) == NPC_Permian[4].Id)
+                {
+                    ConfigData_Text info = new ConfigData_Text();
+                    info.Text_TC = GetSingleLineString(book[1].Rows[i][collection_InfoTCCol].Text);
+                    info.Text_SC = GetSingleLineString(book[1].Rows[i][collection_InfoSCCol].Text);
+                    info.Text_EN = GetSingleLineString(book[1].Rows[i][collection_InfoENCol].Text);
+                    for (int j = 0; j < 4; j++)
+                    {
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text)))
+                        {
+                            ConfigData_Text feature = new ConfigData_Text();
+                            feature.Text_TC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text);
+                            feature.Text_SC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text);
+                            feature.Text_EN = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text);
+                            NPC_Permian[4].FeatureTexts.Add(feature);
+                        }
+                    }
+                    NPC_Permian[4].InfoText = info;
+                }
+                else if (GetSingleLineString(book[1].Rows[i][collection_IDCol].Text) == NPC_Permian[5].Id)
+                {
+                    ConfigData_Text info = new ConfigData_Text();
+                    info.Text_TC = GetSingleLineString(book[1].Rows[i][collection_InfoTCCol].Text);
+                    info.Text_SC = GetSingleLineString(book[1].Rows[i][collection_InfoSCCol].Text);
+                    info.Text_EN = GetSingleLineString(book[1].Rows[i][collection_InfoENCol].Text);
+                    for (int j = 0; j < 4; j++)
+                    {
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text)))
+                        {
+                            ConfigData_Text feature = new ConfigData_Text();
+                            feature.Text_TC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text);
+                            feature.Text_SC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text);
+                            feature.Text_EN = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text);
+                            NPC_Permian[5].FeatureTexts.Add(feature);
+                        }
+                    }
+                    NPC_Permian[5].InfoText = info;
+                }
+                else if (GetSingleLineString(book[1].Rows[i][collection_IDCol].Text) == NPC_Permian[6].Id)
+                {
+                    ConfigData_Text info = new ConfigData_Text();
+                    info.Text_TC = GetSingleLineString(book[1].Rows[i][collection_InfoTCCol].Text);
+                    info.Text_SC = GetSingleLineString(book[1].Rows[i][collection_InfoSCCol].Text);
+                    info.Text_EN = GetSingleLineString(book[1].Rows[i][collection_InfoENCol].Text);
+                    for (int j = 0; j < 4; j++)
+                    {
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text)))
+                        {
+                            ConfigData_Text feature = new ConfigData_Text();
+                            feature.Text_TC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text);
+                            feature.Text_SC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text);
+                            feature.Text_EN = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text);
+                            NPC_Permian[6].FeatureTexts.Add(feature);
+                        }
+                    }
+                    NPC_Permian[6].InfoText = info;
+                }
+                else if (GetSingleLineString(book[1].Rows[i][collection_IDCol].Text) == NPC_Permian[7].Id)
+                {
+                    ConfigData_Text info = new ConfigData_Text();
+                    info.Text_TC = GetSingleLineString(book[1].Rows[i][collection_InfoTCCol].Text);
+                    info.Text_SC = GetSingleLineString(book[1].Rows[i][collection_InfoSCCol].Text);
+                    info.Text_EN = GetSingleLineString(book[1].Rows[i][collection_InfoENCol].Text);
+                    for (int j = 0; j < 4; j++)
+                    {
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text)))
+                        {
+                            ConfigData_Text feature = new ConfigData_Text();
+                            feature.Text_TC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text);
+                            feature.Text_SC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text);
+                            feature.Text_EN = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text);
+                            NPC_Permian[7].FeatureTexts.Add(feature);
+                        }
+                    }
+                    NPC_Permian[7].InfoText = info;
+                }
+                else if (GetSingleLineString(book[1].Rows[i][collection_IDCol].Text) == NPC_Permian[8].Id)
+                {
+                    ConfigData_Text info = new ConfigData_Text();
+                    info.Text_TC = GetSingleLineString(book[1].Rows[i][collection_InfoTCCol].Text);
+                    info.Text_SC = GetSingleLineString(book[1].Rows[i][collection_InfoSCCol].Text);
+                    info.Text_EN = GetSingleLineString(book[1].Rows[i][collection_InfoENCol].Text);
+                    for (int j = 0; j < 4; j++)
+                    {
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text)))
+                        {
+                            ConfigData_Text feature = new ConfigData_Text();
+                            feature.Text_TC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text);
+                            feature.Text_SC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text);
+                            feature.Text_EN = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text);
+                            NPC_Permian[8].FeatureTexts.Add(feature);
+                        }
+                    }
+                    NPC_Permian[8].InfoText = info;
+                }
+                else if (GetSingleLineString(book[1].Rows[i][collection_IDCol].Text) == NPC_Permian[9].Id)
+                {
+                    ConfigData_Text info = new ConfigData_Text();
+                    info.Text_TC = GetSingleLineString(book[1].Rows[i][collection_InfoTCCol].Text);
+                    info.Text_SC = GetSingleLineString(book[1].Rows[i][collection_InfoSCCol].Text);
+                    info.Text_EN = GetSingleLineString(book[1].Rows[i][collection_InfoENCol].Text);
+                    for (int j = 0; j < 4; j++)
+                    {
+                        if (!string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text)) &&
+                            !string.IsNullOrEmpty(GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text)))
+                        {
+                            ConfigData_Text feature = new ConfigData_Text();
+                            feature.Text_TC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoTCCol].Text);
+                            feature.Text_SC = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoSCCol].Text);
+                            feature.Text_EN = GetSingleLineString(book[1].Rows[i + 1 + j][collection_InfoENCol].Text);
+                            NPC_Permian[9].FeatureTexts.Add(feature);
+                        }
+                    }
+                    NPC_Permian[9].InfoText = info;
+                }
+            }
+            
+            #endregion
+
+
             if (onSetupDoneCallback != null)
             {
                 onSetupDoneCallback.Invoke();
@@ -852,7 +1816,7 @@ public class CommonUtils : MonoBehaviour
         dialog_12.ImagePath = "";
         dialog_12.Text_TC = "鱗木是一屬已滅絕的石松類，為一類高大的樹狀蕨類，生長在炎熱潮濕的沼澤地帶中。";
         npc_1.DialogBoxes.Add(dialog_12);
-        NPC_Carboniferous.Add(npc_1);
+        //NPC_Carboniferous.Add(npc_1);
 
         ConfigData_Character npc_2 = new ConfigData_Character();
         npc_2.Id = "NPC_C02";
@@ -880,7 +1844,7 @@ public class CommonUtils : MonoBehaviour
         dialog_24.ImagePath = "";
         dialog_24.Text_TC = "嗯嗯…石炭的意思就是煤，亦是這個地質時期命名為「石炭紀」的原因。";
         npc_2.DialogBoxes.Add(dialog_24);
-        NPC_Carboniferous.Add(npc_2);
+        //NPC_Carboniferous.Add(npc_2);
 
         ConfigData_Character npc_3 = new ConfigData_Character();
         npc_3.Id = "NPC_C03";
@@ -898,7 +1862,7 @@ public class CommonUtils : MonoBehaviour
         dialog_32.ImagePath = "";
         dialog_32.Text_TC = "節胸屬，又稱節胸蜈蚣屬，是史前的倍足綱動物，即現今蜈蚣及馬陸的遠古親屬。";
         npc_3.DialogBoxes.Add(dialog_32);
-        NPC_Carboniferous.Add(npc_3);
+        //NPC_Carboniferous.Add(npc_3);
 
         ConfigData_Character npc_4 = new ConfigData_Character();
         npc_4.Id = "NPC_C04";
@@ -916,7 +1880,7 @@ public class CommonUtils : MonoBehaviour
         dialog_42.ImagePath = "";
         dialog_42.Text_TC = "巨脈蜻蜓，又名大尾蜻蜓或巨尾蜻蜓，是3億年前石炭紀一種已滅絕的昆蟲。";
         npc_4.DialogBoxes.Add(dialog_42);
-        NPC_Carboniferous.Add(npc_4);
+        //NPC_Carboniferous.Add(npc_4);
 
 
         ConfigData_Character npc_5 = new ConfigData_Character();
@@ -950,7 +1914,7 @@ public class CommonUtils : MonoBehaviour
         dialog_55.ImagePath = "";
         dialog_55.Text_TC = "一二，一二......等等......";
         npc_5.DialogBoxes.Add(dialog_55);
-        NPC_Carboniferous.Add(npc_5);
+        //NPC_Carboniferous.Add(npc_5);
 
         ConfigData_Character npc_6 = new ConfigData_Character();
         npc_6.Id = "NPC_C06";
@@ -968,190 +1932,9 @@ public class CommonUtils : MonoBehaviour
         dialog_62.ImagePath = "";
         dialog_62.Text_TC = "引螈是石炭紀、二疊紀探索上最大的動物。體長1.8米以上。";
         npc_6.DialogBoxes.Add(dialog_62);
-        NPC_Carboniferous.Add(npc_6);
+        //NPC_Carboniferous.Add(npc_6);
 
         //---
-
-        ConfigData_Character boss1 = new ConfigData_Character();
-        boss1.Id = "M01";
-        boss1.Name_TC = "林蜥";
-        boss1.Name_SC = "林蜥";
-        boss1.Name_EN = "<i>Hylonomus</i>";
-        boss1.DescriptionTag_TC = "身長：約20厘米";
-        boss1.DescriptionTag_SC = "身长：约20厘米";
-        boss1.DescriptionTag_EN = "Length: About 20 cm";
-        boss1.IsCollectable = true;
-        boss1.IsFirstMeetDone = false;
-        boss1.IsSuccessCollectDone = false;
-        ConfigData_Text info_b1 = new ConfigData_Text();
-        info_b1.Text_TC = "<b>林蜥</b><br>屬名：<i>Hylonomus</i> <br>意思：森林居住者<br>分類：蜥形綱<br>生存時代：石炭紀晚期<br>身長：約 20 厘米<br>食物：昆蟲<br>化石分布：加拿大";
-        info_b1.Text_SC = "<b>林蜥</b><br>属名：<i>Hylonomus</i> <br>意思：森林居住者<br>分类：蜥形纲<br>生存时代：石炭纪晚期<br>身长：约 20 厘米<br>食物：昆虫<br>化石分布：加拿大";
-        info_b1.Text_EN = "<b><i>Hylonomus</i></b><br>Genus: <i>Hylonomus</i><br>Meaning: Forest dweller<br>Classification: Sauropsida<br>Period: Late Carboniferous<br>Length: ~20 cm<br>Diet: Insects<br>Fossil distribution: Canada";
-        boss1.InfoText = info_b1;
-        List<ConfigData_Text> features_b1 = new List<ConfigData_Text>();
-        ConfigData_Text feature_b11 = new ConfigData_Text();
-        feature_b11.Text_TC = "外形與現代蜥蝪非常相似，有長長的尾巴和四足行走";
-        feature_b11.Text_SC = "外形与现代蜥蝪非常相似，有长长的尾巴和四足行走";
-        feature_b11.Text_EN = "Superficially lizard-like overall, with a long tail and walk on four legs";
-        features_b1.Add(feature_b11);
-        ConfigData_Text feature_b12 = new ConfigData_Text();
-        feature_b12.Text_TC = "皮膚由鱗片覆蓋，牙齒尖銳和向內彎曲";
-        feature_b12.Text_SC = "皮肤由鳞片覆盖，牙齿尖锐和向内弯曲";
-        feature_b12.Text_EN = "Skin covered in scale, pointy teeth curved inward";
-        features_b1.Add(feature_b12);
-        ConfigData_Text feature_b13 = new ConfigData_Text();
-        feature_b13.Text_TC = "已知最早的爬行動物";
-        feature_b13.Text_SC = "已知最早的爬行动物";
-        feature_b13.Text_EN = "The earliest known reptile";
-        features_b1.Add(feature_b13);
-        boss1.FeatureTexts = features_b1;
-        ConfigData_DialogBox dialog_m11 = new ConfigData_DialogBox();
-        dialog_m11.ByWhom = "AVA";
-        dialog_m11.ImagePath = "";
-        dialog_m11.Text_TC = "咦？是林蜥！";
-        boss1.DialogBoxes.Add(dialog_m11);
-        ConfigData_DialogBox dialog_m12 = new ConfigData_DialogBox();
-        dialog_m12.ByWhom = "M01";
-        dialog_m12.ImagePath = "";
-        dialog_m12.Text_TC = "你好。";
-        boss1.DialogBoxes.Add(dialog_m12);
-        ConfigData_DialogBox dialog_m13 = new ConfigData_DialogBox();
-        dialog_m13.ByWhom = "AVA";
-        dialog_m13.ImagePath = "";
-        dialog_m13.Text_TC = "林蜥是已知最早期的爬行動物，可以說是所有爬行動物的「老祖宗」！";
-        boss1.DialogBoxes.Add(dialog_m13);
-        ConfigData_DialogBox dialog_m131 = new ConfigData_DialogBox();
-        dialog_m131.ByWhom = "AVA";
-        dialog_m131.ImagePath = "";
-        dialog_m131.Text_TC = "林蜥，我們想多了解你，請你介紹一下自己吧。";
-        boss1.DialogBoxes.Add(dialog_m131);
-        ConfigData_DialogBox dialog_m132 = new ConfigData_DialogBox();
-        dialog_m132.ByWhom = "M01";
-        dialog_m132.ImagePath = "Images/SupportImage/Hylonomus_SupportImg2";
-        dialog_m132.Text_TC = "就如你所見，我的外形與現代蜥蝪非常相似，有長長的尾巴和以四足行走。";
-        boss1.DialogBoxes.Add(dialog_m132);
-        ConfigData_DialogBox dialog_m14 = new ConfigData_DialogBox();
-        dialog_m14.ByWhom = "M01";
-        dialog_m14.ImagePath = "";
-        dialog_m14.Text_TC = "我的皮膚被鱗片覆蓋，可以減少水分流失，防止在陸地上脫水。";
-        boss1.DialogBoxes.Add(dialog_m14);
-        ConfigData_DialogBox dialog_m15 = new ConfigData_DialogBox();
-        dialog_m15.ByWhom = "M01";
-        dialog_m15.ImagePath = "Images/SupportImage/Hylonomus_SupportImg1";
-        dialog_m15.Text_TC = "尖銳而向內彎的牙齒可以牢牢咬住掙扎中的獵物，例如昆蟲和節肢動物，並能夠輕易地撕碎牠們。";
-        boss1.DialogBoxes.Add(dialog_m15);
-        ConfigData_DialogBox dialog_m16 = new ConfigData_DialogBox();
-        dialog_m16.ByWhom = "DRO";
-        dialog_m16.ImagePath = "";
-        dialog_m16.Text_TC = "想不到你小小一隻，竟然是恐龍的祖先！";
-        boss1.DialogBoxes.Add(dialog_m16);
-        ConfigData_DialogBox dialog_m17 = new ConfigData_DialogBox();
-        dialog_m17.ByWhom = "DRO";
-        dialog_m17.ImagePath = "";
-        dialog_m17.Text_TC = "博士，是時候去下個地方了 。";
-        boss1.DialogBoxes.Add(dialog_m17);
-        ConfigData_DialogBox dialog_m18 = new ConfigData_DialogBox();
-        dialog_m18.ByWhom = "AVA";
-        dialog_m18.ImagePath = "";
-        dialog_m18.Text_TC = "林蜥再見~";
-        boss1.DialogBoxes.Add(dialog_m18);
-        bosses.Add(boss1);
-
-        ConfigData_Character boss2 = new ConfigData_Character();
-        boss2.Id = "M02";
-        boss2.Name_TC = "異齒龍";
-        boss2.Name_SC = "异齿龙";
-        boss2.Name_EN = "<i>Dimetrodon</i>";
-        boss2.DescriptionTag_TC = "身長：約3.5米";
-        boss2.DescriptionTag_SC = "身长：约3.5米";
-        boss2.DescriptionTag_EN = "Length: About 3.5m";
-        boss2.IsCollectable = true;
-        boss2.IsFirstMeetDone = false;
-        boss2.IsSuccessCollectDone = false;
-        ConfigData_DialogBox dialog_m21 = new ConfigData_DialogBox();
-        dialog_m21.ByWhom = "M02";
-        dialog_m21.ImagePath = "";
-        dialog_m21.Text_TC = "你好呀！我就係異齒龍喇！";
-        boss2.DialogBoxes.Add(dialog_m21);
-        ConfigData_DialogBox dialog_m22 = new ConfigData_DialogBox();
-        dialog_m22.ByWhom = "AVA";
-        dialog_m22.ImagePath = "";
-        dialog_m22.Text_TC = "你好呀！我係從未來嚟嘅科學家！大概花了半生的運氣才能遇到你，真幸運！你看起來很威猛呢。";
-        boss2.DialogBoxes.Add(dialog_m22);
-        ConfigData_DialogBox dialog_m23 = new ConfigData_DialogBox();
-        dialog_m23.ByWhom = "M02";
-        dialog_m23.ImagePath = "";
-        dialog_m23.Text_TC = "我是肉食性合弓動物的一屬，生存於二疊紀。";
-        boss2.DialogBoxes.Add(dialog_m23);
-        ConfigData_DialogBox dialog_m231 = new ConfigData_DialogBox();
-        dialog_m231.ByWhom = "M02";
-        dialog_m231.ImagePath = "Images/SupportImage/Dimetrodon_SupportImg1";
-        dialog_m231.Text_TC = "我的大型頭顱骨中有兩種不同型態的牙齒，切割用的牙齒與銳利的犬齒。我以往側邊攤開的四肢及大型尾巴來支撐身體。";
-        boss2.DialogBoxes.Add(dialog_m231);
-        ConfigData_DialogBox dialog_m232 = new ConfigData_DialogBox();
-        dialog_m232.ByWhom = "M02";
-        dialog_m232.ImagePath = "Images/SupportImage/Dimetrodon_SupportImg2";
-        dialog_m232.Text_TC = "我最明顯的特徵是背部的高大背帆，可用來控制體溫。背帆的表面可使加熱、冷卻更有效率。";
-        boss2.DialogBoxes.Add(dialog_m232);
-        ConfigData_DialogBox dialog_m24 = new ConfigData_DialogBox();
-        dialog_m24.ByWhom = "M02";
-        dialog_m24.ImagePath = "";
-        dialog_m24.Text_TC = "好似唔小心就講咗好多關於自己嘅嘢，有啲唔好意思，下次有機會再傾多啲。";
-        boss2.DialogBoxes.Add(dialog_m24);
-        ConfigData_DialogBox dialog_m25 = new ConfigData_DialogBox();
-        dialog_m25.ByWhom = "M02";
-        dialog_m25.ImagePath = "";
-        dialog_m25.Text_TC = "你快啲去繼續探索吓啦，仲有好多新奇有趣嘅事物等緊你！";
-        boss2.DialogBoxes.Add(dialog_m25);
-        bosses.Add(boss2);
-
-        ConfigData_Character boss3 = new ConfigData_Character();
-        boss3.Id = "M03";
-        boss3.Name_TC = "水龍獸";
-        boss3.Name_SC = "水龙兽";
-        boss3.Name_EN = "<i>Lystrosaurus</i>";
-        boss3.DescriptionTag_TC = "身長：約1米";
-        boss3.DescriptionTag_SC = "身长：约1米";
-        boss3.DescriptionTag_EN = "Length: About 1m";
-        boss3.IsCollectable = true;
-        boss3.IsFirstMeetDone = false;
-        boss3.IsSuccessCollectDone = false;
-        ConfigData_DialogBox dialog_m31 = new ConfigData_DialogBox();
-        dialog_m31.ByWhom = "M03";
-        dialog_m31.ImagePath = "";
-        dialog_m31.Text_TC = "你好呀！我就係水龍獸喇！";
-        boss3.DialogBoxes.Add(dialog_m31);
-        ConfigData_DialogBox dialog_m32 = new ConfigData_DialogBox();
-        dialog_m32.ByWhom = "AVA";
-        dialog_m32.ImagePath = "";
-        dialog_m32.Text_TC = "你好呀！我係從未來嚟嘅科學家！大概花了半生的運氣才能遇到你，真幸運！你看起來很威猛呢。";
-        boss3.DialogBoxes.Add(dialog_m32);
-        ConfigData_DialogBox dialog_m33 = new ConfigData_DialogBox();
-        dialog_m33.ByWhom = "M03";
-        dialog_m33.ImagePath = "";
-        dialog_m33.Text_TC = "我是種常見的合弓動物，屬於獸孔目二齒獸下目，體型接近豬，身長約0.9米，重量約90公斤。";
-        boss3.DialogBoxes.Add(dialog_m33);
-        ConfigData_DialogBox dialog_m331 = new ConfigData_DialogBox();
-        dialog_m331.ByWhom = "M03";
-        dialog_m331.ImagePath = "Images/SupportImage/Lystrosaurus_SupportImg1";
-        dialog_m331.Text_TC = "與其他獸孔目不同，我的口鼻部相當短，只有兩顆上頜的長牙。口鼻部的前端有角質喙狀嘴，用來切碎植物。";
-        boss3.DialogBoxes.Add(dialog_m331);
-        ConfigData_DialogBox dialog_m332 = new ConfigData_DialogBox();
-        dialog_m332.ByWhom = "M03";
-        dialog_m332.ImagePath = "Images/SupportImage/Lystrosaurus_SupportImg2";
-        dialog_m332.Text_TC = "我的頜部關節原始，只能做出往前、往後的動作，而不能做出往上、往下的動作。";
-        boss3.DialogBoxes.Add(dialog_m332);
-        ConfigData_DialogBox dialog_m34 = new ConfigData_DialogBox();
-        dialog_m34.ByWhom = "M03";
-        dialog_m34.ImagePath = "";
-        dialog_m34.Text_TC = "好似唔小心就講咗好多關於自己嘅嘢，有啲唔好意思，下次有機會再傾多啲。";
-        boss3.DialogBoxes.Add(dialog_m34);
-        ConfigData_DialogBox dialog_m35 = new ConfigData_DialogBox();
-        dialog_m35.ByWhom = "M03";
-        dialog_m35.ImagePath = "";
-        dialog_m35.Text_TC = "你快啲去繼續探索吓啦，仲有好多新奇有趣嘅事物等緊你！";
-        boss3.DialogBoxes.Add(dialog_m35);
-        bosses.Add(boss3);
 
         //----
 
@@ -1171,7 +1954,7 @@ public class CommonUtils : MonoBehaviour
         dialog_p22.ImagePath = "";
         dialog_p22.Text_TC = "節胸屬在石炭紀才是全盛時期。";
         npc_p2.DialogBoxes.Add(dialog_p22);
-        NPC_Permian.Add(npc_p2);
+        //NPC_Permian.Add(npc_p2);
 
         ConfigData_Character npc_p6 = new ConfigData_Character();
         npc_p6.Id = "NPC_P02";
@@ -1189,7 +1972,7 @@ public class CommonUtils : MonoBehaviour
         dialog_p62.ImagePath = "";
         dialog_p62.Text_TC = "引螈屬在石炭紀才是全盛時期。";
         npc_p6.DialogBoxes.Add(dialog_p62);
-        NPC_Permian.Add(npc_p6);
+        //NPC_Permian.Add(npc_p6);
 
         ConfigData_Character npc_p4 = new ConfigData_Character();
         npc_p4.Id = "NPC_P03";
@@ -1207,7 +1990,7 @@ public class CommonUtils : MonoBehaviour
         dialog_p42.ImagePath = "";
         dialog_p42.Text_TC = "銀杏類植物為高大多枝落葉喬木、具有挺拔的樹幹與獨特的扇形葉片。";
         npc_p4.DialogBoxes.Add(dialog_p42);
-        NPC_Permian.Add(npc_p4);
+        //NPC_Permian.Add(npc_p4);
 
         ConfigData_Character npc_p5 = new ConfigData_Character();
         npc_p5.Id = "NPC_P04";
@@ -1225,7 +2008,7 @@ public class CommonUtils : MonoBehaviour
         dialog_p52.ImagePath = "";
         dialog_p52.Text_TC = "舌羊齒的典型植株高度約為8公尺，呈喬木狀。葉片的大小與寬度各異，呈羊舌狀。";
         npc_p5.DialogBoxes.Add(dialog_p52);
-        NPC_Permian.Add(npc_p5);
+        //NPC_Permian.Add(npc_p5);
 
         ConfigData_Character npc_p7 = new ConfigData_Character();
         npc_p7.Id = "NPC_P05";
@@ -1243,7 +2026,7 @@ public class CommonUtils : MonoBehaviour
         dialog_p72.ImagePath = "";
         dialog_p72.Text_TC = "空尾蜥屬擁有特化的類似翅膀結構，使牠可以滑翔。";
         npc_p7.DialogBoxes.Add(dialog_p72);
-        NPC_Permian.Add(npc_p7);
+        //NPC_Permian.Add(npc_p7);
 
         ConfigData_Character npc_p8 = new ConfigData_Character();
         npc_p8.Id = "NPC_P06";
@@ -1261,7 +2044,7 @@ public class CommonUtils : MonoBehaviour
         dialog_p82.ImagePath = "";
         dialog_p82.Text_TC = "瘤頭龍屬與現代牛差不多大，背部有一個多節的頭骨和骨質板甲。";
         npc_p8.DialogBoxes.Add(dialog_p82);
-        NPC_Permian.Add(npc_p8);
+        //NPC_Permian.Add(npc_p8);
 
         ConfigData_Character npc_p9 = new ConfigData_Character();
         npc_p9.Id = "NPC_P07";
@@ -1279,7 +2062,7 @@ public class CommonUtils : MonoBehaviour
         dialog_p92.ImagePath = "";
         dialog_p92.Text_TC = "盾甲龍屬是大型無孔類爬行動物，而且不像其他爬行動物，牠們的腿是位在他們的身體底下，以支撐牠們的重量。";
         npc_p9.DialogBoxes.Add(dialog_p92);
-        NPC_Permian.Add(npc_p9);
+        //NPC_Permian.Add(npc_p9);
 
         ConfigData_Character npc_p10 = new ConfigData_Character();
         npc_p10.Id = "NPC_P08";
@@ -1297,7 +2080,7 @@ public class CommonUtils : MonoBehaviour
         dialog_p102.ImagePath = "";
         dialog_p102.Text_TC = "狼蜥獸屬是四足動物，四肢直立於身體下方。頭顱骨長45公分，身長約3到4公尺。";
         npc_p10.DialogBoxes.Add(dialog_p102);
-        NPC_Permian.Add(npc_p10);
+        //NPC_Permian.Add(npc_p10);
 
         ConfigData_Character npc_p12 = new ConfigData_Character();
         npc_p12.Id = "NPC_P09";
@@ -1320,7 +2103,7 @@ public class CommonUtils : MonoBehaviour
         dialog_p123.ImagePath = "";
         dialog_p123.Text_TC = "相比石炭紀的昆蟲，二疊紀的昆蟲較細小。";
         npc_p12.DialogBoxes.Add(dialog_p123);
-        NPC_Permian.Add(npc_p12);
+        //NPC_Permian.Add(npc_p12);
 
         ConfigData_Character npc_p13 = new ConfigData_Character();
         npc_p13.Id = "NPC_P10";
@@ -1348,7 +2131,7 @@ public class CommonUtils : MonoBehaviour
         dialog_p134.ImagePath = "";
         dialog_p134.Text_TC = "真美味，你們也要來一口嗎？";
         npc_p13.DialogBoxes.Add(dialog_p134);
-        NPC_Permian.Add(npc_p13);
+        //NPC_Permian.Add(npc_p13);
 
         //-------
 
