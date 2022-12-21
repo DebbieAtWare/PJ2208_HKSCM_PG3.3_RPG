@@ -1,14 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using System;
 
 public class ViewBoxManager : MonoBehaviour
 {
     public static ViewBoxManager instance;
 
-    [Header("Main")]
+    [Header("NPC")]
     public GameObject npcObj;
+    public TextMeshProUGUI npc_Text1_TC;
+    public TextMeshProUGUI npc_Text1_SC;
+    public TextMeshProUGUI npc_Text1_EN;
+    public TextMeshProUGUI npc_Text2_TC;
+    public TextMeshProUGUI npc_Text2_SC;
+    public TextMeshProUGUI npc_Text2_EN;
+
+    [Header("Drone")]
     public GameObject droneObj;
+    public TextMeshProUGUI drone_Text1_TC;
+    public TextMeshProUGUI drone_Text1_SC;
+    public TextMeshProUGUI drone_Text1_EN;
+    public TextMeshProUGUI drone_Text2_TC;
+    public TextMeshProUGUI drone_Text2_SC;
+    public TextMeshProUGUI drone_Text2_EN;
 
     [Header("Language")]
     public List<GameObject> langObjs_TC;
@@ -36,6 +52,95 @@ public class ViewBoxManager : MonoBehaviour
     {
         commonUtils = CommonUtils.instance;
         commonUtils.onChangeLangCallback += CommonUtils_OnChangeLang;
+
+        char[] charSeparators = new char[] { '<', '>' };
+        string[] splitArray_TC = commonUtils.generalInteraction_Drone.Text_TC.Split(charSeparators, StringSplitOptions.RemoveEmptyEntries);
+        for (int i = 0; i < splitArray_TC.Length; i++)
+        {
+            if (i == 0)
+            {
+                drone_Text1_TC.text = splitArray_TC[i];
+                drone_Text1_TC.rectTransform.sizeDelta = new Vector2(drone_Text1_TC.preferredWidth, drone_Text1_TC.rectTransform.sizeDelta.y);
+            }
+            else if (i == 2)
+            {
+                drone_Text2_TC.text = splitArray_TC[i];
+                drone_Text2_TC.rectTransform.sizeDelta = new Vector2(drone_Text2_TC.preferredWidth, drone_Text2_TC.rectTransform.sizeDelta.y);
+            }
+        }
+        string[] splitArray_SC = commonUtils.generalInteraction_Drone.Text_SC.Split(charSeparators, StringSplitOptions.RemoveEmptyEntries);
+        for (int i = 0; i < splitArray_SC.Length; i++)
+        {
+            if (i == 0)
+            {
+                drone_Text1_SC.text = splitArray_SC[i];
+                drone_Text1_SC.rectTransform.sizeDelta = new Vector2(drone_Text1_SC.preferredWidth, drone_Text1_SC.rectTransform.sizeDelta.y);
+            }
+            else if (i == 2)
+            {
+                drone_Text2_SC.text = splitArray_SC[i];
+                drone_Text2_SC.rectTransform.sizeDelta = new Vector2(drone_Text2_SC.preferredWidth, drone_Text2_SC.rectTransform.sizeDelta.y);
+            }
+        }
+        string[] splitArray_EN = commonUtils.generalInteraction_Drone.Text_EN.Split(charSeparators, StringSplitOptions.RemoveEmptyEntries);
+        for (int i = 0; i < splitArray_EN.Length; i++)
+        {
+            if (i == 0)
+            {
+                drone_Text1_EN.text = splitArray_EN[i];
+                drone_Text1_EN.rectTransform.sizeDelta = new Vector2(drone_Text1_EN.preferredWidth, drone_Text1_EN.rectTransform.sizeDelta.y);
+            }
+            else if (i == 2)
+            {
+                drone_Text2_EN.text = splitArray_EN[i];
+                drone_Text2_EN.rectTransform.sizeDelta = new Vector2(drone_Text2_EN.preferredWidth, drone_Text2_EN.rectTransform.sizeDelta.y);
+            }
+        }
+
+        //----
+
+        string[] splitArray_TC2 = commonUtils.generalInteraction_NPC.Text_TC.Split(charSeparators, StringSplitOptions.RemoveEmptyEntries);
+        for (int i = 0; i < splitArray_TC2.Length; i++)
+        {
+            if (i == 0)
+            {
+                npc_Text1_TC.text = splitArray_TC2[i];
+                npc_Text1_TC.rectTransform.sizeDelta = new Vector2(npc_Text1_TC.preferredWidth, npc_Text1_TC.rectTransform.sizeDelta.y);
+            }
+            else if (i == 2)
+            {
+                npc_Text2_TC.text = splitArray_TC2[i];
+                npc_Text2_TC.rectTransform.sizeDelta = new Vector2(npc_Text2_TC.preferredWidth, npc_Text2_TC.rectTransform.sizeDelta.y);
+            }
+        }
+        string[] splitArray_SC2 = commonUtils.generalInteraction_NPC.Text_SC.Split(charSeparators, StringSplitOptions.RemoveEmptyEntries);
+        for (int i = 0; i < splitArray_SC2.Length; i++)
+        {
+            if (i == 0)
+            {
+                npc_Text1_SC.text = splitArray_SC2[i];
+                npc_Text1_SC.rectTransform.sizeDelta = new Vector2(npc_Text1_SC.preferredWidth, npc_Text1_SC.rectTransform.sizeDelta.y);
+            }
+            else if (i == 2)
+            {
+                npc_Text2_SC.text = splitArray_SC2[i];
+                npc_Text2_SC.rectTransform.sizeDelta = new Vector2(npc_Text2_SC.preferredWidth, npc_Text2_SC.rectTransform.sizeDelta.y);
+            }
+        }
+        string[] splitArray_EN2 = commonUtils.generalInteraction_NPC.Text_EN.Split(charSeparators, StringSplitOptions.RemoveEmptyEntries);
+        for (int i = 0; i < splitArray_EN2.Length; i++)
+        {
+            if (i == 0)
+            {
+                npc_Text1_EN.text = splitArray_EN2[i];
+                npc_Text1_EN.rectTransform.sizeDelta = new Vector2(npc_Text1_EN.preferredWidth, npc_Text1_EN.rectTransform.sizeDelta.y);
+            }
+            else if (i == 2)
+            {
+                npc_Text2_EN.text = splitArray_EN2[i];
+                npc_Text2_EN.rectTransform.sizeDelta = new Vector2(npc_Text2_EN.preferredWidth, npc_Text2_EN.rectTransform.sizeDelta.y);
+            }
+        }
 
         ChangeLanguage();
         HideViewBox_NPC();

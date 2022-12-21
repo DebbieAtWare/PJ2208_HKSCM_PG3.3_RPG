@@ -89,31 +89,27 @@ public class CommonUtils : MonoBehaviour
     public float playerAutoWalkSpeed = 0.2f;
     public float droneAutoWalkSpeed = 0.2f;
 
-    [Header("ConfigData - Boss")]
-    public ConfigData_DialogBox dialogBox_BossAlert;
-    public List<ConfigData_Character> bosses = new List<ConfigData_Character>();
-    public ConfigData_Text successCollectText;
+    [Header("ConfigData - Intro")]
+    public List<ConfigData_DialogBox> introVideoDialogs = new List<ConfigData_DialogBox>();
 
-    [Header("ConfigData - NPC")]
-    public List<ConfigData_Character> NPC_Carboniferous = new List<ConfigData_Character>();
-    public List<ConfigData_Character> NPC_Permian = new List<ConfigData_Character>();
+    [Header("ConfigData - Gameplay Instruction")]
+    public List<ConfigData_DialogBox> gameplayInstructions = new List<ConfigData_DialogBox>();
+
+    [Header("ConfigData - First Greeting")]
+    public List<ConfigData_DialogBox> firstGreeting_Carboniferous = new List<ConfigData_DialogBox>();
+    public List<ConfigData_DialogBox> firstGreeting_Permian = new List<ConfigData_DialogBox>();
+
+    [Header("ConfigData - General interaction")]
+    public ConfigData_Text generalInteraction_Drone;
+    public ConfigData_Text generalInteraction_NPC;
+    public ConfigData_DialogBox dialogBox_BossAlert;
+    public ConfigData_Text successCollectText;
 
     [Header("ConfigData - Drone")]
     public ConfigData_DialogBox dialogBox_TipsByDrone;
     public List<ConfigData_DialogBox> dialogBox_TipsByDrone_Hints = new List<ConfigData_DialogBox>();
     public ConfigData_DialogBox dialogBox_TipsByDrone_CollectionBook;
     public ConfigData_DialogBox dialogBox_TipsByDrone_ChangeMap;
-
-    [Header("ConfigData - Intro")]
-    public List<ConfigData_DialogBox> introVideoDialogs = new List<ConfigData_DialogBox>();
-
-    [Header("ConfigData - Menu, Gameplay Instruction")]
-    public ConfigData_Menu menuData;
-    public List<ConfigData_DialogBox> gameplayInstructions = new List<ConfigData_DialogBox>();
-
-    [Header("ConfigData - First Greeting")]
-    public List<ConfigData_DialogBox> firstGreeting_Carboniferous = new List<ConfigData_DialogBox>();
-    public List<ConfigData_DialogBox> firstGreeting_Permian = new List<ConfigData_DialogBox>();
 
     [Header("ConfigData - End Check")]
     public ConfigData_DialogBox endCheck_ChangeToPermian = new ConfigData_DialogBox();
@@ -125,6 +121,15 @@ public class CommonUtils : MonoBehaviour
 
     [Header("ConfigData - Ending")]
     public List<ConfigData_Text> endVideoTexts = new List<ConfigData_Text>();
+
+    //----
+
+    [Header("ConfigData - Conversation Boss")]
+    public List<ConfigData_Character> bosses = new List<ConfigData_Character>();
+
+    [Header("ConfigData - Conversation NPC")]
+    public List<ConfigData_Character> NPC_Carboniferous = new List<ConfigData_Character>();
+    public List<ConfigData_Character> NPC_Permian = new List<ConfigData_Character>();
 
     [Header("Curr")]
     public MapID currMapId;
@@ -403,9 +408,309 @@ public class CommonUtils : MonoBehaviour
                     dialog.Text_EN = GetSingleLineString(book[0].Rows[i][general_ENCol].Text);
                     firstGreeting_Permian.Add(dialog);
                 }
-
-
-
+                //interaction with drone
+                else if (book[0].Rows[i][general_IDCol].Text == "6.01")
+                {
+                    ConfigData_Text text = new ConfigData_Text();
+                    text.Text_TC = GetSingleLineString(book[0].Rows[i][general_TCCol].Text);
+                    text.Text_SC = GetSingleLineString(book[0].Rows[i][general_SCCol].Text);
+                    text.Text_EN = GetSingleLineString(book[0].Rows[i][general_ENCol].Text);
+                    generalInteraction_Drone = text;
+                }
+                //interaction with npc
+                else if (book[0].Rows[i][general_IDCol].Text == "6.02")
+                {
+                    ConfigData_Text text = new ConfigData_Text();
+                    text.Text_TC = GetSingleLineString(book[0].Rows[i][general_TCCol].Text);
+                    text.Text_SC = GetSingleLineString(book[0].Rows[i][general_SCCol].Text);
+                    text.Text_EN = GetSingleLineString(book[0].Rows[i][general_ENCol].Text);
+                    generalInteraction_NPC = text;
+                }
+                //interaction with boss alert
+                else if (book[0].Rows[i][general_IDCol].Text == "6.03")
+                {
+                    ConfigData_DialogBox dialog = new ConfigData_DialogBox();
+                    dialog.ByWhom = GetSingleLineString(book[0].Rows[i][general_CharacterImgCol].Text);
+                    dialog.Text_TC = GetSingleLineString(book[0].Rows[i][general_TCCol].Text);
+                    dialog.Text_SC = GetSingleLineString(book[0].Rows[i][general_SCCol].Text);
+                    dialog.Text_EN = GetSingleLineString(book[0].Rows[i][general_ENCol].Text);
+                    dialogBox_BossAlert = dialog;
+                }
+                //interaction boss success collect
+                else if (book[0].Rows[i][general_IDCol].Text == "6.04")
+                {
+                    ConfigData_Text text = new ConfigData_Text();
+                    text.Text_TC = GetSingleLineString(book[0].Rows[i][general_TCCol].Text);
+                    text.Text_SC = GetSingleLineString(book[0].Rows[i][general_SCCol].Text);
+                    text.Text_EN = GetSingleLineString(book[0].Rows[i][general_ENCol].Text);
+                    successCollectText = text;
+                }
+                //Tips by drone
+                else if (book[0].Rows[i][general_IDCol].Text == "7.01")
+                {
+                    ConfigData_DialogBox dialog = new ConfigData_DialogBox();
+                    List<string> option_TC = new List<string>();
+                    List<string> option_SC = new List<string>();
+                    List<string> option_EN = new List<string>();
+                    dialog.ByWhom = GetSingleLineString(book[0].Rows[i][general_CharacterImgCol].Text);
+                    dialog.Text_TC = GetSingleLineString(book[0].Rows[i][general_TCCol].Text);
+                    dialog.Text_SC = GetSingleLineString(book[0].Rows[i][general_SCCol].Text);
+                    dialog.Text_EN = GetSingleLineString(book[0].Rows[i][general_ENCol].Text);
+                    if (!string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option1_TCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option1_SCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option1_ENCol].Text)))
+                    {
+                        option_TC.Add(GetSingleLineString(book[0].Rows[i][general_Option1_TCCol].Text));
+                        option_SC.Add(GetSingleLineString(book[0].Rows[i][general_Option1_SCCol].Text));
+                        option_EN.Add(GetSingleLineString(book[0].Rows[i][general_Option1_ENCol].Text));
+                    }
+                    if (!string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option2_TCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option2_SCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option2_ENCol].Text)))
+                    {
+                        option_TC.Add(GetSingleLineString(book[0].Rows[i][general_Option2_TCCol].Text));
+                        option_SC.Add(GetSingleLineString(book[0].Rows[i][general_Option2_SCCol].Text));
+                        option_EN.Add(GetSingleLineString(book[0].Rows[i][general_Option2_ENCol].Text));
+                    }
+                    if (!string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option3_TCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option3_SCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option3_ENCol].Text)))
+                    {
+                        option_TC.Add(GetSingleLineString(book[0].Rows[i][general_Option3_TCCol].Text));
+                        option_SC.Add(GetSingleLineString(book[0].Rows[i][general_Option3_SCCol].Text));
+                        option_EN.Add(GetSingleLineString(book[0].Rows[i][general_Option3_ENCol].Text));
+                    }
+                    if (!string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option4_TCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option4_SCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option4_ENCol].Text)))
+                    {
+                        option_TC.Add(GetSingleLineString(book[0].Rows[i][general_Option4_TCCol].Text));
+                        option_SC.Add(GetSingleLineString(book[0].Rows[i][general_Option4_SCCol].Text));
+                        option_EN.Add(GetSingleLineString(book[0].Rows[i][general_Option4_ENCol].Text));
+                    }
+                    dialog.OptionTexts_TC = option_TC;
+                    dialog.OptionTexts_SC = option_SC;
+                    dialog.OptionTexts_EN = option_EN;
+                    dialogBox_TipsByDrone = dialog;
+                }
+                //Tips with drone - hints
+                else if (book[0].Rows[i][general_IDCol].Text == "7.02" ||
+                         book[0].Rows[i][general_IDCol].Text == "7.03" ||
+                         book[0].Rows[i][general_IDCol].Text == "7.04")
+                {
+                    ConfigData_DialogBox dialog = new ConfigData_DialogBox();
+                    dialog.ByWhom = GetSingleLineString(book[0].Rows[i][general_CharacterImgCol].Text);
+                    dialog.Text_TC = GetSingleLineString(book[0].Rows[i][general_TCCol].Text);
+                    dialog.Text_SC = GetSingleLineString(book[0].Rows[i][general_SCCol].Text);
+                    dialog.Text_EN = GetSingleLineString(book[0].Rows[i][general_ENCol].Text);
+                    dialogBox_TipsByDrone_Hints.Add(dialog);
+                }
+                //Tips by drone - collection book
+                else if (book[0].Rows[i][general_IDCol].Text == "7.05")
+                {
+                    ConfigData_DialogBox dialog = new ConfigData_DialogBox();
+                    List<string> option_TC = new List<string>();
+                    List<string> option_SC = new List<string>();
+                    List<string> option_EN = new List<string>();
+                    dialog.ByWhom = GetSingleLineString(book[0].Rows[i][general_CharacterImgCol].Text);
+                    dialog.Text_TC = GetSingleLineString(book[0].Rows[i][general_TCCol].Text);
+                    dialog.Text_SC = GetSingleLineString(book[0].Rows[i][general_SCCol].Text);
+                    dialog.Text_EN = GetSingleLineString(book[0].Rows[i][general_ENCol].Text);
+                    if (!string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option1_TCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option1_SCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option1_ENCol].Text)))
+                    {
+                        option_TC.Add(GetSingleLineString(book[0].Rows[i][general_Option1_TCCol].Text));
+                        option_SC.Add(GetSingleLineString(book[0].Rows[i][general_Option1_SCCol].Text));
+                        option_EN.Add(GetSingleLineString(book[0].Rows[i][general_Option1_ENCol].Text));
+                    }
+                    if (!string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option2_TCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option2_SCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option2_ENCol].Text)))
+                    {
+                        option_TC.Add(GetSingleLineString(book[0].Rows[i][general_Option2_TCCol].Text));
+                        option_SC.Add(GetSingleLineString(book[0].Rows[i][general_Option2_SCCol].Text));
+                        option_EN.Add(GetSingleLineString(book[0].Rows[i][general_Option2_ENCol].Text));
+                    }
+                    if (!string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option3_TCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option3_SCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option3_ENCol].Text)))
+                    {
+                        option_TC.Add(GetSingleLineString(book[0].Rows[i][general_Option3_TCCol].Text));
+                        option_SC.Add(GetSingleLineString(book[0].Rows[i][general_Option3_SCCol].Text));
+                        option_EN.Add(GetSingleLineString(book[0].Rows[i][general_Option3_ENCol].Text));
+                    }
+                    if (!string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option4_TCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option4_SCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option4_ENCol].Text)))
+                    {
+                        option_TC.Add(GetSingleLineString(book[0].Rows[i][general_Option4_TCCol].Text));
+                        option_SC.Add(GetSingleLineString(book[0].Rows[i][general_Option4_SCCol].Text));
+                        option_EN.Add(GetSingleLineString(book[0].Rows[i][general_Option4_ENCol].Text));
+                    }
+                    dialog.OptionTexts_TC = option_TC;
+                    dialog.OptionTexts_SC = option_SC;
+                    dialog.OptionTexts_EN = option_EN;
+                    dialogBox_TipsByDrone_CollectionBook = dialog;
+                }
+                //Tips by drone - change map
+                else if (book[0].Rows[i][general_IDCol].Text == "7.06")
+                {
+                    ConfigData_DialogBox dialog = new ConfigData_DialogBox();
+                    List<string> option_TC = new List<string>();
+                    List<string> option_SC = new List<string>();
+                    List<string> option_EN = new List<string>();
+                    dialog.ByWhom = GetSingleLineString(book[0].Rows[i][general_CharacterImgCol].Text);
+                    dialog.Text_TC = GetSingleLineString(book[0].Rows[i][general_TCCol].Text);
+                    dialog.Text_SC = GetSingleLineString(book[0].Rows[i][general_SCCol].Text);
+                    dialog.Text_EN = GetSingleLineString(book[0].Rows[i][general_ENCol].Text);
+                    if (!string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option1_TCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option1_SCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option1_ENCol].Text)))
+                    {
+                        option_TC.Add(GetSingleLineString(book[0].Rows[i][general_Option1_TCCol].Text));
+                        option_SC.Add(GetSingleLineString(book[0].Rows[i][general_Option1_SCCol].Text));
+                        option_EN.Add(GetSingleLineString(book[0].Rows[i][general_Option1_ENCol].Text));
+                    }
+                    if (!string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option2_TCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option2_SCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option2_ENCol].Text)))
+                    {
+                        option_TC.Add(GetSingleLineString(book[0].Rows[i][general_Option2_TCCol].Text));
+                        option_SC.Add(GetSingleLineString(book[0].Rows[i][general_Option2_SCCol].Text));
+                        option_EN.Add(GetSingleLineString(book[0].Rows[i][general_Option2_ENCol].Text));
+                    }
+                    if (!string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option3_TCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option3_SCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option3_ENCol].Text)))
+                    {
+                        option_TC.Add(GetSingleLineString(book[0].Rows[i][general_Option3_TCCol].Text));
+                        option_SC.Add(GetSingleLineString(book[0].Rows[i][general_Option3_SCCol].Text));
+                        option_EN.Add(GetSingleLineString(book[0].Rows[i][general_Option3_ENCol].Text));
+                    }
+                    if (!string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option4_TCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option4_SCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option4_ENCol].Text)))
+                    {
+                        option_TC.Add(GetSingleLineString(book[0].Rows[i][general_Option4_TCCol].Text));
+                        option_SC.Add(GetSingleLineString(book[0].Rows[i][general_Option4_SCCol].Text));
+                        option_EN.Add(GetSingleLineString(book[0].Rows[i][general_Option4_ENCol].Text));
+                    }
+                    dialog.OptionTexts_TC = option_TC;
+                    dialog.OptionTexts_SC = option_SC;
+                    dialog.OptionTexts_EN = option_EN;
+                    dialogBox_TipsByDrone_ChangeMap = dialog;
+                }
+                //Mission complete - M1 found - Force to Permian
+                else if (book[0].Rows[i][general_IDCol].Text == "9.01")
+                {
+                    ConfigData_DialogBox dialog = new ConfigData_DialogBox();
+                    dialog.ByWhom = GetSingleLineString(book[0].Rows[i][general_CharacterImgCol].Text);
+                    dialog.Text_TC = GetSingleLineString(book[0].Rows[i][general_TCCol].Text);
+                    dialog.Text_SC = GetSingleLineString(book[0].Rows[i][general_SCCol].Text);
+                    dialog.Text_EN = GetSingleLineString(book[0].Rows[i][general_ENCol].Text);
+                    endCheck_ChangeToPermian = dialog;
+                }
+                //Mission complete - M2&M3 found - Force to Carboniferous
+                else if (book[0].Rows[i][general_IDCol].Text == "9.02")
+                {
+                    ConfigData_DialogBox dialog = new ConfigData_DialogBox();
+                    dialog.ByWhom = GetSingleLineString(book[0].Rows[i][general_CharacterImgCol].Text);
+                    dialog.Text_TC = GetSingleLineString(book[0].Rows[i][general_TCCol].Text);
+                    dialog.Text_SC = GetSingleLineString(book[0].Rows[i][general_SCCol].Text);
+                    dialog.Text_EN = GetSingleLineString(book[0].Rows[i][general_ENCol].Text);
+                    endCheck_ChangeToCarboniferous = dialog;
+                }
+                //Mission complete - Only M2/M3 found
+                else if (book[0].Rows[i][general_IDCol].Text == "9.03")
+                {
+                    ConfigData_DialogBox dialog = new ConfigData_DialogBox();
+                    dialog.ByWhom = GetSingleLineString(book[0].Rows[i][general_CharacterImgCol].Text);
+                    dialog.Text_TC = GetSingleLineString(book[0].Rows[i][general_TCCol].Text);
+                    dialog.Text_SC = GetSingleLineString(book[0].Rows[i][general_SCCol].Text);
+                    dialog.Text_EN = GetSingleLineString(book[0].Rows[i][general_ENCol].Text);
+                    endCheck_PermianOneLeft = dialog;
+                }
+                //Mission complete - endCheck_ChangeToEndingVideos
+                else if (book[0].Rows[i][general_IDCol].Text == "9.04")
+                {
+                    ConfigData_DialogBox dialog = new ConfigData_DialogBox();
+                    dialog.ByWhom = GetSingleLineString(book[0].Rows[i][general_CharacterImgCol].Text);
+                    dialog.Text_TC = GetSingleLineString(book[0].Rows[i][general_TCCol].Text);
+                    dialog.Text_SC = GetSingleLineString(book[0].Rows[i][general_SCCol].Text);
+                    dialog.Text_EN = GetSingleLineString(book[0].Rows[i][general_ENCol].Text);
+                    endCheck_ChangeToEndingVideos.Add(dialog);
+                }
+                //Mission complete - Ending video
+                else if (book[0].Rows[i][general_IDCol].Text == "9.05" ||
+                         book[0].Rows[i][general_IDCol].Text == "9.06" ||
+                         book[0].Rows[i][general_IDCol].Text == "9.07" ||
+                         book[0].Rows[i][general_IDCol].Text == "9.08")
+                {
+                    ConfigData_Text text = new ConfigData_Text();
+                    text.Text_TC = GetSingleLineString(book[0].Rows[i][general_TCCol].Text);
+                    text.Text_SC = GetSingleLineString(book[0].Rows[i][general_SCCol].Text);
+                    text.Text_EN = GetSingleLineString(book[0].Rows[i][general_ENCol].Text);
+                    endVideoTexts.Add(text);
+                }
+                //Mission complete - endCheck_AfterEndingVideos
+                else if (book[0].Rows[i][general_IDCol].Text == "9.09")
+                {
+                    ConfigData_DialogBox dialog = new ConfigData_DialogBox();
+                    dialog.ByWhom = GetSingleLineString(book[0].Rows[i][general_CharacterImgCol].Text);
+                    dialog.Text_TC = GetSingleLineString(book[0].Rows[i][general_TCCol].Text);
+                    dialog.Text_SC = GetSingleLineString(book[0].Rows[i][general_SCCol].Text);
+                    dialog.Text_EN = GetSingleLineString(book[0].Rows[i][general_ENCol].Text);
+                    endCheck_AfterEndingVideos.Add(dialog);
+                }
+                //Mission complete - endCheck_AfterEndingVideos
+                else if (book[0].Rows[i][general_IDCol].Text == "9.10")
+                {
+                    ConfigData_DialogBox dialog = new ConfigData_DialogBox();
+                    List<string> option_TC = new List<string>();
+                    List<string> option_SC = new List<string>();
+                    List<string> option_EN = new List<string>();
+                    dialog.ByWhom = GetSingleLineString(book[0].Rows[i][general_CharacterImgCol].Text);
+                    dialog.Text_TC = GetSingleLineString(book[0].Rows[i][general_TCCol].Text);
+                    dialog.Text_SC = GetSingleLineString(book[0].Rows[i][general_SCCol].Text);
+                    dialog.Text_EN = GetSingleLineString(book[0].Rows[i][general_ENCol].Text);
+                    if (!string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option1_TCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option1_SCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option1_ENCol].Text)))
+                    {
+                        option_TC.Add(GetSingleLineString(book[0].Rows[i][general_Option1_TCCol].Text));
+                        option_SC.Add(GetSingleLineString(book[0].Rows[i][general_Option1_SCCol].Text));
+                        option_EN.Add(GetSingleLineString(book[0].Rows[i][general_Option1_ENCol].Text));
+                    }
+                    if (!string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option2_TCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option2_SCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option2_ENCol].Text)))
+                    {
+                        option_TC.Add(GetSingleLineString(book[0].Rows[i][general_Option2_TCCol].Text));
+                        option_SC.Add(GetSingleLineString(book[0].Rows[i][general_Option2_SCCol].Text));
+                        option_EN.Add(GetSingleLineString(book[0].Rows[i][general_Option2_ENCol].Text));
+                    }
+                    if (!string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option3_TCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option3_SCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option3_ENCol].Text)))
+                    {
+                        option_TC.Add(GetSingleLineString(book[0].Rows[i][general_Option3_TCCol].Text));
+                        option_SC.Add(GetSingleLineString(book[0].Rows[i][general_Option3_SCCol].Text));
+                        option_EN.Add(GetSingleLineString(book[0].Rows[i][general_Option3_ENCol].Text));
+                    }
+                    if (!string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option4_TCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option4_SCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option4_ENCol].Text)))
+                    {
+                        option_TC.Add(GetSingleLineString(book[0].Rows[i][general_Option4_TCCol].Text));
+                        option_SC.Add(GetSingleLineString(book[0].Rows[i][general_Option4_SCCol].Text));
+                        option_EN.Add(GetSingleLineString(book[0].Rows[i][general_Option4_ENCol].Text));
+                    }
+                    dialog.OptionTexts_TC = option_TC;
+                    dialog.OptionTexts_SC = option_SC;
+                    dialog.OptionTexts_EN = option_EN;
+                    endCheck_AfterEndingVideos.Add(dialog);
+                }
             }
             #endregion
 
@@ -665,13 +970,7 @@ public class CommonUtils : MonoBehaviour
         npc_6.DialogBoxes.Add(dialog_62);
         NPC_Carboniferous.Add(npc_6);
 
-        //----
-
-        ConfigData_DialogBox dialog = new ConfigData_DialogBox();
-        dialog.ByWhom = "DRO";
-        dialog.ImagePath = "";
-        dialog.Text_TC = "咇咇……發現目標，快點過去看看吧！";
-        dialogBox_BossAlert = dialog;
+        //---
 
         ConfigData_Character boss1 = new ConfigData_Character();
         boss1.Id = "M01";
@@ -1053,269 +1352,8 @@ public class CommonUtils : MonoBehaviour
 
         //-------
 
-        ConfigData_DialogBox dialog_tips = new ConfigData_DialogBox();
-        dialog_tips.ByWhom = "DRO";
-        dialog_tips.ImagePath = "";
-        dialog_tips.Text_TC = "有甚麼需要幫忙的嗎？";
-        dialog_tips.Text_SC = "有什么需要帮忙的吗？";
-        dialog_tips.Text_EN = "Is there anything I can help you with?";
-        List<string> options_tips = new List<string>();
-        options_tips.Add("提示");
-        options_tips.Add("古生物圖鑑");
-        options_tips.Add("傳送門");
-        options_tips.Add("不用了，謝謝");
-        dialog_tips.OptionTexts_TC = options_tips;
-        List<string> options_tips2 = new List<string>();
-        options_tips2.Add("提示");
-        options_tips2.Add("古生物图鉴");
-        options_tips2.Add("传送门");
-        options_tips2.Add("不用了，谢谢");
-        dialog_tips.OptionTexts_SC = options_tips2;
-        List<string> options_tips3 = new List<string>();
-        options_tips3.Add("Hint");
-        options_tips3.Add("Palaeobio-pedia");
-        options_tips3.Add("Maps");
-        options_tips3.Add("No, thanks");
-        dialog_tips.OptionTexts_EN = options_tips3;
-        dialogBox_TipsByDrone = dialog_tips;
-
-        List<ConfigData_DialogBox> dialog_hints = new List<ConfigData_DialogBox>();
-        ConfigData_DialogBox hint1 = new ConfigData_DialogBox();
-        hint1.ByWhom = "DRO";
-        hint1.ImagePath = "";
-        hint1.Text_TC = "頭上有綠色圖標的就是目標羊膜動物，把握機會與牠們交談！";
-        dialog_hints.Add(hint1);
-        ConfigData_DialogBox hint2 = new ConfigData_DialogBox();
-        hint2.ByWhom = "DRO";
-        hint2.ImagePath = "";
-        hint2.Text_TC = "你可以與地圖上的古生物交談。";
-        dialog_hints.Add(hint2);
-        ConfigData_DialogBox hint3 = new ConfigData_DialogBox();
-        hint3.ByWhom = "DRO";
-        hint3.ImagePath = "";
-        hint3.Text_TC = "你可以隨時找我轉換地圖。";
-        dialog_hints.Add(hint3);
-        dialogBox_TipsByDrone_Hints = dialog_hints;
-
-        ConfigData_DialogBox dialog_CB = new ConfigData_DialogBox();
-        dialog_CB.ByWhom = "DRO";
-        dialog_CB.Text_TC = "進入古生物圖鑑？";
-        List<string> options_CB = new List<string>();
-        options_CB.Add("是");
-        options_CB.Add("否");
-        dialog_CB.OptionTexts_TC = options_CB;
-        dialogBox_TipsByDrone_CollectionBook = dialog_CB;
-
-        ConfigData_DialogBox dialog_ChangeMap = new ConfigData_DialogBox();
-        dialog_ChangeMap.ByWhom = "DRO";
-        dialog_ChangeMap.Text_TC = "前往另一個地質時代？";
-        List<string> options_ChangeMap = new List<string>();
-        options_ChangeMap.Add("是");
-        options_ChangeMap.Add("留在這裏繼續探索");
-        dialog_ChangeMap.OptionTexts_TC = options_ChangeMap;
-        dialogBox_TipsByDrone_ChangeMap = dialog_ChangeMap;
-
         //-------
 
-        successCollectText.Text_TC = "成功收集<<NPC name>>！";
-        successCollectText.Text_SC = "成功收集<<NPC name>>！";
-        successCollectText.Text_EN = "You’ve got <<NPC name>>!";
-
-        //-------
-
-        ConfigData_DialogBox dialog_Intro1 = new ConfigData_DialogBox();
-        dialog_Intro1.ByWhom = "DRO";
-        dialog_Intro1.Text_TC = "博士，準備好出發執行任務了嗎？";
-        dialog_Intro1.Text_SC = "博士，准备好出发执行任务了吗？";
-        dialog_Intro1.Text_EN = "Doctor, are you ready for our trip?";
-        introVideoDialogs.Add(dialog_Intro1);
-        ConfigData_DialogBox dialog_Intro2 = new ConfigData_DialogBox();
-        dialog_Intro2.ByWhom = "AVA";
-        dialog_Intro2.Text_TC = "噢！研究實在太忙了，差點忘記今天是穿越時空尋找早期羊膜動物的大日子！";
-        dialog_Intro2.Text_SC = "噢！研究实在太忙了，差点忘记今天是穿越时空寻找早期羊膜动物的大日子！";
-        dialog_Intro2.Text_EN = "Aha! Look at me, I’m just buried in work! It’s our big day to travel through time and meet the early amniotes!";
-        introVideoDialogs.Add(dialog_Intro2);
-        ConfigData_DialogBox dialog_Intro3 = new ConfigData_DialogBox();
-        dialog_Intro3.ByWhom = "DRO";
-        dialog_Intro3.Text_TC = "約在三億四千萬年前的石炭紀，原始四足動物演化出最早期的羊膜動物。";
-        dialog_Intro3.Text_SC = "简体";
-        dialog_Intro3.Text_EN = "Eng";
-        introVideoDialogs.Add(dialog_Intro3);
-        ConfigData_DialogBox dialog_Intro4 = new ConfigData_DialogBox();
-        dialog_Intro4.ByWhom = "DRO";
-        dialog_Intro4.Text_TC = "和魚或兩棲動物不同，羊膜動物能產出「羊膜卵」，使胎兒可以在陸地上孵化。";
-        dialog_Intro4.Text_SC = "简体";
-        dialog_Intro4.Text_EN = "Eng";
-        introVideoDialogs.Add(dialog_Intro4);
-        ConfigData_DialogBox dialog_Intro5 = new ConfigData_DialogBox();
-        dialog_Intro5.ByWhom = "DRO";
-        dialog_Intro5.Text_TC = "羊膜卵有外殼和胚外膜。防水且透氣的外殼和胚外膜能保護胚胎在陸上孵化時，不會因脫水而亡。";
-        dialog_Intro5.Text_SC = "简体";
-        dialog_Intro5.Text_EN = "Eng";
-        introVideoDialogs.Add(dialog_Intro5);
-        ConfigData_DialogBox dialog_Intro6 = new ConfigData_DialogBox();
-        dialog_Intro6.ByWhom = "DRO";
-        dialog_Intro6.Text_TC = "羊膜動物不再在水生環境繁殖，能在比較乾燥的陸地上生活。";
-        dialog_Intro6.Text_SC = "简体";
-        dialog_Intro6.Text_EN = "Eng";
-        introVideoDialogs.Add(dialog_Intro6);
-        ConfigData_DialogBox dialog_Intro7 = new ConfigData_DialogBox();
-        dialog_Intro7.ByWhom = "DRO";
-        dialog_Intro7.Text_TC = "早期羊膜動物演化出兩個支系：蜥形綱和合弓綱。";
-        dialog_Intro7.Text_SC = "简体";
-        dialog_Intro7.Text_EN = "Eng";
-        introVideoDialogs.Add(dialog_Intro7);
-        ConfigData_DialogBox dialog_Intro8 = new ConfigData_DialogBox();
-        dialog_Intro8.ByWhom = "DRO";
-        dialog_Intro8.Text_TC = "蜥形綱動物包括爬行動物、恐龍和鳥類；";
-        dialog_Intro8.Text_SC = "简体";
-        dialog_Intro8.Text_EN = "Eng";
-        introVideoDialogs.Add(dialog_Intro8);
-        ConfigData_DialogBox dialog_Intro9 = new ConfigData_DialogBox();
-        dialog_Intro9.ByWhom = "DRO";
-        dialog_Intro9.Text_TC = "合弓綱則演化出哺乳動物，包括人類。";
-        dialog_Intro9.Text_SC = "简体";
-        dialog_Intro9.Text_EN = "Eng";
-        introVideoDialogs.Add(dialog_Intro9);
-        ConfigData_DialogBox dialog_Intro10 = new ConfigData_DialogBox();
-        dialog_Intro10.ByWhom = "DRO";
-        dialog_Intro10.Text_TC = "坐上時光機回到石炭紀和二疊紀，一起來認識早期羊膜動物。";
-        dialog_Intro10.Text_SC = "简体";
-        dialog_Intro10.Text_EN = "Eng";
-        introVideoDialogs.Add(dialog_Intro10);
-
-        //-------
-
-        ConfigData_DialogBox dialog_Gameplay2 = new ConfigData_DialogBox();
-        dialog_Gameplay2.ByWhom = "DRO";
-        dialog_Gameplay2.Text_TC = "你的任務是穿梭石炭紀和二疊紀，訪尋三種目標早期羊膜生物，豐富古生物資料庫。";
-        dialog_Gameplay2.Text_SC = "你的任务是穿梭石炭纪和二叠纪，访寻三种目标早期羊膜生物，丰富古生物资料库。";
-        dialog_Gameplay2.Text_EN = "Travel through time and back to the Carboniferous and the Permian period. Your mission is to visit three targeted early amniotes and enrich your knowledge on the palaeobios.";
-        gameplayInstructions.Add(dialog_Gameplay2);
-        ConfigData_DialogBox dialog_Gameplay1 = new ConfigData_DialogBox();
-        dialog_Gameplay1.ByWhom = "DRO";
-        dialog_Gameplay1.Text_TC = "控制教學：<br>【方向鍵】<br>上、下、左、右<br>【選單】<br>【確定】";
-        gameplayInstructions.Add(dialog_Gameplay1);
-        ConfigData_DialogBox dialog_Gameplay22 = new ConfigData_DialogBox();
-        dialog_Gameplay22.ByWhom = "DRO";
-        dialog_Gameplay22.Text_TC = "旅途中有甚麼疑難就問我吧。相信我們將會是最佳拍檔！";
-        dialog_Gameplay22.Text_SC = "旅途中有什么疑难就问我吧。相信我们将会是最佳拍档！";
-        dialog_Gameplay22.Text_EN = "Just ask me questions if you have any. Trust me, we will make the best partners ever!";
-        gameplayInstructions.Add(dialog_Gameplay22);
-        ConfigData_DialogBox dialog_Gameplay3 = new ConfigData_DialogBox();
-        dialog_Gameplay3.ByWhom = "DRO";
-        dialog_Gameplay3.Text_TC = "你想前往哪個時代探險？";
-        dialog_Gameplay3.Text_SC = "你想前往哪个时代探险？";
-        dialog_Gameplay3.Text_EN = "Which period do you want to start your adventure?";
-        List<string> option_Gameplay3 = new List<string>();
-        option_Gameplay3.Add("石炭紀");
-        option_Gameplay3.Add("二疊紀");
-        dialog_Gameplay3.OptionTexts_TC = option_Gameplay3;
-        List<string> option_Gameplay32 = new List<string>();
-        option_Gameplay32.Add("石炭纪");
-        option_Gameplay32.Add("二叠纪");
-        dialog_Gameplay3.OptionTexts_SC = option_Gameplay32;
-        List<string> option_Gameplay33 = new List<string>();
-        option_Gameplay33.Add("Carboniferous");
-        option_Gameplay33.Add("Permian");
-        dialog_Gameplay3.OptionTexts_EN = option_Gameplay33;
-        gameplayInstructions.Add(dialog_Gameplay3);
-
-        //-------
-
-        ConfigData_DialogBox dialog_FG_C1 = new ConfigData_DialogBox();
-        dialog_FG_C1.ByWhom = "DRO";
-        dialog_FG_C1.Text_TC = "我們即將穿越到石炭紀。旅途中有甚麼疑難就問我吧。相信我們將會是最佳拍檔！";
-        dialog_FG_C1.Text_SC = "我們即將穿越到石炭紀。旅途中有甚麼疑難就問我吧。相信我們將會是最佳拍檔！";
-        dialog_FG_C1.Text_EN = "We are about to travel back to the Carboniferous period.<br>Just ask me questions if you have any. Trust me, we will be the best partner ever!";
-        firstGreeting_Carboniferous.Add(dialog_FG_C1);
-        ConfigData_DialogBox dialog_FG_C2 = new ConfigData_DialogBox();
-        dialog_FG_C2.ByWhom = "DRO";
-        dialog_FG_C2.Text_TC = "噢，來到石炭紀了！開始進行搜索！";
-        dialog_FG_C2.Text_SC = "噢，来到石炭纪了！开始进行搜索！";
-        dialog_FG_C2.Text_EN = "Oh, we have arrived at the Carboniferous!Let's start searching around!";
-        firstGreeting_Carboniferous.Add(dialog_FG_C2);
-        ConfigData_DialogBox dialog_FG_C3 = new ConfigData_DialogBox();
-        dialog_FG_C3.ByWhom = "AVA";
-        dialog_FG_C3.Text_TC = "看來石炭紀大陸到處都是沼澤。呼，這裏真潮濕。";
-        dialog_FG_C3.Text_SC = "看来石炭纪大陆到处都是沼泽。呼，这里真潮湿。";
-        dialog_FG_C3.Text_EN = "It seems that the Carboniferous continent is full of swamps. Phew, it's humid here.";
-        firstGreeting_Carboniferous.Add(dialog_FG_C3);
-
-
-        ConfigData_DialogBox dialog_FG_P1 = new ConfigData_DialogBox();
-        dialog_FG_P1.ByWhom = "DRO";
-        dialog_FG_P1.Text_TC = "你選擇了二疊紀，是古生代最後的地質時代。旅途中有甚麼疑難就問我吧。相信我們將會是最佳拍檔！";
-        dialog_FG_P1.Text_SC = "你選擇了二疊紀，是古生代最後的地質時代。旅途中有甚麼疑難就問我吧。相信我們將會是最佳拍檔！";
-        dialog_FG_P1.Text_EN = "You picked the Permian, the last geological period of the Paleozoic era.<br>Just ask me questions if you have any. Trust me, we will be the best partner ever!";
-        firstGreeting_Permian.Add(dialog_FG_P1);
-        ConfigData_DialogBox dialog_FG_P2 = new ConfigData_DialogBox();
-        dialog_FG_P2.ByWhom = "DRO";
-        dialog_FG_P2.Text_TC = "（深呼吸） 呼，空氣清新，一起開展一段刺激的旅程吧！嗯…這裡很溫暖，還挺乾燥的。";
-        dialog_FG_P2.Text_SC = "（深呼吸） 呼，空气清新，一起开展一段刺激的旅程吧！嗯…这里很温暖，还挺干燥的。";
-        dialog_FG_P2.Text_EN = "(yawning) Fresh air!! What an exciting trip!Hmm…It's warm and dry here.";
-        firstGreeting_Permian.Add(dialog_FG_P2);
-
-        //-------
-
-        ConfigData_DialogBox dialog_EC_1 = new ConfigData_DialogBox();
-        dialog_EC_1.ByWhom = "DRO";
-        dialog_EC_1.Text_TC = "已經找到目標羊膜動物！再接再厲，馬上穿越到二疊紀繼續旅程吧！";
-        endCheck_ChangeToPermian = dialog_EC_1;
-
-        ConfigData_DialogBox dialog_EC_2 = new ConfigData_DialogBox();
-        dialog_EC_2.ByWhom = "DRO";
-        dialog_EC_2.Text_TC = "這時代還有另一隻目標羊膜動物，加油！";
-        endCheck_PermianOneLeft = dialog_EC_2;
-
-        ConfigData_DialogBox dialog_EC_3 = new ConfigData_DialogBox();
-        dialog_EC_3.ByWhom = "DRO";
-        dialog_EC_3.Text_TC = "已經找到目標羊膜動物！讓我們馬上前往石炭紀繼續這次探險之旅吧！";
-        endCheck_ChangeToCarboniferous = dialog_EC_3;
-
-        ConfigData_DialogBox dialog_EC_41 = new ConfigData_DialogBox();
-        dialog_EC_41.ByWhom = "DRO";
-        dialog_EC_41.Text_TC = "我們成功收集了三種具代表性的羊膜動物！";
-        endCheck_ChangeToEndingVideos.Add(dialog_EC_41);
-
-        ConfigData_DialogBox dialog_EC_5 = new ConfigData_DialogBox();
-        dialog_EC_5.ByWhom = "AVA";
-        dialog_EC_5.Text_TC = "回到現代化的實驗室感覺真好。";
-        endCheck_AfterEndingVideos.Add(dialog_EC_5);
-        ConfigData_DialogBox dialog_EC_6 = new ConfigData_DialogBox();
-        dialog_EC_6.ByWhom = "DRO";
-        dialog_EC_6.Text_TC = "來看看我們辛苦收集的資料吧！";
-        List<string> dialog_EC_Option1 = new List<string>();
-        dialog_EC_Option1.Add("確定");
-        dialog_EC_Option1.Add("想家了，結束旅程回到現代。");
-        dialog_EC_6.OptionTexts_TC = dialog_EC_Option1;
-        endCheck_AfterEndingVideos.Add(dialog_EC_6);
-
-
-        //---------
-
-        List<ConfigData_Text> endTexts = new List<ConfigData_Text>();
-        ConfigData_Text endText1 = new ConfigData_Text();
-        endText1.Text_TC = "羊膜動物憑着牠們適應了陸地生活的優勢，迅速佔領了大部分陸地生境，後期更演化出爬行類、鳥類、哺乳類等動物。";
-        endText1.Text_SC = "羊膜动物凭着它们适应了陆地生活的优势，迅速占领了大部分陆地生境，后期更演化出爬行类、鸟类、哺乳类等动物。";
-        endText1.Text_EN = "Amniotes quickly occupied most of the terrestrial habitats by their adaptations for life on land, eventually giving rise to mammals, reptiles, and birds.";
-        endTexts.Add(endText1);
-        ConfigData_Text endText2 = new ConfigData_Text();
-        endText2.Text_TC = "當中最古老的羊膜動物是生活在石炭紀的林蜥，牠亦是已知最早的爬行動物之一。";
-        endText2.Text_SC = "羊膜动物凭着它们适应了陆地生活的优势，迅速占领了大部分陆地生境，后期更演化出爬行类、鸟类、哺乳类等动物。";
-        endText2.Text_EN = "Amniotes quickly occupied most of the terrestrial habitats by their adaptations for life on land, eventually giving rise to mammals, reptiles, and birds.";
-        endTexts.Add(endText2);
-        ConfigData_Text endText3 = new ConfigData_Text();
-        endText3.Text_TC = "在二疊紀發現的異齒龍，其實牠跟哺乳動物都是源自同一演化支——合弓綱。";
-        endText3.Text_SC = "羊膜动物凭着它们适应了陆地生活的优势，迅速占领了大部分陆地生境，后期更演化出爬行类、鸟类、哺乳类等动物。";
-        endText3.Text_EN = "Amniotes quickly occupied most of the terrestrial habitats by their adaptations for life on land, eventually giving rise to mammals, reptiles, and birds.";
-        endTexts.Add(endText3);
-        ConfigData_Text endText4 = new ConfigData_Text();
-        endText4.Text_TC = "水龍獸也是合弓綱動物。擅長挖地穴的牠成功逃過了二疊紀大滅絕，並成爲了三疊紀早期最常見的陸棲動物。";
-        endText4.Text_SC = "羊膜动物凭着它们适应了陆地生活的优势，迅速占领了大部分陆地生境，后期更演化出爬行类、鸟类、哺乳类等动物。";
-        endText4.Text_EN = "Amniotes quickly occupied most of the terrestrial habitats by their adaptations for life on land, eventually giving rise to mammals, reptiles, and birds.";
-        endTexts.Add(endText4);
-        endVideoTexts = endTexts;
     }
 }
 
