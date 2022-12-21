@@ -32,11 +32,6 @@ public class TransitionManager : MonoBehaviour
     //inside tree cave: only map in cave
     //outside tree cave: only map after player visit M01 and back to carbon map
 
-    [Header("End to Lab")]
-    public TextMeshProUGUI endToLab_Text_TC;
-    public TextMeshProUGUI endToLab_Text_SC;
-    public TextMeshProUGUI endToLab_Text_EN;
-
     CommonUtils commonUtils;
 
     //for share in multiple scenes
@@ -287,24 +282,6 @@ public class TransitionManager : MonoBehaviour
             currBkgIndex = 0;
             BkgLoopAni();
             timeTravelBkgImg.DOFade(1f, 1f);
-            if (commonUtils.currLang == Language.TC)
-            {
-                endToLab_Text_TC.DOFade(1f, 1f);
-                endToLab_Text_SC.alpha = 0;
-                endToLab_Text_EN.alpha = 0;
-            }
-            else if (commonUtils.currLang == Language.SC)
-            {
-                endToLab_Text_TC.alpha = 0;
-                endToLab_Text_SC.DOFade(1f, 1f);
-                endToLab_Text_EN.alpha = 0;
-            }
-            else if (commonUtils.currLang == Language.EN)
-            {
-                endToLab_Text_TC.alpha = 0;
-                endToLab_Text_SC.alpha = 0;
-                endToLab_Text_EN.DOFade(1f, 1f);
-            }
             yield return new WaitForSeconds(1f);
             SceneManager.LoadScene("MainScene");
             commonUtils.currMapId = MapID.Lab;
@@ -318,9 +295,6 @@ public class TransitionManager : MonoBehaviour
             //show next map and depixelate
             camFeedImg.texture = transitionTexture_Lab;
             timeTravelBkgImg.DOFade(0f, 1f);
-            endToLab_Text_TC.DOFade(0f, 1f);
-            endToLab_Text_SC.DOFade(0f, 1f);
-            endToLab_Text_EN.DOFade(0f, 1f);
             yield return new WaitForSeconds(0.6f);
             camFeedImg.material.DOFloat(512f, "_PixelateSize", 1f).From(50f).SetEase(Ease.Linear);
             camFeedImg.DOFade(0f, 1f);

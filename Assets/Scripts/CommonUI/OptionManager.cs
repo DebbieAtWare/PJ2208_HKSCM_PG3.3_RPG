@@ -125,7 +125,11 @@ public class OptionManager : MonoBehaviour
     {
         if (!TimeoutManager.instance.isTimeoutUIActive)
         {
-            if (MainManger.instance.currStage == MainStage.StartLab || MainManger.instance.currStage == MainStage.InGame || MainManger.instance.currStage == MainStage.EndLab_CollectionBookUpdate)
+            if (MainManger.instance.currStage == MainStage.StartLab || 
+                MainManger.instance.currStage == MainStage.InGame || 
+                MainManger.instance.currStage == MainStage.EndLab_CollectionBookTrigger || 
+                MainManger.instance.currStage == MainStage.EndLab_CollectionBookUpdate || 
+                MainManger.instance.currStage == MainStage.EndLab_Restart)
             {
                 if (currStage == OptionStage.None)
                 {

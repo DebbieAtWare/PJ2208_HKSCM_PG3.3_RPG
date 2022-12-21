@@ -117,7 +117,7 @@ public class CommonUtils : MonoBehaviour
     public ConfigData_DialogBox endCheck_PermianOneLeft = new ConfigData_DialogBox();
     public ConfigData_DialogBox endCheck_ChangeToCarboniferous = new ConfigData_DialogBox();
     public List<ConfigData_DialogBox> endCheck_ChangeToEndingVideos = new List<ConfigData_DialogBox>();
-    public ConfigData_DialogBox endCheck_AfterEndingVideo = new ConfigData_DialogBox();
+    public List<ConfigData_DialogBox> endCheck_AfterEndingVideos = new List<ConfigData_DialogBox>();
     int endCheck_ChangeToEndingVideoDialogIndex = -1;
 
     [Header("ConfigData - Ending")]
@@ -1038,6 +1038,12 @@ public class CommonUtils : MonoBehaviour
         dialog_Gameplay1.ByWhom = "DRO";
         dialog_Gameplay1.Text_TC = "控制教學：<br>【方向鍵】<br>上、下、左、右<br>【選單】<br>【確定】";
         gameplayInstructions.Add(dialog_Gameplay1);
+        ConfigData_DialogBox dialog_Gameplay22 = new ConfigData_DialogBox();
+        dialog_Gameplay22.ByWhom = "DRO";
+        dialog_Gameplay22.Text_TC = "旅途中有甚麼疑難就問我吧。相信我們將會是最佳拍檔！";
+        dialog_Gameplay22.Text_SC = "旅途中有什么疑难就问我吧。相信我们将会是最佳拍档！";
+        dialog_Gameplay22.Text_EN = "Just ask me questions if you have any. Trust me, we will make the best partners ever!";
+        gameplayInstructions.Add(dialog_Gameplay22);
         ConfigData_DialogBox dialog_Gameplay3 = new ConfigData_DialogBox();
         dialog_Gameplay3.ByWhom = "DRO";
         dialog_Gameplay3.Text_TC = "你想前往哪個時代探險？";
@@ -1111,21 +1117,22 @@ public class CommonUtils : MonoBehaviour
 
         ConfigData_DialogBox dialog_EC_41 = new ConfigData_DialogBox();
         dialog_EC_41.ByWhom = "DRO";
-        dialog_EC_41.Text_TC = "根據我的高智能分析，你已經收集了全部古生物圖鑑卡！想不到你在不同的地質時代，都可以相識滿天下，真是可喜可賀。";
+        dialog_EC_41.Text_TC = "我們成功收集了三種具代表性的羊膜動物！";
         endCheck_ChangeToEndingVideos.Add(dialog_EC_41);
-        ConfigData_DialogBox dialog_EC_42 = new ConfigData_DialogBox();
-        dialog_EC_42.ByWhom = "DRO";
-        dialog_EC_42.Text_TC = "太棒了！在這次旅程中，我們成功收集了三種具代表性的羊膜動物！";
-        endCheck_ChangeToEndingVideos.Add(dialog_EC_42);
-        ConfigData_DialogBox dialog_EC_43 = new ConfigData_DialogBox();
-        dialog_EC_43.ByWhom = "DRO";
-        dialog_EC_43.Text_TC = "來看看我們辛苦收集的資料吧！";
-        endCheck_ChangeToEndingVideos.Add(dialog_EC_43);
 
         ConfigData_DialogBox dialog_EC_5 = new ConfigData_DialogBox();
-        dialog_EC_5.ByWhom = "DRO";
-        dialog_EC_5.Text_TC = "任務已經完成，離開前可以在圖鑑中翻查一下剛才的資訊，進一步了解羊膜生物及其他古生物的！";
-        endCheck_AfterEndingVideo = dialog_EC_5;
+        dialog_EC_5.ByWhom = "AVA";
+        dialog_EC_5.Text_TC = "回到現代化的實驗室感覺真好。";
+        endCheck_AfterEndingVideos.Add(dialog_EC_5);
+        ConfigData_DialogBox dialog_EC_6 = new ConfigData_DialogBox();
+        dialog_EC_6.ByWhom = "DRO";
+        dialog_EC_6.Text_TC = "來看看我們辛苦收集的資料吧！";
+        List<string> dialog_EC_Option1 = new List<string>();
+        dialog_EC_Option1.Add("確定");
+        dialog_EC_Option1.Add("想家了，結束旅程回到現代。");
+        dialog_EC_6.OptionTexts_TC = dialog_EC_Option1;
+        endCheck_AfterEndingVideos.Add(dialog_EC_6);
+
 
         //---------
 

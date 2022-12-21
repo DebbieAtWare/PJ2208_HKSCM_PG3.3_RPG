@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +14,7 @@ public enum MainStage
     StartLab,
     InGame,
     EndLab_CollectionBookTrigger,
+    EndLab_Restart,
     EndLab_CollectionBookUpdate
 }
 
@@ -35,6 +36,18 @@ public class MainManger : MonoBehaviour
     [Header("Start Lab")]
     public int startLab_CurrDialogIndex;
     public int startLab_CurrArrowIndex;
+
+    [Header("After ending at lab")]
+    public int afterEndAtLab_CurrDialogIndex;
+    public int afterEndAtLab_CurrArrowIndex;
+    public GameObject afterEndAtLab_Restart_RootObj;
+    public List<GameObject> afterEndAtLab_Restart_ArrowObjs = new List<GameObject>();
+    public int afterEndAtLab_Restart_CurrArrowIndex;
+
+    [Header("Language")]
+    public List<GameObject> langObjs_TC = new List<GameObject>();
+    public List<GameObject> langObjs_SC = new List<GameObject>();
+    public List<GameObject> langObjs_EN = new List<GameObject>();
 
     [Header("Curr")]
     public MainStage currStage;
@@ -62,6 +75,7 @@ public class MainManger : MonoBehaviour
     {
         commonUtils = CommonUtils.instance;
         commonUtils.onSetupDoneCallback += CommonUtils_OnSetupDone;
+        commonUtils.onChangeLangCallback += CommonUtils_OnChangeLang;
         commonUtils.Setup();
 
         inputManager = InputManager.instance;
@@ -97,6 +111,14 @@ public class MainManger : MonoBehaviour
         langGrp_CanvasGrp.alpha = 0;
         startLab_CurrDialogIndex = -1;
         startLab_CurrArrowIndex = 0;
+        afterEndAtLab_CurrDialogIndex = -1;
+        afterEndAtLab_CurrArrowIndex = 0;
+        afterEndAtLab_Restart_CurrArrowIndex = 0;
+        afterEndAtLab_Restart_ArrowObjs[0].SetActive(true);
+        afterEndAtLab_Restart_ArrowObjs[1].SetActive(false);
+        afterEndAtLab_Restart_RootObj.SetActive(false);
+
+        ChangeLanguage();
 
         commonUtils.isAtHomePage = true;
         currStage = MainStage.None;
@@ -150,7 +172,7 @@ public class MainManger : MonoBehaviour
                         }
                     }
                 }
-                else if (currStage == MainStage.StartLab && startLab_CurrDialogIndex == 2)
+                else if (currStage == MainStage.StartLab && startLab_CurrDialogIndex == 3)
                 {
                     SoundManager.instance.Play_Input(0);
                     if (startLab_CurrArrowIndex == 0)
@@ -167,6 +189,48 @@ public class MainManger : MonoBehaviour
                         {
                             startLab_CurrArrowIndex = 0;
                             DialogBoxManager.instance.SetOptionArrow(startLab_CurrArrowIndex);
+                        }
+                    }
+                }
+                else if (currStage == MainStage.EndLab_CollectionBookTrigger && afterEndAtLab_CurrDialogIndex == commonUtils.endCheck_AfterEndingVideos.Count - 1)
+                {
+                    SoundManager.instance.Play_Input(0);
+                    if (afterEndAtLab_CurrArrowIndex == 0)
+                    {
+                        if (val == -1)
+                        {
+                            afterEndAtLab_CurrArrowIndex = 1;
+                            DialogBoxManager.instance.SetOptionArrow(afterEndAtLab_CurrArrowIndex);
+                        }
+                    }
+                    else if (afterEndAtLab_CurrArrowIndex == 1)
+                    {
+                        if (val == 1)
+                        {
+                            afterEndAtLab_CurrArrowIndex = 0;
+                            DialogBoxManager.instance.SetOptionArrow(afterEndAtLab_CurrArrowIndex);
+                        }
+                    }
+                }
+                else if (currStage == MainStage.EndLab_Restart)
+                {
+                    SoundManager.instance.Play_Input(0);
+                    if (afterEndAtLab_Restart_CurrArrowIndex == 0)
+                    {
+                        if (val == -1)
+                        {
+                            afterEndAtLab_Restart_ArrowObjs[afterEndAtLab_Restart_CurrArrowIndex].SetActive(false);
+                            afterEndAtLab_Restart_CurrArrowIndex = 1;
+                            afterEndAtLab_Restart_ArrowObjs[afterEndAtLab_Restart_CurrArrowIndex].SetActive(true);
+                        }
+                    }
+                    else if (afterEndAtLab_Restart_CurrArrowIndex == 1)
+                    {
+                        if (val == 1)
+                        {
+                            afterEndAtLab_Restart_ArrowObjs[afterEndAtLab_Restart_CurrArrowIndex].SetActive(false);
+                            afterEndAtLab_Restart_CurrArrowIndex = 0;
+                            afterEndAtLab_Restart_ArrowObjs[afterEndAtLab_Restart_CurrArrowIndex].SetActive(true);
                         }
                     }
                 }
@@ -233,17 +297,22 @@ public class MainManger : MonoBehaviour
                             //first dialog is text, second dialog in control diagram
                             startLab_CurrDialogIndex++;
                             DialogBoxManager.instance.ShowControl();
-                            //DialogBoxManager.instance.ShowDialog(commonUtils.gameplayInstructions[startLab_CurrDialogIndex]);
-                            //DialogBoxManager.instance.HideControl();
                         }
                         else if (startLab_CurrDialogIndex == 1)
                         {
+                            //旅途中有甚麼疑難就問我吧。相信我們將會是最佳拍檔！
                             startLab_CurrDialogIndex++;
                             DialogBoxManager.instance.HideControl();
                             DialogBoxManager.instance.ShowDialog(commonUtils.gameplayInstructions[startLab_CurrDialogIndex]);
-                            DialogBoxManager.instance.SetOptionArrow(startLab_CurrArrowIndex);
                         }
                         else if (startLab_CurrDialogIndex == 2)
+                        {
+                            //你想前往哪個時期探險？ carbon and permian option
+                            startLab_CurrDialogIndex++;
+                            DialogBoxManager.instance.ShowDialog(commonUtils.gameplayInstructions[startLab_CurrDialogIndex]);
+                            DialogBoxManager.instance.SetOptionArrow(startLab_CurrArrowIndex);
+                        }
+                        else if (startLab_CurrDialogIndex == 3)
                         {
                             DialogBoxManager.instance.HideDialog();
                             if (startLab_CurrArrowIndex == 0)
@@ -260,9 +329,46 @@ public class MainManger : MonoBehaviour
                 else if (currStage == MainStage.EndLab_CollectionBookTrigger)
                 {
                     SoundManager.instance.Play_Input(2);
-                    currStage = MainStage.EndLab_CollectionBookUpdate;
-                    DialogBoxManager.instance.HideDialog();
-                    CollectionBookManager.instance.Show_Main();
+                    if (DialogBoxManager.instance.dialogWriterSingle != null && DialogBoxManager.instance.dialogWriterSingle.IsActive())
+                    {
+                        DialogBoxManager.instance.FinishCurrentDialog();
+                    }
+                    else
+                    {
+                        if (afterEndAtLab_CurrDialogIndex == commonUtils.endCheck_AfterEndingVideos.Count - 1)
+                        {
+                            if (afterEndAtLab_CurrArrowIndex == 0)
+                            {
+                                currStage = MainStage.EndLab_CollectionBookUpdate;
+                                DialogBoxManager.instance.HideDialog();
+                                CollectionBookManager.instance.Show_Main();
+                            }
+                            else
+                            {
+                                //restart game double confirm popup
+                                currStage = MainStage.EndLab_Restart;
+                                afterEndAtLab_Restart_RootObj.SetActive(true);
+                            }
+                        }
+                        else
+                        {
+                            afterEndAtLab_CurrDialogIndex++;
+                            DialogBoxManager.instance.ShowDialog(commonUtils.endCheck_AfterEndingVideos[afterEndAtLab_CurrDialogIndex]);
+                        }
+                    }
+                }
+                else if (currStage == MainStage.EndLab_Restart)
+                {
+                    SoundManager.instance.Play_Input(2);
+                    if (afterEndAtLab_Restart_CurrArrowIndex == 0)
+                    {
+                        commonUtils.ResetGame();
+                    }
+                    else if (afterEndAtLab_Restart_CurrArrowIndex == 1)
+                    {
+                        afterEndAtLab_Restart_RootObj.SetActive(false);
+                        currStage = MainStage.EndLab_CollectionBookTrigger;
+                    }
                 }
             }
         }
@@ -307,6 +413,59 @@ public class MainManger : MonoBehaviour
         PlayerController.instance.transform.position = new Vector3(-0.96f, 0f, 0f);
         DroneController.instance.ChangePos(new Vector3(0.68f, -0.49f, 0f));
         DroneController.instance.canShowTalkHint = false;
+    }
+
+    private void CommonUtils_OnChangeLang()
+    {
+        ChangeLanguage();
+    }
+    public void ChangeLanguage()
+    {
+        if (commonUtils.currLang == Language.TC)
+        {
+            for (int i = 0; i < langObjs_TC.Count; i++)
+            {
+                langObjs_TC[i].SetActive(true);
+            }
+            for (int i = 0; i < langObjs_SC.Count; i++)
+            {
+                langObjs_SC[i].SetActive(false);
+            }
+            for (int i = 0; i < langObjs_EN.Count; i++)
+            {
+                langObjs_EN[i].SetActive(false);
+            }
+        }
+        else if (commonUtils.currLang == Language.SC)
+        {
+            for (int i = 0; i < langObjs_TC.Count; i++)
+            {
+                langObjs_TC[i].SetActive(false);
+            }
+            for (int i = 0; i < langObjs_SC.Count; i++)
+            {
+                langObjs_SC[i].SetActive(true);
+            }
+            for (int i = 0; i < langObjs_EN.Count; i++)
+            {
+                langObjs_EN[i].SetActive(false);
+            }
+        }
+        else if (commonUtils.currLang == Language.EN)
+        {
+            for (int i = 0; i < langObjs_TC.Count; i++)
+            {
+                langObjs_TC[i].SetActive(false);
+            }
+            for (int i = 0; i < langObjs_SC.Count; i++)
+            {
+                langObjs_SC[i].SetActive(false);
+            }
+            for (int i = 0; i < langObjs_EN.Count; i++)
+            {
+                langObjs_EN[i].SetActive(true);
+            }
+        }
     }
 
     private void IntroVideoManager_OnVideoStarted()
@@ -354,7 +513,8 @@ public class MainManger : MonoBehaviour
     {
         currStage = MainStage.EndLab_CollectionBookTrigger;
         SoundManager.instance.Play_BGM(4);
-        DialogBoxManager.instance.ShowDialog(commonUtils.endCheck_AfterEndingVideo);
+        afterEndAtLab_CurrDialogIndex++;
+        DialogBoxManager.instance.ShowDialog(commonUtils.endCheck_AfterEndingVideos[afterEndAtLab_CurrDialogIndex]);
         OptionManager.instance.SetActive(true);
         inputManager.canInput_Option = true;
     }
@@ -362,6 +522,7 @@ public class MainManger : MonoBehaviour
     private void OnDestroy()
     {
         commonUtils.onSetupDoneCallback -= CommonUtils_OnSetupDone;
+        commonUtils.onChangeLangCallback -= CommonUtils_OnChangeLang;
 
         inputManager.onValueChanged_VerticalCallback -= InputManager_OnValueChanged_Vertical;
         inputManager.onValueChanged_HorizontalCallback -= InputManager_OnValueChanged_Horizontal;
