@@ -131,6 +131,10 @@ public class CommonUtils : MonoBehaviour
     public List<ConfigData_Character> NPC_Carboniferous = new List<ConfigData_Character>();
     public List<ConfigData_Character> NPC_Permian = new List<ConfigData_Character>();
 
+    //-----
+    [Header("ConfigData - Boss card")]
+    public List<ConfigData_BossCard> bossCards = new List<ConfigData_BossCard>();
+
     [Header("Curr")]
     public MapID currMapId;
     public Language currLang;
@@ -1748,7 +1752,55 @@ public class CommonUtils : MonoBehaviour
                     NPC_Permian[9].InfoText = info;
                 }
             }
-            
+
+            #endregion
+
+
+            #region Boss card
+            int bossCard_IDCol = 2;
+            int bossCard_InfoTCCol = 5;
+            int bossCard_InfoSCCol = 6;
+            int bossCard_InfoENCol = 7;
+            Debug.Log(book[3].Rows.Count);
+            for (int i = 0; i < book[3].Rows.Count; i++)
+            {
+                Debug.Log(i + "   " + book[3].Rows[i].Count);
+                if (book[3].Rows[i].Count > bossCard_InfoENCol)
+                {
+                    if (GetSingleLineString(book[3].Rows[i][bossCard_IDCol].Text) == "M01" ||
+                        GetSingleLineString(book[3].Rows[i][bossCard_IDCol].Text) == "M02" ||
+                        GetSingleLineString(book[3].Rows[i][bossCard_IDCol].Text) == "M03")
+                    {
+                        ConfigData_BossCard boss = new ConfigData_BossCard();
+                        ConfigData_Text text1 = new ConfigData_Text();
+                        text1.Text_TC = GetSingleLineString(book[3].Rows[i][bossCard_InfoTCCol].Text);
+                        text1.Text_SC = GetSingleLineString(book[3].Rows[i][bossCard_InfoSCCol].Text);
+                        text1.Text_EN = GetSingleLineString(book[3].Rows[i][bossCard_InfoENCol].Text);
+                        boss.Title = text1;
+                        ConfigData_Text text2 = new ConfigData_Text();
+                        text2.Text_TC = GetSingleLineString(book[3].Rows[i + 1][bossCard_InfoTCCol].Text);
+                        text2.Text_SC = GetSingleLineString(book[3].Rows[i + 1][bossCard_InfoSCCol].Text);
+                        text2.Text_EN = GetSingleLineString(book[3].Rows[i + 1][bossCard_InfoENCol].Text);
+                        boss.Name = text2;
+                        ConfigData_Text text3 = new ConfigData_Text();
+                        text3.Text_TC = GetSingleLineString(book[3].Rows[i + 2][bossCard_InfoTCCol].Text);
+                        text3.Text_SC = GetSingleLineString(book[3].Rows[i + 2][bossCard_InfoSCCol].Text);
+                        text3.Text_EN = GetSingleLineString(book[3].Rows[i + 2][bossCard_InfoENCol].Text);
+                        boss.Row1 = text3;
+                        ConfigData_Text text4 = new ConfigData_Text();
+                        text4.Text_TC = GetSingleLineString(book[3].Rows[i + 3][bossCard_InfoTCCol].Text);
+                        text4.Text_SC = GetSingleLineString(book[3].Rows[i + 3][bossCard_InfoSCCol].Text);
+                        text4.Text_EN = GetSingleLineString(book[3].Rows[i + 3][bossCard_InfoENCol].Text);
+                        boss.Row2 = text4;
+                        ConfigData_Text text5 = new ConfigData_Text();
+                        text5.Text_TC = GetSingleLineString(book[3].Rows[i + 4][bossCard_InfoTCCol].Text);
+                        text5.Text_SC = GetSingleLineString(book[3].Rows[i + 4][bossCard_InfoSCCol].Text);
+                        text5.Text_EN = GetSingleLineString(book[3].Rows[i + 4][bossCard_InfoENCol].Text);
+                        boss.Row3 = text5;
+                        bossCards.Add(boss);
+                    }
+                }
+            }
             #endregion
 
 
@@ -1936,4 +1988,14 @@ public class ConfigData_Menu
     //Reset
     public ConfigData_Text Reset_Text;
     public List<ConfigData_Text> Reset_OptionTexts = new List<ConfigData_Text>();
+}
+
+[Serializable]
+public class ConfigData_BossCard
+{
+    public ConfigData_Text Title;
+    public ConfigData_Text Name;
+    public ConfigData_Text Row1;
+    public ConfigData_Text Row2;
+    public ConfigData_Text Row3;
 }

@@ -288,9 +288,9 @@ public class EndVideoManager : MonoBehaviour
             page1_textRect_EN.rectTransform.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
         }
         page1_imgRect.DOAnchorPos(imgPosTarget_On, aniTime_Img_SlowIn).SetEase(Ease.Linear);
-        page1_bossObj1.Setup(commonUtils.bosses[0].Name_TC, commonUtils.bosses[0].Name_SC, commonUtils.bosses[0].Name_EN, commonUtils.currLang);
-        page1_bossObj2.Setup(commonUtils.bosses[1].Name_TC, commonUtils.bosses[1].Name_SC, commonUtils.bosses[1].Name_EN, commonUtils.currLang);
-        page1_bossObj3.Setup(commonUtils.bosses[2].Name_TC, commonUtils.bosses[2].Name_SC, commonUtils.bosses[2].Name_EN, commonUtils.currLang);
+        page1_bossObj1.Setup(commonUtils.bossCards[0], commonUtils.currLang);
+        page1_bossObj2.Setup(commonUtils.bossCards[1], commonUtils.currLang);
+        page1_bossObj3.Setup(commonUtils.bossCards[2], commonUtils.currLang);
         page1_bossObj1.UnlockDirect();
         page1_bossObj2.UnlockDirect();
         page1_bossObj3.UnlockDirect();

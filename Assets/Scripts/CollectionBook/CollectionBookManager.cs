@@ -130,15 +130,15 @@ public class CollectionBookManager : MonoBehaviour
         {
             if (commonUtils.bosses[i].Id == main_BossObjs[i].id.ToString())
             {
-                main_BossObjs[i].Setup(commonUtils.bosses[i].Name_TC, commonUtils.bosses[i].Name_SC, commonUtils.bosses[i].Name_EN, commonUtils.currLang);
+                main_BossObjs[i].Setup(commonUtils.bossCards[i], commonUtils.currLang);
             }
             if (commonUtils.bosses[i].Id == detail_BossObjs[i].id.ToString())
             {
-                detail_BossObjs[i].Setup(commonUtils.bosses[i].Name_TC, commonUtils.bosses[i].Name_SC, commonUtils.bosses[i].Name_EN, commonUtils.currLang);
+                detail_BossObjs[i].Setup(commonUtils.bossCards[i], commonUtils.currLang);
             }
             if (commonUtils.bosses[i].Id == success_BossObjs[i].id.ToString())
             {
-                success_BossObjs[i].Setup(commonUtils.bosses[i].Name_TC, commonUtils.bosses[i].Name_SC, commonUtils.bosses[i].Name_EN, commonUtils.currLang);
+                success_BossObjs[i].Setup(commonUtils.bossCards[i], commonUtils.currLang);
             }
         }
 

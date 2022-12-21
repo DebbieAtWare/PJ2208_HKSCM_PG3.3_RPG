@@ -24,9 +24,15 @@ public class CollectionBookBossObject : MonoBehaviour
     public CanvasGroup img_Gray;
 
     [Header("Text")]
+    public TextMeshProUGUI titleText_TC;
+    public TextMeshProUGUI titleText_SC;
+    public TextMeshProUGUI titleText_EN;
     public TextMeshProUGUI nameText_TC;
     public TextMeshProUGUI nameText_SC;
     public TextMeshProUGUI nameText_EN;
+    public TextMeshProUGUI rowText_TC;
+    public TextMeshProUGUI rowText_SC;
+    public TextMeshProUGUI rowText_EN;
 
     [Header("Frame")]
     public GameObject frameObj_Idle;
@@ -37,11 +43,17 @@ public class CollectionBookBossObject : MonoBehaviour
     public List<GameObject> langObjs_SC = new List<GameObject>();
     public List<GameObject> langObjs_EN = new List<GameObject>();
 
-    public void Setup(string name_TC, string name_SC, string name_EN, Language lang)
+    public void Setup(ConfigData_BossCard bossCard, Language lang)
     {
-        nameText_TC.text = name_TC;
-        nameText_SC.text = name_SC;
-        nameText_EN.text = name_EN;
+        titleText_TC.text = bossCard.Title.Text_TC;
+        titleText_SC.text = bossCard.Title.Text_SC;
+        titleText_EN.text = bossCard.Title.Text_EN;
+        nameText_TC.text = bossCard.Name.Text_TC;
+        nameText_SC.text = bossCard.Name.Text_SC;
+        nameText_EN.text = bossCard.Name.Text_EN;
+        rowText_TC.text = bossCard.Row1.Text_TC + "<br>" + bossCard.Row2.Text_TC + "<br>" + bossCard.Row3.Text_TC;
+        rowText_SC.text = bossCard.Row1.Text_SC + "<br>" + bossCard.Row2.Text_SC + "<br>" + bossCard.Row3.Text_SC;
+        rowText_EN.text = bossCard.Row1.Text_EN + "<br>" + bossCard.Row2.Text_EN + "<br>" + bossCard.Row3.Text_EN;
         originalScale = rect.localScale;
         rect.localScale = originalScale;
         img_Lock.rectTransform.eulerAngles = new Vector3(0, 0, 0);
