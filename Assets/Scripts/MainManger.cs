@@ -480,6 +480,7 @@ public class MainManger : MonoBehaviour
 
     void ChangeStage_Language()
     {
+        homeControl.SetAlpha(0, 0.5f);
         langGrp_CanvasGrp.DOFade(1f, 0.5f).OnComplete(ChangeStageLangCompleted);
     }
     void ChangeStageLangCompleted()
