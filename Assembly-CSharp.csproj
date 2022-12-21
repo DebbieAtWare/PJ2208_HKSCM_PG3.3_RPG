@@ -118,6 +118,7 @@
     <Compile Include="Assets\2D RPG Kit\Touch Support\CrossPlatformInput\Scripts\Joystick.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleManager.cs" />
     <Compile Include="Assets\Scripts\Map\PermianManager.cs" />
+    <Compile Include="Assets\SmartTimersManager\ScriptExamples\BlueLightFlicker.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\DialogManager.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\TitleScreen.cs" />
     <Compile Include="Assets\Coffee\UIExtensions\UIEffect\Scripts\Common\EffectPlayer.cs" />
@@ -134,6 +135,7 @@
     <Compile Include="Assets\FlexReader\Core\Row.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleType.cs" />
     <Compile Include="Assets\FlexReader\Converter\CustomConverters\ArrayConverter.cs" />
+    <Compile Include="Assets\SmartTimersManager\ScriptExamples\RedLightFlicker.cs" />
     <Compile Include="Assets\FlexReader\Demo\Scripts\Mapping.cs" />
     <Compile Include="Assets\FlexReader\Converter\CustomConverters\Vector2Converter.cs" />
     <Compile Include="Assets\Scripts\ConversationMode\ConversationModeManager.cs" />
@@ -146,6 +148,7 @@
     <Compile Include="Assets\2D RPG Kit\Scripts\Inn.cs" />
     <Compile Include="Assets\FlexReader\Demo\Scripts\ResourceLoader.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\ReadHilightedButton.cs" />
+    <Compile Include="Assets\SmartTimersManager\TimerManager\Timer.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\SceneGUITilemap.cs" />
     <Compile Include="Assets\FlexReader\Demo\Scripts\WebLoader.cs" />
     <Compile Include="Assets\Scripts\Character\OnTriggerControl.cs" />
@@ -161,6 +164,7 @@
     <Compile Include="Assets\Coffee\UIExtensions\UIEffect\Scripts\Common\ParameterTexture.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\TeleportFrom.cs" />
     <Compile Include="Assets\FlexReader\Demo\Scripts\DataPath.cs" />
+    <Compile Include="Assets\SmartTimersManager\TimerManager\GUI_TimersList.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\ChestManager.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleStarter.cs" />
     <Compile Include="Assets\FlexReader\Excel2007\SharedStringCollection.cs" />
@@ -219,17 +223,15 @@
     <Compile Include="Assets\2D RPG Kit\Touch Support\CrossPlatformInput\Scripts\AxisTouchButton.cs" />
     <Compile Include="Assets\FlexReader\Excel2007\WorkSheet.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleTargetButton.cs" />
+    <Compile Include="Assets\SmartTimersManager\TimerManager\TimersManager.cs" />
     <Compile Include="Assets\Coffee\UIExtensions\UIEffect\Scripts\UIFlip.cs" />
     <Compile Include="Assets\Scripts\CommonUI\OptionManager.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\AttackEffect.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\DamageNumber.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleNotification.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\QuestManager.cs" />
-    <Compile Include="Assets\SmartTimersManager\ScriptExamples\BlueLightFlicker.cs" />
-    <Compile Include="Assets\SmartTimersManager\TimerManager\GUI_TimersList.cs" />
-    <Compile Include="Assets\SmartTimersManager\TimerManager\Timer.cs" />
-    <Compile Include="Assets\SmartTimersManager\ScriptExamples\RedLightFlicker.cs" />
-    <Compile Include="Assets\SmartTimersManager\TimerManager\TimersManager.cs" />
+    <Compile Include="Assets\Scenes\Test\NewBehaviourScript.cs" />
+    <Compile Include="Assets\Scenes\Test\StreamingAssetsLoadCMS.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Coffee\UIExtensions\UIEffect\Shaders\UI-Effect-Shiny.shader" />

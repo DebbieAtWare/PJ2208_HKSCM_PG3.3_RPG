@@ -1,7 +1,10 @@
-﻿using System;
+﻿using FlexFramework.Excel;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -132,6 +135,9 @@ public class CommonUtils : MonoBehaviour
     InputManager inputManager;
     EndVideoManager endVideoManager;
 
+    //for CMS excel
+    public delegate void DownloadHandler(byte[] bytes);
+
     //for share in multiple scenes
     void Awake()
     {
@@ -162,14 +168,7 @@ public class CommonUtils : MonoBehaviour
         currEndingCheck = EndingCheckStage.None;
 
         TmpExcelControl();
-
-        //-----
-
-
-        if (onSetupDoneCallback != null)
-        {
-            onSetupDoneCallback.Invoke();
-        }
+        LoadCMSExcel();
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
@@ -272,6 +271,165 @@ public class CommonUtils : MonoBehaviour
         {
             onChangeLangCallback.Invoke();
         }
+    }
+
+    void LoadCMSExcel()
+    {
+        StartCoroutine(LoadFileAsync("Exh3.3_Content.xlsx", bytes =>
+        {
+            var book = new WorkBook(bytes);
+
+            int general_IDCol = 3;
+            int general_CharacterImgCol = 5;
+            int general_TCCol = 6;
+            int general_SCCol = 7;
+            int general_ENCol = 8;
+            int general_Option1_TCCol = 9;
+            int general_Option1_SCCol = 10;
+            int general_Option1_ENCol = 11;
+            int general_Option2_TCCol = 12;
+            int general_Option2_SCCol = 13;
+            int general_Option2_ENCol = 14;
+            int general_Option3_TCCol = 15;
+            int general_Option3_SCCol = 16;
+            int general_Option3_ENCol = 17;
+            int general_Option4_TCCol = 18;
+            int general_Option4_SCCol = 19;
+            int general_Option4_ENCol = 20;
+
+            //book[0] = General
+            #region General
+            for (int i = 0; i < 130; i++)
+            {
+                //intro video
+                if (book[0].Rows[i][general_IDCol].Text == "2.01" ||
+                    book[0].Rows[i][general_IDCol].Text == "2.02" ||
+                    book[0].Rows[i][general_IDCol].Text == "2.03" ||
+                    book[0].Rows[i][general_IDCol].Text == "2.04" ||
+                    book[0].Rows[i][general_IDCol].Text == "2.05" ||
+                    book[0].Rows[i][general_IDCol].Text == "2.06" ||
+                    book[0].Rows[i][general_IDCol].Text == "2.07" ||
+                    book[0].Rows[i][general_IDCol].Text == "2.08" ||
+                    book[0].Rows[i][general_IDCol].Text == "2.09")
+                {
+                    ConfigData_DialogBox dialog = new ConfigData_DialogBox();
+                    dialog.ByWhom = GetSingleLineString(book[0].Rows[i][general_CharacterImgCol].Text);
+                    dialog.Text_TC = GetSingleLineString(book[0].Rows[i][general_TCCol].Text);
+                    dialog.Text_SC = GetSingleLineString(book[0].Rows[i][general_SCCol].Text);
+                    dialog.Text_EN = GetSingleLineString(book[0].Rows[i][general_ENCol].Text);
+                    introVideoDialogs.Add(dialog);
+                }
+                //game play instruction
+                else if (book[0].Rows[i][general_IDCol].Text == "3.01" ||
+                         book[0].Rows[i][general_IDCol].Text == "3.02" ||
+                         book[0].Rows[i][general_IDCol].Text == "3.03")
+                {
+                    ConfigData_DialogBox dialog = new ConfigData_DialogBox();
+                    dialog.ByWhom = GetSingleLineString(book[0].Rows[i][general_CharacterImgCol].Text);
+                    dialog.Text_TC = GetSingleLineString(book[0].Rows[i][general_TCCol].Text);
+                    dialog.Text_SC = GetSingleLineString(book[0].Rows[i][general_SCCol].Text);
+                    dialog.Text_EN = GetSingleLineString(book[0].Rows[i][general_ENCol].Text);
+                    gameplayInstructions.Add(dialog);
+                }
+                //game play instruction
+                else if (book[0].Rows[i][general_IDCol].Text == "3.04")
+                {
+                    ConfigData_DialogBox dialog = new ConfigData_DialogBox();
+                    List<string> option_TC = new List<string>();
+                    List<string> option_SC = new List<string>();
+                    List<string> option_EN = new List<string>();
+                    dialog.ByWhom = GetSingleLineString(book[0].Rows[i][general_CharacterImgCol].Text);
+                    dialog.Text_TC = GetSingleLineString(book[0].Rows[i][general_TCCol].Text);
+                    dialog.Text_SC = GetSingleLineString(book[0].Rows[i][general_SCCol].Text);
+                    dialog.Text_EN = GetSingleLineString(book[0].Rows[i][general_ENCol].Text);
+                    if (!string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option1_TCCol].Text)) && 
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option1_SCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option1_ENCol].Text)))
+                    {
+                        option_TC.Add(GetSingleLineString(book[0].Rows[i][general_Option1_TCCol].Text));
+                        option_SC.Add(GetSingleLineString(book[0].Rows[i][general_Option1_SCCol].Text));
+                        option_EN.Add(GetSingleLineString(book[0].Rows[i][general_Option1_ENCol].Text));
+                    }
+                    if (!string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option2_TCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option2_SCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option2_ENCol].Text)))
+                    {
+                        option_TC.Add(GetSingleLineString(book[0].Rows[i][general_Option2_TCCol].Text));
+                        option_SC.Add(GetSingleLineString(book[0].Rows[i][general_Option2_SCCol].Text));
+                        option_EN.Add(GetSingleLineString(book[0].Rows[i][general_Option2_ENCol].Text));
+                    }
+                    if (!string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option3_TCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option3_SCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option3_ENCol].Text)))
+                    {
+                        option_TC.Add(GetSingleLineString(book[0].Rows[i][general_Option3_TCCol].Text));
+                        option_SC.Add(GetSingleLineString(book[0].Rows[i][general_Option3_SCCol].Text));
+                        option_EN.Add(GetSingleLineString(book[0].Rows[i][general_Option3_ENCol].Text));
+                    }
+                    if (!string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option4_TCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option4_SCCol].Text)) &&
+                        !string.IsNullOrEmpty(GetSingleLineString(book[0].Rows[i][general_Option4_ENCol].Text)))
+                    {
+                        option_TC.Add(GetSingleLineString(book[0].Rows[i][general_Option4_TCCol].Text));
+                        option_SC.Add(GetSingleLineString(book[0].Rows[i][general_Option4_SCCol].Text));
+                        option_EN.Add(GetSingleLineString(book[0].Rows[i][general_Option4_ENCol].Text));
+                    }
+                    dialog.OptionTexts_TC = option_TC;
+                    dialog.OptionTexts_SC = option_SC;
+                    dialog.OptionTexts_EN = option_EN;
+                    gameplayInstructions.Add(dialog);
+                }
+                //greeting in carbon
+                else if (book[0].Rows[i][general_IDCol].Text == "5.01" ||
+                         book[0].Rows[i][general_IDCol].Text == "5.02" ||
+                         book[0].Rows[i][general_IDCol].Text == "5.03")
+                {
+                    ConfigData_DialogBox dialog = new ConfigData_DialogBox();
+                    dialog.ByWhom = GetSingleLineString(book[0].Rows[i][general_CharacterImgCol].Text);
+                    dialog.Text_TC = GetSingleLineString(book[0].Rows[i][general_TCCol].Text);
+                    dialog.Text_SC = GetSingleLineString(book[0].Rows[i][general_SCCol].Text);
+                    dialog.Text_EN = GetSingleLineString(book[0].Rows[i][general_ENCol].Text);
+                    firstGreeting_Carboniferous.Add(dialog);
+                }
+                //greeting in permian
+                else if (book[0].Rows[i][general_IDCol].Text == "5.04" ||
+                         book[0].Rows[i][general_IDCol].Text == "5.05" ||
+                         book[0].Rows[i][general_IDCol].Text == "5.06")
+                {
+                    ConfigData_DialogBox dialog = new ConfigData_DialogBox();
+                    dialog.ByWhom = GetSingleLineString(book[0].Rows[i][general_CharacterImgCol].Text);
+                    dialog.Text_TC = GetSingleLineString(book[0].Rows[i][general_TCCol].Text);
+                    dialog.Text_SC = GetSingleLineString(book[0].Rows[i][general_SCCol].Text);
+                    dialog.Text_EN = GetSingleLineString(book[0].Rows[i][general_ENCol].Text);
+                    firstGreeting_Permian.Add(dialog);
+                }
+
+
+
+            }
+            #endregion
+
+            if (onSetupDoneCallback != null)
+            {
+                onSetupDoneCallback.Invoke();
+            }
+        }));
+
+
+    }
+    private IEnumerator LoadFileAsync(string path, DownloadHandler handler)
+    {
+        var url = Path.Combine(Application.streamingAssetsPath, path);
+        using (var req = UnityWebRequest.Get(url))
+        {
+            yield return req.SendWebRequest();
+            var bytes = req.downloadHandler.data;
+            handler(bytes);
+        }
+    }
+    string GetSingleLineString(string txt)
+    {
+        return txt.Replace("\r", "").Replace("\n", "");
     }
 
     public void EndingCheck()
