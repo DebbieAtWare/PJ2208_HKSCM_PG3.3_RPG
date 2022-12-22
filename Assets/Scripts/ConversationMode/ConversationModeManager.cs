@@ -113,7 +113,20 @@ public class ConversationModeManager : MonoBehaviour
             tag_DescriptionText_SC.gameObject.SetActive(false);
             tag_NameText_EN.gameObject.SetActive(false);
             tag_DescriptionText_EN.gameObject.SetActive(false);
-            tagRect.sizeDelta = new Vector2(375, 125);
+            float oriTextW = 270;
+            float oriRectW = 400;
+            tag_NameText_TC.rectTransform.sizeDelta = new Vector2(tag_NameText_TC.preferredWidth, tag_NameText_TC.rectTransform.sizeDelta.y);
+            float diff = tag_NameText_TC.rectTransform.sizeDelta.x - oriTextW;
+            if (diff > 0)
+            {
+                tagRect.sizeDelta = new Vector2(oriRectW + diff, 125);
+            }
+            else
+            {
+                tagRect.sizeDelta = new Vector2(oriRectW, 125);
+            }
+            Debug.Log(tag_NameText_TC.rectTransform.sizeDelta.x);
+            Debug.Log(diff);
         }
         else if (commonUtils.currLang == Language.SC)
         {
@@ -123,7 +136,18 @@ public class ConversationModeManager : MonoBehaviour
             tag_DescriptionText_SC.gameObject.SetActive(true);
             tag_NameText_EN.gameObject.SetActive(false);
             tag_DescriptionText_EN.gameObject.SetActive(false);
-            tagRect.sizeDelta = new Vector2(375, 125);
+            float oriTextW = 270;
+            float oriRectW = 400;
+            tag_NameText_SC.rectTransform.sizeDelta = new Vector2(tag_NameText_SC.preferredWidth, tag_NameText_SC.rectTransform.sizeDelta.y);
+            float diff = tag_NameText_SC.rectTransform.sizeDelta.x - oriTextW;
+            if (diff > 0)
+            {
+                tagRect.sizeDelta = new Vector2(oriRectW + diff, 125);
+            }
+            else
+            {
+                tagRect.sizeDelta = new Vector2(oriRectW, 125);
+            }
         }
         if (commonUtils.currLang == Language.EN)
         {
@@ -133,7 +157,18 @@ public class ConversationModeManager : MonoBehaviour
             tag_DescriptionText_SC.gameObject.SetActive(false);
             tag_NameText_EN.gameObject.SetActive(true);
             tag_DescriptionText_EN.gameObject.SetActive(true);
-            tagRect.sizeDelta = new Vector2(430, 125);
+            float oriTextW = 270;
+            float oriRectW = 400;
+            tag_NameText_EN.rectTransform.sizeDelta = new Vector2(tag_NameText_EN.preferredWidth, tag_NameText_EN.rectTransform.sizeDelta.y);
+            float diff = tag_NameText_EN.rectTransform.sizeDelta.x - oriTextW;
+            if (diff > 0)
+            {
+                tagRect.sizeDelta = new Vector2(oriRectW + diff, 125);
+            }
+            else
+            {
+                tagRect.sizeDelta = new Vector2(oriRectW, 125);
+            }
         }
     }
 
@@ -193,6 +228,7 @@ public class ConversationModeManager : MonoBehaviour
         tag_DescriptionText_SC.text = info.DescriptionTag_SC;
         tag_NameText_EN.text = info.Name_EN;
         tag_DescriptionText_EN.text = info.DescriptionTag_EN;
+        ChangeLanguage();
         tagCanvasGrp.alpha = 0;
         avatarGrpRect.anchoredPosition = avatarGrpPosTarget_Off;
         if (id == CharacterID.M01)

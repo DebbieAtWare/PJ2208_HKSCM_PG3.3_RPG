@@ -38,7 +38,7 @@ public class HomeControl : MonoBehaviour
         text_SC.SetActive(false);
         text_EN.SetActive(false);
         BkgLoopAni();
-        //TextAni();
+        TextAni();
     }
 
     void BkgLoopAni()

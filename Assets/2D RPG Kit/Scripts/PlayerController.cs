@@ -183,10 +183,22 @@ public class PlayerController : MonoBehaviour {
             {
                 minimapArrowTrans.eulerAngles = new Vector3(0, 0, 90);
             }
+
+            //sound
+            if (rigidBody.velocity.x == 0 && rigidBody.velocity.y == 0)
+            {
+                SoundManager.instance.FadeOutStop_Walk(0);
+            }
+            else
+            {
+                SoundManager.instance.Play_Walk();
+            }
+
         }
         else
         {
             rigidBody.velocity = Vector2.zero;
+            SoundManager.instance.FadeOutStop_Walk(0);
             if (isAutoWalk == 0)
             {
                 animator.SetFloat("moveX", 0);
@@ -293,6 +305,14 @@ public class PlayerController : MonoBehaviour {
     public void SetAutoWalk(int val)
     {
         isAutoWalk = val;
+        if (isAutoWalk == 1)
+        {
+            SoundManager.instance.Play_Walk();
+        }
+        else
+        {
+            SoundManager.instance.FadeOutStop_Walk(0);
+        }
     }
     //self add
 }

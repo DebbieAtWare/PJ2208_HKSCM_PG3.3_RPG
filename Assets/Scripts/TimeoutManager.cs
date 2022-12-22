@@ -24,7 +24,7 @@ public class TimeoutManager : MonoBehaviour
 
     public float tmp;
 
-    float displayUITimerTarget = 18000000;
+    float displayUITimerTarget = 180;
     float countdownUITimerTarget = 30;
 
     InputManager inputManager;

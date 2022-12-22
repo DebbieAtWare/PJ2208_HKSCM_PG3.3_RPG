@@ -255,7 +255,7 @@ public class IntroVideoManager : MonoBehaviour
         {
             root.SetActive(true);
             currStage = IntroVideoStage.Transition_Start;
-            SoundManager.instance.FadeOutStop_BGM(1f);
+            SoundManager.instance.Play_BGM(6);
             if (commonUtils.currLang == Language.TC)
             {
                 text_TC.alpha = 1;
