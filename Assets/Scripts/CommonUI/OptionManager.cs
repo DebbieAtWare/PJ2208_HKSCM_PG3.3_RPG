@@ -192,6 +192,21 @@ public class OptionManager : MonoBehaviour
                         mainGrp_CurrIndex = 1;
                         mainGrp_ArrowObjs[mainGrp_CurrIndex].SetActive(true);
                     }
+                    else if (val == -1)
+                    {
+                        mainGrp_ArrowObjs[mainGrp_CurrIndex].SetActive(false);
+                        mainGrp_CurrIndex = 3;
+                        mainGrp_ArrowObjs[mainGrp_CurrIndex].SetActive(true);
+                    }
+                }
+                else if (mainGrp_CurrIndex == 3)
+                {
+                    if (val == 1)
+                    {
+                        mainGrp_ArrowObjs[mainGrp_CurrIndex].SetActive(false);
+                        mainGrp_CurrIndex = 2;
+                        mainGrp_ArrowObjs[mainGrp_CurrIndex].SetActive(true);
+                    }
                 }
             }
             else if (currStage == OptionStage.Language)
@@ -282,13 +297,17 @@ public class OptionManager : MonoBehaviour
                 SoundManager.instance.Play_Input(2);
                 if (mainGrp_CurrIndex == 0)
                 {
-                    ChangeControl_Language();
+                    Close_ResetAll();
                 }
                 else if (mainGrp_CurrIndex == 1)
                 {
-                    ChangeControl_Control();
+                    ChangeControl_Language();
                 }
                 else if (mainGrp_CurrIndex == 2)
+                {
+                    ChangeControl_Control();
+                }
+                else if (mainGrp_CurrIndex == 3)
                 {
                     ChangeControl_Reset();
                 }
