@@ -10,8 +10,12 @@ public class HomeControl : MonoBehaviour
     public CanvasGroup canvasGrp;
 
     [Header("Bkg")]
-    public Image img;
-    public List<Sprite> sprites;
+    public Image img_Bkg;
+    public Image img_Drone;
+    public Image img_Title_TC;
+    public Image img_Title_SC;
+    public List<Sprite> sprites_Bkg;
+    public List<Sprite> sprites_Drone;
 
     [Header("Text")]
     public GameObject text_TC;
@@ -20,7 +24,8 @@ public class HomeControl : MonoBehaviour
     int currTextIndex = 0;
     float textInvokeTime = 2;
 
-    int currIndex = 0;
+    int currIndex_Bkg = 0;
+    int currIndex_Drone = 0;
     float fps = 12;
     float aniTime;
 
@@ -31,27 +36,42 @@ public class HomeControl : MonoBehaviour
 
     public void PlayBkg()
     {
-        currIndex = 0;
         aniTime = 1f / fps;
-        img.sprite = sprites[currIndex];
+        currIndex_Bkg = 0;
+        currIndex_Drone = 0;
+        img_Bkg.sprite = sprites_Bkg[currIndex_Bkg];
+        img_Drone.sprite = sprites_Drone[currIndex_Drone];
         text_TC.SetActive(true);
         text_SC.SetActive(false);
         text_EN.SetActive(false);
         BkgLoopAni();
+        DroneLoopAni();
         TextAni();
     }
 
     void BkgLoopAni()
     {
-        currIndex++;
+        currIndex_Bkg++;
 
-        if (currIndex == sprites.Count)
+        if (currIndex_Bkg == sprites_Bkg.Count)
         {
-            currIndex = 0;
+            currIndex_Bkg = 0;
         }
 
-        img.sprite = sprites[currIndex];
+        img_Bkg.sprite = sprites_Bkg[currIndex_Bkg];
         Invoke("BkgLoopAni", aniTime);
+    }
+    void DroneLoopAni()
+    {
+        currIndex_Drone++;
+
+        if (currIndex_Drone == sprites_Drone.Count)
+        {
+            currIndex_Drone = 0;
+        }
+
+        img_Drone.sprite = sprites_Drone[currIndex_Drone];
+        Invoke("DroneLoopAni", aniTime);
     }
 
     void TextAni()
@@ -86,8 +106,10 @@ public class HomeControl : MonoBehaviour
     public void ResetAll()
     {
         CancelInvoke("BkgLoopAni");
+        CancelInvoke("DroneLoopAni");
         CancelInvoke("TextAni");
-        currIndex = 0;
+        currIndex_Bkg = 0;
+        currIndex_Drone = 0;
         currTextIndex = 0;
         SetAlpha(0, 0);
     }
