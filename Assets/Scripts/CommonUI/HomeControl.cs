@@ -18,7 +18,7 @@ public class HomeControl : MonoBehaviour
     public GameObject text_SC;
     public GameObject text_EN;
     int currTextIndex = 0;
-    float textInvokeTime = 5;
+    float textInvokeTime = 2;
 
     int currIndex = 0;
     float fps = 12;
