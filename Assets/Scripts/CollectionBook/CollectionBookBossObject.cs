@@ -30,9 +30,6 @@ public class CollectionBookBossObject : MonoBehaviour
     public TextMeshProUGUI nameText_TC;
     public TextMeshProUGUI nameText_SC;
     public TextMeshProUGUI nameText_EN;
-    public TextMeshProUGUI rowText_TC;
-    public TextMeshProUGUI rowText_SC;
-    public TextMeshProUGUI rowText_EN;
 
     [Header("Frame")]
     public GameObject frameObj_Idle;
@@ -51,9 +48,6 @@ public class CollectionBookBossObject : MonoBehaviour
         nameText_TC.text = bossCard.Name.Text_TC;
         nameText_SC.text = bossCard.Name.Text_SC;
         nameText_EN.text = bossCard.Name.Text_EN;
-        rowText_TC.text = bossCard.Row1.Text_TC + "<br>" + bossCard.Row2.Text_TC + "<br>" + bossCard.Row3.Text_TC;
-        rowText_SC.text = bossCard.Row1.Text_SC + "<br>" + bossCard.Row2.Text_SC + "<br>" + bossCard.Row3.Text_SC;
-        rowText_EN.text = bossCard.Row1.Text_EN + "<br>" + bossCard.Row2.Text_EN + "<br>" + bossCard.Row3.Text_EN;
         originalScale = rect.localScale;
         rect.localScale = originalScale;
         img_Lock.rectTransform.eulerAngles = new Vector3(0, 0, 0);
