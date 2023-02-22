@@ -82,6 +82,7 @@ public class CollectionBookBossObject : MonoBehaviour
             {
                 langObjs_EN[i].SetActive(false);
             }
+            nameText_TC.rectTransform.sizeDelta = new Vector2(nameText_TC.preferredWidth, nameText_TC.rectTransform.sizeDelta.y);
         }
         else if (lang == Language.SC)
         {
@@ -97,6 +98,7 @@ public class CollectionBookBossObject : MonoBehaviour
             {
                 langObjs_EN[i].SetActive(false);
             }
+            nameText_SC.rectTransform.sizeDelta = new Vector2(nameText_SC.preferredWidth, nameText_SC.rectTransform.sizeDelta.y);
         }
         else if (lang == Language.EN)
         {
@@ -112,6 +114,7 @@ public class CollectionBookBossObject : MonoBehaviour
             {
                 langObjs_EN[i].SetActive(true);
             }
+            nameText_EN.rectTransform.sizeDelta = new Vector2(nameText_EN.preferredWidth, nameText_EN.rectTransform.sizeDelta.y);
         }
     }
 
