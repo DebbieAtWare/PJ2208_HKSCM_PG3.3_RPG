@@ -213,7 +213,7 @@ Material:
     - _OverlayGlow: 1
     - _Parallax: 0.02
     - _PinchUvAmount: 0.357
-    - _PixelateSize: 411.8705
+    - _PixelateSize: 512
     - _PosterizeGamma: 0.75
     - _PosterizeNumColors: 13.2
     - _PosterizeOutline: 0

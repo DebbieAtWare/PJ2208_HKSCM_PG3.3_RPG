@@ -43,13 +43,9 @@ public class ConversationModeManager : MonoBehaviour
 
     [Header("Tag")]
     public CanvasGroup tagCanvasGrp;
-    public RectTransform tagRect;
     public TextMeshProUGUI tag_NameText_TC;
-    public TextMeshProUGUI tag_DescriptionText_TC;
     public TextMeshProUGUI tag_NameText_SC;
-    public TextMeshProUGUI tag_DescriptionText_SC;
     public TextMeshProUGUI tag_NameText_EN;
-    public TextMeshProUGUI tag_DescriptionText_EN;
     public Image tag_BadgeImg;
     public List<Sprite> tag_BadgeSprites = new List<Sprite>();
 
@@ -108,67 +104,23 @@ public class ConversationModeManager : MonoBehaviour
         if (commonUtils.currLang == Language.TC)
         {
             tag_NameText_TC.gameObject.SetActive(true);
-            tag_DescriptionText_TC.gameObject.SetActive(true);
             tag_NameText_SC.gameObject.SetActive(false);
-            tag_DescriptionText_SC.gameObject.SetActive(false);
             tag_NameText_EN.gameObject.SetActive(false);
-            tag_DescriptionText_EN.gameObject.SetActive(false);
-            float oriTextW = 270;
-            float oriRectW = 400;
             tag_NameText_TC.rectTransform.sizeDelta = new Vector2(tag_NameText_TC.preferredWidth, tag_NameText_TC.rectTransform.sizeDelta.y);
-            float diff = tag_NameText_TC.rectTransform.sizeDelta.x - oriTextW;
-            if (diff > 0)
-            {
-                tagRect.sizeDelta = new Vector2(oriRectW + diff, 125);
-            }
-            else
-            {
-                tagRect.sizeDelta = new Vector2(oriRectW, 125);
-            }
-            Debug.Log(tag_NameText_TC.rectTransform.sizeDelta.x);
-            Debug.Log(diff);
         }
         else if (commonUtils.currLang == Language.SC)
         {
             tag_NameText_TC.gameObject.SetActive(false);
-            tag_DescriptionText_TC.gameObject.SetActive(false);
             tag_NameText_SC.gameObject.SetActive(true);
-            tag_DescriptionText_SC.gameObject.SetActive(true);
             tag_NameText_EN.gameObject.SetActive(false);
-            tag_DescriptionText_EN.gameObject.SetActive(false);
-            float oriTextW = 270;
-            float oriRectW = 400;
             tag_NameText_SC.rectTransform.sizeDelta = new Vector2(tag_NameText_SC.preferredWidth, tag_NameText_SC.rectTransform.sizeDelta.y);
-            float diff = tag_NameText_SC.rectTransform.sizeDelta.x - oriTextW;
-            if (diff > 0)
-            {
-                tagRect.sizeDelta = new Vector2(oriRectW + diff, 125);
-            }
-            else
-            {
-                tagRect.sizeDelta = new Vector2(oriRectW, 125);
-            }
         }
         if (commonUtils.currLang == Language.EN)
         {
             tag_NameText_TC.gameObject.SetActive(false);
-            tag_DescriptionText_TC.gameObject.SetActive(false);
             tag_NameText_SC.gameObject.SetActive(false);
-            tag_DescriptionText_SC.gameObject.SetActive(false);
             tag_NameText_EN.gameObject.SetActive(true);
-            tag_DescriptionText_EN.gameObject.SetActive(true);
-            float oriTextW = 270;
-            float oriRectW = 400;
             tag_NameText_EN.rectTransform.sizeDelta = new Vector2(tag_NameText_EN.preferredWidth, tag_NameText_EN.rectTransform.sizeDelta.y);
-            float diff = tag_NameText_EN.rectTransform.sizeDelta.x - oriTextW;
-            if (diff > 0)
-            {
-                tagRect.sizeDelta = new Vector2(oriRectW + diff, 125);
-            }
-            else
-            {
-                tagRect.sizeDelta = new Vector2(oriRectW, 125);
-            }
         }
     }
 
@@ -223,11 +175,8 @@ public class ConversationModeManager : MonoBehaviour
         bkgTop.sprite = bkgTopSprites[currBkgTopIndex];
         bkgTop.DOFade(1, 0);
         tag_NameText_TC.text = info.Name_TC;
-        tag_DescriptionText_TC.text = info.DescriptionTag_TC;
         tag_NameText_SC.text = info.Name_SC;
-        tag_DescriptionText_SC.text = info.DescriptionTag_SC;
         tag_NameText_EN.text = info.Name_EN;
-        tag_DescriptionText_EN.text = info.DescriptionTag_EN;
         ChangeLanguage();
         tagCanvasGrp.alpha = 0;
         avatarGrpRect.anchoredPosition = avatarGrpPosTarget_Off;
