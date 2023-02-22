@@ -175,6 +175,7 @@
     <Compile Include="Assets\FlexReader\CSV\Document.cs" />
     <Compile Include="Assets\FlexReader\Converter\CustomConverters\ListConverter.cs" />
     <Compile Include="Assets\Coffee\UIExtensions\UIEffect\Scripts\Common\UIEffectBase.cs" />
+    <Compile Include="Assets\Scenes\Test\StreamingAssetsLoadCMS.cs" />
     <Compile Include="Assets\Scripts\CollectionBook\CollectionBookNPCObject.cs" />
     <Compile Include="Assets\FlexReader\Converter\CustomConverters\DictionaryConverter.cs" />
     <Compile Include="Assets\FlexReader\Demo\Scripts\StreamingAssetsLoad.cs" />
@@ -188,6 +189,7 @@
     <Compile Include="Assets\Scripts\CommonUtils.cs" />
     <Compile Include="Assets\Scripts\Character\BossObject.cs" />
     <Compile Include="Assets\FlexReader\Converter\CustomConverters\RectConverter.cs" />
+    <Compile Include="Assets\Scenes\Test\NewBehaviourScript.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\EventManager.cs" />
     <Compile Include="Assets\Scripts\ConversationMode\ConversationModeBossObject.cs" />
     <Compile Include="Assets\Coffee\UIExtensions\UIEffect\Scripts\UIShadow.cs" />
@@ -230,22 +232,23 @@
     <Compile Include="Assets\2D RPG Kit\Scripts\DamageNumber.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleNotification.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\QuestManager.cs" />
-    <Compile Include="Assets\Scenes\Test\NewBehaviourScript.cs" />
-    <Compile Include="Assets\Scenes\Test\StreamingAssetsLoadCMS.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Coffee\UIExtensions\UIEffect\Shaders\UI-Effect-Shiny.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+     <None Include="Assets\CodePage\readme.txt" />
      <None Include="Assets\Coffee\UIExtensions\UIEffect\ForTMPro\Shaders\TMP_SDF-Mobile (UITransition).shader" />
      <None Include="Assets\Coffee\UIExtensions\UIEffect\Shaders\UI-Effect-Dissolve.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
      <None Include="Assets\Coffee\UIExtensions\UIEffect\ForTMPro\Shaders\TMP_Sprite (UIDissolve).shader" />
      <None Include="Assets\2D RPG Kit\Touch Support\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
+     <None Include="Assets\CodePage\I18N.West.dll" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
      <None Include="Assets\Coffee\UIExtensions\UIEffect\Shaders\UI-Effect.cginc" />
      <None Include="Assets\Coffee\UIExtensions\UIEffect\ForTMPro\Shaders\TMP_SDF-Mobile (UIDissolve).shader" />
+     <None Include="Assets\CodePage\I18N.CJK.dll" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <None Include="Assets\Coffee\UIExtensions\UIEffect\Shaders\UI-Effect-Transition.shader" />
      <None Include="Assets\Coffee\UIExtensions\UIEffect\ForTMPro\Shaders\TMP_Sprite (UIShiny).shader" />
@@ -267,6 +270,7 @@
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
      <None Include="Assets\FlexReader\readme.txt" />
+     <None Include="Assets\CodePage\link.xml" />
      <None Include="Assets\Coffee\UIExtensions\UIEffect\ForTMPro\Shaders\TMP_SDF (UIShiny).shader" />
      <None Include="Assets\Coffee\UIExtensions\UIEffect\Shaders\UI-EffectCapture.shader" />
      <None Include="Assets\Coffee\UIExtensions\UIEffect\ForTMPro\Shaders\TMP_Sprite (UITransition).shader" />
@@ -525,6 +529,12 @@
     </Reference>
     <Reference Include="DOTweenPro">
       <HintPath>Assets\Plugins\Demigiant\DOTweenPro\DOTweenPro.dll</HintPath>
+    </Reference>
+    <Reference Include="I18N.CJK">
+      <HintPath>Assets\CodePage\I18N.CJK.dll</HintPath>
+    </Reference>
+    <Reference Include="I18N.West">
+      <HintPath>Assets\CodePage\I18N.West.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.8f1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>
