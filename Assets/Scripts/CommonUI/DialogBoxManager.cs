@@ -223,6 +223,106 @@ public class DialogBoxManager : MonoBehaviour
             dialogWriterSingle = DialogWriter.AddWriter_Static(text_EN, dialogBox.Text_EN, 0.05f, true, OnDialogLineEnd);
         }
 
+        //option
+        for (int i = 0; i < optionTexts_TC.Count; i++)
+        {
+            optionTexts_TC[i].text = "";
+            optionTexts_SC[i].text = "";
+            optionTexts_EN[i].text = "";
+            optionTexts_TC[i].gameObject.SetActive(false);
+            optionTexts_SC[i].gameObject.SetActive(false);
+            optionTexts_EN[i].gameObject.SetActive(false);
+            arrowObjs[i].SetActive(false);
+        }
+
+        //profile pic
+        if (string.IsNullOrEmpty(dialogBox.ByWhom) || string.IsNullOrWhiteSpace(dialogBox.ByWhom))
+        {
+            profilePic.gameObject.SetActive(false);
+        }
+        else
+        {
+            if (dialogBox.ByWhom == CharacterID.AVA.ToString())
+            {
+                profilePic.gameObject.SetActive(true);
+                profilePic.sprite = PlayerController.instance.dialogBoxProfileSprite;
+            }
+            else if (dialogBox.ByWhom == CharacterID.DRO.ToString())
+            {
+                profilePic.gameObject.SetActive(true);
+                profilePic.sprite = DroneController.instance.dialogBoxProfileSprite;
+            }
+            else if (dialogBox.ByWhom == CharacterID.M01.ToString())
+            {
+                profilePic.gameObject.SetActive(true);
+                profilePic.sprite = CarboniferousManager.instance.bossObj.dialogBoxProfileSprite;
+            }
+            else if (dialogBox.ByWhom == CharacterID.M02.ToString())
+            {
+                profilePic.gameObject.SetActive(true);
+                profilePic.sprite = PermianManager.instance.bossObj2.dialogBoxProfileSprite;
+            }
+            else if (dialogBox.ByWhom == CharacterID.M03.ToString())
+            {
+                profilePic.gameObject.SetActive(true);
+                profilePic.sprite = PermianManager.instance.bossObj3.dialogBoxProfileSprite;
+            }
+            else
+            {
+                if (commonUtils.currMapId == MapID.Carboniferous)
+                {
+                    for (int i = 0; i < CarboniferousManager.instance.NPCObjs.Count; i++)
+                    {
+                        if (CarboniferousManager.instance.NPCObjs[i].id.ToString() == dialogBox.ByWhom &&
+                            CarboniferousManager.instance.NPCObjs[i].dialogBoxProfileSprite != null)
+                        {
+                            profilePic.gameObject.SetActive(true);
+                            profilePic.sprite = CarboniferousManager.instance.NPCObjs[i].dialogBoxProfileSprite;
+                        }
+                    }
+                }
+                else if (commonUtils.currMapId == MapID.Permian)
+                {
+                    for (int i = 0; i < PermianManager.instance.NPCObjs.Count; i++)
+                    {
+                        if (PermianManager.instance.NPCObjs[i].id.ToString() == dialogBox.ByWhom &&
+                            PermianManager.instance.NPCObjs[i].dialogBoxProfileSprite != null)
+                        {
+                            profilePic.gameObject.SetActive(true);
+                            profilePic.sprite = PermianManager.instance.NPCObjs[i].dialogBoxProfileSprite;
+                        }
+                    }
+                }
+            }
+        }
+
+        //support img
+        if (!String.IsNullOrEmpty(dialogBox.ImagePath) && !string.IsNullOrEmpty(dialogBox.ImagePath))
+        {
+            ShowSupportImg(dialogBox.ImageTexture);
+        }
+        else
+        {
+            HideSupportImg();
+        }
+    }
+
+    void InvokeShowConfirmBtn()
+    {
+        confirmBtnControl.SetAlpha(1, 0);
+    }
+
+    void OnDialogLineEnd()
+    {
+        if (onDialogEndCallback != null)
+        {
+            onDialogEndCallback.Invoke();
+        }
+        SoundManager.instance.FadeOutStop_Dialog(0.3f);
+    }
+
+    public void ShowOption(ConfigData_DialogBox dialogBox)
+    {
         if (dialogBox.OptionTexts_TC != null && dialogBox.OptionTexts_TC.Count != 0)
         {
             if (commonUtils.currLang == Language.TC)
@@ -326,91 +426,6 @@ public class DialogBoxManager : MonoBehaviour
                 arrowObjs[i].SetActive(false);
             }
         }
-
-        //profile pic
-        if (string.IsNullOrEmpty(dialogBox.ByWhom) || string.IsNullOrWhiteSpace(dialogBox.ByWhom))
-        {
-            profilePic.gameObject.SetActive(false);
-        }
-        else
-        {
-            if (dialogBox.ByWhom == CharacterID.AVA.ToString())
-            {
-                profilePic.gameObject.SetActive(true);
-                profilePic.sprite = PlayerController.instance.dialogBoxProfileSprite;
-            }
-            else if (dialogBox.ByWhom == CharacterID.DRO.ToString())
-            {
-                profilePic.gameObject.SetActive(true);
-                profilePic.sprite = DroneController.instance.dialogBoxProfileSprite;
-            }
-            else if (dialogBox.ByWhom == CharacterID.M01.ToString())
-            {
-                profilePic.gameObject.SetActive(true);
-                profilePic.sprite = CarboniferousManager.instance.bossObj.dialogBoxProfileSprite;
-            }
-            else if (dialogBox.ByWhom == CharacterID.M02.ToString())
-            {
-                profilePic.gameObject.SetActive(true);
-                profilePic.sprite = PermianManager.instance.bossObj2.dialogBoxProfileSprite;
-            }
-            else if (dialogBox.ByWhom == CharacterID.M03.ToString())
-            {
-                profilePic.gameObject.SetActive(true);
-                profilePic.sprite = PermianManager.instance.bossObj3.dialogBoxProfileSprite;
-            }
-            else
-            {
-                if (commonUtils.currMapId == MapID.Carboniferous)
-                {
-                    for (int i = 0; i < CarboniferousManager.instance.NPCObjs.Count; i++)
-                    {
-                        if (CarboniferousManager.instance.NPCObjs[i].id.ToString() == dialogBox.ByWhom &&
-                            CarboniferousManager.instance.NPCObjs[i].dialogBoxProfileSprite != null)
-                        {
-                            profilePic.gameObject.SetActive(true);
-                            profilePic.sprite = CarboniferousManager.instance.NPCObjs[i].dialogBoxProfileSprite;
-                        }
-                    }
-                }
-                else if (commonUtils.currMapId == MapID.Permian)
-                {
-                    for (int i = 0; i < PermianManager.instance.NPCObjs.Count; i++)
-                    {
-                        if (PermianManager.instance.NPCObjs[i].id.ToString() == dialogBox.ByWhom &&
-                            PermianManager.instance.NPCObjs[i].dialogBoxProfileSprite != null)
-                        {
-                            profilePic.gameObject.SetActive(true);
-                            profilePic.sprite = PermianManager.instance.NPCObjs[i].dialogBoxProfileSprite;
-                        }
-                    }
-                }
-            }
-        }
-
-        //support img
-        if (!String.IsNullOrEmpty(dialogBox.ImagePath) && !string.IsNullOrEmpty(dialogBox.ImagePath))
-        {
-            ShowSupportImg(dialogBox.ImageTexture);
-        }
-        else
-        {
-            HideSupportImg();
-        }
-    }
-
-    void InvokeShowConfirmBtn()
-    {
-        confirmBtnControl.SetAlpha(1, 0);
-    }
-
-    void OnDialogLineEnd()
-    {
-        if (onDialogEndCallback != null)
-        {
-            onDialogEndCallback.Invoke();
-        }
-        SoundManager.instance.FadeOutStop_Dialog(0.3f);
     }
 
     public void HideDialog()

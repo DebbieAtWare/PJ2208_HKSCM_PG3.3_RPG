@@ -172,7 +172,8 @@ public class MainManger : MonoBehaviour
                         }
                     }
                 }
-                else if (currStage == MainStage.StartLab && startLab_CurrDialogIndex == 3)
+                //你想前往哪個時期探險？ option
+                else if (currStage == MainStage.StartLab && startLab_CurrDialogIndex == 4)
                 {
                     SoundManager.instance.Play_Input(0);
                     if (startLab_CurrArrowIndex == 0)
@@ -192,7 +193,7 @@ public class MainManger : MonoBehaviour
                         }
                     }
                 }
-                else if (currStage == MainStage.EndLab_CollectionBookTrigger && afterEndAtLab_CurrDialogIndex == commonUtils.endCheck_AfterEndingVideos.Count - 1)
+                else if (currStage == MainStage.EndLab_CollectionBookTrigger && afterEndAtLab_CurrDialogIndex == 2)
                 {
                     SoundManager.instance.Play_Input(0);
                     if (afterEndAtLab_CurrArrowIndex == 0)
@@ -307,12 +308,18 @@ public class MainManger : MonoBehaviour
                         }
                         else if (startLab_CurrDialogIndex == 2)
                         {
-                            //你想前往哪個時期探險？ carbon and permian option
+                            //你想前往哪個時期探險？ question only 
                             startLab_CurrDialogIndex++;
                             DialogBoxManager.instance.ShowDialog(commonUtils.gameplayInstructions[startLab_CurrDialogIndex]);
-                            DialogBoxManager.instance.SetOptionArrow(startLab_CurrArrowIndex);
                         }
                         else if (startLab_CurrDialogIndex == 3)
+                        {
+                            //你想前往哪個時期探險？ option (carbon or permian)
+                            DialogBoxManager.instance.ShowOption(commonUtils.gameplayInstructions[startLab_CurrDialogIndex]);
+                            DialogBoxManager.instance.SetOptionArrow(startLab_CurrArrowIndex);
+                            startLab_CurrDialogIndex++;
+                        }
+                        else if (startLab_CurrDialogIndex == 4)
                         {
                             DialogBoxManager.instance.HideDialog();
                             if (startLab_CurrArrowIndex == 0)
@@ -335,7 +342,19 @@ public class MainManger : MonoBehaviour
                     }
                     else
                     {
-                        if (afterEndAtLab_CurrDialogIndex == commonUtils.endCheck_AfterEndingVideos.Count - 1)
+                        if (afterEndAtLab_CurrDialogIndex == 0)
+                        {
+                            //來看看我們辛苦收集的資料吧！ question only
+                            afterEndAtLab_CurrDialogIndex++;
+                            DialogBoxManager.instance.ShowDialog(commonUtils.endCheck_AfterEndingVideos[afterEndAtLab_CurrDialogIndex]);
+                        }
+                        else if (afterEndAtLab_CurrDialogIndex == 1)
+                        {
+                            //來看看我們辛苦收集的資料吧！ option
+                            DialogBoxManager.instance.ShowOption(commonUtils.endCheck_AfterEndingVideos[afterEndAtLab_CurrDialogIndex]);
+                            afterEndAtLab_CurrDialogIndex++;
+                        }
+                        else if (afterEndAtLab_CurrDialogIndex == 2)
                         {
                             if (afterEndAtLab_CurrArrowIndex == 0)
                             {
@@ -350,11 +369,27 @@ public class MainManger : MonoBehaviour
                                 afterEndAtLab_Restart_RootObj.SetActive(true);
                             }
                         }
-                        else
-                        {
-                            afterEndAtLab_CurrDialogIndex++;
-                            DialogBoxManager.instance.ShowDialog(commonUtils.endCheck_AfterEndingVideos[afterEndAtLab_CurrDialogIndex]);
-                        }
+
+                        //if (afterEndAtLab_CurrDialogIndex == commonUtils.endCheck_AfterEndingVideos.Count - 1)
+                        //{
+                        //    if (afterEndAtLab_CurrArrowIndex == 0)
+                        //    {
+                        //        currStage = MainStage.EndLab_CollectionBookUpdate;
+                        //        DialogBoxManager.instance.HideDialog();
+                        //        CollectionBookManager.instance.Show_Main();
+                        //    }
+                        //    else
+                        //    {
+                        //        //restart game double confirm popup
+                        //        currStage = MainStage.EndLab_Restart;
+                        //        afterEndAtLab_Restart_RootObj.SetActive(true);
+                        //    }
+                        //}
+                        //else
+                        //{
+                        //    afterEndAtLab_CurrDialogIndex++;
+                        //    DialogBoxManager.instance.ShowDialog(commonUtils.endCheck_AfterEndingVideos[afterEndAtLab_CurrDialogIndex]);
+                        //}
                     }
                 }
                 else if (currStage == MainStage.EndLab_Restart)

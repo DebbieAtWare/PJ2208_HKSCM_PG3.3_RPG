@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,10 +7,13 @@ using UnityEngine.SceneManagement;
 public enum DroneStage
 {
     None,
-    Tips,
+    Main_Question,
+    Main_Option,
     Hint,
-    CollectionBook,
-    ChangeMap
+    CollectionBook_Question,
+    CollectionBook_Option,
+    ChangeMap_Question,
+    ChangeMap_Option
 }
 
 public class DroneController : MonoBehaviour
@@ -140,7 +143,7 @@ public class DroneController : MonoBehaviour
         {
             if (talkHintObj.activeInHierarchy && MainManger.instance.currStage == MainStage.InGame && OptionManager.instance.currStage == OptionStage.None)
             {
-                if (currDroneStage == DroneStage.Tips)
+                if (currDroneStage == DroneStage.Main_Option)
                 {
                     if (currSelectedOption == 0)
                     {
@@ -203,7 +206,7 @@ public class DroneController : MonoBehaviour
                         }
                     }
                 }
-                else if (currDroneStage == DroneStage.CollectionBook || currDroneStage == DroneStage.ChangeMap)
+                else if (currDroneStage == DroneStage.CollectionBook_Option || currDroneStage == DroneStage.ChangeMap_Option)
                 {
                     if (currSelectedOption == 0)
                     {
@@ -234,7 +237,7 @@ public class DroneController : MonoBehaviour
         {
             if (talkHintObj.activeInHierarchy && MainManger.instance.currStage == MainStage.InGame && OptionManager.instance.currStage == OptionStage.None)
             {
-                if (currDroneStage == DroneStage.Tips)
+                if (currDroneStage == DroneStage.Main_Option)
                 {
                     if (currSelectedOption == 0)
                     {
@@ -311,12 +314,25 @@ public class DroneController : MonoBehaviour
             {
                 if (currDroneStage == DroneStage.None)
                 {
+                    //有甚麼需要幫忙的嗎？ question only
+                    currDroneStage = DroneStage.Main_Question;
                     SoundManager.instance.Play_Input(2);
                     GameManager.instance.dialogActive = true;
                     DialogBoxManager.instance.ShowDialog(commonUtils.dialogBox_TipsByDrone);
-                    currDroneStage = DroneStage.Tips;
                 }
-                else if (currDroneStage == DroneStage.Tips)
+                else if (currDroneStage == DroneStage.Main_Question)
+                {
+                    if (DialogBoxManager.instance.dialogWriterSingle != null && DialogBoxManager.instance.dialogWriterSingle.IsActive())
+                    {
+                        DialogBoxManager.instance.FinishCurrentDialog();
+                    }
+                    else
+                    {
+                        DialogBoxManager.instance.ShowOption(commonUtils.dialogBox_TipsByDrone);
+                        currDroneStage = DroneStage.Main_Option;
+                    }
+                }
+                else if (currDroneStage == DroneStage.Main_Option)
                 {
                     if (currSelectedOption == 0)
                     {
@@ -328,14 +344,14 @@ public class DroneController : MonoBehaviour
                     else if (currSelectedOption == 1)
                     {
                         SoundManager.instance.Play_Input(2);
-                        currDroneStage = DroneStage.CollectionBook;
+                        currDroneStage = DroneStage.CollectionBook_Question;
                         DialogBoxManager.instance.ShowDialog(commonUtils.dialogBox_TipsByDrone_CollectionBook);
                         currSelectedOption = 0;
                     }
                     else if (currSelectedOption == 2)
                     {
                         SoundManager.instance.Play_Input(2);
-                        currDroneStage = DroneStage.ChangeMap;
+                        currDroneStage = DroneStage.ChangeMap_Question;
                         DialogBoxManager.instance.ShowDialog(commonUtils.dialogBox_TipsByDrone_ChangeMap);
                         currSelectedOption = 0;
                     }
@@ -373,7 +389,19 @@ public class DroneController : MonoBehaviour
                         }
                     }
                 }
-                else if (currDroneStage == DroneStage.CollectionBook)
+                else if (currDroneStage == DroneStage.CollectionBook_Question)
+                {
+                    if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
+                    {
+                        DialogBoxManager.instance.FinishCurrentDialog();
+                    }
+                    else
+                    {
+                        DialogBoxManager.instance.ShowOption(commonUtils.dialogBox_TipsByDrone_CollectionBook);
+                        currDroneStage = DroneStage.CollectionBook_Option;
+                    }
+                }
+                else if (currDroneStage == DroneStage.CollectionBook_Option)
                 {
                     if (currSelectedOption == 0)
                     {
@@ -395,7 +423,19 @@ public class DroneController : MonoBehaviour
                         GameManager.instance.dialogActive = false;
                     }
                 }
-                else if (currDroneStage == DroneStage.ChangeMap)
+                else if (currDroneStage == DroneStage.ChangeMap_Question)
+                {
+                    if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
+                    {
+                        DialogBoxManager.instance.FinishCurrentDialog();
+                    }
+                    else
+                    {
+                        DialogBoxManager.instance.ShowOption(commonUtils.dialogBox_TipsByDrone_ChangeMap);
+                        currDroneStage = DroneStage.ChangeMap_Option;
+                    }
+                }
+                else if (currDroneStage == DroneStage.ChangeMap_Option)
                 {
                     if (currSelectedOption == 0)
                     {
