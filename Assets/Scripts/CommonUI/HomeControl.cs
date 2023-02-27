@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using TMPro;
 
 public class HomeControl : MonoBehaviour
 {
@@ -17,14 +18,14 @@ public class HomeControl : MonoBehaviour
     public List<Sprite> sprites_Bkg;
     public List<Sprite> sprites_Drone;
     int currTitleIndex = 0;
-    float titleInvokeTime = 8;
+    float titleInvokeTime = 8f;
 
     [Header("Text")]
-    public GameObject text_TC;
-    public GameObject text_SC;
-    public GameObject text_EN;
+    public TextMeshProUGUI text_TC;
+    public TextMeshProUGUI text_SC;
+    public TextMeshProUGUI text_EN;
     int currTextIndex = 0;
-    float textInvokeTime = 2;
+    float textInvokeTime = 2f;
 
     int currIndex_Bkg = 0;
     int currIndex_Drone = 0;
@@ -43,9 +44,9 @@ public class HomeControl : MonoBehaviour
         currIndex_Drone = 0;
         img_Bkg.sprite = sprites_Bkg[currIndex_Bkg];
         img_Drone.sprite = sprites_Drone[currIndex_Drone];
-        text_TC.SetActive(true);
-        text_SC.SetActive(false);
-        text_EN.SetActive(false);
+        text_TC.DOFade(1, 0f);
+        text_SC.DOFade(0, 0f);
+        text_EN.DOFade(0, 0f);
         BkgLoopAni();
         DroneLoopAni();
         TextAni();
@@ -87,21 +88,21 @@ public class HomeControl : MonoBehaviour
 
         if (currTextIndex == 0)
         {
-            text_TC.SetActive(true);
-            text_SC.SetActive(false);
-            text_EN.SetActive(false);
+            text_TC.DOFade(1, 0.3f).SetDelay(0.4f);
+            text_SC.DOFade(0, 0.3f);
+            text_EN.DOFade(0, 0.3f);
         }
         else if (currTextIndex == 1)
         {
-            text_TC.SetActive(false);
-            text_SC.SetActive(true);
-            text_EN.SetActive(false);
+            text_TC.DOFade(0, 0.3f);
+            text_SC.DOFade(1, 0.3f).SetDelay(0.4f);
+            text_EN.DOFade(0, 0.3f);
         }
         else if (currTextIndex == 2)
         {
-            text_TC.SetActive(false);
-            text_SC.SetActive(false);
-            text_EN.SetActive(true);
+            text_TC.DOFade(0, 0.3f);
+            text_SC.DOFade(0, 0.3f);
+            text_EN.DOFade(1, 0.3f).SetDelay(0.4f);
         }
         Invoke("TextAni", textInvokeTime);
     }
@@ -116,13 +117,13 @@ public class HomeControl : MonoBehaviour
 
         if (currTitleIndex == 0)
         {
-            //img_Title_TC.DOFade(1, 0.3f);
+            img_Title_TC.DOFade(1, 0.3f).SetDelay(0.4f);
             img_Title_SC.DOFade(0, 0.3f);
         }
         else if (currTitleIndex == 1)
         {
-            //img_Title_TC.DOFade(0, 0.3f);
-            img_Title_SC.DOFade(1, 0.3f);
+            img_Title_TC.DOFade(0, 0.3f);
+            img_Title_SC.DOFade(1, 0.3f).SetDelay(0.4f);
         }
         Invoke("TitleAni", titleInvokeTime);
     }
