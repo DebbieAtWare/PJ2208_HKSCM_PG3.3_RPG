@@ -146,7 +146,7 @@ public class CollectionBookBossObject : MonoBehaviour
 
     public void ShakeAni()
     {
-        img_Lock.rectTransform.DOShakePosition(0.3f, 10f, 20, 0f);
+        img_Lock.rectTransform.DOShakePosition(0.1f, 5f, 20, 0f, false);
     }
 
     public void SetSelection(bool val)
