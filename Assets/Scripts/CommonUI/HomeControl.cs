@@ -16,6 +16,8 @@ public class HomeControl : MonoBehaviour
     public Image img_Title_SC;
     public List<Sprite> sprites_Bkg;
     public List<Sprite> sprites_Drone;
+    int currTitleIndex = 0;
+    float titleInvokeTime = 8;
 
     [Header("Text")]
     public GameObject text_TC;
@@ -47,6 +49,7 @@ public class HomeControl : MonoBehaviour
         BkgLoopAni();
         DroneLoopAni();
         TextAni();
+        TitleAni();
     }
 
     void BkgLoopAni()
@@ -103,11 +106,33 @@ public class HomeControl : MonoBehaviour
         Invoke("TextAni", textInvokeTime);
     }
 
+    void TitleAni()
+    {
+        currTitleIndex++;
+        if (currTitleIndex >= 2)
+        {
+            currTitleIndex = 0;
+        }
+
+        if (currTitleIndex == 0)
+        {
+            //img_Title_TC.DOFade(1, 0.3f);
+            img_Title_SC.DOFade(0, 0.3f);
+        }
+        else if (currTitleIndex == 1)
+        {
+            //img_Title_TC.DOFade(0, 0.3f);
+            img_Title_SC.DOFade(1, 0.3f);
+        }
+        Invoke("TitleAni", titleInvokeTime);
+    }
+
     public void ResetAll()
     {
         CancelInvoke("BkgLoopAni");
         CancelInvoke("DroneLoopAni");
         CancelInvoke("TextAni");
+        CancelInvoke("TitleAni");
         currIndex_Bkg = 0;
         currIndex_Drone = 0;
         currTextIndex = 0;
