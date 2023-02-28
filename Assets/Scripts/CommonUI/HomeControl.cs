@@ -88,21 +88,21 @@ public class HomeControl : MonoBehaviour
 
         if (currTextIndex == 0)
         {
-            text_TC.DOFade(1, 0.3f).SetDelay(0.4f);
-            text_SC.DOFade(0, 0.3f);
-            text_EN.DOFade(0, 0.3f);
+            text_TC.DOFade(1, 0.2f).SetDelay(0.4f);
+            text_SC.DOFade(0, 0.2f);
+            text_EN.DOFade(0, 0.2f);
         }
         else if (currTextIndex == 1)
         {
-            text_TC.DOFade(0, 0.3f);
-            text_SC.DOFade(1, 0.3f).SetDelay(0.4f);
-            text_EN.DOFade(0, 0.3f);
+            text_TC.DOFade(0, 0.2f);
+            text_SC.DOFade(1, 0.2f).SetDelay(0.4f);
+            text_EN.DOFade(0, 0.2f);
         }
         else if (currTextIndex == 2)
         {
-            text_TC.DOFade(0, 0.3f);
-            text_SC.DOFade(0, 0.3f);
-            text_EN.DOFade(1, 0.3f).SetDelay(0.4f);
+            text_TC.DOFade(0, 0.2f);
+            text_SC.DOFade(0, 0.2f);
+            text_EN.DOFade(1, 0.2f).SetDelay(0.4f);
         }
         Invoke("TextAni", textInvokeTime);
     }

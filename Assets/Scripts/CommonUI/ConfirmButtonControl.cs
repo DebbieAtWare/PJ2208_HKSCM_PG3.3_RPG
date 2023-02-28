@@ -73,14 +73,14 @@ public class ConfirmButtonControl : MonoBehaviour
         StartCoroutine(Ani());
         IEnumerator Ani()
         {
-            arrowRect.DOAnchorPos(new Vector2(0, -4), 0.8f);
+            arrowRect.DOAnchorPos(new Vector2(0, -4), 0.6f);
             yield return new WaitForSeconds(0.2f);
-            frontRect.DOAnchorPos(new Vector2(0, 0), 0.8f);
+            frontRect.DOAnchorPos(new Vector2(0, 0), 0.6f);
+            yield return new WaitForSeconds(0.4f);
+            arrowRect.DOAnchorPos(new Vector2(0, 4), 0.6f);
+            yield return new WaitForSeconds(0.2f);
+            frontRect.DOAnchorPos(new Vector2(0, 8), 0.6f);
             yield return new WaitForSeconds(0.6f);
-            arrowRect.DOAnchorPos(new Vector2(0, 4), 0.8f);
-            yield return new WaitForSeconds(0.2f);
-            frontRect.DOAnchorPos(new Vector2(0, 8), 0.8f);
-            yield return new WaitForSeconds(0.8f);
             PlayAni();
         }
     }
