@@ -5,13 +5,16 @@ using Timers;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using TMPro;
 
 public class TimeoutManager : MonoBehaviour
 {
     public static TimeoutManager instance;
 
     public GameObject root;
-    public Image timerImg;
+    public TextMeshProUGUI timerText_TC;
+    public TextMeshProUGUI timerText_SC;
+    public TextMeshProUGUI timerText_EN;
 
     public List<GameObject> arrowObjs = new List<GameObject>();
     public int currArrowIndex = 0;
@@ -64,7 +67,9 @@ public class TimeoutManager : MonoBehaviour
                 arrowObjs[i].SetActive(false);
             }
         }
-        timerImg.fillAmount = 1;
+        timerText_TC.text = countdownUITimerTarget.ToString();
+        timerText_SC.text = countdownUITimerTarget.ToString();
+        timerText_EN.text = countdownUITimerTarget.ToString();
         root.SetActive(false);
         isTimeoutUIActive = false;
 
@@ -123,6 +128,7 @@ public class TimeoutManager : MonoBehaviour
     private void Update()
     {
         tmp = TimersManager.RemainingTime(InvokeUI);
+   
 
         if (!TimersManager.IsTimerActive(InvokeUI) && !root.activeInHierarchy)
         {
@@ -138,7 +144,21 @@ public class TimeoutManager : MonoBehaviour
             isTimeoutUIActive = true;
             root.SetActive(true);
             ChangeLanaguage();
-            timerImg.DOFillAmount(0, countdownUITimerTarget).From(1).SetEase(Ease.Linear).OnComplete(CountdownUICompleted);
+            countdownUITimer = countdownUITimerTarget;
+            InvokeRepeating("TimerTextControl", 1, 1);
+        }
+    }
+
+    float countdownUITimer;
+    void TimerTextControl()
+    {
+        countdownUITimer--;
+        timerText_TC.text = countdownUITimer.ToString();
+        timerText_SC.text = countdownUITimer.ToString();
+        timerText_EN.text = countdownUITimer.ToString();
+        if (countdownUITimer == 0)
+        {
+            CountdownUICompleted();
         }
     }
 
@@ -153,7 +173,7 @@ public class TimeoutManager : MonoBehaviour
         StartCoroutine(Ani());
         IEnumerator Ani()
         {
-            timerImg.DOKill();
+            //timerImg.DOKill();
             currArrowIndex = 0;
             for (int i = 0; i < arrowObjs.Count; i++)
             {
@@ -166,7 +186,9 @@ public class TimeoutManager : MonoBehaviour
                     arrowObjs[i].SetActive(false);
                 }
             }
-            timerImg.fillAmount = 1;
+            timerText_TC.text = countdownUITimerTarget.ToString();
+            timerText_SC.text = countdownUITimerTarget.ToString();
+            timerText_EN.text = countdownUITimerTarget.ToString();
             root.SetActive(false);
             yield return new WaitForSeconds(0.5f);
             isTimeoutUIActive = false;

@@ -70,7 +70,9 @@ public class CollectionBookManager : MonoBehaviour
     public List<CollectionBookFeatureObject> detail_FeatureObjs_TC = new List<CollectionBookFeatureObject>();
     public List<CollectionBookFeatureObject> detail_FeatureObjs_SC = new List<CollectionBookFeatureObject>();
     public List<CollectionBookFeatureObject> detail_FeatureObjs_EN = new List<CollectionBookFeatureObject>();
-    public GameObject detail_ExitFrameObj;
+    public GameObject detail_ExitFrameObj_TC;
+    public GameObject detail_ExitFrameObj_SC;
+    public GameObject detail_ExitFrameObj_EN;
     public GameObject detail_ExitText_TC;
     public GameObject detail_ExitText_SC;
     public GameObject detail_ExitText_EN;
@@ -91,6 +93,12 @@ public class CollectionBookManager : MonoBehaviour
     public CanvasGroup restart_CanvasGrp;
     public List<GameObject> restart_ArrowObjs = new List<GameObject>();
     public int restart_CurrIndex;
+
+    [Header("Confirm btn")]
+    public RectTransform confirmBtnRect_Common;
+    public RectTransform confirmBtnRect_Restart;
+    float confirmBtnPosX_TCSC = -37f;
+    float confirmBtnPosX_EN = -108f;
 
     CommonUtils commonUtils;
     InputManager inputManager;
@@ -476,6 +484,9 @@ public class CollectionBookManager : MonoBehaviour
         detail_RootObj.SetActive(false);
         success_RootObj.SetActive(false);
 
+        confirmBtnRect_Common.gameObject.SetActive(true);
+        confirmBtnRect_Restart.gameObject.SetActive(false);
+
         //----
 
         currRow = 0;
@@ -539,6 +550,9 @@ public class CollectionBookManager : MonoBehaviour
 
     public void Show_Detail(ConfigData_Character character)
     {
+        confirmBtnRect_Common.gameObject.SetActive(true);
+        confirmBtnRect_Restart.gameObject.SetActive(false);
+
         if (character.Id == CharacterID.M01.ToString() || character.Id == CharacterID.M02.ToString() || character.Id == CharacterID.M03.ToString())
         {
             for (int i = 0; i < detail_NPCObjs.Count; i++)
@@ -628,8 +642,10 @@ public class CollectionBookManager : MonoBehaviour
         detail_CurrPage = 0;
         ChangeLanguage();
         
-        detail_ExitFrameObj.SetActive(true);
-        
+        detail_ExitFrameObj_TC.SetActive(true);
+        detail_ExitFrameObj_SC.SetActive(true);
+        detail_ExitFrameObj_EN.SetActive(true);
+
         //----
         main_RootObj.gameObject.SetActive(false);
         detail_RootObj.gameObject.SetActive(true);
@@ -653,6 +669,9 @@ public class CollectionBookManager : MonoBehaviour
         main_RootObj.SetActive(false);
         detail_RootObj.SetActive(false);
         success_RootObj.SetActive(true);
+
+        confirmBtnRect_Common.gameObject.SetActive(false);
+        confirmBtnRect_Restart.gameObject.SetActive(false);
 
         for (int i = 0; i < success_BossObjs.Count; i++)
         {
@@ -828,6 +847,9 @@ public class CollectionBookManager : MonoBehaviour
             }
         }
         restart_CanvasGrp.DOFade(1f, 0.5f);
+
+        confirmBtnRect_Common.gameObject.SetActive(false);
+        confirmBtnRect_Restart.gameObject.SetActive(true);
     }
 
     void Hide_Restart()
@@ -932,6 +954,8 @@ public class CollectionBookManager : MonoBehaviour
             detail_ExitText_TC.SetActive(true);
             detail_ExitText_SC.SetActive(false);
             detail_ExitText_EN.SetActive(false);
+
+            confirmBtnRect_Restart.anchoredPosition = new Vector2(confirmBtnPosX_TCSC, confirmBtnRect_Restart.anchoredPosition.y);
         }
         else if (commonUtils.currLang == Language.SC)
         {
@@ -991,6 +1015,8 @@ public class CollectionBookManager : MonoBehaviour
             detail_ExitText_TC.SetActive(false);
             detail_ExitText_SC.SetActive(true);
             detail_ExitText_EN.SetActive(false);
+
+            confirmBtnRect_Restart.anchoredPosition = new Vector2(confirmBtnPosX_TCSC, confirmBtnRect_Restart.anchoredPosition.y);
         }
         else if (commonUtils.currLang == Language.EN)
         {
@@ -1050,6 +1076,8 @@ public class CollectionBookManager : MonoBehaviour
             detail_ExitText_TC.SetActive(false);
             detail_ExitText_SC.SetActive(false);
             detail_ExitText_EN.SetActive(true);
+
+            confirmBtnRect_Restart.anchoredPosition = new Vector2(confirmBtnPosX_EN, confirmBtnRect_Restart.anchoredPosition.y);
         }
 
         //detail page arrow 
