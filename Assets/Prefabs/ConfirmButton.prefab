@@ -259,7 +259,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 3.5}
+  m_AnchoredPosition: {x: 0, y: 4}
   m_SizeDelta: {x: 26, y: 17}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &7994603243487765539
@@ -355,7 +355,12 @@ MonoBehaviour:
   canvasGroup: {fileID: 1070330733980132179}
   arrowRect: {fileID: 894499544073736137}
   frontRect: {fileID: 1537011077485731016}
+  imgs:
+  - {fileID: 3735808002186395104}
+  - {fileID: 6497717018716479489}
+  - {fileID: 9091306546604645966}
   isAutoPlay: 0
+  isBlack: 0
 --- !u!225 &1070330733980132179
 CanvasGroup:
   m_ObjectHideFlags: 0

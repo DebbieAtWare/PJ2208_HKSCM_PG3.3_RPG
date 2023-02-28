@@ -48706,6 +48706,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7422809868727259851, guid: fe994c4d02ea5e9418c9c7d2c5350ffd,
         type: 3}
+      propertyPath: isBlack
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7422809868727259851, guid: fe994c4d02ea5e9418c9c7d2c5350ffd,
+        type: 3}
       propertyPath: isAutoPlay
       value: 1
       objectReference: {fileID: 0}
@@ -73437,6 +73442,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8697957255064125810}
     m_Modifications:
+    - target: {fileID: 7422809868727259851, guid: fe994c4d02ea5e9418c9c7d2c5350ffd,
+        type: 3}
+      propertyPath: isBlack
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7440802218051039963, guid: fe994c4d02ea5e9418c9c7d2c5350ffd,
         type: 3}
       propertyPath: m_Pivot.x
