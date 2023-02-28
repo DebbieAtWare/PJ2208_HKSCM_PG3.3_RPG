@@ -26,34 +26,28 @@ public class OptionManager : MonoBehaviour
     public TextMeshProUGUI topBtn_OptionText_TC;
     public TextMeshProUGUI topBtn_OptionText_SC;
     public TextMeshProUGUI topBtn_OptionText_EN;
+    public TextMeshProUGUI topBtn_CloseText_TC;
+    public TextMeshProUGUI topBtn_CloseText_SC;
+    public TextMeshProUGUI topBtn_CloseText_EN;
 
     [Header("Popup")]
-    public GameObject popupObj_Root;
-    public TextMeshProUGUI popupObj_CloseText_TC;
-    public TextMeshProUGUI popupObj_CloseText_SC;
-    public TextMeshProUGUI popupObj_CloseText_EN;
+    public GameObject popup_RootObj;
+    public Image popup_bkgImg;
 
     [Header("Main Group")]
-    public GameObject mainGrp_Root;
-    public List<TextMeshProUGUI> mainGrp_OptionTexts_TC = new List<TextMeshProUGUI>();
-    public List<TextMeshProUGUI> mainGrp_OptionTexts_SC = new List<TextMeshProUGUI>();
-    public List<TextMeshProUGUI> mainGrp_OptionTexts_EN = new List<TextMeshProUGUI>();
-    public List<GameObject> mainGrp_ArrowObjs = new List<GameObject>();
+    public GameObject mainGrp_Root_TCSC;
+    public GameObject mainGrp_Root_EN;
+    public List<GameObject> mainGrp_ArrowObjs_TCSC = new List<GameObject>();
+    public List<GameObject> mainGrp_ArrowObjs_EN = new List<GameObject>();
     public int mainGrp_CurrIndex = 0;
 
     [Header("Lang Group")]
     public GameObject langGrp_Root;
-    public List<TextMeshProUGUI> langGrp_OptionTexts_TC = new List<TextMeshProUGUI>();
-    public List<TextMeshProUGUI> langGrp_OptionTexts_SC = new List<TextMeshProUGUI>();
-    public List<TextMeshProUGUI> langGrp_OptionTexts_EN = new List<TextMeshProUGUI>();
     public List<GameObject> langGrp_ArrowObjs = new List<GameObject>();
     public int langGrp_CurrIndex = 0;
 
     [Header("Control Group")]
     public GameObject controlGrp_Root;
-    public List<TextMeshProUGUI> controlGrp_OptionTexts_TC = new List<TextMeshProUGUI>();
-    public List<TextMeshProUGUI> controlGrp_OptionTexts_SC = new List<TextMeshProUGUI>();
-    public List<TextMeshProUGUI> controlGrp_OptionTexts_EN = new List<TextMeshProUGUI>();
     public List<GameObject> controlGrp_ArrowObjs = new List<GameObject>();
     public int controlGrp_CurrIndex = 0;
 
@@ -66,6 +60,11 @@ public class OptionManager : MonoBehaviour
     public List<GameObject> langObjs_TC;
     public List<GameObject> langObjs_SC;
     public List<GameObject> langObjs_EN;
+
+    [Header("Confirm btn")]
+    public RectTransform confirmBtnRect;
+    float confirmBtnPosX_TCSC = -37f;
+    float confirmBtnPosX_EN = -108f;
 
     [Header("Curr")]
     public OptionStage currStage;
@@ -104,11 +103,32 @@ public class OptionManager : MonoBehaviour
 
         ChangeLanguage();
 
-        mainGrp_Root.SetActive(true);
+        if (commonUtils.currLang == Language.TC)
+        {
+            mainGrp_Root_TCSC.SetActive(true);
+            mainGrp_Root_EN.SetActive(false);
+            topBtn_OptionText_TC.gameObject.SetActive(true);
+            topBtn_CloseText_TC.gameObject.SetActive(false);
+        }
+        else if (commonUtils.currLang == Language.SC)
+        {
+            mainGrp_Root_TCSC.SetActive(true);
+            mainGrp_Root_EN.SetActive(false);
+            topBtn_OptionText_SC.gameObject.SetActive(true);
+            topBtn_CloseText_SC.gameObject.SetActive(false);
+        }
+        else if (commonUtils.currLang == Language.EN)
+        {
+            mainGrp_Root_TCSC.SetActive(false);
+            mainGrp_Root_EN.SetActive(true);
+            topBtn_OptionText_EN.gameObject.SetActive(true);
+            topBtn_CloseText_EN.gameObject.SetActive(false);
+        }
         langGrp_Root.SetActive(false);
         controlGrp_Root.SetActive(false);
         resetGrp_Root.SetActive(false);
-        popupObj_Root.SetActive(false);
+        popup_RootObj.SetActive(false);
+        popup_bkgImg.gameObject.SetActive(false);
         mainGrp_CurrIndex = 0;
 
         SetActive(false);
@@ -164,48 +184,60 @@ public class OptionManager : MonoBehaviour
                 {
                     if (val == -1)
                     {
-                        mainGrp_ArrowObjs[mainGrp_CurrIndex].SetActive(false);
+                        mainGrp_ArrowObjs_TCSC[mainGrp_CurrIndex].SetActive(false);
+                        mainGrp_ArrowObjs_EN[mainGrp_CurrIndex].SetActive(false);
                         mainGrp_CurrIndex = 1;
-                        mainGrp_ArrowObjs[mainGrp_CurrIndex].SetActive(true);
+                        mainGrp_ArrowObjs_TCSC[mainGrp_CurrIndex].SetActive(true);
+                        mainGrp_ArrowObjs_EN[mainGrp_CurrIndex].SetActive(true);
                     }
                 }
                 else if (mainGrp_CurrIndex == 1)
                 {
                     if (val == 1)
                     {
-                        mainGrp_ArrowObjs[mainGrp_CurrIndex].SetActive(false);
+                        mainGrp_ArrowObjs_TCSC[mainGrp_CurrIndex].SetActive(false);
+                        mainGrp_ArrowObjs_EN[mainGrp_CurrIndex].SetActive(false);
                         mainGrp_CurrIndex = 0;
-                        mainGrp_ArrowObjs[mainGrp_CurrIndex].SetActive(true);
+                        mainGrp_ArrowObjs_TCSC[mainGrp_CurrIndex].SetActive(true);
+                        mainGrp_ArrowObjs_EN[mainGrp_CurrIndex].SetActive(true);
                     }
                     else if (val == -1)
                     {
-                        mainGrp_ArrowObjs[mainGrp_CurrIndex].SetActive(false);
+                        mainGrp_ArrowObjs_TCSC[mainGrp_CurrIndex].SetActive(false);
+                        mainGrp_ArrowObjs_EN[mainGrp_CurrIndex].SetActive(false);
                         mainGrp_CurrIndex = 2;
-                        mainGrp_ArrowObjs[mainGrp_CurrIndex].SetActive(true);
+                        mainGrp_ArrowObjs_TCSC[mainGrp_CurrIndex].SetActive(true);
+                        mainGrp_ArrowObjs_EN[mainGrp_CurrIndex].SetActive(true);
                     }
                 }
                 else if (mainGrp_CurrIndex == 2)
                 {
                     if (val == 1)
                     {
-                        mainGrp_ArrowObjs[mainGrp_CurrIndex].SetActive(false);
+                        mainGrp_ArrowObjs_TCSC[mainGrp_CurrIndex].SetActive(false);
+                        mainGrp_ArrowObjs_EN[mainGrp_CurrIndex].SetActive(false);
                         mainGrp_CurrIndex = 1;
-                        mainGrp_ArrowObjs[mainGrp_CurrIndex].SetActive(true);
+                        mainGrp_ArrowObjs_TCSC[mainGrp_CurrIndex].SetActive(true);
+                        mainGrp_ArrowObjs_EN[mainGrp_CurrIndex].SetActive(true);
                     }
                     else if (val == -1)
                     {
-                        mainGrp_ArrowObjs[mainGrp_CurrIndex].SetActive(false);
+                        mainGrp_ArrowObjs_TCSC[mainGrp_CurrIndex].SetActive(false);
+                        mainGrp_ArrowObjs_EN[mainGrp_CurrIndex].SetActive(false);
                         mainGrp_CurrIndex = 3;
-                        mainGrp_ArrowObjs[mainGrp_CurrIndex].SetActive(true);
+                        mainGrp_ArrowObjs_TCSC[mainGrp_CurrIndex].SetActive(true);
+                        mainGrp_ArrowObjs_EN[mainGrp_CurrIndex].SetActive(true);
                     }
                 }
                 else if (mainGrp_CurrIndex == 3)
                 {
                     if (val == 1)
                     {
-                        mainGrp_ArrowObjs[mainGrp_CurrIndex].SetActive(false);
+                        mainGrp_ArrowObjs_TCSC[mainGrp_CurrIndex].SetActive(false);
+                        mainGrp_ArrowObjs_EN[mainGrp_CurrIndex].SetActive(false);
                         mainGrp_CurrIndex = 2;
-                        mainGrp_ArrowObjs[mainGrp_CurrIndex].SetActive(true);
+                        mainGrp_ArrowObjs_TCSC[mainGrp_CurrIndex].SetActive(true);
+                        mainGrp_ArrowObjs_EN[mainGrp_CurrIndex].SetActive(true);
                     }
                 }
             }
@@ -297,19 +329,19 @@ public class OptionManager : MonoBehaviour
                 SoundManager.instance.Play_Input(2);
                 if (mainGrp_CurrIndex == 0)
                 {
-                    Close_ResetAll();
+                    ChangeControl_Language();
                 }
                 else if (mainGrp_CurrIndex == 1)
                 {
-                    ChangeControl_Language();
+                    ChangeControl_Control();
                 }
                 else if (mainGrp_CurrIndex == 2)
                 {
-                    ChangeControl_Control();
+                    ChangeControl_Reset();
                 }
                 else if (mainGrp_CurrIndex == 3)
                 {
-                    ChangeControl_Reset();
+                    Close_ResetAll();
                 }
             }
             else if (currStage == OptionStage.Language)
@@ -317,22 +349,22 @@ public class OptionManager : MonoBehaviour
                 SoundManager.instance.Play_Input(2);
                 if (langGrp_CurrIndex == 0)
                 {
-                    ChangeControl_Main();
-                }
-                else if (langGrp_CurrIndex == 1)
-                {
                     commonUtils.ChangeLanguage(Language.TC);
                     Close_ResetAll();
                 }
-                else if (langGrp_CurrIndex == 2)
+                else if (langGrp_CurrIndex == 1)
                 {
                     commonUtils.ChangeLanguage(Language.SC);
                     Close_ResetAll();
                 }
-                else if (langGrp_CurrIndex == 3)
+                else if (langGrp_CurrIndex == 2)
                 {
                     commonUtils.ChangeLanguage(Language.EN);
                     Close_ResetAll();
+                }
+                else if (langGrp_CurrIndex == 3)
+                {
+                    ChangeControl_Main();
                 }
             }
             else if (currStage == OptionStage.Control)
@@ -348,7 +380,6 @@ public class OptionManager : MonoBehaviour
                 SoundManager.instance.Play_Input(2);
                 if (resetGrp_CurrIndex == 0)
                 {
-                    //TODO reset game !!!!!
                     Close_ResetAll();
                     commonUtils.ResetGame();
                 }
@@ -383,6 +414,24 @@ public class OptionManager : MonoBehaviour
             {
                 langObjs_EN[i].SetActive(false);
             }
+            topBtn_OptionText_TC.rectTransform.sizeDelta = new Vector2(topBtn_OptionText_TC.preferredWidth, topBtn_OptionText_TC.rectTransform.sizeDelta.y);
+            topBtn_CloseText_TC.rectTransform.sizeDelta = new Vector2(topBtn_CloseText_TC.preferredWidth, topBtn_CloseText_TC.rectTransform.sizeDelta.y);
+            if (currStage == OptionStage.None)
+            {
+                topBtn_OptionText_TC.gameObject.SetActive(true);
+                topBtn_CloseText_TC.gameObject.SetActive(false);
+            }
+            else
+            {
+                topBtn_OptionText_TC.gameObject.SetActive(false);
+                topBtn_CloseText_TC.gameObject.SetActive(true);
+            }
+            if (currStage == OptionStage.Main)
+            {
+                mainGrp_Root_TCSC.SetActive(true);
+                mainGrp_Root_EN.SetActive(false);
+            }
+            confirmBtnRect.anchoredPosition = new Vector2(confirmBtnPosX_TCSC, confirmBtnRect.anchoredPosition.y);
         }
         else if (commonUtils.currLang == Language.SC)
         {
@@ -398,6 +447,24 @@ public class OptionManager : MonoBehaviour
             {
                 langObjs_EN[i].SetActive(false);
             }
+            topBtn_OptionText_SC.rectTransform.sizeDelta = new Vector2(topBtn_OptionText_SC.preferredWidth, topBtn_OptionText_SC.rectTransform.sizeDelta.y);
+            topBtn_CloseText_SC.rectTransform.sizeDelta = new Vector2(topBtn_CloseText_SC.preferredWidth, topBtn_CloseText_SC.rectTransform.sizeDelta.y);
+            if (currStage == OptionStage.None)
+            {
+                topBtn_OptionText_SC.gameObject.SetActive(true);
+                topBtn_CloseText_SC.gameObject.SetActive(false);
+            }
+            else
+            {
+                topBtn_OptionText_SC.gameObject.SetActive(false);
+                topBtn_CloseText_SC.gameObject.SetActive(true);
+            }
+            if (currStage == OptionStage.Main)
+            {
+                mainGrp_Root_TCSC.SetActive(true);
+                mainGrp_Root_EN.SetActive(false);
+            }
+            confirmBtnRect.anchoredPosition = new Vector2(confirmBtnPosX_TCSC, confirmBtnRect.anchoredPosition.y);
         }
         else if (commonUtils.currLang == Language.EN)
         {
@@ -413,14 +480,51 @@ public class OptionManager : MonoBehaviour
             {
                 langObjs_EN[i].SetActive(true);
             }
+            topBtn_OptionText_EN.rectTransform.sizeDelta = new Vector2(topBtn_OptionText_EN.preferredWidth, topBtn_OptionText_EN.rectTransform.sizeDelta.y);
+            topBtn_CloseText_EN.rectTransform.sizeDelta = new Vector2(topBtn_CloseText_EN.preferredWidth, topBtn_CloseText_EN.rectTransform.sizeDelta.y);
+            if (currStage == OptionStage.None)
+            {
+                topBtn_OptionText_EN.gameObject.SetActive(true);
+                topBtn_CloseText_EN.gameObject.SetActive(false);
+            }
+            else
+            {
+                topBtn_OptionText_EN.gameObject.SetActive(false);
+                topBtn_CloseText_EN.gameObject.SetActive(true);
+            }
+            if (currStage == OptionStage.Main)
+            {
+                mainGrp_Root_TCSC.SetActive(false);
+                mainGrp_Root_EN.SetActive(true);
+            }
+            confirmBtnRect.anchoredPosition = new Vector2(confirmBtnPosX_EN, confirmBtnRect.anchoredPosition.y);
         }
     }
 
     void ChangeControl_Main()
     {
         currStage = OptionStage.Main;
-        topBtnObj.SetActive(false);
-        mainGrp_Root.SetActive(true);
+        if (commonUtils.currLang == Language.TC)
+        {
+            mainGrp_Root_TCSC.SetActive(true);
+            mainGrp_Root_EN.SetActive(false);
+            topBtn_OptionText_TC.gameObject.SetActive(false);
+            topBtn_CloseText_TC.gameObject.SetActive(true);
+        }
+        else if (commonUtils.currLang == Language.SC)
+        {
+            mainGrp_Root_TCSC.SetActive(true);
+            mainGrp_Root_EN.SetActive(false);
+            topBtn_OptionText_SC.gameObject.SetActive(false);
+            topBtn_CloseText_SC.gameObject.SetActive(true);
+        }
+        else if (commonUtils.currLang == Language.EN)
+        {
+            mainGrp_Root_TCSC.SetActive(false);
+            mainGrp_Root_EN.SetActive(true);
+            topBtn_OptionText_EN.gameObject.SetActive(false);
+            topBtn_CloseText_EN.gameObject.SetActive(true);
+        }
         langGrp_Root.SetActive(false);
         langGrp_CurrIndex = 0;
         controlGrp_Root.SetActive(false);
@@ -429,25 +533,28 @@ public class OptionManager : MonoBehaviour
         resetGrp_CurrIndex = 1;
         resetGrp_ArrowObjs[0].SetActive(false);
         resetGrp_ArrowObjs[1].SetActive(true);
-        for (int i = 0; i < mainGrp_ArrowObjs.Count; i++)
+        for (int i = 0; i < mainGrp_ArrowObjs_TCSC.Count; i++)
         {
             if (i == mainGrp_CurrIndex)
             {
-                mainGrp_ArrowObjs[i].SetActive(true);
+                mainGrp_ArrowObjs_TCSC[i].SetActive(true);
+                mainGrp_ArrowObjs_EN[i].SetActive(true);
             }
             else
             {
-                mainGrp_ArrowObjs[i].SetActive(false);
+                mainGrp_ArrowObjs_TCSC[i].SetActive(false);
+                mainGrp_ArrowObjs_EN[i].SetActive(false);
             }
         }
-        popupObj_Root.SetActive(true);
+        popup_RootObj.SetActive(true);
+        popup_bkgImg.gameObject.SetActive(true);
     }
 
     void ChangeControl_Language()
     {
         currStage = OptionStage.Language;
-        topBtnObj.SetActive(false);
-        mainGrp_Root.SetActive(false);
+        mainGrp_Root_TCSC.SetActive(false);
+        mainGrp_Root_EN.SetActive(false);
         langGrp_Root.SetActive(true);
         controlGrp_Root.SetActive(false);
         resetGrp_Root.SetActive(false);
@@ -467,8 +574,8 @@ public class OptionManager : MonoBehaviour
     void ChangeControl_Control()
     {
         currStage = OptionStage.Control;
-        topBtnObj.SetActive(false);
-        mainGrp_Root.SetActive(false);
+        mainGrp_Root_TCSC.SetActive(false);
+        mainGrp_Root_EN.SetActive(false);
         langGrp_Root.SetActive(false);
         controlGrp_Root.SetActive(true);
         resetGrp_Root.SetActive(false);
@@ -488,8 +595,8 @@ public class OptionManager : MonoBehaviour
     void ChangeControl_Reset()
     {
         currStage = OptionStage.Restart;
-        topBtnObj.SetActive(false);
-        mainGrp_Root.SetActive(false);
+        mainGrp_Root_TCSC.SetActive(false);
+        mainGrp_Root_EN.SetActive(false);
         langGrp_Root.SetActive(false);
         controlGrp_Root.SetActive(false);
         resetGrp_Root.SetActive(true);
@@ -513,7 +620,23 @@ public class OptionManager : MonoBehaviour
         IEnumerator Ani()
         {
             topBtnObj.SetActive(true);
-            popupObj_Root.SetActive(false);
+            popup_RootObj.SetActive(false);
+            popup_bkgImg.gameObject.SetActive(false);
+            if (commonUtils.currLang == Language.TC)
+            {
+                topBtn_OptionText_TC.gameObject.SetActive(true);
+                topBtn_CloseText_TC.gameObject.SetActive(false);
+            }
+            else if (commonUtils.currLang == Language.SC)
+            {
+                topBtn_OptionText_SC.gameObject.SetActive(true);
+                topBtn_CloseText_SC.gameObject.SetActive(false);
+            }
+            else if (commonUtils.currLang == Language.EN)
+            {
+                topBtn_OptionText_EN.gameObject.SetActive(true);
+                topBtn_CloseText_EN.gameObject.SetActive(false);
+            }
             mainGrp_CurrIndex = 0;
             langGrp_CurrIndex = 0;
             controlGrp_CurrIndex = 0;
