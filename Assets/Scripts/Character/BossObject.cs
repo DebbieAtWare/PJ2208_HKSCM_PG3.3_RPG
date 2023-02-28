@@ -199,6 +199,7 @@ public class BossObject : MonoBehaviour
                         }
                         else if (currDialogLine == (info.DialogBoxes.Count - 2))
                         {
+                            ConversationModeManager.instance.Ani_AvatarOut();
                             ConversationModeManager.instance.Ani_BossCenter();
                             currDialogLine++;
                             DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
@@ -234,7 +235,7 @@ public class BossObject : MonoBehaviour
                         }
                         else
                         {
-                            ConversationModeManager.instance.Ani_AvatarOut();
+                            //ConversationModeManager.instance.Ani_AvatarOut();
                             currDialogLine++;
                             DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
                             if (info.DialogBoxes[currDialogLine].ByWhom == CharacterID.M01.ToString() || info.DialogBoxes[currDialogLine].ByWhom == CharacterID.M02.ToString() || info.DialogBoxes[currDialogLine].ByWhom == CharacterID.M03.ToString())
