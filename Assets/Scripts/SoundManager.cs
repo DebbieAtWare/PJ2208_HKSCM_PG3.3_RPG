@@ -24,6 +24,9 @@ public class SoundManager : MonoBehaviour
     public AudioSource audioSource_Dialog;
     public List<AudioClip> clips_Dialog;
 
+    [Header("Dialog - Drone")]
+    public AudioSource audioSource_Dialog_Drone;
+
     [Header("Walk")]
     public AudioSource audioSource_Walk;
 
@@ -153,6 +156,19 @@ public class SoundManager : MonoBehaviour
     public void FadeOutStop_Dialog(float t)
     {
         audioSource_Dialog.DOFade(0f, t).OnComplete(() => audioSource_Dialog.Stop());
+    }
+
+    //---------
+
+    public void Play_Dialog_Drone()
+    {
+        audioSource_Dialog_Drone.Play();
+        audioSource_Dialog_Drone.DOFade(1f, 0f);
+    }
+
+    public void FadeOutStop_Dialog_Drone(float t)
+    {
+        audioSource_Dialog_Drone.DOFade(0f, t).OnComplete(() => audioSource_Dialog_Drone.Pause());
     }
 
     //---------

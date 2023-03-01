@@ -189,7 +189,7 @@ public class DialogBoxManager : MonoBehaviour
             }
             else if (dialogBox.ByWhom == CharacterID.DRO.ToString())
             {
-                SoundManager.instance.Play_Dialog(1);
+                SoundManager.instance.Play_Dialog_Drone();
             }
             else if (dialogBox.ByWhom == CharacterID.M01.ToString() || dialogBox.ByWhom == CharacterID.M02.ToString() || dialogBox.ByWhom == CharacterID.M03.ToString())
             {
@@ -314,6 +314,7 @@ public class DialogBoxManager : MonoBehaviour
             onDialogEndCallback.Invoke();
         }
         SoundManager.instance.FadeOutStop_Dialog(0.3f);
+        SoundManager.instance.FadeOutStop_Dialog_Drone(0.3f);
     }
 
     public void ShowOption(ConfigData_DialogBox dialogBox)

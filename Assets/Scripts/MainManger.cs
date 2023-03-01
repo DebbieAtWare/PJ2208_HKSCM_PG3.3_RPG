@@ -524,10 +524,9 @@ public class MainManger : MonoBehaviour
             //first dialog is text, second dialog in control diagram
             startLab_CurrDialogIndex++;
             DialogBoxManager.instance.ShowDialog(commonUtils.gameplayInstructions[startLab_CurrDialogIndex]);
-            //DialogBoxManager.instance.ShowControl();
-            SoundManager.instance.Play_Dialog(1);
+            SoundManager.instance.Play_Dialog_Drone();
             yield return new WaitForSeconds(0.5f);
-            SoundManager.instance.FadeOutStop_Dialog(0.3f);
+            SoundManager.instance.FadeOutStop_Dialog_Drone(0.3f);
         }
     }
 

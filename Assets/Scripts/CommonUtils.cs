@@ -1963,6 +1963,8 @@ public class CommonUtils : MonoBehaviour
         {
             ChangeLanguage(Language.EN);
         }
+
+
     }
 }
 
