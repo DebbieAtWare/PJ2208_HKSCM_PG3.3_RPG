@@ -49,6 +49,11 @@ public class MainManger : MonoBehaviour
     public List<GameObject> langObjs_SC = new List<GameObject>();
     public List<GameObject> langObjs_EN = new List<GameObject>();
 
+    [Header("Confirm btn")]
+    public RectTransform confirmBtnRect;
+    float confirmBtnPosX_TCSC = -37f;
+    float confirmBtnPosX_EN = -108f;
+
     [Header("Curr")]
     public MainStage currStage;
 
@@ -449,6 +454,7 @@ public class MainManger : MonoBehaviour
             {
                 langObjs_EN[i].SetActive(false);
             }
+            confirmBtnRect.anchoredPosition = new Vector2(confirmBtnPosX_TCSC, confirmBtnRect.anchoredPosition.y);
         }
         else if (commonUtils.currLang == Language.SC)
         {
@@ -464,6 +470,7 @@ public class MainManger : MonoBehaviour
             {
                 langObjs_EN[i].SetActive(false);
             }
+            confirmBtnRect.anchoredPosition = new Vector2(confirmBtnPosX_TCSC, confirmBtnRect.anchoredPosition.y);
         }
         else if (commonUtils.currLang == Language.EN)
         {
@@ -479,6 +486,7 @@ public class MainManger : MonoBehaviour
             {
                 langObjs_EN[i].SetActive(true);
             }
+            confirmBtnRect.anchoredPosition = new Vector2(confirmBtnPosX_EN, confirmBtnRect.anchoredPosition.y);
         }
     }
 
@@ -526,7 +534,6 @@ public class MainManger : MonoBehaviour
     public void ChangeStage_EndLab()
     {
         currStage = MainStage.EndLab_CollectionBookTrigger;
-        SoundManager.instance.Play_BGM(4, 5);
         afterEndAtLab_CurrDialogIndex++;
         DialogBoxManager.instance.ShowDialog(commonUtils.endCheck_AfterEndingVideos[afterEndAtLab_CurrDialogIndex]);
         OptionManager.instance.SetActive(true);

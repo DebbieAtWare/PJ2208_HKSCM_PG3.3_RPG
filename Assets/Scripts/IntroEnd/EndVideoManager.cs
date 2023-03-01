@@ -261,6 +261,7 @@ public class EndVideoManager : MonoBehaviour
     IEnumerator Page1_Ani_Play()
     {
         SoundManager.instance.Play_BGM(7, 5);
+        confirmBtnControl.SetAlpha(0, 0);
         blackBkgRect.DOScale(new Vector3(1, 1, 1), 1f).SetEase(Ease.Linear);
         yield return new WaitForSeconds(0.7f);
         if (commonUtils.currMapId == MapID.Carboniferous)

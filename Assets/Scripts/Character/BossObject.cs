@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -129,7 +129,12 @@ public class BossObject : MonoBehaviour
                         {
                             SoundManager.instance.FadeOutStop_Dialog(0.3f);
                             SoundManager.instance.Play_Input(2);
-                            SoundManager.instance.Play_SFX(5);
+                            //M01 林蜥屬 no need play "Boss2_Transition"
+                            //caz it will play "Boss3_cave_Jump Down"
+                            if (id != CharacterID.M01)
+                            {
+                                SoundManager.instance.Play_SFX(5);
+                            }
                             DialogBoxManager.instance.HideDialog();
                             float dist = Vector3.Distance(PlayerController.instance.transform.position, avatarAutoPosObj.transform.position);
                             float time = dist * commonUtils.playerAutoWalkSpeed;
