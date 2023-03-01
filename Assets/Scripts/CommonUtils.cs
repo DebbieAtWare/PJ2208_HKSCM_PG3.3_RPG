@@ -1985,6 +1985,8 @@ public class ConfigData
     public float DialogBox_TimePerCharacter_TC;
     public float DialogBox_TimePerCharacter_SC;
     public float DialogBox_TimePerCharacter_EN;
+    public float TimeOut_DisplayUITimerTarget;
+    public float TimeOut_CountdownUITimerTarget;
 }
 
 [Serializable]

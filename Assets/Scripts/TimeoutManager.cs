@@ -25,10 +25,9 @@ public class TimeoutManager : MonoBehaviour
 
     public bool isTimeoutUIActive;
 
-    public float tmp;
-
-    float displayUITimerTarget = 180;
-    float countdownUITimerTarget = 30;
+    float displayUITimer;
+    float displayUITimerTarget;
+    float countdownUITimerTarget;
 
     InputManager inputManager;
 
@@ -55,6 +54,9 @@ public class TimeoutManager : MonoBehaviour
         inputManager.onValueChanged_VerticalCallback += InputManager_Vertical;
         inputManager.onValueChanged_ConfirmCallback += InputManager_Confirm;
 
+        displayUITimerTarget = CommonUtils.instance.data.TimeOut_DisplayUITimerTarget;
+        countdownUITimerTarget = CommonUtils.instance.data.TimeOut_CountdownUITimerTarget;
+
         currArrowIndex = 0;
         for (int i = 0; i < arrowObjs.Count; i++)
         {
@@ -72,8 +74,6 @@ public class TimeoutManager : MonoBehaviour
         timerText_EN.text = countdownUITimerTarget.ToString();
         root.SetActive(false);
         isTimeoutUIActive = false;
-
-        TimersManager.SetTimer(this, displayUITimerTarget, InvokeUI);
     }
 
     void ChangeLanaguage()
@@ -127,25 +127,29 @@ public class TimeoutManager : MonoBehaviour
 
     private void Update()
     {
-        tmp = TimersManager.RemainingTime(InvokeUI);
-   
-
-        if (!TimersManager.IsTimerActive(InvokeUI) && !root.activeInHierarchy)
+        if (displayUITimer > displayUITimerTarget)
         {
-            TimersManager.SetTimer(this, displayUITimerTarget, InvokeUI);
+            InvokeUI();
+        }
+        else
+        {
+            displayUITimer += Time.deltaTime;
         }
     }
 
     void InvokeUI()
     {
-        TimersManager.ClearTimer(InvokeUI);
         if (!CommonUtils.instance.isAtHomePage)
         {
-            isTimeoutUIActive = true;
-            root.SetActive(true);
-            ChangeLanaguage();
-            countdownUITimer = countdownUITimerTarget;
-            InvokeRepeating("TimerTextControl", 1, 1);
+            //make it invoke only once
+            if (!isTimeoutUIActive)
+            {
+                isTimeoutUIActive = true;
+                root.SetActive(true);
+                ChangeLanaguage();
+                countdownUITimer = countdownUITimerTarget;
+                InvokeRepeating("TimerTextControl", 1, 1);
+            }
         }
     }
 
@@ -158,14 +162,8 @@ public class TimeoutManager : MonoBehaviour
         timerText_EN.text = countdownUITimer.ToString();
         if (countdownUITimer == 0)
         {
-            CountdownUICompleted();
+            CommonUtils.instance.ResetGame();
         }
-    }
-
-    void CountdownUICompleted()
-    {
-        Debug.Log("CountdownUICompleted");
-        CommonUtils.instance.ResetGame();
     }
 
     void ResetAll()
@@ -173,7 +171,7 @@ public class TimeoutManager : MonoBehaviour
         StartCoroutine(Ani());
         IEnumerator Ani()
         {
-            //timerImg.DOKill();
+            CancelInvoke("TimerTextControl");
             currArrowIndex = 0;
             for (int i = 0; i < arrowObjs.Count; i++)
             {
@@ -191,23 +189,24 @@ public class TimeoutManager : MonoBehaviour
             timerText_EN.text = countdownUITimerTarget.ToString();
             root.SetActive(false);
             yield return new WaitForSeconds(0.5f);
+            displayUITimer = 0;
             isTimeoutUIActive = false;
         }
     }
 
     private void InputManager_Option()
     {
-        TimersManager.ClearTimer(InvokeUI);
+        displayUITimer = 0;
     }
 
     private void InputManager_Horizontal(int val)
     {
-        TimersManager.ClearTimer(InvokeUI);
+        displayUITimer = 0;
     }
 
     private void InputManager_Vertical(int val)
     {
-        TimersManager.ClearTimer(InvokeUI);
+        displayUITimer = 0;
 
         if (root.activeInHierarchy)
         {
@@ -235,7 +234,7 @@ public class TimeoutManager : MonoBehaviour
 
     private void InputManager_Confirm()
     {
-        TimersManager.ClearTimer(InvokeUI);
+        displayUITimer = 0;
 
         if (root.activeInHierarchy)
         {
