@@ -1930,13 +1930,17 @@ public class CommonUtils : MonoBehaviour
 
     public void ResetGame()
     {
-        SceneManager.LoadScene("ResetScene");
+        //SceneManager.LoadScene("ResetScene");
+        TransitionManager.instance.ResetGame();
     }
 
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
-        inputManager.onValueChanged_ConfirmCallback -= InputManager_OnValueChanged_Confirm;
+        if (inputManager != null)
+        {
+            inputManager.onValueChanged_ConfirmCallback -= InputManager_OnValueChanged_Confirm;
+        }
     }
 
 

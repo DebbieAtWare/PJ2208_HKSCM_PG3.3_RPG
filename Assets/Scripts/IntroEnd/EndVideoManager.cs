@@ -617,6 +617,9 @@ public class EndVideoManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        inputManager.onValueChanged_ConfirmCallback -= InputManager_OnValueChanged_Confirm;
+        if (inputManager != null)
+        {
+            inputManager.onValueChanged_ConfirmCallback -= InputManager_OnValueChanged_Confirm;
+        }
     }
 }

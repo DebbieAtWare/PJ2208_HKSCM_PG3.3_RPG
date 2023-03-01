@@ -162,6 +162,7 @@ public class TimeoutManager : MonoBehaviour
         timerText_EN.text = countdownUITimer.ToString();
         if (countdownUITimer == 0)
         {
+            root.SetActive(false);
             CommonUtils.instance.ResetGame();
         }
     }
@@ -245,6 +246,7 @@ public class TimeoutManager : MonoBehaviour
             }
             else if (currArrowIndex == 1)
             {
+                root.SetActive(false);
                 CommonUtils.instance.ResetGame();
             }
         }

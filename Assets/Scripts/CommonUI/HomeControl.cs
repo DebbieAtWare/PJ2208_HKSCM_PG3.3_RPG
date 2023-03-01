@@ -44,9 +44,6 @@ public class HomeControl : MonoBehaviour
         currIndex_Drone = 0;
         img_Bkg.sprite = sprites_Bkg[currIndex_Bkg];
         img_Drone.sprite = sprites_Drone[currIndex_Drone];
-        text_TC.DOFade(1, 0f);
-        text_SC.DOFade(0, 0f);
-        text_EN.DOFade(0, 0f);
         BkgLoopAni();
         DroneLoopAni();
         TextAni();
@@ -117,13 +114,13 @@ public class HomeControl : MonoBehaviour
 
         if (currTitleIndex == 0)
         {
-            img_Title_TC.DOFade(1, 0.3f).SetDelay(0.4f);
-            img_Title_SC.DOFade(0, 0.3f);
+            img_Title_TC.DOFade(0, 0.3f);
+            img_Title_SC.DOFade(1, 0.3f).SetDelay(0.4f);
         }
         else if (currTitleIndex == 1)
         {
-            img_Title_TC.DOFade(0, 0.3f);
-            img_Title_SC.DOFade(1, 0.3f).SetDelay(0.4f);
+            img_Title_TC.DOFade(1, 0.3f).SetDelay(0.4f);
+            img_Title_SC.DOFade(0, 0.3f);
         }
         Invoke("TitleAni", titleInvokeTime);
     }

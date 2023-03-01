@@ -541,15 +541,22 @@ public class MainManger : MonoBehaviour
 
     private void OnDestroy()
     {
-        commonUtils.onSetupDoneCallback -= CommonUtils_OnSetupDone;
-        commonUtils.onChangeLangCallback -= CommonUtils_OnChangeLang;
-
-        inputManager.onValueChanged_VerticalCallback -= InputManager_OnValueChanged_Vertical;
-        inputManager.onValueChanged_HorizontalCallback -= InputManager_OnValueChanged_Horizontal;
-        inputManager.onValueChanged_ConfirmCallback -= InputManager_OnValueChanged_Confirm;
-        inputManager.onValueChanged_OptionCallback -= InputManager_OnValueChanged_Option;
-
-        introVideoManager.onVideoStartedCallback -= IntroVideoManager_OnVideoStarted;
-        introVideoManager.onVideoFinishedCallback -= IntroVideoManager_OnVideoFinished;
+        if (commonUtils != null)
+        {
+            commonUtils.onSetupDoneCallback -= CommonUtils_OnSetupDone;
+            commonUtils.onChangeLangCallback -= CommonUtils_OnChangeLang;
+        }
+        if (inputManager != null)
+        {
+            inputManager.onValueChanged_VerticalCallback -= InputManager_OnValueChanged_Vertical;
+            inputManager.onValueChanged_HorizontalCallback -= InputManager_OnValueChanged_Horizontal;
+            inputManager.onValueChanged_ConfirmCallback -= InputManager_OnValueChanged_Confirm;
+            inputManager.onValueChanged_OptionCallback -= InputManager_OnValueChanged_Option;
+        }
+        if (introVideoManager != null)
+        {
+            introVideoManager.onVideoStartedCallback -= IntroVideoManager_OnVideoStarted;
+            introVideoManager.onVideoFinishedCallback -= IntroVideoManager_OnVideoFinished;
+        }
     }
 }

@@ -664,10 +664,15 @@ public class OptionManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        commonUtils.onChangeLangCallback -= CommonUtils_OnChangeLang;
-
-        inputManager.onValueChanged_OptionCallback -= InputManager_OnValueChanged_Option;
-        inputManager.onValueChanged_VerticalCallback -= InputManager_OnValueChanged_Vertical;
-        inputManager.onValueChanged_ConfirmCallback -= InputManager_OnValueChanged_Confirm;
+        if (commonUtils != null)
+        {
+            commonUtils.onChangeLangCallback -= CommonUtils_OnChangeLang;
+        }
+        if (inputManager != null)
+        {
+            inputManager.onValueChanged_OptionCallback -= InputManager_OnValueChanged_Option;
+            inputManager.onValueChanged_VerticalCallback -= InputManager_OnValueChanged_Vertical;
+            inputManager.onValueChanged_ConfirmCallback -= InputManager_OnValueChanged_Confirm;
+        }
     }
 }

@@ -270,6 +270,9 @@ public class StatusBarManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        commonUtils.onChangeLangCallback -= CommonUtils_OnChangeLang;
+        if (commonUtils != null)
+        {
+            commonUtils.onChangeLangCallback -= CommonUtils_OnChangeLang;
+        }
     }
 }

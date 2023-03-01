@@ -514,12 +514,21 @@ public class IntroVideoManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        inputManager.onValueChanged_ConfirmCallback -= InputManager_OnValueChanged_Confirm;
-
-        labObj.onTransitionStartDoneCallback -= Lab_OnTransitionStartDone;
-
-        mapObj.onTransitionStartDoneCallback -= Map_OnTransitionStartDone;
-
-        blackBarObj.onVideoEndCallback -= BlackBar_OnVideoEnd;
+        if (inputManager != null)
+        {
+            inputManager.onValueChanged_ConfirmCallback -= InputManager_OnValueChanged_Confirm;
+        }
+        if (labObj != null)
+        {
+            labObj.onTransitionStartDoneCallback -= Lab_OnTransitionStartDone;
+        }
+        if (mapObj != null)
+        {
+            mapObj.onTransitionStartDoneCallback -= Map_OnTransitionStartDone;
+        }
+        if (blackBarObj != null)
+        {
+            blackBarObj.onVideoEndCallback -= BlackBar_OnVideoEnd;
+        }
     }
 }

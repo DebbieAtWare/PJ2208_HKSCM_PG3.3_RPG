@@ -520,11 +520,17 @@ public class DroneController : MonoBehaviour
 
     private void OnDestroy()
     {
-        inputManager.onValueChanged_VerticalCallback -= InputManager_OnValueChanged_Vertical;
-        inputManager.onValueChanged_HorizontalCallback -= InputManager_OnValueChanged_Horizontal;
-        inputManager.onValueChanged_ConfirmCallback -= InputManager_OnValueChanged_Confirm;
+        if (inputManager != null)
+        {
+            inputManager.onValueChanged_VerticalCallback -= InputManager_OnValueChanged_Vertical;
+            inputManager.onValueChanged_HorizontalCallback -= InputManager_OnValueChanged_Horizontal;
+            inputManager.onValueChanged_ConfirmCallback -= InputManager_OnValueChanged_Confirm;
+        }
 
-        onTriggerControl.onTriggerEnterCallback -= OnTriggerEnter;
-        onTriggerControl.onTriggerExitCallback -= OnTriggerExit;
+        if (onTriggerControl != null)
+        {
+            onTriggerControl.onTriggerEnterCallback -= OnTriggerEnter;
+            onTriggerControl.onTriggerExitCallback -= OnTriggerExit;
+        }
     }
 }
