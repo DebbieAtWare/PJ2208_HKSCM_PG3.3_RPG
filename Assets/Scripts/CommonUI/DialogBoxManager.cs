@@ -177,9 +177,9 @@ public class DialogBoxManager : MonoBehaviour
         dialogBoxGrp.SetActive(true);
         normalGrpObj.SetActive(true);
         controlGrpObj.SetActive(false);
-        CancelInvoke("InvokeShowConfirmBtn");
-        confirmBtnControl.SetAlpha(0, 0);
-        Invoke("InvokeShowConfirmBtn", 1f);
+
+        //directly show the confirm btn ani
+        confirmBtnControl.SetAlpha(1, 0);
 
         if (!string.IsNullOrEmpty(dialogBox.ByWhom) && !string.IsNullOrWhiteSpace(dialogBox.ByWhom))
         {
@@ -305,11 +305,6 @@ public class DialogBoxManager : MonoBehaviour
         {
             HideSupportImg();
         }
-    }
-
-    void InvokeShowConfirmBtn()
-    {
-        confirmBtnControl.SetAlpha(1, 0);
     }
 
     void OnDialogLineEnd()

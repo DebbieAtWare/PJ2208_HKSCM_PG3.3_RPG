@@ -1761,10 +1761,10 @@ public class CommonUtils : MonoBehaviour
             int bossCard_InfoTCCol = 5;
             int bossCard_InfoSCCol = 6;
             int bossCard_InfoENCol = 7;
-            Debug.Log(book[3].Rows.Count);
+            //Debug.Log(book[3].Rows.Count);
             for (int i = 0; i < book[3].Rows.Count; i++)
             {
-                Debug.Log(i + "   " + book[3].Rows[i].Count);
+                //Debug.Log(i + "   " + book[3].Rows[i].Count);
                 if (book[3].Rows[i].Count > bossCard_InfoENCol)
                 {
                     if (GetSingleLineString(book[3].Rows[i][bossCard_IDCol].Text) == "M01" ||

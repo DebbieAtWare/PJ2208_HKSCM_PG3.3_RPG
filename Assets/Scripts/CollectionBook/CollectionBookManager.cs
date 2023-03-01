@@ -541,7 +541,7 @@ public class CollectionBookManager : MonoBehaviour
 
         //----
 
-        SoundManager.instance.Play_BGM(4);
+        SoundManager.instance.Play_BGM(4, 1);
         SoundManager.instance.Play_SFX(1);
         canvasGroup.DOFade(1f, 0.5f).OnComplete(() => currStage = CollectionBookStage.Main);
     }
@@ -872,11 +872,11 @@ public class CollectionBookManager : MonoBehaviour
     {
         if (commonUtils.currMapId == MapID.Carboniferous)
         {
-            SoundManager.instance.Play_BGM(2);
+            SoundManager.instance.Play_BGM(2, 1);
         }
         else if (commonUtils.currMapId == MapID.Permian)
         {
-            SoundManager.instance.Play_BGM(3);
+            SoundManager.instance.Play_BGM(3, 1);
         }
         canvasGroup.gameObject.SetActive(false);
         currStage = CollectionBookStage.None;

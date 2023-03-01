@@ -13,30 +13,6 @@ public class ConfirmButtonControl : MonoBehaviour
     public bool isAutoPlay = false;
     public bool isBlack = false;
 
-    int currIndex = 0;
-
-    //private void Start()
-    //{
-    //    PlayAni();
-    //    if (isAutoPlay)
-    //    {
-    //        canvasGroup.alpha = 1;
-    //    }
-    //    else
-    //    {
-    //        canvasGroup.alpha = 0;
-    //    }
-    //    if (isBlack)
-    //    {
-    //        for (int i = 0; i < imgs.Count; i++)
-    //        {
-    //            Color c;
-    //            ColorUtility.TryParseHtmlString("#141414", out c);
-    //            imgs[i].color = c;
-    //        }
-    //    }
-    //}
-
     private void OnEnable()
     {
         PlayAni();
@@ -61,15 +37,6 @@ public class ConfirmButtonControl : MonoBehaviour
 
     void PlayAni()
     {
-        //Sequence s1 = DOTween.Sequence();
-        //s1.Append(arrowRect.DOAnchorPos(new Vector2(0, -8), 1f).From(new Vector2(0, 0)));
-        //s1.AppendInterval(0.2f);
-        //s1.SetLoops(-1, LoopType.Yoyo);
-        //Sequence s2 = DOTween.Sequence();
-        //s2.Append(frontRect.DOAnchorPos(new Vector2(0, 0), 1f).From(new Vector2(0, 8)));
-        //s2.AppendInterval(0.2f);
-        //s2.SetLoops(-1, LoopType.Yoyo);
-
         StartCoroutine(Ani());
         IEnumerator Ani()
         {

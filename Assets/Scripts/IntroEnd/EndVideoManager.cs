@@ -260,7 +260,7 @@ public class EndVideoManager : MonoBehaviour
 
     IEnumerator Page1_Ani_Play()
     {
-        SoundManager.instance.Play_BGM(7);
+        SoundManager.instance.Play_BGM(7, 5);
         blackBkgRect.DOScale(new Vector3(1, 1, 1), 1f).SetEase(Ease.Linear);
         yield return new WaitForSeconds(0.7f);
         if (commonUtils.currMapId == MapID.Carboniferous)
@@ -294,9 +294,7 @@ public class EndVideoManager : MonoBehaviour
         page1_bossObj1.UnlockDirect();
         page1_bossObj2.UnlockDirect();
         page1_bossObj3.UnlockDirect();
-        CancelInvoke("InvokeShowConfirmBtn");
-        confirmBtnControl.SetAlpha(0, 0);
-        Invoke("InvokeShowConfirmBtn", 1f);
+        confirmBtnControl.SetAlpha(1, 0);
         yield return new WaitForSeconds(aniTime_Text_SlowIn);
         currStage = EndVideoStage.Page1_EndWaiting;
     }
@@ -338,8 +336,6 @@ public class EndVideoManager : MonoBehaviour
     {
         StopCoroutine(page1_Coroutine_Play);
         StopCoroutine(page1_Coroutine_FastIn);
-        CancelInvoke("InvokeShowConfirmBtn");
-        confirmBtnControl.SetAlpha(0, 0);
         if (commonUtils.currLang == Language.TC)
         {
             Vector2 textPosTarget_Up = new Vector2(page1_textRect_TC.rectTransform.anchoredPosition.x, page1_textRect_TC.preferredHeight);
@@ -376,9 +372,6 @@ public class EndVideoManager : MonoBehaviour
             page2_textRect_EN.rectTransform.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
         }
         page2_imgRect.DOAnchorPos(imgPosTarget_On, aniTime_Img_SlowIn).SetEase(Ease.Linear);
-        CancelInvoke("InvokeShowConfirmBtn");
-        confirmBtnControl.SetAlpha(0, 0);
-        Invoke("InvokeShowConfirmBtn", 1f);
         yield return new WaitForSeconds(aniTime_Text_SlowIn);
         currStage = EndVideoStage.Page2_EndWaiting;
     }
@@ -417,8 +410,6 @@ public class EndVideoManager : MonoBehaviour
     {
         StopCoroutine(page2_Coroutine_Play);
         StopCoroutine(page2_Coroutine_FastIn);
-        CancelInvoke("InvokeShowConfirmBtn");
-        confirmBtnControl.SetAlpha(0, 0);
         if (commonUtils.currLang == Language.TC)
         {
             Vector2 textPosTarget_Up = new Vector2(page2_textRect_TC.rectTransform.anchoredPosition.x, page2_textRect_TC.preferredHeight);
@@ -455,9 +446,6 @@ public class EndVideoManager : MonoBehaviour
             page3_textRect_EN.rectTransform.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
         }
         page3_imgRect.DOAnchorPos(imgPosTarget_On, aniTime_Img_SlowIn).SetEase(Ease.Linear);
-        CancelInvoke("InvokeShowConfirmBtn");
-        confirmBtnControl.SetAlpha(0, 0);
-        Invoke("InvokeShowConfirmBtn", 1f);
         yield return new WaitForSeconds(aniTime_Text_SlowIn);
         currStage = EndVideoStage.Page3_EndWaiting;
     }
@@ -496,8 +484,6 @@ public class EndVideoManager : MonoBehaviour
     {
         StopCoroutine(page3_Coroutine_Play);
         StopCoroutine(page3_Coroutine_FastIn);
-        CancelInvoke("InvokeShowConfirmBtn");
-        confirmBtnControl.SetAlpha(0, 0);
         if (commonUtils.currLang == Language.TC)
         {
             Vector2 textPosTarget_Up = new Vector2(page3_textRect_TC.rectTransform.anchoredPosition.x, page3_textRect_TC.preferredHeight);
@@ -534,9 +520,6 @@ public class EndVideoManager : MonoBehaviour
             page4_textRect_EN.rectTransform.DOAnchorPos(textPosTarget_On, aniTime_Text_SlowIn).SetEase(Ease.Linear);
         }
         page4_imgRect.DOAnchorPos(imgPosTarget_On, aniTime_Img_SlowIn).SetEase(Ease.Linear);
-        CancelInvoke("InvokeShowConfirmBtn");
-        confirmBtnControl.SetAlpha(0, 0);
-        Invoke("InvokeShowConfirmBtn", 1f);
         yield return new WaitForSeconds(aniTime_Text_SlowIn);
         currStage = EndVideoStage.Page4_EndWaiting;
     }
@@ -628,12 +611,6 @@ public class EndVideoManager : MonoBehaviour
         page4_textRect_EN.rectTransform.anchoredPosition = textPosTarget_Down;
         page4_imgRect.anchoredPosition = imgPosTarget_Off;
         page4_bossObj.ResetAll();
-        CancelInvoke("InvokeShowConfirmBtn");
-        confirmBtnControl.SetAlpha(0, 0);
-    }
-
-    void InvokeShowConfirmBtn()
-    {
         confirmBtnControl.SetAlpha(1, 0);
     }
 

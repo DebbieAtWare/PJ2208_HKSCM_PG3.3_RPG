@@ -268,6 +268,7 @@ public class TransitionManager : MonoBehaviour
         {
             GameManager.instance.fadingBetweenAreas = true;
             SoundManager.instance.Play_SFX(11);
+            SoundManager.instance.Play_BGM(4, 5);
             yield return new WaitForEndOfFrame();
             //screen cap current map and pixelate
             Texture2D tex = new Texture2D(Screen.width, Screen.height, TextureFormat.ARGB32, false);

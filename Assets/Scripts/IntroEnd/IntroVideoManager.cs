@@ -255,7 +255,7 @@ public class IntroVideoManager : MonoBehaviour
         {
             root.SetActive(true);
             currStage = IntroVideoStage.Transition_Start;
-            SoundManager.instance.Play_BGM(6);
+            SoundManager.instance.Play_BGM(6, 4);
             if (commonUtils.currLang == Language.TC)
             {
                 text_TC.alpha = 1;
@@ -408,6 +408,7 @@ public class IntroVideoManager : MonoBehaviour
         StartCoroutine(Ani());
         IEnumerator Ani()
         {
+            SoundManager.instance.Play_BGM(4, 5);
             currStage = IntroVideoStage.Transition_Page9To10;
             ClearDialog();
             yield return new WaitForEndOfFrame();
@@ -481,13 +482,6 @@ public class IntroVideoManager : MonoBehaviour
         {
             dialogWriterSingle = DialogWriter.AddWriter_Static(text_EN, dialogBox.Text_EN, 0.05f, true, OnDialogLineEnd);
         }
-        CancelInvoke("InvokeShowConfirmBtn");
-        confirmBtnControl.SetAlpha(0, 0);
-        Invoke("InvokeShowConfirmBtn", 1f);
-    }
-
-    void InvokeShowConfirmBtn()
-    {
         confirmBtnControl.SetAlpha(1, 0);
     }
 

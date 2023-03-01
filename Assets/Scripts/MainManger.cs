@@ -91,7 +91,7 @@ public class MainManger : MonoBehaviour
         introVideoManager.onVideoStartedCallback += IntroVideoManager_OnVideoStarted;
         introVideoManager.onVideoFinishedCallback += IntroVideoManager_OnVideoFinished;
 
-        SoundManager.instance.Play_BGM(0);
+        SoundManager.instance.Play_BGM(0, 1);
 
         homeControl.SetAlpha(1, 0);
         homeControl.PlayBkg();
@@ -369,27 +369,6 @@ public class MainManger : MonoBehaviour
                                 afterEndAtLab_Restart_RootObj.SetActive(true);
                             }
                         }
-
-                        //if (afterEndAtLab_CurrDialogIndex == commonUtils.endCheck_AfterEndingVideos.Count - 1)
-                        //{
-                        //    if (afterEndAtLab_CurrArrowIndex == 0)
-                        //    {
-                        //        currStage = MainStage.EndLab_CollectionBookUpdate;
-                        //        DialogBoxManager.instance.HideDialog();
-                        //        CollectionBookManager.instance.Show_Main();
-                        //    }
-                        //    else
-                        //    {
-                        //        //restart game double confirm popup
-                        //        currStage = MainStage.EndLab_Restart;
-                        //        afterEndAtLab_Restart_RootObj.SetActive(true);
-                        //    }
-                        //}
-                        //else
-                        //{
-                        //    afterEndAtLab_CurrDialogIndex++;
-                        //    DialogBoxManager.instance.ShowDialog(commonUtils.endCheck_AfterEndingVideos[afterEndAtLab_CurrDialogIndex]);
-                        //}
                     }
                 }
                 else if (currStage == MainStage.EndLab_Restart)
@@ -530,7 +509,6 @@ public class MainManger : MonoBehaviour
         IEnumerator Ani()
         {
             currStage = MainStage.StartLab;
-            SoundManager.instance.Play_BGM(4);
             OptionManager.instance.SetActive(true);
             yield return new WaitForSeconds(1f);
             DroneController.instance.canShowTalkHint = true;
@@ -548,7 +526,7 @@ public class MainManger : MonoBehaviour
     public void ChangeStage_EndLab()
     {
         currStage = MainStage.EndLab_CollectionBookTrigger;
-        SoundManager.instance.Play_BGM(4);
+        SoundManager.instance.Play_BGM(4, 5);
         afterEndAtLab_CurrDialogIndex++;
         DialogBoxManager.instance.ShowDialog(commonUtils.endCheck_AfterEndingVideos[afterEndAtLab_CurrDialogIndex]);
         OptionManager.instance.SetActive(true);

@@ -86,7 +86,7 @@ public class PermianManager : MonoBehaviour
         StatusBarManager.instance.Hide_Carbon(0f);
         StatusBarManager.instance.Show_Permian(0.5f);
 
-        SoundManager.instance.Play_BGM(3);
+        SoundManager.instance.Play_BGM(3, 1);
 
         firstGreetingDialogIndex = -1;
     }
@@ -153,7 +153,7 @@ public class PermianManager : MonoBehaviour
             }
             else
             {
-                SoundManager.instance.Play_BGM(3);
+                SoundManager.instance.Play_BGM(3, 1);
                 MinimapManager.instance.Show(0.5f);
                 StatusBarManager.instance.Show_Permian(0.5f);
                 InputManager.instance.canInput_Confirm = true;
@@ -181,7 +181,7 @@ public class PermianManager : MonoBehaviour
             }
             else
             {
-                SoundManager.instance.Play_BGM(3);
+                SoundManager.instance.Play_BGM(3, 1);
                 MinimapManager.instance.Show(0.5f);
                 StatusBarManager.instance.Show_Permian(0.5f);
                 InputManager.instance.canInput_Confirm = true;
@@ -197,7 +197,7 @@ public class PermianManager : MonoBehaviour
         IEnumerator Ani()
         {
             SoundManager.instance.FadeOutStop_SFX(0.5f);
-            SoundManager.instance.Play_BGM(3);
+            SoundManager.instance.Play_BGM(3, 1);
             CollectionBookManager.instance.Hide_Succuss(0.5f);
             MinimapManager.instance.Show(0.5f);
             StatusBarManager.instance.Show_Permian(0.5f);
@@ -216,7 +216,7 @@ public class PermianManager : MonoBehaviour
         IEnumerator Ani()
         {
             SoundManager.instance.FadeOutStop_SFX(0.5f);
-            SoundManager.instance.Play_BGM(3);
+            SoundManager.instance.Play_BGM(3, 1);
             CollectionBookManager.instance.Hide_Succuss(0.5f);
             MinimapManager.instance.Show(0.5f);
             StatusBarManager.instance.Show_Permian(0.5f);

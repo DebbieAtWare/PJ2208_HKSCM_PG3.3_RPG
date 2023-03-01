@@ -44,7 +44,7 @@ public class SoundManager : MonoBehaviour
 
     //---------
 
-    public void Play_BGM(int index)
+    public void Play_BGM(int index, float fadeDuration)
     {
         if (index < clips_BGM.Count)
         {
@@ -53,22 +53,22 @@ public class SoundManager : MonoBehaviour
                 currSourcIndex_BGM = 0;
                 audioSources_BGM[currSourcIndex_BGM].clip = clips_BGM[index];
                 audioSources_BGM[currSourcIndex_BGM].Play();
-                audioSources_BGM[currSourcIndex_BGM].DOFade(1f, 1f);
+                audioSources_BGM[currSourcIndex_BGM].DOFade(1f, fadeDuration);
             }
             else if (currSourcIndex_BGM == 0)
             {
-                audioSources_BGM[0].DOFade(0f, 1f).OnComplete(() => audioSources_BGM[0].Stop());
+                audioSources_BGM[0].DOFade(0f, fadeDuration).OnComplete(() => audioSources_BGM[0].Stop());
                 audioSources_BGM[1].clip = clips_BGM[index];
                 audioSources_BGM[1].Play();
-                audioSources_BGM[1].DOFade(1f, 1f);
+                audioSources_BGM[1].DOFade(1f, fadeDuration);
                 currSourcIndex_BGM = 1;
             }
             else if (currSourcIndex_BGM == 1)
             {
-                audioSources_BGM[1].DOFade(0f, 1f).OnComplete(() => audioSources_BGM[1].Stop());
+                audioSources_BGM[1].DOFade(0f, fadeDuration).OnComplete(() => audioSources_BGM[1].Stop());
                 audioSources_BGM[0].clip = clips_BGM[index];
                 audioSources_BGM[0].Play();
-                audioSources_BGM[0].DOFade(1f, 1f);
+                audioSources_BGM[0].DOFade(1f, fadeDuration);
                 currSourcIndex_BGM = 0;
             }
         }

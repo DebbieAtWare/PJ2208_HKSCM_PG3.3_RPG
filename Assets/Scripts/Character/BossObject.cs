@@ -157,7 +157,7 @@ public class BossObject : MonoBehaviour
                     {
                         GameManager.instance.dialogActive = true;
                         currBossStage = BossStage.Transition_ConversationStart;
-                        SoundManager.instance.Play_BGM(1);
+                        SoundManager.instance.Play_BGM(1, 1);
                         ViewBoxManager.instance.HideViewBox_NPC();
                         SoundManager.instance.Play_Input(2);
                         MinimapManager.instance.Hide(0.5f);
@@ -300,7 +300,7 @@ public class BossObject : MonoBehaviour
                 GameManager.instance.dialogActive = true;
                 DroneController.instance.canShowTalkHint = false;
                 DroneController.instance.HideTalkHint();
-                SoundManager.instance.Play_BGM(5);
+                SoundManager.instance.Play_BGM(5, 1);
                 yield return new WaitForSeconds(0.5f);
                 DialogBoxManager.instance.ShowDialog(dialogBox_Alert);
                 currBossStage = BossStage.Alert;
