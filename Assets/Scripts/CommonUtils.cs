@@ -1964,7 +1964,18 @@ public class CommonUtils : MonoBehaviour
             ChangeLanguage(Language.EN);
         }
 
-
+        if (Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            bosses[0].IsSuccessCollectDone = true;
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            bosses[1].IsSuccessCollectDone = true;
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            bosses[2].IsSuccessCollectDone = true;
+        }
     }
 }
 

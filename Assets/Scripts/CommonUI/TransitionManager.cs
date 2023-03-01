@@ -287,8 +287,8 @@ public class TransitionManager : MonoBehaviour
             SceneManager.LoadScene("MainScene");
             commonUtils.currMapId = MapID.Lab;
             PlayerController.instance.SetDirection(PlayerDirection.Down);
-            PlayerController.instance.transform.position = new Vector3(-1.6f, 0f, 0f);
-            DroneController.instance.ChangePos(new Vector3(0.8f, -0.8f, 0f));
+            PlayerController.instance.transform.position = new Vector3(-0.96f, 0f, 0f);
+            DroneController.instance.ChangePos(new Vector3(0.68f, -0.49f, 0f));
             MinimapManager.instance.Hide(0);
             StatusBarManager.instance.Hide_Carbon(0);
             StatusBarManager.instance.Hide_Permian(0);
