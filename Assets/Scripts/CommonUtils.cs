@@ -135,17 +135,27 @@ public class CommonUtils : MonoBehaviour
     [Header("ConfigData - Boss card")]
     public List<ConfigData_BossCard> bossCards = new List<ConfigData_BossCard>();
 
+    [Header("Json")]
+    public ConfigData data;
+
     [Header("Curr")]
     public MapID currMapId;
     public Language currLang;
     public EndingCheckStage currEndingCheck;
     public bool isAtHomePage;
-
-    InputManager inputManager;
-    EndVideoManager endVideoManager;
+    public bool isSetupExcelDone = false;
+    public bool isSetupJsonDone = false;
 
     //for CMS excel
     public delegate void DownloadHandler(byte[] bytes);
+
+    //local config json
+    string localJsonPath = Application.streamingAssetsPath + "/Config.json";
+    string jsonString;
+    
+
+    InputManager inputManager;
+    EndVideoManager endVideoManager;
 
     //for share in multiple scenes
     void Awake()
@@ -177,6 +187,7 @@ public class CommonUtils : MonoBehaviour
         currEndingCheck = EndingCheckStage.None;
 
         LoadCMSExcel();
+        LoadLocalJson();
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
@@ -1803,11 +1814,16 @@ public class CommonUtils : MonoBehaviour
             }
             #endregion
 
+            isSetupExcelDone = true;
 
-            if (onSetupDoneCallback != null)
+            if (isSetupExcelDone && isSetupJsonDone)
             {
-                onSetupDoneCallback.Invoke();
+                if (onSetupDoneCallback != null)
+                {
+                    onSetupDoneCallback.Invoke();
+                }
             }
+   
         }));
 
 
@@ -1844,6 +1860,35 @@ public class CommonUtils : MonoBehaviour
             return tex;
         }
     }
+
+
+    //-----
+
+    void LoadLocalJson()
+    {
+        if (File.Exists(localJsonPath))
+        {
+            jsonString = File.ReadAllText(localJsonPath);
+            data = JsonUtility.FromJson<ConfigData>(jsonString);
+            if (data != null)
+            {
+                isSetupJsonDone = true;
+                if (isSetupExcelDone && isSetupJsonDone)
+                {
+                    if (onSetupDoneCallback != null)
+                    {
+                        onSetupDoneCallback.Invoke();
+                    }
+                }
+            }
+        }
+        else
+        {
+            Debug.Log("Config.json not exists");
+        }
+    }
+
+    //-----
 
     public void EndingCheck()
     {
@@ -1919,6 +1964,14 @@ public class CommonUtils : MonoBehaviour
             ChangeLanguage(Language.EN);
         }
     }
+}
+
+[Serializable]
+public class ConfigData
+{
+    public float DialogBox_TimePerCharacter_TC;
+    public float DialogBox_TimePerCharacter_SC;
+    public float DialogBox_TimePerCharacter_EN;
 }
 
 [Serializable]

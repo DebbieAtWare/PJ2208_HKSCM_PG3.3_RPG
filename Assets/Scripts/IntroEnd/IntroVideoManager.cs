@@ -408,7 +408,7 @@ public class IntroVideoManager : MonoBehaviour
         StartCoroutine(Ani());
         IEnumerator Ani()
         {
-            SoundManager.instance.Play_BGM(4, 5);
+            SoundManager.instance.Play_BGM(4, 4);
             currStage = IntroVideoStage.Transition_Page9To10;
             ClearDialog();
             yield return new WaitForEndOfFrame();
@@ -472,15 +472,15 @@ public class IntroVideoManager : MonoBehaviour
     {
         if (commonUtils.currLang == Language.TC)
         {
-            dialogWriterSingle = DialogWriter.AddWriter_Static(text_TC, dialogBox.Text_TC, 0.05f, true, OnDialogLineEnd);
+            dialogWriterSingle = DialogWriter.AddWriter_Static(text_TC, dialogBox.Text_TC, commonUtils.data.DialogBox_TimePerCharacter_TC, true, OnDialogLineEnd);
         }
         else if(commonUtils.currLang == Language.SC)
         {
-            dialogWriterSingle = DialogWriter.AddWriter_Static(text_SC, dialogBox.Text_SC, 0.05f, true, OnDialogLineEnd);
+            dialogWriterSingle = DialogWriter.AddWriter_Static(text_SC, dialogBox.Text_SC, commonUtils.data.DialogBox_TimePerCharacter_SC, true, OnDialogLineEnd);
         }
         else if (commonUtils.currLang == Language.EN)
         {
-            dialogWriterSingle = DialogWriter.AddWriter_Static(text_EN, dialogBox.Text_EN, 0.05f, true, OnDialogLineEnd);
+            dialogWriterSingle = DialogWriter.AddWriter_Static(text_EN, dialogBox.Text_EN, commonUtils.data.DialogBox_TimePerCharacter_EN, true, OnDialogLineEnd);
         }
         confirmBtnControl.SetAlpha(1, 0);
     }

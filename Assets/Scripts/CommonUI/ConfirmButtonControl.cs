@@ -12,6 +12,7 @@ public class ConfirmButtonControl : MonoBehaviour
     public List<Image> imgs = new List<Image>();
     public bool isAutoPlay = false;
     public bool isBlack = false;
+    public bool isHideTopTriangle = false;
 
     private void OnEnable()
     {
@@ -32,6 +33,10 @@ public class ConfirmButtonControl : MonoBehaviour
                 ColorUtility.TryParseHtmlString("#141414", out c);
                 imgs[i].color = c;
             }
+        }
+        if (isHideTopTriangle)
+        {
+            arrowRect.gameObject.SetActive(false);
         }
     }
 

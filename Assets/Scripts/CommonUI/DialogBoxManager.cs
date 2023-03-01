@@ -204,7 +204,7 @@ public class DialogBoxManager : MonoBehaviour
         if (commonUtils.currLang == Language.TC)
         {
             text_TC.text = "";
-            dialogWriterSingle = DialogWriter.AddWriter_Static(text_TC, dialogBox.Text_TC, 0.05f, true, OnDialogLineEnd);
+            dialogWriterSingle = DialogWriter.AddWriter_Static(text_TC, dialogBox.Text_TC, commonUtils.data.DialogBox_TimePerCharacter_TC, true, OnDialogLineEnd);
             text_SC.text = dialogBox.Text_SC;
             text_EN.text = dialogBox.Text_EN;
         }
@@ -212,7 +212,7 @@ public class DialogBoxManager : MonoBehaviour
         {
             text_TC.text = dialogBox.Text_TC;
             text_SC.text = "";
-            dialogWriterSingle = DialogWriter.AddWriter_Static(text_SC, dialogBox.Text_SC, 0.05f, true, OnDialogLineEnd);
+            dialogWriterSingle = DialogWriter.AddWriter_Static(text_SC, dialogBox.Text_SC, commonUtils.data.DialogBox_TimePerCharacter_SC, true, OnDialogLineEnd);
             text_EN.text = dialogBox.Text_EN;
         }
         else if (commonUtils.currLang == Language.EN)
@@ -220,7 +220,7 @@ public class DialogBoxManager : MonoBehaviour
             text_TC.text = dialogBox.Text_TC;
             text_SC.text = dialogBox.Text_SC;
             text_EN.text = "";
-            dialogWriterSingle = DialogWriter.AddWriter_Static(text_EN, dialogBox.Text_EN, 0.05f, true, OnDialogLineEnd);
+            dialogWriterSingle = DialogWriter.AddWriter_Static(text_EN, dialogBox.Text_EN, commonUtils.data.DialogBox_TimePerCharacter_EN, true, OnDialogLineEnd);
         }
 
         //option
