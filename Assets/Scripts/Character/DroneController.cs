@@ -322,6 +322,7 @@ public class DroneController : MonoBehaviour
                 }
                 else if (currDroneStage == DroneStage.Main_Question)
                 {
+                    SoundManager.instance.Play_Input(2);
                     if (DialogBoxManager.instance.dialogWriterSingle != null && DialogBoxManager.instance.dialogWriterSingle.IsActive())
                     {
                         DialogBoxManager.instance.FinishCurrentDialog();
@@ -391,6 +392,7 @@ public class DroneController : MonoBehaviour
                 }
                 else if (currDroneStage == DroneStage.CollectionBook_Question)
                 {
+                    SoundManager.instance.Play_Input(2);
                     if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
                     {
                         DialogBoxManager.instance.FinishCurrentDialog();
@@ -425,6 +427,7 @@ public class DroneController : MonoBehaviour
                 }
                 else if (currDroneStage == DroneStage.ChangeMap_Question)
                 {
+                    SoundManager.instance.Play_Input(2);
                     if (DialogBoxManager.instance.dialogWriterSingle.IsActive())
                     {
                         DialogBoxManager.instance.FinishCurrentDialog();

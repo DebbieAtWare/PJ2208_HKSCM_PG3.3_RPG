@@ -802,6 +802,14 @@
       <Project>{AA0F1F9B-3B35-FA24-701F-0D8D6E5D26A3}</Project>
       <Name>AllIn1SpriteShaderAssembly</Name>
     </ProjectReference>
+    <ProjectReference Include="Tayx.Graphy.Editor.csproj">
+      <Project>{6B6E5783-F06F-570D-9F3F-72733AA46CB1}</Project>
+      <Name>Tayx.Graphy.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Tayx.Graphy.csproj">
+      <Project>{EAF7ABB9-4B6A-3D11-DA49-088213563123}</Project>
+      <Name>Tayx.Graphy</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

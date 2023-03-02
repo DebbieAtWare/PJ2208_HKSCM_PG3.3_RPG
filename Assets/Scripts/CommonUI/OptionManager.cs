@@ -151,21 +151,24 @@ public class OptionManager : MonoBehaviour
                 MainManger.instance.currStage == MainStage.EndLab_CollectionBookUpdate || 
                 MainManger.instance.currStage == MainStage.EndLab_Restart)
             {
-                if (currStage == OptionStage.None)
+                if (CollectionBookManager.instance.currStage != CollectionBookStage.Success)
                 {
-                    SoundManager.instance.Play_SFX(12);
-                    //save a record when option is not yet open
-                    DroneController.instance.HideTalkHint();
-                    canDroneShowTalkHint = DroneController.instance.canShowTalkHint;
-                    DroneController.instance.canShowTalkHint = false;
-                    isPreviouDialogActive = GameManager.instance.dialogActive;
-                    GameManager.instance.dialogActive = true;
-                    ChangeControl_Main();
-                }
-                else
-                {
-                    SoundManager.instance.Play_Input(1);
-                    Close_ResetAll();
+                    if (currStage == OptionStage.None)
+                    {
+                        SoundManager.instance.Play_SFX(12);
+                        //save a record when option is not yet open
+                        DroneController.instance.HideTalkHint();
+                        canDroneShowTalkHint = DroneController.instance.canShowTalkHint;
+                        DroneController.instance.canShowTalkHint = false;
+                        isPreviouDialogActive = GameManager.instance.dialogActive;
+                        GameManager.instance.dialogActive = true;
+                        ChangeControl_Main();
+                    }
+                    else
+                    {
+                        SoundManager.instance.Play_Input(1);
+                        Close_ResetAll();
+                    }
                 }
             }
 

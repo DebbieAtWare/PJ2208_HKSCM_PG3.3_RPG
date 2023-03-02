@@ -128,6 +128,7 @@ public class BossObject : MonoBehaviour
                         IEnumerator Alert()
                         {
                             SoundManager.instance.FadeOutStop_Dialog(0.3f);
+                            SoundManager.instance.FadeOutStop_Dialog_Drone(0.3f);
                             SoundManager.instance.Play_Input(2);
                             //M01 林蜥屬 no need play "Boss2_Transition"
                             //caz it will play "Boss3_cave_Jump Down"

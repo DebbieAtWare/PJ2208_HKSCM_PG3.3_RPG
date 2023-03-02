@@ -241,6 +241,7 @@
      <None Include="Assets\Coffee\UIExtensions\UIEffect\ForTMPro\Shaders\TMP_SDF-Mobile (UITransition).shader" />
      <None Include="Assets\Coffee\UIExtensions\UIEffect\Shaders\UI-Effect-Dissolve.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+     <None Include="Assets\Graphy - Ultimate Stats Monitor\Changelog.txt" />
      <None Include="Assets\Coffee\UIExtensions\UIEffect\ForTMPro\Shaders\TMP_Sprite (UIDissolve).shader" />
      <None Include="Assets\2D RPG Kit\Touch Support\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
@@ -253,8 +254,10 @@
      <None Include="Assets\Coffee\UIExtensions\UIEffect\Shaders\UI-Effect-Transition.shader" />
      <None Include="Assets\Coffee\UIExtensions\UIEffect\ForTMPro\Shaders\TMP_Sprite (UIShiny).shader" />
      <None Include="Assets\Coffee\UIExtensions\UIEffect\ForTMPro\Shaders\TMP_Sprite (UIEffect).shader" />
+     <None Include="Assets\Graphy - Ultimate Stats Monitor\Shaders\GraphMobile.shader" />
      <None Include="Assets\Coffee\UIExtensions\UIEffect\ForTMPro\Shaders\UI-Effect-TMPro.cginc" />
      <None Include="Assets\Coffee\UIExtensions\UIEffect\ForTMPro\Shaders\TMP_SDF-Mobile (UIHsvModifier).shader" />
+     <None Include="Assets\Graphy - Ultimate Stats Monitor\Font\Northwest-Bold\ERIC-TIRADO-NORTHWEST-LICENSE.txt" />
      <None Include="Assets\FlexReader\Demo\readme.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
      <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
@@ -276,7 +279,9 @@
      <None Include="Assets\Coffee\UIExtensions\UIEffect\ForTMPro\Shaders\TMP_Sprite (UITransition).shader" />
      <None Include="Assets\Coffee\UIExtensions\UIEffect\ForTMPro\Shaders\TMP_SDF (UITransition).shader" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+     <None Include="Assets\Graphy - Ultimate Stats Monitor\Font\Roboto\LICENSE.txt" />
      <None Include="Assets\Coffee\UIExtensions\UIEffect\ForTMPro\Shaders\TMP_Sprite (UIHsvModifier).shader" />
+     <None Include="Assets\Graphy - Ultimate Stats Monitor\Shaders\GraphStandard.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
      <None Include="Assets\Coffee\UIExtensions\UIEffect\Shaders\UI-Effect-Sprite.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
@@ -974,6 +979,14 @@
     <ProjectReference Include="AllIn1SpriteShaderAssembly.csproj">
       <Project>{AA0F1F9B-3B35-FA24-701F-0D8D6E5D26A3}</Project>
       <Name>AllIn1SpriteShaderAssembly</Name>
+    </ProjectReference>
+    <ProjectReference Include="Tayx.Graphy.Editor.csproj">
+      <Project>{6B6E5783-F06F-570D-9F3F-72733AA46CB1}</Project>
+      <Name>Tayx.Graphy.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Tayx.Graphy.csproj">
+      <Project>{EAF7ABB9-4B6A-3D11-DA49-088213563123}</Project>
+      <Name>Tayx.Graphy</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

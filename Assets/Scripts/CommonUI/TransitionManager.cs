@@ -62,6 +62,7 @@ public class TransitionManager : MonoBehaviour
     {
         InputManager.instance.canInput_Confirm = false;
         SoundManager.instance.FadeOutStop_Dialog(0.3f);
+        SoundManager.instance.FadeOutStop_Dialog_Drone(0.3f);
         SoundManager.instance.Play_SFX(11);
         rootObj.SetActive(true);
         StartCoroutine(ChangeMap());
