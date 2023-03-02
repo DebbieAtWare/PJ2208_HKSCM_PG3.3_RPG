@@ -8,6 +8,7 @@ public enum BossStage
 {
     None,
     Alert,
+    AlertDone,
     AutoPlay,
     View,
     Transition_ConversationStart,
@@ -124,6 +125,7 @@ public class BossObject : MonoBehaviour
                     }
                     else
                     {
+                        currBossStage = BossStage.AlertDone;
                         StartCoroutine(Alert());
                         IEnumerator Alert()
                         {
