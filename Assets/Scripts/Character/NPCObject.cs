@@ -17,6 +17,9 @@ public class NPCObject : MonoBehaviour
     [Header("Id")]
     public CharacterID id;
 
+    [Header("Support Img")]
+    public bool isSupportImgPutLeft;
+
     [Header("Sprite")]
     public Sprite dialogBoxProfileSprite;
 
@@ -126,7 +129,7 @@ public class NPCObject : MonoBehaviour
                         {
                             currStage = NPCStage.Dialog;
                             currDialogLine++;
-                            DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
+                            DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine], isSupportImgPutLeft);
                         }
                     }
                 }
@@ -135,7 +138,7 @@ public class NPCObject : MonoBehaviour
                     SoundManager.instance.Play_Input(2);
                     currStage = NPCStage.Dialog;
                     currDialogLine++;
-                    DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
+                    DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine], isSupportImgPutLeft);
                 }
                 else if (currStage == NPCStage.Dialog)
                 {
@@ -173,7 +176,7 @@ public class NPCObject : MonoBehaviour
                         else
                         {
                             currDialogLine++;
-                            DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine]);
+                            DialogBoxManager.instance.ShowDialog(info.DialogBoxes[currDialogLine], isSupportImgPutLeft);
                             if (id == CharacterID.NPC_P09 || id == CharacterID.NPC_P10)
                             {
                                 DialogBoxManager.instance.ShowZoomImg(id, 0.5f);

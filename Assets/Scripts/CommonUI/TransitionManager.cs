@@ -198,9 +198,13 @@ public class TransitionManager : MonoBehaviour
     public void ChangeToInsideTreeCave()
     {
         SoundManager.instance.Play_SFX(6);
-        StartCoroutine(ChangeToTreeCave());
+        if (!GameManager.instance.fadingBetweenAreas)
+        {
+            StartCoroutine(ChangeToTreeCave());
+        }
         IEnumerator ChangeToTreeCave()
         {
+            Debug.Log("ChangeToTreeCave");
             GameManager.instance.fadingBetweenAreas = true;
             yield return new WaitForEndOfFrame();
             //screen cap current map and pixelate

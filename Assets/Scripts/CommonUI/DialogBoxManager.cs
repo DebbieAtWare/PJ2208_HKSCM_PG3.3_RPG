@@ -14,8 +14,11 @@ public class DialogBoxManager : MonoBehaviour
     public GameObject dialogBoxGrp;
     public Image profilePic;
     public CanvasGroup supportImgCanvasGrp;
+    public RectTransform supportImgRect;
     public RawImage supportImg;
     public ConfirmButtonControl confirmBtnControl;
+    Vector2 supportImgPosTarget_L = new Vector2(-522, 73);
+    Vector2 supportImgPosTarget_R = new Vector2(522, 73);
 
     [Header("NormapGrp")]
     public GameObject normalGrpObj; 
@@ -172,7 +175,7 @@ public class DialogBoxManager : MonoBehaviour
         dialogWriterSingle.WriteAllAndDestroy();
     }
 
-    public void ShowDialog(ConfigData_DialogBox dialogBox)
+    public void ShowDialog(ConfigData_DialogBox dialogBox, bool supportImgIsPutLeft = true)
     {
         dialogBoxGrp.SetActive(true);
         normalGrpObj.SetActive(true);
@@ -299,7 +302,7 @@ public class DialogBoxManager : MonoBehaviour
         //support img
         if (!String.IsNullOrEmpty(dialogBox.ImagePath) && !string.IsNullOrEmpty(dialogBox.ImagePath))
         {
-            ShowSupportImg(dialogBox.ImageTexture);
+            ShowSupportImg(dialogBox.ImageTexture, supportImgIsPutLeft);
         }
         else
         {
@@ -468,8 +471,16 @@ public class DialogBoxManager : MonoBehaviour
 
     //------
 
-    public void ShowSupportImg(Texture2D texture)
+    public void ShowSupportImg(Texture2D texture, bool isPutOnLeft)
     {
+        if (isPutOnLeft)
+        {
+            supportImgRect.anchoredPosition = supportImgPosTarget_L;
+        }
+        else
+        {
+            supportImgRect.anchoredPosition = supportImgPosTarget_R;
+        }
         supportImgCanvasGrp.gameObject.SetActive(true);
         //tmp only load from resouces folder
         //Texture2D texture = Resources.Load<Texture2D>(imgPath);
