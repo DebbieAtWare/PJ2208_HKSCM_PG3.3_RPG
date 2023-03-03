@@ -665,6 +665,7 @@ public class CollectionBookManager : MonoBehaviour
     public void Show_Success(ConfigData_Text successText, ConfigData_Character character, float aniTime)
     {
         currStage = CollectionBookStage.Success;
+        OptionManager.instance.SetActive(false);
         canvasGroup.gameObject.SetActive(true);
         main_RootObj.SetActive(false);
         detail_RootObj.SetActive(false);

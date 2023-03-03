@@ -12,7 +12,10 @@ public class Boss01Manager : MonoBehaviour
     public BossObject bossObj;
 
     CommonUtils commonUtils;
+    InputManager inputManager;
+
     int currUtilsIndex;
+    bool isShowingSuccessCollect = false;
 
     void Awake()
     {
@@ -37,6 +40,9 @@ public class Boss01Manager : MonoBehaviour
             }
         }
 
+        inputManager = InputManager.instance;
+        inputManager.onValueChanged_ConfirmCallback += InputManager_OnValueChanged_Confirm;
+
         bossObj.onFinishedConversationCallback += OnFinishedConversation;
         bossObj.Setup(commonUtils.dialogBox_BossAlert, commonUtils.bosses[currUtilsIndex], false, commonUtils.bosses[currUtilsIndex].IsFirstMeetDone, false);
 
@@ -56,6 +62,17 @@ public class Boss01Manager : MonoBehaviour
         }
     }
 
+    private void InputManager_OnValueChanged_Confirm()
+    {
+        if (!TimeoutManager.instance.isTimeoutUIActive)
+        {
+            if (isShowingSuccessCollect)
+            {
+                CloseSuccessCollect();
+            }
+        }
+    }
+
     private void OnFinishedConversation()
     {
         InputManager.instance.canInput_Confirm = false;
@@ -63,10 +80,18 @@ public class Boss01Manager : MonoBehaviour
         bossObj.canShowAlert = false;
         if (!commonUtils.bosses[currUtilsIndex].IsSuccessCollectDone)
         {
-            SoundManager.instance.Play_SFX(9);
-            GameManager.instance.dialogActive = true;
-            CollectionBookManager.instance.Show_Success(commonUtils.successCollectText, commonUtils.bosses[currUtilsIndex], 0.5f);
-            Invoke("CloseSuccessCollect", 5f);
+            StartCoroutine(Ani());
+            IEnumerator Ani()
+            {
+                SoundManager.instance.Play_SFX(9);
+                GameManager.instance.dialogActive = true;
+                CollectionBookManager.instance.Show_Success(commonUtils.successCollectText, commonUtils.bosses[currUtilsIndex], 0.5f);
+                yield return new WaitForSeconds(5f);
+                //wait 5 sec and show confirm btn ani and user need to press the close success collect
+                CollectionBookManager.instance.confirmBtnRect_Common.gameObject.SetActive(true);
+                isShowingSuccessCollect = true;
+                InputManager.instance.canInput_Confirm = true;
+            }
         }
         else
         {
@@ -81,6 +106,7 @@ public class Boss01Manager : MonoBehaviour
         CollectionBookManager.instance.Hide_Succuss(0.5f);
         StatusBarManager.instance.Show_Carbon(0.5f);
         StatusBarManager.instance.BadgeAni_Carbon(0.5f);
+        OptionManager.instance.SetActive(true);
         commonUtils.bosses[currUtilsIndex].IsSuccessCollectDone = true;
         Invoke("TeleportControl", 3.5f);
     }
@@ -94,6 +120,7 @@ public class Boss01Manager : MonoBehaviour
     private void OnDestroy()
     {
         bossObj.onFinishedConversationCallback -= OnFinishedConversation;
+        inputManager.onValueChanged_ConfirmCallback -= InputManager_OnValueChanged_Confirm;
     }
 
 }
