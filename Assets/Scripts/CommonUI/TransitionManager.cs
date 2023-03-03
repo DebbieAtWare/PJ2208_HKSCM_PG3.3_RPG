@@ -297,6 +297,8 @@ public class TransitionManager : MonoBehaviour
             commonUtils.currMapId = MapID.Lab;
             PlayerController.instance.SetDirection(PlayerDirection.Down);
             PlayerController.instance.transform.position = new Vector3(-0.96f, 0f, 0f);
+            DroneController.instance.canShowTalkHint = false;
+            DroneController.instance.HideTalkHint();
             DroneController.instance.ChangePos(new Vector3(0.68f, -0.49f, 0f));
             MinimapManager.instance.Hide(0);
             StatusBarManager.instance.Hide_Carbon(0);

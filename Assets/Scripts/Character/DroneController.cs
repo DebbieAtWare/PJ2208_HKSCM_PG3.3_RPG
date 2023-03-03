@@ -67,7 +67,7 @@ public class DroneController : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    void Start()
+    public void Setup()
     {
         commonUtils = CommonUtils.instance;
 

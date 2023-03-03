@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AllIn1SpriteShaderAssembly", "AllIn1SpriteShaderAssembly.csproj", "{AA0F1F9B-3B35-FA24-701F-0D8D6E5D26A3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-firstpass", "Assembly-CSharp-firstpass.csproj", "{8B491F33-0696-1E05-44A8-DC58BE58737F}"
@@ -13,13 +13,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tayx.Graphy", "Tayx.Graphy.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FullscreenEditor", "FullscreenEditor.csproj", "{3CD585B1-A708-CB94-7418-57D1AC0955B4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tayx.Graphy.Editor", "Tayx.Graphy.Editor.csproj", "{6B6E5783-F06F-570D-9F3F-72733AA46CB1}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{3CF0006F-3A2D-839C-DBD2-0B16FE923C72}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IngameDebugConsole.Editor", "IngameDebugConsole.Editor.csproj", "{4D3991F4-ABCF-4754-9CB2-6FC6171F65C3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor-firstpass", "Assembly-CSharp-Editor-firstpass.csproj", "{DB0E4E3A-D566-457B-BF00-F412A1635C01}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tayx.Graphy.Editor", "Tayx.Graphy.Editor.csproj", "{6B6E5783-F06F-570D-9F3F-72733AA46CB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +51,10 @@ Global
 		{3CD585B1-A708-CB94-7418-57D1AC0955B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CD585B1-A708-CB94-7418-57D1AC0955B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CD585B1-A708-CB94-7418-57D1AC0955B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B6E5783-F06F-570D-9F3F-72733AA46CB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B6E5783-F06F-570D-9F3F-72733AA46CB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B6E5783-F06F-570D-9F3F-72733AA46CB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B6E5783-F06F-570D-9F3F-72733AA46CB1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3CF0006F-3A2D-839C-DBD2-0B16FE923C72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3CF0006F-3A2D-839C-DBD2-0B16FE923C72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CF0006F-3A2D-839C-DBD2-0B16FE923C72}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -63,10 +67,6 @@ Global
 		{DB0E4E3A-D566-457B-BF00-F412A1635C01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB0E4E3A-D566-457B-BF00-F412A1635C01}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB0E4E3A-D566-457B-BF00-F412A1635C01}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6B6E5783-F06F-570D-9F3F-72733AA46CB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6B6E5783-F06F-570D-9F3F-72733AA46CB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6B6E5783-F06F-570D-9F3F-72733AA46CB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6B6E5783-F06F-570D-9F3F-72733AA46CB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

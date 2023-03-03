@@ -414,6 +414,7 @@ public class MainManger : MonoBehaviour
     {
         GameManager.instance.dialogActive = true;
 
+        DroneController.instance.Setup();
         StatusBarManager.instance.Setup();
         CollectionBookManager.instance.Setup();
         OptionManager.instance.Setup();

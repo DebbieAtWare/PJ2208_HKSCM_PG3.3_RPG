@@ -285,6 +285,7 @@ public class CommonUtils : MonoBehaviour
 
     public void ChangeLanguage(Language lang)
     {
+        Debug.Log("Change Lang  " + currLang.ToString() + "  to  " + lang.ToString());
         currLang = lang;
         if (onChangeLangCallback != null)
         {
