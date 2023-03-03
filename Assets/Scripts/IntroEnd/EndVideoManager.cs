@@ -156,54 +156,58 @@ public class EndVideoManager : MonoBehaviour
     {
         if (!TimeoutManager.instance.isTimeoutUIActive)
         {
-            if (currStage == EndVideoStage.Page1_Playing)
+            //prevent it continue press when ending video to lab
+            if (MainManger.instance.currStage == MainStage.InGame)
             {
-                SoundManager.instance.Play_Input(2);
-                page1_Coroutine_FastIn = Page1_Ani_FaseIn();
-                StartCoroutine(page1_Coroutine_FastIn);
-            }
-            else if (currStage == EndVideoStage.Page1_EndWaiting)
-            {
-                SoundManager.instance.Play_Input(2);
-                page2_Coroutine_Play = Page2_Ani_Play();
-                StartCoroutine(page2_Coroutine_Play);
-            }
-            else if (currStage == EndVideoStage.Page2_Playing)
-            {
-                SoundManager.instance.Play_Input(2);
-                page2_Coroutine_FastIn = Page2_Ani_FastIn();
-                StartCoroutine(page2_Coroutine_FastIn);
-            }
-            else if (currStage == EndVideoStage.Page2_EndWaiting)
-            {
-                SoundManager.instance.Play_Input(2);
-                page3_Coroutine_Play = Page3_Ani_Play();
-                StartCoroutine(page3_Coroutine_Play);
-            }
-            else if (currStage == EndVideoStage.Page3_Playing)
-            {
-                SoundManager.instance.Play_Input(2);
-                page3_Coroutine_FastIn = Page3_Ani_FastIn();
-                StartCoroutine(page3_Coroutine_FastIn);
-            }
-            else if (currStage == EndVideoStage.Page3_EndWaiting)
-            {
-                SoundManager.instance.Play_Input(2);
-                page4_Coroutine_Play = Page4_Ani_Play();
-                StartCoroutine(page4_Coroutine_Play);
-            }
-            else if (currStage == EndVideoStage.Page4_Playing)
-            {
-                SoundManager.instance.Play_Input(2);
-                page4_Coroutine_FastIn = Page4_Ani_FastIn();
-                StartCoroutine(page4_Coroutine_FastIn);
-            }
-            else if (currStage == EndVideoStage.Page4_EndWaiting)
-            {
-                SoundManager.instance.Play_Input(2);
-                currStage = EndVideoStage.Page5;
-                page4_bossObj.ResetAll();
-                TransitionManager.instance.EndingVideoToLab();
+                if (currStage == EndVideoStage.Page1_Playing)
+                {
+                    SoundManager.instance.Play_Input(2);
+                    page1_Coroutine_FastIn = Page1_Ani_FaseIn();
+                    StartCoroutine(page1_Coroutine_FastIn);
+                }
+                else if (currStage == EndVideoStage.Page1_EndWaiting)
+                {
+                    SoundManager.instance.Play_Input(2);
+                    page2_Coroutine_Play = Page2_Ani_Play();
+                    StartCoroutine(page2_Coroutine_Play);
+                }
+                else if (currStage == EndVideoStage.Page2_Playing)
+                {
+                    SoundManager.instance.Play_Input(2);
+                    page2_Coroutine_FastIn = Page2_Ani_FastIn();
+                    StartCoroutine(page2_Coroutine_FastIn);
+                }
+                else if (currStage == EndVideoStage.Page2_EndWaiting)
+                {
+                    SoundManager.instance.Play_Input(2);
+                    page3_Coroutine_Play = Page3_Ani_Play();
+                    StartCoroutine(page3_Coroutine_Play);
+                }
+                else if (currStage == EndVideoStage.Page3_Playing)
+                {
+                    SoundManager.instance.Play_Input(2);
+                    page3_Coroutine_FastIn = Page3_Ani_FastIn();
+                    StartCoroutine(page3_Coroutine_FastIn);
+                }
+                else if (currStage == EndVideoStage.Page3_EndWaiting)
+                {
+                    SoundManager.instance.Play_Input(2);
+                    page4_Coroutine_Play = Page4_Ani_Play();
+                    StartCoroutine(page4_Coroutine_Play);
+                }
+                else if (currStage == EndVideoStage.Page4_Playing)
+                {
+                    SoundManager.instance.Play_Input(2);
+                    page4_Coroutine_FastIn = Page4_Ani_FastIn();
+                    StartCoroutine(page4_Coroutine_FastIn);
+                }
+                else if (currStage == EndVideoStage.Page4_EndWaiting)
+                {
+                    SoundManager.instance.Play_Input(2);
+                    currStage = EndVideoStage.Page5;
+                    page4_bossObj.ResetAll();
+                    TransitionManager.instance.EndingVideoToLab();
+                }
             }
         }
 
@@ -254,6 +258,7 @@ public class EndVideoManager : MonoBehaviour
 
     public void Play()
     {
+        Debug.Log("End video play");
         page1_Coroutine_Play = Page1_Ani_Play();
         StartCoroutine(page1_Coroutine_Play);
     }

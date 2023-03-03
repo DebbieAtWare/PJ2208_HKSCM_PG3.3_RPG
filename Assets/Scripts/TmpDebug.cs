@@ -26,10 +26,15 @@ public class TmpDebug : MonoBehaviour
 
     private void Update()
     {
-        text.text = "isTimeoutUIActive: " + TimeoutManager.instance.isTimeoutUIActive +
-            "  lang: " + CommonUtils.instance.currLang +
-            "  currMainStage: " + MainManger.instance.currStage +
-            "  talkHintObj: " + DroneController.instance.talkHintObj.activeInHierarchy +
-            "  currDroneStage: " + DroneController.instance.currDroneStage;
+        //text.text = "isTimeoutUIActive: " + TimeoutManager.instance.isTimeoutUIActive +
+        //    "  lang: " + CommonUtils.instance.currLang +
+        //    "  currMainStage: " + MainManger.instance.currStage +
+        //    "  talkHintObj: " + DroneController.instance.talkHintObj.activeInHierarchy +
+        //    "  currDroneStage: " + DroneController.instance.currDroneStage;
+
+
+        text.text = "  currMainStage: " + MainManger.instance.currStage +
+            "  currEndingCheck: " + CommonUtils.instance.currEndingCheck +
+            "  currEndStage: " + EndVideoManager.instance.currStage;
     }
 }

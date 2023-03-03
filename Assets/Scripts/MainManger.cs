@@ -13,6 +13,7 @@ public enum MainStage
     Intro,
     StartLab,
     InGame,
+    EndingVideoToLab,
     EndLab_CollectionBookTrigger,
     EndLab_Restart,
     EndLab_CollectionBookUpdate

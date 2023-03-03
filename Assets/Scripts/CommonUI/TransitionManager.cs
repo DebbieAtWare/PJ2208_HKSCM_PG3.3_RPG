@@ -275,6 +275,7 @@ public class TransitionManager : MonoBehaviour
         StartCoroutine(Ani());
         IEnumerator Ani()
         {
+            MainManger.instance.currStage = MainStage.EndingVideoToLab;
             GameManager.instance.fadingBetweenAreas = true;
             SoundManager.instance.Play_SFX(11);
             SoundManager.instance.Play_BGM(4, 5);
