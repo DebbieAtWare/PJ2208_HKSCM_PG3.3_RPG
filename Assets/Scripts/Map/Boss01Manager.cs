@@ -68,6 +68,7 @@ public class Boss01Manager : MonoBehaviour
         {
             if (isShowingSuccessCollect)
             {
+                isShowingSuccessCollect = false;
                 CloseSuccessCollect();
             }
         }
