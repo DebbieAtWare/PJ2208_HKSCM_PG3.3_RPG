@@ -179,7 +179,7 @@ public class MainManger : MonoBehaviour
                     }
                 }
                 //你想前往哪個時期探險？ option
-                else if (currStage == MainStage.StartLab && startLab_CurrDialogIndex == 4)
+                else if (currStage == MainStage.StartLab && startLab_CurrDialogIndex == 5)
                 {
                     SoundManager.instance.Play_Input(0);
                     if (startLab_CurrArrowIndex == 0)
@@ -301,31 +301,38 @@ public class MainManger : MonoBehaviour
                     {
                         if (startLab_CurrDialogIndex == 0)
                         {
-                            //first dialog is text, second dialog in control diagram
+                            //first dialog is text, second dialog is control tutorial
+                            //control text first
                             startLab_CurrDialogIndex++;
-                            DialogBoxManager.instance.ShowControl();
+                            DialogBoxManager.instance.ShowControl_1();
                         }
                         else if (startLab_CurrDialogIndex == 1)
+                        {
+                            //control diagram second
+                            startLab_CurrDialogIndex++;
+                            DialogBoxManager.instance.ShowControl_2();
+                        }
+                        else if (startLab_CurrDialogIndex == 2)
                         {
                             //旅途中有甚麼疑難就問我吧。相信我們將會是最佳拍檔！
                             startLab_CurrDialogIndex++;
                             DialogBoxManager.instance.HideControl();
-                            DialogBoxManager.instance.ShowDialog(commonUtils.gameplayInstructions[startLab_CurrDialogIndex]);
-                        }
-                        else if (startLab_CurrDialogIndex == 2)
-                        {
-                            //你想前往哪個時期探險？ question only 
-                            startLab_CurrDialogIndex++;
-                            DialogBoxManager.instance.ShowDialog(commonUtils.gameplayInstructions[startLab_CurrDialogIndex]);
+                            DialogBoxManager.instance.ShowDialog(commonUtils.gameplayInstructions[2]);
                         }
                         else if (startLab_CurrDialogIndex == 3)
                         {
+                            //你想前往哪個時期探險？ question only 
+                            startLab_CurrDialogIndex++;
+                            DialogBoxManager.instance.ShowDialog(commonUtils.gameplayInstructions[3]);
+                        }
+                        else if (startLab_CurrDialogIndex == 4)
+                        {
                             //你想前往哪個時期探險？ option (carbon or permian)
-                            DialogBoxManager.instance.ShowOption(commonUtils.gameplayInstructions[startLab_CurrDialogIndex]);
+                            DialogBoxManager.instance.ShowOption(commonUtils.gameplayInstructions[3]);
                             DialogBoxManager.instance.SetOptionArrow(startLab_CurrArrowIndex);
                             startLab_CurrDialogIndex++;
                         }
-                        else if (startLab_CurrDialogIndex == 4)
+                        else if (startLab_CurrDialogIndex == 5)
                         {
                             DialogBoxManager.instance.HideDialog();
                             if (startLab_CurrArrowIndex == 0)

@@ -39,6 +39,8 @@ public class DialogBoxManager : MonoBehaviour
 
     [Header("ControlGrp")]
     public GameObject controlGrpObj;
+    public GameObject controlObj1;
+    public GameObject controlObj2;
 
     [Header("ZoomImg")]
     public CanvasGroup zoomImgCanvasGrp;
@@ -87,6 +89,8 @@ public class DialogBoxManager : MonoBehaviour
         }
         normalGrpObj.SetActive(false);
         controlGrpObj.SetActive(false);
+        controlObj1.SetActive(false);
+        controlObj2.SetActive(false);
         dialogBoxGrp.SetActive(false);
 
         ChangeLanguage();
@@ -435,19 +439,27 @@ public class DialogBoxManager : MonoBehaviour
 
     //------
 
-    public void ShowControl()
+    public void ShowControl_1()
     {
         profilePic.gameObject.SetActive(true);
         profilePic.sprite = DroneController.instance.dialogBoxProfileSprite;
         dialogBoxGrp.SetActive(true);
         normalGrpObj.SetActive(false);
         controlGrpObj.SetActive(true);
+        controlObj1.SetActive(true);
         confirmBtnControl.SetAlpha(1, 0);
+    }
+
+    public void ShowControl_2()
+    {
+        controlObj2.SetActive(true);
     }
 
     public void HideControl()
     {
         controlGrpObj.SetActive(false);
+        controlObj1.SetActive(false);
+        controlObj2.SetActive(false);
         confirmBtnControl.SetAlpha(0, 0);
     }
 
