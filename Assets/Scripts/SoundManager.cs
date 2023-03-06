@@ -88,22 +88,25 @@ public class SoundManager : MonoBehaviour
 
     public void Play_SFX(int index)
     {
-        if (index < clips_SFX.Count)
-        {
-            if (audioSource_SFX.isPlaying)
-            {
-                audioSource_SFX.Stop();
-                audioSource_SFX.clip = clips_SFX[index];
-                audioSource_SFX.Play();
-                audioSource_SFX.DOFade(1f, 0f);
-            }
-            else
-            {
-                audioSource_SFX.clip = clips_SFX[index];
-                audioSource_SFX.Play();
-                audioSource_SFX.DOFade(1f, 0f);
-            }
-        }
+        //if (index < clips_SFX.Count)
+        //{
+        //    if (audioSource_SFX.isPlaying)
+        //    {
+        //        audioSource_SFX.Stop();
+        //        audioSource_SFX.clip = clips_SFX[index];
+        //        audioSource_SFX.Play();
+        //        audioSource_SFX.DOFade(1f, 0f);
+        //    }
+        //    else
+        //    {
+        //        audioSource_SFX.clip = clips_SFX[index];
+        //        audioSource_SFX.Play();
+        //        audioSource_SFX.DOFade(1f, 0f);
+        //    }
+        //}
+        //Debug.Log("~~~~~Play vfx " + index);
+        audioSource_SFX.DOFade(1f, 0f);
+        audioSource_SFX.PlayOneShot(clips_SFX[index]);
     }
 
     public void FadeOutStop_SFX(float t)
@@ -115,20 +118,21 @@ public class SoundManager : MonoBehaviour
 
     public void Play_Input(int index)
     {
-        if (index < clips_Input.Count)
-        {
-            if (audioSource_Input.isPlaying)
-            {
-                audioSource_Input.Stop();
-                audioSource_Input.clip = clips_Input[index];
-                audioSource_Input.Play();
-            }
-            else
-            {
-                audioSource_Input.clip = clips_Input[index];
-                audioSource_Input.Play();
-            }
-        }
+        //if (index < clips_Input.Count)
+        //{
+        //    if (audioSource_Input.isPlaying)
+        //    {
+        //        audioSource_Input.Stop();
+        //        audioSource_Input.clip = clips_Input[index];
+        //        audioSource_Input.Play();
+        //    }
+        //    else
+        //    {
+        //        audioSource_Input.clip = clips_Input[index];
+        //        audioSource_Input.Play();
+        //    }
+        //}
+        audioSource_Input.PlayOneShot(clips_Input[index]);
     }
 
     //---------
@@ -187,6 +191,18 @@ public class SoundManager : MonoBehaviour
         if (audioSource_Walk.isPlaying)
         {
             audioSource_Walk.DOFade(0f, t).OnComplete(() => audioSource_Walk.Stop());
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            Play_SFX(9);
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            Play_SFX(10);
         }
     }
 }
