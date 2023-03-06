@@ -49,7 +49,7 @@ public class Boss01Manager : MonoBehaviour
         //to stop user move input
         GameManager.instance.dialogActive = true;
         
-        MinimapManager.instance.Hide(0.5f);
+        MinimapManager.instance.Hide(0f);
 
         StartCoroutine(Ani());
         IEnumerator Ani()
@@ -87,8 +87,8 @@ public class Boss01Manager : MonoBehaviour
                 SoundManager.instance.Play_SFX(9);
                 GameManager.instance.dialogActive = true;
                 CollectionBookManager.instance.Show_Success(commonUtils.successCollectText, commonUtils.bosses[currUtilsIndex], 0.5f);
-                yield return new WaitForSeconds(5f);
-                //wait 5 sec and show confirm btn ani and user need to press the close success collect
+                yield return new WaitForSeconds(3f);
+                //wait 3 sec and show confirm btn ani and user need to press the close success collect
                 CollectionBookManager.instance.confirmBtnRect_Common.gameObject.SetActive(true);
                 isShowingSuccessCollect = true;
                 InputManager.instance.canInput_Confirm = true;

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public enum MainStage
 {
@@ -55,6 +56,9 @@ public class MainManger : MonoBehaviour
     float confirmBtnPosX_TCSC = -37f;
     float confirmBtnPosX_EN = -108f;
 
+    [Header("Reset")]
+    public Image resetTransitionImg;
+
     [Header("Curr")]
     public MainStage currStage;
 
@@ -79,6 +83,11 @@ public class MainManger : MonoBehaviour
 
     void Start()
     {
+        if (Level.PreviousLevel == "ResetScene")
+        {
+            resetTransitionImg.DOFade(1, 0);
+        }
+
         commonUtils = CommonUtils.instance;
         commonUtils.onSetupDoneCallback += CommonUtils_OnSetupDone;
         commonUtils.onChangeLangCallback += CommonUtils_OnChangeLang;
@@ -441,6 +450,11 @@ public class MainManger : MonoBehaviour
         PlayerController.instance.transform.position = new Vector3(-0.96f, 0f, 0f);
         DroneController.instance.ChangePos(new Vector3(0.68f, -0.49f, 0f));
         DroneController.instance.canShowTalkHint = false;
+
+        if (Level.PreviousLevel == "ResetScene")
+        {
+            resetTransitionImg.DOFade(0, 1f);
+        }
     }
 
     private void CommonUtils_OnChangeLang()

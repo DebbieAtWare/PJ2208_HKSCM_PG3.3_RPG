@@ -14,7 +14,6 @@ public class TransitionManager : MonoBehaviour
 
     [Header("UI")]
     public GameObject rootObj;
-    public RawImage homeImg;
     public RawImage camFeedImg;
     public RawImage camFeedImg2;
     public Image timeTravelBkgImg;
@@ -54,8 +53,6 @@ public class TransitionManager : MonoBehaviour
     void Start()
     {
         commonUtils = CommonUtils.instance;
-
-        homeImg.gameObject.SetActive(false);
     }
 
     public void ChangeMap(MapID currMap, MapID targetMap)
@@ -340,19 +337,23 @@ public class TransitionManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
             //fade in time travel bkg
             currBkgIndex = 0;
-            BkgLoopAni();
+            ResetGameAni_TimeTravel();
             timeTravelBkgImg.DOFade(1f, 1f);
-            yield return new WaitForSeconds(1f);
+        }
+    }
+
+    void ResetGameAni_TimeTravel()
+    {
+        currBkgIndex++;
+
+        if (currBkgIndex == 24)
+        {
             SceneManager.LoadScene("ResetScene");
-            //show home and depixelate
-            homeImg.gameObject.SetActive(true);
-            camFeedImg.texture = transitionTexture_Home;
-            timeTravelBkgImg.DOFade(0f, 1f);
-            yield return new WaitForSeconds(0.6f);
-            camFeedImg.material.DOFloat(512f, "_PixelateSize", 1f).From(50f).SetEase(Ease.Linear);
-            camFeedImg.DOFade(0f, 1f);
-            yield return new WaitForSeconds(1f);
-            GameManager.instance.fadingBetweenAreas = false;
+        }
+        else
+        {
+            timeTravelBkgImg.sprite = bkgSprites[currBkgIndex];
+            Invoke("ResetGameAni_TimeTravel", bkgAniTime);
         }
     }
 
