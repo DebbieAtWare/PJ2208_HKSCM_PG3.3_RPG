@@ -145,6 +145,8 @@ public class TimeoutManager : MonoBehaviour
             if (!isTimeoutUIActive)
             {
                 isTimeoutUIActive = true;
+                //lock player movement
+                GameManager.instance.fadingBetweenAreas = true;
                 root.SetActive(true);
                 ChangeLanaguage();
                 countdownUITimer = countdownUITimerTarget;
@@ -189,6 +191,7 @@ public class TimeoutManager : MonoBehaviour
             timerText_SC.text = countdownUITimerTarget.ToString();
             timerText_EN.text = countdownUITimerTarget.ToString();
             root.SetActive(false);
+            GameManager.instance.fadingBetweenAreas = false;
             yield return new WaitForSeconds(0.5f);
             displayUITimer = 0;
             isTimeoutUIActive = false;
