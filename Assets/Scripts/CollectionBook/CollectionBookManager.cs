@@ -70,17 +70,35 @@ public class CollectionBookManager : MonoBehaviour
     public List<CollectionBookFeatureObject> detail_FeatureObjs_TC = new List<CollectionBookFeatureObject>();
     public List<CollectionBookFeatureObject> detail_FeatureObjs_SC = new List<CollectionBookFeatureObject>();
     public List<CollectionBookFeatureObject> detail_FeatureObjs_EN = new List<CollectionBookFeatureObject>();
-    public GameObject detail_ExitFrameObj_TC;
-    public GameObject detail_ExitFrameObj_SC;
-    public GameObject detail_ExitFrameObj_EN;
+    public Image detail_ExitFrameObj_TC;
+    public Image detail_ExitFrameObj_SC;
+    public Image detail_ExitFrameObj_EN;
     public GameObject detail_ExitText_TC;
     public GameObject detail_ExitText_SC;
     public GameObject detail_ExitText_EN;
+    public Image detail_PreFrameObj_TC;
+    public Image detail_PreFrameObj_SC;
+    public Image detail_PreFrameObj_EN;
+    public GameObject detail_PreText_TC;
+    public GameObject detail_PreText_SC;
+    public GameObject detail_PreText_EN;
+    public Image detail_NextFrameObj_TC;
+    public Image detail_NextFrameObj_SC;
+    public Image detail_NextFrameObj_EN;
+    public GameObject detail_NextText_TC;
+    public GameObject detail_NextText_SC;
+    public GameObject detail_NextText_EN;
     public Image detail_ArrowL;
     public Image detail_ArrowR;
     public Sprite detail_ArrowSprite_On;
     public Sprite detail_ArrowSprite_Off;
+    //0 = info
+    //1 = feature
     public int detail_CurrPage = 0;
+    //0 = back
+    //1 = previous page
+    //2 = next page
+    public int detail_CurrFrame = 2;
 
     [Header("Success")]
     public GameObject success_RootObj;
@@ -185,6 +203,19 @@ public class CollectionBookManager : MonoBehaviour
 
         //blink frame
         main_CloseIpadFrameSelectedObj.DOFade(0.4f, 0f);
+        for (int i = 0; i < main_RestartGameFrameObjs.Count; i++)
+        {
+            main_RestartGameFrameObjs[i].DOFade(0.4f, 0f);
+        }
+        detail_ExitFrameObj_TC.DOFade(0.4f, 0f);
+        detail_ExitFrameObj_SC.DOFade(0.4f, 0f);
+        detail_ExitFrameObj_EN.DOFade(0.4f, 0f);
+        detail_PreFrameObj_TC.DOFade(0.4f, 0f);
+        detail_PreFrameObj_SC.DOFade(0.4f, 0f);
+        detail_PreFrameObj_EN.DOFade(0.4f, 0f);
+        detail_NextFrameObj_TC.DOFade(0.4f, 0f);
+        detail_NextFrameObj_SC.DOFade(0.4f, 0f);
+        detail_NextFrameObj_EN.DOFade(0.4f, 0f);
         BlinkFrameAni();
 
         restart_CanvasGrp.alpha = 0;
@@ -194,6 +225,19 @@ public class CollectionBookManager : MonoBehaviour
     {
         //blink frame
         main_CloseIpadFrameSelectedObj.DOFade(0.4f, 0f);
+        for (int i = 0; i < main_RestartGameFrameObjs.Count; i++)
+        {
+            main_RestartGameFrameObjs[i].DOFade(0.4f, 0f);
+        }
+        detail_ExitFrameObj_TC.DOFade(0.4f, 0f);
+        detail_ExitFrameObj_SC.DOFade(0.4f, 0f);
+        detail_ExitFrameObj_EN.DOFade(0.4f, 0f);
+        detail_PreFrameObj_TC.DOFade(0.4f, 0f);
+        detail_PreFrameObj_SC.DOFade(0.4f, 0f);
+        detail_PreFrameObj_EN.DOFade(0.4f, 0f);
+        detail_NextFrameObj_TC.DOFade(0.4f, 0f);
+        detail_NextFrameObj_SC.DOFade(0.4f, 0f);
+        detail_NextFrameObj_EN.DOFade(0.4f, 0f);
         BlinkFrameAni();
     }
 
@@ -207,12 +251,30 @@ public class CollectionBookManager : MonoBehaviour
             {
                 main_RestartGameFrameObjs[i].DOFade(1f, 0.5f);
             }
+            detail_ExitFrameObj_TC.DOFade(1f, 0.5f);
+            detail_ExitFrameObj_SC.DOFade(1f, 0.5f);
+            detail_ExitFrameObj_EN.DOFade(1f, 0.5f);
+            detail_PreFrameObj_TC.DOFade(1f, 0.5f);
+            detail_PreFrameObj_SC.DOFade(1f, 0.5f);
+            detail_PreFrameObj_EN.DOFade(1f, 0.5f);
+            detail_NextFrameObj_TC.DOFade(1f, 0.5f);
+            detail_NextFrameObj_SC.DOFade(1f, 0.5f);
+            detail_NextFrameObj_EN.DOFade(1f, 0.5f);
             yield return new WaitForSeconds(0.8f);
             main_CloseIpadFrameSelectedObj.DOFade(0.4f, 0.5f);
             for (int i = 0; i < main_RestartGameFrameObjs.Count; i++)
             {
                 main_RestartGameFrameObjs[i].DOFade(0.4f, 0.5f);
             }
+            detail_ExitFrameObj_TC.DOFade(0.4f, 0.5f);
+            detail_ExitFrameObj_SC.DOFade(0.4f, 0.5f);
+            detail_ExitFrameObj_EN.DOFade(0.4f, 0.5f);
+            detail_PreFrameObj_TC.DOFade(0.4f, 0.5f);
+            detail_PreFrameObj_SC.DOFade(0.4f, 0.5f);
+            detail_PreFrameObj_EN.DOFade(0.4f, 0.5f);
+            detail_NextFrameObj_TC.DOFade(0.4f, 0.5f);
+            detail_NextFrameObj_SC.DOFade(0.4f, 0.5f);
+            detail_NextFrameObj_EN.DOFade(0.4f, 0.5f);
             yield return new WaitForSeconds(0.8f);
             BlinkFrameAni();
         }
@@ -414,20 +476,46 @@ public class CollectionBookManager : MonoBehaviour
                     SoundManager.instance.Play_Input(0);
                     if (val == -1)
                     {
-                        if (detail_CurrPage == 1)
+                        if (detail_CurrFrame == 0)
                         {
-                            detail_CurrPage = 0;
-                            //use change lang function, to switch detail info and feature page
-                            ChangeLanguage();
+                            detail_CurrFrame = 2;
                         }
+                        else if (detail_CurrFrame == 1)
+                        {
+                            detail_CurrFrame = 0;
+                        }
+                        else if (detail_CurrFrame == 2)
+                        {
+                            detail_CurrFrame = 1;
+                        }
+                        Detail_FrameControl();
+                        //if (detail_CurrPage == 1)
+                        //{
+                        //    detail_CurrPage = 0;
+                        //    //use change lang function, to switch detail info and feature page
+                        //    ChangeLanguage();
+                        //}
                     }
                     else if (val == 1)
                     {
-                        if (detail_CurrPage == 0)
+                        if (detail_CurrFrame == 0)
                         {
-                            detail_CurrPage = 1;
-                            ChangeLanguage();
+                            detail_CurrFrame = 1;
                         }
+                        else if (detail_CurrFrame == 1)
+                        {
+                            detail_CurrFrame = 2;
+                        }
+                        else if (detail_CurrFrame == 2)
+                        {
+                            detail_CurrFrame = 0;
+                        }
+                        Detail_FrameControl();
+                        //if (detail_CurrPage == 0)
+                        //{
+                        //    detail_CurrPage = 1;
+                        //    ChangeLanguage();
+                        //}
                     }
                 }
             }
@@ -485,7 +573,29 @@ public class CollectionBookManager : MonoBehaviour
                 else if (currStage == CollectionBookStage.Detail)
                 {
                     SoundManager.instance.Play_Input(1);
-                    Hide_Detail();
+                    //back
+                    if (detail_CurrFrame == 0)
+                    {
+                        Hide_Detail();
+                    }
+                    //previous page
+                    else if (detail_CurrFrame == 1)
+                    {
+                        if (detail_CurrPage == 1)
+                        {
+                            detail_CurrPage = 0;
+                            ChangeLanguage();
+                        }
+                    }
+                    //next page
+                    else if (detail_CurrFrame == 2)
+                    {
+                        if (detail_CurrPage == 0)
+                        {
+                            detail_CurrPage = 1;
+                            ChangeLanguage();
+                        }
+                    }
                 }
                 else if (currStage == CollectionBookStage.Restart)
                 {
@@ -582,7 +692,7 @@ public class CollectionBookManager : MonoBehaviour
 
     public void Show_Detail(ConfigData_Character character)
     {
-        confirmBtnRect_Common.gameObject.SetActive(true);
+        confirmBtnRect_Common.gameObject.SetActive(false);
         confirmBtnRect_Restart.gameObject.SetActive(false);
 
         if (character.Id == CharacterID.M01.ToString() || character.Id == CharacterID.M02.ToString() || character.Id == CharacterID.M03.ToString())
@@ -671,12 +781,14 @@ public class CollectionBookManager : MonoBehaviour
                 detail_FeatureObjs_EN[i].Setup("", 0);
             }
         }
+
+
+        //first page is showing the info
+        //but the frame is selecting "Next page"
         detail_CurrPage = 0;
+        detail_CurrFrame = 2;
         ChangeLanguage();
-        
-        detail_ExitFrameObj_TC.SetActive(true);
-        detail_ExitFrameObj_SC.SetActive(true);
-        detail_ExitFrameObj_EN.SetActive(true);
+        Detail_FrameControl();
 
         //----
         main_RootObj.gameObject.SetActive(false);
@@ -690,6 +802,47 @@ public class CollectionBookManager : MonoBehaviour
         main_RootObj.SetActive(true);
         detail_RootObj.SetActive(false);
         currStage = CollectionBookStage.Main;
+    }
+
+    void Detail_FrameControl()
+    {
+        //detail page frame
+        if (detail_CurrFrame == 0)
+        {
+            detail_ExitFrameObj_TC.gameObject.SetActive(true);
+            detail_ExitFrameObj_SC.gameObject.SetActive(true);
+            detail_ExitFrameObj_EN.gameObject.SetActive(true);
+            detail_PreFrameObj_TC.gameObject.SetActive(false);
+            detail_PreFrameObj_SC.gameObject.SetActive(false);
+            detail_PreFrameObj_EN.gameObject.SetActive(false);
+            detail_NextFrameObj_TC.gameObject.SetActive(false);
+            detail_NextFrameObj_SC.gameObject.SetActive(false);
+            detail_NextFrameObj_EN.gameObject.SetActive(false);
+        }
+        else if (detail_CurrFrame == 1)
+        {
+            detail_ExitFrameObj_TC.gameObject.SetActive(false);
+            detail_ExitFrameObj_SC.gameObject.SetActive(false);
+            detail_ExitFrameObj_EN.gameObject.SetActive(false);
+            detail_PreFrameObj_TC.gameObject.SetActive(true);
+            detail_PreFrameObj_SC.gameObject.SetActive(true);
+            detail_PreFrameObj_EN.gameObject.SetActive(true);
+            detail_NextFrameObj_TC.gameObject.SetActive(false);
+            detail_NextFrameObj_SC.gameObject.SetActive(false);
+            detail_NextFrameObj_EN.gameObject.SetActive(false);
+        }
+        else if (detail_CurrFrame == 2)
+        {
+            detail_ExitFrameObj_TC.gameObject.SetActive(false);
+            detail_ExitFrameObj_SC.gameObject.SetActive(false);
+            detail_ExitFrameObj_EN.gameObject.SetActive(false);
+            detail_PreFrameObj_TC.gameObject.SetActive(false);
+            detail_PreFrameObj_SC.gameObject.SetActive(false);
+            detail_PreFrameObj_EN.gameObject.SetActive(false);
+            detail_NextFrameObj_TC.gameObject.SetActive(true);
+            detail_NextFrameObj_SC.gameObject.SetActive(true);
+            detail_NextFrameObj_EN.gameObject.SetActive(true);
+        }
     }
 
     //----- Success -----
@@ -987,6 +1140,12 @@ public class CollectionBookManager : MonoBehaviour
             detail_ExitText_TC.SetActive(true);
             detail_ExitText_SC.SetActive(false);
             detail_ExitText_EN.SetActive(false);
+            detail_PreText_TC.SetActive(true);
+            detail_PreText_SC.SetActive(false);
+            detail_PreText_EN.SetActive(false);
+            detail_NextText_TC.SetActive(true);
+            detail_NextText_SC.SetActive(false);
+            detail_NextText_EN.SetActive(false);
 
             confirmBtnRect_Restart.anchoredPosition = new Vector2(confirmBtnPosX_TCSC, confirmBtnRect_Restart.anchoredPosition.y);
         }
@@ -1048,6 +1207,12 @@ public class CollectionBookManager : MonoBehaviour
             detail_ExitText_TC.SetActive(false);
             detail_ExitText_SC.SetActive(true);
             detail_ExitText_EN.SetActive(false);
+            detail_PreText_TC.SetActive(false);
+            detail_PreText_SC.SetActive(true);
+            detail_PreText_EN.SetActive(false);
+            detail_NextText_TC.SetActive(false);
+            detail_NextText_SC.SetActive(true);
+            detail_NextText_EN.SetActive(false);
 
             confirmBtnRect_Restart.anchoredPosition = new Vector2(confirmBtnPosX_TCSC, confirmBtnRect_Restart.anchoredPosition.y);
         }
@@ -1109,6 +1274,12 @@ public class CollectionBookManager : MonoBehaviour
             detail_ExitText_TC.SetActive(false);
             detail_ExitText_SC.SetActive(false);
             detail_ExitText_EN.SetActive(true);
+            detail_PreText_TC.SetActive(false);
+            detail_PreText_SC.SetActive(false);
+            detail_PreText_EN.SetActive(true);
+            detail_NextText_TC.SetActive(false);
+            detail_NextText_SC.SetActive(false);
+            detail_NextText_EN.SetActive(true);
 
             confirmBtnRect_Restart.anchoredPosition = new Vector2(confirmBtnPosX_EN, confirmBtnRect_Restart.anchoredPosition.y);
         }
