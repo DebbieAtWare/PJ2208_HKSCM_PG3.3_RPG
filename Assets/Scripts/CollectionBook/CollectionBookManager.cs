@@ -248,36 +248,36 @@ public class CollectionBookManager : MonoBehaviour
         StartCoroutine(Ani());
         IEnumerator Ani()
         {
-            main_CloseIpadFrameSelectedObj.DOFade(1f, 0.5f);
+            main_CloseIpadFrameSelectedObj.DOFade(1f, 0.3f);
             for (int i = 0; i < main_RestartGameFrameObjs.Count; i++)
             {
-                main_RestartGameFrameObjs[i].DOFade(1f, 0.5f);
+                main_RestartGameFrameObjs[i].DOFade(1f, 0.3f);
             }
-            detail_ExitFrameObj_TC.DOFade(1f, 0.5f);
-            detail_ExitFrameObj_SC.DOFade(1f, 0.5f);
-            detail_ExitFrameObj_EN.DOFade(1f, 0.5f);
-            detail_PreFrameObj_TC.DOFade(1f, 0.5f);
-            detail_PreFrameObj_SC.DOFade(1f, 0.5f);
-            detail_PreFrameObj_EN.DOFade(1f, 0.5f);
-            detail_NextFrameObj_TC.DOFade(1f, 0.5f);
-            detail_NextFrameObj_SC.DOFade(1f, 0.5f);
-            detail_NextFrameObj_EN.DOFade(1f, 0.5f);
-            yield return new WaitForSeconds(0.8f);
-            main_CloseIpadFrameSelectedObj.DOFade(0.4f, 0.5f);
+            detail_ExitFrameObj_TC.DOFade(1f, 0.3f);
+            detail_ExitFrameObj_SC.DOFade(1f, 0.3f);
+            detail_ExitFrameObj_EN.DOFade(1f, 0.3f);
+            detail_PreFrameObj_TC.DOFade(1f, 0.3f);
+            detail_PreFrameObj_SC.DOFade(1f, 0.3f);
+            detail_PreFrameObj_EN.DOFade(1f, 0.3f);
+            detail_NextFrameObj_TC.DOFade(1f, 0.3f);
+            detail_NextFrameObj_SC.DOFade(1f, 0.3f);
+            detail_NextFrameObj_EN.DOFade(1f, 0.3f);
+            yield return new WaitForSeconds(0.5f);
+            main_CloseIpadFrameSelectedObj.DOFade(0.4f, 0.3f);
             for (int i = 0; i < main_RestartGameFrameObjs.Count; i++)
             {
-                main_RestartGameFrameObjs[i].DOFade(0.4f, 0.5f);
+                main_RestartGameFrameObjs[i].DOFade(0.4f, 0.3f);
             }
-            detail_ExitFrameObj_TC.DOFade(0.4f, 0.5f);
-            detail_ExitFrameObj_SC.DOFade(0.4f, 0.5f);
-            detail_ExitFrameObj_EN.DOFade(0.4f, 0.5f);
-            detail_PreFrameObj_TC.DOFade(0.4f, 0.5f);
-            detail_PreFrameObj_SC.DOFade(0.4f, 0.5f);
-            detail_PreFrameObj_EN.DOFade(0.4f, 0.5f);
-            detail_NextFrameObj_TC.DOFade(0.4f, 0.5f);
-            detail_NextFrameObj_SC.DOFade(0.4f, 0.5f);
-            detail_NextFrameObj_EN.DOFade(0.4f, 0.5f);
-            yield return new WaitForSeconds(0.8f);
+            detail_ExitFrameObj_TC.DOFade(0.4f, 0.3f);
+            detail_ExitFrameObj_SC.DOFade(0.4f, 0.3f);
+            detail_ExitFrameObj_EN.DOFade(0.4f, 0.3f);
+            detail_PreFrameObj_TC.DOFade(0.4f, 0.3f);
+            detail_PreFrameObj_SC.DOFade(0.4f, 0.3f);
+            detail_PreFrameObj_EN.DOFade(0.4f, 0.3f);
+            detail_NextFrameObj_TC.DOFade(0.4f, 0.3f);
+            detail_NextFrameObj_SC.DOFade(0.4f, 0.3f);
+            detail_NextFrameObj_EN.DOFade(0.4f, 0.3f);
+            yield return new WaitForSeconds(0.5f);
             BlinkFrameAni();
         }
     }

@@ -31,7 +31,7 @@ public class CollectionBookBossObject : MonoBehaviour
     [Header("Frame")]
     public GameObject frameObj_Idle;
     public Image frameObj_Selected;
-    public bool isBlink = false;
+    IEnumerator blinkCoroutine;
 
     [Header("Lang")]
     public List<GameObject> langObjs_TC = new List<GameObject>();
@@ -58,33 +58,27 @@ public class CollectionBookBossObject : MonoBehaviour
         img_Gray.DOFade(0, 0);
         ChangeLanguage(lang);
 
-        if (isBlink)
-        {
-            frameObj_Selected.DOFade(0.4f, 0);
-            BlinkFrameAni();
-        }
+        blinkCoroutine = BlinkFrameAni();
     }
 
     private void OnEnable()
     {
-        if (isBlink)
+        if (frameObj_Selected.gameObject.activeInHierarchy)
         {
-            frameObj_Selected.DOFade(0.4f, 0);
-            BlinkFrameAni();
+            frameObj_Selected.DOFade(1f, 0f);
+            blinkCoroutine = BlinkFrameAni();
+            StartCoroutine(blinkCoroutine);
         }
     }
 
-    void BlinkFrameAni()
+    IEnumerator BlinkFrameAni()
     {
-        StartCoroutine(Ani());
-        IEnumerator Ani()
-        {
-            frameObj_Selected.DOFade(1f, 0.5f);
-            yield return new WaitForSeconds(0.8f);
-            frameObj_Selected.DOFade(0.4f, 0.5f);
-            yield return new WaitForSeconds(0.8f);
-            BlinkFrameAni();
-        }
+        yield return new WaitForSeconds(0.6f);
+        frameObj_Selected.DOFade(0.4f, 0.4f);
+        yield return new WaitForSeconds(0.6f);
+        frameObj_Selected.DOFade(1f, 0.4f);
+        blinkCoroutine = BlinkFrameAni();
+        StartCoroutine(blinkCoroutine);
     }
 
     public void ChangeLanguage(Language lang)
@@ -184,11 +178,15 @@ public class CollectionBookBossObject : MonoBehaviour
         {
             frameObj_Idle.SetActive(false);
             frameObj_Selected.gameObject.SetActive(true);
+            frameObj_Selected.DOFade(1f, 0f);
+            StartCoroutine(blinkCoroutine);
         }
         else
         {
             frameObj_Idle.SetActive(true);
             frameObj_Selected.gameObject.SetActive(false);
+            StopCoroutine(blinkCoroutine);
+            frameObj_Selected.DOFade(0f, 0f);
         }
     }
 

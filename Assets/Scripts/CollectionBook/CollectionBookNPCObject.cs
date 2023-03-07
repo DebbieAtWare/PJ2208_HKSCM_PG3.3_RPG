@@ -12,7 +12,7 @@ public class CollectionBookNPCObject : MonoBehaviour
     public int configDataIndex { get; private set; }
     public GameObject frame_In;
     public Image frame_Out;
-    public bool isBlink = false;
+    IEnumerator blinkCoroutine;
     public TextMeshProUGUI numText_In;
     public TextMeshProUGUI numText_Out;
 
@@ -22,33 +22,27 @@ public class CollectionBookNPCObject : MonoBehaviour
         configDataIndex = _configDataIndex;
         numText_In.text = numText;
         numText_Out.text = numText;
-        if (isBlink)
-        {
-            frame_Out.DOFade(0.4f, 0f);
-            BlinkFrameAni();
-        }
+        blinkCoroutine = BlinkFrameAni();
     }
 
     private void OnEnable()
     {
-        if (isBlink)
+        if (frame_Out.gameObject.activeInHierarchy)
         {
-            frame_Out.DOFade(0.4f, 0f);
-            BlinkFrameAni();
+            frame_Out.DOFade(1f, 0f);
+            blinkCoroutine = BlinkFrameAni();
+            StartCoroutine(blinkCoroutine);
         }
     }
 
-    void BlinkFrameAni()
+    IEnumerator BlinkFrameAni()
     {
-        StartCoroutine(Ani());
-        IEnumerator Ani()
-        {
-            frame_Out.DOFade(1f, 0.5f);
-            yield return new WaitForSeconds(0.8f);
-            frame_Out.DOFade(0.4f, 0.5f);
-            yield return new WaitForSeconds(0.8f);
-            BlinkFrameAni();
-        }
+        yield return new WaitForSeconds(0.6f);
+        frame_Out.DOFade(0.4f, 0.4f);
+        yield return new WaitForSeconds(0.6f);
+        frame_Out.DOFade(1f, 0.4f);
+        blinkCoroutine = BlinkFrameAni();
+        StartCoroutine(blinkCoroutine);
     }
 
     public void SetSelection(bool val)
@@ -57,6 +51,8 @@ public class CollectionBookNPCObject : MonoBehaviour
         {
             frame_In.SetActive(false);
             frame_Out.gameObject.SetActive(true);
+            frame_Out.DOFade(1f, 0f);
+            StartCoroutine(blinkCoroutine);
             numText_In.gameObject.SetActive(false);
             numText_Out.gameObject.SetActive(true);
         }
@@ -64,6 +60,8 @@ public class CollectionBookNPCObject : MonoBehaviour
         {
             frame_In.SetActive(true);
             frame_Out.gameObject.SetActive(false);
+            StopCoroutine(blinkCoroutine);
+            frame_Out.DOFade(0f, 0f);
             numText_In.gameObject.SetActive(true);
             numText_Out.gameObject.SetActive(false);
         }
