@@ -115,6 +115,8 @@ public class CollectionBookManager : MonoBehaviour
     [Header("Confirm btn")]
     public RectTransform confirmBtnRect_Common;
     public RectTransform confirmBtnRect_Restart;
+    public GameObject confirmGrp_Success;
+    public RectTransform confirmBtnRect_Success;
     float confirmBtnPosX_TCSC = -37f;
     float confirmBtnPosX_EN = -108f;
 
@@ -628,6 +630,7 @@ public class CollectionBookManager : MonoBehaviour
 
         confirmBtnRect_Common.gameObject.SetActive(true);
         confirmBtnRect_Restart.gameObject.SetActive(false);
+        confirmGrp_Success.SetActive(false);
 
         //----
 
@@ -858,6 +861,7 @@ public class CollectionBookManager : MonoBehaviour
 
         confirmBtnRect_Common.gameObject.SetActive(false);
         confirmBtnRect_Restart.gameObject.SetActive(false);
+        confirmGrp_Success.SetActive(false);
 
         for (int i = 0; i < success_BossObjs.Count; i++)
         {
@@ -1148,6 +1152,7 @@ public class CollectionBookManager : MonoBehaviour
             detail_NextText_EN.SetActive(false);
 
             confirmBtnRect_Restart.anchoredPosition = new Vector2(confirmBtnPosX_TCSC, confirmBtnRect_Restart.anchoredPosition.y);
+            confirmBtnRect_Success.anchoredPosition = new Vector2(confirmBtnPosX_TCSC, confirmBtnRect_Success.anchoredPosition.y);
         }
         else if (commonUtils.currLang == Language.SC)
         {
@@ -1215,6 +1220,7 @@ public class CollectionBookManager : MonoBehaviour
             detail_NextText_EN.SetActive(false);
 
             confirmBtnRect_Restart.anchoredPosition = new Vector2(confirmBtnPosX_TCSC, confirmBtnRect_Restart.anchoredPosition.y);
+            confirmBtnRect_Success.anchoredPosition = new Vector2(confirmBtnPosX_TCSC, confirmBtnRect_Success.anchoredPosition.y);
         }
         else if (commonUtils.currLang == Language.EN)
         {
@@ -1282,6 +1288,7 @@ public class CollectionBookManager : MonoBehaviour
             detail_NextText_EN.SetActive(true);
 
             confirmBtnRect_Restart.anchoredPosition = new Vector2(confirmBtnPosX_EN, confirmBtnRect_Restart.anchoredPosition.y);
+            confirmBtnRect_Success.anchoredPosition = new Vector2(confirmBtnPosX_EN, confirmBtnRect_Success.anchoredPosition.y);
         }
 
         //detail page arrow 

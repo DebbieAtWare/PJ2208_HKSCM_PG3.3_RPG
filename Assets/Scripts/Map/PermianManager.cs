@@ -165,7 +165,7 @@ public class PermianManager : MonoBehaviour
                 CollectionBookManager.instance.Show_Success(commonUtils.successCollectText, commonUtils.bosses[currUtilsIndex_Boss2], 0.5f);
                 yield return new WaitForSeconds(3f);
                 //wait 3 sec and show confirm btn ani and user need to press the close success collect
-                CollectionBookManager.instance.confirmBtnRect_Common.gameObject.SetActive(true);
+                CollectionBookManager.instance.confirmGrp_Success.SetActive(true);
                 isShowingSuccessCollect_Boss2 = true;
                 InputManager.instance.canInput_Confirm = true;
             }
@@ -197,7 +197,7 @@ public class PermianManager : MonoBehaviour
                 CollectionBookManager.instance.Show_Success(commonUtils.successCollectText, commonUtils.bosses[currUtilsIndex_Boss3], 0.5f);
                 yield return new WaitForSeconds(3f);
                 //wait 3 sec and show confirm btn ani and user need to press the close success collect
-                CollectionBookManager.instance.confirmBtnRect_Common.gameObject.SetActive(true);
+                CollectionBookManager.instance.confirmGrp_Success.SetActive(true);
                 isShowingSuccessCollect_Boss3 = true;
                 InputManager.instance.canInput_Confirm = true;
             }

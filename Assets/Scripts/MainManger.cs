@@ -147,7 +147,7 @@ public class MainManger : MonoBehaviour
             {
                 if (currStage == MainStage.None)
                 {
-                    SoundManager.instance.Play_Input(0);
+                    SoundManager.instance.Play_Input(2);
                     ChangeStage_Language();
                 }
                 else if (currStage == MainStage.Language)
@@ -275,7 +275,7 @@ public class MainManger : MonoBehaviour
             {
                 if (currStage == MainStage.None)
                 {
-                    SoundManager.instance.Play_Input(0);
+                    SoundManager.instance.Play_Input(2);
                     ChangeStage_Language();
                 }
                 else if (currStage == MainStage.Language)
