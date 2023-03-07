@@ -151,6 +151,7 @@
     <Compile Include="Assets\2D RPG Kit\Scripts\ReadHilightedButton.cs" />
     <Compile Include="Assets\SmartTimersManager\TimerManager\Timer.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\SceneGUITilemap.cs" />
+    <Compile Include="Assets\Scripts\Level.cs" />
     <Compile Include="Assets\FlexReader\Demo\Scripts\WebLoader.cs" />
     <Compile Include="Assets\Scripts\Character\OnTriggerControl.cs" />
     <Compile Include="Assets\FlexReader\Core\Range.cs" />
@@ -233,7 +234,7 @@
     <Compile Include="Assets\2D RPG Kit\Scripts\DamageNumber.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\BattleNotification.cs" />
     <Compile Include="Assets\2D RPG Kit\Scripts\QuestManager.cs" />
-    <Compile Include="Assets\Scripts\Level.cs" />
+    <Compile Include="Assets\Scripts\CommonUI\BlinkButtonObject.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Coffee\UIExtensions\UIEffect\Shaders\UI-Effect-Shiny.shader" />
