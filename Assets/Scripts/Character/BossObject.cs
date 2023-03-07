@@ -327,9 +327,11 @@ public class BossObject : MonoBehaviour
 
     private void ViewTrigger_OnEnter()
     {
-        isAtViewTrigger = true;
         ViewBoxManager.instance.ShowViewBox_NPC();
         currBossStage = BossStage.View;
+        isAtViewTrigger = true;
+        DroneController.instance.canShowTalkHint = false;
+        DroneController.instance.HideTalkHint();
     }
 
     private void ViewTrigger_OnExit()
@@ -337,6 +339,8 @@ public class BossObject : MonoBehaviour
         isAtViewTrigger = false;
         ViewBoxManager.instance.HideViewBox_NPC();
         currBossStage = BossStage.None;
+        DroneController.instance.canShowTalkHint = true;
+        DroneController.instance.ShowTalkHint();
     }
 
     //-------

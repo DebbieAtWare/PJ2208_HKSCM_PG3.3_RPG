@@ -117,6 +117,8 @@ public class CarboniferousManager : MonoBehaviour
         //when collected the boss:use on trigger to change scene
         if (commonUtils.bosses[0].IsSuccessCollectDone)
         {
+            DroneController.instance.canShowTalkHint = false;
+            DroneController.instance.HideTalkHint();
             TransitionManager.instance.ChangeToInsideTreeCave();
         }
     }
