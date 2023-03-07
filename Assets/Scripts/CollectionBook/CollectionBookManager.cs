@@ -301,7 +301,6 @@ public class CollectionBookManager : MonoBehaviour
             {
                 if (currStage == CollectionBookStage.Main)
                 {
-
                     if (currRow == 0)
                     {
                         SoundManager.instance.Play_Input(0);
@@ -360,6 +359,11 @@ public class CollectionBookManager : MonoBehaviour
                             main_NPCObjs[currIndex_NPC].SetSelection(true);
                         }
                     }
+                }
+                else if (currStage == CollectionBookStage.Detail)
+                {
+                    //error
+                    SoundManager.instance.Play_Input(3);
                 }
                 else if (currStage == CollectionBookStage.Restart)
                 {
@@ -475,49 +479,45 @@ public class CollectionBookManager : MonoBehaviour
                 }
                 else if (currStage == CollectionBookStage.Detail)
                 {
-                    SoundManager.instance.Play_Input(0);
                     if (val == -1)
                     {
                         if (detail_CurrFrame == 0)
                         {
-                            detail_CurrFrame = 2;
+                            //error
+                            SoundManager.instance.Play_Input(3);
                         }
                         else if (detail_CurrFrame == 1)
                         {
+                            SoundManager.instance.Play_Input(0);
                             detail_CurrFrame = 0;
+                            Detail_FrameControl();
                         }
                         else if (detail_CurrFrame == 2)
                         {
+                            SoundManager.instance.Play_Input(0);
                             detail_CurrFrame = 1;
+                            Detail_FrameControl();
                         }
-                        Detail_FrameControl();
-                        //if (detail_CurrPage == 1)
-                        //{
-                        //    detail_CurrPage = 0;
-                        //    //use change lang function, to switch detail info and feature page
-                        //    ChangeLanguage();
-                        //}
                     }
                     else if (val == 1)
                     {
                         if (detail_CurrFrame == 0)
                         {
+                            SoundManager.instance.Play_Input(0);
                             detail_CurrFrame = 1;
+                            Detail_FrameControl();
                         }
                         else if (detail_CurrFrame == 1)
                         {
+                            SoundManager.instance.Play_Input(0);
                             detail_CurrFrame = 2;
+                            Detail_FrameControl();
                         }
                         else if (detail_CurrFrame == 2)
                         {
-                            detail_CurrFrame = 0;
+                            //error
+                            SoundManager.instance.Play_Input(3);
                         }
-                        Detail_FrameControl();
-                        //if (detail_CurrPage == 0)
-                        //{
-                        //    detail_CurrPage = 1;
-                        //    ChangeLanguage();
-                        //}
                     }
                 }
             }
@@ -543,6 +543,7 @@ public class CollectionBookManager : MonoBehaviour
                         }
                         else
                         {
+                            SoundManager.instance.Play_Input(3);
                             main_BossObjs[currIndex_Boss].ShakeAni();
                         }
                     }
@@ -574,10 +575,10 @@ public class CollectionBookManager : MonoBehaviour
                 }
                 else if (currStage == CollectionBookStage.Detail)
                 {
-                    SoundManager.instance.Play_Input(1);
                     //back
                     if (detail_CurrFrame == 0)
                     {
+                        SoundManager.instance.Play_Input(1);
                         Hide_Detail();
                     }
                     //previous page
@@ -585,8 +586,13 @@ public class CollectionBookManager : MonoBehaviour
                     {
                         if (detail_CurrPage == 1)
                         {
+                            SoundManager.instance.Play_Input(1);
                             detail_CurrPage = 0;
                             ChangeLanguage();
+                        }
+                        else
+                        {
+                            SoundManager.instance.Play_Input(3);
                         }
                     }
                     //next page
@@ -594,8 +600,13 @@ public class CollectionBookManager : MonoBehaviour
                     {
                         if (detail_CurrPage == 0)
                         {
+                            SoundManager.instance.Play_Input(1);
                             detail_CurrPage = 1;
                             ChangeLanguage();
+                        }
+                        else
+                        {
+                            SoundManager.instance.Play_Input(3);
                         }
                     }
                 }
