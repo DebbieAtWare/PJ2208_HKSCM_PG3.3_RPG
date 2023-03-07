@@ -36,9 +36,9 @@ public class CollectionBookManager : MonoBehaviour
     public RectTransform main_Scroll_ContentRect;
     public GameObject main_CloseIpadObj;
     public GameObject main_CloseIpadFrameIdleObj;
-    public GameObject main_CloseIpadFrameSelectedObj;
+    public Image main_CloseIpadFrameSelectedObj;
     public GameObject main_RestartGameObj;
-    public List<GameObject> main_RestartGameFrameObjs = new List<GameObject>();
+    public List<Image> main_RestartGameFrameObjs = new List<Image>();
     public Image main_ArrowImgL;
     public Image main_ArrowImgR;
     public Sprite main_ArrowSprite_OnIdle;
@@ -183,7 +183,39 @@ public class CollectionBookManager : MonoBehaviour
             }
         }
 
+        //blink frame
+        main_CloseIpadFrameSelectedObj.DOFade(0.4f, 0f);
+        BlinkFrameAni();
+
         restart_CanvasGrp.alpha = 0;
+    }
+
+    private void OnEnable()
+    {
+        //blink frame
+        main_CloseIpadFrameSelectedObj.DOFade(0.4f, 0f);
+        BlinkFrameAni();
+    }
+
+    void BlinkFrameAni()
+    {
+        StartCoroutine(Ani());
+        IEnumerator Ani()
+        {
+            main_CloseIpadFrameSelectedObj.DOFade(1f, 0.5f);
+            for (int i = 0; i < main_RestartGameFrameObjs.Count; i++)
+            {
+                main_RestartGameFrameObjs[i].DOFade(1f, 0.5f);
+            }
+            yield return new WaitForSeconds(0.8f);
+            main_CloseIpadFrameSelectedObj.DOFade(0.4f, 0.5f);
+            for (int i = 0; i < main_RestartGameFrameObjs.Count; i++)
+            {
+                main_RestartGameFrameObjs[i].DOFade(0.4f, 0.5f);
+            }
+            yield return new WaitForSeconds(0.8f);
+            BlinkFrameAni();
+        }
     }
 
     private void CommonUtils_OnChangeLang()
@@ -233,13 +265,13 @@ public class CollectionBookManager : MonoBehaviour
                             {
                                 for (int i = 0; i < main_RestartGameFrameObjs.Count; i++)
                                 {
-                                    main_RestartGameFrameObjs[i].SetActive(true);
+                                    main_RestartGameFrameObjs[i].gameObject.SetActive(true);
                                 }
                             }
                             else
                             {
                                 main_CloseIpadFrameIdleObj.SetActive(false);
-                                main_CloseIpadFrameSelectedObj.SetActive(true);
+                                main_CloseIpadFrameSelectedObj.gameObject.SetActive(true);
                             }
                         }
                     }
@@ -253,13 +285,13 @@ public class CollectionBookManager : MonoBehaviour
                             {
                                 for (int i = 0; i < main_RestartGameFrameObjs.Count; i++)
                                 {
-                                    main_RestartGameFrameObjs[i].SetActive(false);
+                                    main_RestartGameFrameObjs[i].gameObject.SetActive(false);
                                 }
                             }
                             else
                             {
                                 main_CloseIpadFrameIdleObj.SetActive(true);
-                                main_CloseIpadFrameSelectedObj.SetActive(false);
+                                main_CloseIpadFrameSelectedObj.gameObject.SetActive(false);
                             }
                             main_NPCObjs[currIndex_NPC].SetSelection(true);
                         }
@@ -523,7 +555,7 @@ public class CollectionBookManager : MonoBehaviour
         {
             for (int i = 0; i < main_RestartGameFrameObjs.Count; i++)
             {
-                main_RestartGameFrameObjs[i].SetActive(false);
+                main_RestartGameFrameObjs[i].gameObject.SetActive(false);
             }
             main_RestartGameObj.SetActive(true);
             main_CloseIpadObj.SetActive(false);
@@ -531,7 +563,7 @@ public class CollectionBookManager : MonoBehaviour
         else
         {
             main_CloseIpadFrameIdleObj.SetActive(true);
-            main_CloseIpadFrameSelectedObj.SetActive(false);
+            main_CloseIpadFrameSelectedObj.gameObject.SetActive(false);
             main_CloseIpadObj.SetActive(true);
             main_RestartGameObj.SetActive(false);
         }

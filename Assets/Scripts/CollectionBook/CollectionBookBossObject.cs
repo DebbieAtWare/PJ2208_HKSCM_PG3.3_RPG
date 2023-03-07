@@ -30,7 +30,8 @@ public class CollectionBookBossObject : MonoBehaviour
 
     [Header("Frame")]
     public GameObject frameObj_Idle;
-    public GameObject frameObj_Selected;
+    public Image frameObj_Selected;
+    public bool isBlink = false;
 
     [Header("Lang")]
     public List<GameObject> langObjs_TC = new List<GameObject>();
@@ -56,6 +57,34 @@ public class CollectionBookBossObject : MonoBehaviour
         img_Boss.gameObject.SetActive(false);
         img_Gray.DOFade(0, 0);
         ChangeLanguage(lang);
+
+        if (isBlink)
+        {
+            frameObj_Selected.DOFade(0.4f, 0);
+            BlinkFrameAni();
+        }
+    }
+
+    private void OnEnable()
+    {
+        if (isBlink)
+        {
+            frameObj_Selected.DOFade(0.4f, 0);
+            BlinkFrameAni();
+        }
+    }
+
+    void BlinkFrameAni()
+    {
+        StartCoroutine(Ani());
+        IEnumerator Ani()
+        {
+            frameObj_Selected.DOFade(1f, 0.5f);
+            yield return new WaitForSeconds(0.8f);
+            frameObj_Selected.DOFade(0.4f, 0.5f);
+            yield return new WaitForSeconds(0.8f);
+            BlinkFrameAni();
+        }
     }
 
     public void ChangeLanguage(Language lang)
@@ -154,12 +183,12 @@ public class CollectionBookBossObject : MonoBehaviour
         if (val)
         {
             frameObj_Idle.SetActive(false);
-            frameObj_Selected.SetActive(true);
+            frameObj_Selected.gameObject.SetActive(true);
         }
         else
         {
             frameObj_Idle.SetActive(true);
-            frameObj_Selected.SetActive(false);
+            frameObj_Selected.gameObject.SetActive(false);
         }
     }
 

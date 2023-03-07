@@ -409,7 +409,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterID: 0
   frame_In: {fileID: 7343226060839847351}
-  frame_Out: {fileID: 7343226061799735985}
+  frame_Out: {fileID: 7343226061799735951}
+  isBlink: 0
   numText_In: {fileID: 7343226060454658568}
   numText_Out: {fileID: 7343226060855725030}
 --- !u!1 &7343226061794694962
