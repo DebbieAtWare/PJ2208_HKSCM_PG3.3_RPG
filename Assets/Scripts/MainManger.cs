@@ -152,26 +152,33 @@ public class MainManger : MonoBehaviour
                 }
                 else if (currStage == MainStage.Language)
                 {
-                    SoundManager.instance.Play_Input(0);
                     if (langGrp_CurrIndex == 0)
                     {
                         if (val == -1)
                         {
+                            SoundManager.instance.Play_Input(0);
                             langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(false);
                             langGrp_CurrIndex = 1;
                             langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(true);
+                        }
+                        else
+                        {
+                            //error sound
+                            SoundManager.instance.Play_Input(3);
                         }
                     }
                     else if (langGrp_CurrIndex == 1)
                     {
                         if (val == 1)
                         {
+                            SoundManager.instance.Play_Input(0);
                             langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(false);
                             langGrp_CurrIndex = 0;
                             langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(true);
                         }
                         else if (val == -1)
                         {
+                            SoundManager.instance.Play_Input(0);
                             langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(false);
                             langGrp_CurrIndex = 2;
                             langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(true);
@@ -181,9 +188,15 @@ public class MainManger : MonoBehaviour
                     {
                         if (val == 1)
                         {
+                            SoundManager.instance.Play_Input(0);
                             langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(false);
                             langGrp_CurrIndex = 1;
                             langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(true);
+                        }
+                        else
+                        {
+                            //error sound
+                            SoundManager.instance.Play_Input(3);
                         }
                     }
                 }
@@ -264,6 +277,11 @@ public class MainManger : MonoBehaviour
                 {
                     SoundManager.instance.Play_Input(0);
                     ChangeStage_Language();
+                }
+                else if (currStage == MainStage.Language)
+                {
+                    //error sound
+                    SoundManager.instance.Play_Input(3);
                 }
             }
         }
