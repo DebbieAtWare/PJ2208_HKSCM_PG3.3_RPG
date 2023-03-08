@@ -1999,6 +1999,10 @@ public class ConfigData
     public float IntroVideo_AutoRun_Page7To8;
     public float IntroVideo_AutoRun_Page8To9;
     public float IntroVideo_AutoRun_Page9To10;
+    public float EndingVideo_AutoRun_Page1To2;
+    public float EndingVideo_AutoRun_Page2To3;
+    public float EndingVideo_AutoRun_Page3To4;
+    public float EndingVideo_AutoRun_Page4To5;
 }
 
 [Serializable]

@@ -167,6 +167,7 @@ public class EndVideoManager : MonoBehaviour
                 }
                 else if (currStage == EndVideoStage.Page1_EndWaiting)
                 {
+                    CancelInvoke("AutoPlay_Page1To2");
                     SoundManager.instance.Play_Input(2);
                     page2_Coroutine_Play = Page2_Ani_Play();
                     StartCoroutine(page2_Coroutine_Play);
@@ -179,6 +180,7 @@ public class EndVideoManager : MonoBehaviour
                 }
                 else if (currStage == EndVideoStage.Page2_EndWaiting)
                 {
+                    CancelInvoke("AutoPlay_Page2To3");
                     SoundManager.instance.Play_Input(2);
                     page3_Coroutine_Play = Page3_Ani_Play();
                     StartCoroutine(page3_Coroutine_Play);
@@ -191,6 +193,7 @@ public class EndVideoManager : MonoBehaviour
                 }
                 else if (currStage == EndVideoStage.Page3_EndWaiting)
                 {
+                    CancelInvoke("AutoPlay_Page3To4");
                     SoundManager.instance.Play_Input(2);
                     page4_Coroutine_Play = Page4_Ani_Play();
                     StartCoroutine(page4_Coroutine_Play);
@@ -203,6 +206,7 @@ public class EndVideoManager : MonoBehaviour
                 }
                 else if (currStage == EndVideoStage.Page4_EndWaiting)
                 {
+                    CancelInvoke("AutoPlay_Page4To5");
                     SoundManager.instance.Play_Input(2);
                     currStage = EndVideoStage.Page5;
                     page4_bossObj.ResetAll();
@@ -266,6 +270,7 @@ public class EndVideoManager : MonoBehaviour
     IEnumerator Page1_Ani_Play()
     {
         SoundManager.instance.Play_BGM(7, 5);
+        Invoke("AutoPlay_Page1To2", commonUtils.data.EndingVideo_AutoRun_Page1To2);
         confirmBtnControl.SetAlpha(0, 0);
         blackBkgRect.DOScale(new Vector3(1, 1, 1), 1f).SetEase(Ease.Linear);
         yield return new WaitForSeconds(0.7f);
@@ -336,12 +341,19 @@ public class EndVideoManager : MonoBehaviour
         currStage = EndVideoStage.Page1_EndWaiting;
     }
 
+    void AutoPlay_Page1To2()
+    {
+        page2_Coroutine_Play = Page2_Ani_Play();
+        StartCoroutine(page2_Coroutine_Play);
+    }
+
     //----------
 
     IEnumerator Page2_Ani_Play()
     {
         StopCoroutine(page1_Coroutine_Play);
         StopCoroutine(page1_Coroutine_FastIn);
+        Invoke("AutoPlay_Page2To3", commonUtils.data.EndingVideo_AutoRun_Page2To3);
         if (commonUtils.currLang == Language.TC)
         {
             Vector2 textPosTarget_Up = new Vector2(page1_textRect_TC.rectTransform.anchoredPosition.x, page1_textRect_TC.preferredHeight);
@@ -410,12 +422,19 @@ public class EndVideoManager : MonoBehaviour
         currStage = EndVideoStage.Page2_EndWaiting;
     }
 
+    void AutoPlay_Page2To3()
+    {
+        page3_Coroutine_Play = Page3_Ani_Play();
+        StartCoroutine(page3_Coroutine_Play);
+    }
+
     //----------
 
     IEnumerator Page3_Ani_Play()
     {
         StopCoroutine(page2_Coroutine_Play);
         StopCoroutine(page2_Coroutine_FastIn);
+        Invoke("AutoPlay_Page3To4", commonUtils.data.EndingVideo_AutoRun_Page3To4);
         if (commonUtils.currLang == Language.TC)
         {
             Vector2 textPosTarget_Up = new Vector2(page2_textRect_TC.rectTransform.anchoredPosition.x, page2_textRect_TC.preferredHeight);
@@ -484,12 +503,19 @@ public class EndVideoManager : MonoBehaviour
         currStage = EndVideoStage.Page3_EndWaiting;
     }
 
+    void AutoPlay_Page3To4()
+    {
+        page4_Coroutine_Play = Page4_Ani_Play();
+        StartCoroutine(page4_Coroutine_Play);
+    }
+
     //----------
 
     IEnumerator Page4_Ani_Play()
     {
         StopCoroutine(page3_Coroutine_Play);
         StopCoroutine(page3_Coroutine_FastIn);
+        Invoke("AutoPlay_Page4To5", commonUtils.data.EndingVideo_AutoRun_Page4To5);
         if (commonUtils.currLang == Language.TC)
         {
             Vector2 textPosTarget_Up = new Vector2(page3_textRect_TC.rectTransform.anchoredPosition.x, page3_textRect_TC.preferredHeight);
@@ -556,6 +582,14 @@ public class EndVideoManager : MonoBehaviour
         page4_imgRect.DOAnchorPos(imgPosTarget_On, aniTime_Img_FastIn).SetEase(Ease.Linear);
         yield return new WaitForSeconds(aniTime_Img_FastIn);
         currStage = EndVideoStage.Page4_EndWaiting;
+    }
+
+
+    void AutoPlay_Page4To5()
+    {
+        currStage = EndVideoStage.Page5;
+        page4_bossObj.ResetAll();
+        TransitionManager.instance.EndingVideoToLab();
     }
 
     public void ResetAll()
