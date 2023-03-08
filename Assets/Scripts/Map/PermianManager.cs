@@ -18,7 +18,7 @@ public class PermianManager : MonoBehaviour
     InputManager inputManager;
     int currUtilsIndex_Boss2;
     int currUtilsIndex_Boss3;
-    int firstGreetingDialogIndex;
+    public int firstGreetingDialogIndex;
     bool isShowingSuccessCollect_Boss2 = false;
     bool isShowingSuccessCollect_Boss3 = false;
 
@@ -110,7 +110,8 @@ public class PermianManager : MonoBehaviour
                     {
                         if (firstGreetingDialogIndex == (commonUtils.firstGreeting_Permian.Count - 1))
                         {
-                            firstGreetingDialogIndex = -1;
+                            //when finish greeting = -2
+                            firstGreetingDialogIndex = -2;
                             DialogBoxManager.instance.HideDialog();
                             GameManager.instance.dialogActive = false;
                             DroneController.instance.canShowTalkHint = true;

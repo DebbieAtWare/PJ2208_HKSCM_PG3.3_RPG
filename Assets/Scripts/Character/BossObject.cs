@@ -327,11 +327,31 @@ public class BossObject : MonoBehaviour
 
     private void ViewTrigger_OnEnter()
     {
-        ViewBoxManager.instance.ShowViewBox_NPC();
-        currBossStage = BossStage.View;
-        isAtViewTrigger = true;
-        DroneController.instance.canShowTalkHint = false;
-        DroneController.instance.HideTalkHint();
+        Debug.Log(CommonUtils.instance.currMapId);
+        if (PermianManager.instance != null)
+        {
+            Debug.Log(PermianManager.instance.firstGreetingDialogIndex);
+        }
+        //can only start conversation when finished in first greeting dialog
+        if (CommonUtils.instance.currMapId == MapID.Carboniferous)
+        {
+            ViewBoxManager.instance.ShowViewBox_NPC();
+            currBossStage = BossStage.View;
+            isAtViewTrigger = true;
+            DroneController.instance.canShowTalkHint = false;
+            DroneController.instance.HideTalkHint();
+        }
+        else if (CommonUtils.instance.currMapId == MapID.Permian)
+        {
+            if (PermianManager.instance.firstGreetingDialogIndex == -2)
+            {
+                ViewBoxManager.instance.ShowViewBox_NPC();
+                currBossStage = BossStage.View;
+                isAtViewTrigger = true;
+                DroneController.instance.canShowTalkHint = false;
+                DroneController.instance.HideTalkHint();
+            }
+        }
     }
 
     private void ViewTrigger_OnExit()
