@@ -35,8 +35,7 @@ public class CollectionBookManager : MonoBehaviour
     public List<CollectionBookNPCObject> main_NPCObjs = new List<CollectionBookNPCObject>();
     public RectTransform main_Scroll_ContentRect;
     public BlinkButtonObject main_BlinkBtn_CloseIpad;
-    public GameObject main_RestartGameObj;
-    public List<Image> main_RestartGameFrameObjs = new List<Image>();
+    public BlinkButtonObject main_BlinkBtn_ExitGame;
     public Image main_ArrowImgL;
     public Image main_ArrowImgR;
     public Sprite main_ArrowSprite_OnIdle;
@@ -68,28 +67,14 @@ public class CollectionBookManager : MonoBehaviour
     public List<CollectionBookFeatureObject> detail_FeatureObjs_TC = new List<CollectionBookFeatureObject>();
     public List<CollectionBookFeatureObject> detail_FeatureObjs_SC = new List<CollectionBookFeatureObject>();
     public List<CollectionBookFeatureObject> detail_FeatureObjs_EN = new List<CollectionBookFeatureObject>();
-    public Image detail_ExitFrameObj_TC;
-    public Image detail_ExitFrameObj_SC;
-    public Image detail_ExitFrameObj_EN;
-    public GameObject detail_ExitText_TC;
-    public GameObject detail_ExitText_SC;
-    public GameObject detail_ExitText_EN;
-    public Image detail_PreFrameObj_TC;
-    public Image detail_PreFrameObj_SC;
-    public Image detail_PreFrameObj_EN;
-    public GameObject detail_PreText_TC;
-    public GameObject detail_PreText_SC;
-    public GameObject detail_PreText_EN;
-    public Image detail_NextFrameObj_TC;
-    public Image detail_NextFrameObj_SC;
-    public Image detail_NextFrameObj_EN;
-    public GameObject detail_NextText_TC;
-    public GameObject detail_NextText_SC;
-    public GameObject detail_NextText_EN;
+    public BlinkButtonObject detail_BlinkBtn_Back;
+    public BlinkButtonObject detail_BlinkBtn_Previous;
+    public BlinkButtonObject detail_BlinkBtn_Next;
     public Image detail_ArrowL;
     public Image detail_ArrowR;
     public Sprite detail_ArrowSprite_On;
     public Sprite detail_ArrowSprite_Off;
+    public List<TextMeshProUGUI> detail_PageTexts = new List<TextMeshProUGUI>();
     //0 = info
     //1 = feature
     public int detail_CurrPage = 0;
@@ -203,79 +188,12 @@ public class CollectionBookManager : MonoBehaviour
 
         //blink frame
         main_BlinkBtn_CloseIpad.Setup();
-
-        for (int i = 0; i < main_RestartGameFrameObjs.Count; i++)
-        {
-            main_RestartGameFrameObjs[i].DOFade(0.4f, 0f);
-        }
-        detail_ExitFrameObj_TC.DOFade(0.4f, 0f);
-        detail_ExitFrameObj_SC.DOFade(0.4f, 0f);
-        detail_ExitFrameObj_EN.DOFade(0.4f, 0f);
-        detail_PreFrameObj_TC.DOFade(0.4f, 0f);
-        detail_PreFrameObj_SC.DOFade(0.4f, 0f);
-        detail_PreFrameObj_EN.DOFade(0.4f, 0f);
-        detail_NextFrameObj_TC.DOFade(0.4f, 0f);
-        detail_NextFrameObj_SC.DOFade(0.4f, 0f);
-        detail_NextFrameObj_EN.DOFade(0.4f, 0f);
-        BlinkFrameAni();
+        main_BlinkBtn_ExitGame.Setup();
+        detail_BlinkBtn_Back.Setup();
+        detail_BlinkBtn_Previous.Setup();
+        detail_BlinkBtn_Next.Setup();
 
         restart_CanvasGrp.alpha = 0;
-    }
-
-    private void OnEnable()
-    {
-        //blink frame
-        for (int i = 0; i < main_RestartGameFrameObjs.Count; i++)
-        {
-            main_RestartGameFrameObjs[i].DOFade(0.4f, 0f);
-        }
-        detail_ExitFrameObj_TC.DOFade(0.4f, 0f);
-        detail_ExitFrameObj_SC.DOFade(0.4f, 0f);
-        detail_ExitFrameObj_EN.DOFade(0.4f, 0f);
-        detail_PreFrameObj_TC.DOFade(0.4f, 0f);
-        detail_PreFrameObj_SC.DOFade(0.4f, 0f);
-        detail_PreFrameObj_EN.DOFade(0.4f, 0f);
-        detail_NextFrameObj_TC.DOFade(0.4f, 0f);
-        detail_NextFrameObj_SC.DOFade(0.4f, 0f);
-        detail_NextFrameObj_EN.DOFade(0.4f, 0f);
-        BlinkFrameAni();
-    }
-
-    void BlinkFrameAni()
-    {
-        StartCoroutine(Ani());
-        IEnumerator Ani()
-        {
-            for (int i = 0; i < main_RestartGameFrameObjs.Count; i++)
-            {
-                main_RestartGameFrameObjs[i].DOFade(1f, 0.3f);
-            }
-            detail_ExitFrameObj_TC.DOFade(1f, 0.3f);
-            detail_ExitFrameObj_SC.DOFade(1f, 0.3f);
-            detail_ExitFrameObj_EN.DOFade(1f, 0.3f);
-            detail_PreFrameObj_TC.DOFade(1f, 0.3f);
-            detail_PreFrameObj_SC.DOFade(1f, 0.3f);
-            detail_PreFrameObj_EN.DOFade(1f, 0.3f);
-            detail_NextFrameObj_TC.DOFade(1f, 0.3f);
-            detail_NextFrameObj_SC.DOFade(1f, 0.3f);
-            detail_NextFrameObj_EN.DOFade(1f, 0.3f);
-            yield return new WaitForSeconds(0.5f);
-            for (int i = 0; i < main_RestartGameFrameObjs.Count; i++)
-            {
-                main_RestartGameFrameObjs[i].DOFade(0.4f, 0.3f);
-            }
-            detail_ExitFrameObj_TC.DOFade(0.4f, 0.3f);
-            detail_ExitFrameObj_SC.DOFade(0.4f, 0.3f);
-            detail_ExitFrameObj_EN.DOFade(0.4f, 0.3f);
-            detail_PreFrameObj_TC.DOFade(0.4f, 0.3f);
-            detail_PreFrameObj_SC.DOFade(0.4f, 0.3f);
-            detail_PreFrameObj_EN.DOFade(0.4f, 0.3f);
-            detail_NextFrameObj_TC.DOFade(0.4f, 0.3f);
-            detail_NextFrameObj_SC.DOFade(0.4f, 0.3f);
-            detail_NextFrameObj_EN.DOFade(0.4f, 0.3f);
-            yield return new WaitForSeconds(0.5f);
-            BlinkFrameAni();
-        }
     }
 
     private void CommonUtils_OnChangeLang()
@@ -288,6 +206,10 @@ public class CollectionBookManager : MonoBehaviour
             success_BossObjs[i].ChangeLanguage(commonUtils.currLang);
         }
         main_BlinkBtn_CloseIpad.ChangeLanguage(commonUtils.currLang);
+        main_BlinkBtn_ExitGame.ChangeLanguage(commonUtils.currLang);
+        detail_BlinkBtn_Back.ChangeLanguage(commonUtils.currLang);
+        detail_BlinkBtn_Previous.ChangeLanguage(commonUtils.currLang);
+        detail_BlinkBtn_Next.ChangeLanguage(commonUtils.currLang);
     }
 
     private void InputManager_OnValueChanged_Vertical(int val)
@@ -323,10 +245,7 @@ public class CollectionBookManager : MonoBehaviour
                             main_NPCObjs[currIndex_NPC].SetSelection(false);
                             if (commonUtils.currMapId == MapID.Lab)
                             {
-                                for (int i = 0; i < main_RestartGameFrameObjs.Count; i++)
-                                {
-                                    main_RestartGameFrameObjs[i].gameObject.SetActive(true);
-                                }
+                                main_BlinkBtn_ExitGame.SetSelection(true);
                             }
                             else
                             {
@@ -342,10 +261,7 @@ public class CollectionBookManager : MonoBehaviour
                             currRow = 1;
                             if (commonUtils.currMapId == MapID.Lab)
                             {
-                                for (int i = 0; i < main_RestartGameFrameObjs.Count; i++)
-                                {
-                                    main_RestartGameFrameObjs[i].gameObject.SetActive(false);
-                                }
+                                main_BlinkBtn_ExitGame.SetSelection(false);
                             }
                             else
                             {
@@ -672,17 +588,15 @@ public class CollectionBookManager : MonoBehaviour
 
         if (commonUtils.currMapId == MapID.Lab)
         {
-            for (int i = 0; i < main_RestartGameFrameObjs.Count; i++)
-            {
-                main_RestartGameFrameObjs[i].gameObject.SetActive(false);
-            }
-            main_RestartGameObj.SetActive(true);
+            main_BlinkBtn_ExitGame.SetSelection(false);
+            main_BlinkBtn_ExitGame.gameObject.SetActive(true);
             main_BlinkBtn_CloseIpad.gameObject.SetActive(false);
         }
         else
         {
+            main_BlinkBtn_CloseIpad.SetSelection(false);
             main_BlinkBtn_CloseIpad.gameObject.SetActive(true);
-            main_RestartGameObj.SetActive(false);
+            main_BlinkBtn_ExitGame.gameObject.SetActive(false);
         }
 
         main_ArrowImgL.sprite = main_ArrowSprite_OffIdle;
@@ -816,39 +730,21 @@ public class CollectionBookManager : MonoBehaviour
         //detail page frame
         if (detail_CurrFrame == 0)
         {
-            detail_ExitFrameObj_TC.gameObject.SetActive(true);
-            detail_ExitFrameObj_SC.gameObject.SetActive(true);
-            detail_ExitFrameObj_EN.gameObject.SetActive(true);
-            detail_PreFrameObj_TC.gameObject.SetActive(false);
-            detail_PreFrameObj_SC.gameObject.SetActive(false);
-            detail_PreFrameObj_EN.gameObject.SetActive(false);
-            detail_NextFrameObj_TC.gameObject.SetActive(false);
-            detail_NextFrameObj_SC.gameObject.SetActive(false);
-            detail_NextFrameObj_EN.gameObject.SetActive(false);
+            detail_BlinkBtn_Back.SetSelection(true);
+            detail_BlinkBtn_Previous.SetSelection(false);
+            detail_BlinkBtn_Next.SetSelection(false);
         }
         else if (detail_CurrFrame == 1)
         {
-            detail_ExitFrameObj_TC.gameObject.SetActive(false);
-            detail_ExitFrameObj_SC.gameObject.SetActive(false);
-            detail_ExitFrameObj_EN.gameObject.SetActive(false);
-            detail_PreFrameObj_TC.gameObject.SetActive(true);
-            detail_PreFrameObj_SC.gameObject.SetActive(true);
-            detail_PreFrameObj_EN.gameObject.SetActive(true);
-            detail_NextFrameObj_TC.gameObject.SetActive(false);
-            detail_NextFrameObj_SC.gameObject.SetActive(false);
-            detail_NextFrameObj_EN.gameObject.SetActive(false);
+            detail_BlinkBtn_Back.SetSelection(false);
+            detail_BlinkBtn_Previous.SetSelection(true);
+            detail_BlinkBtn_Next.SetSelection(false);
         }
         else if (detail_CurrFrame == 2)
         {
-            detail_ExitFrameObj_TC.gameObject.SetActive(false);
-            detail_ExitFrameObj_SC.gameObject.SetActive(false);
-            detail_ExitFrameObj_EN.gameObject.SetActive(false);
-            detail_PreFrameObj_TC.gameObject.SetActive(false);
-            detail_PreFrameObj_SC.gameObject.SetActive(false);
-            detail_PreFrameObj_EN.gameObject.SetActive(false);
-            detail_NextFrameObj_TC.gameObject.SetActive(true);
-            detail_NextFrameObj_SC.gameObject.SetActive(true);
-            detail_NextFrameObj_EN.gameObject.SetActive(true);
+            detail_BlinkBtn_Back.SetSelection(false);
+            detail_BlinkBtn_Previous.SetSelection(false);
+            detail_BlinkBtn_Next.SetSelection(true);
         }
     }
 
@@ -1145,16 +1041,6 @@ public class CollectionBookManager : MonoBehaviour
                 detail_FeatureObjsRoot_SC.gameObject.SetActive(false);
                 detail_FeatureObjsRoot_EN.gameObject.SetActive(false);
             }
-            detail_ExitText_TC.SetActive(true);
-            detail_ExitText_SC.SetActive(false);
-            detail_ExitText_EN.SetActive(false);
-            detail_PreText_TC.SetActive(true);
-            detail_PreText_SC.SetActive(false);
-            detail_PreText_EN.SetActive(false);
-            detail_NextText_TC.SetActive(true);
-            detail_NextText_SC.SetActive(false);
-            detail_NextText_EN.SetActive(false);
-
             confirmBtnRect_Restart.anchoredPosition = new Vector2(confirmBtnPosX_TCSC, confirmBtnRect_Restart.anchoredPosition.y);
             confirmBtnRect_Success.anchoredPosition = new Vector2(confirmBtnPosX_TCSC, confirmBtnRect_Success.anchoredPosition.y);
         }
@@ -1213,16 +1099,6 @@ public class CollectionBookManager : MonoBehaviour
                 detail_FeatureObjsRoot_SC.gameObject.SetActive(true);
                 detail_FeatureObjsRoot_EN.gameObject.SetActive(false);
             }
-            detail_ExitText_TC.SetActive(false);
-            detail_ExitText_SC.SetActive(true);
-            detail_ExitText_EN.SetActive(false);
-            detail_PreText_TC.SetActive(false);
-            detail_PreText_SC.SetActive(true);
-            detail_PreText_EN.SetActive(false);
-            detail_NextText_TC.SetActive(false);
-            detail_NextText_SC.SetActive(true);
-            detail_NextText_EN.SetActive(false);
-
             confirmBtnRect_Restart.anchoredPosition = new Vector2(confirmBtnPosX_TCSC, confirmBtnRect_Restart.anchoredPosition.y);
             confirmBtnRect_Success.anchoredPosition = new Vector2(confirmBtnPosX_TCSC, confirmBtnRect_Success.anchoredPosition.y);
         }
@@ -1281,16 +1157,6 @@ public class CollectionBookManager : MonoBehaviour
                 detail_FeatureObjsRoot_SC.gameObject.SetActive(false);
                 detail_FeatureObjsRoot_EN.gameObject.SetActive(true);
             }
-            detail_ExitText_TC.SetActive(false);
-            detail_ExitText_SC.SetActive(false);
-            detail_ExitText_EN.SetActive(true);
-            detail_PreText_TC.SetActive(false);
-            detail_PreText_SC.SetActive(false);
-            detail_PreText_EN.SetActive(true);
-            detail_NextText_TC.SetActive(false);
-            detail_NextText_SC.SetActive(false);
-            detail_NextText_EN.SetActive(true);
-
             confirmBtnRect_Restart.anchoredPosition = new Vector2(confirmBtnPosX_EN, confirmBtnRect_Restart.anchoredPosition.y);
             confirmBtnRect_Success.anchoredPosition = new Vector2(confirmBtnPosX_EN, confirmBtnRect_Success.anchoredPosition.y);
         }
@@ -1300,11 +1166,23 @@ public class CollectionBookManager : MonoBehaviour
         {
             detail_ArrowL.sprite = detail_ArrowSprite_Off;
             detail_ArrowR.sprite = detail_ArrowSprite_On;
+            for (int i = 0; i < detail_PageTexts.Count; i++)
+            {
+                detail_PageTexts[i].text = "1/2";
+            }
+            detail_BlinkBtn_Previous.SetTextAlpha(0.2f);
+            detail_BlinkBtn_Next.SetTextAlpha(1f);
         }
         else if (detail_CurrPage == 1)
         {
             detail_ArrowL.sprite = detail_ArrowSprite_On;
             detail_ArrowR.sprite = detail_ArrowSprite_Off;
+            for (int i = 0; i < detail_PageTexts.Count; i++)
+            {
+                detail_PageTexts[i].text = "2/2";
+            }
+            detail_BlinkBtn_Previous.SetTextAlpha(1f);
+            detail_BlinkBtn_Next.SetTextAlpha(0.2f);
         }
     }
 

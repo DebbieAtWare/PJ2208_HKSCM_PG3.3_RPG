@@ -323,7 +323,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 79, y: 100}
+  m_SizeDelta: {x: 78.795, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5219152387074411090
 GameObject:
@@ -478,7 +478,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 79, y: 100}
+  m_SizeDelta: {x: 78.795, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6009190547705364752
 GameObject:
@@ -844,6 +844,11 @@ MonoBehaviour:
   img_EN: {fileID: 6027884266273520932}
   sprite_Idle: {fileID: 21300000, guid: 1c70c669a1b7f6b48968b3c300b7f98a, type: 3}
   sprite_Selected: {fileID: 21300000, guid: 5afdb034ff4fda141ab872012f8ab86b, type: 3}
+  texts:
+  - {fileID: 7721392722656878638}
+  - {fileID: 8067092236166383943}
+  - {fileID: 3572725279326371384}
+  isAlphaText: 0
 --- !u!1 &7759506904313144679
 GameObject:
   m_ObjectHideFlags: 0

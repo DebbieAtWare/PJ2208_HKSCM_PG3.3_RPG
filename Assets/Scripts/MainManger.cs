@@ -83,6 +83,8 @@ public class MainManger : MonoBehaviour
 
     void Start()
     {
+        Cursor.visible = false;
+
         if (Level.PreviousLevel == "ResetScene")
         {
             resetTransitionImg.DOFade(1, 0);
