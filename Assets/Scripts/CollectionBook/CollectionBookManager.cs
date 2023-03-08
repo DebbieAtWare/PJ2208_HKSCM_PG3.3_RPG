@@ -222,25 +222,30 @@ public class CollectionBookManager : MonoBehaviour
                 {
                     if (currRow == 0)
                     {
-                        SoundManager.instance.Play_Input(0);
                         if (val == -1)
                         {
+                            SoundManager.instance.Play_Input(0);
                             currRow = 1;
                             main_BossObjs[currIndex_Boss].SetSelection(false);
                             main_NPCObjs[currIndex_NPC].SetSelection(true);
                         }
+                        else
+                        {
+                            SoundManager.instance.Play_Input(3);
+                        }
                     }
                     else if (currRow == 1)
                     {
-                        SoundManager.instance.Play_Input(0);
                         if (val == 1)
                         {
+                            SoundManager.instance.Play_Input(0);
                             currRow = 0;
                             main_NPCObjs[currIndex_NPC].SetSelection(false);
                             main_BossObjs[currIndex_Boss].SetSelection(true);
                         }
                         else if (val == -1)
                         {
+                            SoundManager.instance.Play_Input(0);
                             currRow = 2;
                             main_NPCObjs[currIndex_NPC].SetSelection(false);
                             if (commonUtils.currMapId == MapID.Lab)
@@ -255,9 +260,9 @@ public class CollectionBookManager : MonoBehaviour
                     }
                     else if (currRow == 2)
                     {
-                        SoundManager.instance.Play_Input(0);
                         if (val == 1)
                         {
+                            SoundManager.instance.Play_Input(0);
                             currRow = 1;
                             if (commonUtils.currMapId == MapID.Lab)
                             {
@@ -268,6 +273,10 @@ public class CollectionBookManager : MonoBehaviour
                                 main_BlinkBtn_CloseIpad.SetSelection(false);
                             }
                             main_NPCObjs[currIndex_NPC].SetSelection(true);
+                        }
+                        else
+                        {
+                            SoundManager.instance.Play_Input(3);
                         }
                     }
                 }
@@ -280,23 +289,30 @@ public class CollectionBookManager : MonoBehaviour
                 {
                     if (restart_CurrIndex == 0)
                     {
-                        SoundManager.instance.Play_Input(0);
                         if (val == -1)
                         {
-
+                            SoundManager.instance.Play_Input(0);
                             restart_ArrowObjs[restart_CurrIndex].SetActive(false);
                             restart_CurrIndex = 1;
                             restart_ArrowObjs[restart_CurrIndex].SetActive(true);
                         }
+                        else
+                        {
+                            SoundManager.instance.Play_Input(3);
+                        }
                     }
                     else if (restart_CurrIndex == 1)
                     {
-                        SoundManager.instance.Play_Input(0);
                         if (val == 1)
                         {
+                            SoundManager.instance.Play_Input(0);
                             restart_ArrowObjs[restart_CurrIndex].SetActive(false);
                             restart_CurrIndex = 0;
                             restart_ArrowObjs[restart_CurrIndex].SetActive(true);
+                        }
+                        else
+                        {
+                            SoundManager.instance.Play_Input(3);
                         }
                     }
                 }
@@ -314,36 +330,44 @@ public class CollectionBookManager : MonoBehaviour
             {
                 if (currStage == CollectionBookStage.Main)
                 {
-
                     if (currRow == 0)
                     {
-                        SoundManager.instance.Play_Input(0);
                         if (val == -1)
                         {
                             if (currIndex_Boss != 0)
                             {
+                                SoundManager.instance.Play_Input(0);
                                 main_BossObjs[currIndex_Boss].SetSelection(false);
                                 currIndex_Boss--;
                                 main_BossObjs[currIndex_Boss].SetSelection(true);
+                            }
+                            else
+                            {
+                                SoundManager.instance.Play_Input(3);
                             }
                         }
                         else if (val == 1)
                         {
                             if (currIndex_Boss < main_BossObjs.Count - 1)
                             {
+                                SoundManager.instance.Play_Input(0);
                                 main_BossObjs[currIndex_Boss].SetSelection(false);
                                 currIndex_Boss++;
                                 main_BossObjs[currIndex_Boss].SetSelection(true);
+                            }
+                            else
+                            {
+                                SoundManager.instance.Play_Input(3);
                             }
                         }
                     }
                     else if (currRow == 1)
                     {
-                        SoundManager.instance.Play_Input(0);
                         if (val == -1)
                         {
                             if (currIndex_NPC != 0)
                             {
+                                SoundManager.instance.Play_Input(0);
                                 main_Scroll_VisibleIndex--;
                                 if (main_Scroll_VisibleIndex < 0)
                                 {
@@ -362,11 +386,16 @@ public class CollectionBookManager : MonoBehaviour
                                     main_ArrowImgR.sprite = main_ArrowSprite_OnIdle;
                                 }
                             }
+                            else
+                            {
+                                SoundManager.instance.Play_Input(3);
+                            }
                         }
                         else if (val == 1)
                         {
                             if (currIndex_NPC < main_NPCObjs.Count - 1)
                             {
+                                SoundManager.instance.Play_Input(0);
                                 main_Scroll_VisibleIndex++;
                                 if (main_Scroll_VisibleIndex > 5)
                                 {
@@ -384,6 +413,10 @@ public class CollectionBookManager : MonoBehaviour
                                 {
                                     main_ArrowImgR.sprite = main_ArrowSprite_OffIdle;
                                 }
+                            }
+                            else
+                            {
+                                SoundManager.instance.Play_Input(3);
                             }
                         }
                     }

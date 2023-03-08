@@ -327,11 +327,12 @@ public class BossObject : MonoBehaviour
 
     private void ViewTrigger_OnEnter()
     {
-        Debug.Log(CommonUtils.instance.currMapId);
-        if (PermianManager.instance != null)
-        {
-            Debug.Log(PermianManager.instance.firstGreetingDialogIndex);
-        }
+        //Debug.Log(CommonUtils.instance.currMapId);
+        //if (PermianManager.instance != null)
+        //{
+        //    Debug.Log(PermianManager.instance.firstGreetingDialogIndex);
+        //}
+
         //can only start conversation when finished in first greeting dialog
         if (CommonUtils.instance.currMapId == MapID.Carboniferous)
         {

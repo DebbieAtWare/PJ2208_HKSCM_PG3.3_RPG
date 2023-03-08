@@ -182,22 +182,27 @@ public class OptionManager : MonoBehaviour
         {
             if (currStage == OptionStage.Main)
             {
-                SoundManager.instance.Play_Input(0);
                 if (mainGrp_CurrIndex == 0)
                 {
                     if (val == -1)
                     {
+                        SoundManager.instance.Play_Input(0);
                         mainGrp_ArrowObjs_TCSC[mainGrp_CurrIndex].SetActive(false);
                         mainGrp_ArrowObjs_EN[mainGrp_CurrIndex].SetActive(false);
                         mainGrp_CurrIndex = 1;
                         mainGrp_ArrowObjs_TCSC[mainGrp_CurrIndex].SetActive(true);
                         mainGrp_ArrowObjs_EN[mainGrp_CurrIndex].SetActive(true);
                     }
+                    else
+                    {
+                        SoundManager.instance.Play_Input(3);
+                    }
                 }
                 else if (mainGrp_CurrIndex == 1)
                 {
                     if (val == 1)
                     {
+                        SoundManager.instance.Play_Input(0);
                         mainGrp_ArrowObjs_TCSC[mainGrp_CurrIndex].SetActive(false);
                         mainGrp_ArrowObjs_EN[mainGrp_CurrIndex].SetActive(false);
                         mainGrp_CurrIndex = 0;
@@ -206,6 +211,7 @@ public class OptionManager : MonoBehaviour
                     }
                     else if (val == -1)
                     {
+                        SoundManager.instance.Play_Input(0);
                         mainGrp_ArrowObjs_TCSC[mainGrp_CurrIndex].SetActive(false);
                         mainGrp_ArrowObjs_EN[mainGrp_CurrIndex].SetActive(false);
                         mainGrp_CurrIndex = 2;
@@ -217,6 +223,7 @@ public class OptionManager : MonoBehaviour
                 {
                     if (val == 1)
                     {
+                        SoundManager.instance.Play_Input(0);
                         mainGrp_ArrowObjs_TCSC[mainGrp_CurrIndex].SetActive(false);
                         mainGrp_ArrowObjs_EN[mainGrp_CurrIndex].SetActive(false);
                         mainGrp_CurrIndex = 1;
@@ -225,6 +232,7 @@ public class OptionManager : MonoBehaviour
                     }
                     else if (val == -1)
                     {
+                        SoundManager.instance.Play_Input(0);
                         mainGrp_ArrowObjs_TCSC[mainGrp_CurrIndex].SetActive(false);
                         mainGrp_ArrowObjs_EN[mainGrp_CurrIndex].SetActive(false);
                         mainGrp_CurrIndex = 3;
@@ -236,36 +244,47 @@ public class OptionManager : MonoBehaviour
                 {
                     if (val == 1)
                     {
+                        SoundManager.instance.Play_Input(0);
                         mainGrp_ArrowObjs_TCSC[mainGrp_CurrIndex].SetActive(false);
                         mainGrp_ArrowObjs_EN[mainGrp_CurrIndex].SetActive(false);
                         mainGrp_CurrIndex = 2;
                         mainGrp_ArrowObjs_TCSC[mainGrp_CurrIndex].SetActive(true);
                         mainGrp_ArrowObjs_EN[mainGrp_CurrIndex].SetActive(true);
                     }
+                    else
+                    {
+                        SoundManager.instance.Play_Input(3);
+                    }
                 }
             }
             else if (currStage == OptionStage.Language)
             {
-                SoundManager.instance.Play_Input(0);
                 if (langGrp_CurrIndex == 0)
                 {
                     if (val == -1)
                     {
+                        SoundManager.instance.Play_Input(0);
                         langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(false);
                         langGrp_CurrIndex = 1;
                         langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(true);
+                    }
+                    else
+                    {
+                        SoundManager.instance.Play_Input(3);
                     }
                 }
                 else if (langGrp_CurrIndex == 1)
                 {
                     if (val == 1)
                     {
+                        SoundManager.instance.Play_Input(0);
                         langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(false);
                         langGrp_CurrIndex = 0;
                         langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(true);
                     }
                     else if (val == -1)
                     {
+                        SoundManager.instance.Play_Input(0);
                         langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(false);
                         langGrp_CurrIndex = 2;
                         langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(true);
@@ -275,12 +294,14 @@ public class OptionManager : MonoBehaviour
                 {
                     if (val == 1)
                     {
+                        SoundManager.instance.Play_Input(0);
                         langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(false);
                         langGrp_CurrIndex = 1;
                         langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(true);
                     }
                     else if (val == -1)
                     {
+                        SoundManager.instance.Play_Input(0);
                         langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(false);
                         langGrp_CurrIndex = 3;
                         langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(true);
@@ -290,31 +311,45 @@ public class OptionManager : MonoBehaviour
                 {
                     if (val == 1)
                     {
+                        SoundManager.instance.Play_Input(0);
                         langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(false);
                         langGrp_CurrIndex = 2;
                         langGrp_ArrowObjs[langGrp_CurrIndex].SetActive(true);
+                    }
+                    else
+                    {
+                        SoundManager.instance.Play_Input(3);
                     }
                 }
             }
             else if (currStage == OptionStage.Restart)
             {
-                SoundManager.instance.Play_Input(0);
                 if (resetGrp_CurrIndex == 0)
                 {
                     if (val == -1)
                     {
+                        SoundManager.instance.Play_Input(0);
                         resetGrp_ArrowObjs[resetGrp_CurrIndex].SetActive(false);
                         resetGrp_CurrIndex = 1;
                         resetGrp_ArrowObjs[resetGrp_CurrIndex].SetActive(true);
+                    }
+                    else
+                    {
+                        SoundManager.instance.Play_Input(3);
                     }
                 }
                 else if (resetGrp_CurrIndex == 1)
                 {
                     if (val == 1)
                     {
+                        SoundManager.instance.Play_Input(0);
                         resetGrp_ArrowObjs[resetGrp_CurrIndex].SetActive(false);
                         resetGrp_CurrIndex = 0;
                         resetGrp_ArrowObjs[resetGrp_CurrIndex].SetActive(true);
+                    }
+                    else
+                    {
+                        SoundManager.instance.Play_Input(3);
                     }
                 }
             }

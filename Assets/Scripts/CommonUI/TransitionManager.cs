@@ -102,6 +102,7 @@ public class TransitionManager : MonoBehaviour
             timeTravelBkgImg.DOFade(1f, 1f);
             yield return new WaitForSeconds(1f);
             //change scene
+            commonUtils.currMapId = targetMap;
             if (targetMap == MapID.Permian)
             {
                 SceneManager.LoadScene("PermianScene");
@@ -176,7 +177,6 @@ public class TransitionManager : MonoBehaviour
                     PermianManager.instance.FirstGreetingControl();
                 }
             }
-            commonUtils.currMapId = targetMap;
         }
     }
 

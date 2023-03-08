@@ -153,6 +153,7 @@ public class IntroVideoManager : MonoBehaviour
             else if (currStage == IntroVideoStage.Page3)
             {
                 SoundManager.instance.Play_Input(2);
+                CancelInvoke("AutoPlay_Page3To4");
                 //use current script dialog writer
                 if (!dialogWriterSingle.IsActive() && mapObj.IsInLoopArea())
                 {
@@ -168,6 +169,7 @@ public class IntroVideoManager : MonoBehaviour
             else if (currStage == IntroVideoStage.Page4)
             {
                 SoundManager.instance.Play_Input(2);
+                CancelInvoke("AutoPlay_Page4To5");
                 if (!dialogWriterSingle.IsActive() && mapObj.IsInLoopArea())
                 {
                     TransitionAni_Page4To5();
@@ -180,6 +182,7 @@ public class IntroVideoManager : MonoBehaviour
             else if (currStage == IntroVideoStage.Page5)
             {
                 SoundManager.instance.Play_Input(2);
+                CancelInvoke("AutoPlay_Page5To6");
                 if (!dialogWriterSingle.IsActive())
                 {
                     TransitionAni_Page5To6();
@@ -193,6 +196,7 @@ public class IntroVideoManager : MonoBehaviour
             else if (currStage == IntroVideoStage.Page6)
             {
                 SoundManager.instance.Play_Input(2);
+                CancelInvoke("AutoPlay_Page6To7");
                 if (!dialogWriterSingle.IsActive())
                 {
                     TransitionAni_Page6To7();
@@ -205,6 +209,7 @@ public class IntroVideoManager : MonoBehaviour
             else if (currStage == IntroVideoStage.Page7)
             {
                 SoundManager.instance.Play_Input(2);
+                CancelInvoke("AutoPlay_Page7To8");
                 if (!dialogWriterSingle.IsActive())
                 {
                     TransitionAni_Page7To8();
@@ -218,6 +223,7 @@ public class IntroVideoManager : MonoBehaviour
             else if (currStage == IntroVideoStage.Page8)
             {
                 SoundManager.instance.Play_Input(2);
+                CancelInvoke("AutoPlay_Page8To9");
                 if (!dialogWriterSingle.IsActive() && characterGrp1.IsInLoopArea())
                 {
                     TransitionAni_Page8To9();
@@ -231,6 +237,7 @@ public class IntroVideoManager : MonoBehaviour
             else if (currStage == IntroVideoStage.Page9)
             {
                 SoundManager.instance.Play_Input(2);
+                CancelInvoke("AutoPlay_Page9To10");
                 if (!dialogWriterSingle.IsActive() && characterGrp2.IsInLoopArea())
                 {
                     TransitionAni_Page9To10();
@@ -326,6 +333,20 @@ public class IntroVideoManager : MonoBehaviour
     {
         currStage = IntroVideoStage.Page3;
         ShowDialog(commonUtils.introVideoDialogs[2]);
+
+        Invoke("AutoPlay_Page3To4", commonUtils.data.IntroVideo_AutoRun_Page3To4);
+    }
+
+    void AutoPlay_Page3To4()
+    {
+        currStage = IntroVideoStage.Page4;
+        ShowDialog(commonUtils.introVideoDialogs[3]);
+        Invoke("AutoPlay_Page4To5", commonUtils.data.IntroVideo_AutoRun_Page4To5);
+    }
+
+    void AutoPlay_Page4To5()
+    {
+        TransitionAni_Page4To5();
     }
 
     void TransitionAni_Page4To5()
@@ -340,7 +361,13 @@ public class IntroVideoManager : MonoBehaviour
             currStage = IntroVideoStage.Page5;
             eggObj.Play();
             ShowDialog(commonUtils.introVideoDialogs[4]);
+            Invoke("AutoPlay_Page5To6", commonUtils.data.IntroVideo_AutoRun_Page5To6);
         }
+    }
+
+    void AutoPlay_Page5To6()
+    {
+        TransitionAni_Page5To6();
     }
 
     void TransitionAni_Page5To6()
@@ -355,7 +382,13 @@ public class IntroVideoManager : MonoBehaviour
             currStage = IntroVideoStage.Page6;
             ShowDialog(commonUtils.introVideoDialogs[5]);
             eggObj.ResetAll();
+            Invoke("AutoPlay_Page6To7", commonUtils.data.IntroVideo_AutoRun_Page6To7);
         }
+    }
+
+    void AutoPlay_Page6To7()
+    {
+        TransitionAni_Page6To7();
     }
 
     void TransitionAni_Page6To7()
@@ -370,7 +403,13 @@ public class IntroVideoManager : MonoBehaviour
             currStage = IntroVideoStage.Page7;
             ShowDialog(commonUtils.introVideoDialogs[6]);
             bossObj.Play();
+            Invoke("AutoPlay_Page7To8", commonUtils.data.IntroVideo_AutoRun_Page7To8);
         }
+    }
+
+    void AutoPlay_Page7To8()
+    {
+        TransitionAni_Page7To8();
     }
 
     void TransitionAni_Page7To8()
@@ -385,7 +424,13 @@ public class IntroVideoManager : MonoBehaviour
             currStage = IntroVideoStage.Page8;
             ShowDialog(commonUtils.introVideoDialogs[7]);
             characterGrp1.Play();
+            Invoke("AutoPlay_Page8To9", commonUtils.data.IntroVideo_AutoRun_Page8To9);
         }
+    }
+
+    void AutoPlay_Page8To9()
+    {
+        TransitionAni_Page8To9();
     }
 
     void TransitionAni_Page8To9()
@@ -400,7 +445,13 @@ public class IntroVideoManager : MonoBehaviour
             currStage = IntroVideoStage.Page9;
             ShowDialog(commonUtils.introVideoDialogs[8]);
             characterGrp2.Play();
+            Invoke("AutoPlay_Page9To10", commonUtils.data.IntroVideo_AutoRun_Page9To10);
         }
+    }
+
+    void AutoPlay_Page9To10()
+    {
+        TransitionAni_Page9To10();
     }
 
     void TransitionAni_Page9To10()

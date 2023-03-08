@@ -1992,6 +1992,13 @@ public class ConfigData
     public float DialogBox_TimePerCharacter_EN;
     public float TimeOut_DisplayUITimerTarget;
     public float TimeOut_CountdownUITimerTarget;
+    public float IntroVideo_AutoRun_Page3To4;
+    public float IntroVideo_AutoRun_Page4To5;
+    public float IntroVideo_AutoRun_Page5To6;
+    public float IntroVideo_AutoRun_Page6To7;
+    public float IntroVideo_AutoRun_Page7To8;
+    public float IntroVideo_AutoRun_Page8To9;
+    public float IntroVideo_AutoRun_Page9To10;
 }
 
 [Serializable]

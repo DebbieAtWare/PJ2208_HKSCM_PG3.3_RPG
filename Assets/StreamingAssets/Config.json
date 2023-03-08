@@ -3,5 +3,13 @@
   "DialogBox_TimePerCharacter_SC": 0.05,
   "DialogBox_TimePerCharacter_EN": 0.03,
   "TimeOut_DisplayUITimerTarget": 180,
-  "TimeOut_CountdownUITimerTarget": 10
+  "TimeOut_CountdownUITimerTarget": 10,
+  "IntroVideo_AutoRun_Page3To4":18,
+  "IntroVideo_AutoRun_Page4To5":12,
+  "IntroVideo_AutoRun_Page5To6":12,
+  "IntroVideo_AutoRun_Page6To7":10,
+  "IntroVideo_AutoRun_Page7To8":10,
+  "IntroVideo_AutoRun_Page8To9":10,
+  "IntroVideo_AutoRun_Page9To10":10,
+  "EndingVideo_AutoRun_TimerTarget":15
 }
