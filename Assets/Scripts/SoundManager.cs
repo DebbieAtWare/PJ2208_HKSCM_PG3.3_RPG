@@ -62,16 +62,16 @@ public class SoundManager : MonoBehaviour
             {
                 audioSources_BGM[0].DOFade(0f, fadeDuration).OnComplete(() => audioSources_BGM[0].Stop());
                 audioSources_BGM[1].clip = clips_BGM[index];
-                audioSources_BGM[1].Play();
                 audioSources_BGM[1].DOFade(1f, fadeDuration);
+                audioSources_BGM[1].Play();
                 currSourcIndex_BGM = 1;
             }
             else if (currSourcIndex_BGM == 1)
             {
                 audioSources_BGM[1].DOFade(0f, fadeDuration).OnComplete(() => audioSources_BGM[1].Stop());
                 audioSources_BGM[0].clip = clips_BGM[index];
-                audioSources_BGM[0].Play();
                 audioSources_BGM[0].DOFade(1f, fadeDuration);
+                audioSources_BGM[0].Play();
                 currSourcIndex_BGM = 0;
             }
         }
