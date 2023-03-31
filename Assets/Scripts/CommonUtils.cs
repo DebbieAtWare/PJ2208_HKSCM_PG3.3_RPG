@@ -66,6 +66,10 @@ public class CommonUtils : MonoBehaviour
     public delegate void OnChangeLang();
     public OnChangeLang onChangeLangCallback;
 
+    [Header("UDP")]
+    public string udp_Ip;
+    public int udp_Port;
+
     [Header("PlayerPos")]
     public Vector3 playerPos_Carboniferous;
     public Vector3 playerPos_Permian;

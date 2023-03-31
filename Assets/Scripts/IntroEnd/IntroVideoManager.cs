@@ -158,6 +158,7 @@ public class IntroVideoManager : MonoBehaviour
                 if (!dialogWriterSingle.IsActive() && mapObj.IsInLoopArea())
                 {
                     currStage = IntroVideoStage.Page4;
+                    UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "201");
                     ShowDialog(commonUtils.introVideoDialogs[3]);
                 }
                 else
@@ -320,6 +321,7 @@ public class IntroVideoManager : MonoBehaviour
             pixelateImg2.DOFade(1f, 0.5f);
             yield return new WaitForSeconds(0.5f);
             //depixelate map
+            UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "000");
             mapObj.AlphaAni(1f, 0f);
             pixelateImg1.DOFade(0f, 0f);
             pixelateImg2.material.DOFloat(512f, "_PixelateSize", 1f).From(50f).SetEase(Ease.Linear);
@@ -340,6 +342,7 @@ public class IntroVideoManager : MonoBehaviour
     void AutoPlay_Page3To4()
     {
         currStage = IntroVideoStage.Page4;
+        UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "201");
         ShowDialog(commonUtils.introVideoDialogs[3]);
         Invoke("AutoPlay_Page4To5", commonUtils.data.IntroVideo_AutoRun_Page4To5);
     }
@@ -397,6 +400,7 @@ public class IntroVideoManager : MonoBehaviour
         IEnumerator Ani()
         {
             currStage = IntroVideoStage.Transition_Page6To7;
+            UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "001");
             bossObj.AlphaAni(1, 1);
             ClearDialog();
             yield return new WaitForSeconds(1f);
@@ -418,6 +422,7 @@ public class IntroVideoManager : MonoBehaviour
         IEnumerator Ani()
         {
             currStage = IntroVideoStage.Transition_Page7To8;
+            UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "202");
             characterGrp1.AlphaAni(1, 0.5f);
             ClearDialog();
             yield return new WaitForSeconds(0.2f);
@@ -439,6 +444,7 @@ public class IntroVideoManager : MonoBehaviour
         IEnumerator Ani()
         {
             currStage = IntroVideoStage.Transition_Page8To9;
+            UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "203");
             characterGrp2.AlphaAni(1, 0.5f);
             ClearDialog();
             yield return new WaitForSeconds(0.2f);
@@ -496,6 +502,7 @@ public class IntroVideoManager : MonoBehaviour
 
     private void BlackBar_OnVideoEnd()
     {
+        UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "004");
         labObj.AlphaAni(0, 0);
         labObj.ResetAll();
         mapObj.AlphaAni(0, 0);

@@ -27,6 +27,9 @@ public class MainManger : MonoBehaviour
     public delegate void OnEndingVideoFinished();
     public OnEndingVideoFinished onEndingVideoFinishedCallback;
 
+    [Header("UDP")]
+    public UDPManager udpManager;
+
     [Header("Home")]
     public HomeControl homeControl;
 
@@ -107,6 +110,9 @@ public class MainManger : MonoBehaviour
         introVideoManager = IntroVideoManager.instance;
         introVideoManager.onVideoStartedCallback += IntroVideoManager_OnVideoStarted;
         introVideoManager.onVideoFinishedCallback += IntroVideoManager_OnVideoFinished;
+
+        udpManager = UDPManager.instance;
+        udpManager.onReceivedMsgCallBack += UdpManager_OnReceivedMsg;
 
         SoundManager.instance.Play_BGM(0, 1);
 
@@ -447,9 +453,17 @@ public class MainManger : MonoBehaviour
         }
     }
 
+    private void UdpManager_OnReceivedMsg(string msg)
+    {
+        Debug.Log("UDP received: " + msg);
+    }
+
     private void CommonUtils_OnSetupDone()
     {
         GameManager.instance.dialogActive = true;
+
+        udpManager.StartRun(commonUtils.udp_Port);
+        udpManager.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "101");
 
         DroneController.instance.Setup();
         StatusBarManager.instance.Setup();
@@ -545,6 +559,7 @@ public class MainManger : MonoBehaviour
 
     void ChangeStage_Language()
     {
+        udpManager.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "004");
         homeControl.SetAlpha(0, 0.5f);
         langGrp_CanvasGrp.DOFade(1f, 0.5f).OnComplete(ChangeStageLangCompleted);
     }
@@ -600,6 +615,10 @@ public class MainManger : MonoBehaviour
         {
             introVideoManager.onVideoStartedCallback -= IntroVideoManager_OnVideoStarted;
             introVideoManager.onVideoFinishedCallback -= IntroVideoManager_OnVideoFinished;
+        }
+        if (udpManager != null)
+        {
+            udpManager.onReceivedMsgCallBack -= UdpManager_OnReceivedMsg;
         }
     }
 }
