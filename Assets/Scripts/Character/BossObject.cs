@@ -308,6 +308,18 @@ public class BossObject : MonoBehaviour
                 GameManager.instance.dialogActive = true;
                 DroneController.instance.canShowTalkHint = false;
                 DroneController.instance.HideTalkHint();
+                if (id == CharacterID.M01)
+                {
+                    UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "301");
+                }
+                else if (id == CharacterID.M02)
+                {
+                    UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "401");
+                }
+                else if (id == CharacterID.M03)
+                {
+                    UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "405");
+                }
                 SoundManager.instance.Play_BGM(5, 1);
                 yield return new WaitForSeconds(0.5f);
                 DialogBoxManager.instance.ShowDialog(dialogBox_Alert);

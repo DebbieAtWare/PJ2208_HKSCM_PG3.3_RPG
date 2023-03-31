@@ -178,6 +178,7 @@ public class TransitionManager : MonoBehaviour
                     PermianManager.instance.FirstGreetingControl();
                 }
             }
+            UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "009");
         }
     }
 
@@ -265,6 +266,7 @@ public class TransitionManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
             InputManager.instance.canInput_Confirm = true;
             commonUtils.EndingCheck();
+            UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "009");
         }
     }
 
