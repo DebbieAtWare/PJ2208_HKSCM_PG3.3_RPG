@@ -290,6 +290,7 @@ public class TransitionManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
             EndVideoManager.instance.ResetAll();
             //fade in time travel bkg
+            UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "008");
             currBkgIndex = 0;
             BkgLoopAni();
             timeTravelBkgImg.DOFade(1f, 1f);
@@ -315,6 +316,7 @@ public class TransitionManager : MonoBehaviour
             CancelInvoke("BkgLoopAni");
             GameManager.instance.fadingBetweenAreas = false;
             MainManger.instance.ChangeStage_EndLab();
+            UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "001");
         }
     }
 

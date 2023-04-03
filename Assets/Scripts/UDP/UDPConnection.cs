@@ -95,7 +95,10 @@ public class UDPConnection : MonoBehaviour
         {
             receiveThread.Abort();
         }
-        udpClient.Close();
+        if (udpClient != null)
+        {
+            udpClient.Close();
+        }
     }
 
 }

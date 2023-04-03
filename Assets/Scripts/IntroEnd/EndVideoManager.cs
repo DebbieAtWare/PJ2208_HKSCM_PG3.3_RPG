@@ -269,6 +269,7 @@ public class EndVideoManager : MonoBehaviour
 
     IEnumerator Page1_Ani_Play()
     {
+        UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "201");
         SoundManager.instance.Play_BGM(7, 5);
         Invoke("AutoPlay_Page1To2", commonUtils.data.EndingVideo_AutoRun_Page1To2);
         confirmBtnControl.SetAlpha(0, 0);
@@ -353,6 +354,7 @@ public class EndVideoManager : MonoBehaviour
     {
         StopCoroutine(page1_Coroutine_Play);
         StopCoroutine(page1_Coroutine_FastIn);
+        UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "005");
         Invoke("AutoPlay_Page2To3", commonUtils.data.EndingVideo_AutoRun_Page2To3);
         if (commonUtils.currLang == Language.TC)
         {
@@ -434,6 +436,7 @@ public class EndVideoManager : MonoBehaviour
     {
         StopCoroutine(page2_Coroutine_Play);
         StopCoroutine(page2_Coroutine_FastIn);
+        UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "006");
         Invoke("AutoPlay_Page3To4", commonUtils.data.EndingVideo_AutoRun_Page3To4);
         if (commonUtils.currLang == Language.TC)
         {
@@ -515,6 +518,7 @@ public class EndVideoManager : MonoBehaviour
     {
         StopCoroutine(page3_Coroutine_Play);
         StopCoroutine(page3_Coroutine_FastIn);
+        UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "007");
         Invoke("AutoPlay_Page4To5", commonUtils.data.EndingVideo_AutoRun_Page4To5);
         if (commonUtils.currLang == Language.TC)
         {

@@ -657,6 +657,10 @@ public class CollectionBookManager : MonoBehaviour
             }
             if (character.Id == CharacterID.M01.ToString())
             {
+                if (commonUtils.currMapId == MapID.Lab)
+                {
+                    UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "005");
+                }
                 detail_BossObjs[0].UnlockDirect();
                 detail_BossObjs[0].gameObject.SetActive(true);
                 detail_BossObjs[1].gameObject.SetActive(false);
@@ -664,6 +668,10 @@ public class CollectionBookManager : MonoBehaviour
             }
             else if (character.Id == CharacterID.M02.ToString())
             {
+                if (commonUtils.currMapId == MapID.Lab)
+                {
+                    UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "006");
+                }
                 detail_BossObjs[1].UnlockDirect();
                 detail_BossObjs[0].gameObject.SetActive(false);
                 detail_BossObjs[1].gameObject.SetActive(true);
@@ -671,6 +679,10 @@ public class CollectionBookManager : MonoBehaviour
             }
             else if (character.Id == CharacterID.M03.ToString())
             {
+                if (commonUtils.currMapId == MapID.Lab)
+                {
+                    UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "007");
+                }
                 detail_BossObjs[2].UnlockDirect();
                 detail_BossObjs[0].gameObject.SetActive(false);
                 detail_BossObjs[1].gameObject.SetActive(false);
@@ -753,6 +765,13 @@ public class CollectionBookManager : MonoBehaviour
 
     public void Hide_Detail()
     {
+        if (commonUtils.currMapId == MapID.Lab)
+        {
+            if (detail_BossObjs[0].gameObject.activeInHierarchy || detail_BossObjs[1].gameObject.activeInHierarchy || detail_BossObjs[2].gameObject.activeInHierarchy)
+            {
+                UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "001");
+            }
+        }
         main_RootObj.SetActive(true);
         detail_RootObj.SetActive(false);
         currStage = CollectionBookStage.Main;
