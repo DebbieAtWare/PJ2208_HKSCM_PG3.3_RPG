@@ -84,7 +84,7 @@ public class Boss01Manager : MonoBehaviour
             StartCoroutine(Ani());
             IEnumerator Ani()
             {
-                UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "304");
+                UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "302");
                 SoundManager.instance.Play_SFX(9);
                 GameManager.instance.dialogActive = true;
                 CollectionBookManager.instance.Show_Success(commonUtils.successCollectText, commonUtils.bosses[currUtilsIndex], 0.5f);

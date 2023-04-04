@@ -462,8 +462,8 @@ public class MainManger : MonoBehaviour
     {
         GameManager.instance.dialogActive = true;
 
-        udpManager.StartRun(commonUtils.udp_Port);
-        udpManager.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "101");
+        udpManager.StartRun(commonUtils.udp_Self_Port);
+        udpManager.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "101");
 
         DroneController.instance.Setup();
         StatusBarManager.instance.Setup();
@@ -559,7 +559,7 @@ public class MainManger : MonoBehaviour
 
     void ChangeStage_Language()
     {
-        udpManager.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "004");
+        udpManager.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "004");
         homeControl.SetAlpha(0, 0.5f);
         langGrp_CanvasGrp.DOFade(1f, 0.5f).OnComplete(ChangeStageLangCompleted);
     }

@@ -160,7 +160,7 @@ public class PermianManager : MonoBehaviour
             bossObj2.canShowAlert = false;
             if (!commonUtils.bosses[currUtilsIndex_Boss2].IsSuccessCollectDone)
             {
-                UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "404");
+                UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "402");
                 SoundManager.instance.Play_SFX(9);
                 GameManager.instance.dialogActive = true;
                 yield return new WaitForSeconds(0.5f);
@@ -193,7 +193,7 @@ public class PermianManager : MonoBehaviour
             bossObj3.canShowAlert = false;
             if (!commonUtils.bosses[currUtilsIndex_Boss3].IsSuccessCollectDone)
             {
-                UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "408");
+                UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "406");
                 SoundManager.instance.Play_SFX(9);
                 GameManager.instance.dialogActive = true;
                 yield return new WaitForSeconds(0.5f);

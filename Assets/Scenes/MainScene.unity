@@ -9823,8 +9823,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2528e10effd08e44dbb3efb4694fc6ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  udp_Ip: 127.0.0.1
-  udp_Port: 100
+  udp_Self_Port: 100
+  udp_LightMiniProgram_Ip: 127.0.0.1
+  udp_LightMiniProgram_Port: 101
   playerPos_Carboniferous: {x: 25.72, y: 5.78, z: 1}
   playerPos_Permian: {x: -23.33, y: 2.19, z: 1}
   playerPos_InsideTreeCave: {x: -1.45, y: -1.69, z: 1}
@@ -10794,6 +10795,7 @@ MonoBehaviour:
   - {fileID: 419843795}
   - {fileID: 2039786787}
   - {fileID: 396550898}
+  byWhomCharacter: 0
 --- !u!4 &336964654
 Transform:
   m_ObjectHideFlags: 0

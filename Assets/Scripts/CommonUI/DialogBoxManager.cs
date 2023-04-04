@@ -52,6 +52,9 @@ public class DialogBoxManager : MonoBehaviour
     public List<GameObject> langObjs_SC = new List<GameObject>();
     public List<GameObject> langObjs_EN = new List<GameObject>();
 
+    [Header("By whom")]
+    public CharacterID byWhomCharacter;
+
     public delegate void OnDialogEnd();
     public OnDialogEnd onDialogEndCallback;
 
@@ -198,8 +201,19 @@ public class DialogBoxManager : MonoBehaviour
             {
                 SoundManager.instance.Play_Dialog_Drone();
             }
-            else if (dialogBox.ByWhom == CharacterID.M01.ToString() || dialogBox.ByWhom == CharacterID.M02.ToString() || dialogBox.ByWhom == CharacterID.M03.ToString())
+            else if (dialogBox.ByWhom == CharacterID.M01.ToString())
             {
+                UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "302");
+                SoundManager.instance.Play_Dialog(2);
+            }
+            else if (dialogBox.ByWhom == CharacterID.M02.ToString())
+            {
+                UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "402");
+                SoundManager.instance.Play_Dialog(2);
+            }
+            else if (dialogBox.ByWhom == CharacterID.M03.ToString())
+            {
+                UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "406");
                 SoundManager.instance.Play_Dialog(2);
             }
             else
@@ -253,26 +267,31 @@ public class DialogBoxManager : MonoBehaviour
             {
                 profilePic.gameObject.SetActive(true);
                 profilePic.sprite = PlayerController.instance.dialogBoxProfileSprite;
+                byWhomCharacter = CharacterID.AVA;
             }
             else if (dialogBox.ByWhom == CharacterID.DRO.ToString())
             {
                 profilePic.gameObject.SetActive(true);
                 profilePic.sprite = DroneController.instance.dialogBoxProfileSprite;
+                byWhomCharacter = CharacterID.DRO;
             }
             else if (dialogBox.ByWhom == CharacterID.M01.ToString())
             {
                 profilePic.gameObject.SetActive(true);
                 profilePic.sprite = CarboniferousManager.instance.bossObj.dialogBoxProfileSprite;
+                byWhomCharacter = CharacterID.M01;
             }
             else if (dialogBox.ByWhom == CharacterID.M02.ToString())
             {
                 profilePic.gameObject.SetActive(true);
                 profilePic.sprite = PermianManager.instance.bossObj2.dialogBoxProfileSprite;
+                byWhomCharacter = CharacterID.M02;
             }
             else if (dialogBox.ByWhom == CharacterID.M03.ToString())
             {
                 profilePic.gameObject.SetActive(true);
                 profilePic.sprite = PermianManager.instance.bossObj3.dialogBoxProfileSprite;
+                byWhomCharacter = CharacterID.M03;
             }
             else
             {
@@ -319,6 +338,18 @@ public class DialogBoxManager : MonoBehaviour
         if (onDialogEndCallback != null)
         {
             onDialogEndCallback.Invoke();
+        }
+        if (byWhomCharacter == CharacterID.M01)
+        {
+            UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "303");
+        }
+        if (byWhomCharacter == CharacterID.M02)
+        {
+            UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "403");
+        }
+        if (byWhomCharacter == CharacterID.M03)
+        {
+            UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "407");
         }
         SoundManager.instance.FadeOutStop_Dialog(0.3f);
         SoundManager.instance.FadeOutStop_Dialog_Drone(0.3f);

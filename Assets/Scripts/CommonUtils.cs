@@ -67,8 +67,9 @@ public class CommonUtils : MonoBehaviour
     public OnChangeLang onChangeLangCallback;
 
     [Header("UDP")]
-    public string udp_Ip;
-    public int udp_Port;
+    public int udp_Self_Port;
+    public string udp_LightMiniProgram_Ip;
+    public int udp_LightMiniProgram_Port;
 
     [Header("PlayerPos")]
     public Vector3 playerPos_Carboniferous;

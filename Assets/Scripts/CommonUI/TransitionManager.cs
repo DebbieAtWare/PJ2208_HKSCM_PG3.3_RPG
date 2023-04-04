@@ -97,7 +97,7 @@ public class TransitionManager : MonoBehaviour
             camFeedImg.material.DOFloat(50f, "_PixelateSize", 1f).From(512f).SetEase(Ease.Linear);
             yield return new WaitForSeconds(1f);
             //fade in time travel bkg
-            UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "008");
+            UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "008");
             currBkgIndex = 0;
             BkgLoopAni();
             timeTravelBkgImg.DOFade(1f, 1f);
@@ -178,7 +178,7 @@ public class TransitionManager : MonoBehaviour
                     PermianManager.instance.FirstGreetingControl();
                 }
             }
-            UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "009");
+            UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "009");
         }
     }
 
@@ -266,7 +266,7 @@ public class TransitionManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
             InputManager.instance.canInput_Confirm = true;
             commonUtils.EndingCheck();
-            UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "009");
+            UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "009");
         }
     }
 
@@ -290,7 +290,7 @@ public class TransitionManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
             EndVideoManager.instance.ResetAll();
             //fade in time travel bkg
-            UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "008");
+            UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "008");
             currBkgIndex = 0;
             BkgLoopAni();
             timeTravelBkgImg.DOFade(1f, 1f);
@@ -316,7 +316,7 @@ public class TransitionManager : MonoBehaviour
             CancelInvoke("BkgLoopAni");
             GameManager.instance.fadingBetweenAreas = false;
             MainManger.instance.ChangeStage_EndLab();
-            UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "001");
+            UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "001");
         }
     }
 

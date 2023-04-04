@@ -310,15 +310,15 @@ public class BossObject : MonoBehaviour
                 DroneController.instance.HideTalkHint();
                 if (id == CharacterID.M01)
                 {
-                    UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "301");
+                    UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "301");
                 }
                 else if (id == CharacterID.M02)
                 {
-                    UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "401");
+                    UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "401");
                 }
                 else if (id == CharacterID.M03)
                 {
-                    UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "405");
+                    UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "405");
                 }
                 SoundManager.instance.Play_BGM(5, 1);
                 yield return new WaitForSeconds(0.5f);

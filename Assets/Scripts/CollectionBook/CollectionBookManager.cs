@@ -580,7 +580,7 @@ public class CollectionBookManager : MonoBehaviour
     {
         if (commonUtils.currMapId == MapID.Carboniferous || commonUtils.currMapId == MapID.Permian)
         {
-            UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "001");
+            UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "001");
         }
         canvasGroup.gameObject.SetActive(true);
         main_RootObj.SetActive(true);
@@ -661,7 +661,7 @@ public class CollectionBookManager : MonoBehaviour
             }
             if (character.Id == CharacterID.M01.ToString())
             {
-                UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "005");
+                UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "005");
                 detail_BossObjs[0].UnlockDirect();
                 detail_BossObjs[0].gameObject.SetActive(true);
                 detail_BossObjs[1].gameObject.SetActive(false);
@@ -669,7 +669,7 @@ public class CollectionBookManager : MonoBehaviour
             }
             else if (character.Id == CharacterID.M02.ToString())
             {
-                UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "006");
+                UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "006");
                 detail_BossObjs[1].UnlockDirect();
                 detail_BossObjs[0].gameObject.SetActive(false);
                 detail_BossObjs[1].gameObject.SetActive(true);
@@ -677,7 +677,7 @@ public class CollectionBookManager : MonoBehaviour
             }
             else if (character.Id == CharacterID.M03.ToString())
             {
-                UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "007");
+                UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "007");
                 detail_BossObjs[2].UnlockDirect();
                 detail_BossObjs[0].gameObject.SetActive(false);
                 detail_BossObjs[1].gameObject.SetActive(false);
@@ -762,7 +762,7 @@ public class CollectionBookManager : MonoBehaviour
     {
         if (detail_BossObjs[0].gameObject.activeInHierarchy || detail_BossObjs[1].gameObject.activeInHierarchy || detail_BossObjs[2].gameObject.activeInHierarchy)
         {
-            UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "001");
+            UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "001");
         }
         main_RootObj.SetActive(true);
         detail_RootObj.SetActive(false);
@@ -1006,12 +1006,12 @@ public class CollectionBookManager : MonoBehaviour
     {
         if (commonUtils.currMapId == MapID.Carboniferous)
         {
-            UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "009");
+            UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "009");
             SoundManager.instance.Play_BGM(2, 1);
         }
         else if (commonUtils.currMapId == MapID.Permian)
         {
-            UDPManager.instance.Send(commonUtils.udp_Ip, commonUtils.udp_Port, "009");
+            UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "009");
             SoundManager.instance.Play_BGM(3, 1);
         }
         canvasGroup.gameObject.SetActive(false);
