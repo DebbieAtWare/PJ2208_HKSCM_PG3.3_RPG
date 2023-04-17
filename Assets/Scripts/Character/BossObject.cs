@@ -165,6 +165,18 @@ public class BossObject : MonoBehaviour
                     {
                         GameManager.instance.dialogActive = true;
                         currBossStage = BossStage.Transition_ConversationStart;
+                        if (id == CharacterID.M01)
+                        {
+                            UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "302");
+                        }
+                        else if (id == CharacterID.M02)
+                        {
+                            UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "402");
+                        }
+                        else if (id == CharacterID.M03)
+                        {
+                            UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "406");
+                        }
                         SoundManager.instance.Play_BGM(1, 1);
                         ViewBoxManager.instance.HideViewBox_NPC();
                         SoundManager.instance.Play_Input(2);

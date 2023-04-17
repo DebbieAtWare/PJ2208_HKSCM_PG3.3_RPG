@@ -160,7 +160,7 @@ public class PermianManager : MonoBehaviour
             bossObj2.canShowAlert = false;
             if (!commonUtils.bosses[currUtilsIndex_Boss2].IsSuccessCollectDone)
             {
-                UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "402");
+                UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "404");
                 SoundManager.instance.Play_SFX(9);
                 GameManager.instance.dialogActive = true;
                 yield return new WaitForSeconds(0.5f);
@@ -173,6 +173,7 @@ public class PermianManager : MonoBehaviour
             }
             else
             {
+                UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "009");
                 SoundManager.instance.Play_BGM(3, 1);
                 MinimapManager.instance.Show(0.5f);
                 StatusBarManager.instance.Show_Permian(0.5f);
@@ -193,7 +194,7 @@ public class PermianManager : MonoBehaviour
             bossObj3.canShowAlert = false;
             if (!commonUtils.bosses[currUtilsIndex_Boss3].IsSuccessCollectDone)
             {
-                UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "406");
+                UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "408");
                 SoundManager.instance.Play_SFX(9);
                 GameManager.instance.dialogActive = true;
                 yield return new WaitForSeconds(0.5f);
@@ -206,6 +207,7 @@ public class PermianManager : MonoBehaviour
             }
             else
             {
+                UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "009");
                 SoundManager.instance.Play_BGM(3, 1);
                 MinimapManager.instance.Show(0.5f);
                 StatusBarManager.instance.Show_Permian(0.5f);
@@ -230,6 +232,7 @@ public class PermianManager : MonoBehaviour
             OptionManager.instance.SetActive(true);
             commonUtils.bosses[currUtilsIndex_Boss2].IsSuccessCollectDone = true;
             yield return new WaitForSeconds(2.5f);
+            UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "009");
             InputManager.instance.canInput_Confirm = true;
             DroneController.instance.canShowTalkHint = true;
             commonUtils.EndingCheck();
@@ -250,6 +253,7 @@ public class PermianManager : MonoBehaviour
             OptionManager.instance.SetActive(true);
             commonUtils.bosses[currUtilsIndex_Boss3].IsSuccessCollectDone = true;
             yield return new WaitForSeconds(2.5f);
+            UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "009");
             InputManager.instance.canInput_Confirm = true;
             DroneController.instance.canShowTalkHint = true;
             commonUtils.EndingCheck();

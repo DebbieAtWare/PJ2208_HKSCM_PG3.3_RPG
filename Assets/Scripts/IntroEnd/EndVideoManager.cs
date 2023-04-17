@@ -354,7 +354,7 @@ public class EndVideoManager : MonoBehaviour
     {
         StopCoroutine(page1_Coroutine_Play);
         StopCoroutine(page1_Coroutine_FastIn);
-        UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "005");
+        UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "304");
         Invoke("AutoPlay_Page2To3", commonUtils.data.EndingVideo_AutoRun_Page2To3);
         if (commonUtils.currLang == Language.TC)
         {
@@ -436,7 +436,7 @@ public class EndVideoManager : MonoBehaviour
     {
         StopCoroutine(page2_Coroutine_Play);
         StopCoroutine(page2_Coroutine_FastIn);
-        UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "006");
+        UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "404");
         Invoke("AutoPlay_Page3To4", commonUtils.data.EndingVideo_AutoRun_Page3To4);
         if (commonUtils.currLang == Language.TC)
         {
@@ -518,7 +518,7 @@ public class EndVideoManager : MonoBehaviour
     {
         StopCoroutine(page3_Coroutine_Play);
         StopCoroutine(page3_Coroutine_FastIn);
-        UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "007");
+        UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "408");
         Invoke("AutoPlay_Page4To5", commonUtils.data.EndingVideo_AutoRun_Page4To5);
         if (commonUtils.currLang == Language.TC)
         {

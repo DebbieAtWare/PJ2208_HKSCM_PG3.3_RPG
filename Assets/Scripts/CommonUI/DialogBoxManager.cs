@@ -203,17 +203,14 @@ public class DialogBoxManager : MonoBehaviour
             }
             else if (dialogBox.ByWhom == CharacterID.M01.ToString())
             {
-                UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "302");
                 SoundManager.instance.Play_Dialog(2);
             }
             else if (dialogBox.ByWhom == CharacterID.M02.ToString())
             {
-                UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "402");
                 SoundManager.instance.Play_Dialog(2);
             }
             else if (dialogBox.ByWhom == CharacterID.M03.ToString())
             {
-                UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "406");
                 SoundManager.instance.Play_Dialog(2);
             }
             else
@@ -338,18 +335,6 @@ public class DialogBoxManager : MonoBehaviour
         if (onDialogEndCallback != null)
         {
             onDialogEndCallback.Invoke();
-        }
-        if (byWhomCharacter == CharacterID.M01)
-        {
-            UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "303");
-        }
-        if (byWhomCharacter == CharacterID.M02)
-        {
-            UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "403");
-        }
-        if (byWhomCharacter == CharacterID.M03)
-        {
-            UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "407");
         }
         SoundManager.instance.FadeOutStop_Dialog(0.3f);
         SoundManager.instance.FadeOutStop_Dialog_Drone(0.3f);
