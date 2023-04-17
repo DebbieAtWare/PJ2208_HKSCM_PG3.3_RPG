@@ -71,6 +71,11 @@ public class CollectionBookBossObject : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        DOTween.Kill(frameObj_Selected);
+    }
+
     IEnumerator BlinkFrameAni()
     {
         yield return new WaitForSeconds(0.6f);

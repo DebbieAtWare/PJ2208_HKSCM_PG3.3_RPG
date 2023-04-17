@@ -40,6 +40,12 @@ public class ConfirmButtonControl : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        DOTween.Kill(arrowRect);
+        DOTween.Kill(frontRect);
+    }
+
     void PlayAni()
     {
         StartCoroutine(Ani());
@@ -61,4 +67,5 @@ public class ConfirmButtonControl : MonoBehaviour
     {
         canvasGroup.DOFade(val, aniTime);
     }
+
 }
