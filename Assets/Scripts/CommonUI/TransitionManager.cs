@@ -341,6 +341,7 @@ public class TransitionManager : MonoBehaviour
             camFeedImg.material.DOFloat(50f, "_PixelateSize", 1f).From(512f).SetEase(Ease.Linear);
             yield return new WaitForSeconds(1f);
             //fade in time travel bkg
+            UDPManager.instance.Send(commonUtils.udp_LightMiniProgram_Ip, commonUtils.udp_LightMiniProgram_Port, "999");
             currBkgIndex = 0;
             ResetGameAni_TimeTravel();
             timeTravelBkgImg.DOFade(1f, 1f);
