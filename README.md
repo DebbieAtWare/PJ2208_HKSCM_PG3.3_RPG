@@ -36,4 +36,4 @@ Some of the game contents can be adjusted in the CMS Excel.
 ## Installation Setup
 1. Copy the release project folder to `C:/User/Desktop/`
 2. Check the Config.json at `/RPG_Data/StreamingAssets/Config.json`
-3. The Unity main game program is at `\RPG.exe`
+3. The Unity main game program is at `/RPG.exe`
