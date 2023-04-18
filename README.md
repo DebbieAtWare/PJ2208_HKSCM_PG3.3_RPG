@@ -32,6 +32,7 @@ Some of the game contents can be adjusted in the CMS Excel.
 * Image files location: `/RPG_Data/StreamingAssets/SupportImage/`
 * Please keep the **same file name** when replace and type the same file name in the **excel**
 * Please remind to include the **file extension** in the excel image file name (eg. M01_Hylonomus_1.png)
+* The on-screen resolution will be **720x480**. Image that not in the same ratio will also be accepted, but it will have a black border when display. For memory and loading issue, the image resolution is better below 1920x1080.
 
 ## Installation Setup
 1. Copy the release project folder to `C:/User/Desktop/`
